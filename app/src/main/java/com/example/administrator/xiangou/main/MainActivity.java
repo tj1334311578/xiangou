@@ -1,7 +1,9 @@
-package com.example.administrator.xiangou;
+package com.example.administrator.xiangou.main;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.administrator.xiangou.R;
 
 public class MainActivity extends AppCompatActivity {
 

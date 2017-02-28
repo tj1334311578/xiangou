@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="5dp">
+
+    <com.youth.banner.Banner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/banner"
+        app:indicator_drawable_selected="@drawable/select_radius_advs"
+        app:indicator_drawable_unselected="@drawable/unselect_radius_advs">
+    </com.youth.banner.Banner>
+
+</RelativeLayout>

@@ -5,4 +5,7 @@
     <color name="colorAccent">#FF4081</color>
     <color name="white">#fff</color>
     <color name="black">#000</color>
+
+    <color name="select_radius_color">#03bf00</color>
+    <color name="unselect_radius_color">#80ffffff</color>
 </resources>

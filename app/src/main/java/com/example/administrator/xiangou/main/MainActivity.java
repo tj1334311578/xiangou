@@ -2,8 +2,12 @@ package com.example.administrator.xiangou.main;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
+
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.tool.GlideImageLoader;
+import com.example.administrator.xiangou.tool.Search_EditText;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
@@ -15,13 +19,30 @@ public class MainActivity extends AppCompatActivity {
 
     private List<String> imgUrls,titles;
     private Banner mBanner;
+    private Search_EditText search_editText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        initView();
         initBanner();
+    }
+
+    private void initView() {
+        search_editText= (Search_EditText) findViewById(R.id.search);
+        search_editText.setDrawableListener(new Search_EditText.DrawableListener() {
+            @Override
+            public void onDrawableLeftClick(View view) {
+                Toast.makeText(MainActivity.this, "you click left", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onDrawableRightClick(View view) {
+                Toast.makeText(MainActivity.this, "you click right", Toast.LENGTH_SHORT).show();
+
+            }
+        });
     }
 
     private void initBanner() {

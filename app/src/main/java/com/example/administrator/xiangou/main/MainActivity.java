@@ -1,11 +1,10 @@
 package com.example.administrator.xiangou.main;
-
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
 import com.example.administrator.xiangou.R;
+import com.example.administrator.xiangou.tool.BaseActivity;
 import com.example.administrator.xiangou.tool.GlideImageLoader;
 import com.example.administrator.xiangou.tool.Search_EditText;
 import com.youth.banner.Banner;
@@ -15,7 +14,7 @@ import com.youth.banner.Transformer;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     private List<String> imgUrls,titles;
     private Banner mBanner;

@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.administrator.xiangou.main.MainActivity">
+
     <LinearLayout
         android:id="@+id/llContent"
         android:layout_width="match_parent"
@@ -14,7 +15,9 @@
         android:background="@color/white"
         android:weightSum="1"
         android:layout_above="@+id/link_bottom">
+
     <include layout="@layout/free_link_head"/>
+
     <com.youth.banner.Banner
         android:id="@+id/banner"
         app:indicator_drawable_selected="@drawable/selected"
@@ -23,6 +26,7 @@
         android:layout_height="79dp"
         ></com.youth.banner.Banner>
     </LinearLayout>
+
     <include layout="@layout/free_link_bottom"
         android:id="@+id/link_bottom"
         android:layout_width="match_parent"

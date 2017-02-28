@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         mBanner.setDelayTime(3000);
         //设置自动轮播
         mBanner.isAutoPlay(true);
-//        //设置标题集合（当banner样式有显示title时）
+        //设置标题集合（当banner样式有显示title时）
         mBanner.setBannerTitles(titles);
         mBanner.start();
     }

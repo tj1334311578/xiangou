@@ -6,5 +6,5 @@ package com.example.administrator.xiangou.tool;
  */
 
 public class Constant {
-    public static final String EXIT_APP_ACTION="com.xiangou.exit_app";
+    public static final String EXIT_APP_ACTION="com.exit_app";
 }

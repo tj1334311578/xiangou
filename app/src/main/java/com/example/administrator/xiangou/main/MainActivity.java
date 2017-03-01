@@ -1,10 +1,13 @@
 package com.example.administrator.xiangou.main;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.tool.BaseActivity;
+import com.example.administrator.xiangou.tool.Constant;
 import com.example.administrator.xiangou.tool.GlideImageLoader;
 import com.example.administrator.xiangou.tool.Search_EditText;
 import com.youth.banner.Banner;
@@ -15,7 +18,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends BaseActivity {
-
     private List<String> imgUrls,titles;
     private Banner mBanner;
     private Search_EditText search_editText;
@@ -24,22 +26,35 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         initView();
         initBanner();
     }
 
     private void initView() {
         search_editText= (Search_EditText) findViewById(R.id.search);
+        Button button= (Button) findViewById(R.id.button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               exit_app();
+            }
+        });
         search_editText.setDrawableListener(new Search_EditText.DrawableListener() {
             @Override
             public void onDrawableLeftClick(View view) {
                 Toast.makeText(MainActivity.this, "you click left", Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(Constant.EXIT_APP_ACTION);
+                sendBroadcast(intent);
             }
-
             @Override
             public void onDrawableRightClick(View view) {
                 Toast.makeText(MainActivity.this, "you click right", Toast.LENGTH_SHORT).show();
-
             }
         });
     }

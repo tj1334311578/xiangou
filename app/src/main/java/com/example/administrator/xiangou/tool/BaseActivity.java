@@ -1,46 +1,43 @@
 package com.example.administrator.xiangou.tool;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.annotation.Nullable;
+import android.util.Log;
 
 /**
- * Created by Administrator on 2017/2/28.
- * 所有activity的基类
+ * Created by Administrator on 2017/3/1.
  */
 
-public class BaseActivity extends AppCompatActivity {
-    private  ExitAppReceiver exitReceiver=new ExitAppReceiver();
-    //自定义退出程序action
-
+public class BaseActivity extends Activity {
+    private ExitReceiver exitReceiver=new ExitReceiver();
     @Override
-    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         registerExitReceiver();
     }
-    //注册广播
+
     private void registerExitReceiver() {
-        IntentFilter exitFilter = new IntentFilter();
-        exitFilter.addAction(Constant.EXIT_APP_ACTION);
-        registerReceiver(exitReceiver, exitFilter);
+        IntentFilter intentfilter=new IntentFilter();
+        Log.e("TGA", "registerExitReceiver: "+Constant.EXIT_APP_ACTION);
+        intentfilter.addAction(Constant.EXIT_APP_ACTION);
+        registerReceiver(exitReceiver,intentfilter);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        unRegisterExitReceiver();
+        unregisterExitReceiver();
     }
-        //广播注册注销
-    private void unRegisterExitReceiver() {
-        IntentFilter exitFilter = new IntentFilter();
-        exitFilter.addAction(Constant.EXIT_APP_ACTION);
-        registerReceiver(exitReceiver, exitFilter);
+
+    private void unregisterExitReceiver() {
+        unregisterReceiver(exitReceiver);
+        Log.e("TGA", "unregisterExitReceiver: onDestroy");
     }
-    //可以写在退出控件监听中
-    public void exit_app(){
-        Intent intent =new Intent();
+    public  void  exit_app(){
+        Intent intent=new Intent();
         intent.setAction(Constant.EXIT_APP_ACTION);
         sendBroadcast(intent);
     }

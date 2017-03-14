@@ -1,3 +1,10 @@
 <resources>
-    <string name="app_name">XianGou</string>
+    <string name="app_name">闲购</string>
+
+    <string name="home">主页</string>
+    <string name="classify">分类</string>
+    <string name="nearby">附近</string>
+    <string name="shopping_cart">购物车</string>
+    <string name="mine">我的</string>
+
 </resources>

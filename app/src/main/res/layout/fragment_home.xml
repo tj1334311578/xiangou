@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+    android:background="@color/homeBgColor">
+
+    <include layout="@layout/custom_actionbar"
+             android:id="@+id/topbar_home"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/rv_frag_home"
+        android:scrollbars="none"
+        android:background="@color/homeBgColor">
+    </android.support.v7.widget.RecyclerView>
+</LinearLayout>

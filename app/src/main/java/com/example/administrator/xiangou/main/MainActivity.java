@@ -1,80 +1,82 @@
 package com.example.administrator.xiangou.main;
+
 import android.os.Bundle;
+import android.support.v4.app.FragmentTabHost;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Toast;
+import android.view.Window;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TabHost;
+import android.widget.TextView;
 
 import com.example.administrator.xiangou.R;
+import com.example.administrator.xiangou.home.HomeFragment;
+import com.example.administrator.xiangou.mine.MineFragment;
+import com.example.administrator.xiangou.nearby.NearbyFragment;
+import com.example.administrator.xiangou.shoppingcart.CartFragment;
 import com.example.administrator.xiangou.tool.BaseActivity;
-import com.example.administrator.xiangou.tool.GlideImageLoader;
-import com.example.administrator.xiangou.tool.Search_EditText;
-import com.youth.banner.Banner;
-import com.youth.banner.BannerConfig;
-import com.youth.banner.Transformer;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.ButterKnife;
+
 public class MainActivity extends BaseActivity {
 
-    private List<String> imgUrls,titles;
-    private Banner mBanner;
-    private Search_EditText search_editText;
+    private FragmentTabHost mFragmentTabHost;
+    private LayoutInflater mInflater;
+    private List<Tab> mTabs;
+    private TabHost.TabSpec mTabSpec;
+    private int mCurrentNum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
-        initView();
-        initBanner();
+        ButterKnife.bind(this);
+        initTabHost();
     }
 
-    private void initView() {
-        search_editText= (Search_EditText) findViewById(R.id.search);
-        search_editText.setDrawableListener(new Search_EditText.DrawableListener() {
-            @Override
-            public void onDrawableLeftClick(View view) {
-                Toast.makeText(MainActivity.this, "you click left", Toast.LENGTH_SHORT).show();
-            }
+    //初始化底栏的tabs
+    private void initTabHost() {
+        Tab home = new Tab(R.string.home,R.drawable.icon_home_select,HomeFragment.class);
+        Tab nearby = new Tab(R.string.nearby,R.drawable.icon_nearby_select,NearbyFragment.class);
+        Tab cart = new Tab(R.string.shopping_cart,R.drawable.icon_cart_select,CartFragment.class);
+        Tab mine = new Tab(R.string.mine,R.drawable.icon_mine_select,MineFragment.class);
+        mTabs = new ArrayList<>();
+        mTabs.add(home);
+        mTabs.add(nearby);
+        mTabs.add(cart);
+        mTabs.add(mine);
 
-            @Override
-            public void onDrawableRightClick(View view) {
-                Toast.makeText(MainActivity.this, "you click right", Toast.LENGTH_SHORT).show();
-
-            }
-        });
+        mInflater = LayoutInflater.from(this);
+        mFragmentTabHost = (FragmentTabHost) findViewById(R.id.tabhost);
+        mFragmentTabHost.setup(this,getSupportFragmentManager(),R.id.fragsgroup);
+        for (Tab tab:mTabs
+                ) {
+            mTabSpec = mFragmentTabHost.newTabSpec(getString(tab.getTitle()));
+            mTabSpec.setIndicator(buildIndicator(tab));
+            mFragmentTabHost.addTab(mTabSpec,tab.getFrag(),null);
+            mCurrentNum++;
+        }
+        //去掉分隔线
+        mFragmentTabHost.getTabWidget().setShowDividers(LinearLayout.SHOW_DIVIDER_NONE);
+        //开始默认选中第一个tab
+        mFragmentTabHost.setCurrentTab(0);
     }
 
-    private void initBanner() {
-        imgUrls = new ArrayList<>();
-        imgUrls.add("http://dynamic-image.yesky.com/740x-/uploadImages/2017/052/41/18XAS82RL2O1_800x1200.jpg");
-        imgUrls.add("http://dynamic-image.yesky.com/740x-/uploadImages/2017/049/27/9SI697LWZF0E_800x1200.jpg");
-        imgUrls.add("http://dynamic-image.yesky.com/740x-/uploadImages/2017/051/09/S7R05BP4N4X0_800x1200.jpg");
-        imgUrls.add("http://dynamic-image.yesky.com/740x-/uploadImages/2017/049/00/61XX007XTFBW_800x1200.jpg");
-        imgUrls.add("http://dynamic-image.yesky.com/740x-/uploadImages/2017/049/21/C7UE22883BE7_800x1200.jpg");
-        titles = new ArrayList<>();
-        titles.add("美女1");
-        titles.add("美女2");
-        titles.add("美女3");
-        titles.add("美女4");
-        titles.add("美女5");
+    //初始化底栏的tab
+    private View buildIndicator(Tab tab) {
+        View view =mInflater.inflate(R.layout.tab_indicator,null);
 
-        mBanner = (Banner) findViewById(R.id.banner_home).findViewById(R.id.banner);
-        //设置banner样式
-        mBanner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE);
-        //设置指示器位置（当banner模式中有指示器时）
-        mBanner.setIndicatorGravity(BannerConfig.CENTER);
-        //设置图片加载器
-        mBanner.setImageLoader(new GlideImageLoader());
-        //设置图片集合
-        mBanner.setImages(imgUrls);
-        //设置banner动画效果
-        mBanner.setBannerAnimation(Transformer.DepthPage);
-        //设置轮播时间
-        mBanner.setDelayTime(3000);
-        //设置自动轮播
-        mBanner.isAutoPlay(true);
-        //设置标题集合（当banner样式有显示title时）
-        mBanner.setBannerTitles(titles);
-        mBanner.start();
+        ImageView img = (ImageView) view.findViewById(R.id.icon_tab_indicator);
+        TextView text = (TextView) view.findViewById(R.id.text_tab_indicator);
+
+        img.setImageResource(tab.getIcon());
+        text.setText(tab.getTitle());
+        return view;
     }
+
 }

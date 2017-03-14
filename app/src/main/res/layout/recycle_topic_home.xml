@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/whiteBgColor">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingLeft="8dp">
+        <ImageView
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:id="@+id/icon_child_shop"
+            android:src="@mipmap/special_topic"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/text_child_shop"
+            android:text="特别专题"
+            android:textColor="@color/textcolor_black"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:layout_marginLeft="3dp"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableRight="@drawable/icon_goto"
+            android:id="@+id/enterseeall_topic"
+            android:text="全部"
+            android:textSize="15sp"
+            android:gravity="center" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+        <com.example.administrator.xiangou.tool.CustomImageView
+            android:layout_width="match_parent"
+            android:layout_height="119dp"
+            android:id="@+id/advs_topic_civ"
+            android:src="@mipmap/girl_h"
+            app:civ_type="TYPE_ROUND"
+            app:civ_roundradius="10"
+            android:scaleType="matrix"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            android:background="@drawable/textbg_topic_advs_title"
+            android:layout_marginTop="12dp"
+            android:layout_marginLeft="19dp"
+            android:id="@+id/advs_topic_title_tv"
+            android:text="街头美女一枚"
+            android:textSize="10sp"
+            android:textColor="@color/textcolor_advs_topic_title"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:paddingRight="5dp"/>
+
+        <com.example.administrator.xiangou.tool.CustomImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginTop="11dp"
+            android:layout_marginLeft="10dp"
+            android:id="@+id/advs_topic_title_civ"
+            app:civ_type="TYPE_CIRCLE"
+            android:src="@drawable/girl_v"/>
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/child_topic_recycle"></android.support.v7.widget.RecyclerView>
+</LinearLayout>

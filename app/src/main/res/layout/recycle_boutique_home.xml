@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+              android:layout_marginBottom="5dp"
+              android:background="@color/whiteBgColor">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingLeft="8dp">
+        <ImageView
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:id="@+id/icon_child_shop"
+            android:src="@mipmap/boutique"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/title_boutique_recycle"
+            android:text="精品店家"
+            android:textColor="@color/textcolor_black"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:layout_marginLeft="3dp"/>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableRight="@drawable/icon_goto"
+            android:id="@+id/enterseeall_boutique_recycle"
+            android:text="全部"
+            android:textSize="12sp"
+            android:gravity="center" />
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/child_boutique_recycle"></android.support.v7.widget.RecyclerView>
+</LinearLayout>

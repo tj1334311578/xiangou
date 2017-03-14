@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:layout_marginTop="8dp">
+
+    <com.example.administrator.xiangou.tool.CustomImageView
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        android:layout_marginLeft="8dp"
+        android:id="@+id/icon_title_store"/>
+    <TextView
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:id="@+id/text_title_store"
+        android:layout_marginLeft="8dp"
+        android:textSize="14sp"
+        android:textColor="@color/textcolor_nearby_title"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="21dp"
+        android:drawableLeft="@mipmap/nearby_store_distance_icon"
+        android:drawablePadding="3dp"
+        android:text="300m"
+        android:textSize="12sp"
+        android:textColor="@color/distance_store_bg"
+        android:gravity="bottom"
+        android:id="@+id/distance_title_store"/>
+</LinearLayout>

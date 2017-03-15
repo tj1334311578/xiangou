@@ -10,4 +10,32 @@
         </attr>
         <attr name="civ_roundradius" format="integer"/>
     </declare-styleable>
+
+    //自定义textView添加图片需用到的declare_styleable
+    <declare-styleable name="DrawableTextView">
+        <attr name="leftDrawable" format="reference|color"/>
+        <attr name="rightDrawable" format="reference|color"/>
+        <attr name="topDrawable" format="reference|color"/>
+        <attr name="bottomDrawable" format="reference|color"/>
+
+        <attr name="leftDrawableWidth" format="reference|dimension"/>
+        <attr name="rightDrawableWidth" format="reference|dimension"/>
+        <attr name="topDrawableWidth" format="reference|dimension"/>
+        <attr name="bottomDrawableWidth" format="reference|dimension"/>
+
+        <attr name="leftDrawableHeight" format="reference|dimension"/>
+        <attr name="rightDrawableHeight" format="reference|dimension"/>
+        <attr name="topDrawableHeight" format="reference|dimension"/>
+        <attr name="bottomDrawableHeight" format="reference|dimension"/>
+    </declare-styleable>
+    <declare-styleable name="SelectImageView">
+        <attr name="ImageType" format="string">
+            <enum name="TYPE_CIRCLE" value="0"/>
+            <enum name="TYPE_ROUND" value="1"/>
+            <enum name="TYPE_OVAL" value="2"/>
+            <enum name="TYPE_RECT" value="3"/>
+        </attr>
+        <attr name="ImageRoundRadius" format="dimension|reference"/>
+    </declare-styleable>
+
 </resources>

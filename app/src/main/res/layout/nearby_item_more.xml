@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="更多优惠"
+        android:layout_marginTop="3dp"
+        android:textSize="20sp"
+        android:layout_marginLeft="5dp"
+        android:id="@+id/item_more"
+        android:layout_toRightOf="@+id/day_bg"
+        android:textColor="@color/textcolor_advs_topic_title"/>
+    <View
+        android:layout_width="5dp"
+        android:background="@color/textcolor_advs_topic_title"
+        android:id="@+id/more_bg"
+        android:layout_marginLeft="1dp"
+        android:layout_marginTop="3dp"
+        android:layout_alignBottom="@+id/item_more"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/item_more"
+        android:layout_alignBottom="@+id/item_more"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="3dp"
+        android:text="你值得拥有" />
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/item_more_recycleView"
+        android:layout_below="@id/more_bg"
+        ></android.support.v7.widget.RecyclerView>
+</RelativeLayout>

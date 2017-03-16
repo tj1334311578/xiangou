@@ -24,7 +24,9 @@ import java.util.List;
 public abstract class AutoRVAdapter extends RecyclerView.Adapter<AutoRVAdapter.RVHolder> {
     public List<?> list;
     private Context context;
-//    public AutoRVAdapter(){}
+    //无参构造
+    public AutoRVAdapter(){}
+    //有参构造
     public AutoRVAdapter(Context context, List<?> list) {
         this.list = list;
         this.context = context;

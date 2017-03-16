@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:padding="2dp"
     android:layout_height="wrap_content">
     <ImageView
         android:layout_width="100dp"
         android:layout_marginTop="5dp"
-        android:layout_height="wrap_content" 
+        android:layout_height="100dp"
         android:adjustViewBounds="true"
         android:id="@+id/item_hour_item_img"
         android:layout_marginStart="20dp"
@@ -28,16 +27,7 @@
         android:textSize="16sp"
         android:text="海内顶尖品质包包等你入手"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/item_hour_item_hourprice"
-        android:text="限时价"
-        android:layout_alignLeft="@+id/item_hour_item_originalprice"
-        android:layout_alignBottom="@+id/item_hour_item_img"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -50,6 +40,24 @@
         android:textSize="14sp"
         android:textColor="@color/black"
         android:text="稻草人女包手提包单肩斜挎包简约时尚包"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/item_hour_item_originalprice"
+        android:layout_alignLeft="@id/item_hour_item_description2"
+        android:layout_below="@id/item_hour_item_description2"
+        android:textSize="13sp"
+        android:text="￥289.00"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/item_hour_item_hourprice"
+        android:text="限时价"
+        android:layout_alignLeft="@+id/item_hour_item_originalprice"
+        android:layout_alignBottom="@+id/item_hour_item_img"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -75,15 +83,6 @@
         android:paddingTop="3dp"
         android:paddingBottom="3dp"
         android:layout_alignRight="@id/item_hour_item_description1"
-
         />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/item_hour_item_originalprice"
-        android:layout_alignLeft="@+id/item_hour_item_description2"
-        android:layout_above="@+id/item_hour_item_hourprice"
-        android:textSize="13sp"
-        android:text="￥289.00"/>
 
 </RelativeLayout>

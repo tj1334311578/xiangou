@@ -57,13 +57,7 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-//        registerExitReceiver();
     }
-    //    @Override
-//    public boolean onKeyDown(int keyCode, KeyEvent event) {
-//
-//        return super.onKeyDown(keyCode, event);
-//    }
 
     @Override
     protected void onDestroy() {

@@ -57,7 +57,7 @@
                 android:text="展开"
                 android:layout_marginLeft="15dp"
                 android:id="@+id/open_child_store_nearby"
-                android:textColor="@color/textcolor_advs_topic_title"/>
+                android:textColor="@color/textcolor_pink"/>
         </LinearLayout>
 
         <include layout="@layout/nearby_store_child_foot"/>

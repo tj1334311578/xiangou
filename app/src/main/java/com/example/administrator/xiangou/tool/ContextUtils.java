@@ -9,7 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import java.math.BigDecimal;
 import java.security.MessageDigest;
+import java.text.DecimalFormat;
 
 /**
  * Created by zhouzongyao on 2017/3/6.
@@ -24,7 +26,6 @@ public class ContextUtils extends Application{
 
     @Override
     public void onCreate() {
-
         mContext = this;
         super.onCreate();
         mDisplayMetrics = getResources().getDisplayMetrics();
@@ -67,5 +68,19 @@ public class ContextUtils extends Application{
     public static int sp2px(float spValue) {
         final float fontScale = mDisplayMetrics.scaledDensity;
         return (int) (spValue * fontScale + 0.5f);
+    }
+
+    /**
+     * 保留2位小数值
+     * @param num
+     * @return
+     */
+    public static String S2places(float num){
+        DecimalFormat df = new DecimalFormat("0.00");
+        return df.format(num);
+    }
+    public static float F2places(float num){
+        BigDecimal bd = new BigDecimal(num);
+        return bd.setScale(2).floatValue();
     }
 }

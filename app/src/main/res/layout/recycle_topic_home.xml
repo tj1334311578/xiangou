@@ -63,7 +63,7 @@
             android:id="@+id/advs_topic_title_tv"
             android:text="街头美女一枚"
             android:textSize="10sp"
-            android:textColor="@color/textcolor_advs_topic_title"
+            android:textColor="@color/textcolor_pink"
             android:gravity="center_vertical"
             android:paddingLeft="10dp"
             android:paddingRight="5dp"/>

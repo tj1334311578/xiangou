@@ -54,6 +54,7 @@ public class CustomImageView extends ImageView {
         mType = array.getInteger(R.styleable.CustomImageView_civ_type,0);
         mRoundRadius = array.getInteger(R.styleable.CustomImageView_civ_roundradius,0);
         setType(mType);
+        setmRoundRadius(mRoundRadius);
         array.recycle();
 
         mPaint = new Paint();

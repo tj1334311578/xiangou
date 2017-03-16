@@ -104,7 +104,7 @@
         android:layout_alignStart="@id/register_numberll"
         android:layout_below="@id/register_msg"
         android:layout_marginTop="50dp"
-        android:background="@color/textcolor_advs_topic_title"
+        android:background="@drawable/round20dp"
         android:gravity="center"
         android:text="完成"
         android:textSize="18sp"/>

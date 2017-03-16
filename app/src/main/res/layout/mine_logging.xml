@@ -122,7 +122,7 @@
         android:layout_alignStart="@id/logging_passwordll"
         android:layout_below="@id/Dynamic_login"
         android:layout_alignEnd="@id/logging_passwordll"
-        android:background="@color/textcolor_advs_topic_title"
+        android:background="@drawable/round20dp"
         android:id="@+id/logging_login"
         android:layout_height="40dp" />
     <TextView

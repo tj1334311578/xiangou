@@ -3,7 +3,6 @@ package com.example.administrator.xiangou.shoppingcart;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,8 +14,6 @@ import android.widget.Toast;
 
 
 import com.example.administrator.xiangou.R;
-import com.example.administrator.xiangou.base.BaseAdapter;
-import com.example.administrator.xiangou.home.ChildHomeBean;
 import com.example.administrator.xiangou.tool.ItemIntervalDecoration;
 
 import java.util.ArrayList;
@@ -47,10 +44,6 @@ public class CartFragment extends Fragment implements View.OnClickListener{
     }
 
     private void initView() {
-//        mAllCountTv = (TextView) mFragView.findViewById(R.id.cart_goods_allcount);
-//        mAllCountTv.setOnClickListener(this);
-//        mAllEditTv = (TextView) mFragView.findViewById(R.id.cart_edit_all);
-//        mAllEditTv.setOnClickListener(this);
         mAllCountTv = getMyView(R.id.cart_goods_allcount);
         mAllCountTv.setText("购物车("+10+")");
         mAllEditTv = getMyView(R.id.cart_edit_all);
@@ -84,6 +77,5 @@ public class CartFragment extends Fragment implements View.OnClickListener{
         }else if (v==mNewsCountTv||v==mNewsImg){
             Toast.makeText(getContext(), "here is cart :you have article"+ mNewsCountTv.getText()+" news", Toast.LENGTH_SHORT).show();
         }
-//        else if (v==mDealRv){}else if (v==mRecommendationRv){}
     }
 }

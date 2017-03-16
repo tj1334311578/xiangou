@@ -25,7 +25,7 @@
     <ImageView
         android:id="@+id/register_img"
         android:layout_width="52dp"
-        android:layout_height="41dp"
+        android:layout_height="51dp"
         android:layout_below="@id/login_register"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="53dp"
@@ -96,52 +96,49 @@
         android:textColor="@color/register_gray"
         android:textSize="15sp"/>
 
+    <LinearLayout
+        android:layout_alignStart="@+id/register_cancel"
+        android:layout_marginTop="26dp"
+        android:layout_width="match_parent"
+        android:id="@+id/register_ll"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/register_msg"
+        android:orientation="horizontal">
+        <CheckBox
+        android:layout_width="11dp"
+        android:layout_height="11dp"
+        android:id="@+id/login_cb"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/circlebg_checkbox"
+        android:button="@null"/>
+
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/register_tongyi"
+        android:layout_marginStart="10dp"
+        android:text="我已同意并接受"
+        android:textSize="11sp"/>
+
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="3dp"
+        android:text="闲购用户注册协议"
+        android:textColor="@color/textcolor_advs_topic_title"
+        android:textSize="11sp"/>
+    </LinearLayout>
+
     <TextView
         android:id="@+id/register_sure"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_alignEnd="@id/register_numberll"
-        android:layout_alignStart="@id/register_numberll"
-        android:layout_below="@id/register_msg"
-        android:layout_marginTop="50dp"
         android:background="@drawable/round20dp"
         android:gravity="center"
         android:text="完成"
-        android:textSize="18sp"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@id/register_sure"
-        android:layout_below="@id/register_msg"
-        android:orientation="horizontal"
-        android:gravity="center_vertical">
-
-        <CheckBox
-            android:layout_width="11dp"
-            android:layout_height="11dp"
-            android:id="@+id/login_cb"
-            android:layout_gravity="center_vertical"
-            android:background="@drawable/circlebg_checkbox"
-            android:button="@null"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/register_tongyi"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="25dp"
-            android:text="我已同意并接受"
-            android:textSize="11sp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="3dp"
-            android:layout_marginTop="30dp"
-            android:text="闲购用户注册协议"
-            android:textColor="@color/textcolor_advs_topic_title"
-            android:textSize="11sp"/>
-    </LinearLayout>
+        android:textSize="18sp"
+        android:layout_below="@+id/register_ll"
+        android:layout_alignEnd="@+id/register_numberll"
+        android:layout_alignStart="@+id/register_msg" />
 
 </RelativeLayout>

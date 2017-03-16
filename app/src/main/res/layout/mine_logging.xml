@@ -23,16 +23,16 @@
         android:layout_marginLeft="17dp"
         />
     <ImageView
-        android:layout_width="52dp"
+        android:layout_width="wrap_content"
         android:adjustViewBounds="true"
         android:layout_below="@id/logging_log"
         android:layout_centerHorizontal="true"
         android:src="@mipmap/nearby_store_dfimg"
         android:id="@+id/logging_img"
         android:layout_marginTop="53dp"
-        android:layout_height="41dp" />
+        android:layout_height="51dp" />
     <LinearLayout
-        android:layout_marginTop="41dp"
+        android:layout_marginTop="61dp"
         android:layout_marginRight="17dp"
         android:orientation="horizontal"
         android:id="@+id/logging_userll"
@@ -105,26 +105,14 @@
     android:gravity="center"
     android:layout_below="@id/logging_passwordll"
     android:id="@+id/Dynamic_login"
-    android:layout_marginTop="17dp"
+    android:layout_marginTop="48dp"
     android:text="or 动态登录"
     android:textSize="14sp"
     android:layout_alignParentRight="true"
     android:layout_marginRight="45dp"
     android:textColor="@color/textcolor_advs_topic_title"
-    android:layout_height="40dp" />
+    android:layout_height="20dp" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:text="登录"
-        android:gravity="center"
-        android:textSize="18sp"
-        android:layout_marginTop="41dp"
-        android:layout_alignStart="@id/logging_passwordll"
-        android:layout_below="@id/Dynamic_login"
-        android:layout_alignEnd="@id/logging_passwordll"
-        android:background="@drawable/round20dp"
-        android:id="@+id/logging_login"
-        android:layout_height="40dp" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -157,5 +145,17 @@
         android:layout_marginLeft="50dp"
         android:textColor="@color/login_red"
         android:text="手机号和密码不匹配，请重新输入"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:text="登录"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:background="@drawable/round20dp"
+        android:id="@+id/logging_login"
+        android:layout_marginRight="17dp"
+        android:layout_height="40dp"
+        android:layout_below="@+id/Dynamic_login"
+        android:layout_alignStart="@+id/logging_passwordll" />
 
 </RelativeLayout>

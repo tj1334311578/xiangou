@@ -20,6 +20,7 @@ public abstract class BaseAdapter< T, H extends BaseViewHolder> extends Recycler
      * 提供item监听
      */
     protected OnMineItemClickListener mOnItemClickListener;
+
     public interface OnMineItemClickListener {
         void onMineItemClick(View view, int position);
         void onMineItemLongClick(View view, int position);

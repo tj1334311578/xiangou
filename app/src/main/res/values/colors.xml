@@ -17,6 +17,7 @@
     <color name="homeBgColor">#f8f8f8</color>
     <color name="nearbyTabLine">#e20755</color>
     <color name="textcolor_black">#f5060002</color>
+    <color name="textcolor_pink">#fb4a89</color>
     <color name="textcolor_referrals">#e6000000</color>
     <color name="textcolor_adr">#cc050505</color>
     <color name="textcolor_advs_topic_title">#fb4a89</color>
@@ -25,6 +26,8 @@
     <color name="textcolor_nearby_item_name">#e0161616</color>
     <color name="textcolor_nearby_hint">#80040404</color>
     <color name="distance_store_bg">#86bef2</color>
+    <color name="cart_textb316color">#b3161616</color>
+    <color name="cart_text16color">#161616</color>
 
     <color name="register_text">#f5f5f5</color>
     <color name="gray">#CC161616</color>
@@ -34,5 +37,4 @@
     <color name="textcolor_mine_black">#161616</color>
     <color name="textcolor_mine_black2">#0b0b0b</color>
     <color name="textcolor_mine_black3">#800b0b0b</color>
-
 </resources>

@@ -1,134 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
     <TextView
+        android:id="@+id/login_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
         android:layout_centerHorizontal="true"
-        android:textSize="16sp"
-        android:id="@+id/login_register"
+        android:layout_marginTop="15dp"
+        android:text="注册"
         android:textColor="@color/textcolor_advs_topic_title"
-        android:text="注册"/>
+        android:textSize="16sp"/>
+
     <ImageView
+        android:id="@+id/register_cancel"
         android:layout_width="wrap_content"
-        android:background="@color/register_text"
         android:layout_height="26dp"
         android:layout_alignTop="@id/login_register"
-        android:id="@+id/register_cancel"
-        android:src="@drawable/cancel"
         android:layout_marginLeft="17dp"
-        />
+        android:background="@color/register_text"
+        android:src="@drawable/cancel"/>
+
     <ImageView
+        android:id="@+id/register_img"
         android:layout_width="52dp"
-        android:adjustViewBounds="true"
+        android:layout_height="41dp"
         android:layout_below="@id/login_register"
         android:layout_centerHorizontal="true"
-        android:src="@mipmap/nearby_store_dfimg"
-        android:id="@+id/register_img"
         android:layout_marginTop="53dp"
-        android:layout_height="41dp" />
+        android:adjustViewBounds="true"
+        android:src="@mipmap/nearby_store_dfimg"/>
 
     <LinearLayout
-        android:layout_marginTop="41dp"
-        android:layout_marginRight="17dp"
-        android:orientation="horizontal"
         android:id="@+id/register_numberll"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignStart="@id/register_cancel"
         android:layout_below="@id/register_img"
+        android:layout_marginRight="17dp"
+        android:layout_marginTop="41dp"
         android:gravity="center_vertical"
-        android:layout_height="wrap_content">
+        android:orientation="horizontal">
+
         <EditText
+            android:id="@+id/register_number_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textColor="@color/register_gray"
-            android:id="@+id/register_number_edit"
             android:hint="输入手机号码"
-            android:textSize="15sp"
-            />
+            android:textColor="@color/register_gray"
+            android:textSize="15sp"/>
+
         <TextView
             android:id="@+id/register_verification"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="15sp"
+            android:text="验证"
             android:textColor="@color/gray"
-            android:visibility="visible"
-            android:text="验证"/>
+            android:textSize="15sp"
+            android:visibility="visible"/>
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginTop="14dp"
-        android:layout_alignStart="@id/register_cancel"
-        android:orientation="horizontal"
         android:id="@+id/register_verification_ll"
-        android:layout_alignEnd="@id/register_numberll"
-        android:gravity="center_vertical"
-        android:layout_below="@id/register_numberll"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@id/register_numberll"
+        android:layout_alignStart="@id/register_cancel"
+        android:layout_below="@id/register_numberll"
+        android:layout_marginTop="14dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
         <EditText
+            android:id="@+id/register_verification_code"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/logging_userimg"
-            android:textColor="@color/register_gray"
-            android:id="@+id/register_verification_code"
             android:hint="输入验证码"
+            android:textColor="@color/register_gray"
             android:textSize="15sp"
             />
     </LinearLayout>
-<TextView
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="输入8-16位字母（区分大小写）、数字"
-    android:textSize="15sp"
-    android:id="@+id/register_msg"
-    android:layout_marginTop="30dp"
-    android:textColor="@color/register_gray"
-    android:layout_below="@id/register_verification_ll"
-    android:layout_alignStart="@id/register_numberll"
-    android:layout_alignEnd="@id/register_numberll"/>
+
     <TextView
+        android:id="@+id/register_msg"
         android:layout_width="match_parent"
-        android:text="完成"
-        android:gravity="center"
-        android:textSize="18sp"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@id/register_numberll"
+        android:layout_alignStart="@id/register_numberll"
+        android:layout_below="@id/register_verification_ll"
+        android:layout_marginTop="30dp"
+        android:text="输入8-16位字母（区分大小写）、数字"
+        android:textColor="@color/register_gray"
+        android:textSize="15sp"/>
+
+    <TextView
+        android:id="@+id/register_sure"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignEnd="@id/register_numberll"
         android:layout_alignStart="@id/register_numberll"
         android:layout_below="@id/register_msg"
-        android:layout_alignEnd="@id/register_numberll"
-        android:background="@color/textcolor_advs_topic_title"
-        android:id="@+id/register_sure"
         android:layout_marginTop="50dp"
-        android:layout_height="40dp" />
+        android:background="@color/textcolor_advs_topic_title"
+        android:gravity="center"
+        android:text="完成"
+        android:textSize="18sp"/>
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="11sp"
-        android:textColor="@color/textcolor_advs_topic_title"
-        android:text="闲购用户注册协议"
-        android:layout_marginLeft="3dp"
-        android:layout_alignBottom="@+id/register_tongyi"
-        android:layout_toRightOf="@+id/register_tongyi"
-        android:layout_marginTop="30dp" />
+        android:layout_above="@id/register_sure"
+        android:layout_below="@id/register_msg"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
 
-    <TextView
-        android:id="@+id/register_tongyi"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="我已同意并接受"
-        android:textSize="11sp"
-        android:layout_below="@+id/register_msg"
-        android:layout_alignStart="@+id/register_msg"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="25dp" />
-    <CheckBox
-        android:layout_width="11dp"
-        android:layout_alignLeft="@id/register_sure"
-        android:layout_alignBottom="@id/register_tongyi"
-        android:layout_height="11dp" />
+        <CheckBox
+            android:layout_width="11dp"
+            android:layout_height="11dp"
+            android:id="@+id/login_cb"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/circlebg_checkbox"
+            android:button="@null"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/register_tongyi"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="25dp"
+            android:text="我已同意并接受"
+            android:textSize="11sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="30dp"
+            android:text="闲购用户注册协议"
+            android:textColor="@color/textcolor_advs_topic_title"
+            android:textSize="11sp"/>
+    </LinearLayout>
 
 </RelativeLayout>

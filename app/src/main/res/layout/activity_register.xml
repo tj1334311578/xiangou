@@ -10,7 +10,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
         android:text="注册"
-        android:textColor="@color/textcolor_advs_topic_title"
+        android:textColor="@color/gray"
         android:textSize="16sp"/>
 
     <ImageView
@@ -45,21 +45,27 @@
 
         <EditText
             android:id="@+id/register_number_edit"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:singleLine="true"
+            android:lines="1"
+            android:maxLength="11"
             android:hint="输入手机号码"
             android:textColor="@color/register_gray"
             android:textSize="15sp"/>
 
-        <TextView
-            android:id="@+id/register_verification"
-            android:layout_width="wrap_content"
+        <ImageView
+            android:layout_width="24dp"
+            android:adjustViewBounds="true"
+            android:id="@+id/register_clean"
+            android:visibility="gone"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_marginRight="15dp"
             android:layout_height="wrap_content"
-            android:text="验证"
-            android:textColor="@color/gray"
-            android:textSize="15sp"
-            android:visibility="visible"/>
+            android:src="@drawable/error"/>
+
     </LinearLayout>
 
     <LinearLayout
@@ -75,34 +81,50 @@
 
         <EditText
             android:id="@+id/register_verification_code"
+            android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:maxLength="4"
+            android:singleLine="true"
             android:layout_toRightOf="@+id/logging_userimg"
             android:hint="输入验证码"
+            android:lines="1"
             android:textColor="@color/register_gray"
             android:textSize="15sp"
             />
+
+        <TextView
+            android:id="@+id/register_verificationBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="获取验证码"
+            android:layout_marginRight="15dp"
+            android:textColor="@color/textcolor_advs_topic_title"
+            android:textSize="15sp"
+            android:visibility="gone"/>
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/register_msg"
+    <!--<EditText-->
+        <!--android:id="@+id/register_password"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignEnd="@id/register_numberll"-->
+        <!--android:layout_alignStart="@id/register_numberll"-->
+        <!--android:layout_below="@id/register_verification_ll"-->
+        <!--android:layout_marginTop="30dp"-->
+        <!--android:lines="1"-->
+        <!--android:hint="输入8-16位字母（区分大小写）、数字"-->
+        <!--android:textColor="@color/register_gray"-->
+        <!--android:textSize="15sp"/>-->
+
+    <LinearLayout
         android:layout_width="match_parent"
+        android:id="@+id/register_ll"
         android:layout_height="wrap_content"
         android:layout_alignEnd="@id/register_numberll"
         android:layout_alignStart="@id/register_numberll"
         android:layout_below="@id/register_verification_ll"
         android:layout_marginTop="30dp"
-        android:text="输入8-16位字母（区分大小写）、数字"
-        android:textColor="@color/register_gray"
-        android:textSize="15sp"/>
-
-    <LinearLayout
-        android:layout_alignStart="@+id/register_cancel"
-        android:layout_marginTop="26dp"
-        android:layout_width="match_parent"
-        android:id="@+id/register_ll"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/register_msg"
         android:orientation="horizontal">
         <CheckBox
         android:layout_width="11dp"
@@ -116,7 +138,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/register_tongyi"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="5dp"
         android:text="我已同意并接受"
         android:textSize="11sp"/>
 
@@ -130,15 +152,17 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/register_sure"
+        android:id="@+id/registerBtn"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:background="@drawable/round20dp"
         android:gravity="center"
-        android:text="完成"
+        android:text="下一步"
+        android:layout_marginTop="8dp"
         android:textSize="18sp"
+        android:textColor="@color/whiteBgColor"
         android:layout_below="@+id/register_ll"
-        android:layout_alignEnd="@+id/register_numberll"
-        android:layout_alignStart="@+id/register_msg" />
+        android:layout_alignStart="@+id/register_numberll"
+        android:layout_alignEnd="@+id/register_numberll"/>
 
 </RelativeLayout>

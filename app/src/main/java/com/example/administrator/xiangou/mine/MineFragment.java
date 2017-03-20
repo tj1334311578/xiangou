@@ -1,6 +1,7 @@
 package com.example.administrator.xiangou.mine;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -17,6 +18,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.administrator.xiangou.R;
+import com.example.administrator.xiangou.main.login.RegisterActivity;
+import com.example.administrator.xiangou.tool.SelectImageView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +31,7 @@ import java.util.List;
 public class MineFragment extends Fragment implements View.OnClickListener {
     private ListView listView;
     private View view;
+    private SelectImageView circleImage;
     private int content_img[]={R.mipmap.personal_wallet_icon,R.mipmap.personal_footprint_icon,
             R.mipmap.personal_comment_icon,R.mipmap.personal_member_icon,R.mipmap.personal_more_icon};
     private String content_text[]={"我的钱包","我的足迹","我的评论","会员中心","更多",};
@@ -99,6 +103,12 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         view.findViewById(R.id.mine_receive_goods).setOnClickListener(this);
         view.findViewById(R.id.mine_pending_evaluation).setOnClickListener(this);
         view.findViewById(R.id.mine_returns_sales).setOnClickListener(this);
+        view.findViewById(R.id.mine_circle_imageview).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), RegisterActivity.class));
+            }
+        });
     }
 
     @Override

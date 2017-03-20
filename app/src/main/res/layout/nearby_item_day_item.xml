@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:paddingStart="5dp"
-    android:paddingTop="5dp"
     android:layout_marginRight="5dp"
+    android:paddingTop="8dp"
     android:layout_height="wrap_content">
     <ImageView
-        android:layout_width="100dp"
+        android:layout_width="87dp"
         android:layout_height="wrap_content"
         android:src="@mipmap/nearby_store_dfimg"
         android:id="@+id/item_day_item_img"
@@ -15,8 +14,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textColor="@color/cart_text16color"
+        android:textSize="12sp"
         android:lines="1"
         android:id="@+id/item_day_item_description"
         android:layout_below="@id/item_day_item_img"
@@ -30,10 +29,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="￥69.00"
-        android:layout_marginTop="-5dp"
-        android:layout_margin="3dp"
         android:id="@+id/item_day_item_presentprice"
-        android:textSize="18sp"
+        android:textSize="12sp"
         android:textColor="@color/textcolor_advs_topic_title"
         android:layout_below="@id/item_day_item_description"
         />
@@ -41,10 +38,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="￥169.00"
-        android:textSize="16sp"
+        android:textSize="10sp"
         android:layout_alignLeft="@id/item_day_item_presentprice"
         android:id="@+id/item_day_item_originalprice"
-        android:layout_marginTop="-5dp"
         android:layout_below="@id/item_day_item_presentprice"/>
 
 </RelativeLayout>

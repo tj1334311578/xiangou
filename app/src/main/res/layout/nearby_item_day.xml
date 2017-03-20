@@ -6,18 +6,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="今日优惠"
-        android:layout_marginTop="3dp"
-        android:textSize="20sp"
+        android:layout_marginTop="11dp"
+        android:textSize="14sp"
         android:layout_marginLeft="5dp"
         android:id="@+id/item_day"
         android:layout_toRightOf="@+id/day_bg"
         android:textColor="@color/textcolor_advs_topic_title"/>
     <View
-        android:layout_width="5dp"
+        android:layout_width="2dp"
         android:background="@color/textcolor_advs_topic_title"
         android:id="@+id/day_bg"
+        android:layout_alignTop="@id/item_day"
         android:layout_marginLeft="1dp"
-        android:layout_marginTop="3dp"
         android:layout_alignBottom="@+id/item_day"
         android:layout_height="wrap_content"/>
     <TextView
@@ -25,14 +25,18 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/item_day"
         android:layout_alignBottom="@+id/item_day"
-        android:layout_marginRight="5dp"
-        android:layout_marginBottom="3dp"
+        android:textSize="11sp"
+        android:textColor="@color/register_gray"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="1dp"
         android:text="小编特别推荐" />
     <android.support.v7.widget.RecyclerView
         android:focusable="false"
         android:layout_width="match_parent"
         android:id="@+id/item_day_recycle"
         android:layout_below="@+id/item_day"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="3dp"
         android:layout_height="wrap_content">
     </android.support.v7.widget.RecyclerView>
 

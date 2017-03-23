@@ -18,7 +18,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.administrator.xiangou.R;
-import com.example.administrator.xiangou.main.login.RegisterActivity;
+import com.example.administrator.xiangou.main.MainActivity;
+import com.example.administrator.xiangou.main.login.MainLoginActivity;
 import com.example.administrator.xiangou.tool.SelectImageView;
 
 import java.util.ArrayList;
@@ -106,7 +107,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         view.findViewById(R.id.mine_circle_imageview).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), RegisterActivity.class));
+                startActivity(new Intent(getActivity(), MainLoginActivity.class));
             }
         });
     }

@@ -125,7 +125,7 @@ public class NearbyPreferentialAdapter extends AutoRVAdapter implements BaseAdap
         list.add(new PreferBean1(R.mipmap.girl_h,"jfeifjeijfiei",151.32,165.30));
 //        Log.e("tag", "bindHolder1: "+holder.getRecycleView(R.id.item_day_recycle).getId());
         (dayRecycer=holder.getRecycleView(R.id.item_day_recycle)).setLayoutManager(new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false));
-//        holder.getRecycleView(R.id.item_day_recycle).setAdapter((new PrefertialAdapter1(context,list)).);
+        holder.getRecycleView(R.id.item_day_recycle).setAdapter(new PrefertialAdapter1(context,list));
 
 
     }

@@ -19,9 +19,15 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".main.login.RegisterActivity"/>
+        <!--<activity android:name=".main.login.RegisterActivity"/>-->
         <activity android:name=".main.Main2Activity">
         </activity>
+        <!--<activity android:name=".main.login.LoginActivity"/>-->
+        <activity android:name=".main.login.DynamicActivity"/>
+        <activity android:name=".main.login.FindpswActivity"/>
+        <activity android:name=".main.login.MainLoginActivity"/>
+        <activity android:name=".main.login.MainRegisterActivity"/>
+        <activity android:name=".main.login.MainRegisterTwoActivity"/>
     </application>
 
 </manifest>

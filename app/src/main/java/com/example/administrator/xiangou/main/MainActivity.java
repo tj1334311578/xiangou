@@ -70,7 +70,6 @@ public class MainActivity extends BaseActivity {
     //初始化底栏的tab
     private View buildIndicator(Tab tab) {
         View view =mInflater.inflate(R.layout.tab_indicator,null);
-
         ImageView img = (ImageView) view.findViewById(R.id.icon_tab_indicator);
         TextView text = (TextView) view.findViewById(R.id.text_tab_indicator);
 
@@ -78,5 +77,4 @@ public class MainActivity extends BaseActivity {
         text.setText(tab.getTitle());
         return view;
     }
-
 }

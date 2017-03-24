@@ -63,7 +63,7 @@
         android:layout_height="40dp"
         android:background="@drawable/round20dp"
         android:gravity="center"
-        android:text="下一步"
+        android:text="完成"
         android:layout_marginTop="8dp"
         android:textSize="18sp"
         android:textColor="@color/whiteBgColor"

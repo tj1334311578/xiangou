@@ -48,6 +48,7 @@
             android:layout_height="wrap_content"
             android:maxLength="4"
             android:singleLine="true"
+            android:inputType="number"
             android:layout_toRightOf="@+id/mainlogging_userimg"
             android:hint="输入验证码"
             android:lines="1"
@@ -61,10 +62,9 @@
             android:layout_height="wrap_content"
             android:text="获取验证码"
             android:layout_marginRight="15dp"
-            android:clickable="true"
-            android:contextClickable="false"
+            android:clickable="false"
             android:focusable="false"
-            android:textColor="@color/textcolor_advs_topic_title"
+            android:textColor="@color/gray"
             android:textSize="15sp"
             android:visibility="visible"/>
     </LinearLayout>

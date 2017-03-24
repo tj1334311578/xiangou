@@ -15,7 +15,7 @@
         android:background="@color/register_text"
         android:layout_height="26dp"
         android:adjustViewBounds="true"
-        android:layout_alignTop="@+id/logging_log"
+        android:layout_alignTop="@+id/mainlogin_log"
         android:id="@+id/mainlogin_back"
         android:src="@drawable/error1"
         android:layout_marginStart="17dp"

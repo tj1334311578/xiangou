@@ -1,13 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.administrator.xiangou.main.login.FindthreepagerActivity">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:layout_centerHorizontal="true"
         android:textSize="16sp"
-        android:id="@+id/findpsw_log"
+        android:id="@+id/findpswthree_log"
         android:textColor="@color/textcolor_mine_black2"
         android:text="找回密码"/>
     <ImageView
@@ -15,20 +17,20 @@
         android:background="@color/register_text"
         android:layout_height="26dp"
         android:adjustViewBounds="true"
-        android:layout_alignTop="@id/findpsw_log"
-        android:id="@+id/findpsw_back"
+        android:layout_alignTop="@id/findpswthree_log"
+        android:id="@+id/findpswthree_back"
         android:src="@drawable/cancel"
         android:layout_marginStart="17dp"
         />
 
     <LinearLayout
         android:layout_marginTop="14dp"
-        android:layout_alignStart="@id/findpsw_back"
+        android:layout_alignStart="@id/findpswthree_back"
         android:orientation="horizontal"
-        android:id="@+id/findpsw_passwordll"
-        android:layout_alignEnd="@+id/findpsw_userll"
+        android:id="@+id/findpswthree_passwordll"
+        android:layout_alignEnd="@+id/findpswthree_userll"
         android:gravity="center_vertical"
-        android:layout_below="@+id/findpsw_userll"
+        android:layout_below="@+id/findpswthree_userll"
         android:layout_width="match_parent"
         android:visibility="visible"
         android:layout_height="wrap_content">
@@ -38,12 +40,14 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginStart="16dp"
+            android:layout_marginEnd="25dp"
             android:lines="1"
+            android:inputType="textPassword"
             android:singleLine="true"
-            android:maxLength="4"
+            android:maxLength="16"
             android:visibility="visible"
-            android:id="@+id/findpsw_paswordedit"
-            android:hint="密码"
+            android:id="@+id/findpswthree_paswordedit"
+            android:hint="请确认密码"
             android:textSize="15sp"
             />
     </LinearLayout>
@@ -51,94 +55,80 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="11sp"
-        android:layout_alignLeft="@+id/findpsw_passwordll"
-        android:id="@+id/findpsw_error_msg"
+        android:layout_alignLeft="@+id/findpswthree_passwordll"
+        android:id="@+id/findpswthree_error_msg"
         android:visibility="visible"
         android:layout_marginStart="20dp"
-        android:layout_below="@+id/findpsw_passwordll"
+        android:layout_below="@+id/findpswthree_passwordll"
         android:textColor="@color/gray"
         android:text="密码由8-16位字母（区分大小写）数字组成"/>
     <CheckBox
         android:layout_width="12dp"
         android:layout_height="12dp"
-        android:id="@+id/findcheckbox"
+        android:id="@+id/findcheckbox_three"
         android:visibility="visible"
         android:background="@drawable/circlebg_checkbox"
         android:button="@null"
         android:layout_marginTop="5dp"
-        android:layout_alignLeft="@+id/findpsw_passwordll"
-        android:layout_below="@+id/findpsw_error_msg"
+        android:layout_alignLeft="@+id/findpswthree_passwordll"
+        android:layout_below="@+id/findpswthree_error_msg"
         android:layout_marginStart="20dp"
         />
     <TextView
         android:layout_width="wrap_content"
-        android:id="@+id/inorvisibility"
+        android:id="@+id/inorvisibility_three"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/findcheckbox"
-        android:layout_alignBottom="@id/findcheckbox"
+        android:layout_toRightOf="@id/findcheckbox_three"
+        android:layout_alignBottom="@id/findcheckbox_three"
         android:textSize="10sp"
-        android:visibility="gone"
+        android:visibility="visible"
         android:text="显示密码"/>
 
     <Button
         android:layout_width="match_parent"
-        android:text="下一步"
+        android:text="完成"
         android:gravity="center"
         android:textSize="18sp"
         android:background="@drawable/round20dp"
-        android:id="@+id/findpsw_login"
+        android:id="@+id/findpswthree_login"
         android:layout_marginRight="17dp"
         android:textColor="@color/white"
         android:layout_height="40dp"
-        android:layout_below="@+id/findcheckbox"
-        android:layout_alignStart="@+id/findpsw_passwordll" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/findpsw_log"
-        android:layout_alignStart="@+id/findpsw_back"
-        android:id="@+id/findpswMessage"
-        android:textSize="13sp"
-        android:layout_marginTop="40dp"
-        android:layout_marginStart="16dp"
         android:visibility="visible"
-        android:text="已向您的手机发送验证码，请输入"
-        />
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/findcheckbox_three"
+        android:layout_alignStart="@+id/findpswthree_passwordll" />
 
     <LinearLayout
         android:layout_marginRight="17dp"
         android:orientation="horizontal"
-        android:id="@+id/findpsw_userll"
+        android:id="@+id/findpswthree_userll"
         android:layout_width="match_parent"
+        android:layout_marginTop="40dp"
         android:gravity="center_vertical"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/findpswMessage"
-        android:layout_alignStart="@+id/findpsw_back">
+        android:layout_below="@+id/findpswthree_log"
+        android:layout_alignStart="@+id/findpswthree_back">
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:lines="1"
             android:singleLine="true"
-            android:maxLength="11"
+            android:maxLength="16"
             android:layout_weight="1"
-            android:id="@+id/findpsw_numberedit"
+            android:inputType="textPassword"
+            android:id="@+id/findpswthree_numberedit"
             android:layout_marginStart="16dp"
-            android:hint="手机号"
+            android:hint="请输入新密码"
             android:textSize="15sp"
             />
         <ImageView
             android:layout_width="25dp"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
-            android:id="@+id/findpsw_clean"
+            android:id="@+id/findpswthree_clean"
             android:visibility="invisible"
             android:src="@drawable/error"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/sendagain"
-            android:visibility="visible"
-            android:text="重新发送"/>
     </LinearLayout>
 
 </RelativeLayout>

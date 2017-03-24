@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.administrator.xiangou.R;
+import com.example.administrator.xiangou.main.MainActivity;
 import com.example.administrator.xiangou.tool.BaseActivity;
 
 /**
@@ -119,7 +120,7 @@ public class MainLoginActivity extends BaseActivity implements View.OnClickListe
             case R.id.mainlogin_forgetpassword:
                 Log.e("TAG", "onClick: ");
                 this.finish();
-                startActivity(new Intent(MainLoginActivity.this,FindpswActivity.class));
+                startActivity(new Intent(MainLoginActivity.this,FindonepagerActivity.class));
                 break;
             case R.id.mainlogin_register:
                 this.finish();
@@ -132,6 +133,8 @@ public class MainLoginActivity extends BaseActivity implements View.OnClickListe
                 break;
             case R.id.mainlogin_back:
                 Toast.makeText(this, "返回上一级", Toast.LENGTH_SHORT).show();
+                finish();
+                startActivity(new Intent(this, MainActivity.class));
                 break;
         }
     }

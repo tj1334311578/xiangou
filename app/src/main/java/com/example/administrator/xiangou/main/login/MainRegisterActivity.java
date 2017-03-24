@@ -48,6 +48,7 @@ public class MainRegisterActivity extends BaseActivity  implements View.OnClickL
         mainregister_cls= (ImageView) findViewById(R.id.mainregister_clean);
         mainregister_back= (ImageView) findViewById(R.id.mainregister_cancel);
         mainregister_Btn= (Button) findViewById(R.id.register_Btn);
+        mainregister_verification.setClickable(false);
         mainregister_verification.setOnClickListener(this);
         mainregister_vb.setOnClickListener(this);
         mainregister_cls.setOnClickListener(this);
@@ -99,12 +100,20 @@ public class MainRegisterActivity extends BaseActivity  implements View.OnClickL
                     mainregister_cls.setVisibility(View.VISIBLE);
                     mainregister_cls.setClickable(true);
                 }
+                if (s.length()==11){
+                    mainregister_verification.setClickable(true);
+                    mainregister_verification.setTextColor(getResources().getColor(R.color.textcolor_advs_topic_title));
+                }else{
+                    mainregister_verification.setClickable(false);
+                    mainregister_verification.setTextColor(getResources().getColor(R.color.gray));
+                }
             }
         });
     }
 
     @Override
     public void onClick(View v) {
+        mTimer = new CountDownTimerUtils(mainregister_number,mainregister_verification,30000,1000,this);
         switch (v.getId()){
             case R.id.mainregister_cancel://返回键
                 finish();
@@ -114,16 +123,22 @@ public class MainRegisterActivity extends BaseActivity  implements View.OnClickL
                 mainregister_number.setText("");
                 break;
             case R.id.register_cb://checkbox键
-
                 break;
             case R.id.mainregister_verificationBtn://获取验证码键
                 Toast.makeText(this, "verification", Toast.LENGTH_SHORT).show();
-                mTimer = new CountDownTimerUtils(mainregister_number,mainregister_verification,30000,1000,this);
                 mTimer.start();
                 break;
             case R.id.register_Btn://下一步Button键
+
+                finish();
                 startActivity(new Intent(this,MainRegisterTwoActivity.class));
                 break;
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mTimer.cancel();//关闭定时器
     }
 }

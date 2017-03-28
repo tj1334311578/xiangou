@@ -44,7 +44,6 @@ public class DynamicActivity extends BaseActivity implements View.OnClickListene
         dynamic_btn= (Button) findViewById(R.id.dynamic_login);
         dynamic_cls= (ImageView) findViewById(R.id.dynamic_clean);
         dynamic_back= (ImageView) findViewById(R.id.dynamic_back);
-        dynamic_verification.setOnClickListener(this);
         dynamic_cls.setOnClickListener(this);
         dynamic_btn.setOnClickListener(this);
         dynamic_back.setOnClickListener(this);
@@ -62,7 +61,7 @@ public class DynamicActivity extends BaseActivity implements View.OnClickListene
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (s.length()==0||s.length()==4){
+                if (s.length()==0||s.length()==6){
                     imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(),0);
                 }else{
                     imm.showSoftInput(dynamic_code,InputMethodManager.SHOW_FORCED);
@@ -89,6 +88,7 @@ public class DynamicActivity extends BaseActivity implements View.OnClickListene
                 }
                 if (s.length()==11){
                     dynamic_verification.setClickable(true);
+                    dynamic_verification.setOnClickListener(DynamicActivity.this);
                     dynamic_verification.setTextColor(getResources().getColor(R.color.colorAccent));
                 }else{
                     dynamic_verification.setClickable(false);
@@ -99,6 +99,7 @@ public class DynamicActivity extends BaseActivity implements View.OnClickListene
                     dynamic_cls.setClickable(false);
                 }
                 else{
+
                     dynamic_cls.setVisibility(View.VISIBLE);
                     dynamic_cls.setClickable(true);
                 }

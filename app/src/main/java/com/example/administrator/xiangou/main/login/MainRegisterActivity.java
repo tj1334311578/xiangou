@@ -48,8 +48,7 @@ public class MainRegisterActivity extends BaseActivity  implements View.OnClickL
         mainregister_cls= (ImageView) findViewById(R.id.mainregister_clean);
         mainregister_back= (ImageView) findViewById(R.id.mainregister_cancel);
         mainregister_Btn= (Button) findViewById(R.id.register_Btn);
-        mainregister_verification.setClickable(false);
-        mainregister_verification.setOnClickListener(this);
+
         mainregister_vb.setOnClickListener(this);
         mainregister_cls.setOnClickListener(this);
         mainregister_back.setOnClickListener(this);
@@ -102,6 +101,7 @@ public class MainRegisterActivity extends BaseActivity  implements View.OnClickL
                 }
                 if (s.length()==11){
                     mainregister_verification.setClickable(true);
+                    mainregister_verification.setOnClickListener(MainRegisterActivity.this);
                     mainregister_verification.setTextColor(getResources().getColor(R.color.textcolor_advs_topic_title));
                 }else{
                     mainregister_verification.setClickable(false);

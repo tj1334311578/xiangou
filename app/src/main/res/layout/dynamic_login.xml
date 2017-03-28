@@ -94,6 +94,10 @@
         android:background="@drawable/round20dp"
         android:id="@+id/dynamic_login"
         android:layout_marginRight="17dp"
+
+        android:clickable="false"
+        android:focusable="false"
+
         android:textColor="@color/white"
         android:layout_height="40dp"
         android:layout_below="@+id/mainlogin_Dynamic_login"

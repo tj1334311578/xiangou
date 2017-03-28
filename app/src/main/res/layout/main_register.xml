@@ -46,7 +46,7 @@
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLength="4"
+            android:maxLength="6"
             android:singleLine="true"
             android:inputType="number"
             android:layout_toRightOf="@+id/mainlogging_userimg"

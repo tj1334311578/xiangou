@@ -180,6 +180,5 @@ public class BasicParamsInterceptor implements Interceptor {
         public BasicParamsInterceptor build() {
             return interceptor;
         }
-
     }
 }

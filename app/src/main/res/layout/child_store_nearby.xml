@@ -59,7 +59,6 @@
                 android:id="@+id/open_child_store_nearby"
                 android:textColor="@color/textcolor_pink"/>
         </LinearLayout>
-
         <include layout="@layout/nearby_store_child_foot"/>
     </LinearLayout>
 </LinearLayout>

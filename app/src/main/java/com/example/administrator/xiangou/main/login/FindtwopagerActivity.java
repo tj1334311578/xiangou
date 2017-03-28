@@ -1,8 +1,12 @@
 package com.example.administrator.xiangou.main.login;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -18,26 +22,60 @@ public class FindtwopagerActivity extends BaseActivity implements View.OnClickLi
     private TextView findtwopager_message,findtwopager_verification;
     private ImageView findtwopager_cls,findtwopager_back;
     private CountDownTimerUtils countDownTimerUtils;
-
+    private InputMethodManager imm;
+    private Context mContext=this;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_findtwopager);
         initView();
-
     }
 
     private void initView() {
+        imm= (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         findtwopager_number= (EditText) findViewById(R.id.findpswtwo_numberedit);
         findtwopager_btn= (Button) findViewById(R.id.findpswtwo_login);
         findtwopager_message= (TextView) findViewById(R.id.findpswMessage_two);
         findtwopager_verification= (TextView) findViewById(R.id.sendagain_two);
         findtwopager_cls= (ImageView) findViewById(R.id.findpswtwo_clean);
         findtwopager_back= (ImageView) findViewById(R.id.findpswtwo_back);
+
+
         findtwopager_btn.setOnClickListener(this);
-        findtwopager_verification.setOnClickListener(this);
+        //在设置监听中有一段代码为if（！isClickable）{ setClickable(true);}强制设置为可点击
+//        findtwopager_verification.setOnClickListener(this);
         findtwopager_cls.setOnClickListener(this);
         findtwopager_back.setOnClickListener(this);
+
+        findtwopager_number.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.length()==0||s.length()==11){
+                    imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(),0);
+                }else{
+                    imm.showSoftInput(findtwopager_number,InputMethodManager.SHOW_FORCED);
+                }
+                if (s.length()==6){
+                    findtwopager_verification.setClickable(true);
+                    findtwopager_verification.setOnClickListener(FindtwopagerActivity.this);
+                }else
+                {
+                    findtwopager_verification.setFocusable(false);
+                    findtwopager_verification.setClickable(false);
+                }
+            }
+        });
+
         if (getIntent()!=null){
             String getString=getIntent().getStringExtra("tel");
             if(getString.length()!=0){

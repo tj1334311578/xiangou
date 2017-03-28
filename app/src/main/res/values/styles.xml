@@ -11,6 +11,7 @@
     <style name="WindowTitleBackgroundColor">
         <item name="android:background">#bbbbbb</item>
     </style>
+
     <style name="CustomActionbarTheme" parent="android:Theme.Holo.Light.NoActionBar.TranslucentDecor">
         <item name="android:windowTitleSize">50dp</item>
         <item name="android:windowTitleBackgroundStyle">@style/WindowTitleBackgroundColor</item>
@@ -20,5 +21,15 @@
     <!--自定义tablayoutstyle-->
     <style name="MyTabLayoutStyle" parent="TextAppearance.Design.Tab">
         <item name="textAllCaps">false</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <!-- 选择照片底部弹出层 -->
+    <style name="PopupAnimation" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/push_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/push_bottom_out</item>
     </style>
 </resources>

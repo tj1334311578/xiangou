@@ -29,6 +29,7 @@ public class MainLoginActivity extends BaseActivity implements View.OnClickListe
     private EditText mainLogin_number,mainLogin_psw;
     private Button mainLoginBtn;
     private InputMethodManager imm;
+    private boolean phoneistrue=false;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,7 +49,6 @@ public class MainLoginActivity extends BaseActivity implements View.OnClickListe
         mainlogin_backimg= (ImageView) findViewById(R.id.mainlogin_back);
         mainlogin_cls= (ImageView) findViewById(R.id.mainlogin_clean);
         mainlogin_cls.setOnClickListener(this);
-        mainLoginBtn.setOnClickListener(this);
         mainlogin_Dynamic.setOnClickListener(this);
         mainlogin_forget.setOnClickListener(this);
         mainlogin_mainregister.setOnClickListener(this);
@@ -67,10 +67,18 @@ public class MainLoginActivity extends BaseActivity implements View.OnClickListe
             @Override
             public void afterTextChanged(Editable s) {
                 if (s.length()==0){
+                    mainLoginBtn.setBackground(getResources().getDrawable(R.drawable.unround20dp));
                     imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(),0);
                 }else if (s.length()==16){
+                    if (mainLogin_number.getText().length()==11){
+                        mainLoginBtn.setOnClickListener(MainLoginActivity.this);
+                        mainLoginBtn.setBackground(getResources().getDrawable(R.drawable.round20dp));
+                    }else{
+                        mainLoginBtn.setBackground(getResources().getDrawable(R.drawable.unround20dp));
+                    }
                     imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(),0);
                 }else{
+                    mainLoginBtn.setBackground(getResources().getDrawable(R.drawable.unround20dp));
                     imm.showSoftInput(mainLogin_psw,InputMethodManager.SHOW_FORCED);
                 }
             }
@@ -91,13 +99,24 @@ public class MainLoginActivity extends BaseActivity implements View.OnClickListe
                 if (s.length()==0){
                     mainlogin_cls.setVisibility(View.INVISIBLE);
                     imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(),0);
+                    mainLoginBtn.setFocusable(false);
                     mainLoginBtn.setClickable(false);
+                    mainLoginBtn.setBackground(getResources().getDrawable(R.drawable.unround20dp));
                 }else if (s.length()==11)
                 {
+                    if (mainLogin_psw.getText().length()==16){
+                        mainLoginBtn.setOnClickListener(MainLoginActivity.this);
+                        mainLoginBtn.setBackground(getResources().getDrawable(R.drawable.round20dp));
+                    }else{
+                        mainLoginBtn.setBackground(getResources().getDrawable(R.drawable.unround20dp));
+                    }
+                    mainLoginBtn.setFocusable(true);
                     mainlogin_cls.setVisibility(View.VISIBLE);
                     imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(),0);
                     mainLoginBtn.setClickable(true);
                 }else {
+                    mainLoginBtn.setBackground(getResources().getDrawable(R.drawable.unround20dp));
+                    mainLoginBtn.setFocusable(false);
                     mainlogin_cls.setVisibility(View.VISIBLE);
                     imm.showSoftInput(mainLogin_psw, InputMethodManager.SHOW_FORCED);
                     mainLoginBtn.setClickable(false);

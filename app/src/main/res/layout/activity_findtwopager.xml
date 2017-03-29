@@ -28,7 +28,7 @@
         android:text="下一步"
         android:gravity="center"
         android:textSize="18sp"
-        android:background="@drawable/round20dp"
+        android:background="@drawable/unround20dp"
         android:id="@+id/findpswtwo_login"
         android:layout_marginRight="17dp"
         android:textColor="@color/white"

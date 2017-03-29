@@ -41,7 +41,7 @@ public class FindtwopagerActivity extends BaseActivity implements View.OnClickLi
         findtwopager_back= (ImageView) findViewById(R.id.findpswtwo_back);
 
 
-        findtwopager_btn.setOnClickListener(this);
+
         //在设置监听中有一段代码为if（！isClickable）{ setClickable(true);}强制设置为可点击
 //        findtwopager_verification.setOnClickListener(this);
         findtwopager_cls.setOnClickListener(this);
@@ -66,10 +66,13 @@ public class FindtwopagerActivity extends BaseActivity implements View.OnClickLi
                     imm.showSoftInput(findtwopager_number,InputMethodManager.SHOW_FORCED);
                 }
                 if (s.length()==6){
+                    findtwopager_btn.setOnClickListener(FindtwopagerActivity.this);
+                    findtwopager_btn.setBackground(getResources().getDrawable(R.drawable.round20dp));
                     findtwopager_verification.setClickable(true);
                     findtwopager_verification.setOnClickListener(FindtwopagerActivity.this);
                 }else
                 {
+                    findtwopager_btn.setBackground(getResources().getDrawable(R.drawable.unround20dp));
                     findtwopager_verification.setFocusable(false);
                     findtwopager_verification.setClickable(false);
                 }

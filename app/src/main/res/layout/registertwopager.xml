@@ -61,7 +61,7 @@
         android:id="@+id/twopagerregister_Btn"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:background="@drawable/round20dp"
+        android:background="@drawable/unround20dp"
         android:gravity="center"
         android:text="完成"
         android:layout_marginTop="8dp"

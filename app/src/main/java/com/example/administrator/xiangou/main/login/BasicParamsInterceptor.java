@@ -100,7 +100,6 @@ public class BasicParamsInterceptor implements Interceptor {
                 httpUrlBuilder.addQueryParameter((String) entry.getKey(), (String) entry.getValue());
             }
         }
-
         requestBuilder.url(httpUrlBuilder.build());
     }
 

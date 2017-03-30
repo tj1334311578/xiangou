@@ -33,7 +33,6 @@ public class SelectPicPopupWindow extends PopupWindow {
 	 */
 	private Button cancelBtn;
 	private View mMenuView;
-
 	@SuppressLint("InflateParams")
 	public SelectPicPopupWindow(Context context, OnClickListener itemsOnClick) {
 		super(context);

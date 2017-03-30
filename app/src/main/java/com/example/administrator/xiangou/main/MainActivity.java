@@ -60,6 +60,9 @@ public class MainActivity extends BaseActivity {
             mTabSpec.setIndicator(buildIndicator(tab));
             mFragmentTabHost.addTab(mTabSpec,tab.getFrag(),null);
             mCurrentNum++;
+            if (tab.getTitle()==R.string.mine){
+                findViewById(R.id.divider_main).setVisibility(View.GONE);
+            }
         }
         //去掉分隔线
         mFragmentTabHost.getTabWidget().setShowDividers(LinearLayout.SHOW_DIVIDER_NONE);

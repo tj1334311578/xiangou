@@ -1,4 +1,4 @@
-package com.example.administrator.xiangou.main.login;
+package com.example.administrator.xiangou.mine.store_application;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;

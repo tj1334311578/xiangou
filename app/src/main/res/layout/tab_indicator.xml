@@ -2,10 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="0dp"
               android:layout_height="wrap_content"
-                android:layout_weight="1"
+              android:layout_weight="1"
+              android:background="@color/white"
               android:orientation="vertical"
               android:gravity="bottom|center"
-                android:id="@+id/item_tab_rl">
+              android:id="@+id/item_tab_rl">
 
     <ImageView
         android:layout_width="24dp"

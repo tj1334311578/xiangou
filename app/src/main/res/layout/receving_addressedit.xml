@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_marginStart="15dp"
+    android:id="@+id/receiving_addressedit_username"
+    android:layout_height="42.5dp"
+    android:gravity="center_vertical"
+    android:text="收货人："/>
+    <EditText
+        android:id="@+id/receiving_addressedit_username_edit"
+        android:layout_width="match_parent"
+        android:layout_toEndOf="@id/receiving_addressedit_username"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
+        android:layout_marginStart="14dp"
+        android:hint="收货人姓名"/>
+    <TextView
+        android:id="@+id/receiving_addressedit_usertel"
+        android:layout_width="wrap_content"
+        android:layout_height="42.5dp"
+        android:gravity="center_vertical"
+        android:layout_below="@id/receiving_addressedit_username_edit"
+        android:layout_alignStart="@id/receiving_addressedit_username"
+        android:text="联系电话："/>
+
+    <TextView
+        android:id="@+id/receiving_addressedit_area"
+        android:layout_width="wrap_content"
+        android:layout_height="42.5dp"
+        android:gravity="center_vertical"
+        android:layout_alignStart="@id/receiving_addressedit_username"
+        android:layout_below="@+id/receiving_addressedit_usertel_edit"
+        android:text="所在地区："/>
+
+    <EditText
+        android:id="@+id/receiving_addressedit_area_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@id/receiving_addressedit_username"
+        android:layout_alignEnd="@id/receiving_addressedit_username_edit"
+        android:layout_below="@id/receiving_addressedit_area"
+        android:hint="请填写详细的地址，不少于5个字"/>
+
+    <TextView
+        android:id="@+id/receiving_addressedit_get_area"
+        android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:layout_height="42.5dp"
+        android:text="四川省  成都市  成华区  "
+        android:layout_alignEnd="@id/receiving_addressedit_username_edit"
+        android:layout_alignStart="@id/receiving_addressedit_username_edit"
+        android:layout_below="@+id/receiving_addressedit_usertel"
+        android:layout_toEndOf="@+id/receiving_addressedit_usertel" />
+
+    <EditText
+        android:id="@+id/receiving_addressedit_usertel_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="电话号码"
+        android:layout_alignStart="@id/receiving_addressedit_username_edit"
+        android:layout_alignEnd="@id/receiving_addressedit_username_edit"
+        android:layout_below="@+id/receiving_addressedit_username_edit"
+        android:layout_toEndOf="@+id/receiving_addressedit_usertel" />
+
+</RelativeLayout>

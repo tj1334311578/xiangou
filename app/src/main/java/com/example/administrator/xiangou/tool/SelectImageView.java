@@ -121,6 +121,7 @@ public class SelectImageView extends ImageView {
             return;
         Bitmap bitmap=drawableToBitmap(drawable);
         //将bit作为着色器来创建一个BitmapShader
+        Log.e("null", "setBitmapShader: "+drawable );
         mBitmapShader=new BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
         float scale=1.0f;
         switch(mType){

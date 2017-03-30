@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -17,8 +18,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.administrator.xiangou.R;
-import com.example.administrator.xiangou.login.idlogin.IDLoginActivity;
-import com.example.administrator.xiangou.mvp.MVPBaseFragment;
+import com.example.administrator.xiangou.main.MainActivity;
+import com.example.administrator.xiangou.main.login.MainLoginActivity;
+import com.example.administrator.xiangou.mine.store_application.StoreApplicationActivity;
 import com.example.administrator.xiangou.tool.SelectImageView;
 
 import java.util.ArrayList;
@@ -29,9 +31,9 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
     private ListView listView;
     private View view;
     private SelectImageView circleImage;
-    private int content_img[]={R.mipmap.personal_wallet_icon,R.mipmap.personal_footprint_icon,
-            R.mipmap.personal_comment_icon,R.mipmap.personal_member_icon,R.mipmap.personal_more_icon};
-    private String content_text[]={"我的钱包","我的足迹","我的评论","会员中心","更多",};
+    private int content_img[]={R.mipmap.personal_footprint_icon,
+            R.mipmap.personal_comment_icon,R.mipmap.mine_share_icon,R.mipmap.mine_shop_icon};
+    private String content_text[]={"我的足迹","我的评论","我的分享","申请店铺",};
 
 
     @Override
@@ -71,6 +73,9 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
                 TextView tv = (TextView) listView.getChildAt(position).findViewById(R.id.mine_item_text);
                 //等价于=>((TextView)(listView.getChildAt(position).findViewById(R.id.mine_item_text)))
                 Toast.makeText(getContext(),tv.getText() +"被点击了", Toast.LENGTH_SHORT).show();
+                if (position==0){
+                    startActivity(new Intent(getContext(), StoreApplicationActivity.class));
+                }
             }
         });
 

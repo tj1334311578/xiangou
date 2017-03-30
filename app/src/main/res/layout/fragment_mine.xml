@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="match_parent">
 
     <RelativeLayout
@@ -22,7 +23,7 @@
             android:layout_height="wrap_content"
             android:src="@mipmap/personal_head_portrait_picture"
             android:id="@+id/mine_circle_imageview"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="37dp"
             android:layout_centerHorizontal="true"
             android:adjustViewBounds="true"/>
         <ImageView
@@ -38,10 +39,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="用户名显示"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="6dp"
             android:id="@+id/username"
             android:textColor="@color/whiteBgColor"
-            android:textSize="12sp"
+            android:textSize="14sp"
             android:layout_below="@+id/mine_circle_imageview"
             android:layout_centerHorizontal="true"
             />
@@ -64,6 +65,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="闲购值: "
+                android:textColor="#e60b0b0b"
                 android:textSize="11sp"
                 />
             <TextView
@@ -71,7 +73,7 @@
                 android:layout_height="wrap_content"
                 android:text="639"
                 android:id="@+id/Level_number"
-                android:textColor="#c10278"
+                android:textColor="#ef2b86"
                 android:textSize="11sp"
                 />
         </LinearLayout>
@@ -92,7 +94,7 @@
             android:gravity="center"
             android:drawablePadding="5dp"
             android:layout_centerVertical="true"
-            android:textColor="@color/textcolor_mine_black"
+            android:textColor="@color/textcolor_gray"
             app:topDrawable="@mipmap/personal_attention_icon"
             app:topDrawableHeight="50dp"
             app:topDrawableWidth="50dp"
@@ -108,7 +110,7 @@
             app:topDrawable="@mipmap/personal_discount_coupon_icon"
             app:topDrawableHeight="50dp"
             app:topDrawableWidth="50dp"
-            android:textColor="@color/textcolor_mine_black"
+            android:textColor="@color/textcolor_gray"
             android:drawablePadding="5dp"
             android:text="优惠券"/>
 
@@ -120,17 +122,24 @@
             android:textSize="14sp"
             android:gravity="center"
             android:drawablePadding="5dp"
-            android:textColor="@color/textcolor_mine_black"
+            android:textColor="@color/textcolor_gray"
             app:topDrawable="@mipmap/personal_sign_in_icon"
             app:topDrawableWidth="50dp"
             app:topDrawableHeight="50dp"
             android:text="签到"/>
     </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_marginTop="10dp"
+        android:background="#f8f8f8"
+        />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_marginLeft="13dp"
-        android:layout_marginTop="24dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
         android:layout_marginRight="13dp"
         android:layout_height="wrap_content">
        <TextView
@@ -139,25 +148,30 @@
            android:text="我的订单"
            android:textSize="14sp"
            android:layout_centerVertical="true"
-           android:textColor="@color/textcolor_mine_black2"
+           android:textColor="@color/textcolor_gray"
            />
         <TextView
            android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="查看全部订单"
+            android:text="查看全部订单  "
             android:gravity="center"
             android:textSize="14sp"
             android:id="@+id/see_all_orders"
             android:textColor="@color/textcolor_mine_black3"
             android:layout_alignParentRight="true"
-            android:drawableRight="@drawable/show_right"/>
+            android:drawableRight="@mipmap/mine_showright"/>
     </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ebebeb"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:gravity="center_vertical"
         android:layout_height="wrap_content">
 
@@ -167,6 +181,7 @@
             android:layout_height="60dp"
             android:text="未付款"
             android:id="@+id/mine_unpaid"
+            android:textColor="@color/textcolor_gray"
             android:textSize="12sp"
             app:topDrawable="@mipmap/personal_non_payment_icon"
             app:topDrawableWidth="26dp"
@@ -179,6 +194,7 @@
             android:layout_weight="1"
             android:layout_height="60dp"
             android:text="待发货"
+            android:textColor="@color/textcolor_gray"
             android:drawablePadding="5dp"
             android:id="@+id/mine_wait_delivery"
             android:textSize="12sp"
@@ -192,6 +208,7 @@
             android:layout_weight="1"
             android:layout_height="60dp"
             android:text="待收货"
+            android:textColor="@color/textcolor_gray"
             android:drawablePadding="5dp"
             app:topDrawable="@mipmap/personal_wait_for_receiving_icon"
             app:topDrawableWidth="30dp"
@@ -205,6 +222,7 @@
             android:layout_weight="1"
             android:layout_height="60dp"
             android:text="待评价"
+            android:textColor="@color/textcolor_gray"
             android:id="@+id/mine_pending_evaluation"
             android:textSize="12sp"
             android:drawablePadding="5dp"
@@ -218,6 +236,7 @@
             android:layout_weight="1"
             android:layout_height="60dp"
             android:text="退货/售后"
+            android:textColor="@color/textcolor_gray"
             android:textSize="12sp"
             android:drawablePadding="5dp"
             app:topDrawable="@mipmap/personal_sales_return_icon"
@@ -225,11 +244,19 @@
             app:topDrawableHeight="30dp"
             android:id="@+id/mine_returns_sales"/>
     </LinearLayout>
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginTop="2dp"
+        android:layout_height="10dp"
+        android:background="#f8f8f8"
+        />
     <ListView
         android:layout_width="match_parent"
         android:id="@+id/mine_list"
         android:fastScrollEnabled="false"
-        android:layout_marginLeft="5dp"
+        android:scrollbars="none"
+        android:paddingLeft="5dp"
+        android:dividerHeight="1dp"
+        android:divider="#ebebeb"
         android:layout_height="match_parent"/>
 </LinearLayout>

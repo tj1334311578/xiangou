@@ -1,8 +1,8 @@
 package com.example.administrator.xiangou.home;
 
+
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,9 +12,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.base.BaseAdapter;
+import com.example.administrator.xiangou.home.adapter.HomeAdapter;
+import com.example.administrator.xiangou.home.model.HomeChildBean;
+import com.example.administrator.xiangou.mvp.MVPBaseFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,12 +24,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * Created by zhouzongyao on 2017/2/28.
- */
-
-public class HomeFragment extends Fragment implements View.OnClickListener{
-
+public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresenter> implements HomeContract.View,View.OnClickListener {
     @BindView(R.id.addrtv_topbar)
     TextView mAddrTv;
     @BindView(R.id.serach_topbar_tv)
@@ -53,21 +50,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         return homeFrag;
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mFragView = inflater.inflate(R.layout.fragment_home,container,false);
-
         ButterKnife.bind(this,mFragView);
         initView();
-
         return mFragView;
-
     }
 
     private void initView() {
@@ -100,12 +89,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
             }
         });
         rvHome.setAdapter(adapterHomeRv);
-
     }
 
     @Override
     public void onClick(View v) {
         if (v == mAddrTv){
+            //在这里通过mPresenter处理数据
             Toast.makeText(getContext(), "四海为家，浪迹天涯", Toast.LENGTH_SHORT).show();
         }else if (v==mSearchIv || v==mSearchTv){
             Toast.makeText(getContext(), "众里寻他千百度", Toast.LENGTH_SHORT).show();
@@ -114,5 +103,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         }else if (v==mNewsIv || v==mNewsTv){
             Toast.makeText(getContext(), "机事不密是为祸", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public void sendFialRequest(String message) {
+
     }
 }

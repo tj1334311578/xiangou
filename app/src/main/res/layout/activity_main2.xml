@@ -5,6 +5,18 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="1、收到的商品怎么办"
+        android:padding="10dp"
+        android:textSize="16sp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:visibility="visible"
+        android:text="●若您收到的商品有问题奇偶以卷搜附近京东手机交水电费十多年福建师范撒地方撒地方水电费水电费水电费水电费"/>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

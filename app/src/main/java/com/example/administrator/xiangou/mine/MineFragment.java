@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -18,18 +17,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.administrator.xiangou.R;
-import com.example.administrator.xiangou.main.MainActivity;
-import com.example.administrator.xiangou.main.login.MainLoginActivity;
+import com.example.administrator.xiangou.login.idlogin.IDLoginActivity;
+import com.example.administrator.xiangou.mvp.MVPBaseFragment;
 import com.example.administrator.xiangou.tool.SelectImageView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by zhouzongyao on 2017/2/28.
- */
-
-public class MineFragment extends Fragment implements View.OnClickListener {
+public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresenter>
+        implements MineContract.View ,View.OnClickListener{
     private ListView listView;
     private View view;
     private SelectImageView circleImage;
@@ -107,7 +103,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         view.findViewById(R.id.mine_circle_imageview).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), MainLoginActivity.class));
+                startActivity(new Intent(getActivity(), IDLoginActivity.class));
             }
         });
     }
@@ -179,6 +175,11 @@ public class MineFragment extends Fragment implements View.OnClickListener {
 
     }
 
+    @Override
+    public void sendFialRequest(String message) {
+
+    }
+
     public class MineAdapter extends BaseAdapter {
         private Context mContext;
         private List<ItemImage> Datas;
@@ -226,5 +227,4 @@ public class MineFragment extends Fragment implements View.OnClickListener {
             public TextView textView;
         }
     }
-
 }

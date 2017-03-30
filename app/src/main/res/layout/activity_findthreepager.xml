@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.administrator.xiangou.main.login.FindthreepagerActivity">
+    tools:context=".login.find_resetpwd.ResetpwdActivity">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -41,9 +41,8 @@
             android:layout_weight="1"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="25dp"
-            android:lines="1"
+            android:maxLines="1"
             android:inputType="textPassword"
-            android:singleLine="true"
             android:maxLength="16"
             android:visibility="visible"
             android:id="@+id/findpswthree_paswordedit"
@@ -112,8 +111,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:lines="1"
-            android:singleLine="true"
+            android:maxLines="1"
             android:maxLength="16"
             android:layout_weight="1"
             android:inputType="textPassword"

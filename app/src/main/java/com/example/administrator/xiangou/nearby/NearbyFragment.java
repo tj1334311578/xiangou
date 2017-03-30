@@ -1,5 +1,6 @@
 package com.example.administrator.xiangou.nearby;
 
+
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -14,11 +15,11 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import com.example.administrator.xiangou.R;
-import com.example.administrator.xiangou.nearby.frag.NearbyGoodsFrag;
-import com.example.administrator.xiangou.nearby.frag.NearbyPreferentialFrag;
-import com.example.administrator.xiangou.nearby.frag.NearbyStoreFrag;
+import com.example.administrator.xiangou.mvp.MVPBaseFragment;
+import com.example.administrator.xiangou.nearby.nearbygoods.NearbyGoodsFragment;
+import com.example.administrator.xiangou.nearby.nearbypreferential.NearbyPreferentialFragment;
+import com.example.administrator.xiangou.nearby.nearbystore.NearbyStoreFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,12 +27,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-
-/**
- * Created by zhouzongyao on 2017/2/28.
- */
-
-public class NearbyFragment extends Fragment implements View.OnClickListener{
+public class NearbyFragment extends MVPBaseFragment<NearbyContract.View, NearbyPresenter>
+        implements NearbyContract.View ,View.OnClickListener{
     @BindView(R.id.classify_nearby_iv)
     ImageView mClassifyIv;
     @BindView(R.id.scan_nearby_iv)
@@ -73,9 +70,9 @@ public class NearbyFragment extends Fragment implements View.OnClickListener{
     private void initTabFragViews(View view) {
         tabTitles = new String[]{"附近商品","附近商店","附近优惠"};
         mTabFragList = new ArrayList<>();
-        mTabFragList.add(new NearbyGoodsFrag());
-        mTabFragList.add(new NearbyStoreFrag());
-        mTabFragList.add(new NearbyPreferentialFrag());
+        mTabFragList.add(new NearbyGoodsFragment());
+        mTabFragList.add(new NearbyStoreFragment());
+        mTabFragList.add(new NearbyPreferentialFragment());
         mViewPager = (ViewPager) view.findViewById(R.id.frag_nearby_vp);
         mTabLayout = (TabLayout) view.findViewById(R.id.tabs_nearby_tl);
         mTabLayout.setTabMode(TabLayout.MODE_FIXED);
@@ -139,7 +136,7 @@ public class NearbyFragment extends Fragment implements View.OnClickListener{
                 switch ((String) v.getTag()) {
                     case "tab0":
                         if (mViewPager.getCurrentItem()==0)
-                        showPopupwindow(v);
+                            showPopupwindow(v);
                         Toast.makeText(getContext(), "商品", Toast.LENGTH_SHORT).show();
                         break;
                     case "tab1":
@@ -216,5 +213,8 @@ public class NearbyFragment extends Fragment implements View.OnClickListener{
         mPopupWindow.showAsDropDown(view);
     }
 
+    @Override
+    public void sendFialRequest(String message) {
 
+    }
 }

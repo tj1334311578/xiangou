@@ -60,7 +60,7 @@ public class SelectImageView extends ImageView {
         setType(type);
         int radius=t.getDimensionPixelSize(R.styleable.SelectImageView_ImageRoundRadius,DEFAULT_ROUND_RADUIS);
         this.mRoundRadius=radius;
-        Log.e("type", "init: " + type+" radius: "+radius+"  mRoundRadius: "+this.mRoundRadius);
+//        Log.e("type", "init: " + type+" radius: "+radius+"  mRoundRadius: "+this.mRoundRadius);
         t.recycle();
     }
 
@@ -142,7 +142,7 @@ public class SelectImageView extends ImageView {
         }
         // shader的变换矩阵，我们这里主要用于放大或者缩小
 //        mMatrix=new Matrix();
-        Log.e("mMatrix", "setBitmapShader: "+mMatrix +mPaint);
+//        Log.e("mMatrix", "setBitmapShader: "+mMatrix +mPaint);
         mMatrix.setScale(scale,scale);
         //设置变换矩阵
         mBitmapShader.setLocalMatrix(mMatrix);

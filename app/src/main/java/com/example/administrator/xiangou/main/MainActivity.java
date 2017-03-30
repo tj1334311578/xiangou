@@ -4,17 +4,16 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentTabHost;
 import android.view.LayoutInflater;
 import android.view.View;
-
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TabHost;
 import android.widget.TextView;
 
 import com.example.administrator.xiangou.R;
+import com.example.administrator.xiangou.cart.CartFragment;
 import com.example.administrator.xiangou.home.HomeFragment;
 import com.example.administrator.xiangou.mine.MineFragment;
 import com.example.administrator.xiangou.nearby.NearbyFragment;
-import com.example.administrator.xiangou.shoppingcart.CartFragment;
 import com.example.administrator.xiangou.tool.BaseActivity;
 
 import java.util.ArrayList;

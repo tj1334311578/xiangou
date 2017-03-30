@@ -1,13 +1,21 @@
 package com.example.administrator.xiangou.tool;
 
+import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Toast;
+
+import com.example.administrator.xiangou.R;
+
+import butterknife.ButterKnife;
 
 /**
  * Created by Administrator on 2017/2/28.
@@ -21,6 +29,8 @@ public class BaseActivity extends AppCompatActivity {
             System.exit(0);
         }
     };
+    private Toast mToast;
+
     //注册广播
     private void registerExitReceiver() {
         IntentFilter exitFilter = new IntentFilter();
@@ -44,12 +54,8 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ButterKnife.bind(this);
         registerExitReceiver();
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
     }
 
     @Override
@@ -57,10 +63,53 @@ public class BaseActivity extends AppCompatActivity {
         super.onResume();
     }
 
+//    @Override
+//    protected void onPause() {
+//        super.onPause();
+//        if (isFinishing()){
+//            this.onDestroy();
+//        }
+//    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
         unRegisterExitReceiver();
     }
+    public ProgressDialog mProgressDialog;
+    public ProgressDialog showProgressDialog() {
+        this.mProgressDialog = new ProgressDialog(this);
+        this.mProgressDialog.setMessage("拼命加载中...");
+        this.mProgressDialog.show();
+        return this.mProgressDialog;
+    }
+    public ProgressDialog showProgressDialog(CharSequence message) {
+        this.mProgressDialog = new ProgressDialog(this);
+        this.mProgressDialog.setMessage(message);
+        this.mProgressDialog.show();
+        return this.mProgressDialog;
+    }
+    public void dismissProgressDialog() {
+        if (this.mProgressDialog != null && this.mProgressDialog.isShowing()) {
+            // progressDialog.hide();会导致android.view.WindowLeaked
+            this.mProgressDialog.dismiss();
+        }
+    }
 
+    public void startNewUI(Class<?> context){
+        startActivity(new Intent(this,context));
+    }
+
+    public  void showToast(String msg){
+        this.mToast = Toast.makeText(this,msg,Toast.LENGTH_SHORT);
+        this.mToast.setGravity(Gravity.CENTER,0,0);
+        LinearLayout toastView = (LinearLayout) this.mToast.getView();
+        ImageView imageView = new ImageView(this);
+        imageView.setImageResource(R.mipmap.ic_launcher);
+        toastView.addView(imageView,0);
+        mToast.show();
+    }
+    public void toastShow(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    }
 }

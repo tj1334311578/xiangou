@@ -10,6 +10,7 @@
         android:id="@+id/mainlogin_log"
         android:textColor="@color/textcolor_mine_black2"
         android:text="登录"/>
+
     <ImageView
         android:layout_width="26dp"
         android:background="@color/register_text"
@@ -18,8 +19,8 @@
         android:layout_alignTop="@+id/mainlogin_log"
         android:id="@+id/mainlogin_back"
         android:src="@drawable/error1"
-        android:layout_marginStart="17dp"
-        />
+        android:layout_marginStart="17dp"/>
+
     <ImageView
         android:layout_width="wrap_content"
         android:adjustViewBounds="true"
@@ -55,15 +56,13 @@
             android:inputType="textPassword"
             android:layout_toRightOf="@+id/mainlogin_userimg"
             android:layout_marginStart="16dp"
-            android:lines="1"
-            android:singleLine="true"
+            android:maxLines="1"
             android:layout_marginEnd="25dp"
             android:maxLength="16"
             android:layout_alignBottom="@id/mainlogin_passwordimg"
             android:id="@+id/mainlogin_paswordedit"
             android:hint="密码"
-            android:textSize="15sp"
-            />
+            android:textSize="15sp"/>
     </LinearLayout>
 
     <TextView
@@ -78,6 +77,7 @@
         android:layout_marginRight="45dp"
         android:textColor="@color/gray"
         android:layout_height="20dp" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -88,6 +88,7 @@
         android:layout_below="@+id/mainlogin_login"
         android:layout_marginTop="20dp"
         android:text="忘记密码？"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -129,11 +130,11 @@
             android:src="@mipmap/nearby_store_dfimg"
             android:id="@+id/mainlogin_userimg"
             android:layout_height="wrap_content" />
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:lines="1"
-            android:singleLine="true"
+            android:maxLines="1"
             android:inputType="number"
             android:maxLength="11"
             android:layout_alignBottom="@id/mainlogin_userimg"
@@ -141,8 +142,8 @@
             android:id="@+id/mainlogin_numberedit"
             android:layout_marginStart="16dp"
             android:hint="手机号"
-            android:textSize="15sp"
-            />
+            android:textSize="15sp"/>
+
         <ImageView
             android:layout_width="25dp"
             android:layout_height="wrap_content"

@@ -4,7 +4,7 @@
     android:id="@+id/content_findtwopager"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.administrator.xiangou.main.login.FindtwopagerActivity">
+    tools:context=".login.find_bytelephone.FindByTelephoneActivity">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

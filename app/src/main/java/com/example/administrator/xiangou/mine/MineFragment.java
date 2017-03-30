@@ -26,11 +26,8 @@ import com.example.administrator.xiangou.tool.SelectImageView;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by zhouzongyao on 2017/2/28.
- */
-
-public class MineFragment extends Fragment implements View.OnClickListener {
+public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresenter>
+        implements MineContract.View ,View.OnClickListener{
     private ListView listView;
     private View view;
     private SelectImageView circleImage;
@@ -111,7 +108,7 @@ public class MineFragment extends Fragment implements View.OnClickListener {
         view.findViewById(R.id.mine_circle_imageview).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getActivity(), MainLoginActivity.class));
+                startActivity(new Intent(getActivity(), IDLoginActivity.class));
             }
         });
     }
@@ -183,6 +180,11 @@ public class MineFragment extends Fragment implements View.OnClickListener {
 
     }
 
+    @Override
+    public void sendFialRequest(String message) {
+
+    }
+
     public class MineAdapter extends BaseAdapter {
         private Context mContext;
         private List<ItemImage> Datas;
@@ -230,5 +232,4 @@ public class MineFragment extends Fragment implements View.OnClickListener {
             public TextView textView;
         }
     }
-
 }

@@ -19,7 +19,6 @@ import com.youth.banner.Banner;
  */
 
 public class BaseViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-    private Context mContext;
     private SparseArray<View> mViews;
     private View mItemView;
     protected BaseAdapter.OnMineItemClickListener mOnItemClickListener;

@@ -3,6 +3,7 @@ package com.example.administrator.xiangou.login.idlogin;
 import android.util.Log;
 
 import com.example.administrator.xiangou.login.LoginBean;
+import com.example.administrator.xiangou.main.User;
 import com.example.administrator.xiangou.mvp.BasePresenterImpl;
 import com.example.administrator.xiangou.net.BaseSubscriber;
 import com.example.administrator.xiangou.net.ExceptionHandle;
@@ -21,48 +22,30 @@ public class IDLoginPresenter extends BasePresenterImpl<IDLoginContract.View> im
                 new BaseSubscriber<LoginBean>(mView.getContext()) {
                     @Override
                     public void onNext(LoginBean loginBean) {
-                        Log.e("IDlogin", "onNext：IDlogin" + loginBean.getData() );
+                        switch (loginBean.getState().getCode()){
+                            case 200:
+                                if (loginBean.getData()!=null){
+                                    Log.e("loginBean.getData()", "onNext: "+loginBean.getData() );
+                                    User.setUser( loginBean.getData() );
+                                    Log.e("User", "LoginidSuccess: "+ User.getUser().toString());
+                                    mView.LoginidSuccess();
+                                }
+                            case 100:
+                            default:
+                                mView.sendFialRequest(loginBean.getState().getMsg());
+                        }
                     }
                     @Override
                     public void onFinish() {
                         Log.e("IDlogin", "onFinish：IDlogin");
-                        mView.showLoading();
+                        mView.hideLoading();
                     }
                     @Override
                     public void onError(ExceptionHandle.ResponeThrowable e) {
-                        Log.e("IDlogin", "onError：IDlogin" + e.message);
+                        Log.e("IDlogin", "onError：" + e.getMessage());
+                        mView.sendFialRequest(e.getMessage());
                     }
-
                 }
         );
     }
 }
-/**new BaseSubscriber<LoginBean>(mView.getContext()) {
-@Override
-public void onNext(LoginBean loginBean) {
-Log.e("IDlogin", "onNext：IDlogin" );
-switch (loginBean.getState().getCode()){
-case 200:
-Log.e("loginBean.getData()", "onNext: "+loginBean.getData() );
-User.setUser( loginBean.getData() );
-case 100:
-default:
-mView.sendFialRequest(loginBean.getState().getMsg());
-}
-}
-
-@Override
-public void onFinish() {
-Log.e("IDlogin", "onFinish：IDlogin" );
-mView.hideLoading();
-mView.LoginidSuccess();
-}
-
-@Override
-public void onError(ExceptionHandle.ResponeThrowable e) {
-Log.e("loginBean.getData()", "onError: ");
-mView.sendFialRequest(e.message);
-}
-
-}
- */

@@ -1,6 +1,7 @@
 package com.example.administrator.xiangou.net;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import rx.Subscriber;
@@ -62,6 +63,7 @@ public abstract class BaseSubscriber<T> extends Subscriber<T> {
     public void onCompleted() {
 //        Toast.makeText(context, "http is Complete", Toast.LENGTH_SHORT).show();
         // todo some common as  dismiss loadding
+        Log.e("BaseSubscribe", "onCompleted: " );
         onFinish();
     }
 

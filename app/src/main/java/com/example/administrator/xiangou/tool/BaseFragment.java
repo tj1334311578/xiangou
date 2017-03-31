@@ -13,8 +13,6 @@ import android.widget.Toast;
 
 import com.example.administrator.xiangou.R;
 
-import java.lang.reflect.Field;
-
 import butterknife.ButterKnife;
 
 /**
@@ -35,20 +33,20 @@ public class BaseFragment extends Fragment {
         mActivity = getActivity();
         mBaseActivity = new BaseActivity();
     }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        try {
-            Field childFragmentManager = Fragment.class.getDeclaredField("mChildFragmentManager");
-            childFragmentManager.setAccessible(true);
-            childFragmentManager.set(this,null);
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-    }
+//
+//    @Override
+//    public void onDetach() {
+//        super.onDetach();
+//        try {
+//            Field childFragmentManager = Fragment.class.getDeclaredField("mChildFragmentManager");
+//            childFragmentManager.setAccessible(true);
+//            childFragmentManager.set(this,null);
+//        } catch (NoSuchFieldException e) {
+//            e.printStackTrace();
+//        } catch (IllegalAccessException e) {
+//            e.printStackTrace();
+//        }
+//    }
     //还可以把统一的toolbar等控件在此初始化
     //如public Toolbar initToolBar(View view, String title)
 

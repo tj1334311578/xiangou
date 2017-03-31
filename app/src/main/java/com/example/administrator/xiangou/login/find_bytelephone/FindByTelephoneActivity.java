@@ -83,8 +83,8 @@ public class FindByTelephoneActivity extends MVPBaseActivity<FindByTelephoneCont
 
                 break;
             case R.id.findpswone_back:
-                finish();
                 startActivity(new Intent(this,IDLoginActivity.class));
+                finish();
                 break;
             case R.id.findpswone_clean:
                 findonepager_number.setText("");

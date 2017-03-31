@@ -1,6 +1,7 @@
 package com.example.administrator.xiangou.login.idlogin;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Editable;
@@ -16,6 +17,7 @@ import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.login.dynamiclogin.DynamicLoginActivity;
 import com.example.administrator.xiangou.login.find_bytelephone.FindByTelephoneActivity;
 import com.example.administrator.xiangou.login.registerverify.RegisterVerifyActivity;
+import com.example.administrator.xiangou.main.MainActivity;
 import com.example.administrator.xiangou.mvp.MVPBaseActivity;
 
 public class IDLoginActivity extends MVPBaseActivity<IDLoginContract.View, IDLoginPresenter>
@@ -25,13 +27,11 @@ public class IDLoginActivity extends MVPBaseActivity<IDLoginContract.View, IDLog
     private EditText IDLogin_TelNumber, IDLogin_PWD;
     private Button mIDLoginBtn;
     private InputMethodManager imm;
-    private boolean phoneistrue=false;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_login);
         initView();
-        showToast("创建IDLoginActivity");
     }
 
     private void initView() {
@@ -117,12 +117,9 @@ public class IDLoginActivity extends MVPBaseActivity<IDLoginContract.View, IDLog
 
     @Override
     public void onClick(View v) {
-        if (v.getId()!=R.id.mainlogin_clean)
-            this.finish();
         switch (v.getId()) {
             case R.id.mainlogin_login:
                 mPresenter.IDlogin(IDLogin_TelNumber.getText().toString(), IDLogin_PWD.getText().toString());
-                LoginidSuccess();
                 break;
             case R.id.mainlogin_Dynamic_login:
                 startNewUI(DynamicLoginActivity.class);
@@ -139,16 +136,22 @@ public class IDLoginActivity extends MVPBaseActivity<IDLoginContract.View, IDLog
                 IDLogin_TelNumber.setText("");
                break;
             case R.id.mainlogin_back:
-                LoginidSuccess();
+                finish();
                 break;
         }
     }
 
     @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    @Override
     public void LoginidSuccess() {
+//        Log.e("User", "LoginidSuccess: "+ User.getUser().toString());
+        startNewUI(MainActivity.class);
         showToast("登录成功！");
-//        startNewUI(MainActivity.class);
-//        finish();
+        finish();
     }
 
     @Override

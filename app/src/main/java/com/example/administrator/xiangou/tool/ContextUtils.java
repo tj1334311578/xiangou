@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.util.Base64;
 import android.util.DisplayMetrics;
 
+import com.example.administrator.xiangou.main.User;
+
 import java.math.BigDecimal;
 import java.security.MessageDigest;
 import java.text.DecimalFormat;
@@ -18,23 +20,37 @@ import javax.crypto.spec.SecretKeySpec;
  */
 
 public class ContextUtils extends Application{
+    /**
+     * Base设置
+     */
     public SharedPreferences mSharedPreferences;
     public static int phoneWidth,phoneHeight;//手机屏幕的宽高
     private static ContextUtils mContext;
     private static DisplayMetrics mDisplayMetrics;
-
     // DES--密钥
     private final static String secretKey = "xg101888";
     private static byte[] iv = {0, 0, 0, 0, 0, 0, 0, 0};
 
+    /**
+     * 根据项目需求设置：
+     * 1.实际项目中的用户信息类
+     */
+    public static User mUser;
+
+
     @Override
     public void onCreate() {
-        mContext = this;
         super.onCreate();
+        mContext = this;
         mDisplayMetrics = getResources().getDisplayMetrics();
         phoneWidth = mDisplayMetrics.widthPixels;
 //        Log.e("phoneWidth", "onCreate: "+phoneWidth );
         phoneHeight = mDisplayMetrics.heightPixels;
+
+        /**
+         * 项目需求
+         */
+        mUser = User.getUser();
     }
     public static ContextUtils getInstance() {
         return mContext;

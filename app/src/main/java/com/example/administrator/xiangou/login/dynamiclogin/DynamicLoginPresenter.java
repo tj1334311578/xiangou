@@ -17,7 +17,7 @@ public class DynamicLoginPresenter extends BasePresenterImpl<DynamicLoginContrac
             public void onNext(LoginBean loginBean) {
                 switch (loginBean.getState().getCode()){
                     case 200:
-                        User.setUser( (User) (loginBean.getData()) );
+                        User.setUser( loginBean.getData() );
                         mView.LoginvSuccess();
                     case 100:
                     default:

@@ -59,19 +59,6 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-//    @Override
-//    protected void onPause() {
-//        super.onPause();
-//        if (isFinishing()){
-//            this.onDestroy();
-//        }
-//    }
-
-    @Override
     protected void onDestroy() {
         super.onDestroy();
         unRegisterExitReceiver();

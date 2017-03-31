@@ -1,7 +1,6 @@
 package com.example.administrator.xiangou.tool;
 
 import android.app.Application;
-import android.content.SharedPreferences;
 import android.util.Base64;
 import android.util.DisplayMetrics;
 
@@ -23,7 +22,6 @@ public class ContextUtils extends Application{
     /**
      * Base设置
      */
-    public SharedPreferences mSharedPreferences;
     public static int phoneWidth,phoneHeight;//手机屏幕的宽高
     private static ContextUtils mContext;
     private static DisplayMetrics mDisplayMetrics;
@@ -36,7 +34,11 @@ public class ContextUtils extends Application{
      * 1.实际项目中的用户信息类
      */
     public static User mUser;
+    public static MySharedPreferences mSharedPreferences;
 
+    public static ContextUtils getInstance() {
+        return mContext;
+    }
 
     @Override
     public void onCreate() {
@@ -44,46 +46,39 @@ public class ContextUtils extends Application{
         mContext = this;
         mDisplayMetrics = getResources().getDisplayMetrics();
         phoneWidth = mDisplayMetrics.widthPixels;
-//        Log.e("phoneWidth", "onCreate: "+phoneWidth );
         phoneHeight = mDisplayMetrics.heightPixels;
-
         /**
          * 项目需求
          */
-        mUser = User.getUser();
-    }
-    public static ContextUtils getInstance() {
-        return mContext;
-    }
+        this.mSharedPreferences = new MySharedPreferences(this,"xiangouSPsave");
 
+        this.mUser = User.getUser();
+    }
+// TODO: you need
+
+
+
+//this is base method
 
     /**
+     * px与dp、sp的转换：
      * 将px值转换为dip或dp值，保证尺寸大小不变
      */
     public static int px2dp(float pxValue) {
         final float scale = mDisplayMetrics.density;
         return (int) (pxValue / scale + 0.5f);
     }
-
-    /**
-     * 将dip或dp值转换为px值，保证尺寸大小不变
-     */
+    //将dip或dp值转换为px值，保证尺寸大小不变
     public static int dp2px(float dipValue) {
         final float scale = mDisplayMetrics.density;
         return (int) (dipValue * scale + 0.5f);
     }
-
-    /**
-     * 将px值转换为sp值，保证文字大小不变
-     */
+    //将px值转换为sp值，保证文字大小不变
     public static int px2sp(float pxValue) {
         final float fontScale = mDisplayMetrics.scaledDensity;
         return (int) (pxValue / fontScale + 0.5f);
     }
-
-    /**
-     * 将sp值转换为px值，保证文字大小不变
-     */
+    //将sp值转换为px值，保证文字大小不变
     public static int sp2px(float spValue) {
         final float fontScale = mDisplayMetrics.scaledDensity;
         return (int) (spValue * fontScale + 0.5f);

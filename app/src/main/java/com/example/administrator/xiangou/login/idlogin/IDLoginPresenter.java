@@ -25,7 +25,6 @@ public class IDLoginPresenter extends BasePresenterImpl<IDLoginContract.View> im
                         switch (loginBean.getState().getCode()){
                             case 200:
                                 if (loginBean.getData()!=null){
-                                    Log.e("loginBean.getData()", "onNext: "+loginBean.getData() );
                                     User.setUser( loginBean.getData() );
                                     Log.e("User", "LoginidSuccess: "+ User.getUser().toString());
                                     mView.LoginidSuccess();

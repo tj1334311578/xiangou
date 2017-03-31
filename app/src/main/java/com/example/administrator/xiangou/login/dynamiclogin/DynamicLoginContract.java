@@ -11,6 +11,7 @@ public class DynamicLoginContract {
     }
 
     interface  Presenter extends BasePresenter<View> {
+        void sendCaptcha(String tel, String method);
         //验证码登录请求
         void loginV(String tel, String code);
     }

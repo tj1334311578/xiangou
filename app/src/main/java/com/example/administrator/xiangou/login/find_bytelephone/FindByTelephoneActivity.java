@@ -12,7 +12,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.login.find_verifyphone.VerifyPhoneActivity;
@@ -75,12 +74,11 @@ public class FindByTelephoneActivity extends MVPBaseActivity<FindByTelephoneCont
         switch (v.getId()){
             case R.id.findpswone_login:
                 if (findonepager_number.getText().length()==11) {
-                    finish();
                     startActivity(new Intent(this,VerifyPhoneActivity.class).putExtra("tel",findonepager_number.getText().toString()));
+                    finish();
                 }else{
-                    Toast.makeText(this, "请正确输入您的手机号", Toast.LENGTH_SHORT).show();
+                    showToast("您输入的手机号码有误!");
                 }
-
                 break;
             case R.id.findpswone_back:
                 startActivity(new Intent(this,IDLoginActivity.class));

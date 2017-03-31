@@ -29,7 +29,7 @@ import rx.Observable;
 
 public interface MyApiService {
     public static final String mBASEURL = "http://192.168.0.106/";
-    //获取验证码
+    //获取注册验证码
     @POST("index.php/Api/Register/send_code")
     Observable<Captcha> getCapture(@Query("tel") String tel);
     //验证注册
@@ -39,6 +39,8 @@ public interface MyApiService {
     @POST("index.php/Api/Register/register/")
     Observable<Captcha> toRegister(@Query("tel") String tel, @Query("password") String password);
     //动态登录
+    @POST("index.php/Api/Login/verify")
+    Observable<Captcha> sendCapture(@Query("tel") String tel, @Query("method") String method);
     @POST("Api/Login/vlogin/")
     Observable<LoginBean> loginV(@Query("tel") String tel, @Query("code") String code);
     //账号登录

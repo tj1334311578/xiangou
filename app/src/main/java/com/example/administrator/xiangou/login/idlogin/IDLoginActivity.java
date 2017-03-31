@@ -148,7 +148,8 @@ public class IDLoginActivity extends MVPBaseActivity<IDLoginContract.View, IDLog
 
     @Override
     public void LoginidSuccess() {
-//        Log.e("User", "LoginidSuccess: "+ User.getUser().toString());
+        if ( !mSharedPreferences.getBoolean("hasLogined",false) )
+            mSharedPreferences.putBoolean("hasLogined",true);
         startNewUI(MainActivity.class);
         showToast("登录成功！");
         finish();

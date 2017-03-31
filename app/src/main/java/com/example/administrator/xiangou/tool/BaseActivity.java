@@ -30,6 +30,7 @@ public class BaseActivity extends AppCompatActivity {
         }
     };
     private Toast mToast;
+    public MySharedPreferences mSharedPreferences;
 
     //注册广播
     private void registerExitReceiver() {
@@ -54,6 +55,7 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mSharedPreferences = ContextUtils.mSharedPreferences;
         ButterKnife.bind(this);
         registerExitReceiver();
     }
@@ -83,16 +85,28 @@ public class BaseActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * 页面跳转方法
+     * @param context
+     */
     public void startNewUI(Class<?> context){
         startActivity(new Intent(this,context));
+    }
+    public void startNewUIForResult(Class<?> context,int code){
+        startActivityForResult(new Intent(this,context),code);
+    }
+    public void startNewUIForResult(Class<?> context,int code,Bundle options){
+        startActivityForResult(new Intent(this,context),code,options);
     }
 
     public  void showToast(String msg){
         this.mToast = Toast.makeText(this,msg,Toast.LENGTH_SHORT);
         this.mToast.setGravity(Gravity.CENTER,0,0);
         LinearLayout toastView = (LinearLayout) this.mToast.getView();
+        //你可以在这里放入你的背景
+        toastView.setBackgroundResource(R.drawable.toastbg);
         ImageView imageView = new ImageView(this);
-        imageView.setImageResource(R.mipmap.ic_launcher);
+        imageView.setImageResource(R.mipmap.ic_launcher);//这里放你的图片
         toastView.addView(imageView,0);
         mToast.show();
     }

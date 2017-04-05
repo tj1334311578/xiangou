@@ -12,10 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.administrator.xiangou.R;
-import com.example.administrator.xiangou.login.find_bytelephone.FindByTelephoneActivity;
 import com.example.administrator.xiangou.login.find_resetpwd.ResetpwdActivity;
 import com.example.administrator.xiangou.mvp.MVPBaseActivity;
 import com.example.administrator.xiangou.tool.CountDownTimerUtils;
@@ -28,11 +26,14 @@ public class VerifyPhoneActivity extends MVPBaseActivity<VerifyPhoneContract.Vie
     private ImageView findtwopager_cls,findtwopager_back;
     private CountDownTimerUtils countDownTimerUtils;
     private InputMethodManager imm;
+    private Intent mIntent;
+    private String mTel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_findtwopager);
+        mIntent = getIntent();
         initView();
 
     }
@@ -46,29 +47,21 @@ public class VerifyPhoneActivity extends MVPBaseActivity<VerifyPhoneContract.Vie
         findtwopager_cls= (ImageView) findViewById(R.id.findpswtwo_clean);
         findtwopager_back= (ImageView) findViewById(R.id.findpswtwo_back);
 
-
-
-        //在设置监听中有一段代码为if（！isClickable）{ setClickable(true);}强制设置为可点击
-        //        findtwopager_verification.setOnClickListener(this);
-        findtwopager_cls.setOnClickListener(this);
         findtwopager_back.setOnClickListener(this);
 
         findtwopager_number.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
 
             @Override
             public void afterTextChanged(Editable s) {
                 if (s.length()==0||s.length()==11){
                     imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(),0);
                 }else{
+                    findtwopager_cls.setOnClickListener(VerifyPhoneActivity.this);
                     imm.showSoftInput(findtwopager_number,InputMethodManager.SHOW_FORCED);
                 }
                 if (s.length()==6){
@@ -85,10 +78,10 @@ public class VerifyPhoneActivity extends MVPBaseActivity<VerifyPhoneContract.Vie
             }
         });
 
-        if (getIntent()!=null){
-            String getString=getIntent().getStringExtra("tel");
-            if(getString.length()!=0){
-                findtwopager_message.setText("已向您的手机"+getString.substring(0,3)+"..."+getString.substring(7,11)+"发送验证码，请注意查收");
+        if (mIntent!=null){
+            mTel = mIntent.getStringExtra("tel");
+            if(mTel.length()!=0){
+                findtwopager_message.setText("已向您的手机 "+ mTel.substring(0,3)+"..."+ mTel.substring(7,11)+" 发送验证码,请注意查收");
             }
             countDownTimerUtils = new CountDownTimerUtils(findtwopager_number, findtwopager_verification, 30000, 1000, this);
         }}
@@ -97,27 +90,32 @@ public class VerifyPhoneActivity extends MVPBaseActivity<VerifyPhoneContract.Vie
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.findpswtwo_login:
-                if (findtwopager_number.getText().length()==6) {
-                    finish();
-                    startActivity(new Intent(this, ResetpwdActivity.class).putExtra("tel",getIntent().getStringExtra("tel")));
-                }else{
-                    Toast.makeText(this, "请正确输入您验证码", Toast.LENGTH_SHORT).show();
-                }
+                mPresenter.verifyCaptchaFindPwd(mTel,findtwopager_number.getText().toString());
                 break;
             case R.id.sendagain_two:
+                mPresenter.regetCaptcha(mTel,"findpsw");
                 countDownTimerUtils.start();
                 break;
             case R.id.findpswtwo_clean:
                 findtwopager_number.setText("");
                 break;
             case R.id.findpswtwo_back:
+//                startActivity(new Intent(this,FindByTelephoneActivity.class));
                 finish();
-                startActivity(new Intent(this,FindByTelephoneActivity.class));
                 break;
             default:
                 break;
         }
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (mTel==null){
+            mTel = bSharedPreferences.getString("tel_verify","");
+        }
+        findtwopager_number.setText(bSharedPreferences.getString("code_verify",""));
     }
 
     @Override
@@ -128,6 +126,14 @@ public class VerifyPhoneActivity extends MVPBaseActivity<VerifyPhoneContract.Vie
 
     @Override
     public void sendFialRequest(String message) {
+        showToast(message);
+    }
 
+    @Override
+    public void verifySuccess(String tel, String code) {
+        String[] strs = {tel,code};
+        bSharedPreferences.putString("tel_verify",tel);
+        bSharedPreferences.putString("code_verify",code);
+        startNewUICarryStrs(ResetpwdActivity.class,"datas_findpwd",strs);
     }
 }

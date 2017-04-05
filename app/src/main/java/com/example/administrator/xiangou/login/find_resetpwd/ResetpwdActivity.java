@@ -15,7 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.example.administrator.xiangou.R;
-import com.example.administrator.xiangou.login.find_verifyphone.VerifyPhoneActivity;
+import com.example.administrator.xiangou.login.idlogin.IDLoginActivity;
 import com.example.administrator.xiangou.mvp.MVPBaseActivity;
 
 public class ResetpwdActivity extends MVPBaseActivity<ResetpwdContract.View, ResetpwdPresenter>
@@ -25,10 +25,14 @@ public class ResetpwdActivity extends MVPBaseActivity<ResetpwdContract.View, Res
     private CheckBox findthreepager_check;
     private Button findthreepager_btn;
     private static boolean isChecked;
+    private String[] mStrs;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_findthreepager);
+        Intent intent = getIntent();
+        mStrs = intent.getStringArrayExtra("datas_findpwd");
         initView();
     }
 
@@ -58,6 +62,7 @@ public class ResetpwdActivity extends MVPBaseActivity<ResetpwdContract.View, Res
 
             }
         });
+        findthreepager_psw.requestFocus();
     }
 
     @Override
@@ -65,23 +70,29 @@ public class ResetpwdActivity extends MVPBaseActivity<ResetpwdContract.View, Res
         switch (v.getId()){
             case R.id.findpswthree_back:
                 finish();
-                startActivity(new Intent(this,VerifyPhoneActivity.class).putExtra("tel",getIntent().getStringExtra("tel")));
                 break;
             case R.id.findpswthree_clean:
                 findthreepager_psw.setText("");
                 break;
             case R.id.findcheckbox_three:
-                Log.e("TAG", "onClick: "+findthreepager_check.isChecked() );
                 isChecked=!isChecked;
+                Log.e("TAG", "onClick: "+findthreepager_check.isChecked() +"/\n"+isChecked);
                 findthreepager_check.setChecked(isChecked);
                 break;
             case R.id.findpswthree_login:
+                mPresenter.resetPwd(mStrs[0],findthreepager_pswagain.getText().toString(),mStrs[1]);
                 break;
         }
     }
 
     @Override
     public void sendFialRequest(String message) {
+        showToast(message);
+    }
 
+    @Override
+    public void resetPwdSuccess() {
+        showToast("密码设置成功!");
+        startNewUI(IDLoginActivity.class);
     }
 }

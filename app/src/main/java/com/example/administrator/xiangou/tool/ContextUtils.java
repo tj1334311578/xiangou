@@ -1,9 +1,10 @@
 package com.example.administrator.xiangou.tool;
 
 import android.app.Application;
-import android.content.SharedPreferences;
 import android.util.Base64;
 import android.util.DisplayMetrics;
+
+import com.example.administrator.xiangou.main.User;
 
 import java.math.BigDecimal;
 import java.security.MessageDigest;
@@ -18,58 +19,69 @@ import javax.crypto.spec.SecretKeySpec;
  */
 
 public class ContextUtils extends Application{
-    public SharedPreferences mSharedPreferences;
-    public static int phoneWidth,phoneHeight;//手机屏幕的宽高
-    private static ContextUtils mContext;
-    private static DisplayMetrics mDisplayMetrics;
-
+    /**
+     * Base设置
+     */
+    public static int sPhoneWidth, sPhoneHeight;//手机屏幕的宽高
+    private static ContextUtils sContext;
+    private static DisplayMetrics sDisplayMetrics;
     // DES--密钥
     private final static String secretKey = "xg101888";
     private static byte[] iv = {0, 0, 0, 0, 0, 0, 0, 0};
 
+    /**
+     * 根据项目需求设置：
+     * 1.实际项目中的用户信息类
+     */
+    public static User gUser;
+    public static MySharedPreferences gSharedPreferences;
+
+
+
+    public static ContextUtils getInstance() {
+        return sContext;
+    }
     @Override
     public void onCreate() {
-        mContext = this;
         super.onCreate();
-        mDisplayMetrics = getResources().getDisplayMetrics();
-        phoneWidth = mDisplayMetrics.widthPixels;
-//        Log.e("phoneWidth", "onCreate: "+phoneWidth );
-        phoneHeight = mDisplayMetrics.heightPixels;
-    }
-    public static ContextUtils getInstance() {
-        return mContext;
-    }
+        sContext = this;
+        sDisplayMetrics = getResources().getDisplayMetrics();
+        sPhoneWidth = sDisplayMetrics.widthPixels;
+        sPhoneHeight = sDisplayMetrics.heightPixels;
+        /**
+         * 项目需求
+         */
+        gSharedPreferences = new MySharedPreferences(this,"xiangouSPsave");
 
+        gUser = User.getUser();
+    }
+// TODO: you need
+
+
+
+//this is base method
 
     /**
+     * px与dp、sp的转换：
      * 将px值转换为dip或dp值，保证尺寸大小不变
      */
     public static int px2dp(float pxValue) {
-        final float scale = mDisplayMetrics.density;
+        final float scale = sDisplayMetrics.density;
         return (int) (pxValue / scale + 0.5f);
     }
-
-    /**
-     * 将dip或dp值转换为px值，保证尺寸大小不变
-     */
+    //将dip或dp值转换为px值，保证尺寸大小不变
     public static int dp2px(float dipValue) {
-        final float scale = mDisplayMetrics.density;
+        final float scale = sDisplayMetrics.density;
         return (int) (dipValue * scale + 0.5f);
     }
-
-    /**
-     * 将px值转换为sp值，保证文字大小不变
-     */
+    //将px值转换为sp值，保证文字大小不变
     public static int px2sp(float pxValue) {
-        final float fontScale = mDisplayMetrics.scaledDensity;
+        final float fontScale = sDisplayMetrics.scaledDensity;
         return (int) (pxValue / fontScale + 0.5f);
     }
-
-    /**
-     * 将sp值转换为px值，保证文字大小不变
-     */
+    //将sp值转换为px值，保证文字大小不变
     public static int sp2px(float spValue) {
-        final float fontScale = mDisplayMetrics.scaledDensity;
+        final float fontScale = sDisplayMetrics.scaledDensity;
         return (int) (spValue * fontScale + 0.5f);
     }
 

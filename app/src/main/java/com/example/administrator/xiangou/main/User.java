@@ -7,7 +7,7 @@ import com.example.administrator.xiangou.login.LoginBean;
  * Created by zhouzongyao on 2017/3/21.
  */
 
-public class User extends LoginBean.DataBean{
+public class User {
     private static User user;
     private User(){}
     public static User getUser(){
@@ -16,9 +16,22 @@ public class User extends LoginBean.DataBean{
         }
         return user;
     }
-    public static void setUser(LoginBean.DataBean data){
-        if (data.toString().equals(user.toString()))
-        user = (User) data;
+    public void setUser(LoginBean.DataBean data){
+        user.user_id = data.getUser_id();
+        user.sex = data.getSex();
+        user.mobile = data.getMobile();
+        user.nickname = data.getNickname();
+        user.type = data.getType();
+        user.status = data.getStatus();
+        user.head_pic = data.getHead_pic();
+        user.coupon_count = data.getCoupon_count();
+        user.follow = data.getFollow();
+        user.waitPay = data.getWaitPay();
+        user.waitSend = data.getWaitSend();
+        user.waitReceive = data.getWaitReceive();
+        user.order_count = data.getOrder_count();
+        user.refund = data.getRefund();
+        user.experience = data.getExperience();
     }
 
     /**
@@ -38,7 +51,6 @@ public class User extends LoginBean.DataBean{
      * refund : 0
      * experience : 11
      */
-
     private int user_id;
     private int sex;
     private String mobile;
@@ -173,5 +185,26 @@ public class User extends LoginBean.DataBean{
 
     public void setExperience(int experience) {
         this.experience = experience;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "user_id=" + user_id +
+                ", sex=" + sex +
+                ", mobile='" + mobile + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", type=" + type +
+                ", status=" + status +
+                ", head_pic=" + head_pic +
+                ", coupon_count=" + coupon_count +
+                ", follow=" + follow +
+                ", waitPay=" + waitPay +
+                ", waitSend=" + waitSend +
+                ", waitReceive=" + waitReceive +
+                ", order_count=" + order_count +
+                ", refund=" + refund +
+                ", experience=" + experience +
+                '}';
     }
 }

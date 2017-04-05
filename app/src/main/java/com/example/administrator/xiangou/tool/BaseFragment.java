@@ -12,8 +12,8 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.administrator.xiangou.R;
-
-import java.lang.reflect.Field;
+import com.example.administrator.xiangou.login.idlogin.IDLoginActivity;
+import com.example.administrator.xiangou.main.User;
 
 import butterknife.ButterKnife;
 
@@ -26,7 +26,20 @@ import butterknife.ButterKnife;
 public class BaseFragment extends Fragment {
     public Activity mActivity;
     private Toast mToast;
+
+//    public static ContextUtils bContextUtils;
+    public static User bUser;
+    public static MySharedPreferences bSharedPreferences;
     public BaseActivity mBaseActivity;//这里是为了引用BaseActivity的ProgressDialog
+//    public MySharedPreferences bSharedPreferences;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+//        bContextUtils = ContextUtils.getInstance();
+//        bSharedPreferences = bContextUtils.gSharedPreferences;
+    }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -34,26 +47,32 @@ public class BaseFragment extends Fragment {
         ButterKnife.bind(getContext(),view);
         mActivity = getActivity();
         mBaseActivity = new BaseActivity();
+
+//        bContextUtils = ContextUtils.getInstance();
+        bUser = ContextUtils.gUser;
+        bSharedPreferences = ContextUtils.gSharedPreferences;
     }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        try {
-            Field childFragmentManager = Fragment.class.getDeclaredField("mChildFragmentManager");
-            childFragmentManager.setAccessible(true);
-            childFragmentManager.set(this,null);
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-    }
     //还可以把统一的toolbar等控件在此初始化
     //如public Toolbar initToolBar(View view, String title)
 
+    /**
+     * 页面跳转方法
+     * @param context
+     */
     public void startNewUI(Class<?> context){
         startActivity(new Intent(getContext(),context));
+    }
+    public void startNewUICarryStr(Class<?> context, String name, String str ){
+        Intent intent = new Intent(getContext(),context);
+        intent.putExtra(name,str);
+        startActivity(intent);
+    }
+    public void startNewUIForResult(Class<?> context,int code){
+        startActivityForResult(new Intent(getContext(),context),code);
+    }
+    public void startNewUIForResult(Class<?> context,int code,Bundle options){
+        startActivityForResult(new Intent(getContext(),context),code,options);
     }
 
     /**
@@ -64,6 +83,7 @@ public class BaseFragment extends Fragment {
         mToast = Toast.makeText(mActivity,msg,Toast.LENGTH_SHORT);
         mToast.setGravity(Gravity.CENTER,0,0);
         LinearLayout toastView = (LinearLayout) mToast.getView();
+        toastView.setBackgroundResource(R.drawable.toastbg); //你可以在这里放入你的背景
         ImageView imageView = new ImageView(mActivity);
         imageView.setImageResource(R.mipmap.ic_launcher);
         toastView.addView(imageView,0);
@@ -71,5 +91,15 @@ public class BaseFragment extends Fragment {
     }
     public void toastShow(String msg) {
         Toast.makeText(mActivity, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    //判断用户是否登录
+    public boolean isLogined(){
+        return bSharedPreferences.getBoolean(MySharedPreferences.STATUS_LOGIN,false);
+    }
+    //判断用户注销
+    public void logout(){
+        bSharedPreferences.putBoolean(MySharedPreferences.STATUS_LOGIN,false);
+        startNewUI(IDLoginActivity.class);
     }
 }

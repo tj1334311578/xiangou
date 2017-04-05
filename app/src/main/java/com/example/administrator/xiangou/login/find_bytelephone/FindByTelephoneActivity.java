@@ -2,7 +2,6 @@ package com.example.administrator.xiangou.login.find_bytelephone;
 
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Editable;
@@ -12,7 +11,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.login.find_verifyphone.VerifyPhoneActivity;
@@ -43,20 +41,15 @@ public class FindByTelephoneActivity extends MVPBaseActivity<FindByTelephoneCont
 
         findonepager_number.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
 
             @Override
             public void afterTextChanged(Editable s) {
                 if (s.length()==0||s.length()==11){
                     imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(),0);
-
                 }else{
                     imm.showSoftInput(findonepager_number,InputMethodManager.SHOW_FORCED);
                 }
@@ -65,6 +58,7 @@ public class FindByTelephoneActivity extends MVPBaseActivity<FindByTelephoneCont
                     findonepager_next.setOnClickListener(FindByTelephoneActivity.this);
                 }else{
                     findonepager_next.setBackground(getResources().getDrawable(R.drawable.btnbg_unchecked));
+                    findonepager_next.setClickable(false);
                 }
             }
         });
@@ -74,17 +68,10 @@ public class FindByTelephoneActivity extends MVPBaseActivity<FindByTelephoneCont
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.findpswone_login:
-                if (findonepager_number.getText().length()==11) {
-                    finish();
-                    startActivity(new Intent(this,VerifyPhoneActivity.class).putExtra("tel",findonepager_number.getText().toString()));
-                }else{
-                    Toast.makeText(this, "请正确输入您的手机号", Toast.LENGTH_SHORT).show();
-                }
-
+                mPresenter.getCaptcha(findonepager_number.getText().toString(),"findpsw");
                 break;
             case R.id.findpswone_back:
-                finish();
-                startActivity(new Intent(this,IDLoginActivity.class));
+                startNewUI(IDLoginActivity.class);
                 break;
             case R.id.findpswone_clean:
                 findonepager_number.setText("");
@@ -96,6 +83,18 @@ public class FindByTelephoneActivity extends MVPBaseActivity<FindByTelephoneCont
     }
     @Override
     public void sendFialRequest(String message) {
+        showToast(message);
+    }
 
+    @Override
+    public void sendCaptchaFindPwd(String tel) {
+        bSharedPreferences.putString("tel_findpwd",tel);
+        startNewUICarryStr(VerifyPhoneActivity.class,"tel",tel);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        findonepager_number.setText(bSharedPreferences.getString("tel_findpwd",""));
     }
 }

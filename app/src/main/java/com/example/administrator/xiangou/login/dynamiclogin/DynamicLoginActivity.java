@@ -57,7 +57,7 @@ public class DynamicLoginActivity extends MVPBaseActivity<DynamicLoginContract.V
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (s.length()==0||s.length()==4){
+                if (s.length()==0||s.length()==6){
                     imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(),0);
                 }else{
                     imm.showSoftInput(dynamic_code,InputMethodManager.SHOW_FORCED);
@@ -95,12 +95,14 @@ public class DynamicLoginActivity extends MVPBaseActivity<DynamicLoginContract.V
                 }
             }
         });
+        dynamic_number.requestFocus();
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.dynamic_verification:
+                mPresenter.sendCaptcha(dynamic_number.getText().toString(),"login");
                 countDownTimerUtils.start();
                 break;
             case R.id.dynamic_login:
@@ -110,8 +112,8 @@ public class DynamicLoginActivity extends MVPBaseActivity<DynamicLoginContract.V
                 dynamic_number.setText("");
                 break;
             case R.id.dynamic_back:
-                finish();
                 startNewUI(IDLoginActivity.class);
+                finish();
                 break;
             default:
                 break;
@@ -125,8 +127,12 @@ public class DynamicLoginActivity extends MVPBaseActivity<DynamicLoginContract.V
     }
 
     @Override
-    public void LoginvSuccess() {
+    public void loginVerifySuccess() {
+        if ( !bSharedPreferences.getBoolean("hasLogined",false) )
+            bSharedPreferences.putBoolean("hasLogined",true);
         startNewUI(MainActivity.class);
+        showToast("登录成功！");
+        finish();
     }
 
     @Override

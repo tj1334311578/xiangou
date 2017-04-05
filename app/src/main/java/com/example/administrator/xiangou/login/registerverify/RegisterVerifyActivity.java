@@ -11,12 +11,12 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.xiangou.R;
-import com.example.administrator.xiangou.login.idlogin.IDLoginActivity;
 import com.example.administrator.xiangou.login.register.RegisterActivity;
 import com.example.administrator.xiangou.mvp.MVPBaseActivity;
 import com.example.administrator.xiangou.tool.CountDownTimerUtils;
@@ -31,7 +31,7 @@ public class RegisterVerifyActivity extends MVPBaseActivity<RegisterVerifyContra
     private TextView register_verification,register_xiyi;
     private CheckBox register_cb;
     private ImageView register_cls,mainregister_back;
-    private Button mainregister_Btn;
+    private Button mRegister_NextBtn;
     private CountDownTimerUtils mTimer;
     private InputMethodManager imm;
 
@@ -52,7 +52,7 @@ public class RegisterVerifyActivity extends MVPBaseActivity<RegisterVerifyContra
         register_cb = (CheckBox) findViewById(R.id.register_cb);
         register_cls = (ImageView) findViewById(R.id.mainregister_clean);
         mainregister_back= (ImageView) findViewById(R.id.mainregister_cancel);
-        mainregister_Btn= (Button) findViewById(R.id.register_Btn);
+        mRegister_NextBtn = (Button) findViewById(R.id.register_Btn);
         register_verification.setOnClickListener(this);
         register_cb.setOnClickListener(this);
         register_cls.setOnClickListener(this);
@@ -69,8 +69,14 @@ public class RegisterVerifyActivity extends MVPBaseActivity<RegisterVerifyContra
             public void afterTextChanged(Editable s) {
                 if (s.length()==0||s.length()==6){
                     imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(),0);
+                    if (register_number.getText().length()==11){
+                        register_cb.setChecked(true);
+                    }else {
+                        register_cb.setChecked(false);
+                    }
                 }else{
                     imm.showSoftInput(register_code,InputMethodManager.SHOW_FORCED);
+                    register_cb.setChecked(false);
                 }
             }
         });
@@ -85,20 +91,34 @@ public class RegisterVerifyActivity extends MVPBaseActivity<RegisterVerifyContra
             public void afterTextChanged(Editable s) {
                 if (s.length()==0||s.length()==11){
                     imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(),0);
+                    register_cls.setVisibility(View.GONE);
+                    if (register_code.getText().length()>5){
+//                        mRegister_NextBtn.setBackground(getResources().getDrawable(R.drawable.btnbg_checked));
+                        register_cb.setChecked(true);
+                    }else{
+//                        mRegister_NextBtn.setBackground(getResources().getDrawable(R.drawable.btnbg_unchecked));
+                        register_cb.setChecked(false);
+                    }
                 }else{
                     imm.showSoftInput(register_number,InputMethodManager.SHOW_FORCED);
-                }
-                if (s.length()==0){
-                    register_cls.setVisibility(View.INVISIBLE);
-                    register_cls.setClickable(false);
-                }else {
                     register_cls.setVisibility(View.VISIBLE);
-                    register_cls.setClickable(true);
+                    register_cb.setChecked(false);
                 }
             }
         });
 
-        if (!register_number.isSelected())
+        register_cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (register_cb.isChecked()){
+                    mRegister_NextBtn.setOnClickListener(RegisterVerifyActivity.this);
+                    mRegister_NextBtn.setBackground(getResources().getDrawable(R.drawable.btnbg_checked));
+                }else {
+                    mRegister_NextBtn.setClickable(false);
+                    mRegister_NextBtn.setBackground(getResources().getDrawable(R.drawable.btnbg_unchecked));
+                }
+            }
+        });
         register_number.requestFocus();
     }
 
@@ -107,7 +127,7 @@ public class RegisterVerifyActivity extends MVPBaseActivity<RegisterVerifyContra
         switch (v.getId()){
             case R.id.mainregister_cancel:
                 //返回键
-                startNewUI(IDLoginActivity.class);
+                finish();
                 break;
             case R.id.mainregister_clean:
                 //清除键
@@ -117,12 +137,9 @@ public class RegisterVerifyActivity extends MVPBaseActivity<RegisterVerifyContra
                 //checkbox键
                 Log.e("checkbox键", "onClick: "+ register_cb.isChecked() );
                 if (register_cb.isChecked()){
-                    if (register_code.getText()!=null) {
-                        mainregister_Btn.setClickable(true);
-                        mainregister_Btn.setOnClickListener(this);
-                    }
+                    register_cb.setChecked(false);
                 }else {
-                    mainregister_Btn.setClickable(false);
+                    register_cb.setChecked(true);
                 }
                 break;
             case R.id.mainregister_verificationBtn:
@@ -142,14 +159,9 @@ public class RegisterVerifyActivity extends MVPBaseActivity<RegisterVerifyContra
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        showToast("退出RegisterVerifyActivity");
-    }
-
-    @Override
     public void verifySuccess() {
-        startNewUI( RegisterActivity.class);
+        startNewUICarryStr( RegisterActivity.class,"register_code",register_code.getText().toString());
+        finish();
     }
 
     @Override

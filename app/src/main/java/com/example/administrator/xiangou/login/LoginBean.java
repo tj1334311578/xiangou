@@ -14,6 +14,14 @@ public class LoginBean{
     private DataBean data;
     private StateBean state;
 
+    @Override
+    public String toString() {
+        return "LoginBean{" +
+                "data=" + data +
+                ", state=" + state +
+                '}';
+    }
+
     public DataBean getData() {
         return data;
     }
@@ -31,6 +39,27 @@ public class LoginBean{
     }
 
     public static class DataBean {
+        @Override
+        public String toString() {
+            return "DataBean{" +
+                    "user_id=" + user_id +
+                    ", sex=" + sex +
+                    ", mobile='" + mobile + '\'' +
+                    ", nickname='" + nickname + '\'' +
+                    ", type=" + type +
+                    ", status=" + status +
+                    ", head_pic=" + head_pic +
+                    ", coupon_count=" + coupon_count +
+                    ", follow=" + follow +
+                    ", waitPay=" + waitPay +
+                    ", waitSend=" + waitSend +
+                    ", waitReceive=" + waitReceive +
+                    ", order_count=" + order_count +
+                    ", refund=" + refund +
+                    ", experience=" + experience +
+                    '}';
+        }
+
         /**
          * user_id : 2625
          * sex : 0

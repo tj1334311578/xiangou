@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.administrator.xiangou.R;
+import com.example.administrator.xiangou.main.User;
 
 import butterknife.ButterKnife;
 
@@ -30,6 +31,10 @@ public class BaseActivity extends AppCompatActivity {
         }
     };
     private Toast mToast;
+
+//    public static ContextUtils bContextUtils;
+    public static User bUser;
+    public static MySharedPreferences bSharedPreferences;
 
     //注册广播
     private void registerExitReceiver() {
@@ -54,13 +59,11 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+//        bContextUtils = ContextUtils.getInstance();
+        bUser = ContextUtils.gUser;
+        bSharedPreferences = ContextUtils.gSharedPreferences;
         ButterKnife.bind(this);
         registerExitReceiver();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
     }
 
     @Override
@@ -88,20 +91,54 @@ public class BaseActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * 页面跳转方法
+     * @param context
+     */
     public void startNewUI(Class<?> context){
         startActivity(new Intent(this,context));
     }
+    public void startNewUICarryStr(Class<?> context, String name, String str ){
+        Intent intent = new Intent(this,context);
+        intent.putExtra(name,str);
+        startActivity(intent);
+    }
+    public void startNewUICarryStrs(Class<?> context, String name, String[] strs ){
+        Intent intent = new Intent(this,context);
+        intent.putExtra(name, strs);
+        startActivity(intent);
+    }
+    public void startNewUIForResult(Class<?> context,int code){
+        startActivityForResult(new Intent(this,context),code);
+    }
+    public void startNewUIForResult(Class<?> context,int code,Bundle options){
+        startActivityForResult(new Intent(this,context),code,options);
+    }
 
+    /**
+     * Toast
+     * @param msg
+     */
     public  void showToast(String msg){
         this.mToast = Toast.makeText(this,msg,Toast.LENGTH_SHORT);
         this.mToast.setGravity(Gravity.CENTER,0,0);
         LinearLayout toastView = (LinearLayout) this.mToast.getView();
+        //你可以在这里放入你的背景
+        toastView.setBackgroundResource(R.drawable.toastbg);
         ImageView imageView = new ImageView(this);
-        imageView.setImageResource(R.mipmap.ic_launcher);
+        imageView.setImageResource(R.mipmap.ic_launcher);//这里放你的图片
         toastView.addView(imageView,0);
         mToast.show();
     }
     public void toastShow(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * 判断用户是否登录
+     * @return
+     */
+    public static boolean isLogined(){
+        return bSharedPreferences.getBoolean(MySharedPreferences.STATUS_LOGIN,false);
     }
 }

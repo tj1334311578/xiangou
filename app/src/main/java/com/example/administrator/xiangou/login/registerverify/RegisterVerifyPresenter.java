@@ -26,7 +26,7 @@ public class RegisterVerifyPresenter extends BasePresenterImpl<RegisterVerifyCon
                         mView.sendFialRequest(captcha.getState().getMsg());//todo UI toast 失败
                         break;
                     case 200:
-                        Log.e("captcha", "onNext: " );
+                        Log.e("captcha", "onNext: 成功" );
                         break;
                 }
             }

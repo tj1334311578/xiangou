@@ -14,7 +14,7 @@ public class IDLoginPresenter extends BasePresenterImpl<IDLoginContract.View> im
     @Override
     public void IDlogin(String userName, String password) {
         mView.showLoading();//加载等待
-        Log.e("IDlogin", "enter：IDlogin");
+        Log.e("IDlogin", "enter：IDlogin"+ContextUtils.MD5(password));
 
         addSubscription(
                 mApiService.loginID(userName, ContextUtils.MD5(password)),
@@ -25,7 +25,7 @@ public class IDLoginPresenter extends BasePresenterImpl<IDLoginContract.View> im
                         switch (loginBean.getState().getCode()){
                             case 200:
                                 if (loginBean.getData()!=null){
-                                    User.setUser( loginBean.getData() );
+                                    ContextUtils.gUser.setUser( loginBean.getData() );
                                     Log.e("User", "LoginidSuccess: "+ User.getUser().toString());
                                     mView.LoginidSuccess();
                                 }
@@ -41,8 +41,8 @@ public class IDLoginPresenter extends BasePresenterImpl<IDLoginContract.View> im
                     }
                     @Override
                     public void onError(ExceptionHandle.ResponeThrowable e) {
-                        Log.e("IDlogin", "onError：" + e.getMessage());
-                        mView.sendFialRequest(e.getMessage());
+                        Log.e("IDlogin", e.code+"onError：" + e.getMessage());
+                        mView.sendFialRequest(e.message);
                     }
                 }
         );

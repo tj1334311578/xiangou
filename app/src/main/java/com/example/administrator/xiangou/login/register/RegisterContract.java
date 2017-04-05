@@ -11,6 +11,6 @@ public class RegisterContract {
 
     interface  Presenter extends BasePresenter<View> {
         //完成注册的请求
-        void registerp(String tel, String password);
+        void registerp(String tel,String code, String password);
     }
 }

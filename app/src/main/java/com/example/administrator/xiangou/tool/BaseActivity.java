@@ -14,8 +14,10 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.administrator.xiangou.R;
+import com.example.administrator.xiangou.main.User;
 
 import butterknife.ButterKnife;
+
 
 /**
  * Created by Administrator on 2017/2/28.
@@ -30,7 +32,10 @@ public class BaseActivity extends AppCompatActivity {
         }
     };
     private Toast mToast;
-    public MySharedPreferences mSharedPreferences;
+
+//    public static ContextUtils bContextUtils;
+    public static User bUser;
+    public static MySharedPreferences bSharedPreferences;
 
     //注册广播
     private void registerExitReceiver() {
@@ -55,7 +60,9 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mSharedPreferences = ContextUtils.mSharedPreferences;
+//        bContextUtils = ContextUtils.getInstance();
+        bUser = ContextUtils.gUser;
+        bSharedPreferences = ContextUtils.gSharedPreferences;
         ButterKnife.bind(this);
         registerExitReceiver();
     }
@@ -92,6 +99,16 @@ public class BaseActivity extends AppCompatActivity {
     public void startNewUI(Class<?> context){
         startActivity(new Intent(this,context));
     }
+    public void startNewUICarryStr(Class<?> context, String name, String str ){
+        Intent intent = new Intent(this,context);
+        intent.putExtra(name,str);
+        startActivity(intent);
+    }
+    public void startNewUICarryStrs(Class<?> context, String name, String[] strs ){
+        Intent intent = new Intent(this,context);
+        intent.putExtra(name, strs);
+        startActivity(intent);
+    }
     public void startNewUIForResult(Class<?> context,int code){
         startActivityForResult(new Intent(this,context),code);
     }
@@ -99,6 +116,10 @@ public class BaseActivity extends AppCompatActivity {
         startActivityForResult(new Intent(this,context),code,options);
     }
 
+    /**
+     * Toast
+     * @param msg
+     */
     public  void showToast(String msg){
         this.mToast = Toast.makeText(this,msg,Toast.LENGTH_SHORT);
         this.mToast.setGravity(Gravity.CENTER,0,0);
@@ -112,5 +133,13 @@ public class BaseActivity extends AppCompatActivity {
     }
     public void toastShow(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    /**
+     * 判断用户是否登录
+     * @return
+     */
+    public static boolean isLogined(){
+        return bSharedPreferences.getBoolean(MySharedPreferences.STATUS_LOGIN,false);
     }
 }

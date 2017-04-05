@@ -9,9 +9,10 @@ import com.example.administrator.xiangou.tool.ContextUtils;
 public class RegisterPresenter extends BasePresenterImpl<RegisterContract.View> implements RegisterContract.Presenter{
 
     @Override
-    public void registerp(String tel, String password) {
+    public void registerp(String tel, String code, String password) {
         mView.showLoading();
-        addSubscription(mApiService.toRegister(tel, ContextUtils.MD5(password)), new BaseSubscriber<Captcha>(mView.getContext()) {
+        addSubscription(mApiService.toRegister( tel, code, ContextUtils.MD5(password) ),
+                new BaseSubscriber<Captcha>(mView.getContext()) {
             @Override
             public void onNext(Captcha captcha) {
                 switch (captcha.getState().getCode()){

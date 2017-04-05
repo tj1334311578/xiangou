@@ -13,12 +13,8 @@ public class MySharedPreferences {
     private Context mContext;
     private static SharedPreferences mSharedPreferences;
     private static SharedPreferences.Editor mSpEditor;
-    private static final int SPTYPE_String = 1;
-    private static final int SPTYPE_Boolean = 2;
-    private static final int SPTYPE_Float = 3;
-    private static final int SPTYPE_Int = 4;
-    private static final int SPTYPE_Long = 5;
-    private static final int SPTYPE_Set = 6;
+    public static final String STATUS_LOGIN = "staus_login";
+    public static final String STATUS_GUIDE = "staus_guide";
 
     public MySharedPreferences(Context context,String name) {
         mContext = context;

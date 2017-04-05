@@ -69,8 +69,11 @@ public class ExceptionHandle {
             ex = new ResponeThrowable(e, ERROR.TIMEOUT_ERROR);
             ex.message = "连接超时";
             return ex;
-        }
-        else {
+        } else if (e instanceof IllegalStateException){
+            ex = new ResponeThrowable(e,ERROR.Data_ERROR);
+            ex.message = "账号或密码错误";
+            return ex;
+        }else {
             ex = new ResponeThrowable(e, ERROR.UNKNOWN);
             ex.message = "未知错误";
             return ex;
@@ -108,6 +111,11 @@ public class ExceptionHandle {
          * 连接超时
          */
         public static final int TIMEOUT_ERROR = 1006;
+
+        /**
+         *账号或密码错误
+         */
+        public static final int Data_ERROR = 1000;
     }
 
     public static class ResponeThrowable extends Exception {
@@ -117,9 +125,6 @@ public class ExceptionHandle {
         public ResponeThrowable(Throwable throwable, int code) {
             super(throwable);
             this.code = code;
-            //如果
-            this.message=throwable.getMessage();
-
         }
     }
 

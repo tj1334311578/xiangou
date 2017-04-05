@@ -19,6 +19,7 @@ import com.example.administrator.xiangou.login.find_bytelephone.FindByTelephoneA
 import com.example.administrator.xiangou.login.registerverify.RegisterVerifyActivity;
 import com.example.administrator.xiangou.main.MainActivity;
 import com.example.administrator.xiangou.mvp.MVPBaseActivity;
+import com.example.administrator.xiangou.tool.MySharedPreferences;
 
 public class IDLoginActivity extends MVPBaseActivity<IDLoginContract.View, IDLoginPresenter>
         implements IDLoginContract.View ,View.OnClickListener{
@@ -32,6 +33,7 @@ public class IDLoginActivity extends MVPBaseActivity<IDLoginContract.View, IDLog
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_login);
         initView();
+        IDLogin_TelNumber.setText(bSharedPreferences.getString("IDLogin_TelNumber",""));
     }
 
     private void initView() {
@@ -59,17 +61,23 @@ public class IDLoginActivity extends MVPBaseActivity<IDLoginContract.View, IDLog
             @Override
             public void afterTextChanged(Editable s) {
                 if (s.length()==0){
-                    mIDLoginBtn.setBackground(getResources().getDrawable(R.drawable.btnbg_unchecked));
                     imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(),0);
+                    mIDLoginBtn.setBackground(getResources().getDrawable(R.drawable.btnbg_unchecked));
+                    mIDLoginBtn.setFocusable(false);
+                    mIDLoginBtn.setClickable(false);
                 }else if (s.length()>7){
                     if (IDLogin_TelNumber.getText().length()==11){
                         mIDLoginBtn.setOnClickListener(IDLoginActivity.this);
                         mIDLoginBtn.setBackground(getResources().getDrawable(R.drawable.btnbg_checked));
                     }else{
+                        mIDLoginBtn.setFocusable(false);
+                        mIDLoginBtn.setClickable(false);
                         mIDLoginBtn.setBackground(getResources().getDrawable(R.drawable.btnbg_unchecked));
                     }
                     imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(),0);
                 }else{
+                    mIDLoginBtn.setFocusable(false);
+                    mIDLoginBtn.setClickable(false);
                     mIDLoginBtn.setBackground(getResources().getDrawable(R.drawable.btnbg_unchecked));
                     imm.showSoftInput(IDLogin_PWD,InputMethodManager.SHOW_FORCED);
                 }
@@ -99,7 +107,7 @@ public class IDLoginActivity extends MVPBaseActivity<IDLoginContract.View, IDLog
                         mIDLoginBtn.setBackground(getResources().getDrawable(R.drawable.btnbg_unchecked));
                     }
                     mIDLoginBtn.setFocusable(true);
-                    IDLogin_Cls.setVisibility(View.VISIBLE);
+                    IDLogin_Cls.setVisibility(View.INVISIBLE);
                     imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(),0);
                     mIDLoginBtn.setClickable(true);
                 }else {
@@ -130,13 +138,12 @@ public class IDLoginActivity extends MVPBaseActivity<IDLoginContract.View, IDLog
                 break;
             case R.id.mainlogin_register:
                 startNewUI(RegisterVerifyActivity.class);
-                this.finish();
                 break;
             case R.id.mainlogin_clean:
                 IDLogin_TelNumber.setText("");
                break;
             case R.id.mainlogin_back:
-                finish();
+                this.finish();
                 break;
         }
     }
@@ -148,8 +155,7 @@ public class IDLoginActivity extends MVPBaseActivity<IDLoginContract.View, IDLog
 
     @Override
     public void LoginidSuccess() {
-        if ( !mSharedPreferences.getBoolean("hasLogined",false) )
-            mSharedPreferences.putBoolean("hasLogined",true);
+        bSharedPreferences.putBoolean(MySharedPreferences.STATUS_LOGIN,true);
         startNewUI(MainActivity.class);
         showToast("登录成功！");
         finish();
@@ -158,5 +164,12 @@ public class IDLoginActivity extends MVPBaseActivity<IDLoginContract.View, IDLog
     @Override
     public void sendFialRequest(String message) {
         showToast(message);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        bSharedPreferences.putString("IDLogin_TelNumber",IDLogin_TelNumber.getText().toString());
+        bSharedPreferences.putString("IDLogin_PWD",IDLogin_PWD.getText().toString());
     }
 }

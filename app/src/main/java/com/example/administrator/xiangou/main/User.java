@@ -16,7 +16,7 @@ public class User {
         }
         return user;
     }
-    public static void setUser(LoginBean.DataBean data){
+    public void setUser(LoginBean.DataBean data){
         user.user_id = data.getUser_id();
         user.sex = data.getSex();
         user.mobile = data.getMobile();

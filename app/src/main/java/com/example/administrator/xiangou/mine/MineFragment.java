@@ -38,6 +38,9 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (!isLogined()){
+            startNewUI(IDLoginActivity.class);
+        }
     }
 
     @Nullable
@@ -118,6 +121,7 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
             //设置
             case R.id.mine_setup:
                 Toast.makeText(getActivity(), "点击设置", Toast.LENGTH_SHORT).show();
+                logout();
                 break;
             //消息
             case R.id.mine_message:
@@ -230,5 +234,11 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
             public ImageView imageView;
             public TextView textView;
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
     }
 }

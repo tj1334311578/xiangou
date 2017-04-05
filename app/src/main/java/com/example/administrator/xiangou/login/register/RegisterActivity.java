@@ -1,6 +1,7 @@
 package com.example.administrator.xiangou.login.register;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Editable;
@@ -27,11 +28,19 @@ public class RegisterActivity extends MVPBaseActivity<RegisterContract.View, Reg
     private Button twopager_Btn;
     private InputMethodManager imm;
     private TextWatcher textWatcher;
+
+    private String mRegisterCode;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registertwopager);
+        initData();
         initView();
+    }
+
+    private void initData() {
+        Intent mIttCode = getIntent();
+        mRegisterCode = mIttCode.getStringExtra("register_code");
     }
 
     private void initView() {
@@ -46,14 +55,10 @@ public class RegisterActivity extends MVPBaseActivity<RegisterContract.View, Reg
         twopager_Btn.setOnClickListener(this);
         twopager_password.addTextChangedListener(textWatcher=new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
 
             @Override
             public void afterTextChanged(Editable s) {
@@ -65,8 +70,7 @@ public class RegisterActivity extends MVPBaseActivity<RegisterContract.View, Reg
             }
         });
         twopager_password_sure.addTextChangedListener(textWatcher);
-        if (!twopager_password.isFocused())
-            twopager_password.requestFocus();
+        twopager_password.requestFocus();
     }
 
     @Override
@@ -83,10 +87,9 @@ public class RegisterActivity extends MVPBaseActivity<RegisterContract.View, Reg
             case R.id.twopagerregister_Btn:
                 //进入下一级
                 if (User.getUser().getMobile()!=null)
-                mPresenter.registerp(User.getUser().getMobile(),twopager_password.getText().toString());
+                mPresenter.registerp(bUser.getMobile(), mRegisterCode, twopager_password.getText().toString());
                 break;
         }
-
     }
 
     @Override
@@ -96,7 +99,9 @@ public class RegisterActivity extends MVPBaseActivity<RegisterContract.View, Reg
 
     @Override
     public void registerSuccess(String message) {
-        showToast(message);
+//        bSharedPreferences.putBoolean(MySharedPreferences.STATUS_LOGIN,true);
+        showToast("注册成功!");
         startNewUI( MainActivity.class);
+        finish();
     }
 }

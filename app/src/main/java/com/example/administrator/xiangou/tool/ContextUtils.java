@@ -22,9 +22,9 @@ public class ContextUtils extends Application{
     /**
      * Base设置
      */
-    public static int phoneWidth,phoneHeight;//手机屏幕的宽高
-    private static ContextUtils mContext;
-    private static DisplayMetrics mDisplayMetrics;
+    public static int sPhoneWidth, sPhoneHeight;//手机屏幕的宽高
+    private static ContextUtils sContext;
+    private static DisplayMetrics sDisplayMetrics;
     // DES--密钥
     private final static String secretKey = "xg101888";
     private static byte[] iv = {0, 0, 0, 0, 0, 0, 0, 0};
@@ -33,26 +33,27 @@ public class ContextUtils extends Application{
      * 根据项目需求设置：
      * 1.实际项目中的用户信息类
      */
-    public static User mUser;
-    public static MySharedPreferences mSharedPreferences;
+    public static User gUser;
+    public static MySharedPreferences gSharedPreferences;
+
+
 
     public static ContextUtils getInstance() {
-        return mContext;
+        return sContext;
     }
-
     @Override
     public void onCreate() {
         super.onCreate();
-        mContext = this;
-        mDisplayMetrics = getResources().getDisplayMetrics();
-        phoneWidth = mDisplayMetrics.widthPixels;
-        phoneHeight = mDisplayMetrics.heightPixels;
+        sContext = this;
+        sDisplayMetrics = getResources().getDisplayMetrics();
+        sPhoneWidth = sDisplayMetrics.widthPixels;
+        sPhoneHeight = sDisplayMetrics.heightPixels;
         /**
          * 项目需求
          */
-        this.mSharedPreferences = new MySharedPreferences(this,"xiangouSPsave");
+        gSharedPreferences = new MySharedPreferences(this,"xiangouSPsave");
 
-        this.mUser = User.getUser();
+        gUser = User.getUser();
     }
 // TODO: you need
 
@@ -65,22 +66,22 @@ public class ContextUtils extends Application{
      * 将px值转换为dip或dp值，保证尺寸大小不变
      */
     public static int px2dp(float pxValue) {
-        final float scale = mDisplayMetrics.density;
+        final float scale = sDisplayMetrics.density;
         return (int) (pxValue / scale + 0.5f);
     }
     //将dip或dp值转换为px值，保证尺寸大小不变
     public static int dp2px(float dipValue) {
-        final float scale = mDisplayMetrics.density;
+        final float scale = sDisplayMetrics.density;
         return (int) (dipValue * scale + 0.5f);
     }
     //将px值转换为sp值，保证文字大小不变
     public static int px2sp(float pxValue) {
-        final float fontScale = mDisplayMetrics.scaledDensity;
+        final float fontScale = sDisplayMetrics.scaledDensity;
         return (int) (pxValue / fontScale + 0.5f);
     }
     //将sp值转换为px值，保证文字大小不变
     public static int sp2px(float spValue) {
-        final float fontScale = mDisplayMetrics.scaledDensity;
+        final float fontScale = sDisplayMetrics.scaledDensity;
         return (int) (spValue * fontScale + 0.5f);
     }
 

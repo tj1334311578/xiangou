@@ -83,6 +83,6 @@
             android:id="@+id/sendagain_two"
             android:gravity="center"
             android:visibility="visible"
-            android:text="重新你说的发送"/>
+            android:text="重新发送"/>
     </LinearLayout>
 </RelativeLayout>

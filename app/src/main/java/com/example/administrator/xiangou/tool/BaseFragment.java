@@ -12,6 +12,8 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.administrator.xiangou.R;
+import com.example.administrator.xiangou.login.idlogin.IDLoginActivity;
+import com.example.administrator.xiangou.main.User;
 
 import butterknife.ButterKnife;
 
@@ -25,14 +27,18 @@ public class BaseFragment extends Fragment {
     public Activity mActivity;
     private Toast mToast;
 
-
+//    public static ContextUtils bContextUtils;
+    public static User bUser;
+    public static MySharedPreferences bSharedPreferences;
     public BaseActivity mBaseActivity;//这里是为了引用BaseActivity的ProgressDialog
-    public MySharedPreferences mSharedPreferences;
+//    public MySharedPreferences bSharedPreferences;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mSharedPreferences = ContextUtils.mSharedPreferences;
+
+//        bContextUtils = ContextUtils.getInstance();
+//        bSharedPreferences = bContextUtils.gSharedPreferences;
     }
 
     @Override
@@ -41,6 +47,10 @@ public class BaseFragment extends Fragment {
         ButterKnife.bind(getContext(),view);
         mActivity = getActivity();
         mBaseActivity = new BaseActivity();
+
+//        bContextUtils = ContextUtils.getInstance();
+        bUser = ContextUtils.gUser;
+        bSharedPreferences = ContextUtils.gSharedPreferences;
     }
 
     //还可以把统一的toolbar等控件在此初始化
@@ -52,6 +62,11 @@ public class BaseFragment extends Fragment {
      */
     public void startNewUI(Class<?> context){
         startActivity(new Intent(getContext(),context));
+    }
+    public void startNewUICarryStr(Class<?> context, String name, String str ){
+        Intent intent = new Intent(getContext(),context);
+        intent.putExtra(name,str);
+        startActivity(intent);
     }
     public void startNewUIForResult(Class<?> context,int code){
         startActivityForResult(new Intent(getContext(),context),code);
@@ -76,5 +91,15 @@ public class BaseFragment extends Fragment {
     }
     public void toastShow(String msg) {
         Toast.makeText(mActivity, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    //判断用户是否登录
+    public boolean isLogined(){
+        return bSharedPreferences.getBoolean(MySharedPreferences.STATUS_LOGIN,false);
+    }
+    //判断用户注销
+    public void logout(){
+        bSharedPreferences.putBoolean(MySharedPreferences.STATUS_LOGIN,false);
+        startNewUI(IDLoginActivity.class);
     }
 }

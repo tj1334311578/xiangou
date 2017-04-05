@@ -127,9 +127,9 @@ public class DynamicLoginActivity extends MVPBaseActivity<DynamicLoginContract.V
     }
 
     @Override
-    public void LoginvSuccess() {
-        if ( !mSharedPreferences.getBoolean("hasLogined",false) )
-            mSharedPreferences.putBoolean("hasLogined",true);
+    public void loginVerifySuccess() {
+        if ( !bSharedPreferences.getBoolean("hasLogined",false) )
+            bSharedPreferences.putBoolean("hasLogined",true);
         startNewUI(MainActivity.class);
         showToast("登录成功！");
         finish();

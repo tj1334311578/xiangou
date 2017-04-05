@@ -8,6 +8,7 @@ import com.example.administrator.xiangou.main.User;
 import com.example.administrator.xiangou.mvp.BasePresenterImpl;
 import com.example.administrator.xiangou.net.BaseSubscriber;
 import com.example.administrator.xiangou.net.ExceptionHandle;
+import com.example.administrator.xiangou.tool.ContextUtils;
 
 public class DynamicLoginPresenter extends BasePresenterImpl<DynamicLoginContract.View> implements DynamicLoginContract.Presenter{
 
@@ -60,9 +61,9 @@ public class DynamicLoginPresenter extends BasePresenterImpl<DynamicLoginContrac
                 switch (loginBean.getState().getCode()){
                     case 200:
                         if (loginBean.getData()!=null){
-                            User.setUser( loginBean.getData() );
+                            ContextUtils.gUser.setUser( loginBean.getData() );
                             Log.e("User", "LoginVSuccess: "+ User.getUser().toString());
-                            mView.LoginvSuccess();
+                            mView.loginVerifySuccess();
                         }
                     case 100:
                     default:

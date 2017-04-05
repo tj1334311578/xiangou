@@ -31,7 +31,7 @@ public class RetrofitClient {
     private static final int DEFAULT_TIMEOUT = 20;
     private BaseApiService apiService;
     private static OkHttpClient okHttpClient;
-    public static String baseUrl = MyApiService.mBASEURL;
+    public static String baseUrl = XiaoGouApiService.mBASEURL;
     private static Context mContext;
 
     private static Retrofit retrofit;
@@ -288,8 +288,8 @@ public class RetrofitClient {
      * /**
      * execute your customer API
      * For example:
-     *  MyApiService service =
-     *      RetrofitClient.getInstance(MainActivity.this).create(MyApiService.class);
+     *  XiaoGouApiService service =
+     *      RetrofitClient.getInstance(MainActivity.this).create(XiaoGouApiService.class);
      *
      *  RetrofitClient.getInstance(MainActivity.this)
      *      .execute(service.lgon("name", "password"), subscriber)

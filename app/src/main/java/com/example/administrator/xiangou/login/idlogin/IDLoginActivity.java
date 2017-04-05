@@ -16,6 +16,7 @@ import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.login.dynamiclogin.DynamicLoginActivity;
 import com.example.administrator.xiangou.login.find_bytelephone.FindByTelephoneActivity;
 import com.example.administrator.xiangou.login.registerverify.RegisterVerifyActivity;
+import com.example.administrator.xiangou.main.MainActivity;
 import com.example.administrator.xiangou.mvp.MVPBaseActivity;
 
 public class IDLoginActivity extends MVPBaseActivity<IDLoginContract.View, IDLoginPresenter>
@@ -25,7 +26,6 @@ public class IDLoginActivity extends MVPBaseActivity<IDLoginContract.View, IDLog
     private EditText IDLogin_TelNumber, IDLogin_PWD;
     private Button mIDLoginBtn;
     private InputMethodManager imm;
-    private boolean phoneistrue=false;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -117,12 +117,10 @@ public class IDLoginActivity extends MVPBaseActivity<IDLoginContract.View, IDLog
 
     @Override
     public void onClick(View v) {
-        if (v.getId()!=R.id.mainlogin_clean)
-            this.finish();
         switch (v.getId()) {
             case R.id.mainlogin_login:
                 mPresenter.IDlogin(IDLogin_TelNumber.getText().toString(), IDLogin_PWD.getText().toString());
-                LoginidSuccess();
+//                LoginidSuccess();
                 break;
             case R.id.mainlogin_Dynamic_login:
                 startNewUI(DynamicLoginActivity.class);
@@ -147,8 +145,8 @@ public class IDLoginActivity extends MVPBaseActivity<IDLoginContract.View, IDLog
     @Override
     public void LoginidSuccess() {
         showToast("登录成功！");
-//        startNewUI(MainActivity.class);
-//        finish();
+        startNewUI(MainActivity.class);
+        finish();
     }
 
     @Override

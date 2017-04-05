@@ -63,14 +63,6 @@ public class BaseActivity extends AppCompatActivity {
         super.onResume();
     }
 
-//    @Override
-//    protected void onPause() {
-//        super.onPause();
-//        if (isFinishing()){
-//            this.onDestroy();
-//        }
-//    }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();

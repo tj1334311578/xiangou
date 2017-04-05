@@ -7,55 +7,38 @@
 
     <LinearLayout
         android:id="@+id/pop_layout"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="#312E3F"
+        android:layout_marginStart="13dp"
+        android:background="@color/white"
+        android:layout_marginEnd="13dp"
         android:gravity="center_horizontal"
+        android:paddingBottom="40dp"
+        android:layout_alignParentBottom="true"
         android:orientation="vertical" >
 
         <Button
             android:id="@+id/takePhotoBtn"
+            style="@style/PopupWindowText"
+            android:text="相机" />
+        <View
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
-            android:layout_marginRight="10dip"
-            android:layout_marginTop="10dp"
-            android:background="#373447"
-            android:padding="10dp"
-            android:text="拍照"
-            android:textColor="#CEC9E7"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:layout_height="1dp"
+            android:background="#d0d0d0"/>
 
         <Button
             android:id="@+id/pickPhotoBtn"
+            android:text="相册"
+            style="@style/PopupWindowText" />
+        <View
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dip"
-            android:layout_marginRight="10dip"
-            android:layout_marginTop="5dp"
-            android:background="#373447"
-            android:padding="10dp"
-            android:text="从相册选择"
-            android:textColor="#CEC9E7"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:layout_height="1dp"
+            android:background="#d0d0d0"/>
 
         <Button
             android:id="@+id/cancelBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="15dip"
-            android:layout_marginLeft="10dip"
-            android:layout_marginRight="10dip"
-            android:layout_marginTop="20dp"
-            android:background="@android:color/white"
-            android:padding="10dp"
             android:text="取消"
-            android:textColor="#373447"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            style="@style/PopupWindowText" />
     </LinearLayout>
 
 </RelativeLayout>

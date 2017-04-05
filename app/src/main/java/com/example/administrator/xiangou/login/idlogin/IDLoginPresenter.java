@@ -14,7 +14,6 @@ public class IDLoginPresenter extends BasePresenterImpl<IDLoginContract.View> im
     public void IDlogin(String userName, String password) {
         mView.showLoading();//加载等待
         Log.e("IDlogin", "enter：IDlogin");
-
         addSubscription(
                 mApiService.loginID(userName, ContextUtils.MD5(password)),
 
@@ -31,6 +30,7 @@ public class IDLoginPresenter extends BasePresenterImpl<IDLoginContract.View> im
                     @Override
                     public void onError(ExceptionHandle.ResponeThrowable e) {
                         Log.e("IDlogin", "onError：IDlogin" + e.message);
+                        mView.hideLoading();
                     }
 
                 }
@@ -63,6 +63,5 @@ public void onError(ExceptionHandle.ResponeThrowable e) {
 Log.e("loginBean.getData()", "onError: ");
 mView.sendFialRequest(e.message);
 }
-
 }
  */

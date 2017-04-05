@@ -4,8 +4,8 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <com.example.administrator.xiangou.tool.CustomImageView
-        android:layout_width="130dp"
-        android:layout_height="150dp"
+        android:layout_width="120dp"
+        android:layout_height="130dp"
         app:civ_type="TYPE_ROUND"
         android:src="@mipmap/girl_v"
         app:civ_roundradius="10"
@@ -29,10 +29,12 @@
         android:layout_height="25dp"
         android:gravity="center_vertical"
         android:text="尺码："
+        android:layout_marginTop="5dp"
         android:layout_below="@id/goods_management_item_description_tv"
         android:layout_alignStart="@id/goods_management_item_description_tv"
         android:id="@+id/goods_management_item_size_tv"
         />
+    <!--可以通过gridview来实现动态添加数据-->
     <RelativeLayout
         android:id="@+id/goods_management_item_sizegroup"
         android:layout_width="wrap_content"
@@ -85,7 +87,7 @@
         android:layout_alignStart="@id/goods_management_item_size_tv"
         android:id="@+id/goods_management_item_color_tv"
         android:text="颜色："/>
-
+    <!--可以通过gridview来实现动态添加数据-->
     <RelativeLayout
         android:id="@+id/goods_management_item_colorgroup"
         android:layout_width="wrap_content"
@@ -114,4 +116,38 @@
             android:layout_toEndOf="@id/goods_management_item_color_black"
             android:text="黄色"/>
     </RelativeLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="￥179.10"
+        android:layout_marginTop="5dp"
+        android:id="@+id/goods_management_item_newprice"
+        android:layout_below="@id/goods_management_item_colorgroup"
+        android:layout_alignStart="@id/goods_management_item_size_tv"
+        android:textColor="@color/textcolor_pink"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="￥284.29"
+        android:layout_toEndOf="@id/goods_management_item_newprice"
+        android:layout_alignBottom="@id/goods_management_item_newprice"
+        android:id="@+id/goods_management_item_oldprice"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="库存量"
+        android:layout_marginTop="5dp"
+        android:id="@+id/goods_management_item_Inventory_tv"
+        android:layout_below="@id/goods_management_item_oldprice"
+        android:layout_alignStart="@id/goods_management_item_description_tv"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/goods_management_item_Inventory_tv"
+        android:id="@+id/goods_management_item_Inventory_show"
+        android:layout_toEndOf="@id/goods_management_item_Inventory_tv"
+        android:layout_marginStart="10dp"
+        android:text="null"/>
 </RelativeLayout>

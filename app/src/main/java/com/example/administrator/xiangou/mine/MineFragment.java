@@ -75,7 +75,7 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
                 TextView tv = (TextView) listView.getChildAt(position).findViewById(R.id.mine_item_text);
                 //等价于=>((TextView)(listView.getChildAt(position).findViewById(R.id.mine_item_text)))
                 Toast.makeText(getContext(),tv.getText() +"被点击了", Toast.LENGTH_SHORT).show();
-                if (position==0){
+                if (position==3){
                     startActivity(new Intent(getContext(), StoreApplicationActivity.class));
                 }
             }

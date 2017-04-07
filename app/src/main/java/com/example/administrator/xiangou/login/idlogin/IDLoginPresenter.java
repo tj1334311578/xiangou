@@ -48,4 +48,3 @@ public class IDLoginPresenter extends BasePresenterImpl<IDLoginContract.View> im
         );
     }
 }
- */

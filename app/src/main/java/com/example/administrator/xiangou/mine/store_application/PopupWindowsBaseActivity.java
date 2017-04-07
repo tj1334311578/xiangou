@@ -77,7 +77,7 @@ public class PopupWindowsBaseActivity extends BaseActivity {
                     case R.id.takePhotoBtn:// 拍照
                         takePhoto();
                         break;
-                    case R.id.pickPhotoBtn:// 相册选择图片
+                    case R.id.pickPhotoBtn:// 相册
                         pickPhoto();
                         break;
                     case R.id.cancelBtn:// 取消

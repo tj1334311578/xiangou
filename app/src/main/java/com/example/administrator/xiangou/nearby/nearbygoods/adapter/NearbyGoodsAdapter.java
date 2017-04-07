@@ -12,7 +12,6 @@ import android.widget.Toast;
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.base.BaseAdapter;
 import com.example.administrator.xiangou.base.BaseViewHolder;
-import com.example.administrator.xiangou.base.SimpleAdapter;
 import com.example.administrator.xiangou.nearby.ChildType;
 import com.example.administrator.xiangou.nearby.nearbygoods.GoodsBean;
 import com.example.administrator.xiangou.tool.ContextUtils;
@@ -25,7 +24,7 @@ import java.util.List;
  * Created by zhouzongyao on 2017/3/13.
  */
 
-public class NearbyGoodsAdapter extends SimpleAdapter<ChildType> implements BaseAdapter.OnMineItemClickListener{
+public class NearbyGoodsAdapter extends BaseAdapter<ChildType> implements BaseAdapter.OnMineItemClickListener{
 //    public static final int TYPE_DEFAULT = 0;
     public static final int TYPE_CLOTHING = 1;
     public static final int TYPE_MAKEUP = 2;
@@ -90,7 +89,7 @@ public class NearbyGoodsAdapter extends SimpleAdapter<ChildType> implements Base
 
 
     @Override
-    protected void bindData(BaseViewHolder holder, ChildType childType) {
+    protected void bindData(BaseViewHolder holder, ChildType childType, int position) {
         switch (childType.getChildType()){
             case TYPE_CLOTHING:
                 bindClothing(holder);

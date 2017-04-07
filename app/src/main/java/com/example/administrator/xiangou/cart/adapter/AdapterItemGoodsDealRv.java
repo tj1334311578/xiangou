@@ -3,13 +3,12 @@ package com.example.administrator.xiangou.cart.adapter;
 import android.content.Context;
 import android.graphics.Paint;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.example.administrator.xiangou.R;
+import com.example.administrator.xiangou.base.BaseAdapter;
 import com.example.administrator.xiangou.base.BaseViewHolder;
-import com.example.administrator.xiangou.base.SimpleAdapter;
 import com.example.administrator.xiangou.cart.model.GoodsDealBean;
 import com.example.administrator.xiangou.tool.ContextUtils;
 
@@ -19,26 +18,21 @@ import java.util.List;
  * Created by zhouzongyao on 2017/3/7.
  */
 
-public class AdapterItemGoodsDealRv extends SimpleAdapter<GoodsDealBean> implements View.OnClickListener{
+public class AdapterItemGoodsDealRv extends BaseAdapter<GoodsDealBean> implements View.OnClickListener{
 
     private CheckBox mItemCb;
-    private boolean isSelectedAll,isEditAll;
+    private boolean isCheckedAll,isEditAll;
     private float goodsAllPrice;
-    public AdapterItemGoodsDealRv(Context context, List<GoodsDealBean> mDatas) {
+    public AdapterItemGoodsDealRv(Context context, List<GoodsDealBean> mDatas, boolean isCheckedAll) {
         super(context, R.layout.item_cart_item_goods_rv, mDatas);
-    }
-
-
-    @Override
-    public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-//        Observable<float>
-        return super.onCreateViewHolder(parent, viewType);
+        this.isCheckedAll = isCheckedAll;
     }
 
     @Override
-    protected void bindData(BaseViewHolder holder, GoodsDealBean goodsDealBean) {
+    protected void bindData(BaseViewHolder holder, GoodsDealBean goodsDealBean, int position) {
         goodsAllPrice = goodsDealBean.getGoodsPrice()*goodsDealBean.getGoodsCount();
-        holder.getCheckBox(R.id.cart_item_checkBox).setOnClickListener(this);
+        mItemCb = holder.getCheckBox(R.id.cart_item_checkBox);
+        mOnItemClickListener.onMineItemClick(mItemCb,position);
         holder.getCustomView(R.id.item_cart_item_goods_img).setImageResource(goodsDealBean.getGoodsImg());
         holder.getTextView(R.id.item_cart_item_goodsname).setText(goodsDealBean.getGoodsName());
         holder.getTextView(R.id.item_cart_item_goods_property).setText("颜色："+goodsDealBean.getGoodsColor()+";尺码："+goodsDealBean.getGoodsSize());
@@ -54,22 +48,12 @@ public class AdapterItemGoodsDealRv extends SimpleAdapter<GoodsDealBean> impleme
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.cart_item_checkBox:
-                if (v.isSelected()){
-                    isSelectedAll = true;
+                if (mItemCb.isChecked()){
+                    isCheckedAll = true;
                 }else {
-                    isSelectedAll =false;
+                    isCheckedAll =false;
                 }
                 break;
-//            case R.id.cart_ticket_tv:
-//                Toast.makeText(mContext, "领券了，领券了", Toast.LENGTH_SHORT).show();
-//                break;
-//            case R.id.cart_edit_all:
-//                if (v.isSelected()){
-//                    isEditAll = true;
-//                }else {
-//                    isEditAll =false;
-//                }
-//                break;
         }
     }
 }

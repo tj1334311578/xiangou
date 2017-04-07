@@ -11,7 +11,6 @@ import android.widget.Toast;
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.base.BaseAdapter;
 import com.example.administrator.xiangou.base.BaseViewHolder;
-import com.example.administrator.xiangou.base.SimpleAdapter;
 import com.example.administrator.xiangou.home.model.BannerLoader;
 import com.example.administrator.xiangou.home.model.ChildHomeBean;
 import com.example.administrator.xiangou.home.model.HomeChildBean;
@@ -28,7 +27,7 @@ import java.util.List;
  * Created by zhouzongyao on 2017/3/8.
  */
 
-public class HomeAdapter extends SimpleAdapter<HomeChildBean> implements BaseAdapter.OnMineItemClickListener{
+public class HomeAdapter extends BaseAdapter<HomeChildBean> implements BaseAdapter.OnMineItemClickListener{
     //不同recycle的type
     public static final int TYPE_DEFAULT = 0;
     public static final int TYPE_BANNER = 1;
@@ -117,7 +116,7 @@ public class HomeAdapter extends SimpleAdapter<HomeChildBean> implements BaseAda
     }
 
     @Override
-    protected void bindData(BaseViewHolder holder, HomeChildBean homeChildBean) {
+    protected void bindData(BaseViewHolder holder, HomeChildBean homeChildBean, int position) {
         switch (homeChildBean.getChildType()){
             case TYPE_BANNER:
                 bindBannerType(holder);

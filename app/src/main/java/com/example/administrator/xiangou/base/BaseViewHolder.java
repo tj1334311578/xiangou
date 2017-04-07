@@ -18,24 +18,21 @@ import com.youth.banner.Banner;
  * Created by zhouzongyao on 2017/3/6.
  */
 
-public class BaseViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+public class BaseViewHolder extends RecyclerView.ViewHolder{
     private SparseArray<View> mViews;
     private View mItemView;
-    protected BaseAdapter.OnMineItemClickListener mOnItemClickListener;
 
-    public BaseViewHolder( View itemView , BaseAdapter.OnMineItemClickListener mOnItemClickListener) {
+    public BaseViewHolder( View itemView ) {
         super(itemView);
         mItemView = itemView;
         mViews = new SparseArray<>();
-        this.mOnItemClickListener = mOnItemClickListener;
-        itemView.setOnClickListener(this);
     }
 
-    public static BaseViewHolder createViewHolder(Context context, ViewGroup parent, int layoutId, BaseAdapter.OnMineItemClickListener mOnItemClickListener)
+    public static BaseViewHolder createViewHolder(Context context, ViewGroup parent, int layoutId)
     {
         View itemView = LayoutInflater.from(context).inflate(layoutId, parent,
                 false);
-        BaseViewHolder holder = new BaseViewHolder(itemView,mOnItemClickListener);
+        BaseViewHolder holder = new BaseViewHolder(itemView);
         return holder;
     }
 
@@ -75,12 +72,5 @@ public class BaseViewHolder extends RecyclerView.ViewHolder implements View.OnCl
             mViews.put(id,view);
         }
         return (T) view;
-    }
-
-    @Override
-    public void onClick(View v) {
-        if (mOnItemClickListener != null) {
-            mOnItemClickListener.onMineItemClick(v,getLayoutPosition());
-        }
     }
 }

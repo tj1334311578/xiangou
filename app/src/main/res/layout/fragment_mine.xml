@@ -179,7 +179,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="60dp"
-            android:text="未付款"
+            android:text="待付款"
             android:id="@+id/mine_unpaid"
             android:textColor="@color/textcolor_gray"
             android:textSize="12sp"

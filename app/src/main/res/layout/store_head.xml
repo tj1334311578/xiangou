@@ -18,5 +18,5 @@
         android:layout_height="24dp"
         android:adjustViewBounds="true"
         android:layout_marginBottom="12dp"
-        android:src="@drawable/back1"/>
+        android:src="@mipmap/return_icon"/>
 </RelativeLayout>

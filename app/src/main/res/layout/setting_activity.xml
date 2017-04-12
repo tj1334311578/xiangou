@@ -3,11 +3,12 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
     <ImageView
         android:layout_width="24dp"
-        android:layout_height="41dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="8dp"
         android:adjustViewBounds="true"
         android:id="@+id/setting_back"
         android:layout_marginStart="13dp"
-        android:src="@drawable/back"/>
+        android:src="@mipmap/return_icon"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="41dp"

@@ -18,7 +18,6 @@ import com.example.administrator.xiangou.main.User;
 
 import butterknife.ButterKnife;
 
-
 /**
  * Created by Administrator on 2017/2/28.
  * 所有activity的基类

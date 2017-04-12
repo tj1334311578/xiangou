@@ -41,6 +41,4 @@ public class BasePresenterImpl<V extends BaseView> implements BasePresenter<V>{
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(subscriber));
     }
-
-
 }

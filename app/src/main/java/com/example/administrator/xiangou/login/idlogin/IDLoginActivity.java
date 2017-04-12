@@ -61,6 +61,7 @@ public class IDLoginActivity extends MVPBaseActivity<IDLoginContract.View, IDLog
             @Override
             public void afterTextChanged(Editable s) {
                 if (s.length()==0){
+                    mIDLoginBtn.setBackground(getResources().getDrawable(R.drawable.btnbg_unchecked));
                     imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(),0);
                     mIDLoginBtn.setBackground(getResources().getDrawable(R.drawable.btnbg_unchecked));
                     mIDLoginBtn.setFocusable(false);
@@ -146,11 +147,6 @@ public class IDLoginActivity extends MVPBaseActivity<IDLoginContract.View, IDLog
                 this.finish();
                 break;
         }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override

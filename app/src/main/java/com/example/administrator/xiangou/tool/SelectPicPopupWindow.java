@@ -79,7 +79,5 @@ public class SelectPicPopupWindow extends PopupWindow {
 				return true;
 			}
 		});
-
 	}
-
 }

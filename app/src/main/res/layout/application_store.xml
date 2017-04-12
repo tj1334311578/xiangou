@@ -10,9 +10,11 @@
         layout="@layout/store_head" />
 
     <ScrollView
+        android:id="@+id/application_store_scroll"
         android:layout_width="wrap_content"
+        android:layout_below="@id/store_head_layout"
         android:layout_height="wrap_content"
-        android:layout_below="@id/store_head_layout">
+>
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -43,6 +45,7 @@
                 android:id="@+id/application_name_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:maxLines="1"
                 android:layout_alignBottom="@id/application_name"
                 android:layout_marginEnd="13dp"
                 android:layout_toEndOf="@id/application_name"
@@ -63,6 +66,7 @@
             <EditText
                 android:id="@+id/application_number_edit"
                 android:layout_width="wrap_content"
+                android:maxLines="1"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@id/application_number"
                 android:layout_alignEnd="@id/application_name_edit"
@@ -85,6 +89,7 @@
                 android:id="@+id/application_ID_Card_edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:maxLines="1"
                 android:layout_alignBottom="@id/application_ID_Card"
                 android:layout_alignEnd="@id/application_name_edit"
                 android:layout_toEndOf="@id/application_ID_Card"
@@ -162,6 +167,7 @@
                 android:layout_below="@id/ID_positive"
                 android:gravity="center_vertical"
                 android:text="商铺认证"
+                android:textSize="11sp"
                 android:textColor="#161616" />
 
             <TextView
@@ -178,6 +184,7 @@
             <EditText
                 android:id="@+id/store_name_edit"
                 android:layout_width="wrap_content"
+                android:maxLines="1"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@id/store_name"
                 android:layout_alignEnd="@id/ID_opposite"
@@ -200,6 +207,7 @@
                 android:id="@+id/main_category_edit"
                 android:layout_width="match_parent"
                 android:layout_height="41dp"
+
                 android:layout_alignBottom="@id/main_category"
                 android:layout_alignEnd="@id/store_name_edit"
                 android:layout_toEndOf="@+id/store_name"
@@ -215,11 +223,51 @@
                 android:src="@drawable/show_right" />
 
             <TextView
-                android:id="@+id/store_address"
+                android:id="@+id/store_address_select"
                 android:layout_width="85dp"
                 android:layout_height="41dp"
                 android:layout_alignStart="@id/main_category"
                 android:layout_below="@id/main_category"
+                android:gravity="center_vertical"
+                android:text="所在地区"
+                android:textColor="#161616"
+                android:textSize="14sp" />
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_alignTop="@id/store_address_select"
+                android:layout_alignBottom="@id/store_address_select"
+                android:layout_alignEnd="@id/store_name_edit"
+                android:layout_toEndOf="@+id/store_address"
+                android:gravity="center_vertical"
+                android:layout_height="wrap_content">
+                <Spinner
+                    android:backgroundTint="#979595"
+                    android:id="@+id/store_address_province"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <Spinner
+                    android:backgroundTint="#979595"
+                    android:id="@+id/store_address_city"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <Spinner
+                    android:backgroundTint="#979595"
+                    android:id="@+id/store_address_districts"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/store_address"
+                android:layout_width="85dp"
+                android:layout_height="41dp"
+                android:layout_alignStart="@id/main_category"
+                android:layout_below="@id/store_address_select"
                 android:gravity="center_vertical"
                 android:text="店铺地址"
                 android:textColor="#161616"
@@ -229,6 +277,8 @@
                 android:id="@+id/store_address_edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:layout_alignBottom="@id/store_address"
                 android:layout_alignEnd="@id/store_name_edit"
                 android:layout_toEndOf="@id/store_address"

@@ -21,12 +21,12 @@ public class FindByTelephoneActivity extends MVPBaseActivity<FindByTelephoneCont
         implements FindByTelephoneContract.View ,View.OnClickListener{
     private EditText findonepager_number;
     private Button findonepager_next;
-    private ImageView findonepager_back,findonepager_cls;
+    private ImageView mFindPSWBack,findonepager_cls;
     private InputMethodManager imm;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_findonepager);
+        setContentView(R.layout.findreturnpsw);
         initView();
     }
 
@@ -34,9 +34,9 @@ public class FindByTelephoneActivity extends MVPBaseActivity<FindByTelephoneCont
         imm= (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         findonepager_number= (EditText) findViewById(R.id.findpswone_numberedit);
         findonepager_next= (Button) findViewById(R.id.findpswone_login);
-        findonepager_back= (ImageView) findViewById(R.id.findpswone_back);
+        mFindPSWBack = (ImageView) findViewById(R.id.findpswone_back);
         findonepager_cls= (ImageView) findViewById(R.id.findpswone_clean);
-        findonepager_back.setOnClickListener(this);
+        mFindPSWBack.setOnClickListener(this);
         findonepager_cls.setOnClickListener(this);
 
         findonepager_number.addTextChangedListener(new TextWatcher() {

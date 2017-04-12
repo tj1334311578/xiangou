@@ -36,11 +36,16 @@ public class BaseViewHolder extends RecyclerView.ViewHolder{
         return holder;
     }
 
+    public View getItemView() {
+        return mItemView;
+    }
+
     /**
      * 通过ID获取控件
      * @param id
      * @return
      */
+
     public View getView(int id) {
         return findView(id);
     }
@@ -59,7 +64,10 @@ public class BaseViewHolder extends RecyclerView.ViewHolder{
     public RecyclerView getRecyclerView(int id){
         return findView(id);
     }
-    public CheckBox getCheckBox(int id) {return findView(id);}
+    public CheckBox getCheckBox(int id) {
+        CheckBox cbView = findView(id);
+//        cbView.setTag(new Integer(-2));
+        return cbView;}
 
     public Banner getBanner(int id){
         return findView(id);

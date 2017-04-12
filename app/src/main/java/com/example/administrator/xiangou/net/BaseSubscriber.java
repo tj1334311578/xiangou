@@ -37,12 +37,12 @@ public abstract class BaseSubscriber<T> extends Subscriber<T> {
 
     @Override
     public void onError(Throwable e) {
+        onFinish();
         if(e instanceof ExceptionHandle.ResponeThrowable){
             onError((ExceptionHandle.ResponeThrowable)e);
         } else {
             onError(new ExceptionHandle.ResponeThrowable(e, ExceptionHandle.ERROR.UNKNOWN));
         }
-        onFinish();
     }
 
     @Override

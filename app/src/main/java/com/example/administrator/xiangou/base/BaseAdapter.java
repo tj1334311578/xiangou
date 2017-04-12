@@ -23,7 +23,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseViewHolder
 
     public interface OnMineItemClickListener {
         void onMineItemClick(View view, int position);
-        void onMineItemLongClick(View view, int position);
+//        void onMineItemLongClick(View view, int position);
     }
     public void setOnMineItemClickListener(OnMineItemClickListener mOnItemClickListener) {
         this.mOnItemClickListener = mOnItemClickListener;

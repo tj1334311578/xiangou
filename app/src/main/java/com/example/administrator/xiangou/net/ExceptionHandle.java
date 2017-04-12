@@ -1,8 +1,10 @@
 package com.example.administrator.xiangou.net;
 
 import android.net.ParseException;
+import android.util.Log;
 
 import com.google.gson.JsonParseException;
+import com.google.gson.JsonSyntaxException;
 
 import org.apache.http.conn.ConnectTimeoutException;
 import org.json.JSONException;
@@ -23,7 +25,7 @@ public class ExceptionHandle {
     private static final int SERVICE_UNAVAILABLE = 503;
     private static final int GATEWAY_TIMEOUT = 504;
 
-    public static ResponeThrowable handleException(Throwable e) {
+    public static ExceptionHandle.ResponeThrowable handleException(Throwable e) {
         ResponeThrowable ex;
         if (e instanceof HttpException) {
             HttpException httpException = (HttpException) e;
@@ -51,6 +53,7 @@ public class ExceptionHandle {
                 || e instanceof JSONException
                 || e instanceof ParseException) {
             ex = new ResponeThrowable(e, ERROR.PARSE_ERROR);
+            Log.e("error", "handleException:----------- "  );
             ex.message = "解析错误";
             return ex;
         } else if (e instanceof ConnectException) {
@@ -69,7 +72,7 @@ public class ExceptionHandle {
             ex = new ResponeThrowable(e, ERROR.TIMEOUT_ERROR);
             ex.message = "连接超时";
             return ex;
-        } else if (e instanceof IllegalStateException){
+        } else if (e instanceof JsonSyntaxException){
             ex = new ResponeThrowable(e,ERROR.Data_ERROR);
             ex.message = "账号或密码错误";
             return ex;
@@ -126,6 +129,7 @@ public class ExceptionHandle {
             super(throwable);
             this.code = code;
         }
+
     }
 
     public class ServerException extends RuntimeException {

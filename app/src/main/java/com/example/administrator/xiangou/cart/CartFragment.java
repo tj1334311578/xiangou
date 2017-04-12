@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SimpleItemAnimator;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,12 +53,27 @@ public class CartFragment extends MVPBaseFragment<CartContract.View, CartPresent
         mDealRv = (RecyclerView) mFragView.findViewById(R.id.cart_deal_rv);
         mDealRv.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,false));
         mDealRv.addItemDecoration(new ItemIntervalDecoration(0,0,8));
+        ((SimpleItemAnimator)mDealRv.getItemAnimator()).setSupportsChangeAnimations(false);
 
         List<DealBean> beanList = new ArrayList<>();
-        beanList.add(new DealBean("皮皮虾",88.00f));
-        beanList.add(new DealBean("老铁，稳",68.00f));
-        AdapterDealCart adapter = new AdapterDealCart(getContext(),beanList);
+        beanList.add(new DealBean("皮皮虾",111.00f));
+        beanList.add(new DealBean("老铁，稳",60.00f));
+        beanList.add(new DealBean("糖宝",51.50f));
+        final AdapterDealCart adapter = new AdapterDealCart(getContext(),beanList);
         mDealRv.setAdapter(adapter);
+//        adapter.setOnMineItemClickListener(new BaseAdapter.OnMineItemClickListener() {
+//            @Override
+//            public void onMineItemClick(View view, int position) {
+//                if (mDealRv.getScrollState()==RecyclerView.SCROLL_STATE_IDLE&&((RecyclerView)view).getScrollState()==RecyclerView.SCROLL_STATE_IDLE){
+//                    adapter.notifyItemChanged(position);
+//                }
+//            }
+//
+//            @Override
+//            public void onMineItemLongClick(View view, int position) {
+//
+//            }
+//        });
 
         mRecommendationRv = getMyView(R.id.cart_recommendation_rv);
         mRecommendationRv.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,false));
@@ -82,4 +98,5 @@ public class CartFragment extends MVPBaseFragment<CartContract.View, CartPresent
     public void sendFialRequest(String message) {
 
     }
+
 }

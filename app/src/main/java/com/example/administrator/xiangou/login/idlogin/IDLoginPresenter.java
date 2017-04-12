@@ -42,7 +42,8 @@ public class IDLoginPresenter extends BasePresenterImpl<IDLoginContract.View> im
                     @Override
                     public void onError(ExceptionHandle.ResponeThrowable e) {
                         Log.e("IDlogin", e.code+"onError：" + e.getMessage());
-                        mView.sendFialRequest(e.message);
+                        if (e.code ==1000)
+                        mView.sendFialRequest("账号或密码错误");
                     }
                 }
         );

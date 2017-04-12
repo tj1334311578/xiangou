@@ -29,9 +29,11 @@ public class IDLoginPresenter extends BasePresenterImpl<IDLoginContract.View> im
                                     Log.e("User", "LoginidSuccess: "+ User.getUser().toString());
                                     mView.LoginidSuccess();
                                 }
+                                break;
                             case 100:
                             default:
                                 mView.sendFialRequest(loginBean.getState().getMsg());
+                                break;
                         }
                     }
                     @Override

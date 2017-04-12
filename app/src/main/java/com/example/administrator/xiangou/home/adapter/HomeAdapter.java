@@ -268,7 +268,4 @@ public class HomeAdapter extends BaseAdapter<HomeChildBean> implements BaseAdapt
         }
     }
 
-    @Override
-    public void onMineItemLongClick(View view, int position) {}
-
 }

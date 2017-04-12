@@ -1,7 +1,6 @@
 package com.example.administrator.xiangou.login.idlogin;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Editable;
@@ -153,7 +152,7 @@ public class IDLoginActivity extends MVPBaseActivity<IDLoginContract.View, IDLog
     public void LoginidSuccess() {
         bSharedPreferences.putBoolean(MySharedPreferences.STATUS_LOGIN,true);
         startNewUI(MainActivity.class);
-        showToast("登录成功！");
+//        showToast("登录成功！");
         finish();
     }
 

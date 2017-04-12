@@ -31,7 +31,6 @@
         <activity android:name=".login.registerverify.RegisterVerifyActivity" />
         <activity android:name=".login.register.RegisterActivity" />
         <activity android:name=".login.find_bytelephone.FindByTelephoneActivity" />
-        <activity android:name=".login.find_verifyphone.VerifyPhoneActivity" />
         <activity android:name=".login.find_resetpwd.ResetpwdActivity" />
         <activity android:name=".mine.store_application.StoreApplicationActivity"/>
     </application>

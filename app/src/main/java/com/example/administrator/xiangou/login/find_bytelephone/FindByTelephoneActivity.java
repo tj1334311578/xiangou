@@ -11,35 +11,42 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.administrator.xiangou.R;
-import com.example.administrator.xiangou.login.find_verifyphone.VerifyPhoneActivity;
+import com.example.administrator.xiangou.login.find_resetpwd.ResetpwdActivity;
 import com.example.administrator.xiangou.login.idlogin.IDLoginActivity;
 import com.example.administrator.xiangou.mvp.MVPBaseActivity;
+import com.example.administrator.xiangou.tool.CountDownTimerUtils;
 
 public class FindByTelephoneActivity extends MVPBaseActivity<FindByTelephoneContract.View, FindByTelephonePresenter>
         implements FindByTelephoneContract.View ,View.OnClickListener{
-    private EditText findonepager_number;
-    private Button findonepager_next;
-    private ImageView mFindPSWBack,findonepager_cls;
+    private EditText mFindPSW_NumberEdt,mFindPSW_CaptchaEdt;
+    private Button mFindPSW_NextBtn;
+    private ImageView mFindPSW_BackIv, mFindPSW_CleanIv;
     private InputMethodManager imm;
+    private TextView mFindPSW_SendCaptchaTv;
+    private CountDownTimerUtils countDownTimerUtils;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.findreturnpsw);
+        setContentView(R.layout.activity_findonepager);
         initView();
     }
 
     private void initView() {
         imm= (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        findonepager_number= (EditText) findViewById(R.id.findpswone_numberedit);
-        findonepager_next= (Button) findViewById(R.id.findpswone_login);
-        mFindPSWBack = (ImageView) findViewById(R.id.findpswone_back);
-        findonepager_cls= (ImageView) findViewById(R.id.findpswone_clean);
-        mFindPSWBack.setOnClickListener(this);
-        findonepager_cls.setOnClickListener(this);
-
-        findonepager_number.addTextChangedListener(new TextWatcher() {
+        mFindPSW_NumberEdt = (EditText) findViewById(R.id.findpswone_number_edt);
+        mFindPSW_CaptchaEdt = (EditText) findViewById(R.id.findpswone_captcha_edt);
+        mFindPSW_SendCaptchaTv = (TextView) findViewById(R.id.findpswone_resend_tv);
+        mFindPSW_SendCaptchaTv.setOnClickListener(FindByTelephoneActivity.this);
+        mFindPSW_NextBtn = (Button) findViewById(R.id.findpswone_next_btn);
+        mFindPSW_BackIv = (ImageView) findViewById(R.id.findpswone_back_iv);
+        mFindPSW_CleanIv = (ImageView) findViewById(R.id.findpswone_clean_iv);
+        mFindPSW_BackIv.setOnClickListener(this);
+        mFindPSW_CleanIv.setOnClickListener(this);
+        mFindPSW_NumberEdt.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
 
@@ -50,31 +57,68 @@ public class FindByTelephoneActivity extends MVPBaseActivity<FindByTelephoneCont
             public void afterTextChanged(Editable s) {
                 if (s.length()==0||s.length()==11){
                     imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(),0);
+                    if (mFindPSW_CaptchaEdt.getText().length()==6){
+                        mFindPSW_NextBtn.setBackground(getResources().getDrawable(R.drawable.btnbg_checked));
+                        mFindPSW_NextBtn.setOnClickListener(FindByTelephoneActivity.this);
+                    }else{
+                        mFindPSW_NextBtn.setBackground(getResources().getDrawable(R.drawable.btnbg_unchecked));
+                        mFindPSW_NextBtn.setClickable(false);
+                    }
                 }else{
-                    imm.showSoftInput(findonepager_number,InputMethodManager.SHOW_FORCED);
-                }
-                if (s.length()==11){
-                    findonepager_next.setBackground(getResources().getDrawable(R.drawable.btnbg_checked));
-                    findonepager_next.setOnClickListener(FindByTelephoneActivity.this);
-                }else{
-                    findonepager_next.setBackground(getResources().getDrawable(R.drawable.btnbg_unchecked));
-                    findonepager_next.setClickable(false);
+                    imm.showSoftInput(mFindPSW_NumberEdt,InputMethodManager.SHOW_FORCED);
                 }
             }
         });
+        mFindPSW_CaptchaEdt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {}
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.length()==0||s.length()==6){
+                    imm.hideSoftInputFromWindow(getWindow().getDecorView().getWindowToken(),0);
+                    if (mFindPSW_NumberEdt.getText().length()==11){
+                        mFindPSW_NextBtn.setOnClickListener(FindByTelephoneActivity.this);
+                        mFindPSW_NextBtn.setBackground(getResources().getDrawable(R.drawable.btnbg_checked));
+                        mFindPSW_SendCaptchaTv.setClickable(true);
+                        mFindPSW_SendCaptchaTv.setOnClickListener(FindByTelephoneActivity.this);
+                    }else
+                    {
+                        mFindPSW_NextBtn.setBackground(getResources().getDrawable(R.drawable.btnbg_unchecked));
+                    }
+                }else{
+                    mFindPSW_CleanIv.setOnClickListener(FindByTelephoneActivity.this);
+                    imm.showSoftInput(mFindPSW_CaptchaEdt,InputMethodManager.SHOW_FORCED);
+                }
+            }
+        });
+        //设置光标
+        if (mFindPSW_NumberEdt.getText()==null){
+            mFindPSW_NumberEdt.requestFocus();
+        }else {
+            mFindPSW_CaptchaEdt.requestFocus();
+        }
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.findpswone_login:
-                mPresenter.getCaptcha(findonepager_number.getText().toString(),"findpsw");
+            case R.id.findpswone_resend_tv:
+                countDownTimerUtils = new CountDownTimerUtils(mFindPSW_CaptchaEdt, mFindPSW_SendCaptchaTv, 30000, 1000, this);
+                countDownTimerUtils.start();
+                mPresenter.getCaptcha(mFindPSW_NumberEdt.getText().toString(),"findpsw");
                 break;
-            case R.id.findpswone_back:
+            case R.id.findpswone_back_iv:
                 startNewUI(IDLoginActivity.class);
                 break;
-            case R.id.findpswone_clean:
-                findonepager_number.setText("");
+            case R.id.findpswone_clean_iv:
+                mFindPSW_NumberEdt.setText("");
+                break;
+            case R.id.findpswone_next_btn:
+                mPresenter.verifyCaptchaFindPwd( mFindPSW_NumberEdt.getText().toString(), mFindPSW_CaptchaEdt.getText().toString());
                 break;
             default:
                 break;
@@ -87,14 +131,23 @@ public class FindByTelephoneActivity extends MVPBaseActivity<FindByTelephoneCont
     }
 
     @Override
-    public void sendCaptchaFindPwd(String tel) {
+    public void verifySuccess(String tel, String code) {
+        String[] strs = {tel,code};
         bSharedPreferences.putString("tel_findpwd",tel);
-        startNewUICarryStr(VerifyPhoneActivity.class,"tel",tel);
+        bSharedPreferences.putString("code_findpwd",code);
+        startNewUICarryStrs(ResetpwdActivity.class,"datas_findpwd",strs);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        findonepager_number.setText(bSharedPreferences.getString("tel_findpwd",""));
+        mFindPSW_NumberEdt.setText(bSharedPreferences.getString("tel_findpwd",""));
+        mFindPSW_CaptchaEdt.setText(bSharedPreferences.getString("code_findpwd",""));
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        countDownTimerUtils.cancel();
     }
 }

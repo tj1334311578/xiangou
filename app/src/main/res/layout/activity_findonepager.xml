@@ -20,7 +20,7 @@
         android:layout_height="26dp"
         android:adjustViewBounds="true"
         android:layout_alignTop="@id/findpswone_log"
-        android:id="@+id/findpswone_back"
+        android:id="@+id/findpswone_back_iv"
         android:src="@drawable/cancel"
         android:layout_marginStart="23dp"
         />
@@ -35,17 +35,16 @@
         android:gravity="center_vertical"
         android:layout_height="58dp"
         android:layout_below="@+id/findpswone_log"
-        android:layout_alignStart="@+id/findpswone_back">
+        android:layout_alignStart="@+id/findpswone_back_iv">
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:lines="1"
-            android:maxLines="1"
             android:textColorHint="#66161616"
             android:maxLength="11"
             android:inputType="number"
             android:layout_weight="1"
-            android:id="@+id/findpswone_numberedit"
+            android:id="@+id/findpswone_number_edt"
             android:layout_marginStart="16dp"
             android:hint="请输入手机号"
             android:textSize="15sp"
@@ -54,7 +53,7 @@
             android:layout_width="25dp"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
-            android:id="@+id/findpswone_clean"
+            android:id="@+id/findpswone_clean_iv"
             android:visibility="invisible"
             android:src="@drawable/error"/>
     </LinearLayout>
@@ -69,23 +68,24 @@
         android:gravity="center_vertical"
         android:layout_height="58dp">
         <EditText
-            android:id="@+id/findpswone_user_number"
+            android:id="@+id/findpswone_captcha_edt"
             android:layout_width="match_parent"
             android:layout_marginStart="16dp"
             android:textSize="15sp"
-            android:maxLines="1"
+            android:lines="1"
             android:layout_weight="1"
             android:textColorHint="#66161616"
             android:layout_height="wrap_content"
             android:hint="请输入验证码"/>
         <TextView
-            android:id="@+id/findpswone_userCode_tv"
+            android:id="@+id/findpswone_resend_tv"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:textSize="12sp"
-            android:textColor="#66161616"
+            android:textColor="@color/gray"
             android:layout_gravity="center"
-            android:text="重新发送（60s）"/>
+            android:gravity="center_vertical"
+            android:text="获取验证码"/>
     </LinearLayout>
 
     <Button
@@ -94,7 +94,7 @@
         android:gravity="center"
         android:textSize="18sp"
         android:background="@drawable/unround20dp"
-        android:id="@+id/findpswone_login"
+        android:id="@+id/findpswone_next_btn"
         android:layout_marginRight="17dp"
         android:textColor="@color/white"
         android:layout_height="40dp"

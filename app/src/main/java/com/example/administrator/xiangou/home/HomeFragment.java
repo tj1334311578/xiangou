@@ -82,11 +82,6 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
             public void onMineItemClick(View view, int position) {
 
             }
-
-            @Override
-            public void onMineItemLongClick(View view, int position) {
-
-            }
         });
         rvHome.setAdapter(adapterHomeRv);
     }

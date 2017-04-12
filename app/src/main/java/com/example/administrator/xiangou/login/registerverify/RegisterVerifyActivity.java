@@ -144,9 +144,9 @@ public class RegisterVerifyActivity extends MVPBaseActivity<RegisterVerifyContra
                 break;
             case R.id.mainregister_verificationBtn:
                 //获取验证码键
-                mPresenter.captcha(register_number.getText().toString());
                 mTimer = new CountDownTimerUtils(register_number, register_verification,30000,1000,this);
                 mTimer.start();
+                mPresenter.captcha(register_number.getText().toString());
                 break;
             case R.id.register_Btn:
                 //下一步Button键

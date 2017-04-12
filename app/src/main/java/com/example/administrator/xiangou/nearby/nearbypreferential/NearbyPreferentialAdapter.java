@@ -144,12 +144,6 @@ public class NearbyPreferentialAdapter extends AutoRVAdapter implements BaseAdap
         }
     }
 
-    @Override
-    public void onMineItemLongClick(View view, int position) {
-
-
-    }
-
 //
 //    /**
 //     * 附近优惠设置点击事件

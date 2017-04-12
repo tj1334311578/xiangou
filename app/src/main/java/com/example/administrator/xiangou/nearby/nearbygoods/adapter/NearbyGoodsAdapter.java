@@ -200,8 +200,4 @@ public class NearbyGoodsAdapter extends BaseAdapter<ChildType> implements BaseAd
         }
     }
 
-    @Override
-    public void onMineItemLongClick(View view, int position) {
-
-    }
 }

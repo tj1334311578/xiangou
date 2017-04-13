@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.base.AutoRVAdapter;
-import com.example.administrator.xiangou.base.BaseAdapter;
+import com.example.administrator.xiangou.base.RVBaseAdapter;
 import com.example.administrator.xiangou.nearby.nearbypreferential.model.PreferBean1;
 import com.example.administrator.xiangou.nearby.nearbypreferential.model.PreferBean2;
 import com.example.administrator.xiangou.nearby.nearbypreferential.model.PreferBean3;
@@ -22,7 +22,7 @@ import java.util.List;
  * Created by Administrator on 2017/3/15.
  */
 
-public class NearbyPreferentialAdapter extends AutoRVAdapter implements BaseAdapter.OnMineItemClickListener{
+public class NearbyPreferentialAdapter extends AutoRVAdapter implements RVBaseAdapter.OnMineItemClickListener{
     private static Context context;
     private  List<String> list;
     RecyclerView dayRecycer,hourRecycler,moreRecycler;

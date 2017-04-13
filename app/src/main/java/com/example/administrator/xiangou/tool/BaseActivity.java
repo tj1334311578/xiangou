@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.administrator.xiangou.R;
+import com.example.administrator.xiangou.login.LoginBean;
 import com.example.administrator.xiangou.main.User;
 
 import butterknife.ButterKnife;
@@ -32,7 +33,7 @@ public class BaseActivity extends AppCompatActivity {
     };
     private Toast mToast;
 
-//    public static ContextUtils bContextUtils;
+    //    public static ContextUtils bContextUtils;
     public static User bUser;
     public static MySharedPreferences bSharedPreferences;
 
@@ -54,6 +55,13 @@ public class BaseActivity extends AppCompatActivity {
         Intent intent =new Intent();
         intent.setAction(Constant.EXIT_APP_ACTION);
         this.sendBroadcast(intent);
+    }
+
+    public static User getbUser() {
+        return bUser;
+    }
+    public static void setbUser(LoginBean.DataBean data) {
+        bUser.setUser(data);
     }
 
     @Override

@@ -13,8 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.administrator.xiangou.R;
-import com.example.administrator.xiangou.base.BaseAdapter;
-import com.example.administrator.xiangou.home.adapter.HomeAdapter;
+import com.example.administrator.xiangou.base.RVBaseAdapter;
+import com.example.administrator.xiangou.home.adapter.HomeAdapterRV;
 import com.example.administrator.xiangou.home.model.HomeChildBean;
 import com.example.administrator.xiangou.mvp.MVPBaseFragment;
 
@@ -59,7 +59,8 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
         return mFragView;
     }
 
-    private void initView() {
+    @Override
+    public void initView() {
         mAddrTv.setOnClickListener(this);
         mNewsTv.setOnClickListener(this);
         mNewsIv.setOnClickListener(this);
@@ -76,8 +77,8 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
         beanList.add(new HomeChildBean(TYPE_REFERRALS));
         beanList.add(new HomeChildBean(TYPE_ADVS));
         beanList.add(new HomeChildBean(TYPE_TOPIC));
-        HomeAdapter adapterHomeRv = new HomeAdapter(getContext(),beanList);
-        adapterHomeRv.setOnMineItemClickListener(new BaseAdapter.OnMineItemClickListener() {
+        HomeAdapterRV adapterHomeRv = new HomeAdapterRV(getContext(),beanList);
+        adapterHomeRv.setOnMineItemClickListener(new RVBaseAdapter.OnMineItemClickListener() {
             @Override
             public void onMineItemClick(View view, int position) {
 

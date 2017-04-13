@@ -9,8 +9,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.administrator.xiangou.R;
-import com.example.administrator.xiangou.base.BaseAdapter;
-import com.example.administrator.xiangou.base.BaseViewHolder;
+import com.example.administrator.xiangou.base.RVBaseAdapter;
+import com.example.administrator.xiangou.base.RVBaseViewHolder;
 import com.example.administrator.xiangou.home.model.BannerLoader;
 import com.example.administrator.xiangou.home.model.ChildHomeBean;
 import com.example.administrator.xiangou.home.model.HomeChildBean;
@@ -27,7 +27,7 @@ import java.util.List;
  * Created by zhouzongyao on 2017/3/8.
  */
 
-public class HomeAdapter extends BaseAdapter<HomeChildBean> implements BaseAdapter.OnMineItemClickListener{
+public class HomeAdapterRV extends RVBaseAdapter<HomeChildBean> implements RVBaseAdapter.OnMineItemClickListener{
     //不同recycle的type
     public static final int TYPE_DEFAULT = 0;
     public static final int TYPE_BANNER = 1;
@@ -39,7 +39,7 @@ public class HomeAdapter extends BaseAdapter<HomeChildBean> implements BaseAdapt
     private RecyclerView mReferralsRv;
     private RecyclerView mTopicRv;
 
-    public HomeAdapter(Context context, List<HomeChildBean> mDatas) {
+    public HomeAdapterRV(Context context, List<HomeChildBean> mDatas) {
         super(context, mDatas);
     }
 
@@ -51,7 +51,7 @@ public class HomeAdapter extends BaseAdapter<HomeChildBean> implements BaseAdapt
      * @return
      */
     @Override
-    public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RVBaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         switch (viewType){
             case TYPE_BANNER:
                 setLayoutResId(R.layout.recycle_banner_home);
@@ -116,7 +116,7 @@ public class HomeAdapter extends BaseAdapter<HomeChildBean> implements BaseAdapt
     }
 
     @Override
-    protected void bindData(BaseViewHolder holder, HomeChildBean homeChildBean, int position) {
+    protected void bindData(RVBaseViewHolder holder, HomeChildBean homeChildBean, int position) {
         switch (homeChildBean.getChildType()){
             case TYPE_BANNER:
                 bindBannerType(holder);
@@ -140,7 +140,7 @@ public class HomeAdapter extends BaseAdapter<HomeChildBean> implements BaseAdapt
      * 下面是5种不同的Recycleview子布局的bindview
      * @param holder
      */
-    private void bindBannerType(BaseViewHolder holder){
+    private void bindBannerType(RVBaseViewHolder holder){
         final Banner mHomeBanner = holder.getBanner(R.id.homeBanner);
         BannerLoader homeBanner = new BannerLoader(mHomeBanner);
         homeBanner.initBanner();
@@ -152,7 +152,7 @@ public class HomeAdapter extends BaseAdapter<HomeChildBean> implements BaseAdapt
         });
     }
 
-    private void bindBoutiqueType(BaseViewHolder holder){
+    private void bindBoutiqueType(RVBaseViewHolder holder){
         TextView mAllb = holder.getTextView(R.id.enterseeall_boutique_recycle);
         mAllb.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -173,11 +173,11 @@ public class HomeAdapter extends BaseAdapter<HomeChildBean> implements BaseAdapt
             list.add(new ChildHomeBean(R.mipmap.girl_v,"街角的美女"));
         }
 //mContext,R.layout.item_boutique_recycle,list
-        BoutiqueAdapter mAdapter = new BoutiqueAdapter(mContext,R.layout.item_boutique_recycle,list);
+        BoutiqueAdapterRV mAdapter = new BoutiqueAdapterRV(mContext,R.layout.item_boutique_recycle,list);
         mAdapter.setOnMineItemClickListener(this);
         mBoutiqueRv.setAdapter(mAdapter);
     }
-    private void bindReferralsType(BaseViewHolder holder){
+    private void bindReferralsType(RVBaseViewHolder holder){
         TextView mAllr = holder.getTextView(R.id.enterseeall_referrals_recycle);
         mAllr.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -197,11 +197,11 @@ public class HomeAdapter extends BaseAdapter<HomeChildBean> implements BaseAdapt
         for (int i=0;i<5;i++) {
             list.add(new ChildHomeBean(R.mipmap.girl_v,"齐B小短裙"));
         }
-        ReferralsAdapter mAdapter = new ReferralsAdapter(mContext,R.layout.item_referrals_recycle,list);
+        ReferralsAdapterRV mAdapter = new ReferralsAdapterRV(mContext,R.layout.item_referrals_recycle,list);
         mAdapter.setOnMineItemClickListener(this);
         mReferralsRv.setAdapter(mAdapter);
     }
-    private void bindAdvsType(BaseViewHolder holder){
+    private void bindAdvsType(RVBaseViewHolder holder){
         CustomImageView mAdvsCiv = holder.getCustomView(R.id.civ_item_advs_recycle);
         //test data ,here,you can update
         mAdvsCiv.setImageResource(R.mipmap.banner_home);
@@ -212,7 +212,7 @@ public class HomeAdapter extends BaseAdapter<HomeChildBean> implements BaseAdapt
             }
         });
     }
-    private void bindTopicType(BaseViewHolder holder){
+    private void bindTopicType(RVBaseViewHolder holder){
         TextView mAllt = holder.getTextView(R.id.enterseeall_topic);
         mAllt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -243,11 +243,11 @@ public class HomeAdapter extends BaseAdapter<HomeChildBean> implements BaseAdapt
                 }
             });
         }
-        TopicAdapter mAdapter = new TopicAdapter(mContext,R.layout.item_topic_recycle,list);
+        TopicAdapterRV mAdapter = new TopicAdapterRV(mContext,R.layout.item_topic_recycle,list);
         mAdapter.setOnMineItemClickListener(this);
         mTopicRv.setAdapter(mAdapter);
     }
-    private void bindDefaultType(BaseViewHolder holder){
+    private void bindDefaultType(RVBaseViewHolder holder){
         String imgUrl = "http://img03.sogoucdn.com/app/a/100520024/55c66d7db6c9abbadfe66e0c243ffa54";
         CustomImageView mCustomImageView = holder.getCustomView(R.id.civ_default_recycle);
         TextView mTextView = holder.getTextView(R.id.tv_default_recycle);

@@ -18,26 +18,26 @@ import java.util.List;
 
 public class NearbyPreferentialFragment extends MVPBaseFragment<NearbyPreferentialContract.View, NearbyPreferentialPresenter> implements NearbyPreferentialContract.View {
     private RecyclerView recyclerView;
-    private View view;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_nearby_preferential,container,false);
-        initView();
-        return view;
+        return setContextView(inflater,container,R.layout.fragment_nearby_preferential);
     }
 
-    private void initView() {
+    @Override
+    public void initView() {
+
         List<String> list=new ArrayList<>();
         list.add("jefi");
         list.add("ijfe");
         list.add("fbj");
         Log.e("tag", "initView: "+list.size() );
-        recyclerView= (RecyclerView) view.findViewById(R.id.nearby_recycler_preferential);
+        recyclerView= findContentView(R.id.nearby_recycler_preferential,false);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,false));
         recyclerView.setAdapter(new NearbyPreferentialAdapter(getContext(),list));
     }
+
     @Override
     public void sendFialRequest(String message) {
 

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -13,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.xiangou.R;
+import com.example.administrator.xiangou.login.LoginBean;
 import com.example.administrator.xiangou.login.dynamiclogin.DynamicLoginActivity;
 import com.example.administrator.xiangou.login.find_bytelephone.FindByTelephoneActivity;
 import com.example.administrator.xiangou.login.registerverify.RegisterVerifyActivity;
@@ -119,7 +121,6 @@ public class IDLoginActivity extends MVPBaseActivity<IDLoginContract.View, IDLog
                 }
             }
         });
-        if (!IDLogin_TelNumber.isFocused())
         IDLogin_TelNumber.requestFocus();
     }
 
@@ -149,7 +150,13 @@ public class IDLoginActivity extends MVPBaseActivity<IDLoginContract.View, IDLog
     }
 
     @Override
-    public void LoginidSuccess() {
+    public void LoginidSuccess(LoginBean.DataBean data) {
+//        setbUser(data);
+//        Set<String> userSet = new HashSet();
+//        userSet.add(data.getNickname());
+//        userSet.addAll(data.toString());
+        bSharedPreferences.putString("user_info",data.toString());
+        Log.e("User", "LoginidSuccess: "+ bUser.toString());
         bSharedPreferences.putBoolean(MySharedPreferences.STATUS_LOGIN,true);
         startNewUI(MainActivity.class);
 //        showToast("登录成功！");

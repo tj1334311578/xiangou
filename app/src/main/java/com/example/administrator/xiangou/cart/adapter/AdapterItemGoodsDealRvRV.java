@@ -9,8 +9,8 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import com.example.administrator.xiangou.R;
-import com.example.administrator.xiangou.base.BaseAdapter;
-import com.example.administrator.xiangou.base.BaseViewHolder;
+import com.example.administrator.xiangou.base.RVBaseAdapter;
+import com.example.administrator.xiangou.base.RVBaseViewHolder;
 import com.example.administrator.xiangou.cart.model.GoodsDealBean;
 import com.example.administrator.xiangou.tool.ContextUtils;
 
@@ -22,7 +22,7 @@ import java.util.Map;
  * Created by zhouzongyao on 2017/3/7.
  */
 
-public class AdapterItemGoodsDealRv extends BaseAdapter<GoodsDealBean> implements View.OnClickListener {
+public class AdapterItemGoodsDealRvRV extends RVBaseAdapter<GoodsDealBean> implements View.OnClickListener {
 
     private CheckBox mItemCb;
     private int position;
@@ -30,7 +30,7 @@ public class AdapterItemGoodsDealRv extends BaseAdapter<GoodsDealBean> implement
 //    private boolean isEditAll;
     private float goodsAllPrice;
     private Map<Integer,Boolean> mMapGoodsItemChecked = new HashMap<>();
-    public AdapterItemGoodsDealRv(Context context, List<GoodsDealBean> mDatas, boolean toCheckItemAll) {
+    public AdapterItemGoodsDealRvRV(Context context, List<GoodsDealBean> mDatas, boolean toCheckItemAll) {
         super(context, R.layout.item_cart_item_goods_rv, mDatas);
 //        this.toCheckItemAll = toCheckItemAll;
         initMap();
@@ -51,7 +51,7 @@ public class AdapterItemGoodsDealRv extends BaseAdapter<GoodsDealBean> implement
 //    }
 
     @Override
-    protected void bindData(BaseViewHolder holder, GoodsDealBean goodsDealBean, final int position) {
+    protected void bindData(RVBaseViewHolder holder, GoodsDealBean goodsDealBean, final int position) {
         this.position = position;
         holder.getItemView().setTag(position);
         holder.getItemView().setOnClickListener(this);

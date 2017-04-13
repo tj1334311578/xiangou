@@ -9,8 +9,14 @@ import com.example.administrator.xiangou.tool.BaseFragment;
 
 import java.lang.reflect.ParameterizedType;
 
+import rx.Subscription;
+import rx.subscriptions.CompositeSubscription;
+
 
 public abstract class MVPBaseFragment<V extends BaseView,T extends BasePresenterImpl<V>> extends BaseFragment implements BaseView{
+
+    private CompositeSubscription mCompositeSubscription;
+
     public T mPresenter;
 
     @Override
@@ -26,7 +32,7 @@ public abstract class MVPBaseFragment<V extends BaseView,T extends BasePresenter
         super.onDestroy();
         if (mPresenter!=null)
             mPresenter.detachView();
-//        onUnsubscribe();
+        onUnsubscribe();
     }
 
     @Override
@@ -51,21 +57,20 @@ public abstract class MVPBaseFragment<V extends BaseView,T extends BasePresenter
             }
             return null;
     }
-//    private CompositeSubscription mCompositeSubscription;
 
-//    public void onUnsubscribe() {
-//        //取消注册，以避免内存泄露
-//        if (mCompositeSubscription != null) {
-//            mCompositeSubscription.unsubscribe();
-//        }
-//    }
-//
-//    public void addSubscription(Subscription subscription) {
-//        //        if (mCompositeSubscription == null) {
-//        mCompositeSubscription = new CompositeSubscription();
-//        //        }
-//        mCompositeSubscription.add(subscription);
-//    }
+    public void onUnsubscribe() {
+        //取消注册，以避免内存泄露
+        if (mCompositeSubscription != null) {
+            mCompositeSubscription.unsubscribe();
+        }
+    }
+
+    public void addSubscription(Subscription subscription) {
+        //        if (mCompositeSubscription == null) {
+        mCompositeSubscription = new CompositeSubscription();
+        //        }
+        mCompositeSubscription.add(subscription);
+    }
 
 
     @Override

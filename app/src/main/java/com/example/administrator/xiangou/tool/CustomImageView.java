@@ -119,6 +119,8 @@ public class CustomImageView extends ImageView {
             scale = Math.max( getWidth()*1.0f / bitmap.getWidth(),
                     getHeight()*1.0f / bitmap.getHeight() );
         }
+//        if (mMatrix==null)
+//            setScaleType(ScaleType.MATRIX);
         mMatrix.setScale(scale,scale);
         mBitmapShader.setLocalMatrix(mMatrix);
 

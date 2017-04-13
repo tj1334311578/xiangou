@@ -11,7 +11,7 @@ import java.util.List;
  * Created by zhouzongyao on 2017/3/6.
  */
 
-public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseViewHolder> {
+public abstract class RVBaseAdapter<T> extends RecyclerView.Adapter<RVBaseViewHolder> {
     public Context mContext;
     protected List<T> mDatas;
     protected  int mLayoutResId;
@@ -29,27 +29,27 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseViewHolder
         this.mOnItemClickListener = mOnItemClickListener;
     }
 
-    public BaseAdapter(Context context, List<T> mDatas) {
+    public RVBaseAdapter(Context context, List<T> mDatas) {
         mContext = context;
         this.mDatas = mDatas;
         setLayoutResId(mLayoutResId);
     }
-    public BaseAdapter(Context context, int mLayoutResId, List<T> mDatas) {
+    public RVBaseAdapter(Context context, int mLayoutResId, List<T> mDatas) {
         mContext = context;
         this.mDatas = mDatas;
         setLayoutResId(mLayoutResId);
     }
 
-    protected abstract void bindData(BaseViewHolder holder, T t, int position);
+    protected abstract void bindData(RVBaseViewHolder holder, T t, int position);
 
     @Override
-    public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        BaseViewHolder holder = BaseViewHolder.createViewHolder(mContext,parent,mLayoutResId);
+    public RVBaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        RVBaseViewHolder holder = RVBaseViewHolder.createViewHolder(mContext,parent,mLayoutResId);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(BaseViewHolder holder, int position) {
+    public void onBindViewHolder(RVBaseViewHolder holder, int position) {
         T t = getItem(position);
         bindData(holder,t,position);
     }

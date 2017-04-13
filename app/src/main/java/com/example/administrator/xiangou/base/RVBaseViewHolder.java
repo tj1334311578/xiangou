@@ -18,21 +18,21 @@ import com.youth.banner.Banner;
  * Created by zhouzongyao on 2017/3/6.
  */
 
-public class BaseViewHolder extends RecyclerView.ViewHolder{
+public class RVBaseViewHolder extends RecyclerView.ViewHolder{
     private SparseArray<View> mViews;
     private View mItemView;
 
-    public BaseViewHolder( View itemView ) {
+    public RVBaseViewHolder(View itemView ) {
         super(itemView);
         mItemView = itemView;
         mViews = new SparseArray<>();
     }
 
-    public static BaseViewHolder createViewHolder(Context context, ViewGroup parent, int layoutId)
+    public static RVBaseViewHolder createViewHolder(Context context, ViewGroup parent, int layoutId)
     {
         View itemView = LayoutInflater.from(context).inflate(layoutId, parent,
                 false);
-        BaseViewHolder holder = new BaseViewHolder(itemView);
+        RVBaseViewHolder holder = new RVBaseViewHolder(itemView);
         return holder;
     }
 

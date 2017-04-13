@@ -14,8 +14,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.administrator.xiangou.R;
-import com.example.administrator.xiangou.base.BaseAdapter;
-import com.example.administrator.xiangou.base.BaseViewHolder;
+import com.example.administrator.xiangou.base.RVBaseAdapter;
+import com.example.administrator.xiangou.base.RVBaseViewHolder;
 import com.example.administrator.xiangou.cart.model.DealBean;
 import com.example.administrator.xiangou.cart.model.GoodsDealBean;
 import com.example.administrator.xiangou.tool.ContextUtils;
@@ -29,7 +29,7 @@ import java.util.Map;
  * Created by zhouzongyao on 2017/3/7.
  */
 
-public class AdapterDealCart extends BaseAdapter<DealBean> implements View.OnClickListener{
+public class AdapterDealCartRV extends RVBaseAdapter<DealBean> implements View.OnClickListener{
 
     private CheckBox mAllCb;
     private TextView mAllEditTv,mFreePriceTv;
@@ -37,12 +37,12 @@ public class AdapterDealCart extends BaseAdapter<DealBean> implements View.OnCli
     private boolean isCheckedAll,isEditAll;
     private float goodsAllPrice;
     private Map<Integer,Float> mapFreePrice;
-    private AdapterItemGoodsDealRv mAdapterItemGoodsDealRv;
+    private AdapterItemGoodsDealRvRV mAdapterItemGoodsDealRv;
     private List<GoodsDealBean> mList;
     private int pos;
     private Map<Integer, Boolean> mItemCheckedMap,mStoreCheckedMap;
 
-    public AdapterDealCart(Context context, List<DealBean> mDatas) {
+    public AdapterDealCartRV(Context context, List<DealBean> mDatas) {
         super(context, R.layout.item_cart_dealrv, mDatas);
         mapFreePrice = new HashMap<>();
         mList = new ArrayList<>();
@@ -57,7 +57,7 @@ public class AdapterDealCart extends BaseAdapter<DealBean> implements View.OnCli
 //    }
 
     @Override
-    protected void bindData(BaseViewHolder holder, DealBean dealBean, final int pos) {
+    protected void bindData(RVBaseViewHolder holder, DealBean dealBean, final int pos) {
         this.pos= pos;
         holder.setIsRecyclable(false);
         goodsAllPrice = 0;
@@ -102,7 +102,7 @@ public class AdapterDealCart extends BaseAdapter<DealBean> implements View.OnCli
 
         mGoodsRv.setTag(pos);
 
-        mAdapterItemGoodsDealRv = new AdapterItemGoodsDealRv(mContext, mList,isCheckedAll);
+        mAdapterItemGoodsDealRv = new AdapterItemGoodsDealRvRV(mContext, mList,isCheckedAll);
         mAdapterItemGoodsDealRv.setOnMineItemClickListener(new OnMineItemClickListener() {
             @Override
             public void onMineItemClick(View view, int position) {

@@ -29,43 +29,55 @@ public class User {
         user.waitPay = data.getWaitPay();
         user.waitSend = data.getWaitSend();
         user.waitReceive = data.getWaitReceive();
+        user.waitCcomment = data.getWaitCcomment();
         user.order_count = data.getOrder_count();
         user.refund = data.getRefund();
         user.experience = data.getExperience();
     }
-
     /**
-     * user_id : 2625
+     * user_id : 2629
      * sex : 0
      * mobile : 18482195579
-     * nickname : xg_38649699sn
+     * nickname : xg_10509136sn
      * type : 1
-     * status : null
+     * status : 0
      * head_pic : null
      * coupon_count : 0
      * follow : 0
      * waitPay : 0
      * waitSend : 0
      * waitReceive : 0
+     * waitCcomment : 0
      * order_count : 0
      * refund : 0
      * experience : 11
      */
+
     private int user_id;
     private int sex;
     private String mobile;
     private String nickname;
     private int type;
-    private Object status;
+    private int status;
     private Object head_pic;
     private int coupon_count;
     private int follow;
     private int waitPay;
     private int waitSend;
     private int waitReceive;
+    private int waitCcomment;
     private int order_count;
     private int refund;
     private int experience;
+    private int level;
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
 
     public int getUser_id() {
         return user_id;
@@ -107,11 +119,11 @@ public class User {
         this.type = type;
     }
 
-    public Object getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(Object status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
@@ -163,6 +175,14 @@ public class User {
         this.waitReceive = waitReceive;
     }
 
+    public int getWaitCcomment() {
+        return waitCcomment;
+    }
+
+    public void setWaitCcomment(int waitCcomment) {
+        this.waitCcomment = waitCcomment;
+    }
+
     public int getOrder_count() {
         return order_count;
     }
@@ -185,26 +205,5 @@ public class User {
 
     public void setExperience(int experience) {
         this.experience = experience;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "user_id=" + user_id +
-                ", sex=" + sex +
-                ", mobile='" + mobile + '\'' +
-                ", nickname='" + nickname + '\'' +
-                ", type=" + type +
-                ", status=" + status +
-                ", head_pic=" + head_pic +
-                ", coupon_count=" + coupon_count +
-                ", follow=" + follow +
-                ", waitPay=" + waitPay +
-                ", waitSend=" + waitSend +
-                ", waitReceive=" + waitReceive +
-                ", order_count=" + order_count +
-                ", refund=" + refund +
-                ", experience=" + experience +
-                '}';
     }
 }

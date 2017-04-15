@@ -4,8 +4,8 @@ import android.content.Context;
 import android.widget.TextView;
 
 import com.example.administrator.xiangou.R;
-import com.example.administrator.xiangou.base.RVBaseViewHolder;
 import com.example.administrator.xiangou.base.RVBaseAdapter;
+import com.example.administrator.xiangou.base.RVBaseViewHolder;
 import com.example.administrator.xiangou.home.model.ChildHomeBean;
 import com.example.administrator.xiangou.tool.CustomImageView;
 
@@ -21,10 +21,10 @@ public class BoutiqueAdapterRV extends RVBaseAdapter<ChildHomeBean> {
     }
 
     @Override
-    protected void bindData(RVBaseViewHolder holder, ChildHomeBean childHomeBean, int position) {
-            CustomImageView mCustomImageView = holder.getCustomView(R.id.civ_item_boutique_recycle);
-            mCustomImageView.setImageResource(childHomeBean.getImgSrc());
-            TextView mTextView = holder.getTextView(R.id.tv_item_boutique_recycle);
-            mTextView.setText(childHomeBean.getTitle());
+    protected void bindData(final RVBaseViewHolder holder, ChildHomeBean childHomeBean, final int position) {
+        CustomImageView mCustomImageView = holder.getCustomView(R.id.civ_item_boutique_recycle);
+        mCustomImageView.setImageResource(childHomeBean.getImgSrc());
+        TextView mTextView = holder.getTextView(R.id.tv_item_boutique_recycle);
+        mTextView.setText(childHomeBean.getTitle());
     }
 }

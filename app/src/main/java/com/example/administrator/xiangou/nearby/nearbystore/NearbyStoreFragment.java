@@ -48,4 +48,9 @@ public class NearbyStoreFragment extends MVPBaseFragment<NearbyStoreContract.Vie
     public void sendFialRequest(String message) {
 
     }
+
+    @Override
+    public void onClick(View v) {
+
+    }
 }

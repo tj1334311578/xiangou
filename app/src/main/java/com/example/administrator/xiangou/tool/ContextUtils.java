@@ -36,8 +36,6 @@ public class ContextUtils extends Application{
     public static User gUser;
     public static MySharedPreferences gSharedPreferences;
 
-
-
     public static ContextUtils getInstance() {
         return sContext;
     }
@@ -52,7 +50,6 @@ public class ContextUtils extends Application{
          * 项目需求
          */
         gSharedPreferences = new MySharedPreferences(this,"xiangouSPsave");
-
         gUser = User.getUser();
     }
 // TODO: you need

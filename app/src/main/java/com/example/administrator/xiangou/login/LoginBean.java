@@ -13,6 +13,9 @@ public class LoginBean{
 
     private DataBean data;
     private StateBean state;
+    /**
+     * data : {"user_id":2629,"sex":0,"mobile":"18482195579","nickname":"xg_10509136sn","type":1,"status":0,"head_pic":null,"coupon_count":0,"follow":0,"waitPay":0,"waitSend":0,"waitReceive":0,"waitCcomment":0,"order_count":0,"refund":0,"experience":11}
+     */
 
     @Override
     public String toString() {
@@ -26,10 +29,6 @@ public class LoginBean{
         return data;
     }
 
-    public void setData(DataBean data) {
-        this.data = data;
-    }
-
     public StateBean getState() {
         return state;
     }
@@ -38,39 +37,75 @@ public class LoginBean{
         this.state = state;
     }
 
-    public static class DataBean {
-        @Override
-        public String toString() {
-            return  user_id +
-                    "," + sex +
-                    "," + mobile +
-                    "," + nickname +
-                    "," + type +
-                    "," + status +
-                    "," + head_pic +
-                    "," + coupon_count +
-                    "," + follow +
-                    "," + waitPay +
-                    "," + waitSend +
-                    "," + waitReceive +
-                    "," + order_count +
-                    "," + refund +
-                    "," + experience;
+
+    public void setData(DataBean data) {
+        this.data = data;
+    }
+
+
+
+
+    public static class StateBean {
+        /**
+         * code : 200
+         * msg : 登录成功
+         * debugMsg :
+         * url : api/Login/login
+         */
+
+        private int code;
+        private String msg;
+        private String debugMsg;
+        private String url;
+
+        public int getCode() {
+            return code;
         }
 
+        public void setCode(int code) {
+            this.code = code;
+        }
+
+        public String getMsg() {
+            return msg;
+        }
+
+        public void setMsg(String msg) {
+            this.msg = msg;
+        }
+
+        public String getDebugMsg() {
+            return debugMsg;
+        }
+
+        public void setDebugMsg(String debugMsg) {
+            this.debugMsg = debugMsg;
+        }
+
+        public String getUrl() {
+            return url;
+        }
+
+        public void setUrl(String url) {
+            this.url = url;
+        }
+    }
+
+    public static class DataBean {
         /**
-         * user_id : 2625
+         * user_id : 2629
          * sex : 0
          * mobile : 18482195579
-         * nickname : xg_38649699sn
+         * nickname : xg_10509136sn
          * type : 1
-         * status : null
+         * status : 0
          * head_pic : null
          * coupon_count : 0
          * follow : 0
          * waitPay : 0
          * waitSend : 0
          * waitReceive : 0
+         * waitCcomment : 0
          * order_count : 0
          * refund : 0
          * experience : 11
@@ -81,16 +116,26 @@ public class LoginBean{
         private String mobile;
         private String nickname;
         private int type;
-        private Object status;
+        private int status;
         private Object head_pic;
         private int coupon_count;
         private int follow;
         private int waitPay;
         private int waitSend;
         private int waitReceive;
+        private int waitCcomment;
         private int order_count;
         private int refund;
         private int experience;
+        private int level;
+
+        public int getLevel() {
+            return level;
+        }
+
+        public void setLevel(int level) {
+            this.level = level;
+        }
 
         public int getUser_id() {
             return user_id;
@@ -132,11 +177,11 @@ public class LoginBean{
             this.type = type;
         }
 
-        public Object getStatus() {
+        public int getStatus() {
             return status;
         }
 
-        public void setStatus(Object status) {
+        public void setStatus(int status) {
             this.status = status;
         }
 
@@ -188,6 +233,14 @@ public class LoginBean{
             this.waitReceive = waitReceive;
         }
 
+        public int getWaitCcomment() {
+            return waitCcomment;
+        }
+
+        public void setWaitCcomment(int waitCcomment) {
+            this.waitCcomment = waitCcomment;
+        }
+
         public int getOrder_count() {
             return order_count;
         }
@@ -211,51 +264,49 @@ public class LoginBean{
         public void setExperience(int experience) {
             this.experience = experience;
         }
-    }
 
-    public static class StateBean {
-        /**
-         * code : 200
-         * msg : 登录成功
-         * debugMsg :
-         * url : api/Login/login
-         */
-
-        private int code;
-        private String msg;
-        private String debugMsg;
-        private String url;
-
-        public int getCode() {
-            return code;
+        @Override
+        public String toString() {
+            return  user_id +
+                    "," + sex +
+                    "," + mobile +
+                    "," + nickname +
+                    "," + type +
+                    "," + status +
+                    "," + head_pic +
+                    "," + coupon_count +
+                    "," + follow +
+                    "," + waitPay +
+                    "," + waitSend +
+                    "," + waitReceive +
+                    "," + waitCcomment +
+                    "," + order_count +
+                    "," + refund +
+                    "," + experience +
+                    "," + level
+                    ;
         }
 
-        public void setCode(int code) {
-            this.code = code;
-        }
-
-        public String getMsg() {
-            return msg;
-        }
-
-        public void setMsg(String msg) {
-            this.msg = msg;
-        }
-
-        public String getDebugMsg() {
-            return debugMsg;
-        }
-
-        public void setDebugMsg(String debugMsg) {
-            this.debugMsg = debugMsg;
-        }
-
-        public String getUrl() {
-            return url;
-        }
-
-        public void setUrl(String url) {
-            this.url = url;
-        }
     }
 }
+/**
+ @Override
+ public String toString() {
+ return  user_id +
+ "," + sex +
+ "," + mobile +
+ "," + nickname +
+ "," + type +
+ "," + status +
+ "," + head_pic +
+ "," + coupon_count +
+ "," + follow +
+ "," + waitPay +
+ "," + waitSend +
+ "," + waitReceive +
+ "," + waitCcomment +
+ "," + order_count +
+ "," + refund +
+ "," + experience;
+ }
+ */

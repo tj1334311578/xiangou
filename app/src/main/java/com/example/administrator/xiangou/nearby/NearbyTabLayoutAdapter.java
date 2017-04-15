@@ -40,10 +40,10 @@ public class NearbyTabLayoutAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return tabs.length;
+        return list_fragment.size();
     }
 
-    //此方法用来显示tab上的名字
+    //用自定义的布局换掉tablayout的tab布局
     public View getTabItemView(int position) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.tab_item_nearby,null);
         mTabTv = (TextView) view.findViewById(R.id.tv_title_tab);

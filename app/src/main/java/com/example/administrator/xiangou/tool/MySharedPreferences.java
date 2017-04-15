@@ -13,8 +13,8 @@ import java.util.Set;
  */
 public class MySharedPreferences {
     private Context mContext;
-    private static SharedPreferences mSharedPreferences;
-    private static SharedPreferences.Editor mSpEditor;
+    private SharedPreferences mSharedPreferences;
+    private SharedPreferences.Editor mSpEditor;
     public static final String STATUS_LOGIN = "staus_login";
     public static final String STATUS_GUIDE = "staus_guide";
 

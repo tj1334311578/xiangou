@@ -17,7 +17,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.administrator.xiangou.R;
-import com.example.administrator.xiangou.classification.ClassificationActivity;
 import com.example.administrator.xiangou.login.idlogin.IDLoginActivity;
 import com.example.administrator.xiangou.mine.store_application.StoreApplicationActivity;
 import com.example.administrator.xiangou.mvp.MVPBaseFragment;
@@ -33,17 +32,12 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
             R.mipmap.personal_comment_icon,R.mipmap.mine_share_icon,R.mipmap.mine_shop_icon};
     private String content_text[]={"我的足迹","我的评论","我的分享","申请店铺",};
     private CustomImageView mHeadImgCiv;
-    private TextView mLevelNumberTv,mUserNameTv,mMessageTv;
+    private TextView mUserLevelTv,mLevelNumberTv,mUserNameTv,mMessageTv,mUnpaidTv,mWaitDekiveryTv,mReceiveTv,mEvaluationTv,mReturnsOrSalesTv;
     private int mine_MsgCount=0;
-
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (!isLogined()){
-            //判断是否是登录状态
-//            startNewUI(IDLoginActivity.class);
-        }
     }
 
     @Nullable
@@ -52,43 +46,67 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         return setContextView(inflater,container,R.layout.fragment_mine);
     }
 
+    //当fragment可见时再判断用户是否登录
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        showToast("isVisible:"+getUserVisibleHint()+"----isLogin"+isLogined());
+        if (getUserVisibleHint()){
+            if (!isLogined()) {
+                startNewUI(IDLoginActivity.class);
+            }
+        }
+        if (bUser!= null){
+
+        }
+    }
+
     @Override
     public void initView() {
         setbUserBySP(bSharedPreferences.getString("user_info",null));
         Log.e("user", "initView: " +bUser );
         findContentView(R.id.mine_message_rl);
         listView= findContentView(R.id.mine_list,false);
+
         findContentView(R.id.mine_setup_iv);
         mMessageTv = findContentView(R.id.mine_message_tv);
-        if (mine_MsgCount != 0){
-            mMessageTv.setVisibility(View.VISIBLE);
-            setTextToTv(mMessageTv,mine_MsgCount);
-        }else {
-            mMessageTv.setVisibility(View.INVISIBLE);
-        }
+        setTextToTv(mMessageTv,mine_MsgCount);
         mHeadImgCiv = findContentView(R.id.mine_user_img_iv);
         if (bUser.getHead_pic()==null){
             mHeadImgCiv.setImageResource(R.mipmap.mine_user_img);
         }else {
             // TODO: 2017/4/13 set img
         }
-        findContentView(R.id.mine_level_tv);
-        mLevelNumberTv = findContentView(R.id.mine_level_number_tv);
-        mLevelNumberTv.setText(bUser.getExperience()+"");
 
+        mUserLevelTv = findContentView(R.id.mine_level_tv);
+        setTextToTv(mUserLevelTv,"V"+bUser.getLevel());
+        mLevelNumberTv = findContentView(R.id.mine_level_number_tv);
+        setTextToTv(mLevelNumberTv,bUser.getExperience());
         mUserNameTv = findContentView(R.id.mine_username_tv);
         Log.e("name","initView: " + bUser.getNickname());
-        mUserNameTv.setText(bUser.getNickname());
+        setTextToTv(mUserNameTv,bUser.getNickname());
 
         findContentView(R.id.mine_attention);
         findContentView(R.id.mine_Coupon);
         findContentView(R.id.mine_sign_in);
         findContentView(R.id.see_all_orders);
-        findContentView(R.id.mine_unpaid);
-        findContentView(R.id.mine_wait_delivery);
-        findContentView(R.id.mine_receive_goods);
-        findContentView(R.id.mine_pending_evaluation);
-        findContentView(R.id.mine_returns_sales);
+
+        mUnpaidTv = findContentView(R.id.mine_unpaid_tv);
+        setTextToTv(mUnpaidTv,bUser.getWaitPay());
+        mWaitDekiveryTv = findContentView(R.id.mine_wait_delivery_tv);
+        setTextToTv(mWaitDekiveryTv,bUser.getWaitSend());
+        mReceiveTv = findContentView(R.id.mine_receive_goods_tv);
+        setTextToTv(mReceiveTv,bUser.getWaitReceive());
+        mEvaluationTv = findContentView(R.id.mine_pending_evaluation_tv);
+        setTextToTv(mEvaluationTv,bUser.getWaitCcomment());
+        mReturnsOrSalesTv = findContentView(R.id.mine_returns_sales_tv);
+        setTextToTv(mReturnsOrSalesTv,bUser.getRefund());
+
         //ListView禁止滑动设置
         listView.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -111,17 +129,24 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
                 TextView tv = (TextView) listView.getChildAt(position).findViewById(R.id.mine_item_text);
                 //等价于=>((TextView)(listView.getChildAt(position).findViewById(R.id.mine_item_text)))
                 Toast.makeText(getContext(),tv.getText() +"被点击了", Toast.LENGTH_SHORT).show();
-                switch (position){
-                    case 2:
-                        startActivity(new Intent(getContext(), ClassificationActivity.class));
-                        break;
-                    case 3:
-                        startActivity(new Intent(getContext(), StoreApplicationActivity.class));
-                        break;
+                if (position==3){
+                    startActivity(new Intent(getContext(), StoreApplicationActivity.class));
                 }
             }
         });
         initSet();
+    }
+
+    @Override
+    public void setTextToTv(TextView textView, Object data) {
+        if (data instanceof Integer){
+            if (((int)data)==0){
+                textView.setVisibility(View.INVISIBLE);
+            }else if (textView.getVisibility()!=View.VISIBLE){
+                textView.setVisibility(View.VISIBLE);
+            }
+        }
+        super.setTextToTv(textView, data);
     }
 
     private void initSet() {
@@ -253,14 +278,6 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         public class ViewHolder{
             public ImageView imageView;
             public TextView textView;
-        }
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (bUser!= null){
-
         }
     }
 }

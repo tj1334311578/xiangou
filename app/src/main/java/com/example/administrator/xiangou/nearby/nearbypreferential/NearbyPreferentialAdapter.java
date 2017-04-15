@@ -22,7 +22,7 @@ import java.util.List;
  * Created by Administrator on 2017/3/15.
  */
 
-public class NearbyPreferentialAdapter extends AutoRVAdapter implements RVBaseAdapter.OnMineItemClickListener{
+public class NearbyPreferentialAdapter extends AutoRVAdapter implements RVBaseAdapter.OnItemViewClickListener {
     private static Context context;
     private  List<String> list;
     RecyclerView dayRecycer,hourRecycler,moreRecycler;
@@ -134,7 +134,7 @@ public class NearbyPreferentialAdapter extends AutoRVAdapter implements RVBaseAd
     }
 
     @Override
-    public void onMineItemClick(View view, int position) {
+    public void setOnItemViewClick(View view, int position) {
         if (view.getParent() == dayRecycer) {
             Toast.makeText(context, "mClothingRv "+position+" 瞧一瞧，看一看了啊", Toast.LENGTH_SHORT).show();
         }else if (view.getParent() == hourRecycler) {
@@ -144,7 +144,7 @@ public class NearbyPreferentialAdapter extends AutoRVAdapter implements RVBaseAd
         }
     }
 
-//
+    //
 //    /**
 //     * 附近优惠设置点击事件
 //     * @param v
@@ -211,10 +211,10 @@ public class NearbyPreferentialAdapter extends AutoRVAdapter implements RVBaseAd
 //            void onItemClick(View view,int position);
 //            void onItemLongClick(View view,int position);
 //        }
-//        private OnItemClickListener mOnItemClickListener;
+//        private OnItemClickListener mOnCheckBoxClickListener;
 //
-//        public void setOnItemClickListener(OnItemClickListener mOnItemClickListener){
-//            this.mOnItemClickListener=mOnItemClickListener;
+//        public void setOnItemClickListener(OnItemClickListener mOnCheckBoxClickListener){
+//            this.mOnCheckBoxClickListener=mOnCheckBoxClickListener;
 //        }
 //
 
@@ -244,7 +244,7 @@ public class NearbyPreferentialAdapter extends AutoRVAdapter implements RVBaseAd
 //            holder.getImgeView(R.id.item_day_item_img).setOnClickListener(this);
 //            holder.getTextView(R.id.item_day_item_originalprice).setOnClickListener(this);
 //            holder.getTextView(R.id.item_day_item_presentprice).setOnClickListener(this);
-//                if (mOnItemClickListener!=null){
+//                if (mOnCheckBoxClickListener!=null){
 ////                 holder.getViewHolder(R.layout.nearby_item_day_item)
 //                }
 

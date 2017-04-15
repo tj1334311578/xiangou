@@ -42,4 +42,9 @@ public class NearbyPreferentialFragment extends MVPBaseFragment<NearbyPreferenti
     public void sendFialRequest(String message) {
 
     }
+
+    @Override
+    public void onClick(View v) {
+
+    }
 }

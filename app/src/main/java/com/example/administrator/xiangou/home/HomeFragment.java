@@ -13,7 +13,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.administrator.xiangou.R;
-import com.example.administrator.xiangou.base.RVBaseAdapter;
 import com.example.administrator.xiangou.home.adapter.HomeAdapterRV;
 import com.example.administrator.xiangou.home.model.HomeChildBean;
 import com.example.administrator.xiangou.mvp.MVPBaseFragment;
@@ -78,12 +77,6 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
         beanList.add(new HomeChildBean(TYPE_ADVS));
         beanList.add(new HomeChildBean(TYPE_TOPIC));
         HomeAdapterRV adapterHomeRv = new HomeAdapterRV(getContext(),beanList);
-        adapterHomeRv.setOnMineItemClickListener(new RVBaseAdapter.OnMineItemClickListener() {
-            @Override
-            public void onMineItemClick(View view, int position) {
-
-            }
-        });
         rvHome.setAdapter(adapterHomeRv);
     }
 

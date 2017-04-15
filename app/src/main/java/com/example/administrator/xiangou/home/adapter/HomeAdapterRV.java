@@ -27,7 +27,7 @@ import java.util.List;
  * Created by zhouzongyao on 2017/3/8.
  */
 
-public class HomeAdapterRV extends RVBaseAdapter<HomeChildBean> implements RVBaseAdapter.OnMineItemClickListener{
+public class HomeAdapterRV extends RVBaseAdapter<HomeChildBean> implements RVBaseAdapter.OnItemViewClickListener {
     //不同recycle的type
     public static final int TYPE_DEFAULT = 0;
     public static final int TYPE_BANNER = 1;
@@ -174,7 +174,7 @@ public class HomeAdapterRV extends RVBaseAdapter<HomeChildBean> implements RVBas
         }
 //mContext,R.layout.item_boutique_recycle,list
         BoutiqueAdapterRV mAdapter = new BoutiqueAdapterRV(mContext,R.layout.item_boutique_recycle,list);
-        mAdapter.setOnMineItemClickListener(this);
+        mAdapter.setOnItemViewClickListener(this);
         mBoutiqueRv.setAdapter(mAdapter);
     }
     private void bindReferralsType(RVBaseViewHolder holder){
@@ -198,7 +198,7 @@ public class HomeAdapterRV extends RVBaseAdapter<HomeChildBean> implements RVBas
             list.add(new ChildHomeBean(R.mipmap.girl_v,"齐B小短裙"));
         }
         ReferralsAdapterRV mAdapter = new ReferralsAdapterRV(mContext,R.layout.item_referrals_recycle,list);
-        mAdapter.setOnMineItemClickListener(this);
+        mAdapter.setOnItemViewClickListener(this);
         mReferralsRv.setAdapter(mAdapter);
     }
     private void bindAdvsType(RVBaseViewHolder holder){
@@ -244,7 +244,7 @@ public class HomeAdapterRV extends RVBaseAdapter<HomeChildBean> implements RVBas
             });
         }
         TopicAdapterRV mAdapter = new TopicAdapterRV(mContext,R.layout.item_topic_recycle,list);
-        mAdapter.setOnMineItemClickListener(this);
+        mAdapter.setOnItemViewClickListener(this);
         mTopicRv.setAdapter(mAdapter);
     }
     private void bindDefaultType(RVBaseViewHolder holder){
@@ -258,7 +258,7 @@ public class HomeAdapterRV extends RVBaseAdapter<HomeChildBean> implements RVBas
     }
 
     @Override
-    public void onMineItemClick(View view, int position) {
+    public void setOnItemViewClick(View view, int position) {
         if (view.getParent() == mBoutiqueRv) {
             Toast.makeText(mContext, "mBoutiqueRv "+position+" 甭点了，木有彩蛋", Toast.LENGTH_SHORT).show();
         }else if (view.getParent() == mReferralsRv) {
@@ -267,5 +267,4 @@ public class HomeAdapterRV extends RVBaseAdapter<HomeChildBean> implements RVBas
             Toast.makeText(mContext, "mTopicRv "+position+" 甭点了，木有彩蛋", Toast.LENGTH_SHORT).show();
         }
     }
-
 }

@@ -77,16 +77,6 @@ public class BaseActivity extends AppCompatActivity {
         bSharedPreferences = ContextUtils.gSharedPreferences;
         ButterKnife.bind(this);
         registerExitReceiver();
-
-////        这一行注意！看本文最后的说明！！！！
-//        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
-////        setContentView(getLayoutResId());//把设置布局文件的操作交给继承的子类
-//        ViewGroup contentFrameLayout = (ViewGroup) findViewById(Window.ID_ANDROID_CONTENT);
-//        View parentView = contentFrameLayout.getChildAt(0);
-//        if (parentView != null && Build.VERSION.SDK_INT >= 14) {
-//            parentView.setFitsSystemWindows(true);
-//        }
-        StatusBarCompat.compat(this, Color.RED);
     }
 
     @Override
@@ -163,5 +153,55 @@ public class BaseActivity extends AppCompatActivity {
      */
     public static boolean isLogined(){
         return bSharedPreferences.getBoolean(MySharedPreferences.STATUS_LOGIN,false);
+    }
+
+    //双击退出APP
+    public long firstTime=0;
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        switch (keyCode){
+            case KeyEvent.KEYCODE_BACK:
+                long secondTime = System.currentTimeMillis();
+                if((secondTime-firstTime)>2000){
+                    toastShow("再按一次退出程序!");
+                    firstTime=secondTime;
+                    return true;
+                }else {
+                    exit_app();
+//                    finish();
+//                    System.exit(0);
+                }
+        }
+        return super.onKeyUp(keyCode, event);
+    }
+    //项目：
+
+    public User getbUser() {
+        return bUser;
+    }
+    public void setbUser(LoginBean.DataBean data) {
+        bUser.setUser(data);
+    }
+
+    //将本地存储的用户信息赋值给用户类对象
+    public void setbUserBySP(String str) {
+        String[] user = str.split(",");
+        bUser.setUser_id(Integer.parseInt(user[0]));
+        bUser.setSex(Integer.parseInt(user[1]));
+        bUser.setMobile(user[2]);
+        bUser.setNickname(user[3]);
+        bUser.setType(Integer.parseInt(user[4]));
+        bUser.setStatus(Integer.parseInt(user[5]));
+        bUser.setHead_pic(user[6]);
+        bUser.setCoupon_count(Integer.parseInt(user[7]));
+        bUser.setFollow(Integer.parseInt(user[8]));
+        bUser.setWaitPay(Integer.parseInt(user[9]));
+        bUser.setWaitSend(Integer.parseInt(user[10]));
+        bUser.setWaitReceive(Integer.parseInt(user[11]));
+        bUser.setWaitCcomment(Integer.parseInt(user[12]));
+        bUser.setOrder_count(Integer.parseInt(user[13]));
+        bUser.setRefund(Integer.parseInt(user[14]));
+        bUser.setExperience(Integer.parseInt(user[15]));
+        bUser.setLevel(Integer.parseInt(user[16]));
     }
 }

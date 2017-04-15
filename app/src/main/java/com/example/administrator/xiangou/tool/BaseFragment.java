@@ -16,7 +16,6 @@ import android.widget.Toast;
 
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.login.LoginBean;
-import com.example.administrator.xiangou.login.idlogin.IDLoginActivity;
 import com.example.administrator.xiangou.main.User;
 
 import butterknife.ButterKnife;
@@ -31,39 +30,11 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
     public Activity mActivity;
     private Toast mToast;
 
-//    public static ContextUtils bContextUtils;
-    public static User bUser;
-    public static MySharedPreferences bfSharedPreferences;
+    public User bUser;
+    public MySharedPreferences bSharedPreferences;
     public BaseActivity mBaseActivity;//这里是为了引用BaseActivity的ProgressDialog
-//    public MySharedPreferences bSharedPreferences;
     public View mContextView;
 
-    public static User getbUser() {
-        return bUser;
-    }
-
-    public static void setbUser(LoginBean.DataBean data) {
-        bUser.setUser(data);
-    }
-
-    public void setbUserBySP(String str){
-        String[] user = str.split(",");
-        bUser.setUser_id(Integer.parseInt(user[0]));
-        bUser.setSex(Integer.parseInt(user[1]));
-        bUser.setMobile(user[2]);
-        bUser.setNickname(user[3]);
-        bUser.setType(Integer.parseInt(user[4]));
-        bUser.setStatus(user[5]);
-        bUser.setHead_pic(user[6]);
-        bUser.setCoupon_count(Integer.parseInt(user[7]));
-        bUser.setFollow(Integer.parseInt(user[8]));
-        bUser.setWaitPay(Integer.parseInt(user[9]));
-        bUser.setWaitSend(Integer.parseInt(user[10]));
-        bUser.setWaitReceive(Integer.parseInt(user[11]));
-        bUser.setOrder_count(Integer.parseInt(user[12]));
-        bUser.setRefund(Integer.parseInt(user[13]));
-        bUser.setExperience(Integer.parseInt(user[14]));
-    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -71,8 +42,6 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
 
         bUser = ContextUtils.gUser;
         bSharedPreferences = ContextUtils.gSharedPreferences;
-//      bContextUtils = ContextUtils.getInstance();
-//      bfSharedPreferences = bContextUtils.gSharedPreferences;
     }
 
     @Nullable
@@ -94,16 +63,12 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
         ButterKnife.bind(getContext(),view);
         mActivity = getActivity();
         mBaseActivity = new BaseActivity();
-
-//        bContextUtils = ContextUtils.getInstance();
-        bUser = ContextUtils.gUser;
-        bSharedPreferences = ContextUtils.gSharedPreferences;
     }
 
     //还可以把统一的toolbar等控件在此初始化
     //如public Toolbar initToolBar(View view, String title)
     public void setTextToTv(TextView textView, Object data){
-        textView.setText(data+"");
+        textView.setText(data + "");
     }
 
     public <T extends View> T findContentView(int id){
@@ -155,16 +120,47 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
 
     //判断用户是否登录
     public boolean isLogined(){
-        return bfSharedPreferences.getBoolean(MySharedPreferences.STATUS_LOGIN,false);
+        return bSharedPreferences.getBoolean(MySharedPreferences.STATUS_LOGIN,false);
     }
     //判断用户注销
     public void logout(){
-        bfSharedPreferences.putBoolean(MySharedPreferences.STATUS_LOGIN,false);
-        startNewUI(IDLoginActivity.class);
+        bSharedPreferences.putBoolean(MySharedPreferences.STATUS_LOGIN,false);
+        showToast("now "+isLogined()+"");
+//        startNewUI(IDLoginActivity.class);
+    }
+//项目：
+
+    public User getbUser() {
+        return bUser;
+    }
+    public void setbUser(LoginBean.DataBean data) {
+        bUser.setUser(data);
+    }
+
+    //将本地存储的用户信息赋值给用户类对象
+    public void setbUserBySP(String str){
+        String[] user = str.split(",");
+        bUser.setUser_id(Integer.parseInt(user[0]));
+        bUser.setSex(Integer.parseInt(user[1]));
+        bUser.setMobile(user[2]);
+        bUser.setNickname(user[3]);
+        bUser.setType(Integer.parseInt(user[4]));
+        bUser.setStatus(Integer.parseInt(user[5]));
+        bUser.setHead_pic(user[6]);
+        bUser.setCoupon_count(Integer.parseInt(user[7]));
+        bUser.setFollow(Integer.parseInt(user[8]));
+        bUser.setWaitPay(Integer.parseInt(user[9]));
+        bUser.setWaitSend(Integer.parseInt(user[10]));
+        bUser.setWaitReceive(Integer.parseInt(user[11]));
+        bUser.setWaitCcomment(Integer.parseInt(user[12]));
+        bUser.setOrder_count(Integer.parseInt(user[13]));
+        bUser.setRefund(Integer.parseInt(user[14]));
+        bUser.setExperience(Integer.parseInt(user[15]));
+        bUser.setLevel(Integer.parseInt(user[16]));
     }
 
     @Override
-    public void onClick(View v) {
-
+    public void onResume() {
+        super.onResume();
     }
 }

@@ -22,17 +22,24 @@ public class RVBaseViewHolder extends RecyclerView.ViewHolder{
     private SparseArray<View> mViews;
     private View mItemView;
 
-    public RVBaseViewHolder(View itemView ) {
+    public RVBaseViewHolder(View itemView , final RVBaseAdapter.OnItemViewClickListener onItemViewClickListener ) {
         super(itemView);
         mItemView = itemView;
         mViews = new SparseArray<>();
+        mItemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (onItemViewClickListener!=null)
+                onItemViewClickListener.setOnItemViewClick(v,getLayoutPosition());
+            }
+        });
     }
 
-    public static RVBaseViewHolder createViewHolder(Context context, ViewGroup parent, int layoutId)
+    public static RVBaseViewHolder createViewHolder(Context context, ViewGroup parent, int layoutId, RVBaseAdapter.OnItemViewClickListener onItemViewClickListener)
     {
         View itemView = LayoutInflater.from(context).inflate(layoutId, parent,
                 false);
-        RVBaseViewHolder holder = new RVBaseViewHolder(itemView);
+        RVBaseViewHolder holder = new RVBaseViewHolder(itemView, onItemViewClickListener);
         return holder;
     }
 

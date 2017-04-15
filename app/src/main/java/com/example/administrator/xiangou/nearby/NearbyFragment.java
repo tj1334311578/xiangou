@@ -40,7 +40,7 @@ public class NearbyFragment extends MVPBaseFragment<NearbyContract.View, NearbyP
     private ViewPager mViewPager;
     private NearbyTabLayoutAdapter mLayoutAdapter;
     private List<Fragment> mTabFragList;
-    private String[] tabTitles;
+    private String[]tabTitles;
     private PopupWindow mPopupWindow;
     private List<TextView> mPpwTvs;
     private int nearyDistance;//附近距离
@@ -53,6 +53,13 @@ public class NearbyFragment extends MVPBaseFragment<NearbyContract.View, NearbyP
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        if (mContextView!=null){
+            ViewGroup parent = (ViewGroup) mContextView.getParent();
+            if (parent !=null){
+                parent.removeView(mContextView);
+            }
+            return mContextView;
+        }
         return setContextView(inflater,container,R.layout.fragment_nearby);
     }
 
@@ -78,6 +85,7 @@ public class NearbyFragment extends MVPBaseFragment<NearbyContract.View, NearbyP
         mViewPager.setAdapter(mLayoutAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
 
+        //将自定义的tab布局加载到tablayout上
         for (int i=0; i<tabTitles.length; i++){
             final TabLayout.Tab tab = mTabLayout.getTabAt(i);
             if (tab!=null){
@@ -89,11 +97,11 @@ public class NearbyFragment extends MVPBaseFragment<NearbyContract.View, NearbyP
                 }
             }
         }
+
         mViewPager.setCurrentItem(0);
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-            }
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
             @Override
             public void onPageSelected(int position) {
                 mViewPager.setCurrentItem(position);

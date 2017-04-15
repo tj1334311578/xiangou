@@ -72,6 +72,7 @@
             android:gravity="center_vertical"
             android:layout_width="88dp"
             android:layout_height="23dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="21dp"
@@ -82,6 +83,7 @@
                 android:textColor="@color/white"
                 android:adjustViewBounds="true"
                 android:background="@mipmap/mine_vip_img"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -206,6 +208,18 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:background="@drawable/news_num"
+                android:text="3"
+                android:textSize="11sp"
+                android:textColor="@color/textcolor_tab_select"
+                android:gravity="center"
+                android:id="@+id/mine_unpaid_tv"
+                android:layout_alignRight="@+id/mine_unpaid"/>
+
             <com.example.administrator.xiangou.tool.DrawableTextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -218,17 +232,8 @@
                 app:topDrawableWidth="30dp"
                 app:topDrawableHeight="30dp"
                 android:drawablePadding="5dp"
+                android:layout_alignParentTop="true"
                 />
-            <TextView
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:background="@drawable/news_num"
-                android:text="3"
-                android:textSize="11sp"
-                android:textColor="@color/textcolor_tab_select"
-                android:gravity="center"
-                android:id="@+id/mine_unpaid_tv"
-                android:layout_alignRight="@id/mine_unpaid"/>
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="0dp"

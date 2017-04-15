@@ -24,7 +24,7 @@ import java.util.List;
  * Created by zhouzongyao on 2017/3/13.
  */
 
-public class NearbyGoodsAdapterRV extends RVBaseAdapter<ChildType> implements RVBaseAdapter.OnMineItemClickListener{
+public class NearbyGoodsAdapterRV extends RVBaseAdapter<ChildType> implements RVBaseAdapter.OnItemViewClickListener {
 //    public static final int TYPE_DEFAULT = 0;
     public static final int TYPE_CLOTHING = 1;
     public static final int TYPE_MAKEUP = 2;
@@ -109,13 +109,22 @@ public class NearbyGoodsAdapterRV extends RVBaseAdapter<ChildType> implements RV
         TextView mText = holder.getTextView(R.id.text_child_nearbygoods);
         TextView mDescribe = holder.getTextView(R.id.describe_child_nearby);
         mAdvsIv.setImageResource(R.mipmap.nearby_goods_advs);
+        mAdvsIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO: 2017/4/15
+                Toast.makeText(mContext, "瞧一瞧，附近商品广告图片", Toast.LENGTH_SHORT).show();
+            }
+        });
         mIcon.setImageResource(R.mipmap.nearby_goods_clothing_icon);
         mText.setText("服装类");
+        mText.setClickable(false);
         mDescribe.setText("当前主流潮服");
+        mDescribe.setClickable(false);
         holder.getImageView(R.id.img_child_nearbygoods).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "瞧一瞧，看一看了啊+++++1", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "瞧一瞧，看一看了啊-----服装类", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -129,7 +138,7 @@ public class NearbyGoodsAdapterRV extends RVBaseAdapter<ChildType> implements RV
             list.add(new GoodsBean(R.mipmap.nearby_goods_clothing_dfimg,"休闲女装"));
         }
         ClothingAdapterRV goodsAdapter = new ClothingAdapterRV(mContext,R.layout.child_clothing_nearbygoods,list);
-        goodsAdapter.setOnMineItemClickListener(this);
+        goodsAdapter.setOnItemViewClickListener(this);
         mClothingRv.setAdapter(goodsAdapter);
     }
     public void bindMakeup(RVBaseViewHolder holder) {
@@ -142,7 +151,7 @@ public class NearbyGoodsAdapterRV extends RVBaseAdapter<ChildType> implements RV
         holder.getImageView(R.id.img_child_nearbygoods).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "瞧一瞧，看一看了啊+++2", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "瞧一瞧，看一看了啊-----化妆类", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -156,7 +165,7 @@ public class NearbyGoodsAdapterRV extends RVBaseAdapter<ChildType> implements RV
             list.add(new GoodsBean(R.mipmap.nearby_goods_makeup_dfimg,"必备神器"));
         }
         MakeupAdapterRV makeupAdapter = new MakeupAdapterRV(mContext,R.layout.child_makeup_nearbygoods,list);
-        makeupAdapter.setOnMineItemClickListener(this);
+        makeupAdapter.setOnItemViewClickListener(this);
         mMakeupRv.setAdapter(makeupAdapter);
     }
     public void bindHouseholds(RVBaseViewHolder holder) {
@@ -169,12 +178,12 @@ public class NearbyGoodsAdapterRV extends RVBaseAdapter<ChildType> implements RV
         holder.getImageView(R.id.img_child_nearbygoods).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(mContext, "瞧一瞧，看一看了啊3", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, "瞧一瞧，看一看了啊-----家居家电类", Toast.LENGTH_SHORT).show();
             }
         });
 
         mHouseholdsRv = holder.getRecyclerView(R.id.households_goods_nearby_rv);
-        mHouseholdsRv.setLayoutManager(new GridLayoutManager(mHouseholdsRv.getContext(),3, GridLayoutManager.HORIZONTAL,false));
+        mHouseholdsRv.setLayoutManager(new GridLayoutManager(mHouseholdsRv.getContext(),3, GridLayoutManager.VERTICAL,false));
         mHouseholdsRv.setPadding(ContextUtils.dp2px(8),ContextUtils.dp2px(8),ContextUtils.dp2px(8),ContextUtils.dp2px(8));
         mHouseholdsRv.addItemDecoration(new ItemIntervalDecoration(8,0,0));
         List<GoodsBean> list = new ArrayList<>();
@@ -183,14 +192,12 @@ public class NearbyGoodsAdapterRV extends RVBaseAdapter<ChildType> implements RV
             list.add(new GoodsBean(R.mipmap.nearby_goods_clothing_dfimg,"生活好帮手"));
         }
         HouseHoldsAdapterRV houseHoldsAdapter = new HouseHoldsAdapterRV(mContext,R.layout.child_households_nearbygoods,list);
-        houseHoldsAdapter.setOnMineItemClickListener(this);
+        houseHoldsAdapter.setOnItemViewClickListener(this);
         mHouseholdsRv.setAdapter(houseHoldsAdapter);
     }
 
-
-
     @Override
-    public void onMineItemClick(View view, int position) {
+    public void setOnItemViewClick(View view, int position) {
         if (view.getParent() == mClothingRv) {
             Toast.makeText(mContext, "mClothingRv "+position+" 瞧一瞧，看一看了啊", Toast.LENGTH_SHORT).show();
         }else if (view.getParent() == mMakeupRv) {
@@ -199,5 +206,4 @@ public class NearbyGoodsAdapterRV extends RVBaseAdapter<ChildType> implements RV
             Toast.makeText(mContext, "mHouseholdsRv "+position+" 巴适得板", Toast.LENGTH_SHORT).show();
         }
     }
-
 }

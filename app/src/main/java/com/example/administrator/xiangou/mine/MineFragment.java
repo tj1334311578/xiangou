@@ -21,19 +21,20 @@ import com.example.administrator.xiangou.classification.ClassificationActivity;
 import com.example.administrator.xiangou.login.idlogin.IDLoginActivity;
 import com.example.administrator.xiangou.mine.store_application.StoreApplicationActivity;
 import com.example.administrator.xiangou.mvp.MVPBaseFragment;
-import com.example.administrator.xiangou.tool.SelectImageView;
+import com.example.administrator.xiangou.tool.CustomImageView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresenter>
-        implements MineContract.View ,View.OnClickListener{
+        implements MineContract.View {
     private ListView listView;
-    private View view;
-    private SelectImageView circleImage;
     private int content_img[]={R.mipmap.personal_footprint_icon,
             R.mipmap.personal_comment_icon,R.mipmap.mine_share_icon,R.mipmap.mine_shop_icon};
     private String content_text[]={"我的足迹","我的评论","我的分享","申请店铺",};
+    private CustomImageView mHeadImgCiv;
+    private TextView mLevelNumberTv,mUserNameTv,mMessageTv;
+    private int mine_MsgCount=0;
 
 
     @Override
@@ -48,13 +49,46 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_mine,container,false);
-        initSet();
-        return view;
+        return setContextView(inflater,container,R.layout.fragment_mine);
     }
 
-    private void initSet() {
-        initView();
+    @Override
+    public void initView() {
+        setbUserBySP(bSharedPreferences.getString("user_info",null));
+        Log.e("user", "initView: " +bUser );
+        findContentView(R.id.mine_message_rl);
+        listView= findContentView(R.id.mine_list,false);
+        findContentView(R.id.mine_setup_iv);
+        mMessageTv = findContentView(R.id.mine_message_tv);
+        if (mine_MsgCount != 0){
+            mMessageTv.setVisibility(View.VISIBLE);
+            setTextToTv(mMessageTv,mine_MsgCount);
+        }else {
+            mMessageTv.setVisibility(View.INVISIBLE);
+        }
+        mHeadImgCiv = findContentView(R.id.mine_user_img_iv);
+        if (bUser.getHead_pic()==null){
+            mHeadImgCiv.setImageResource(R.mipmap.mine_user_img);
+        }else {
+            // TODO: 2017/4/13 set img
+        }
+        findContentView(R.id.mine_level_tv);
+        mLevelNumberTv = findContentView(R.id.mine_level_number_tv);
+        mLevelNumberTv.setText(bUser.getExperience()+"");
+
+        mUserNameTv = findContentView(R.id.mine_username_tv);
+        Log.e("name","initView: " + bUser.getNickname());
+        mUserNameTv.setText(bUser.getNickname());
+
+        findContentView(R.id.mine_attention);
+        findContentView(R.id.mine_Coupon);
+        findContentView(R.id.mine_sign_in);
+        findContentView(R.id.see_all_orders);
+        findContentView(R.id.mine_unpaid);
+        findContentView(R.id.mine_wait_delivery);
+        findContentView(R.id.mine_receive_goods);
+        findContentView(R.id.mine_pending_evaluation);
+        findContentView(R.id.mine_returns_sales);
         //ListView禁止滑动设置
         listView.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -87,7 +121,10 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
                 }
             }
         });
+        initSet();
+    }
 
+    private void initSet() {
         //初始化数据
         List<ItemImage> list=new ArrayList<>();
         for (int i = 0; i <content_img.length ; i++) {
@@ -97,57 +134,33 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         listView.setAdapter(adapter);
     }
 
-    private void initView() {
-        listView= (ListView) view.findViewById(R.id.mine_list);
-        view.findViewById(R.id.mine_setup).setOnClickListener(this);
-        view.findViewById(R.id.mine_message).setOnClickListener(this);
-        view.findViewById(R.id.mine_circle_imageview).setOnClickListener(this);
-        view.findViewById(R.id.Level_img).setOnClickListener(this);
-        view.findViewById(R.id.Level_number).setOnClickListener(this);
-        view.findViewById(R.id.username).setOnClickListener(this);
-        view.findViewById(R.id.mine_attention).setOnClickListener(this);
-        view.findViewById(R.id.mine_Coupon).setOnClickListener(this);
-        view.findViewById(R.id.mine_sign_in).setOnClickListener(this);
-        view.findViewById(R.id.see_all_orders).setOnClickListener(this);
-        view.findViewById(R.id.mine_unpaid).setOnClickListener(this);
-        view.findViewById(R.id.mine_wait_delivery).setOnClickListener(this);
-        view.findViewById(R.id.mine_receive_goods).setOnClickListener(this);
-        view.findViewById(R.id.mine_pending_evaluation).setOnClickListener(this);
-        view.findViewById(R.id.mine_returns_sales).setOnClickListener(this);
-        view.findViewById(R.id.mine_circle_imageview).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(getActivity(), IDLoginActivity.class));
-            }
-        });
-    }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             //设置
-            case R.id.mine_setup:
+            case R.id.mine_setup_iv:
                 Toast.makeText(getActivity(), "点击设置", Toast.LENGTH_SHORT).show();
                 logout();
                 break;
             //消息
-            case R.id.mine_message:
+            case R.id.mine_message_rl:
                 Toast.makeText(getActivity(), "点击消息", Toast.LENGTH_SHORT).show();
                 break;
             //用户图标
-            case R.id.mine_circle_imageview:
+            case R.id.mine_user_img_iv:
                 Toast.makeText(getActivity(), "点击用户图标", Toast.LENGTH_SHORT).show();
+                startNewUI(IDLoginActivity.class);
                 break;
             //等级图标
-            case R.id.Level_img:
+            case R.id.mine_level_tv:
                 Toast.makeText(getActivity(), "点击等级图标", Toast.LENGTH_SHORT).show();
                 break;
             //等级经验
-            case R.id.Level_number:
+            case R.id.mine_level_number_tv:
                 Toast.makeText(getActivity(), "点击等级经验", Toast.LENGTH_SHORT).show();
                 break;
             //用户名
-            case R.id.username:
+            case R.id.mine_username_tv:
                 Toast.makeText(getActivity(), "点击用户名", Toast.LENGTH_SHORT).show();
                 break;
             //关注
@@ -246,6 +259,8 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
     @Override
     public void onResume() {
         super.onResume();
+        if (bUser!= null){
 
+        }
     }
 }

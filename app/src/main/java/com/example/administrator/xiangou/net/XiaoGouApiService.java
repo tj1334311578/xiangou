@@ -54,9 +54,9 @@ public interface XiaoGouApiService {
     Observable<LoginBean> loginV(@Query("tel") String tel, @Query("code") String code);
 
     //验证验证码--找回密码
-    @POST("api/Login/check_code/")
+    @POST("Api/Login/check_code/")
     Observable<Captcha> verifyFindPwd(@Query("tel") String tel, @Query("code") String code);
     //设新密码--找回密码
-    @POST("api/Login/findpsw/")
-    Observable<LoginBean> resetPwd(@Query("tel") String tel, @Query("password") String password, @Query("code") String code);
+    @POST("Api/Login/findpsw/")
+    Observable<Captcha> resetPwd(@Query("tel") String tel, @Query("password") String password, @Query("code") String code);
 }

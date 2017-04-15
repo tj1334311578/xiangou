@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.mvp.MVPBaseFragment;
 import com.example.administrator.xiangou.nearby.ChildType;
-import com.example.administrator.xiangou.nearby.nearbygoods.adapter.NearbyGoodsAdapter;
+import com.example.administrator.xiangou.nearby.nearbygoods.adapter.NearbyGoodsAdapterRV;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,16 +28,19 @@ public class NearbyGoodsFragment extends MVPBaseFragment<NearbyGoodsContract.Vie
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_nearby_goods,container,false);
-        mGoodsRv = (RecyclerView) view.findViewById(R.id.goods_nearby_rv);
+        return setContextView(inflater,container,R.layout.fragment_nearby_goods);
+    }
+
+    @Override
+    public void initView() {
+        mGoodsRv = findContentView(R.id.goods_nearby_rv,false);
         mGoodsRv.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,false));
         mChildTypes = new ArrayList<>();
         mChildTypes.add(new ChildType(TYPE_CLOTHING));
         mChildTypes.add(new ChildType(TYPE_MAKEUP));
         mChildTypes.add(new ChildType(TYPE_HOUSEHOLDS));
-        NearbyGoodsAdapter adapter = new NearbyGoodsAdapter(getContext(),mChildTypes);
+        NearbyGoodsAdapterRV adapter = new NearbyGoodsAdapterRV(getContext(),mChildTypes);
         mGoodsRv.setAdapter(adapter);
-        return view;
     }
 
     @Override

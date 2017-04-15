@@ -58,9 +58,9 @@ public class CustomImageView extends ImageView {
         setmRoundRadius(mRoundRadius);
         array.recycle();
 
-        mMatrix = new Matrix();
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
+        mMatrix = new Matrix();
         mRoundRadius=DEFAUT_ROUND_RADIUS;
     }
 
@@ -118,14 +118,8 @@ public class CustomImageView extends ImageView {
             scale = Math.max( getWidth()*1.0f / bitmap.getWidth(),
                     getHeight()*1.0f / bitmap.getHeight() );
         }
-
-        if (mMatrix==null) {
-            setScaleType(ScaleType.MATRIX);
-            Log.e("mMatrix", "setBitmapShader: "+mMatrix );
-        }
-        mMatrix.setScale(scale, scale);
+        mMatrix.setScale(scale,scale);
         mBitmapShader.setLocalMatrix(mMatrix);
-
         mPaint.setShader(mBitmapShader);
     }
 

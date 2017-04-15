@@ -41,23 +41,21 @@ public class LoginBean{
     public static class DataBean {
         @Override
         public String toString() {
-            return "DataBean{" +
-                    "user_id=" + user_id +
-                    ", sex=" + sex +
-                    ", mobile='" + mobile + '\'' +
-                    ", nickname='" + nickname + '\'' +
-                    ", type=" + type +
-                    ", status=" + status +
-                    ", head_pic=" + head_pic +
-                    ", coupon_count=" + coupon_count +
-                    ", follow=" + follow +
-                    ", waitPay=" + waitPay +
-                    ", waitSend=" + waitSend +
-                    ", waitReceive=" + waitReceive +
-                    ", order_count=" + order_count +
-                    ", refund=" + refund +
-                    ", experience=" + experience +
-                    '}';
+            return  user_id +
+                    "," + sex +
+                    "," + mobile +
+                    "," + nickname +
+                    "," + type +
+                    "," + status +
+                    "," + head_pic +
+                    "," + coupon_count +
+                    "," + follow +
+                    "," + waitPay +
+                    "," + waitSend +
+                    "," + waitReceive +
+                    "," + order_count +
+                    "," + refund +
+                    "," + experience;
         }
 
         /**

@@ -1,28 +1,31 @@
 package com.example.administrator.xiangou.login.find_resetpwd;
 
-import com.example.administrator.xiangou.login.LoginBean;
+import android.util.Log;
+
+import com.example.administrator.xiangou.login.Captcha;
 import com.example.administrator.xiangou.mvp.BasePresenterImpl;
 import com.example.administrator.xiangou.net.BaseSubscriber;
 import com.example.administrator.xiangou.net.ExceptionHandle;
 import com.example.administrator.xiangou.tool.ContextUtils;
 
-import static com.example.administrator.xiangou.tool.ContextUtils.gUser;
-
 public class ResetpwdPresenter extends BasePresenterImpl<ResetpwdContract.View> implements ResetpwdContract.Presenter{
 
     @Override
-    public void resetPwd(final String tel, final String password, String code) {
+    public void resetPwd(String tel, String password, String code) {
         mView.showLoading();
-        addSubscription(mApiService.resetPwd(tel, ContextUtils.MD5(password), code),
-                new BaseSubscriber<LoginBean>(mView.getContext()) {
+        addSubscription(
+                mApiService.resetPwd(tel, ContextUtils.MD5(password) , code) ,
+                new BaseSubscriber<Captcha>(mView.getContext()) {
             @Override
-            public void onNext(LoginBean loginBean) {
-                switch (loginBean.getState().getCode()){
+            public void onNext(Captcha captcha) {
+                switch (captcha.getState().getCode()){
                     case 200:
-                        gUser.setUser(loginBean.getData());
                         mView.resetPwdSuccess();
-                        default:
-                            mView.sendFialRequest(loginBean.getState().getMsg());
+                        Log.e("resetPwd", "onNext: -----------");
+                        break;
+                    default:
+                            mView.sendFialRequest(captcha.getState().getMsg());
+                        break;
                 }
             }
 
@@ -33,6 +36,7 @@ public class ResetpwdPresenter extends BasePresenterImpl<ResetpwdContract.View> 
 
             @Override
             public void onError(ExceptionHandle.ResponeThrowable e) {
+                Log.e("resetPwd", "onError: -----------"+e.getMessage());
                 mView.sendFialRequest(e.getMessage());
             }
         });

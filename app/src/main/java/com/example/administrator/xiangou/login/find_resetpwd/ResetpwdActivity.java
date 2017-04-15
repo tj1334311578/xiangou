@@ -80,7 +80,8 @@ public class ResetpwdActivity extends MVPBaseActivity<ResetpwdContract.View, Res
                 findthreepager_check.setChecked(isChecked);
                 break;
             case R.id.findpswthree_login:
-                mPresenter.resetPwd(mStrs[0],findthreepager_pswagain.getText().toString(),mStrs[1]);
+                Log.e("mstr", "onClick: " + mStrs[0]+" "+mStrs[1]);
+                mPresenter.resetPwd(mStrs[0], findthreepager_pswagain.getText().toString(), mStrs[1]);
                 break;
         }
     }
@@ -94,5 +95,11 @@ public class ResetpwdActivity extends MVPBaseActivity<ResetpwdContract.View, Res
     public void resetPwdSuccess() {
         showToast("密码设置成功!");
         startNewUI(IDLoginActivity.class);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.e("ResetPsw", "onDestroy: -----" );
     }
 }

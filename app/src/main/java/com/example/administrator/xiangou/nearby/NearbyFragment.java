@@ -28,7 +28,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class NearbyFragment extends MVPBaseFragment<NearbyContract.View, NearbyPresenter>
-        implements NearbyContract.View ,View.OnClickListener{
+        implements NearbyContract.View{
     @BindView(R.id.classify_nearby_iv)
     ImageView mClassifyIv;
     @BindView(R.id.scan_nearby_iv)
@@ -53,19 +53,17 @@ public class NearbyFragment extends MVPBaseFragment<NearbyContract.View, NearbyP
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_nearby,container,false);
-        ButterKnife.bind(this,view);
+        return setContextView(inflater,container,R.layout.fragment_nearby);
+    }
 
+    @Override
+    public void initView() {
+        ButterKnife.bind(this,mContextView);
         mClassifyIv.setOnClickListener(this);
         mScanIv.setOnClickListener(this);
         mRockIv.setOnClickListener(this);
-        initTabFragViews(view);
-
-        return view;
-
+        initTabFragViews(mContextView);
     }
-
-
 
     private void initTabFragViews(View view) {
         tabTitles = new String[]{"附近商品","附近商店","附近优惠"};

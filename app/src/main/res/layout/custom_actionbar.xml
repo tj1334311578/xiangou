@@ -78,10 +78,11 @@
         <TextView
             android:layout_width="14dp"
             android:layout_height="14dp"
+            android:paddingTop="1dp"
             android:background="@drawable/news_num"
             android:text="3"
             android:textSize="11sp"
-            android:textColor="@color/whiteBgColor"
+            android:textColor="@color/textcolor_tab_select"
             android:gravity="center"
             android:clickable="true"
             android:id="@+id/news_num_topbar_tv"

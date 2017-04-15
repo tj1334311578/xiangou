@@ -3,6 +3,8 @@ package com.example.administrator.xiangou.tool;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import java.util.Set;
+
 /**
  * @author zhouzongyao
  * @Description 自己封装的共享参数
@@ -52,6 +54,11 @@ public class MySharedPreferences {
         mSpEditor.commit();
     }
 
+    public void putStringSet(String key, Set<String> strSet) {
+        mSpEditor.putStringSet(key, strSet);
+        mSpEditor.commit();
+    }
+
     /**
      * 清空SP里所以数据
      */
@@ -94,9 +101,13 @@ public class MySharedPreferences {
     public long getLong(String key, long defValue) {
         return mSharedPreferences.getLong(key, defValue);
     }
+    public Set<String> getStringSet(String key, Set<String> strSet) {
+        return mSharedPreferences.getStringSet(key, strSet);
+    }
 
     public boolean contains(String key){
         // 判断SP是否包含特定key的数据
         return mSharedPreferences.contains(key);
     }
+
 }

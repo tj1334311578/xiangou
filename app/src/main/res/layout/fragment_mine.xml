@@ -12,39 +12,55 @@
         android:layout_width="match_parent"
         android:layout_height="180dp">
         <ImageView
-            android:layout_width="24dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/personal_set_icon"
-            android:layout_alignTop="@+id/mine_circle_imageview"
-            android:id="@+id/mine_setup"
+            android:src="@mipmap/mine_setting_icon"
+            android:layout_alignTop="@+id/mine_user_img_iv"
+            android:id="@+id/mine_setup_iv"
             android:layout_marginLeft="13dp"
             android:adjustViewBounds="true"/>
-        <com.example.administrator.xiangou.tool.SelectImageView
+        <com.example.administrator.xiangou.tool.CustomImageView
             android:layout_width="62dp"
             android:layout_height="wrap_content"
-            android:src="@mipmap/personal_head_portrait_picture"
-            android:id="@+id/mine_circle_imageview"
+            app:civ_type="TYPE_CIRCLE"
+            android:src="@mipmap/mine_user_img"
+            android:id="@+id/mine_user_img_iv"
             android:layout_marginTop="37dp"
             android:layout_centerHorizontal="true"
             android:adjustViewBounds="true"/>
-        <ImageView
-            android:layout_width="24dp"
+        <RelativeLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/personal_new_icon"
-            android:id="@+id/mine_message"
-            android:layout_alignTop="@id/mine_circle_imageview"
-            android:layout_marginRight="13dp"
             android:layout_alignParentRight="true"
-            android:adjustViewBounds="true"/>
+            android:id="@+id/mine_message_rl"
+            android:layout_alignTop="@id/mine_user_img_iv"
+            android:layout_marginRight="13dp">
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@mipmap/personal_new_icon"
+                android:id="@+id/mine_message_iv"
+                android:adjustViewBounds="true"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignRight="@id/mine_message_iv"
+                android:layout_marginRight="3dp"
+                android:text="3"
+                android:textSize="12sp"
+                android:textColor="@color/textcolor_tab_select"
+                android:id="@+id/mine_message_tv"/>
+        </RelativeLayout>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="用户名显示"
+            android:text="用户名"
             android:layout_marginTop="6dp"
-            android:id="@+id/username"
+            android:id="@+id/mine_username_tv"
             android:textColor="@color/whiteBgColor"
             android:textSize="14sp"
-            android:layout_below="@+id/mine_circle_imageview"
+            android:layout_below="@+id/mine_user_img_iv"
             android:layout_centerHorizontal="true"
             />
         <LinearLayout
@@ -56,25 +72,34 @@
             android:gravity="center_vertical"
             android:layout_width="88dp"
             android:layout_height="23dp">
-            <ImageView
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="21dp"
-                android:id="@+id/Level_img"
+                android:id="@+id/mine_level_tv"
+                android:text="V0"
+                android:textSize="10sp"
+                android:gravity="center"
+                android:textColor="@color/white"
                 android:adjustViewBounds="true"
-                android:src="@drawable/error"/>
+                android:background="@mipmap/mine_vip_img"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="闲购值: "
+                android:text="闲购值"
+                android:layout_marginLeft="5dp"
                 android:textColor="#e60b0b0b"
                 android:textSize="11sp"
+                android:paddingRight="2dp"
+                android:drawablePadding="2dp"
+                android:drawableRight="@mipmap/mine_line_between"
                 />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="639"
-                android:id="@+id/Level_number"
-                android:textColor="#ef2b86"
+                android:id="@+id/mine_level_number_tv"
+                android:textColor="@color/textcolor_tab_select"
                 android:textSize="11sp"
                 />
         </LinearLayout>
@@ -83,20 +108,20 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_marginTop="5dp"
-        android:layout_height="70dp">
+        android:layout_height="wrap_content">
 
         <com.example.administrator.xiangou.tool.DrawableTextView
             android:id="@+id/mine_attention"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="70dp"
+            android:paddingTop="3dp"
             android:textSize="14sp"
             android:gravity="center"
             android:drawablePadding="5dp"
             android:layout_centerVertical="true"
             android:textColor="@color/textcolor_gray"
-            app:topDrawable="@mipmap/personal_attention_icon"
+            app:topDrawable="@mipmap/mine_attention_icon"
             app:topDrawableHeight="50dp"
             app:topDrawableWidth="50dp"
             android:text="关注"/>
@@ -106,9 +131,10 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="70dp"
+            android:paddingTop="3dp"
             android:textSize="14sp"
             android:gravity="center"
-            app:topDrawable="@mipmap/personal_discount_coupon_icon"
+            app:topDrawable="@mipmap/mine_discount_coupon_icon"
             app:topDrawableHeight="50dp"
             app:topDrawableWidth="50dp"
             android:textColor="@color/textcolor_gray"
@@ -120,11 +146,12 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="70dp"
+            android:paddingTop="3dp"
             android:textSize="14sp"
             android:gravity="center"
             android:drawablePadding="5dp"
             android:textColor="@color/textcolor_gray"
-            app:topDrawable="@mipmap/personal_sign_in_icon"
+            app:topDrawable="@mipmap/mine_mark_icon"
             app:topDrawableWidth="50dp"
             app:topDrawableHeight="50dp"
             android:text="签到"/>
@@ -139,8 +166,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_marginLeft="13dp"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
         android:layout_marginRight="13dp"
         android:layout_height="wrap_content">
        <TextView
@@ -161,7 +188,7 @@
             android:id="@+id/see_all_orders"
             android:textColor="@color/textcolor_mine_black3"
             android:layout_alignParentRight="true"
-            android:drawableRight="@mipmap/mine_showright"/>
+            android:drawableRight="@mipmap/mine_all_icon"/>
     </RelativeLayout>
     <View
         android:layout_width="match_parent"
@@ -174,76 +201,154 @@
         android:orientation="horizontal"
         android:layout_marginTop="5dp"
         android:gravity="center_vertical"
-        android:layout_height="wrap_content">
-
-        <com.example.administrator.xiangou.tool.DrawableTextView
+        android:layout_height="60dp">
+        <RelativeLayout
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="60dp"
-            android:text="待付款"
-            android:id="@+id/mine_unpaid"
-            android:textColor="@color/textcolor_gray"
-            android:textSize="12sp"
-            app:topDrawable="@mipmap/personal_non_payment_icon"
-            app:topDrawableWidth="26dp"
-            app:topDrawableHeight="26dp"
-            android:drawablePadding="5dp"
-            />
-
-        <com.example.administrator.xiangou.tool.DrawableTextView
+            android:layout_height="match_parent">
+            <com.example.administrator.xiangou.tool.DrawableTextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:text="待付款"
+                android:id="@+id/mine_unpaid"
+                android:textColor="@color/textcolor_gray"
+                android:textSize="12sp"
+                app:topDrawable="@mipmap/mine_non_payment_icon"
+                app:topDrawableWidth="30dp"
+                app:topDrawableHeight="30dp"
+                android:drawablePadding="5dp"
+                />
+            <TextView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:background="@drawable/news_num"
+                android:text="3"
+                android:textSize="11sp"
+                android:textColor="@color/textcolor_tab_select"
+                android:gravity="center"
+                android:id="@+id/mine_unpaid_tv"
+                android:layout_alignRight="@id/mine_unpaid"/>
+        </RelativeLayout>
+        <RelativeLayout
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="60dp"
-            android:text="待发货"
-            android:textColor="@color/textcolor_gray"
-            android:drawablePadding="5dp"
-            android:id="@+id/mine_wait_delivery"
-            android:textSize="12sp"
-            app:topDrawable="@mipmap/personal_to_send_the_goods_icon"
-            app:topDrawableWidth="30dp"
-            app:topDrawableHeight="30dp"
-            />
+            android:layout_height="match_parent">
+            <com.example.administrator.xiangou.tool.DrawableTextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:paddingRight="3dp"
+                android:text="待发货"
+                android:id="@+id/mine_wait_delivery"
+                android:textColor="@color/textcolor_gray"
+                android:textSize="12sp"
+                app:topDrawable="@mipmap/mine_drop_shipping_icon"
+                app:topDrawableWidth="30dp"
+                app:topDrawableHeight="30dp"
+                android:drawablePadding="5dp"
+                />
+            <TextView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:background="@drawable/news_num"
+                android:text="3"
+                android:textSize="11sp"
+                android:textColor="@color/textcolor_tab_select"
+                android:gravity="center"
+                android:id="@+id/mine_wait_delivery_tv"
+                android:layout_alignRight="@id/mine_wait_delivery"/>
+        </RelativeLayout>
 
-        <com.example.administrator.xiangou.tool.DrawableTextView
+        <RelativeLayout
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="60dp"
-            android:text="待收货"
-            android:textColor="@color/textcolor_gray"
-            android:drawablePadding="5dp"
-            app:topDrawable="@mipmap/personal_wait_for_receiving_icon"
-            app:topDrawableWidth="30dp"
-            app:topDrawableHeight="30dp"
-            android:id="@+id/mine_receive_goods"
-            android:textSize="12sp"
-            />
-
-        <com.example.administrator.xiangou.tool.DrawableTextView
+            android:layout_height="match_parent">
+            <com.example.administrator.xiangou.tool.DrawableTextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:paddingRight="3dp"
+                android:text="待收货"
+                android:textColor="@color/textcolor_gray"
+                android:drawablePadding="5dp"
+                app:topDrawable="@mipmap/mine_delivery_icon"
+                app:topDrawableWidth="30dp"
+                app:topDrawableHeight="30dp"
+                android:id="@+id/mine_receive_goods"
+                android:textSize="12sp"
+                />
+            <TextView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:background="@drawable/news_num"
+                android:text="3"
+                android:textSize="11sp"
+                android:textColor="@color/textcolor_tab_select"
+                android:gravity="center"
+                android:clickable="true"
+                android:id="@+id/mine_receive_goods_tv"
+                android:layout_alignRight="@id/mine_receive_goods"/>
+        </RelativeLayout>
+        <RelativeLayout
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="60dp"
-            android:text="待评价"
-            android:textColor="@color/textcolor_gray"
-            android:id="@+id/mine_pending_evaluation"
-            android:textSize="12sp"
-            android:drawablePadding="5dp"
-            app:topDrawable="@mipmap/personal_to_evaluate_icon"
-            app:topDrawableWidth="30dp"
-            app:topDrawableHeight="30dp"
-            />
-
-        <com.example.administrator.xiangou.tool.DrawableTextView
+            android:layout_height="match_parent">
+            <com.example.administrator.xiangou.tool.DrawableTextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:text="待评价"
+                android:textColor="@color/textcolor_gray"
+                android:drawablePadding="5dp"
+                app:topDrawable="@mipmap/mine_estimate_icon"
+                app:topDrawableWidth="30dp"
+                app:topDrawableHeight="30dp"
+                android:id="@+id/mine_pending_evaluation"
+                android:textSize="12sp"
+                />
+            <TextView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:background="@drawable/news_num"
+                android:text="3"
+                android:textSize="11sp"
+                android:textColor="@color/textcolor_tab_select"
+                android:gravity="center"
+                android:clickable="true"
+                android:id="@+id/mine_pending_evaluation_tv"
+                android:layout_alignRight="@id/mine_pending_evaluation"/>
+        </RelativeLayout>
+        <RelativeLayout
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="60dp"
-            android:text="退货/售后"
-            android:textColor="@color/textcolor_gray"
-            android:textSize="12sp"
-            android:drawablePadding="5dp"
-            app:topDrawable="@mipmap/personal_sales_return_icon"
-            app:topDrawableWidth="30dp"
-            app:topDrawableHeight="30dp"
-            android:id="@+id/mine_returns_sales"/>
+            android:layout_height="match_parent">
+            <com.example.administrator.xiangou.tool.DrawableTextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:text="退货/售后"
+                android:textColor="@color/textcolor_gray"
+                android:drawablePadding="5dp"
+                app:topDrawable="@mipmap/mine_sales_icon"
+                app:topDrawableWidth="30dp"
+                app:topDrawableHeight="30dp"
+                android:id="@+id/mine_returns_sales"
+                android:textSize="12sp"
+                />
+            <TextView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:background="@drawable/news_num"
+                android:text="3"
+                android:textSize="11sp"
+                android:layout_marginRight="5dp"
+                android:textColor="@color/textcolor_tab_select"
+                android:gravity="center"
+                android:clickable="true"
+                android:id="@+id/mine_returns_sales_tv"
+                android:layout_alignRight="@id/mine_returns_sales"/>
+        </RelativeLayout>
     </LinearLayout>
     <View
         android:layout_width="match_parent"

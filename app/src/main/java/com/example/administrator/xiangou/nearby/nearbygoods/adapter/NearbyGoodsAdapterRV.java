@@ -10,8 +10,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.administrator.xiangou.R;
-import com.example.administrator.xiangou.base.BaseAdapter;
-import com.example.administrator.xiangou.base.BaseViewHolder;
+import com.example.administrator.xiangou.base.RVBaseAdapter;
+import com.example.administrator.xiangou.base.RVBaseViewHolder;
 import com.example.administrator.xiangou.nearby.ChildType;
 import com.example.administrator.xiangou.nearby.nearbygoods.GoodsBean;
 import com.example.administrator.xiangou.tool.ContextUtils;
@@ -24,7 +24,7 @@ import java.util.List;
  * Created by zhouzongyao on 2017/3/13.
  */
 
-public class NearbyGoodsAdapter extends BaseAdapter<ChildType> implements BaseAdapter.OnMineItemClickListener{
+public class NearbyGoodsAdapterRV extends RVBaseAdapter<ChildType> implements RVBaseAdapter.OnMineItemClickListener{
 //    public static final int TYPE_DEFAULT = 0;
     public static final int TYPE_CLOTHING = 1;
     public static final int TYPE_MAKEUP = 2;
@@ -32,12 +32,12 @@ public class NearbyGoodsAdapter extends BaseAdapter<ChildType> implements BaseAd
 
     private RecyclerView mClothingRv,mMakeupRv,mHouseholdsRv;
 
-    public NearbyGoodsAdapter(Context context, List<ChildType> mDatas) {
+    public NearbyGoodsAdapterRV(Context context, List<ChildType> mDatas) {
         super(context, mDatas);
     }
 
     @Override
-    public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RVBaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         switch (viewType){
             case TYPE_CLOTHING:
                 setLayoutResId(R.layout.nearby_goods_clothings);
@@ -89,7 +89,7 @@ public class NearbyGoodsAdapter extends BaseAdapter<ChildType> implements BaseAd
 
 
     @Override
-    protected void bindData(BaseViewHolder holder, ChildType childType, int position) {
+    protected void bindData(RVBaseViewHolder holder, ChildType childType, int position) {
         switch (childType.getChildType()){
             case TYPE_CLOTHING:
                 bindClothing(holder);
@@ -103,7 +103,7 @@ public class NearbyGoodsAdapter extends BaseAdapter<ChildType> implements BaseAd
         }
     }
 
-    public void bindClothing(BaseViewHolder holder) {
+    public void bindClothing(RVBaseViewHolder holder) {
         ImageView mAdvsIv = holder.getImageView(R.id.advs_goods_nearby);
         ImageView mIcon = holder.getImageView(R.id.icon_child_nearbygoods);
         TextView mText = holder.getTextView(R.id.text_child_nearbygoods);
@@ -128,11 +128,11 @@ public class NearbyGoodsAdapter extends BaseAdapter<ChildType> implements BaseAd
         for (int i=0;i<8;i++) {
             list.add(new GoodsBean(R.mipmap.nearby_goods_clothing_dfimg,"休闲女装"));
         }
-        ClothingAdapter goodsAdapter = new ClothingAdapter(mContext,R.layout.child_clothing_nearbygoods,list);
+        ClothingAdapterRV goodsAdapter = new ClothingAdapterRV(mContext,R.layout.child_clothing_nearbygoods,list);
         goodsAdapter.setOnMineItemClickListener(this);
         mClothingRv.setAdapter(goodsAdapter);
     }
-    public void bindMakeup(BaseViewHolder holder) {
+    public void bindMakeup(RVBaseViewHolder holder) {
         ImageView mIcon = holder.getImageView(R.id.icon_child_nearbygoods);
         TextView mText = holder.getTextView(R.id.text_child_nearbygoods);
         TextView mDescribe = holder.getTextView(R.id.describe_child_nearby);
@@ -155,11 +155,11 @@ public class NearbyGoodsAdapter extends BaseAdapter<ChildType> implements BaseAd
         for (int i=0;i<4;i++) {
             list.add(new GoodsBean(R.mipmap.nearby_goods_makeup_dfimg,"必备神器"));
         }
-        MakeupAdapter makeupAdapter = new MakeupAdapter(mContext,R.layout.child_makeup_nearbygoods,list);
+        MakeupAdapterRV makeupAdapter = new MakeupAdapterRV(mContext,R.layout.child_makeup_nearbygoods,list);
         makeupAdapter.setOnMineItemClickListener(this);
         mMakeupRv.setAdapter(makeupAdapter);
     }
-    public void bindHouseholds(BaseViewHolder holder) {
+    public void bindHouseholds(RVBaseViewHolder holder) {
         ImageView mIcon = holder.getImageView(R.id.icon_child_nearbygoods);
         TextView mText = holder.getTextView(R.id.text_child_nearbygoods);
         TextView mDescribe = holder.getTextView(R.id.describe_child_nearby);
@@ -182,7 +182,7 @@ public class NearbyGoodsAdapter extends BaseAdapter<ChildType> implements BaseAd
         for (int i=0;i<12;i++) {
             list.add(new GoodsBean(R.mipmap.nearby_goods_clothing_dfimg,"生活好帮手"));
         }
-        HouseHoldsAdapter houseHoldsAdapter = new HouseHoldsAdapter(mContext,R.layout.child_households_nearbygoods,list);
+        HouseHoldsAdapterRV houseHoldsAdapter = new HouseHoldsAdapterRV(mContext,R.layout.child_households_nearbygoods,list);
         houseHoldsAdapter.setOnMineItemClickListener(this);
         mHouseholdsRv.setAdapter(houseHoldsAdapter);
     }
@@ -200,8 +200,4 @@ public class NearbyGoodsAdapter extends BaseAdapter<ChildType> implements BaseAd
         }
     }
 
-    @Override
-    public void onMineItemLongClick(View view, int position) {
-
-    }
 }

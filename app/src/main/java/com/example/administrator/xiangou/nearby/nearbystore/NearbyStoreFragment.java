@@ -22,13 +22,12 @@ public class NearbyStoreFragment extends MVPBaseFragment<NearbyStoreContract.Vie
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_nearby_store,container,false);
-        initView(view);
-        return view;
+        return setContextView(inflater,container,R.layout.fragment_nearby_store);
     }
 
-    private void initView(View view) {
-        mNearbyStoreRv = (RecyclerView) view.findViewById(R.id.store_nearby_rv);
+    @Override
+    public void initView() {
+        mNearbyStoreRv = (RecyclerView) mContextView.findViewById(R.id.store_nearby_rv);
         mNearbyStoreRv.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,false));
         mNearbyStoreRv.addItemDecoration(new ItemIntervalDecoration(0,0,8));
         List<StoreBean> beanList = new ArrayList<StoreBean>();
@@ -41,7 +40,7 @@ public class NearbyStoreFragment extends MVPBaseFragment<NearbyStoreContract.Vie
                             "皮皮虾，我们走，去找一个蓝盆友，吃炸鸡喝啤酒，还能一起拉拉手。皮皮虾拉拉手，以后的路一起走，不想再做单身狗，人家也要捶胸口",
                             10086,520,2333));
         }
-        StoreAdapter adapter = new StoreAdapter(getContext(),beanList);
+        StoreAdapterRV adapter = new StoreAdapterRV(getContext(),beanList);
         mNearbyStoreRv.setAdapter(adapter);
     }
 

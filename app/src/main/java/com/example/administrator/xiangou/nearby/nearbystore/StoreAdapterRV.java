@@ -5,7 +5,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.administrator.xiangou.R;
-import com.example.administrator.xiangou.base.BaseViewHolder;
+import com.example.administrator.xiangou.base.RVBaseViewHolder;
+import com.example.administrator.xiangou.base.RVBaseAdapter;
 
 import java.util.List;
 
@@ -14,13 +15,13 @@ import java.util.List;
  * Created by zhouzongyao on 2017/3/14.
  */
 
-public class StoreAdapter extends com.example.administrator.xiangou.base.BaseAdapter<StoreBean> {
-    public StoreAdapter(Context context, List<StoreBean> mDatas) {
+public class StoreAdapterRV extends RVBaseAdapter<StoreBean> {
+    public StoreAdapterRV(Context context, List<StoreBean> mDatas) {
         super(context, R.layout.child_store_nearby, mDatas);
     }
 
     @Override
-    protected void bindData(BaseViewHolder holder, StoreBean storeBean, int position) {
+    protected void bindData(RVBaseViewHolder holder, StoreBean storeBean, int position) {
         holder.getCustomView(R.id.icon_title_store).setImageResource(storeBean.getIconId());
         holder.getTextView(R.id.text_title_store).setText(storeBean.getNameStore());
         holder.getTextView(R.id.distance_title_store).setText("< "+storeBean.getDistance()+"m");

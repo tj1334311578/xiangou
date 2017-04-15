@@ -79,4 +79,5 @@ public class MainActivity extends BaseActivity {
         text.setText(tab.getTitle());
         return view;
     }
+
 }

@@ -12,6 +12,7 @@ import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.ImageView;
 
 import com.example.administrator.xiangou.R;
@@ -57,9 +58,9 @@ public class CustomImageView extends ImageView {
         setmRoundRadius(mRoundRadius);
         array.recycle();
 
+        mMatrix = new Matrix();
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
-        mMatrix = new Matrix();
         mRoundRadius=DEFAUT_ROUND_RADIUS;
     }
 
@@ -82,9 +83,7 @@ public class CustomImageView extends ImageView {
     @Override
     protected void onDraw(Canvas canvas) {
         if (getDrawable()==null) return;
-
-        setBitmapShader();
-
+              setBitmapShader();
         switch (mType) {
             case TYPE_DEFULTE:
                 canvas.drawRect(mRect,mPaint);
@@ -119,7 +118,12 @@ public class CustomImageView extends ImageView {
             scale = Math.max( getWidth()*1.0f / bitmap.getWidth(),
                     getHeight()*1.0f / bitmap.getHeight() );
         }
-        mMatrix.setScale(scale,scale);
+
+        if (mMatrix==null) {
+            setScaleType(ScaleType.MATRIX);
+            Log.e("mMatrix", "setBitmapShader: "+mMatrix );
+        }
+        mMatrix.setScale(scale, scale);
         mBitmapShader.setLocalMatrix(mMatrix);
 
         mPaint.setShader(mBitmapShader);

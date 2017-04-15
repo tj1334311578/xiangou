@@ -4,17 +4,22 @@
     android:layout_height="wrap_content"
     android:gravity="center_horizontal"
     android:orientation="vertical" >
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:id="@+id/popup33view"
+        android:layout_alignParentBottom="true"/>
 
     <LinearLayout
         android:id="@+id/pop_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="13dp"
+        android:layout_above="@+id/popup33view"
         android:background="@color/white"
         android:layout_marginEnd="13dp"
         android:gravity="center_horizontal"
-        android:paddingBottom="40dp"
-        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="33dp"
         android:orientation="vertical" >
 
         <Button

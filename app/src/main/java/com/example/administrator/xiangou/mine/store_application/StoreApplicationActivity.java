@@ -1,49 +1,89 @@
 package com.example.administrator.xiangou.mine.store_application;
 import android.content.Intent;
-import android.content.res.XmlResourceParser;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
-
 import com.example.administrator.xiangou.R;
+import com.example.administrator.xiangou.tool.CustomImageView;
 import com.example.administrator.xiangou.tool.ImageUtils;
-import com.example.administrator.xiangou.tool.MyRefreshLayout;
+import com.example.administrator.xiangou.tool.ReadLocalJsonUtil;
 
-import org.xmlpull.v1.XmlPullParserException;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2017/3/28.
  */
 
 public class StoreApplicationActivity extends PopupWindowsBaseActivity implements View.OnClickListener{
+    /**                                         分割线
+     *                                      通过本地json获取数据
+     * ---------------------------------------------------------------------------------------------
+     */
+    // 判断是否有区
+    private boolean hasArea = false;
+
+    // 省份
+    private String[] mProvinceDatas;
+    // 城市
+    private String[] mCitiesDatas;
+    // 地区
+    private String[] mAreaDatas;
+
+    // 列表选择的省市区
+    private String selectedPro = "";
+    private String selectedCity = "";
+    private String selectedArea = "";
+
+    // 存储省对应的所有市
+    private Map<String, String[]> mCitiesDataMap = new HashMap<String, String[]>();
+    // 存储市对应的所有区
+    private Map<String, String[]> mAreaDataMap = new HashMap<String, String[]>();
+
+    private ArrayAdapter<String> mProvinceAdapter;
+    private ArrayAdapter<String> mCityAdapter;
+    private ArrayAdapter<String> mAreaAdapter;
+    /**                                         分割线
+     * ---------------------------------------------------------------------------------------------
+     */
     private RelativeLayout ID_positive,ID_opposite,logo_potato,Business_license,Lease_contract;
+
     private ImageView backBtn;
     private Spinner province,city,districts;
-    private ArrayList<String> imagepaths=new ArrayList<>();
-    private List<Province> provinceList=new ArrayList<>();
-    private MyRefreshLayout myRefreshLayout;
+//    private List<String> imagepaths=new ArrayList<>();
+    private Map<Integer,String> imgpathMap;
+    private String imagepath;
 
+    /**                                         分割线
+     * ---------------------------------------------------------------------------------------------
+     */
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.application_store);
+        Log.e("intent+++++", "onCreate:" +getIntent().getStringExtra("position") );
+        imgpathMap = new HashMap<>();
         initView();
     }
 
     private void initView() {
-        provinceList=parse();
+
         ID_positive= (RelativeLayout) findViewById(R.id.ID_positive);
         ID_positive.setOnClickListener(this);
         ID_opposite= (RelativeLayout) findViewById(R.id.ID_opposite);
@@ -60,201 +100,254 @@ public class StoreApplicationActivity extends PopupWindowsBaseActivity implement
         province= (Spinner) findViewById(R.id.store_address_province);
         city= (Spinner) findViewById(R.id.store_address_city);
         districts= (Spinner) findViewById(R.id.store_address_districts);
+        //获取json字符串
+        BeginJsonCitisData(ReadLocalJsonUtil.InitData(this));
 
-        ArrayAdapter<Province> provinceArrayAdapter=new ArrayAdapter<Province>(this,android.R.layout.simple_spinner_item);
+        mProvinceAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, mProvinceDatas);
+        mProvinceAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        province.setAdapter(mProvinceAdapter);
+/**
+ * 省级下拉框监听
+ */
+        province.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedPro = "";
+                selectedPro = (String) parent.getSelectedItem();
+                // 根据省份更新城市区域信息
+                updateCity(selectedPro);
+            }
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+/**
+ * 市级下拉框监听
+ */
+        city.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectedCity = "";
+                selectedCity = (String) parent.getSelectedItem();
+                updateArea(selectedCity);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
     }
 
-    /**
-     * 解析xml文件
-     * @return
-     */
-    private List<Province> parse() {
-        List<Province> list=null;
-        Province province=null;
-        List<City> cities=null;
+    private void updateArea(String selectedCity) {
 
-        List<District> districts=null;
-        City city=null;
-        List<District> district=null;
-        // 创建解析器，并制定解析的xml文件
-        XmlResourceParser parser = getResources().getXml(R.xml.provinces);
-        try{
-            int type = parser.getEventType();
-            while(type!=1) {
-                String tag = parser.getName();//获得标签名
-                switch (type) {
-                    case XmlResourceParser.START_DOCUMENT:
-                        list = new ArrayList<Province>();
-                        break;
-                    case XmlResourceParser.START_TAG:
-//                        if ("City".equals(tag)) {
-//                            province=new Province();
-//                            cities = new ArrayList<City>();
-//                            int n =parser.getAttributeCount();
-//                            for(int i=0 ;i<n;i++){
-//                                //获得属性的名和值
-//                                String name = parser.getAttributeName(i);
-//                                String value = parser.getAttributeValue(i);
-//                                if("p_id".equals(name)){
-//                                    province.setID(Integer.parseInt(value));
-//                                }
-//                            }
-//                        }
-//                        if ("pn".equals(tag)){//省名字
-//                            province.setName(parser.nextText());
-//                        }
-//                        if ("c".equals(tag)){//城市
-//                            city = new City();
-//                            districts = new ArrayList<District>();
-//                            int n =parser.getAttributeCount();
-//                            for(int i=0 ;i<n;i++){
-//                                String name = parser.getAttributeName(i);
-//                                String value = parser.getAttributeValue(i);
-//                                if("c_id".equals(name)){
-//                                    city.setId(value);
-//                                }
-//                            }
-//                        }
-//                        if ("cn".equals(tag)){
-//                            city.setName(parser.nextText());
-//                        }
-//                        if ("d".equals(tag)){
-//                            district = new District();
-//                            int n =parser.getAttributeCount();
-//                            for(int i=0 ;i<n;i++){
-//                                String name = parser.getAttributeName(i);
-//                                String value = parser.getAttributeValue(i);
-//                                if("d_id".equals(name)){
-//                                    district.setId(value);
-//                                }
-//                            }
-//                            district.setName(parser.nextText());
-//                            districts.add(district);
-//                        }
-                        break;
-                    case XmlResourceParser.END_TAG:
-//                        if ("c".equals(tag)){
-//                            city.setDistricts(districts);
-//                            cities.add(city);
-//                        }
-//                        if("p".equals(tag)){
-//                            province.setCitys(cities);
-//                            list.add(province);
-//                        }
-                        break;
-                    default:
-                        break;
-                }
-                type = parser.next();
-            }
-        }catch (XmlPullParserException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        /*catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } */
-        catch (NumberFormatException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+        String[] areas = mAreaDataMap.get(selectedCity);
 
-        }catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+        // 存在区
+        if (areas != null) {
+            // 存在区
+            districts.setVisibility(View.VISIBLE);
+            mAreaAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, areas);
+            mAreaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            districts.setAdapter(mAreaAdapter);
+            mAreaAdapter.notifyDataSetChanged();
+            districts.setSelection(0);
+        } else {
+            showToast("没有选择区域");
         }
-        return list;
+    }
+
+    private void updateCity(String pro) {
+        String[] cities = mCitiesDataMap.get(pro);
+        for (int i = 0; i < cities.length; i++) {
+            // 存在区
+            mCityAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, cities);
+            mCityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            city.setAdapter(mCityAdapter);
+            mCityAdapter.notifyDataSetChanged();
+            city.setSelection(0);
+        }
     }
 
     @Override
     public void onClick(View v) {
-
         switch (v.getId()){
             case R.id.ID_positive:
-                showPicturePopupWindow();
+               showPicturePopupWindow(0);
+//                imagepath=getmImagePath();
+                showToast(imagepath);
+                Log.e("ID_position", "onClick: "+imagepath );
                 break;
             case R.id.ID_opposite:
-                showPicturePopupWindow();
+                showPicturePopupWindow(1);
                 break;
             case R.id.logo_potato:
-                showPicturePopupWindow();
+                showPicturePopupWindow(2);
                 break;
             case R.id.Business_license:
-                showPicturePopupWindow();
+                showPicturePopupWindow(3);
                 break;
             case R.id.Lease_contract:
-                showPicturePopupWindow();
+                showPicturePopupWindow(4);
                 break;
             case R.id.store_headback:
                 finish();
                 break;
          }
-
     }
 
+    private void setImg(int requestCode, int resultCode, Intent data){
+        if (resultCode == RESULT_OK) {
+            String imagePath = "";
+            if (data != null && data.getData() != null) {//有数据返回直接使用返回的图片地址
+                imagePath = ImageUtils.getFilePathByFileUri(this, data.getData());
+                imgpathMap.put(requestCode,imagePath);
+            }
+            update(requestCode,imgpathMap);// 刷新图片
+        }
+    }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == SELECT_IMAGE_RESULT_CODE && resultCode == RESULT_OK){
-            String imagePath = "";
-            if(data != null && data.getData() != null){//有数据返回直接使用返回的图片地址
-                imagePath = ImageUtils.getFilePathByFileUri(this, data.getData());
-            }else{//无数据使用指定的图片路径
-                imagePath = mImagePath;
-            }
-            imagepaths.add(imagePath);
-             update(imagepaths);// 刷新图片
-            Log.e("onActivityResult", "onActivityResult: "+imagepaths.toString() );
+        Log.e("TGA", "onActivityResult: "+data.getData());
+        switch (requestCode){
+            case 0:
+                setImg(0,resultCode,data);
+                break;
+            case 1:
+                setImg(1,resultCode,data);
+                break;
+            case 2:
+                setImg(2,resultCode,data);
+                break;
+            case 3:
+                setImg(3,resultCode,data);
+                break;
+            case 4:
+                setImg(4,resultCode,data);
         }
     }
 
-    private void update(ArrayList<String> imagepaths) {
+
+    private void update(int i, Map<Integer, String> imagepaths) {
         Drawable drawable;
         ImageView img;
-        for (int i = 0; i <imagepaths.size() ; i++) {
-            switch (i){
-                case 0:
-                    img=new ImageView(this);
-                    img.setMinimumWidth(ID_positive.getWidth());
-                    img.setMinimumHeight(ID_positive.getHeight());
-                    drawable=new BitmapDrawable(ImageUtils.getImageThumbnail(imagepaths.get(0),ID_positive.getWidth() ,ID_positive.getHeight() ));;
-                    img.setImageDrawable(drawable);
-                    ID_positive.addView(img);
-                    break;
-                case 1:
-                    img=new ImageView(this);
-                    img.setMinimumWidth(ID_positive.getWidth());
-                    img.setMinimumHeight(ID_positive.getHeight());
-                    drawable=new BitmapDrawable(ImageUtils.getImageThumbnail(imagepaths.get(1),ID_positive.getWidth() ,ID_positive.getHeight() ));;
-                    img.setImageDrawable(drawable);
-                    ID_opposite.addView(img);
-                    break;
-                case 2:
-                    img=new ImageView(this);
-                    img.setMinimumWidth(ID_positive.getWidth());
-                    img.setMinimumHeight(ID_positive.getHeight());
-                    drawable=new BitmapDrawable(ImageUtils.getImageThumbnail(imagepaths.get(2),ID_positive.getWidth() ,ID_positive.getHeight() ));;
-                    img.setImageDrawable(drawable);
-                    logo_potato.addView(img);
-                    break;
-                case 3:
-                    img=new ImageView(this);
-                    img.setMinimumWidth(ID_positive.getWidth());
-                    img.setMinimumHeight(ID_positive.getHeight());
-                    drawable=new BitmapDrawable(ImageUtils.getImageThumbnail(imagepaths.get(3),ID_positive.getWidth() ,ID_positive.getHeight() ));;
-                    img.setImageDrawable(drawable);
-                    logo_potato.addView(img);
-                    break;
-                case 4:
-                    img=new ImageView(this);
-                    img.setMinimumWidth(ID_positive.getWidth());
-                    img.setMinimumHeight(ID_positive.getHeight());
-                    drawable=new BitmapDrawable(ImageUtils.getImageThumbnail(imagepaths.get(4),ID_positive.getWidth() ,ID_positive.getHeight() ));;
-                    img.setImageDrawable(drawable);
-                    logo_potato.addView(img);
-                    break;
+        RelativeLayout temp=null;
+        switch (i){
+            case 0:
+                temp= ID_positive;
+                break;
+            case 1:
+                temp= ID_opposite;
+                break;
+            case 2:
+                temp=logo_potato;
+                break;
+            case 3:
+                temp=Business_license;
+                break;
+            case 4:
+                temp=Lease_contract;
+                break;
+            default:
+                break;
+        }
+        img=new ImageView(this);
+        img.setMinimumWidth(temp.getWidth());
+        img.setMinimumHeight(temp.getHeight());
+        drawable=new BitmapDrawable(ImageUtils.getImageThumbnail(imagepaths.get(i),temp.getWidth() ,temp.getHeight() ));
+        img.setImageDrawable(drawable);
+        temp.addView(img);
+    }
+
+    /**
+     * 开始解析城市数据
+     *
+     * @Title: BeginJsonCitisData
+     * @param
+     * @return void
+     * @throws @date
+     *             [2017年4月12日 上午10:22:00]
+     */
+    private void BeginJsonCitisData(String cityJson) {
+        if (!TextUtils.isEmpty(cityJson)) {
+            try {
+                JSONObject object = new JSONObject(cityJson);
+                JSONArray array = object.getJSONArray("citylist");
+
+                // 获取省份的数量
+                mProvinceDatas = new String[array.length()];
+                String mProvinceStr = null;
+                // 循环遍历
+                for (int i = 0; i < array.length(); i++) {
+
+                    // 循环遍历省份，并将省保存在mProvinceDatas[]中
+                    JSONObject mProvinceObject = array.getJSONObject(i);
+                    if (mProvinceObject.has("p")) {
+                        mProvinceStr = mProvinceObject.getString("p");
+                        mProvinceDatas[i] = mProvinceStr;
+                    } else {
+                        mProvinceDatas[i] = "unknown province";
+                    }
+
+                    JSONArray cityArray;
+                    String mCityStr = null;
+                    try {
+                        // 循环遍历省对应下的城市
+                        cityArray = mProvinceObject.getJSONArray("c");
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                        continue;
+                    }
+
+                    mCitiesDatas = new String[cityArray.length()];
+                    for (int j = 0; j < cityArray.length(); j++) {
+                        // 循环遍历城市，并将城市保存在mCitiesDatas[]中
+                        JSONObject mCityObject = cityArray.getJSONObject(j);
+                        if (mCityObject.has("n")) {
+                            mCityStr = mCityObject.getString("n");
+                            mCitiesDatas[j] = mCityStr;
+                        } else {
+                            mCitiesDatas[j] = "unknown city";
+                        }
+
+                        // 循环遍历地区
+                        JSONArray areaArray;
+
+                        try {
+                            // 判断是否含有第三级区域划分，若没有，则跳出本次循环，重新执行循环遍历城市
+                            areaArray = mCityObject.getJSONArray("a");
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            continue;
+                        }
+
+                        // 执行下面过程则说明存在第三级区域
+                        mAreaDatas = new String[areaArray.length()];
+                        for (int m = 0; m < areaArray.length(); m++) {
+
+                            // 循环遍历第三级区域，并将区域保存在mAreaDatas[]中
+                            JSONObject areaObject = areaArray.getJSONObject(m);
+                            if (areaObject.has("s")) {
+                                mAreaDatas[m] = areaObject.getString("s");
+                            } else {
+                                mAreaDatas[m] = "unknown area";
+                            }
+//                            showToast(mAreaDatas[m]);
+                        }
+
+                        // 存储市对应的所有第三级区域
+                        mAreaDataMap.put(mCityStr, mAreaDatas);
+                    }
+
+                    // 存储省份对应的所有市
+                    mCitiesDataMap.put(mProvinceStr, mCitiesDatas);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
             }
         }
     }
+
 }

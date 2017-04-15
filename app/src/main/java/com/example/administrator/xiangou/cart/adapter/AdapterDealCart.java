@@ -1,6 +1,7 @@
 package com.example.administrator.xiangou.cart.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -17,6 +18,7 @@ import com.example.administrator.xiangou.base.BaseAdapter;
 import com.example.administrator.xiangou.base.BaseViewHolder;
 import com.example.administrator.xiangou.cart.model.DealBean;
 import com.example.administrator.xiangou.cart.model.GoodsDealBean;
+import com.example.administrator.xiangou.mine.store_application.StoreApplicationActivity;
 import com.example.administrator.xiangou.tool.ContextUtils;
 
 import java.util.ArrayList;
@@ -129,11 +131,13 @@ public class AdapterDealCart extends BaseAdapter<DealBean> implements View.OnCli
                 break;
             case R.id.cart_ticket_tv:
                 Toast.makeText(mContext, "领券了，领券了", Toast.LENGTH_SHORT).show();
+//                mContext.startActivity(new Intent(mContext, StoreApplicationActivity.class));
                 break;
             case R.id.cart_deal_edit_tv:
                 if (!isEditAll){
                     mAllEditTv = (TextView) v;
                     mAllEditTv.setText("完成");
+
                     isEditAll = true;
                 }else {
                     mAllEditTv = (TextView) v;

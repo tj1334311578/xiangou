@@ -5,10 +5,15 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -32,7 +37,7 @@ public class BaseActivity extends AppCompatActivity {
     };
     private Toast mToast;
 
-//    public static ContextUtils bContextUtils;
+    //    public static ContextUtils bContextUtils;
     public static User bUser;
     public static MySharedPreferences bSharedPreferences;
 
@@ -64,6 +69,16 @@ public class BaseActivity extends AppCompatActivity {
         bSharedPreferences = ContextUtils.gSharedPreferences;
         ButterKnife.bind(this);
         registerExitReceiver();
+
+////        这一行注意！看本文最后的说明！！！！
+//        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
+////        setContentView(getLayoutResId());//把设置布局文件的操作交给继承的子类
+//        ViewGroup contentFrameLayout = (ViewGroup) findViewById(Window.ID_ANDROID_CONTENT);
+//        View parentView = contentFrameLayout.getChildAt(0);
+//        if (parentView != null && Build.VERSION.SDK_INT >= 14) {
+//            parentView.setFitsSystemWindows(true);
+//        }
+        StatusBarCompat.compat(this, Color.RED);
     }
 
     @Override

@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.administrator.xiangou.R;
+import com.example.administrator.xiangou.classification.ClassificationActivity;
 import com.example.administrator.xiangou.login.idlogin.IDLoginActivity;
 import com.example.administrator.xiangou.mine.store_application.StoreApplicationActivity;
 import com.example.administrator.xiangou.mvp.MVPBaseFragment;
@@ -39,7 +40,8 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (!isLogined()){
-            startNewUI(IDLoginActivity.class);
+            //判断是否是登录状态
+//            startNewUI(IDLoginActivity.class);
         }
     }
 
@@ -75,8 +77,13 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
                 TextView tv = (TextView) listView.getChildAt(position).findViewById(R.id.mine_item_text);
                 //等价于=>((TextView)(listView.getChildAt(position).findViewById(R.id.mine_item_text)))
                 Toast.makeText(getContext(),tv.getText() +"被点击了", Toast.LENGTH_SHORT).show();
-                if (position==3){
-                    startActivity(new Intent(getContext(), StoreApplicationActivity.class));
+                switch (position){
+                    case 2:
+                        startActivity(new Intent(getContext(), ClassificationActivity.class));
+                        break;
+                    case 3:
+                        startActivity(new Intent(getContext(), StoreApplicationActivity.class));
+                        break;
                 }
             }
         });

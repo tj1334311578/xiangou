@@ -29,16 +29,18 @@ public class BaseFragment extends Fragment {
 
 //    public static ContextUtils bContextUtils;
     public static User bUser;
-    public static MySharedPreferences bSharedPreferences;
+    public static MySharedPreferences bfSharedPreferences;
     public BaseActivity mBaseActivity;//这里是为了引用BaseActivity的ProgressDialog
-//    public MySharedPreferences bSharedPreferences;
+//    public MySharedPreferences bfSharedPreferences;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        bUser = ContextUtils.gUser;
+        bfSharedPreferences = ContextUtils.gSharedPreferences;
 //        bContextUtils = ContextUtils.getInstance();
-//        bSharedPreferences = bContextUtils.gSharedPreferences;
+//        bfSharedPreferences = bContextUtils.gSharedPreferences;
     }
 
     @Override
@@ -49,8 +51,6 @@ public class BaseFragment extends Fragment {
         mBaseActivity = new BaseActivity();
 
 //        bContextUtils = ContextUtils.getInstance();
-        bUser = ContextUtils.gUser;
-        bSharedPreferences = ContextUtils.gSharedPreferences;
     }
 
     //还可以把统一的toolbar等控件在此初始化
@@ -95,11 +95,11 @@ public class BaseFragment extends Fragment {
 
     //判断用户是否登录
     public boolean isLogined(){
-        return bSharedPreferences.getBoolean(MySharedPreferences.STATUS_LOGIN,false);
+        return bfSharedPreferences.getBoolean(MySharedPreferences.STATUS_LOGIN,false);
     }
     //判断用户注销
     public void logout(){
-        bSharedPreferences.putBoolean(MySharedPreferences.STATUS_LOGIN,false);
+        bfSharedPreferences.putBoolean(MySharedPreferences.STATUS_LOGIN,false);
         startNewUI(IDLoginActivity.class);
     }
 }

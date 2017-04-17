@@ -66,6 +66,7 @@ public class CountDownTimerUtils extends CountDownTimer {
         spannableString.setSpan(span, 5, 7, Spannable.SPAN_INCLUSIVE_EXCLUSIVE);//将倒计时的时间设置为红色
         mTextView.setText(spannableString);
     }
+
     @Override
     public void onFinish() {
         mTextView.setText("重新获取验证码");

@@ -4,9 +4,11 @@ import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.base.AutoRVAdapter;
+import com.example.administrator.xiangou.base.RVBaseAdapter;
 import com.example.administrator.xiangou.nearby.nearbypreferential.model.PreferBean3;
 import com.example.administrator.xiangou.tool.ItemIntervalDecoration;
 
@@ -17,7 +19,7 @@ import java.util.List;
  * Created by Administrator on 2017/4/13.
  * 推荐商品页
  */
-public class ClassificationAdapter extends AutoRVAdapter {
+public class ClassificationAdapter extends AutoRVAdapter implements RVBaseAdapter.OnItemViewClickListener{
     private static Context context;
     private  List<String> list;
     public ClassificationAdapter(Context context, List<String> list) {
@@ -58,6 +60,11 @@ public class ClassificationAdapter extends AutoRVAdapter {
         recy.setAdapter(new ClassificationAdapter2(context,list));
     }
 
+
+    @Override
+    public void setOnItemViewClick(View view, int position) {
+
+    }
 
     private class ClassificationAdapter2 extends AutoRVAdapter {
         private  List<PreferBean3> list;

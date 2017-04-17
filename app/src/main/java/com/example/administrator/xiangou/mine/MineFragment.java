@@ -62,20 +62,17 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
             }
         }
         if (bUser!= null){
-
+            initDate();
         }
     }
 
     @Override
     public void initView() {
-        setbUserBySP(bSharedPreferences.getString("user_info",null));
         Log.e("user", "initView: " +bUser );
         findContentView(R.id.mine_message_rl);
         listView= findContentView(R.id.mine_list,false);
-
         findContentView(R.id.mine_setup_iv);
         mMessageTv = findContentView(R.id.mine_message_tv);
-        setTextToTv(mMessageTv,mine_MsgCount);
         mHeadImgCiv = findContentView(R.id.mine_user_img_iv);
         if (bUser.getHead_pic()==null){
             mHeadImgCiv.setImageResource(R.mipmap.mine_user_img);
@@ -84,28 +81,27 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         }
 
         mUserLevelTv = findContentView(R.id.mine_level_tv);
-        setTextToTv(mUserLevelTv,"V"+bUser.getLevel());
         mLevelNumberTv = findContentView(R.id.mine_level_number_tv);
-        setTextToTv(mLevelNumberTv,bUser.getExperience());
         mUserNameTv = findContentView(R.id.mine_username_tv);
         Log.e("name","initView: " + bUser.getNickname());
-        setTextToTv(mUserNameTv,bUser.getNickname());
 
         findContentView(R.id.mine_attention);
         findContentView(R.id.mine_Coupon);
         findContentView(R.id.mine_sign_in);
         findContentView(R.id.see_all_orders);
 
+        findContentView(R.id.unpaid_Rl);
+        findContentView(R.id.delivery_Rl);
+        findContentView(R.id.receive_Rl);
+        findContentView(R.id.evaluation_Rl);
+        findContentView(R.id.returns_Rl);
+
+
         mUnpaidTv = findContentView(R.id.mine_unpaid_tv);
-        setTextToTv(mUnpaidTv,bUser.getWaitPay());
         mWaitDekiveryTv = findContentView(R.id.mine_wait_delivery_tv);
-        setTextToTv(mWaitDekiveryTv,bUser.getWaitSend());
         mReceiveTv = findContentView(R.id.mine_receive_goods_tv);
-        setTextToTv(mReceiveTv,bUser.getWaitReceive());
         mEvaluationTv = findContentView(R.id.mine_pending_evaluation_tv);
-        setTextToTv(mEvaluationTv,bUser.getWaitCcomment());
         mReturnsOrSalesTv = findContentView(R.id.mine_returns_sales_tv);
-        setTextToTv(mReturnsOrSalesTv,bUser.getRefund());
 
         //ListView禁止滑动设置
         listView.setOnTouchListener(new View.OnTouchListener() {
@@ -129,12 +125,37 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
                 TextView tv = (TextView) listView.getChildAt(position).findViewById(R.id.mine_item_text);
                 //等价于=>((TextView)(listView.getChildAt(position).findViewById(R.id.mine_item_text)))
                 Toast.makeText(getContext(),tv.getText() +"被点击了", Toast.LENGTH_SHORT).show();
+                switch (position){
+                    case 2:
+//                        startNewUI();
+                        break;
+                    case 3:
+                        break;
+                    default:
+                        break;
+                }
                 if (position==3){
                     startActivity(new Intent(getContext(), StoreApplicationActivity.class));
                 }
             }
         });
         initSet();
+        initDate();
+    }
+
+    private void initDate() {
+        if (bSharedPreferences.getString("user_info",null)!=null)
+        setbUserBySP(bSharedPreferences.getString("user_info",null));
+        setTextToTv(mMessageTv,mine_MsgCount);
+
+        setTextToTv(mUserLevelTv,"V"+bUser.getLevel());
+        setTextToTv(mLevelNumberTv,bUser.getExperience());
+        setTextToTv(mUserNameTv,bUser.getNickname());
+        setTextToTv(mUnpaidTv,bUser.getWaitPay());
+        setTextToTv(mWaitDekiveryTv,bUser.getWaitSend());
+        setTextToTv(mReceiveTv,bUser.getWaitReceive());
+        setTextToTv(mEvaluationTv,bUser.getWaitCcomment());
+        setTextToTv(mReturnsOrSalesTv,bUser.getRefund());
     }
 
     @Override
@@ -205,23 +226,23 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
                 Toast.makeText(getActivity(), "点击查看所有订单", Toast.LENGTH_SHORT).show();
                 break;
             //未付款
-            case R.id.mine_unpaid:
+            case R.id.unpaid_Rl:
                 Toast.makeText(getActivity(), "点击未付款", Toast.LENGTH_SHORT).show();
                 break;
             //等待发货
-            case R.id.mine_wait_delivery:
+            case R.id.delivery_Rl:
                 Toast.makeText(getActivity(), "点击等待发货", Toast.LENGTH_SHORT).show();
                 break;
             //待收货
-            case R.id.mine_receive_goods:
+            case R.id.receive_Rl:
                 Toast.makeText(getActivity(), "点击待收货", Toast.LENGTH_SHORT).show();
                 break;
             //待评价
-            case R.id.mine_pending_evaluation:
+            case R.id.evaluation_Rl:
                 Toast.makeText(getActivity(), "点击待评价", Toast.LENGTH_SHORT).show();
                 break;
             //退货or售后
-            case R.id.mine_returns_sales:
+            case R.id.returns_Rl:
                 Toast.makeText(getActivity(), "点击退货or售后", Toast.LENGTH_SHORT).show();
                 break;
         }

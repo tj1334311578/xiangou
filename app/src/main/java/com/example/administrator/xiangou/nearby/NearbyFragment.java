@@ -41,8 +41,8 @@ public class NearbyFragment extends MVPBaseFragment<NearbyContract.View, NearbyP
     private NearbyTabLayoutAdapter mLayoutAdapter;
     private List<Fragment> mTabFragList;
     private String[]tabTitles;
-    private PopupWindow mPopupWindow;
     private List<TextView> mPpwTvs;
+    private PopupWindow mPopupWindow;
     private int nearyDistance;//附近距离
 
     @Override

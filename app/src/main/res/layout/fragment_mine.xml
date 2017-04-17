@@ -207,6 +207,7 @@
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_weight="1"
+            android:id="@+id/unpaid_Rl"
             android:layout_height="match_parent">
 
             <TextView
@@ -238,6 +239,7 @@
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_weight="1"
+            android:id="@+id/delivery_Rl"
             android:layout_height="match_parent">
             <com.example.administrator.xiangou.tool.DrawableTextView
                 android:layout_width="wrap_content"
@@ -268,6 +270,7 @@
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_weight="1"
+            android:id="@+id/receive_Rl"
             android:layout_height="match_parent">
             <com.example.administrator.xiangou.tool.DrawableTextView
                 android:layout_width="wrap_content"
@@ -298,6 +301,7 @@
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_weight="1"
+            android:id="@+id/evaluation_Rl"
             android:layout_height="match_parent">
             <com.example.administrator.xiangou.tool.DrawableTextView
                 android:layout_width="wrap_content"
@@ -327,6 +331,7 @@
         <RelativeLayout
             android:layout_width="0dp"
             android:layout_weight="1"
+            android:id="@+id/returns_Rl"
             android:layout_height="match_parent">
             <com.example.administrator.xiangou.tool.DrawableTextView
                 android:layout_width="wrap_content"

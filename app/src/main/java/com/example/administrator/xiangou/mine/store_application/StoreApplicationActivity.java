@@ -35,6 +35,7 @@ public class StoreApplicationActivity extends PopupWindowsBaseActivity implement
      *                                      通过本地json获取数据
      * ---------------------------------------------------------------------------------------------
      */
+    public static String TAG="bug";
     // 判断是否有区
     private boolean hasArea = false;
 
@@ -104,6 +105,7 @@ public class StoreApplicationActivity extends PopupWindowsBaseActivity implement
         BeginJsonCitisData(ReadLocalJsonUtil.InitData(this));
 
         mProvinceAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, mProvinceDatas);
+        Log.e(TAG, "initView: "+ mProvinceDatas.toString());
         mProvinceAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         province.setAdapter(mProvinceAdapter);
 /**
@@ -281,7 +283,6 @@ public class StoreApplicationActivity extends PopupWindowsBaseActivity implement
                 String mProvinceStr = null;
                 // 循环遍历
                 for (int i = 0; i < array.length(); i++) {
-
                     // 循环遍历省份，并将省保存在mProvinceDatas[]中
                     JSONObject mProvinceObject = array.getJSONObject(i);
                     if (mProvinceObject.has("p")) {
@@ -348,6 +349,7 @@ public class StoreApplicationActivity extends PopupWindowsBaseActivity implement
                 e.printStackTrace();
             }
         }
+
     }
 
 }

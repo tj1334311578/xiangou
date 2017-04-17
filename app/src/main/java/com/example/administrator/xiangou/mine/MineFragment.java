@@ -90,6 +90,13 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         findContentView(R.id.mine_sign_in);
         findContentView(R.id.see_all_orders);
 
+        findContentView(R.id.unpaid_Rl);
+        findContentView(R.id.delivery_Rl);
+        findContentView(R.id.receive_Rl);
+        findContentView(R.id.evaluation_Rl);
+        findContentView(R.id.returns_Rl);
+
+
         mUnpaidTv = findContentView(R.id.mine_unpaid_tv);
         mWaitDekiveryTv = findContentView(R.id.mine_wait_delivery_tv);
         mReceiveTv = findContentView(R.id.mine_receive_goods_tv);
@@ -118,6 +125,15 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
                 TextView tv = (TextView) listView.getChildAt(position).findViewById(R.id.mine_item_text);
                 //等价于=>((TextView)(listView.getChildAt(position).findViewById(R.id.mine_item_text)))
                 Toast.makeText(getContext(),tv.getText() +"被点击了", Toast.LENGTH_SHORT).show();
+                switch (position){
+                    case 2:
+//                        startNewUI();
+                        break;
+                    case 3:
+                        break;
+                    default:
+                        break;
+                }
                 if (position==3){
                     startActivity(new Intent(getContext(), StoreApplicationActivity.class));
                 }
@@ -128,6 +144,7 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
     }
 
     private void initDate() {
+        if (bSharedPreferences.getString("user_info",null)!=null)
         setbUserBySP(bSharedPreferences.getString("user_info",null));
         setTextToTv(mMessageTv,mine_MsgCount);
 
@@ -209,23 +226,23 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
                 Toast.makeText(getActivity(), "点击查看所有订单", Toast.LENGTH_SHORT).show();
                 break;
             //未付款
-            case R.id.mine_unpaid:
+            case R.id.unpaid_Rl:
                 Toast.makeText(getActivity(), "点击未付款", Toast.LENGTH_SHORT).show();
                 break;
             //等待发货
-            case R.id.mine_wait_delivery:
+            case R.id.delivery_Rl:
                 Toast.makeText(getActivity(), "点击等待发货", Toast.LENGTH_SHORT).show();
                 break;
             //待收货
-            case R.id.mine_receive_goods:
+            case R.id.receive_Rl:
                 Toast.makeText(getActivity(), "点击待收货", Toast.LENGTH_SHORT).show();
                 break;
             //待评价
-            case R.id.mine_pending_evaluation:
+            case R.id.evaluation_Rl:
                 Toast.makeText(getActivity(), "点击待评价", Toast.LENGTH_SHORT).show();
                 break;
             //退货or售后
-            case R.id.mine_returns_sales:
+            case R.id.returns_Rl:
                 Toast.makeText(getActivity(), "点击退货or售后", Toast.LENGTH_SHORT).show();
                 break;
         }

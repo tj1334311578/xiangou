@@ -28,7 +28,7 @@ public class ReadLocalJsonUtil {
             byte[] data = new byte[is.available()];
             int len = -1;
             while ((len = is.read(data)) != -1) {
-                sb.append(new String(data, 0, len, "gb2312"));
+                sb.append(new String(data, 0, len, "UTF-8"));
             }
             is.close();
             return sb.toString();

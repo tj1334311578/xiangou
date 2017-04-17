@@ -12,6 +12,7 @@ import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.ImageView;
 
 import com.example.administrator.xiangou.R;
@@ -82,9 +83,7 @@ public class CustomImageView extends ImageView {
     @Override
     protected void onDraw(Canvas canvas) {
         if (getDrawable()==null) return;
-
-        setBitmapShader();
-
+              setBitmapShader();
         switch (mType) {
             case TYPE_DEFULTE:
                 canvas.drawRect(mRect,mPaint);
@@ -119,11 +118,8 @@ public class CustomImageView extends ImageView {
             scale = Math.max( getWidth()*1.0f / bitmap.getWidth(),
                     getHeight()*1.0f / bitmap.getHeight() );
         }
-//        if (mMatrix==null)
-//            setScaleType(ScaleType.MATRIX);
         mMatrix.setScale(scale,scale);
         mBitmapShader.setLocalMatrix(mMatrix);
-
         mPaint.setShader(mBitmapShader);
     }
 

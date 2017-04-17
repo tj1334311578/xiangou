@@ -134,5 +134,4 @@
             app:leftDrawable="@mipmap/personal_attention_icon"
             app:leftDrawableHeight="16dp"
             app:leftDrawableWidth="16dp"/>
-
 </RelativeLayout>

@@ -3,6 +3,11 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.2"
+    compileOptions.encoding="UTF-8"
+//    去除掉PNG合法性检测
+    aaptOptions.cruncherEnabled = false
+    aaptOptions.useNewCruncher = false
+
     defaultConfig {
         applicationId "com.example.administrator.xiangou"
         minSdkVersion 19

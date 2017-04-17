@@ -51,6 +51,7 @@
         />
    <Spinner
        android:layout_width="105dp"
+       android:backgroundTint="#979595"
        android:id="@+id/goods_model_spinner"
        android:layout_alignTop="@id/goods_model_model"
        android:layout_toEndOf="@id/goods_model_model"
@@ -68,6 +69,7 @@
         android:text="颜色："
         />
     <Spinner
+        android:backgroundTint="#979595"
         android:layout_width="match_parent"
         android:id="@+id/goods_model_color_spinner"
         android:layout_alignTop="@id/goods_model_model"
@@ -107,6 +109,7 @@
                 android:textSize="14sp"
                 android:text="XXS"/>
         </LinearLayout>
+
         <LinearLayout
             android:layout_rowWeight="1"
             android:layout_columnWeight="1">
@@ -409,7 +412,101 @@
                 android:text="删除"
                 />
         </TableRow>
-
     </TableLayout>
+    <RelativeLayout
+        android:layout_below="@+id/goods_model_tableLayout"
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#e7e7e7"/>
+        <TextView
+            android:layout_marginTop="15dp"
+            android:id="@+id/goods_model_attribute_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15sp"
+            android:text="商品属性"/>
+        <GridLayout
+            android:layout_below="@id/goods_model_attribute_tv"
+            android:layout_alignStart="@id/goods_model_attribute_tv"
+            android:layout_width="match_parent"
+            android:layout_marginEnd="15dp"
+            android:rowCount="2"
+            android:columnCount="2"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_marginTop="15dp"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                >
+                <TextView
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:text="面料："
+                    android:layout_height="match_parent" />
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:backgroundTint="#979595"
+                    android:layout_height="match_parent">
+                </Spinner>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="年份季节："
+                    android:gravity="center"
+                    android:layout_height="match_parent" />
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:backgroundTint="#979595"
+                    android:layout_height="match_parent">
+                </Spinner>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="图案："
+                    android:gravity="center"
+                    android:layout_height="match_parent" />
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:backgroundTint="#979595"
+                    android:layout_height="match_parent">
+                </Spinner>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="15dp"
+                android:orientation="horizontal"
+                android:layout_rowWeight="1"
+                android:layout_columnWeight="1"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:text="组合形式："
+                    android:gravity="center"
+                    android:layout_height="match_parent" />
+                <Spinner
+                    android:layout_width="match_parent"
+                    android:backgroundTint="#979595"
+                    android:layout_height="match_parent">
+                </Spinner>
+            </LinearLayout>
+        </GridLayout>
+    </RelativeLayout>
 
 </RelativeLayout>

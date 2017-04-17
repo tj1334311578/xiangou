@@ -10,7 +10,6 @@ public class City {
     private int ID,PID,ZipCode;
     private String CityName;
     private List<District> districtsList;
-
     public List<District> getDistrictsList() {
         return districtsList;
     }

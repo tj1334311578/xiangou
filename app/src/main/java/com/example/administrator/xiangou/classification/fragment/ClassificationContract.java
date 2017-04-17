@@ -1,10 +1,11 @@
-package com.example.administrator.xiangou.nearby;
+package com.example.administrator.xiangou.classification.fragment;
+
 
 import com.example.administrator.xiangou.mvp.BasePresenter;
 import com.example.administrator.xiangou.mvp.BaseView;
 
-public class NearbyContract {
-    public interface View extends BaseView {
+public class ClassificationContract {
+    interface View extends BaseView {
         
     }
 

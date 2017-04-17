@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SimpleItemAnimator;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,7 +79,7 @@ public class CartFragment extends MVPBaseFragment<CartContract.View, CartPresent
         mDealRv.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,false));
         mDealRv.addItemDecoration(new ItemIntervalDecoration(0,0,8));
 
-        mDealRv.setHasFixedSize(true);
+//        mDealRv.setHasFixedSize(true);
         ((SimpleItemAnimator)mDealRv.getItemAnimator()).setSupportsChangeAnimations(false);
 
         //模拟数据
@@ -139,17 +140,16 @@ public class CartFragment extends MVPBaseFragment<CartContract.View, CartPresent
                 }else {
                     mAllGoodsCb.setChecked(false);
                 }
-
                 if (isChecked){
                     for (int i = 0; i < mMergeBeanList.get(position).getCartAllCbBean().getList().size(); i++) {
-                        mMergeBeanList.get(position).getCartAllCbBean().getList().get(i).setIscheck(true);
+                        if (!mMergeBeanList.get(position).getCartAllCbBean().getList().get(i).ischeck()) {
+                            mMergeBeanList.get(position).getCartAllCbBean().getList().get(i).setIscheck(true);
+                        }
                     }
                 }else {
-
+                    // 解决--点击取消选择商品时，店铺全选按钮取消选择状态，会变成全不选的bug
                     if (allItemSelect(position) == mMergeBeanList.get(position).getCartAllCbBean().getList().size()){
                         for (int i = 0; i < mMergeBeanList.get(position).getCartAllCbBean().getList().size(); i++) {
-                            // 解决点击取消选择商品时，
-                            // 店铺全选按钮取消选择状态，不会不变成全不选
                             if (mMergeBeanList.get(position).getCartAllCbBean().getList().get(i).ischeck()){
                                 mMergeBeanList.get(position).getCartAllCbBean().getList().get(i).setIscheck(false);
                             }
@@ -168,6 +168,13 @@ public class CartFragment extends MVPBaseFragment<CartContract.View, CartPresent
                     mMergeBeanList.get(parentposition).getCartAllCbBean().setIsCheck(true);
                 }else {
                     mMergeBeanList.get(parentposition).getCartAllCbBean().setIsCheck(false);
+                }
+                if (mMergeBeanList.get(parentposition).getCartAllCbBean().ischeck()){
+                    for (int i = 0; i < mMergeBeanList.get(parentposition).getCartAllCbBean().getList().size(); i++) {
+                        if (!mMergeBeanList.get(parentposition).getCartAllCbBean().getList().get(i).ischeck()) {
+                            mMergeBeanList.get(parentposition).getCartAllCbBean().getList().get(i).setIscheck(true);
+                        }
+                    }
                 }
                 UpdateRecyclerView(parentposition);
             }
@@ -210,22 +217,26 @@ public class CartFragment extends MVPBaseFragment<CartContract.View, CartPresent
                     }
                 }
             }
+            UpdateRecyclerView(0,mMergeBeanList.size()-1);//更新
         }else {
-            //全不选
-            for (int i = 0; i < mMergeBeanList.size(); i++) {
-                //选择店铺
-                if (mMergeBeanList.get(i).getCartAllCbBean().ischeck()){
-                    mMergeBeanList.get(i).getCartAllCbBean().setIsCheck(false);
-                }
-                //店铺里的商品
-                for (int j = 0; j < mMergeBeanList.get(i).getCartAllCbBean().getList().size(); j++) {
-                    if (mMergeBeanList.get(i).getCartAllCbBean().getList().get(j).ischeck()){
-                        mMergeBeanList.get(i).getCartAllCbBean().getList().get(j).setIscheck(false);
+            //全不选时执行
+            if (allSelect() == mMergeBeanList.size()) {
+                Log.e("allSelect", "here is unAllselect: " +allSelect() );
+                for (int i = 0; i < mMergeBeanList.size(); i++) {
+                    //选择店铺
+                    if (mMergeBeanList.get(i).getCartAllCbBean().ischeck()) {
+                        mMergeBeanList.get(i).getCartAllCbBean().setIsCheck(false);
+                    }
+                    //店铺里的商品
+                    for (int j = 0; j < mMergeBeanList.get(i).getCartAllCbBean().getList().size(); j++) {
+                        if (mMergeBeanList.get(i).getCartAllCbBean().getList().get(j).ischeck()) {
+                            mMergeBeanList.get(i).getCartAllCbBean().getList().get(j).setIscheck(false);
+                        }
                     }
                 }
+                UpdateRecyclerView(0,mMergeBeanList.size()-1);//更新
             }
         }
-        UpdateRecyclerView(0,mMergeBeanList.size()-1);//更新
     }
     /**
      *解决Recycleyview刷新报错问题

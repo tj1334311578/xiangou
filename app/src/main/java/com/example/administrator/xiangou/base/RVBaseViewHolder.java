@@ -73,7 +73,6 @@ public class RVBaseViewHolder extends RecyclerView.ViewHolder{
     }
     public CheckBox getCheckBox(int id) {
         CheckBox cbView = findView(id);
-//        cbView.setTag(new Integer(-2));
         return cbView;}
 
     public Banner getBanner(int id){

@@ -19,14 +19,6 @@ public abstract class RVBaseAdapter<T> extends RecyclerView.Adapter<RVBaseViewHo
     /**
      * 提供itemview监听
      */
-//    protected OnBaseClickListener mOnBaseClickListener;
-//    public interface OnBaseClickListener {
-//        void setOnViewClick(View view, int position);
-////        void onMineItemLongClick(View view, int position);
-//    }
-//    public void setOnBaseClickListener(OnBaseClickListener baseClickListener) {
-//        this.mOnBaseClickListener = baseClickListener;
-//    }
     protected OnItemViewClickListener mOnItemViewClickListener;
     public interface OnItemViewClickListener {
         void setOnItemViewClick(View view, int position);

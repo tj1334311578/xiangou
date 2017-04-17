@@ -72,10 +72,12 @@ public class AdapterDealCartRV extends RVBaseAdapter<CartMergeBean> implements V
         holder.getTextView(R.id.cart_deal_edit_tv).setOnClickListener(this);
 
         mGoodsRv = holder.getRecyclerView(R.id.cart_item_goods_rv);
-        mGoodsRv.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
+        //使用itemview的context
+        mGoodsRv.setLayoutManager(new LinearLayoutManager( holder.getItemView().getContext() , LinearLayoutManager.VERTICAL, false));
+        mGoodsRv.setHasFixedSize(true);
         ((SimpleItemAnimator)mGoodsRv.getItemAnimator()).setSupportsChangeAnimations(false);
 
-        mAdapterItemGoodsDealRv = new AdapterItemGoodsDealRvRV(mContext, mDatas.get(pos).getMergeItemBeanList());
+        mAdapterItemGoodsDealRv = new AdapterItemGoodsDealRvRV( holder.getItemView().getContext(), mDatas.get(pos).getMergeItemBeanList());
         mAdapterItemGoodsDealRv.setOnCheckBoxClickListener(new AdapterItemGoodsDealRvRV.OnCheckBoxClickListener() {
             @Override
             public void setOnCheckBoxClick(boolean isChecked, int position) {
@@ -98,6 +100,8 @@ public class AdapterDealCartRV extends RVBaseAdapter<CartMergeBean> implements V
                 +goodsAllPrice+"===="+ContextUtils.S2places(dealBean.getGoodsFreePrice()-goodsAllPrice));
 
         holder.getTextView(R.id.cart_item_free_addon).setOnClickListener(this);
+
+        holder.getItemView().setTag(mDatas.get(pos));
     }
 
 

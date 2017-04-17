@@ -33,7 +33,7 @@ public class AdapterItemGoodsDealRvRV extends RVBaseAdapter<CartMergeItemBean> i
     @Override
     protected void bindData(RVBaseViewHolder holder, CartMergeItemBean cartMergeItemBean, final int position) {
         mItemCbBean = cartMergeItemBean.getItemCbBean();
-        holder.getItemView().setTag(position);
+//        holder.getItemView().setTag(position);
         holder.getItemView().setOnClickListener(this);
         goodsAllPrice = cartMergeItemBean.getGoodsDealBean().getGoodsPrice()*cartMergeItemBean.getGoodsDealBean().getGoodsCount();
         mItemCb = holder.getCheckBox(R.id.cart_item_checkBox);
@@ -58,15 +58,16 @@ public class AdapterItemGoodsDealRvRV extends RVBaseAdapter<CartMergeItemBean> i
         originalprice.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG|Paint.ANTI_ALIAS_FLAG);//设置中划线并加清晰
         holder.getTextView(R.id.item_cart_item_goods_count).setText("x"+cartMergeItemBean.getGoodsDealBean().getGoodsCount());
         holder.getTextView(R.id.item_cart_item_goods_discount).setText(cartMergeItemBean.getGoodsDealBean().getGoodsDiscount()+"折");
-    }
 
-    protected OnCheckBoxClickListener mOnCheckBoxClickListener;
+        holder.getItemView().setId(position);
+    }
 
     @Override
     public void onClick(View v) {
 
     }
 
+    protected OnCheckBoxClickListener mOnCheckBoxClickListener;
     public interface OnCheckBoxClickListener {
         //回调函数 将店铺的checkbox的点击变化事件进行回调
         void setOnCheckBoxClick(boolean isChecked, int position);

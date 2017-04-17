@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.administrator.xiangou.R;
+import com.example.administrator.xiangou.classification.fragment.ClassificationTabActivity;
 import com.example.administrator.xiangou.login.idlogin.IDLoginActivity;
 import com.example.administrator.xiangou.mine.store_application.StoreApplicationActivity;
 import com.example.administrator.xiangou.mvp.MVPBaseFragment;
@@ -127,15 +128,13 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
                 Toast.makeText(getContext(),tv.getText() +"被点击了", Toast.LENGTH_SHORT).show();
                 switch (position){
                     case 2:
-//                        startNewUI();
+                        startNewUI(ClassificationTabActivity.class);
                         break;
                     case 3:
+                        startNewUI(StoreApplicationActivity.class);
                         break;
                     default:
                         break;
-                }
-                if (position==3){
-                    startActivity(new Intent(getContext(), StoreApplicationActivity.class));
                 }
             }
         });

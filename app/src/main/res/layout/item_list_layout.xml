@@ -2,8 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
+    android:background="@color/white"
     android:orientation="vertical" >
 <RelativeLayout
+    android:background="#f6f7f7"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
     <TextView
@@ -11,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="57dp"
         android:gravity="center"
-        android:textColor="#000"
+        android:textColor="#e6161616"
         android:textSize="14sp" />
     <View
         android:layout_width="2dp"
@@ -26,7 +28,7 @@
         android:id="@+id/line"
         android:layout_width="fill_parent"
         android:layout_height="1dp"
-        android:background="#cccccc"
+        android:background="@color/white"
         android:contentDescription="@null"
         android:visibility="visible" />
 </LinearLayout>

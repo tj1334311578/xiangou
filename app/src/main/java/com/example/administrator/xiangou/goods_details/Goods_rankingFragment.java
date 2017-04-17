@@ -47,11 +47,6 @@ public class Goods_rankingFragment extends MVPBaseFragment<NearbyContract.View, 
         initTabFragViews();
     }
 
-    @Override
-    public void initView() {
-
-    }
-
     private void initTabFragViews() {
         tabTitles = new String[]{"综合", "销量", "新品", "价格"};
         mTabFragList = new ArrayList<>();

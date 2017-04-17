@@ -19,10 +19,10 @@ public class DealBean {
         mList = list;
     }
 
-    public DealBean(String storeName, float goodsFreePrice, List<GoodsDealBean> list) {
+    public DealBean(String storeName, float goodsFreePrice) {
         this.storeName = storeName;
         this.goodsFreePrice = goodsFreePrice;
-        mList = list;
+//        mList = list;
     }
 
     public float getGoodsFreePrice() {

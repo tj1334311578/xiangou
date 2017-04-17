@@ -105,13 +105,18 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
      * @param msg
      */
     public  void showToast(String msg){
-        mToast = Toast.makeText(mActivity,msg,Toast.LENGTH_SHORT);
-        mToast.setGravity(Gravity.CENTER,0,0);
-        LinearLayout toastView = (LinearLayout) mToast.getView();
-        toastView.setBackgroundResource(R.drawable.toastbg); //你可以在这里放入你的背景
-        ImageView imageView = new ImageView(mActivity);
-        imageView.setImageResource(R.mipmap.ic_launcher);
-        toastView.addView(imageView,0);
+        if (mToast==null) {
+            mToast = Toast.makeText(mActivity, msg, Toast.LENGTH_SHORT);
+            mToast.setGravity(Gravity.CENTER, 0, 0);
+            LinearLayout toastView = (LinearLayout) mToast.getView();
+            toastView.setBackgroundResource(R.drawable.toastbg); //你可以在这里放入你的背景
+            toastView.setPadding(ContextUtils.px2dp(8), ContextUtils.px2dp(0), ContextUtils.px2dp(8), ContextUtils.px2dp(0));
+            ImageView imageView = new ImageView(mActivity);
+            imageView.setImageResource(R.mipmap.ic_launcher);
+            toastView.addView(imageView, 0);
+        }else {
+            mToast.setText(msg);
+        }
         mToast.show();
     }
     public void toastShow(String msg) {

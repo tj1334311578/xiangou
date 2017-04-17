@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
-import android.view.KeyEvent;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -124,14 +123,18 @@ public class BaseActivity extends AppCompatActivity {
      * @param msg
      */
     public  void showToast(String msg){
-        this.mToast = Toast.makeText(this,msg,Toast.LENGTH_SHORT);
-        this.mToast.setGravity(Gravity.CENTER,0,0);
-        LinearLayout toastView = (LinearLayout) this.mToast.getView();
-        //你可以在这里放入你的背景
-        toastView.setBackgroundResource(R.drawable.toastbg);
-        ImageView imageView = new ImageView(this);
-        imageView.setImageResource(R.mipmap.ic_launcher);//这里放你的图片
-        toastView.addView(imageView,0);
+        if (mToast==null) {
+            mToast = Toast.makeText(this, msg, Toast.LENGTH_SHORT);
+            mToast.setGravity(Gravity.CENTER, 0, 0);
+            LinearLayout toastView = (LinearLayout) mToast.getView();
+            toastView.setBackgroundResource(R.drawable.toastbg); //你可以在这里放入你的背景
+            toastView.setPadding(ContextUtils.px2dp(8), ContextUtils.px2dp(0), ContextUtils.px2dp(8), ContextUtils.px2dp(0));
+            ImageView imageView = new ImageView(this);
+            imageView.setImageResource(R.mipmap.ic_launcher);
+            toastView.addView(imageView, 0);
+        }else {
+            mToast.setText(msg);
+        }
         mToast.show();
     }
     public void toastShow(String msg) {
@@ -147,24 +150,25 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     //双击退出APP
-    public long firstTime=0;
-    @Override
-    public boolean onKeyUp(int keyCode, KeyEvent event) {
-        switch (keyCode){
-            case KeyEvent.KEYCODE_BACK:
-                long secondTime = System.currentTimeMillis();
-                if((secondTime-firstTime)>2000){
-                    toastShow("再按一次退出程序!");
-                    firstTime=secondTime;
-                    return true;
-                }else {
-                    exit_app();
-//                    finish();
-//                    System.exit(0);
-                }
-        }
-        return super.onKeyUp(keyCode, event);
-    }
+//    public long firstTime=0;
+//    @Override
+//    public boolean onKeyUp(int keyCode, KeyEvent event) {
+//        switch (keyCode){
+//            case KeyEvent.KEYCODE_BACK:
+//                long secondTime = System.currentTimeMillis();
+//                if((secondTime-firstTime)>2000){
+//                    toastShow("再按一次退出程序!");
+//                    firstTime=secondTime;
+//                    return true;
+//                }else {
+//                    exit_app();
+////                    finish();
+////                    System.exit(0);
+//                }
+//        }
+//        return super.onKeyUp(keyCode, event);
+//    }
+
     //项目：
 
     public User getbUser() {

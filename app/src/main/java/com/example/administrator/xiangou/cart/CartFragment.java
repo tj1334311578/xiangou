@@ -19,6 +19,8 @@ import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.cart.adapter.AdapterDealCartRV;
 import com.example.administrator.xiangou.cart.model.CartAllCbBean;
 import com.example.administrator.xiangou.cart.model.CartItemCbBean;
+import com.example.administrator.xiangou.cart.model.CartMergeBean;
+import com.example.administrator.xiangou.cart.model.CartMergeItemBean;
 import com.example.administrator.xiangou.cart.model.DealBean;
 import com.example.administrator.xiangou.cart.model.GoodsDealBean;
 import com.example.administrator.xiangou.mvp.MVPBaseFragment;
@@ -35,8 +37,10 @@ public class CartFragment extends MVPBaseFragment<CartContract.View, CartPresent
     private CheckBox mAllGoodsCb;
     RecyclerView mDealRv,mRecommendationRv;
 
-    private List<CartAllCbBean> mAllCbBeanList;
+    private List<CartMergeBean> mMergeBeanList;
+    private List<CartMergeItemBean> mMergeItemBeanList;
     private List<CartItemCbBean> mItemCbBeanList;
+
     private float totalPrice=0;
     private AdapterDealCartRV mAdapterDealCartRV;
 
@@ -53,15 +57,16 @@ public class CartFragment extends MVPBaseFragment<CartContract.View, CartPresent
 
     @Override
     public void initView() {
-        mAllCbBeanList = new ArrayList<>();
+        mMergeBeanList = new ArrayList<>();
+        mMergeItemBeanList = new ArrayList<>();
         mItemCbBeanList = new ArrayList<>();
 
         mAllCountTv = findContentView(R.id.cart_goods_allcount);
-        mAllCountTv.setText("购物车("+10+")");
+        setTextToTv(mAllCountTv,"购物车("+10+")");
         mAllEditTv = findContentView(R.id.cart_edit_all);
         mNewsImg = findContentView(R.id.news_cart_title);
         mNewsCountTv = findContentView(R.id.news_num_cart_title);
-        mNewsCountTv.setText(3+"");
+        setTextToTv(mNewsCountTv,3);
 
         mTotalTv = findContentView(R.id.cart_total_tv,false);
         setTextToTv(mTotalTv,"￥ "+ ContextUtils.S2places(totalPrice)+" 元");
@@ -78,23 +83,27 @@ public class CartFragment extends MVPBaseFragment<CartContract.View, CartPresent
 
         //模拟数据
         //店内商品
-        List<GoodsDealBean> goodsList = new ArrayList<>();
-        goodsList.add(new GoodsDealBean(R.mipmap.cart_goods_dfimg,"【实拍原版】春季韩版学院风九分裤毛边高腰宽松直筒阔腿裤","浅蓝",
-                "26","S",2,59.50f,85.00f,7f));
-        goodsList.add(new GoodsDealBean(R.mipmap.cart_recommend_dfimg,"【实拍原版】春季韩版套装条纹宽松连衣裙","黑白条纹",
-                "28","m",1,51.50f,68.00f,6f));
-        //店铺
-        List<DealBean> storeList = new ArrayList<>();
-        storeList.add(new DealBean("皮皮虾",111.00f,goodsList));
-        storeList.add(new DealBean("老铁，稳",60.00f,goodsList));
-        storeList.add(new DealBean("糖宝",51.50f,goodsList));
+        GoodsDealBean goodsDealBean1 = new GoodsDealBean(R.mipmap.cart_goods_dfimg,"【实拍原版】春季韩版学院风九分裤毛边高腰宽松直筒阔腿裤","浅蓝",
+                "26","S",2,59.50f,85.00f,7f);
+        CartItemCbBean cartItemCbBean1 = new CartItemCbBean();
+        cartItemCbBean1.setIscheck(false);
+        CartMergeItemBean cartMergeItemBean1 = new CartMergeItemBean(goodsDealBean1,cartItemCbBean1);
+        mMergeItemBeanList.add(cartMergeItemBean1);
+        GoodsDealBean goodsDealBean2 = new GoodsDealBean(R.mipmap.cart_recommend_dfimg,"【实拍原版】春季韩版套装条纹宽松连衣裙","黑白条纹",
+                "28","m",1,51.50f,68.00f,6f);
+        CartItemCbBean cartItemCbBean2 = new CartItemCbBean();
+        cartItemCbBean2.setIscheck(false);
+        CartMergeItemBean cartMergeItemBean2 = new CartMergeItemBean(goodsDealBean2,cartItemCbBean2);
+        mMergeItemBeanList.add(cartMergeItemBean2);
 
-        //根据店内商品数量设置
-        for (int i = 0; i < goodsList.size(); i++) {
-            CartItemCbBean item = new CartItemCbBean();
-            item.setIscheck(false);
-            mItemCbBeanList.add(item);
-        }
+        mItemCbBeanList.add(cartItemCbBean1);
+        mItemCbBeanList.add(cartItemCbBean2);
+
+        //店铺
+        DealBean dealBean1 = new DealBean("皮皮虾",111.00f);
+        DealBean dealBean2 = new DealBean("老铁，稳",60.00f);
+        DealBean dealBean3 = new DealBean("糖宝",51.50f);
+
         //根据店铺数量设置
         CartAllCbBean allCbBean1 = new CartAllCbBean();
 //        allCbBean1.setText(storeList.get(0).getStoreName());
@@ -102,60 +111,65 @@ public class CartFragment extends MVPBaseFragment<CartContract.View, CartPresent
         allCbBean1.setList(mItemCbBeanList);
         CartAllCbBean allCbBean2 = new CartAllCbBean();
 //        allCbBean1.setText(storeList.get(1).getStoreName());
-        allCbBean1.setIsCheck(false);
-        allCbBean1.setList(mItemCbBeanList);
+        allCbBean2.setIsCheck(false);
+        allCbBean2.setList(mItemCbBeanList);
         CartAllCbBean allCbBean3 = new CartAllCbBean();
 //        allCbBean1.setText(storeList.get(2).getStoreName());
-        allCbBean1.setIsCheck(false);
-        allCbBean1.setList(mItemCbBeanList);
-        mAllCbBeanList.add(allCbBean1);
-        mAllCbBeanList.add(allCbBean2);
-        mAllCbBeanList.add(allCbBean3);
+        allCbBean3.setIsCheck(false);
+        allCbBean3.setList(mItemCbBeanList);
 
-        mAdapterDealCartRV = new AdapterDealCartRV(getContext(),storeList,mAllCbBeanList);
+        CartMergeBean cartMergeBean1 = new CartMergeBean(dealBean1,allCbBean1,mMergeItemBeanList);
+        CartMergeBean cartMergeBean2 = new CartMergeBean(dealBean2,allCbBean2,mMergeItemBeanList);
+        CartMergeBean cartMergeBean3 = new CartMergeBean(dealBean3,allCbBean3,mMergeItemBeanList);
+        mMergeBeanList.add(cartMergeBean1);
+        mMergeBeanList.add(cartMergeBean2);
+        mMergeBeanList.add(cartMergeBean3);
+
+
+        mAdapterDealCartRV = new AdapterDealCartRV(getContext(),mMergeBeanList);
         mDealRv.setAdapter(mAdapterDealCartRV);
         mAdapterDealCartRV.setOnStroeCbClickListener(new AdapterDealCartRV.OnStroeCbClickListener() {
             @Override
             public void setOnStoreCbClick(boolean isChecked, int position) {
                 //保存店铺点击状态
-                mAllCbBeanList.get(position).setIsCheck(isChecked);
+                mMergeBeanList.get(position).getCartAllCbBean().setIsCheck(isChecked);
                 //通知全选CheckBox的选择状态
-                if (allSelect() == mAllCbBeanList.size()){
+                if (allSelect() == mMergeBeanList.size()){
                     mAllGoodsCb.setChecked(true);
                 }else {
                     mAllGoodsCb.setChecked(false);
                 }
 
                 if (isChecked){
-                    for (int i = 0; i < mAllCbBeanList.get(position).getList().size(); i++) {
-                        mAllCbBeanList.get(position).getList().get(i).setIscheck(true);
+                    for (int i = 0; i < mMergeBeanList.get(position).getCartAllCbBean().getList().size(); i++) {
+                        mMergeBeanList.get(position).getCartAllCbBean().getList().get(i).setIscheck(true);
                     }
                 }else {
 
-                    if (allItemSelect(position) == mAllCbBeanList.get(position).getList().size()){
-                        for (int i = 0; i < mAllCbBeanList.get(position).getList().size(); i++) {
+                    if (allItemSelect(position) == mMergeBeanList.get(position).getCartAllCbBean().getList().size()){
+                        for (int i = 0; i < mMergeBeanList.get(position).getCartAllCbBean().getList().size(); i++) {
                             // 解决点击取消选择商品时，
                             // 店铺全选按钮取消选择状态，不会不变成全不选
-                            if (mAllCbBeanList.get(position).getList().get(i).ischeck()){
-                                mAllCbBeanList.get(position).getList().get(i).setIscheck(false);
+                            if (mMergeBeanList.get(position).getCartAllCbBean().getList().get(i).ischeck()){
+                                mMergeBeanList.get(position).getCartAllCbBean().getList().get(i).setIscheck(false);
                             }
                         }
                     }
                 }
-                mAdapterDealCartRV.notifyItemChanged(position);
+                UpdateRecyclerView(position);
             }
 
             @Override
             public void setOnItemCbCheckListener(boolean isItemChecked, int parentposition, int chaildposition) {
                 //保存商品点击状态
-                mAllCbBeanList.get(parentposition).getList().get(chaildposition).setIscheck(isItemChecked);
+                mMergeBeanList.get(parentposition).getCartAllCbBean().getList().get(chaildposition).setIscheck(isItemChecked);
                 //通知店铺选择的状态
-                if ( allItemSelect(parentposition) == mAllCbBeanList.get(parentposition).getList().size()){
-                    mAllCbBeanList.get(parentposition).setIsCheck(true);
+                if ( allItemSelect(parentposition) == mMergeBeanList.get(parentposition).getCartAllCbBean().getList().size()){
+                    mMergeBeanList.get(parentposition).getCartAllCbBean().setIsCheck(true);
                 }else {
-                    mAllCbBeanList.get(parentposition).setIsCheck(false);
+                    mMergeBeanList.get(parentposition).getCartAllCbBean().setIsCheck(false);
                 }
-                mAdapterDealCartRV.notifyItemChanged(parentposition);
+                UpdateRecyclerView(parentposition);
             }
         });
 
@@ -184,44 +198,52 @@ public class CartFragment extends MVPBaseFragment<CartContract.View, CartPresent
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         if (isChecked){
             //全选
-            for (int i = 0; i < mAllCbBeanList.size(); i++) {
+            for (int i = 0; i < mMergeBeanList.size(); i++) {
                 //选择店铺
-                if (!mAllCbBeanList.get(i).ischeck()){
-                    mAllCbBeanList.get(i).setIsCheck(true);
+                if (!mMergeBeanList.get(i).getCartAllCbBean().ischeck()){
+                    mMergeBeanList.get(i).getCartAllCbBean().setIsCheck(true);
                 }
                 //店铺里的商品
-                for (int j = 0; j < mAllCbBeanList.get(i).getList().size(); j++) {
-                    if (!mAllCbBeanList.get(i).getList().get(j).ischeck()){
-                        mAllCbBeanList.get(i).getList().get(j).setIscheck(true);
+                for (int j = 0; j < mMergeBeanList.get(i).getCartAllCbBean().getList().size(); j++) {
+                    if (!mMergeBeanList.get(i).getCartAllCbBean().getList().get(j).ischeck()){
+                        mMergeBeanList.get(i).getCartAllCbBean().getList().get(j).setIscheck(true);
                     }
                 }
             }
         }else {
             //全不选
-            for (int i = 0; i < mAllCbBeanList.size(); i++) {
+            for (int i = 0; i < mMergeBeanList.size(); i++) {
                 //选择店铺
-                if (!mAllCbBeanList.get(i).ischeck()){
-                    mAllCbBeanList.get(i).setIsCheck(false);
+                if (mMergeBeanList.get(i).getCartAllCbBean().ischeck()){
+                    mMergeBeanList.get(i).getCartAllCbBean().setIsCheck(false);
                 }
                 //店铺里的商品
-                for (int j = 0; j < mAllCbBeanList.get(i).getList().size(); j++) {
-                    if (!mAllCbBeanList.get(i).getList().get(j).ischeck()){
-                        mAllCbBeanList.get(i).getList().get(j).setIscheck(false);
+                for (int j = 0; j < mMergeBeanList.get(i).getCartAllCbBean().getList().size(); j++) {
+                    if (mMergeBeanList.get(i).getCartAllCbBean().getList().get(j).ischeck()){
+                        mMergeBeanList.get(i).getCartAllCbBean().getList().get(j).setIscheck(false);
                     }
                 }
             }
         }
-//        UpdateRecyclerView();
-        mAdapterDealCartRV.notifyItemRangeChanged(0,mAllCbBeanList.size()-1);//更新
+        UpdateRecyclerView(0,mMergeBeanList.size()-1);//更新
     }
     /**
      *解决Recycleyview刷新报错问题
      */
-    private void UpdateRecyclerView() {
+    private void UpdateRecyclerView(final int position) {
         Handler handler = new Handler();
         final Runnable r = new Runnable() {
             public void run() {
-                mAdapterDealCartRV.notifyDataSetChanged();
+                mAdapterDealCartRV.notifyItemChanged(position);
+            }
+        };
+        handler.post(r);
+    }
+    private void UpdateRecyclerView(final int startpos,final int topos) {
+        Handler handler = new Handler();
+        final Runnable r = new Runnable() {
+            public void run() {
+                mAdapterDealCartRV.notifyItemRangeChanged(startpos,topos);//更新
             }
         };
         handler.post(r);
@@ -231,8 +253,8 @@ public class CartFragment extends MVPBaseFragment<CartContract.View, CartPresent
      */
     private int allSelect(){
         int count=0;
-        for (int i = 0; i < mAllCbBeanList.size(); i++) {
-            if (mAllCbBeanList.get(i).ischeck()){
+        for (int i = 0; i < mMergeBeanList.size(); i++) {
+            if (mMergeBeanList.get(i).getCartAllCbBean().ischeck()){
                 count++;
             }
         }
@@ -246,8 +268,10 @@ public class CartFragment extends MVPBaseFragment<CartContract.View, CartPresent
      */
     private int allItemSelect(int position){
         int count=0;
-        for (int i = 0; i < mAllCbBeanList.get(position).getList().size(); i++) {
-            count++;
+        for (int i = 0; i < mMergeBeanList.get(position).getCartAllCbBean().getList().size(); i++) {
+            if (mMergeBeanList.get(position).getCartAllCbBean().getList().get(i).ischeck()) {
+                count++;
+            }
         }
         return count;
     }

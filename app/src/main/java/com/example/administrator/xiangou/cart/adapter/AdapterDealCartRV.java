@@ -15,9 +15,8 @@ import android.widget.Toast;
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.base.RVBaseAdapter;
 import com.example.administrator.xiangou.base.RVBaseViewHolder;
-import com.example.administrator.xiangou.cart.model.CartAllCbBean;
+import com.example.administrator.xiangou.cart.model.CartMergeBean;
 import com.example.administrator.xiangou.cart.model.DealBean;
-import com.example.administrator.xiangou.cart.model.GoodsDealBean;
 import com.example.administrator.xiangou.tool.ContextUtils;
 
 import java.util.List;
@@ -26,35 +25,38 @@ import java.util.List;
  * Created by zhouzongyao on 2017/3/7.
  */
 
-public class AdapterDealCartRV extends RVBaseAdapter<DealBean> implements View.OnClickListener{
+public class AdapterDealCartRV extends RVBaseAdapter<CartMergeBean> implements View.OnClickListener{
 
     private CheckBox mStotrCb;
     private TextView mAllEditTv,mFreePriceTv;
     private RecyclerView mGoodsRv;
-    private boolean isCheckedAll,isEditAll;
+    private boolean isEditAll;
     private float goodsAllPrice;
     private AdapterItemGoodsDealRvRV mAdapterItemGoodsDealRv;
-    private List<GoodsDealBean> mList;
-    private List<CartAllCbBean> mAllCbBeanList;
 
-    public AdapterDealCartRV(Context context, List<DealBean> mDatas ,List<CartAllCbBean> mAllCbBeanList) {
+    public AdapterDealCartRV(Context context, List<CartMergeBean> mDatas) {
         super(context, R.layout.item_cart_dealrv, mDatas);
-        this.mAllCbBeanList = mAllCbBeanList;
+
+    }
+
+    //    public AdapterDealCartRV(Context context, List<DealBean> mDatas ,List<CartAllCbBean> mAllCbBeanList) {
+//        super(context, R.layout.item_cart_dealrv, mDatas);
+//        this.mAllCbBeanList = mAllCbBeanList;
 //        mList = new ArrayList<>();
 //        mList.add(new GoodsDealBean(R.mipmap.cart_goods_dfimg,"【实拍原版】春季韩版学院风九分裤毛边高腰宽松直筒阔腿裤","浅蓝",
 //                "26","S",2,59.50f,85.00f,7f));
 //        mList.add(new GoodsDealBean(R.mipmap.cart_recommend_dfimg,"【实拍原版】春季韩版套装条纹宽松连衣裙","黑白条纹",
 //                "28","m",1,51.50f,68.00f,6f));
-    }
-
+//    }
     @Override
-    protected void bindData(RVBaseViewHolder holder, DealBean dealBean, final int pos) {
+    protected void bindData(RVBaseViewHolder holder, CartMergeBean cartMergeBean, final int pos) {
+        DealBean dealBean= cartMergeBean.getDealBean();
         holder.setIsRecyclable(false);
         goodsAllPrice = 0;
 
         mStotrCb = holder.getCheckBox(R.id.cart_all_checkBox);
         //设置CheckBox状态
-        mStotrCb.setChecked(mAllCbBeanList.get(pos).ischeck());
+        mStotrCb.setChecked(cartMergeBean.getCartAllCbBean().ischeck());
         mStotrCb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -73,8 +75,7 @@ public class AdapterDealCartRV extends RVBaseAdapter<DealBean> implements View.O
         mGoodsRv.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false));
         ((SimpleItemAnimator)mGoodsRv.getItemAnimator()).setSupportsChangeAnimations(false);
 
-        mList = dealBean.getList();
-        mAdapterItemGoodsDealRv = new AdapterItemGoodsDealRvRV(mContext, mList,mAllCbBeanList.get(pos).getList());
+        mAdapterItemGoodsDealRv = new AdapterItemGoodsDealRvRV(mContext, mDatas.get(pos).getMergeItemBeanList());
         mAdapterItemGoodsDealRv.setOnCheckBoxClickListener(new AdapterItemGoodsDealRvRV.OnCheckBoxClickListener() {
             @Override
             public void setOnCheckBoxClick(boolean isChecked, int position) {
@@ -88,16 +89,17 @@ public class AdapterDealCartRV extends RVBaseAdapter<DealBean> implements View.O
 
 
         mFreePriceTv = holder.getTextView(R.id.cart_item_free_text);
-        if (mDatas.get(pos).getGoodsFreePrice()>goodsAllPrice){
-            mFreePriceTv.setText("再买"+ ContextUtils.S2places(mDatas.get(pos).getGoodsFreePrice()-goodsAllPrice)+"元，免运费");
+        if (dealBean.getGoodsFreePrice()>goodsAllPrice){
+            mFreePriceTv.setText("再买"+ ContextUtils.S2places(dealBean.getGoodsFreePrice()-goodsAllPrice)+"元，免运费");
         }else {
             mFreePriceTv.setText("免邮费！");
         }
-        Log.e("goodsPrice", "toData: goodsFreePrice=" +mDatas.get(pos).getGoodsFreePrice()+"---goodsAllPrice="
-                +goodsAllPrice+"===="+ContextUtils.S2places(mDatas.get(pos).getGoodsFreePrice()-goodsAllPrice));
+        Log.e("goodsPrice", "toData: goodsFreePrice=" +dealBean.getGoodsFreePrice()+"---goodsAllPrice="
+                +goodsAllPrice+"===="+ContextUtils.S2places(dealBean.getGoodsFreePrice()-goodsAllPrice));
 
         holder.getTextView(R.id.cart_item_free_addon).setOnClickListener(this);
     }
+
 
 
     @Override
@@ -136,6 +138,7 @@ public class AdapterDealCartRV extends RVBaseAdapter<DealBean> implements View.O
     }
 
     protected OnStroeCbClickListener mOnStroeCbClickListener;
+
     public interface OnStroeCbClickListener {
         //回调函数 将店铺的checkbox的点击变化事件进行回调
         void setOnStoreCbClick(boolean isChecked, int position);

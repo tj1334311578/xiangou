@@ -11,7 +11,7 @@ import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.base.RVBaseAdapter;
 import com.example.administrator.xiangou.base.RVBaseViewHolder;
 import com.example.administrator.xiangou.cart.model.CartItemCbBean;
-import com.example.administrator.xiangou.cart.model.GoodsDealBean;
+import com.example.administrator.xiangou.cart.model.CartMergeItemBean;
 import com.example.administrator.xiangou.tool.ContextUtils;
 
 import java.util.List;
@@ -20,27 +20,25 @@ import java.util.List;
  * Created by zhouzongyao on 2017/3/7.
  */
 
-public class AdapterItemGoodsDealRvRV extends RVBaseAdapter<GoodsDealBean> implements View.OnClickListener {
+public class AdapterItemGoodsDealRvRV extends RVBaseAdapter<CartMergeItemBean> implements View.OnClickListener {
 
     private CheckBox mItemCb;
-    private int position;
     private float goodsAllPrice;
-    private List<CartItemCbBean> mItemCbBeanList;
-    public AdapterItemGoodsDealRvRV(Context context, List<GoodsDealBean> mDatas, List<CartItemCbBean> mItemCbBeanList) {
-        super(context, R.layout.item_cart_item_goods_rv, mDatas);
-        this.mItemCbBeanList = mItemCbBeanList;
+    private CartItemCbBean mItemCbBean;
+
+    public AdapterItemGoodsDealRvRV(Context context, List<CartMergeItemBean> mergeItemBeanList) {
+        super(context, R.layout.item_cart_item_goods_rv, mergeItemBeanList);
     }
 
-
     @Override
-    protected void bindData(RVBaseViewHolder holder, GoodsDealBean goodsDealBean, final int position) {
-        this.position = position;
+    protected void bindData(RVBaseViewHolder holder, CartMergeItemBean cartMergeItemBean, final int position) {
+        mItemCbBean = cartMergeItemBean.getItemCbBean();
         holder.getItemView().setTag(position);
         holder.getItemView().setOnClickListener(this);
-        goodsAllPrice = goodsDealBean.getGoodsPrice()*goodsDealBean.getGoodsCount();
+        goodsAllPrice = cartMergeItemBean.getGoodsDealBean().getGoodsPrice()*cartMergeItemBean.getGoodsDealBean().getGoodsCount();
         mItemCb = holder.getCheckBox(R.id.cart_item_checkBox);
         // 设置CheckBox的状态
-        mItemCb.setChecked(mItemCbBeanList.get(position).ischeck());
+        mItemCb.setChecked(mItemCbBean.ischeck());
         mItemCb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -51,17 +49,16 @@ public class AdapterItemGoodsDealRvRV extends RVBaseAdapter<GoodsDealBean> imple
             }
         });
 
-        holder.getCustomView(R.id.item_cart_item_goods_img).setImageResource(goodsDealBean.getGoodsImg());
-        holder.getTextView(R.id.item_cart_item_goodsname).setText(goodsDealBean.getGoodsName());
-        holder.getTextView(R.id.item_cart_item_goods_property).setText("颜色："+goodsDealBean.getGoodsColor()+";尺码："+goodsDealBean.getGoodsSize());
-        holder.getTextView(R.id.item_cart_item_price).setText("￥"+ ContextUtils.S2places(goodsDealBean.getGoodsPrice()));
+        holder.getCustomView(R.id.item_cart_item_goods_img).setImageResource(cartMergeItemBean.getGoodsDealBean().getGoodsImg());
+        holder.getTextView(R.id.item_cart_item_goodsname).setText(cartMergeItemBean.getGoodsDealBean().getGoodsName());
+        holder.getTextView(R.id.item_cart_item_goods_property).setText("颜色："+cartMergeItemBean.getGoodsDealBean().getGoodsColor()+";尺码："+cartMergeItemBean.getGoodsDealBean().getGoodsSize());
+        holder.getTextView(R.id.item_cart_item_price).setText("￥"+ ContextUtils.S2places(cartMergeItemBean.getGoodsDealBean().getGoodsPrice()));
         TextView originalprice = holder.getTextView(R.id.item_cart_item_originalprice);
-        originalprice.setText("￥"+ContextUtils.S2places(goodsDealBean.getGoodsOriginalPrice()));
+        originalprice.setText("￥"+ContextUtils.S2places(cartMergeItemBean.getGoodsDealBean().getGoodsOriginalPrice()));
         originalprice.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG|Paint.ANTI_ALIAS_FLAG);//设置中划线并加清晰
-        holder.getTextView(R.id.item_cart_item_goods_count).setText("x"+goodsDealBean.getGoodsCount());
-        holder.getTextView(R.id.item_cart_item_goods_discount).setText(goodsDealBean.getGoodsDiscount()+"折");
+        holder.getTextView(R.id.item_cart_item_goods_count).setText("x"+cartMergeItemBean.getGoodsDealBean().getGoodsCount());
+        holder.getTextView(R.id.item_cart_item_goods_discount).setText(cartMergeItemBean.getGoodsDealBean().getGoodsDiscount()+"折");
     }
-
 
     protected OnCheckBoxClickListener mOnCheckBoxClickListener;
 

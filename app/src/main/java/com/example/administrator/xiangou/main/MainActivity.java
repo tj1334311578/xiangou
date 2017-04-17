@@ -69,6 +69,7 @@ public class MainActivity extends BaseActivity {
         mFragmentTabHost.setCurrentTab(0);
     }
 
+
     //初始化底栏的tab
     private View buildIndicator(Tab tab) {
         View view =mInflater.inflate(R.layout.tab_indicator,null);

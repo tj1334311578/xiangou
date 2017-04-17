@@ -29,7 +29,7 @@ public class ClassificationFragment1 extends MVPBaseFragment<ClassificationContr
 
 	}
 
-	private void initView() {
+	public  void initView() {
 		List<String> list=new ArrayList<>();
 		list.add("jefi");
 		list.add("jjif");
@@ -39,6 +39,11 @@ public class ClassificationFragment1 extends MVPBaseFragment<ClassificationContr
 	}
 	@Override
 	public void sendFialRequest(String message) {
+
+	}
+
+	@Override
+	public void onClick(View v) {
 
 	}
 }

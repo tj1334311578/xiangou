@@ -8,7 +8,7 @@ import android.view.View;
 
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.base.AutoRVAdapter;
-import com.example.administrator.xiangou.base.BaseAdapter;
+import com.example.administrator.xiangou.base.RVBaseAdapter;
 import com.example.administrator.xiangou.nearby.nearbypreferential.model.PreferBean3;
 import com.example.administrator.xiangou.tool.ItemIntervalDecoration;
 
@@ -19,7 +19,7 @@ import java.util.List;
  * Created by Administrator on 2017/4/13.
  * 推荐商品页
  */
-public class ClassificationAdapter extends AutoRVAdapter implements BaseAdapter.OnMineItemClickListener{
+public class ClassificationAdapter extends AutoRVAdapter implements RVBaseAdapter.OnItemViewClickListener{
     private static Context context;
     private  List<String> list;
     public ClassificationAdapter(Context context, List<String> list) {
@@ -60,13 +60,9 @@ public class ClassificationAdapter extends AutoRVAdapter implements BaseAdapter.
         recy.setAdapter(new ClassificationAdapter2(context,list));
     }
 
-    @Override
-    public void onMineItemClick(View view, int position) {
-
-    }
 
     @Override
-    public void onMineItemLongClick(View view, int position) {
+    public void setOnItemViewClick(View view, int position) {
 
     }
 

@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
-import android.view.KeyEvent;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -56,13 +55,6 @@ public class BaseActivity extends AppCompatActivity {
         Intent intent =new Intent();
         intent.setAction(Constant.EXIT_APP_ACTION);
         this.sendBroadcast(intent);
-    }
-
-    public static User getbUser() {
-        return bUser;
-    }
-    public static void setbUser(LoginBean.DataBean data) {
-        bUser.setUser(data);
     }
 
     @Override

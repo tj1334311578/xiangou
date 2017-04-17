@@ -28,7 +28,7 @@ public class ClassificationFragment extends MVPBaseFragment<ClassificationContra
 
 	}
 
-	private void initView() {
+	public void initView() {
 		List<String> list=new ArrayList<>();
 		list.add("jefi");
 		recyclerView = (RecyclerView) view.findViewById(R.id.goods_classfication_recycle);
@@ -38,6 +38,11 @@ public class ClassificationFragment extends MVPBaseFragment<ClassificationContra
 
 	@Override
 	public void sendFialRequest(String message) {
+
+	}
+
+	@Override
+	public void onClick(View v) {
 
 	}
 }

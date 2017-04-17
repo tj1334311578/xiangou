@@ -29,7 +29,8 @@ public class ClassificationFragment1 extends MVPBaseFragment<ClassificationContr
 
 	}
 
-	public  void initView() {
+	@Override
+	public void initView() {
 		List<String> list=new ArrayList<>();
 		list.add("jefi");
 		list.add("jjif");
@@ -37,6 +38,7 @@ public class ClassificationFragment1 extends MVPBaseFragment<ClassificationContr
 		recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
 		recyclerView.setAdapter(new ClassificationAdapter1(getContext(),list));
 	}
+
 	@Override
 	public void sendFialRequest(String message) {
 

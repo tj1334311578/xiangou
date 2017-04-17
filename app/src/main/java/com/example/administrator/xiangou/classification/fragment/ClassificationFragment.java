@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.classification.adapter.ClassificationAdapter;
 import com.example.administrator.xiangou.mvp.MVPBaseFragment;
@@ -28,6 +29,7 @@ public class ClassificationFragment extends MVPBaseFragment<ClassificationContra
 
 	}
 
+	@Override
 	public void initView() {
 		List<String> list=new ArrayList<>();
 		list.add("jefi");

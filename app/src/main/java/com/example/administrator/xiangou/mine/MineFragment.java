@@ -62,20 +62,17 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
             }
         }
         if (bUser!= null){
-
+            initDate();
         }
     }
 
     @Override
     public void initView() {
-        setbUserBySP(bSharedPreferences.getString("user_info",null));
         Log.e("user", "initView: " +bUser );
         findContentView(R.id.mine_message_rl);
         listView= findContentView(R.id.mine_list,false);
-
         findContentView(R.id.mine_setup_iv);
         mMessageTv = findContentView(R.id.mine_message_tv);
-        setTextToTv(mMessageTv,mine_MsgCount);
         mHeadImgCiv = findContentView(R.id.mine_user_img_iv);
         if (bUser.getHead_pic()==null){
             mHeadImgCiv.setImageResource(R.mipmap.mine_user_img);
@@ -84,12 +81,9 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         }
 
         mUserLevelTv = findContentView(R.id.mine_level_tv);
-        setTextToTv(mUserLevelTv,"V"+bUser.getLevel());
         mLevelNumberTv = findContentView(R.id.mine_level_number_tv);
-        setTextToTv(mLevelNumberTv,bUser.getExperience());
         mUserNameTv = findContentView(R.id.mine_username_tv);
         Log.e("name","initView: " + bUser.getNickname());
-        setTextToTv(mUserNameTv,bUser.getNickname());
 
         findContentView(R.id.mine_attention);
         findContentView(R.id.mine_Coupon);
@@ -97,15 +91,10 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         findContentView(R.id.see_all_orders);
 
         mUnpaidTv = findContentView(R.id.mine_unpaid_tv);
-        setTextToTv(mUnpaidTv,bUser.getWaitPay());
         mWaitDekiveryTv = findContentView(R.id.mine_wait_delivery_tv);
-        setTextToTv(mWaitDekiveryTv,bUser.getWaitSend());
         mReceiveTv = findContentView(R.id.mine_receive_goods_tv);
-        setTextToTv(mReceiveTv,bUser.getWaitReceive());
         mEvaluationTv = findContentView(R.id.mine_pending_evaluation_tv);
-        setTextToTv(mEvaluationTv,bUser.getWaitCcomment());
         mReturnsOrSalesTv = findContentView(R.id.mine_returns_sales_tv);
-        setTextToTv(mReturnsOrSalesTv,bUser.getRefund());
 
         //ListView禁止滑动设置
         listView.setOnTouchListener(new View.OnTouchListener() {
@@ -135,6 +124,21 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
             }
         });
         initSet();
+        initDate();
+    }
+
+    private void initDate() {
+        setbUserBySP(bSharedPreferences.getString("user_info",null));
+        setTextToTv(mMessageTv,mine_MsgCount);
+
+        setTextToTv(mUserLevelTv,"V"+bUser.getLevel());
+        setTextToTv(mLevelNumberTv,bUser.getExperience());
+        setTextToTv(mUserNameTv,bUser.getNickname());
+        setTextToTv(mUnpaidTv,bUser.getWaitPay());
+        setTextToTv(mWaitDekiveryTv,bUser.getWaitSend());
+        setTextToTv(mReceiveTv,bUser.getWaitReceive());
+        setTextToTv(mEvaluationTv,bUser.getWaitCcomment());
+        setTextToTv(mReturnsOrSalesTv,bUser.getRefund());
     }
 
     @Override

@@ -81,4 +81,11 @@ public class MainActivity extends BaseActivity {
         return view;
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (!isLogined()){
+            mFragmentTabHost.setCurrentTab(0);
+        }
+    }
 }

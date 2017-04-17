@@ -34,16 +34,17 @@ public class Goods_rankingFragment extends MVPBaseFragment<NearbyContract.View, 
     private NearbyTabLayoutAdapter mLayoutAdapter;
     private List<Fragment> mTabFragList;
     private String[] tabTitles;
-    private View view;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-//        return super.onCreateView(inflater, container, savedInstanceState);
-        view = inflater.inflate(R.layout.goods_ranking,container,false);
-        ButterKnife.bind(this,view);
+        return setContextView(inflater,container,R.layout.goods_ranking);
+    }
+
+    @Override
+    public void initView() {
+        ButterKnife.bind(this,mContextView);
         initTabFragViews();
-        return view;
     }
 
     private void initTabFragViews() {

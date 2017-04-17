@@ -12,8 +12,8 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+
 import com.example.administrator.xiangou.R;
-import com.example.administrator.xiangou.tool.CustomImageView;
 import com.example.administrator.xiangou.tool.ImageUtils;
 import com.example.administrator.xiangou.tool.ReadLocalJsonUtil;
 
@@ -21,9 +21,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -101,8 +99,8 @@ public class StoreApplicationActivity extends PopupWindowsBaseActivity implement
         city= (Spinner) findViewById(R.id.store_address_city);
         districts= (Spinner) findViewById(R.id.store_address_districts);
         //获取json字符串
+        Log.e("ReadLocalJsonUtil", "initView: " +ReadLocalJsonUtil.InitData(this) );
         BeginJsonCitisData(ReadLocalJsonUtil.InitData(this));
-
         mProvinceAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, mProvinceDatas);
         mProvinceAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         province.setAdapter(mProvinceAdapter);
@@ -270,7 +268,7 @@ public class StoreApplicationActivity extends PopupWindowsBaseActivity implement
      * @throws @date
      *             [2017年4月12日 上午10:22:00]
      */
-    private void BeginJsonCitisData(String cityJson) {
+    private String[] BeginJsonCitisData(String cityJson) {
         if (!TextUtils.isEmpty(cityJson)) {
             try {
                 JSONObject object = new JSONObject(cityJson);
@@ -348,6 +346,8 @@ public class StoreApplicationActivity extends PopupWindowsBaseActivity implement
                 e.printStackTrace();
             }
         }
+        Log.e("mProvinceDatas", "initView: " +mProvinceDatas.toString() );
+        return mProvinceDatas;
     }
 
 }

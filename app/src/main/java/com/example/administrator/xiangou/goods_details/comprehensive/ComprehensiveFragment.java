@@ -71,7 +71,6 @@ public class ComprehensiveFragment extends MVPBaseFragment<ComprehensiveContract
             mContext=context;
             this.lists=lists;
         }
-
         @Override
         protected int onCreateViewHolderID(int viewType) {
             return R.layout.goods_ranking_item;

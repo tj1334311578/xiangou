@@ -2,21 +2,22 @@ package com.example.administrator.xiangou.goods_details;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.FragmentActivity;
 
-import com.example.administrator.xiangou.tool.BaseActivity;
+import com.example.administrator.xiangou.R;
 
 /**
  * Created by Administrator on 2017/4/15.
  */
 
-public class Goods_rankingActivity extends BaseActivity {
+public class Goods_rankingActivity extends FragmentActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
-        Goods_rankingFragment fragment=new Goods_rankingFragment();
-        transaction.add(fragment,"fragment");
-        transaction.commit();
+        setContentView(R.layout.goods_details_activity);
+//        FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
+//        Goods_rankingFragment fragment=new Goods_rankingFragment();
+//        transaction.add(R.id.goods_ranking_fragment,fragment);
+//        transaction.commit();
     }
 }

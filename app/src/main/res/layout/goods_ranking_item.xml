@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:paddingStart="6dp"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<com.example.administrator.xiangou.tool.CustomImageView
+    android:layout_width="168dp"
+    android:scaleType="fitXY"
+    android:src="@drawable/girl_v"
+    android:id="@+id/goods_ranking_item_img"
+    app:civ_type="TYPE_ROUND"
+    app:civ_roundradius="5"
+    android:layout_height="165dp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_below="@id/goods_ranking_item_img"
+        android:layout_alignEnd="@id/goods_ranking_item_img"
+        android:lines="1"
+        android:ellipsize="end"
+        android:textSize="14sp"
+        android:textColor="#e6161616"
+        android:text="百搭抽绳连帽中长款外套"
+        android:paddingStart="5dp"
+        android:paddingTop="9dp"
+        android:id="@+id/goods_ranking_item_description"
+        android:paddingBottom="5dp"
+        android:layout_height="wrap_content" />
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="wrap_content"
+        android:paddingStart="5dp"
+        android:scrollbars="none"
+        android:layout_alignStart="@id/goods_ranking_item_description"
+        android:id="@+id/goods_ranking_item_recycle"
+        android:layout_below="@id/goods_ranking_item_description"
+        android:layout_alignEnd="@id/goods_ranking_item_img"
+        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="￥210.0"
+        android:textSize="14sp"
+        android:textColor="#161616"
+        android:paddingStart="5dp"
+        android:paddingTop="5dp"
+        android:layout_below="@id/goods_ranking_item_recycle"
+        android:id="@+id/goods_ranking_item_price"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="宝贝位置：500m"
+        android:textSize="11sp"
+        android:id="@+id/goods_ranking_item_distances"
+        android:layout_alignBottom="@id/goods_ranking_item_price"
+        android:layout_alignEnd="@id/goods_ranking_item_img"
+        android:layout_height="wrap_content" />
+</RelativeLayout>

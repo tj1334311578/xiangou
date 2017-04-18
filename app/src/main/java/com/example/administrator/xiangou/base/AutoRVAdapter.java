@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.administrator.xiangou.tool.CustomImageView;
 import com.example.administrator.xiangou.tool.DrawableTextView;
 
 import java.util.List;
@@ -160,6 +161,7 @@ public abstract class AutoRVAdapter extends RecyclerView.Adapter<AutoRVAdapter.R
         public RecyclerView getRecycleView(int id){
             return get(id);
         }
+        public CustomImageView getCustomImageView(int id){return get(id);}
 
     }
 }

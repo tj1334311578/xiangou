@@ -34,6 +34,7 @@
         <activity android:name=".login.find_resetpwd.ResetpwdActivity" />
         <activity android:name=".mine.store_application.StoreApplicationActivity"/>
         <activity android:name=".classification.fragment.ClassificationTabActivity"/>
+        <activity android:name=".goods_details.Goods_rankingActivity"/>
     </application>
 
 </manifest>

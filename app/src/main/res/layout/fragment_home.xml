@@ -3,8 +3,7 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-    android:background="@color/homeBgColor">
-
+              android:background="@color/homeBgColor">
     <include layout="@layout/custom_actionbar"
              android:id="@+id/topbar_home"/>
 

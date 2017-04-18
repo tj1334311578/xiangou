@@ -10,11 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.administrator.xiangou.R;
+import com.example.administrator.xiangou.goods_details.comprehensive.ComprehensiveFragment;
 import com.example.administrator.xiangou.mvp.MVPBaseFragment;
 import com.example.administrator.xiangou.nearby.NearbyContract;
 import com.example.administrator.xiangou.nearby.NearbyPresenter;
 import com.example.administrator.xiangou.nearby.NearbyTabLayoutAdapter;
-import com.example.administrator.xiangou.nearby.nearbygoods.NearbyGoodsFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,10 +50,10 @@ public class Goods_rankingFragment extends MVPBaseFragment<NearbyContract.View, 
     private void initTabFragViews() {
         tabTitles = new String[]{"综合", "销量", "新品", "价格"};
         mTabFragList = new ArrayList<>();
-        mTabFragList.add(new NearbyGoodsFragment());
-        mTabFragList.add(new NearbyGoodsFragment());
-        mTabFragList.add(new NearbyGoodsFragment());
-        mTabFragList.add(new NearbyGoodsFragment());
+        mTabFragList.add(new ComprehensiveFragment());
+        mTabFragList.add(new ComprehensiveFragment());
+        mTabFragList.add(new ComprehensiveFragment());
+        mTabFragList.add(new ComprehensiveFragment());
         mTabLayout.setTabMode(TabLayout.MODE_FIXED);
         mLayoutAdapter = new NearbyTabLayoutAdapter(getContext(), getChildFragmentManager(), mTabFragList, tabTitles);
         mViewPager.setAdapter(mLayoutAdapter);

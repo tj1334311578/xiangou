@@ -27,7 +27,6 @@ public class NearbyPreferentialFragment extends MVPBaseFragment<NearbyPreferenti
 
     @Override
     public void initView() {
-
         List<String> list=new ArrayList<>();
         list.add("jefi");
         list.add("ijfe");

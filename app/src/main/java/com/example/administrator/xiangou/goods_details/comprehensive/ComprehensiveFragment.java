@@ -51,7 +51,7 @@ public class ComprehensiveFragment extends MVPBaseFragment<ComprehensiveContract
         mComprehensiveRecycle.addItemDecoration(new ItemIntervalDecoration(0,4,10));
         List<ComprehensiveBean> lists=new ArrayList<>();
         List<String> items=new ArrayList<>();
-//        items.add("新品");
+        items.add("新品");
         items.add("爆款");
         items.add("时尚");
         lists.add(new ComprehensiveBean(R.mipmap.girl_h,"百搭抽绳连帽中长款外套",210.0,500,items));

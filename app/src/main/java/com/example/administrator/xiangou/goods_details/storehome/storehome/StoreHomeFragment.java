@@ -1,4 +1,5 @@
-package com.example.administrator.xiangou.goods_details;
+package com.example.administrator.xiangou.goods_details.storehome.storehome;
+
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,10 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.administrator.xiangou.R;
-import com.example.administrator.xiangou.goods_details.comprehensive.ComprehensiveFragment;
+import com.example.administrator.xiangou.goods_details.storehome.storehome.homestore.HomeStoreFragment;
 import com.example.administrator.xiangou.mvp.MVPBaseFragment;
-import com.example.administrator.xiangou.nearby.NearbyContract;
-import com.example.administrator.xiangou.nearby.NearbyPresenter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,39 +21,38 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * Created by Administrator on 2017/4/15.
+ * MVPPlugin
+ *  邮箱 784787081@qq.com
  */
 
-public class Goods_rankingFragment extends MVPBaseFragment<NearbyContract.View, NearbyPresenter> implements NearbyContract.View,View.OnClickListener{
-    @BindView(R.id.tabs_goodsRanking_tab)
-    TabLayout mTabLayout;
-    @BindView(R.id.tabs_goodsRanking_viewpager)
-    ViewPager mViewPager;
-    private RankingTabLayoutAdapter mLayoutAdapter;
+public class StoreHomeFragment extends MVPBaseFragment<StoreHomeContract.View, StoreHomePresenter> implements StoreHomeContract.View {
+    @BindView(R.id.tabs_goodsstorehome_tab)
+     TabLayout mTabLayout;
+    @BindView(R.id.tabs_goodsstorehome_viewpager)
+     ViewPager mViewPager;
+
     private List<Fragment> mTabFragList;
     private String[] tabTitles;
+    private StoreHomeTabLayoutAdapter mLayoutAdapter;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return setContextView(inflater,container,R.layout.goods_ranking);
+        return setContextView(inflater,container,R.layout.goods_storehome);
     }
 
     @Override
-    public void initView() {
-        ButterKnife.bind(this,mContextView);
-        initTabFragViews();
+    public void onClick(View v) {
+
     }
 
     private void initTabFragViews() {
-        tabTitles = new String[]{"综合", "销量", "新品", "价格"};
-        mTabFragList = new ArrayList<>();
-        mTabFragList.add(new ComprehensiveFragment());
-        mTabFragList.add(new ComprehensiveFragment());
-        mTabFragList.add(new ComprehensiveFragment());
-        mTabFragList.add(new ComprehensiveFragment());
+        tabTitles=new String[]{"店铺首页","所有宝贝"};
+        mTabFragList =new ArrayList<>();
+        mTabFragList.add(new HomeStoreFragment());
+        mTabFragList.add(new HomeStoreFragment());
         mTabLayout.setTabMode(TabLayout.MODE_FIXED);
-        mLayoutAdapter = new RankingTabLayoutAdapter(getContext(), getChildFragmentManager(), mTabFragList, tabTitles);
+        mLayoutAdapter = new StoreHomeTabLayoutAdapter(getContext(), getChildFragmentManager(), mTabFragList,tabTitles);
         mViewPager.setAdapter(mLayoutAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
         for (int i = 0; i < tabTitles.length; i++) {
@@ -68,6 +66,7 @@ public class Goods_rankingFragment extends MVPBaseFragment<NearbyContract.View, 
                 }
             }
         }
+
         mViewPager.setCurrentItem(0);
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -101,13 +100,13 @@ public class Goods_rankingFragment extends MVPBaseFragment<NearbyContract.View, 
     }
 
     @Override
-    public void onClick(View v) {
+    public void sendFialRequest(String message) {
 
     }
 
-
     @Override
-    public void sendFialRequest(String message) {
-
+    public void initView() {
+        ButterKnife.bind(this,mContextView);
+        initTabFragViews();
     }
 }

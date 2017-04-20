@@ -31,7 +31,6 @@ public class NearbyPreferentialFragment extends MVPBaseFragment<NearbyPreferenti
         list.add("jefi");
         list.add("ijfe");
         list.add("fbj");
-        Log.e("tag", "initView: "+list.size() );
         recyclerView= findContentView(R.id.nearby_recycler_preferential,false);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,false));
         recyclerView.setAdapter(new NearbyPreferentialAdapter(getContext(),list));

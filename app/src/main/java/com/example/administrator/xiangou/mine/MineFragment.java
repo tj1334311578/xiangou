@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.classification.fragment.ClassificationTabActivity;
 import com.example.administrator.xiangou.goods_details.Goods_rankingActivity;
+import com.example.administrator.xiangou.goods_details.storehome.StoreHomeActivity;
 import com.example.administrator.xiangou.login.idlogin.IDLoginActivity;
 import com.example.administrator.xiangou.mine.store_application.StoreApplicationActivity;
 import com.example.administrator.xiangou.mvp.MVPBaseFragment;
@@ -128,6 +129,9 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
                 //等价于=>((TextView)(listView.getChildAt(position).findViewById(R.id.mine_item_text)))
                 Toast.makeText(getContext(),tv.getText() +"被点击了", Toast.LENGTH_SHORT).show();
                 switch (position){
+                    case 0:
+                        startNewUI(StoreHomeActivity.class);
+                        break;
                     case 1:
                         startNewUI(Goods_rankingActivity.class);
                         break;

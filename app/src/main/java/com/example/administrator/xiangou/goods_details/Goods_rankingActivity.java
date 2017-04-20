@@ -15,9 +15,5 @@ public class Goods_rankingActivity extends FragmentActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.goods_details_activity);
-//        FragmentTransaction transaction=getSupportFragmentManager().beginTransaction();
-//        Goods_rankingFragment fragment=new Goods_rankingFragment();
-//        transaction.add(R.id.goods_ranking_fragment,fragment);
-//        transaction.commit();
     }
 }

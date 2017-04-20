@@ -154,7 +154,6 @@ public class NearbyFragment extends MVPBaseFragment<NearbyContract.View, NearbyP
                     default:
                     case "ppw0":
                         nearyDistance = 1000000;
-
                         // TODO: 2017/3/13
                         setPopupWindowCurrentItem(v);
 

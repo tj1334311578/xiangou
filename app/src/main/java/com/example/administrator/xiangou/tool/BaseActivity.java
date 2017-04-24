@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
@@ -24,7 +25,7 @@ import butterknife.ButterKnife;
  * 所有activity的基类
  */
 
-public class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener{
     private BroadcastReceiver exitReceiver=new BroadcastReceiver(){
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -117,6 +118,16 @@ public class BaseActivity extends AppCompatActivity {
         startActivityForResult(new Intent(this,context),code,options);
     }
 
+    public <T extends View> T findContentView(int id){
+        return findContentView(id,true);
+    }
+    public <T extends View> T findContentView(int id, boolean toSetClickListener){
+        View view = this.findViewById(id);
+        if (toSetClickListener) {
+            view.setOnClickListener(this);
+        }
+        return (T) view;
+    }
     /**
      * Toast
      * @param msg

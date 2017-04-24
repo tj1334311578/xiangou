@@ -8,7 +8,7 @@ package com.example.administrator.xiangou.cart.model;
  */
 public class CartMergeItemBean {
     private GoodsDealBean mGoodsDealBean;
-    private CartItemCbBean mItemCbBean;
+    private ItemStatusBean mItemCbBean;
 
     public GoodsDealBean getGoodsDealBean() {
         return mGoodsDealBean;
@@ -18,15 +18,15 @@ public class CartMergeItemBean {
         mGoodsDealBean = goodsDealBean;
     }
 
-    public CartItemCbBean getItemCbBean() {
+    public ItemStatusBean getItemStatusBean() {
         return mItemCbBean;
     }
 
-    public void setItemCbBean(CartItemCbBean itemCbBean) {
+    public void setItemCbBean(ItemStatusBean itemCbBean) {
         mItemCbBean = itemCbBean;
     }
 
-    public CartMergeItemBean(GoodsDealBean goodsDealBean, CartItemCbBean itemCbBean) {
+    public CartMergeItemBean(GoodsDealBean goodsDealBean, ItemStatusBean itemCbBean) {
         mGoodsDealBean = goodsDealBean;
         mItemCbBean = itemCbBean;
     }

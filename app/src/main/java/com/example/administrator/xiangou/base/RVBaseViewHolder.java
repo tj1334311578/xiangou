@@ -1,11 +1,8 @@
 package com.example.administrator.xiangou.base;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
@@ -18,33 +15,17 @@ import com.youth.banner.Banner;
  * Created by zhouzongyao on 2017/3/6.
  */
 
-public class RVBaseViewHolder extends RecyclerView.ViewHolder{
+public class RVBaseViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
     private SparseArray<View> mViews;
-    private View mItemView;
+//    private View mItemView;
+    private RVBaseAdapter.OnItemViewClickListener mOnItemViewClickListener;
 
     public RVBaseViewHolder(View itemView , final RVBaseAdapter.OnItemViewClickListener onItemViewClickListener ) {
         super(itemView);
-        mItemView = itemView;
+//         = itemView;
         mViews = new SparseArray<>();
-        mItemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (onItemViewClickListener!=null)
-                onItemViewClickListener.setOnItemViewClick(v,getLayoutPosition());
-            }
-        });
-    }
-
-    public static RVBaseViewHolder createViewHolder(Context context, ViewGroup parent, int layoutId, RVBaseAdapter.OnItemViewClickListener onItemViewClickListener)
-    {
-        View itemView = LayoutInflater.from(context).inflate(layoutId, parent,
-                false);
-        RVBaseViewHolder holder = new RVBaseViewHolder(itemView, onItemViewClickListener);
-        return holder;
-    }
-
-    public View getItemView() {
-        return mItemView;
+        mOnItemViewClickListener = onItemViewClickListener;
+        itemView.setOnClickListener(this);
     }
 
     /**
@@ -82,9 +63,15 @@ public class RVBaseViewHolder extends RecyclerView.ViewHolder{
     private <T extends View> T findView(int id) {
         View view = mViews.get(id);
         if (view == null) {
-            view = mItemView.findViewById(id);
+            view = itemView.findViewById(id);
             mViews.put(id,view);
         }
         return (T) view;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (mOnItemViewClickListener!=null)
+            mOnItemViewClickListener.setOnItemViewClick(v,getLayoutPosition());
     }
 }

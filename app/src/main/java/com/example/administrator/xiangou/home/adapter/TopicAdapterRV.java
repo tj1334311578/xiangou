@@ -4,8 +4,8 @@ import android.content.Context;
 import android.widget.TextView;
 
 import com.example.administrator.xiangou.R;
-import com.example.administrator.xiangou.base.RVBaseViewHolder;
 import com.example.administrator.xiangou.base.RVBaseAdapter;
+import com.example.administrator.xiangou.base.RVBaseViewHolder;
 import com.example.administrator.xiangou.home.model.ChildHomeBean;
 import com.example.administrator.xiangou.tool.CustomImageView;
 

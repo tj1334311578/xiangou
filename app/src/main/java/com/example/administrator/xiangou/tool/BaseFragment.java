@@ -1,6 +1,7 @@
 package com.example.administrator.xiangou.tool;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -32,7 +33,6 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
 
     public User bUser;
     public MySharedPreferences bSharedPreferences;
-    public BaseActivity mBaseActivity;//这里是为了引用BaseActivity的ProgressDialog
     public View mContextView;
 
 
@@ -62,7 +62,26 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(getContext(),view);
         mActivity = getActivity();
-        mBaseActivity = new BaseActivity();
+    }
+
+    public ProgressDialog mProgressDialog;
+    public ProgressDialog showProgressDialog() {
+        this.mProgressDialog = new ProgressDialog(mActivity);
+        this.mProgressDialog.setMessage("拼命加载中...");
+        this.mProgressDialog.show();
+        return this.mProgressDialog;
+    }
+    public ProgressDialog showProgressDialog(CharSequence message) {
+        this.mProgressDialog = new ProgressDialog(mActivity);
+        this.mProgressDialog.setMessage(message);
+        this.mProgressDialog.show();
+        return this.mProgressDialog;
+    }
+    public void dismissProgressDialog() {
+        if (this.mProgressDialog != null && this.mProgressDialog.isShowing()) {
+            // progressDialog.hide();会导致android.view.WindowLeaked
+            this.mProgressDialog.dismiss();
+        }
     }
 
     //还可以把统一的toolbar等控件在此初始化

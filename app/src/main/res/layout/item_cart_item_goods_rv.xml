@@ -3,13 +3,15 @@
               xmlns:app="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="wrap_content">
+              android:layout_height="wrap_content"
+    android:background="@color/whiteBgColor"
+    >
     
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="8dp">
+        android:padding="13dp">
         <CheckBox
             android:layout_width="19dp"
             android:layout_height="19dp"
@@ -32,6 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:visibility="gone"
             android:id="@+id/item_cart_deal_before_ll"
             android:layout_marginLeft="10dp">
             <TextView
@@ -68,10 +71,10 @@
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="￥85.00"
-                    android:textSize="13sp"
+                    android:textSize="12sp"
                     android:id="@+id/item_cart_item_originalprice"
                     android:textColor="@color/cart_textb316color"
-                    android:layout_marginLeft="3dp"/>
+                    android:layout_marginLeft="5dp"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -80,18 +83,11 @@
                     android:id="@+id/item_cart_item_count"
                     android:textColor="@color/cart_textb316color"/>
             </LinearLayout>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="7折"
-                android:id="@+id/item_cart_item_goods_discount"
-                android:textColor="@color/textcolor_pink"/>
         </LinearLayout>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:id="@+id/item_cart_deal_edit_ll"
+            android:id="@+id/item_cart_deal_edit_rl"
             android:paddingTop="2dp">
 
             <TextView
@@ -118,9 +114,9 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="41dp"
-                    android:padding="5dp"
+                    android:scaleType="centerInside"
                     android:id="@+id/item_cart_item_goods_decrease"
-                    android:src="@mipmap/nearby_goods_entrance_icon"
+                    android:src="@mipmap/cart_reduce_icon"
                     android:gravity="center"
                     android:background="@drawable/cart_deal_textbg"/>
                 <TextView
@@ -137,9 +133,9 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="41dp"
-                    android:padding="5dp"
+                    android:scaleType="centerInside"
                     android:id="@+id/item_cart_item_goods_add"
-                    android:src="@mipmap/nearby_goods_entrance_icon"
+                    android:src="@mipmap/cart_add_icon"
                     android:gravity="center"
                     android:background="@drawable/cart_deal_textbg"/>
             </LinearLayout>
@@ -165,6 +161,7 @@
                 android:text="尺码：S"
                 android:textColor="@color/cart_textb316color"/>
             <ImageView
+                android:id="@+id/item_cart_item_goods_edit"
                 android:layout_width="12dp"
                 android:layout_height="8dp"
                 android:layout_below="@id/item_cart_item_goods_color"
@@ -174,11 +171,4 @@
         </RelativeLayout>
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginLeft="37dp"
-        android:layout_marginRight="9dp"
-        android:layout_marginBottom="8dp"
-        android:background="@color/lineBgColor"/>
 </LinearLayout>

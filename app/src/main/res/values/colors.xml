@@ -13,7 +13,7 @@
     <color name="fragBgColor">#f5eef5</color>
     <color name="grayBgColor">#d2d2d2</color>
     <color name="whiteBgColor">#ffffff</color>
-    <color name="lineBgColor">#d9d9d9</color>
+    <color name="lineBgColor">#c7c7c7</color>
     <color name="homeBgColor">#f8f8f8</color>
     <color name="nearbyTabLine">#e20755</color>
     <color name="textcolor_black">#f5060002</color>
@@ -22,7 +22,7 @@
     <color name="textcolor_adr">#cc050505</color>
     <color name="textcolor_advs_topic_title">#fb4a89</color>
     <color name="textcolor_hint">#80888888</color>
-    <color name="textcolor_nearby_title">#f0161616</color>
+    <color name="textcolor_nearby_title">#e6050505</color>
     <color name="textcolor_nearby_item_name">#e0161616</color>
     <color name="textcolor_nearby_hint">#80040404</color>
     <color name="distance_store_bg">#86bef2</color>

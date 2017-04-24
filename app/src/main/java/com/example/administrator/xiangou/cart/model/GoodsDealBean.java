@@ -13,12 +13,11 @@ public class GoodsDealBean {
     private int goodsCount;
     private float goodsPrice;
     private float goodsOriginalPrice;//原价
-    private float goodsDiscount;//折扣
 
     public GoodsDealBean() {
     }
 
-    public GoodsDealBean(int goodsImg, String goodsName, String goodsColor, String goodsSize, String goodsInch, int goodsCount, float goodsPrice, float goodsOriginalPrice, float goodsDiscount) {
+    public GoodsDealBean(int goodsImg, String goodsName, String goodsColor, String goodsSize, String goodsInch, int goodsCount, float goodsPrice, float goodsOriginalPrice) {
         this.goodsImg = goodsImg;
         this.goodsName = goodsName;
         this.goodsColor = goodsColor;
@@ -27,7 +26,6 @@ public class GoodsDealBean {
         this.goodsCount = goodsCount;
         this.goodsPrice = goodsPrice;
         this.goodsOriginalPrice = goodsOriginalPrice;
-        this.goodsDiscount = goodsDiscount;
     }
 
     public String getGoodsInch() {
@@ -92,13 +90,5 @@ public class GoodsDealBean {
 
     public void setGoodsOriginalPrice(float goodsOriginalPrice) {
         this.goodsOriginalPrice = goodsOriginalPrice;
-    }
-
-    public float getGoodsDiscount() {
-        return goodsDiscount;
-    }
-
-    public void setGoodsDiscount(float goodsDiscount) {
-        this.goodsDiscount = goodsDiscount;
     }
 }

@@ -23,16 +23,10 @@ public class ItemIntervalDecoration extends RecyclerView.ItemDecoration{
         mBottomInterval = interval;
     }
 
-    public ItemIntervalDecoration(float leftInterval, float topInterval, float bottomInterval) {
-        mTopInterval = ContextUtils.dp2px(topInterval);
+    public ItemIntervalDecoration(float leftInterval, float topInterval, float bottomInterval, float rightInterval) {
         mLeftInterval = ContextUtils.dp2px(leftInterval);
-        mBottomInterval = ContextUtils.dp2px(bottomInterval);
-    }
-
-    public ItemIntervalDecoration(float topInterval, float bottomInterval, float leftInterval, float rightInterval) {
+        mTopInterval = ContextUtils.dp2px(topInterval);
         mRightInterval = ContextUtils.dp2px(rightInterval);
-        mTopInterval = ContextUtils.dp2px(topInterval);
-        mLeftInterval = ContextUtils.dp2px(leftInterval);
         mBottomInterval = ContextUtils.dp2px(bottomInterval);
     }
 
@@ -40,12 +34,14 @@ public class ItemIntervalDecoration extends RecyclerView.ItemDecoration{
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
         super.getItemOffsets(outRect, view, parent, state);
         //判断item的position
-        if (parent.getChildAdapterPosition(view) ==0 ) {
-            outRect.left = 0;
-//            outRect.right = (int) mRightInterval;
-        }
-            outRect.left = (int) mLeftInterval;
+        if (parent.getChildAdapterPosition(view) == 0) {
+//            outRect.left = 0;
+            outRect.top = 0;
+        }else {
             outRect.top = (int) mTopInterval;
-            outRect.bottom = (int) mBottomInterval;
+        }
+        outRect.left = (int) mLeftInterval;
+        outRect.bottom = (int) mBottomInterval;
+        outRect.right = (int) mRightInterval;
     }
 }

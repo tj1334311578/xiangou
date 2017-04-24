@@ -29,7 +29,7 @@ public class NearbyStoreFragment extends MVPBaseFragment<NearbyStoreContract.Vie
     public void initView() {
         mNearbyStoreRv = (RecyclerView) mContextView.findViewById(R.id.store_nearby_rv);
         mNearbyStoreRv.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,false));
-        mNearbyStoreRv.addItemDecoration(new ItemIntervalDecoration(0,0,8));
+        mNearbyStoreRv.addItemDecoration(new ItemIntervalDecoration(8,0,0,0));
         List<StoreBean> beanList = new ArrayList<StoreBean>();
         for (int i = 0; i < 8; i++) {
             beanList.add(

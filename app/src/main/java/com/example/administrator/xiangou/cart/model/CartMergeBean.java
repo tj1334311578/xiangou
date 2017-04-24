@@ -9,24 +9,24 @@ import java.util.List;
  * @Date 2017-04-17 9:07
  */
 public class CartMergeBean {
-    private DealBean mDealBean;
-    private CartAllCbBean mCartAllCbBean;
+    private StoreDealBean mStoreDealBean;
+    private StoreStatusBean mStoreStatusBean;
     private List<CartMergeItemBean> mMergeItemBeanList;
 
-    public DealBean getDealBean() {
-        return mDealBean;
+    public StoreDealBean getStoreDealBean() {
+        return mStoreDealBean;
     }
 
-    public void setDealBean(DealBean dealBean) {
-        mDealBean = dealBean;
+    public void setStoreDealBean(StoreDealBean storeDealBean) {
+        mStoreDealBean = storeDealBean;
     }
 
-    public CartAllCbBean getCartAllCbBean() {
-        return mCartAllCbBean;
+    public StoreStatusBean getStoreStatusBean() {
+        return mStoreStatusBean;
     }
 
-    public void setCartAllCbBean(CartAllCbBean cartAllCbBean) {
-        mCartAllCbBean = cartAllCbBean;
+    public void setStoreStatusBean(StoreStatusBean storeStatusBean) {
+        mStoreStatusBean = storeStatusBean;
     }
 
     public List<CartMergeItemBean> getMergeItemBeanList() {
@@ -37,10 +37,10 @@ public class CartMergeBean {
         mMergeItemBeanList = mergeItemBeanList;
     }
 
-    public CartMergeBean(DealBean dealBean, CartAllCbBean cartAllCbBean, List<CartMergeItemBean> mergeItemBeanList) {
+    public CartMergeBean(StoreDealBean storeDealBean, StoreStatusBean storeStatusBean, List<CartMergeItemBean> mergeItemBeanList) {
 
-        mDealBean = dealBean;
-        mCartAllCbBean = cartAllCbBean;
+        mStoreDealBean = storeDealBean;
+        mStoreStatusBean = storeStatusBean;
         mMergeItemBeanList = mergeItemBeanList;
     }
 }

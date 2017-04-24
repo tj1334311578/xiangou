@@ -74,11 +74,10 @@ public abstract class MVPBaseFragment<V extends BaseView,T extends BasePresenter
 
     @Override
     public void showLoading() {
-        mBaseActivity.showProgressDialog();
+        showProgressDialog();
     }
 
     @Override
-    public void hideLoading() {
-        mBaseActivity.dismissProgressDialog();
+    public void hideLoading() { dismissProgressDialog();
     }
 }

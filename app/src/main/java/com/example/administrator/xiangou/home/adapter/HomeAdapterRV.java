@@ -165,7 +165,7 @@ public class HomeAdapterRV extends RVBaseAdapter<HomeChildBean> implements RVBas
                 new GridLayoutManager(mBoutiqueRv.getContext(),4, GridLayoutManager.VERTICAL,false));
         mBoutiqueRv.setPadding(30,11,30,8);
         mBoutiqueRv.addItemDecoration(
-                new ItemIntervalDecoration(16,0,0));
+                new ItemIntervalDecoration(16,0,0,0));
         mBoutiqueRv.setNestedScrollingEnabled(false);
         List<ChildHomeBean> list = new ArrayList<>();
         //test data ,here,you can update
@@ -190,7 +190,7 @@ public class HomeAdapterRV extends RVBaseAdapter<HomeChildBean> implements RVBas
                 new GridLayoutManager(mReferralsRv.getContext(),5, GridLayoutManager.VERTICAL,false));
         mReferralsRv.setPadding(8,11,8,9);
         mReferralsRv.addItemDecoration(
-                new ItemIntervalDecoration(5,0,0));
+                new ItemIntervalDecoration(5,0,0,0));
         mReferralsRv.setNestedScrollingEnabled(false);
         List<ChildHomeBean> list = new ArrayList<>();
         //test data ,here,you can update
@@ -225,7 +225,7 @@ public class HomeAdapterRV extends RVBaseAdapter<HomeChildBean> implements RVBas
         mTopicRv.setLayoutManager(
                 new GridLayoutManager(mTopicRv.getContext(),6, GridLayoutManager.VERTICAL,false));
         mTopicRv.setPadding(8,8,8,5);
-        mTopicRv.addItemDecoration(new ItemIntervalDecoration(7,0,0));
+        mTopicRv.addItemDecoration(new ItemIntervalDecoration(7,0,0,0));
         mTopicRv.setNestedScrollingEnabled(true);
         List<ChildHomeBean> list = new ArrayList<>();
         //test data ,here,you can update

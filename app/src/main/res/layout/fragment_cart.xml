@@ -4,31 +4,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingLeft="8dp"
-    android:paddingRight="8dp"
+    android:background="@color/whiteBgColor"
     >
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="10dp"
-        android:paddingBottom="10dp">
+        android:paddingBottom="10dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp">
         <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
             android:textSize="18sp"
             android:text="购物车(10)"
             android:id="@+id/cart_goods_allcount"
             android:layout_gravity="center_vertical"
             android:textColor="@color/textcolor_nearby_title"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/cart_edit_all"
-            android:text="编辑全部"
-            android:textSize="14sp"
-            android:layout_gravity="center_vertical"
-            android:textColor="@color/textcolor_nearby_title"/>
+
         <RelativeLayout
             android:layout_width="30dp"
             android:layout_height="30dp"
@@ -52,21 +46,23 @@
                 android:id="@+id/news_num_cart_title"
                 android:layout_alignParentRight="true"/>
         </RelativeLayout>
-    </LinearLayout>
+    </RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/lineBgColor"/>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:scrollbars="none">
+        android:scrollbars="none"
+        android:background="#f8f8f8"
+        >
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/lineBgColor"/>
             <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -101,7 +97,8 @@
             <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/cart_recommendation_rv"></android.support.v7.widget.RecyclerView>
+                android:id="@+id/cart_recommendation_rv"
+                ></android.support.v7.widget.RecyclerView>
         </LinearLayout>
     </ScrollView>
     <LinearLayout
@@ -110,6 +107,8 @@
         android:orientation="horizontal"
         android:paddingTop="9dp"
         android:paddingBottom="9dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
         android:gravity="center_vertical">
         <CheckBox
             android:layout_width="21dp"

@@ -4,8 +4,8 @@ import android.content.Context;
 import android.widget.TextView;
 
 import com.example.administrator.xiangou.R;
-import com.example.administrator.xiangou.base.RVBaseViewHolder;
 import com.example.administrator.xiangou.base.RVBaseAdapter;
+import com.example.administrator.xiangou.base.RVBaseViewHolder;
 import com.example.administrator.xiangou.nearby.nearbygoods.GoodsBean;
 import com.example.administrator.xiangou.tool.CustomImageView;
 
@@ -22,7 +22,6 @@ public class HouseHoldsAdapterRV extends RVBaseAdapter<GoodsBean> {
     public HouseHoldsAdapterRV(Context context, int mLayoutResId, List<GoodsBean> mDatas) {
         super(context, mLayoutResId, mDatas);
     }
-
 
     @Override
     protected void bindData(RVBaseViewHolder holder, GoodsBean goodsBean, int position) {

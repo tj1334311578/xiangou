@@ -1,14 +1,15 @@
 package com.example.administrator.xiangou.cart.adapter;
 
 import android.content.Context;
+import android.os.Handler;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SimpleItemAnimator;
-import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,8 +17,8 @@ import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.base.RVBaseAdapter;
 import com.example.administrator.xiangou.base.RVBaseViewHolder;
 import com.example.administrator.xiangou.cart.model.CartMergeBean;
-import com.example.administrator.xiangou.cart.model.DealBean;
-import com.example.administrator.xiangou.tool.ContextUtils;
+import com.example.administrator.xiangou.cart.model.StoreDealBean;
+import com.example.administrator.xiangou.tool.ItemIntervalDecoration;
 
 import java.util.List;
 
@@ -28,84 +29,136 @@ import java.util.List;
 public class AdapterDealCartRV extends RVBaseAdapter<CartMergeBean> implements View.OnClickListener{
 
     private CheckBox mStotrCb;
-    private TextView mAllEditTv,mFreePriceTv;
+    private TextView mAllEditTv,mStoreName;
     private RecyclerView mGoodsRv;
-    private boolean isEditAll;
-    private float goodsAllPrice;
-    private AdapterItemGoodsDealRvRV mAdapterItemGoodsDealRv;
+    private boolean isFirst=true;
+    private AdapterItemGoodsDealRV mAdapterItemGoodsDealRv;
+    private ItemIntervalDecoration mDecoration;
 
     public AdapterDealCartRV(Context context, List<CartMergeBean> mDatas) {
         super(context, R.layout.item_cart_dealrv, mDatas);
-
+        mDecoration = new ItemIntervalDecoration(0, 5, 0, 0);
     }
 
-    //    public AdapterDealCartRV(Context context, List<DealBean> mDatas ,List<CartAllCbBean> mAllCbBeanList) {
-//        super(context, R.layout.item_cart_dealrv, mDatas);
-//        this.mAllCbBeanList = mAllCbBeanList;
-//        mList = new ArrayList<>();
-//        mList.add(new GoodsDealBean(R.mipmap.cart_goods_dfimg,"【实拍原版】春季韩版学院风九分裤毛边高腰宽松直筒阔腿裤","浅蓝",
-//                "26","S",2,59.50f,85.00f,7f));
-//        mList.add(new GoodsDealBean(R.mipmap.cart_recommend_dfimg,"【实拍原版】春季韩版套装条纹宽松连衣裙","黑白条纹",
-//                "28","m",1,51.50f,68.00f,6f));
-//    }
     @Override
-    protected void bindData(RVBaseViewHolder holder, CartMergeBean cartMergeBean, final int pos) {
-        DealBean dealBean= cartMergeBean.getDealBean();
-        holder.setIsRecyclable(false);
-        goodsAllPrice = 0;
+    protected void bindData(RVBaseViewHolder holder, final CartMergeBean cartMergeBean, final int pos) {
 
-        mStotrCb = holder.getCheckBox(R.id.cart_all_checkBox);
+        StoreDealBean storeDealBean = cartMergeBean.getStoreDealBean();
+//        holder.setIsRecyclable(false);//不再复用holder
+
         //设置CheckBox状态
-        mStotrCb.setChecked(cartMergeBean.getCartAllCbBean().ischeck());
+        mStotrCb = holder.getCheckBox(R.id.cart_all_checkBox);
+        mStotrCb.setTag(mDatas.get(pos));
+
         mStotrCb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 //将店铺的checkbox的点击变化事件进行回调
-                if (mOnStroeCbClickListener!=null){
-                    mOnStroeCbClickListener.setOnStoreCbClick(isChecked,pos);
+                if (mOnStroeClickListener !=null){
+                    mOnStroeClickListener.setOnStoreCbClick(isChecked,pos);
                 }
             }
         });
-
-        holder.getTextView(R.id.cart_storename_tv).setText(dealBean.getStoreName());
+        if (holder.getCheckBox(R.id.cart_all_checkBox).getTag() == mDatas.get(pos)) {
+            mStotrCb = holder.getCheckBox(R.id.cart_all_checkBox);
+        }
+        mStotrCb.setChecked(cartMergeBean.getStoreStatusBean().ischeck());
+        mStoreName = holder.getTextView(R.id.cart_storename_tv);
+        mStoreName.setText(storeDealBean.getStoreName());
         holder.getTextView(R.id.cart_ticket_tv).setOnClickListener(this);
-        holder.getTextView(R.id.cart_deal_edit_tv).setOnClickListener(this);
+        mAllEditTv = holder.getTextView(R.id.cart_deal_edit_tv);
+        mAllEditTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mOnStroeClickListener.setOnEditStoreGoods((TextView) v,pos);
+            }
+        });
 
-        mGoodsRv = holder.getRecyclerView(R.id.cart_item_goods_rv);
         //使用itemview的context
-        mGoodsRv.setLayoutManager(new LinearLayoutManager( holder.getItemView().getContext() , LinearLayoutManager.VERTICAL, false));
+        mGoodsRv = holder.getRecyclerView(R.id.cart_item_goods_rv);
+        mGoodsRv.setTag(mDatas.get(pos));
+        mGoodsRv.setLayoutManager(new LinearLayoutManager(holder.itemView.getContext(), LinearLayoutManager.VERTICAL, false));
+        if (isFirst) {
+            isFirst=false;
+        }else {
+            mGoodsRv.removeItemDecoration(mDecoration);
+        }
+        mGoodsRv.addItemDecoration(mDecoration);
         mGoodsRv.setHasFixedSize(true);
+        mGoodsRv.setNestedScrollingEnabled(false);
         ((SimpleItemAnimator)mGoodsRv.getItemAnimator()).setSupportsChangeAnimations(false);
 
-        mAdapterItemGoodsDealRv = new AdapterItemGoodsDealRvRV( holder.getItemView().getContext(), mDatas.get(pos).getMergeItemBeanList());
-        mAdapterItemGoodsDealRv.setOnCheckBoxClickListener(new AdapterItemGoodsDealRvRV.OnCheckBoxClickListener() {
+        mAdapterItemGoodsDealRv = new AdapterItemGoodsDealRV(holder.itemView.getContext(), mDatas.get(pos).getMergeItemBeanList());
+
+        if (holder.getRecyclerView(R.id.cart_item_goods_rv).getTag() == mDatas.get(pos)){
+            mGoodsRv = holder.getRecyclerView(R.id.cart_item_goods_rv);
+        }
+        mGoodsRv.setAdapter(mAdapterItemGoodsDealRv);
+        mAdapterItemGoodsDealRv.setOnItemGoodsClickListener(new AdapterItemGoodsDealRV.OnItemGoodsClickListener() {
             @Override
-            public void setOnCheckBoxClick(boolean isChecked, int position) {
+            public void setOnCheckBoxClick(boolean isChecked, final int position) {
                 //将店铺商品的checkbox的点击变化事件进行回调
-                if (mOnStroeCbClickListener!=null){
-                    mOnStroeCbClickListener.setOnItemCbCheckListener(isChecked,pos,position);
+                if (mOnStroeClickListener !=null){
+                    mOnStroeClickListener.setOnItemCbCheckListener(isChecked,pos,position);
+                    UpdateRecyclerView(position);
                 }
             }
+
+            @Override
+            public void setOnDeleteGoodsClick(TextView tv, int position) {
+                if (mOnStroeClickListener !=null) {
+                    mOnStroeClickListener.setOnDeleteGoodsClick(tv, pos, position);
+                    RemoveRecyclerViewItem(position);
+                }
+            }
+
+            @Override
+            public void setOnDecreaseGoodsClick(ImageView iv, int position, TextView goodsCountTv) {
+                if (mOnStroeClickListener !=null) {
+                    mOnStroeClickListener.setOnDecreaseGoodsClick(iv, pos, position, goodsCountTv);
+                    UpdateRecyclerView(position);
+                }
+            }
+
+            @Override
+            public void setOnAddGoodsClick(ImageView iv, int position, TextView goodsCountTv) {
+                if (mOnStroeClickListener !=null) {
+                    mOnStroeClickListener.setOnAddGoodsClick(iv, pos, position, goodsCountTv);
+                    UpdateRecyclerView(position);
+                }
+            }
+
+            @Override
+            public void setOnEditGoodsClick(ImageView iv, int position) {
+                if (mOnStroeClickListener !=null) {
+                    mOnStroeClickListener.setOnEditGoodsClick(iv, pos, position);
+                    UpdateRecyclerView(position);
+                }
+            }
+
         });
-        mGoodsRv.setAdapter(mAdapterItemGoodsDealRv);
 
-
-        mFreePriceTv = holder.getTextView(R.id.cart_item_free_text);
-        if (dealBean.getGoodsFreePrice()>goodsAllPrice){
-            mFreePriceTv.setText("再买"+ ContextUtils.S2places(dealBean.getGoodsFreePrice()-goodsAllPrice)+"元，免运费");
-        }else {
-            mFreePriceTv.setText("免邮费！");
-        }
-        Log.e("goodsPrice", "toData: goodsFreePrice=" +dealBean.getGoodsFreePrice()+"---goodsAllPrice="
-                +goodsAllPrice+"===="+ContextUtils.S2places(dealBean.getGoodsFreePrice()-goodsAllPrice));
-
-        holder.getTextView(R.id.cart_item_free_addon).setOnClickListener(this);
-
-        holder.getItemView().setTag(mDatas.get(pos));
+        holder.itemView.setTag(mDatas.get(pos));
     }
 
-
-
+    private void UpdateRecyclerView(final int position) {
+        Handler handler = new Handler();
+        final Runnable r = new Runnable() {
+            public void run() {
+                mAdapterItemGoodsDealRv.notifyItemChanged(position);//更新
+            }
+        };
+        handler.post(r);
+    }
+    private void RemoveRecyclerViewItem(final int position) {
+        Handler handler = new Handler();
+        final Runnable r = new Runnable() {
+            public void run() {
+                mAdapterItemGoodsDealRv.notifyItemRangeRemoved(position,1);//更新
+            }
+        };
+        handler.post(r);
+    }
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
@@ -127,30 +180,28 @@ public class AdapterDealCartRV extends RVBaseAdapter<CartMergeBean> implements V
             case R.id.cart_ticket_tv:
                 Toast.makeText(mContext, "领券了，领券了", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.cart_deal_edit_tv:
-                if (!isEditAll){
-                    mAllEditTv = (TextView) v;
-                    mAllEditTv.setText("完成");
-                    isEditAll = true;
-                }else {
-                    mAllEditTv = (TextView) v;
-                    mAllEditTv.setText("编辑");
-                    isEditAll =false;
-                }
-                break;
         }
     }
 
-    protected OnStroeCbClickListener mOnStroeCbClickListener;
-
-    public interface OnStroeCbClickListener {
+    protected OnStroeClickListener mOnStroeClickListener;
+    public interface OnStroeClickListener {
         //回调函数 将店铺的checkbox的点击变化事件进行回调
         void setOnStoreCbClick(boolean isChecked, int position);
         //回调函数 将店铺商品的checkbox的点击变化事件进行回调
         void setOnItemCbCheckListener(boolean isItemChecked, int parentposition, int chaildposition);
+        //回调函数 将店铺商品的编辑的点击事件进行回调
+        void setOnEditStoreGoods(TextView v, int position);
+        //删除商品
+        void setOnDeleteGoodsClick(TextView tv, int parentposition, int chaildposition);
+        //减少商品数量
+        void setOnDecreaseGoodsClick(ImageView iv, int parentposition, int chaildposition, TextView goodsCountTv);
+        //增加商品数量
+        void setOnAddGoodsClick(ImageView iv, int parentposition, int chaildposition, TextView goodsCountTv);
+        //编辑商品属性
+        void setOnEditGoodsClick(ImageView view, int parentposition, int chaildposition);
     }
-    public void setOnStroeCbClickListener(OnStroeCbClickListener stroeCbClickListener) {
-        this.mOnStroeCbClickListener = stroeCbClickListener;
+    public void setOnStroeClickListener(OnStroeClickListener stroeCbClickListener) {
+        this.mOnStroeClickListener = stroeCbClickListener;
     }
 
 }

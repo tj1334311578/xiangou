@@ -51,6 +51,7 @@ public class NearbyGoodsAdapterRV extends RVBaseAdapter<ChildType> implements RV
         }
         return super.onCreateViewHolder(parent, viewType);
     }
+
     @Override
     public int getItemViewType(int position) {
         switch (position){
@@ -131,7 +132,7 @@ public class NearbyGoodsAdapterRV extends RVBaseAdapter<ChildType> implements RV
         mClothingRv = holder.getRecyclerView(R.id.clothing_goods_nearby_rv);
         mClothingRv.setLayoutManager(new GridLayoutManager(mClothingRv.getContext(),4, GridLayoutManager.VERTICAL,false));
         mClothingRv.setPadding(ContextUtils.dp2px(8),ContextUtils.dp2px(8),ContextUtils.dp2px(8),ContextUtils.dp2px(8));
-        mClothingRv.addItemDecoration(new ItemIntervalDecoration(8,0,0));
+        mClothingRv.addItemDecoration(new ItemIntervalDecoration(8,0,0,0));
         List<GoodsBean> list = new ArrayList<>();
         //test data ,here,you can update
         for (int i=0;i<8;i++) {
@@ -158,7 +159,7 @@ public class NearbyGoodsAdapterRV extends RVBaseAdapter<ChildType> implements RV
         mMakeupRv = holder.getRecyclerView(R.id.makeup_goods_nearby_rv);
         mMakeupRv.setLayoutManager(new GridLayoutManager(mMakeupRv.getContext(),4, GridLayoutManager.VERTICAL,false));
         mMakeupRv.setPadding(ContextUtils.dp2px(8),ContextUtils.dp2px(8),ContextUtils.dp2px(8),ContextUtils.dp2px(8));
-        mMakeupRv.addItemDecoration(new ItemIntervalDecoration(8,0,0));
+        mMakeupRv.addItemDecoration(new ItemIntervalDecoration(8,0,0,0));
         List<GoodsBean> list = new ArrayList<>();
         //test data ,here,you can update
         for (int i=0;i<4;i++) {
@@ -185,7 +186,7 @@ public class NearbyGoodsAdapterRV extends RVBaseAdapter<ChildType> implements RV
         mHouseholdsRv = holder.getRecyclerView(R.id.households_goods_nearby_rv);
         mHouseholdsRv.setLayoutManager(new GridLayoutManager(mHouseholdsRv.getContext(),3, GridLayoutManager.VERTICAL,false));
         mHouseholdsRv.setPadding(ContextUtils.dp2px(8),ContextUtils.dp2px(8),ContextUtils.dp2px(8),ContextUtils.dp2px(8));
-        mHouseholdsRv.addItemDecoration(new ItemIntervalDecoration(8,0,0));
+        mHouseholdsRv.addItemDecoration(new ItemIntervalDecoration(8,0,0,0));
         List<GoodsBean> list = new ArrayList<>();
         //test data ,here,you can update
         for (int i=0;i<12;i++) {

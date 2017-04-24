@@ -5,8 +5,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.administrator.xiangou.R;
-import com.example.administrator.xiangou.base.RVBaseViewHolder;
 import com.example.administrator.xiangou.base.RVBaseAdapter;
+import com.example.administrator.xiangou.base.RVBaseViewHolder;
 
 import java.util.List;
 

@@ -5,8 +5,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Environment;
-import android.os.Handler;
-import android.os.Message;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Gravity;
@@ -15,15 +13,12 @@ import android.widget.Toast;
 
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.tool.BaseActivity;
-import com.example.administrator.xiangou.tool.ImageUtils;
 import com.example.administrator.xiangou.tool.SelectPicPopupWindow;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Locale;
-import java.util.Map;
 
 /**
  * Created by Administrator on 2017/3/28.
@@ -135,5 +130,10 @@ public class PopupWindowsBaseActivity extends BaseActivity {
         startActivityForResult(intent, tag);
         Log.e("flag", "pickPhoto: "+mImagePath );
         return mImagePath;
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }

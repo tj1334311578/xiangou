@@ -2,6 +2,7 @@ package com.example.administrator.xiangou.base;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -15,11 +16,13 @@ public abstract class RVBaseAdapter<T> extends RecyclerView.Adapter<RVBaseViewHo
     public Context mContext;
     protected List<T> mDatas;
     protected  int mLayoutResId;
+    private static View mItemView;
 
     /**
      * 提供itemview监听
      */
     protected OnItemViewClickListener mOnItemViewClickListener;
+
     public interface OnItemViewClickListener {
         void setOnItemViewClick(View view, int position);
     }
@@ -38,10 +41,10 @@ public abstract class RVBaseAdapter<T> extends RecyclerView.Adapter<RVBaseViewHo
         setLayoutResId(mLayoutResId);
     }
 
-
     @Override
     public RVBaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        RVBaseViewHolder holder = RVBaseViewHolder.createViewHolder(mContext,parent,mLayoutResId,mOnItemViewClickListener);
+        mItemView = LayoutInflater.from(mContext).inflate(mLayoutResId, parent,false);
+        RVBaseViewHolder holder = new RVBaseViewHolder(mItemView, mOnItemViewClickListener);
         return holder;
     }
 
@@ -49,7 +52,6 @@ public abstract class RVBaseAdapter<T> extends RecyclerView.Adapter<RVBaseViewHo
     @Override
     public void onBindViewHolder(RVBaseViewHolder holder, final int position) {
         T t = getItem(position);
-
         bindData(holder,t,position);
     }
 
@@ -82,5 +84,4 @@ public abstract class RVBaseAdapter<T> extends RecyclerView.Adapter<RVBaseViewHo
             notifyItemRangeChanged(position,mDatas.size());
         }
     }
-
 }

@@ -211,10 +211,10 @@ public class NearbyPreferentialAdapter extends AutoRVAdapter implements RVBaseAd
 //            void onItemClick(View view,int position);
 //            void onItemLongClick(View view,int position);
 //        }
-//        private OnItemClickListener mOnCheckBoxClickListener;
+//        private OnItemClickListener mOnItemGoodsClickListener;
 //
-//        public void setOnItemClickListener(OnItemClickListener mOnCheckBoxClickListener){
-//            this.mOnCheckBoxClickListener=mOnCheckBoxClickListener;
+//        public void setOnItemClickListener(OnItemClickListener mOnItemGoodsClickListener){
+//            this.mOnItemGoodsClickListener=mOnItemGoodsClickListener;
 //        }
 //
 
@@ -244,7 +244,7 @@ public class NearbyPreferentialAdapter extends AutoRVAdapter implements RVBaseAd
 //            holder.getImgeView(R.id.item_day_item_img).setOnClickListener(this);
 //            holder.getTextView(R.id.item_day_item_originalprice).setOnClickListener(this);
 //            holder.getTextView(R.id.item_day_item_presentprice).setOnClickListener(this);
-//                if (mOnCheckBoxClickListener!=null){
+//                if (mOnItemGoodsClickListener!=null){
 ////                 holder.getViewHolder(R.layout.nearby_item_day_item)
 //                }
 

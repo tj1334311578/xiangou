@@ -6,9 +6,8 @@ import java.util.List;
  * Created by zhouzongyao on 2017/3/15.
  */
 
-public class DealBean {
+public class StoreDealBean {
     private String storeName;
-    private float goodsFreePrice;//包邮底价
     private List<GoodsDealBean> mList;
 
     public List<GoodsDealBean> getList() {
@@ -19,18 +18,8 @@ public class DealBean {
         mList = list;
     }
 
-    public DealBean(String storeName, float goodsFreePrice) {
+    public StoreDealBean(String storeName) {
         this.storeName = storeName;
-        this.goodsFreePrice = goodsFreePrice;
-//        mList = list;
-    }
-
-    public float getGoodsFreePrice() {
-        return goodsFreePrice;
-    }
-
-    public void setGoodsFreePrice(float goodsFreePrice) {
-        this.goodsFreePrice = goodsFreePrice;
     }
 
     public String getStoreName() {

@@ -2,9 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal"
     android:layout_width="match_parent"
+    android:layout_weight="1"
+    android:layout_height="0dp"
     android:gravity="center_vertical"
     android:id="@+id/mine_item_ll"
-    android:layout_height="wrap_content">
+    >
     <ImageView
         android:layout_width="0dp"
         android:layout_weight="1"

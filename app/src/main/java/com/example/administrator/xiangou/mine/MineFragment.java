@@ -21,6 +21,7 @@ import com.example.administrator.xiangou.classification.fragment.ClassificationT
 import com.example.administrator.xiangou.goods_details.Goods_rankingActivity;
 import com.example.administrator.xiangou.goods_details.storehome.StoreHomeActivity;
 import com.example.administrator.xiangou.login.idlogin.IDLoginActivity;
+import com.example.administrator.xiangou.mine.setting.SettingActivity;
 import com.example.administrator.xiangou.mine.store_application.StoreApplicationActivity;
 import com.example.administrator.xiangou.mvp.MVPBaseFragment;
 import com.example.administrator.xiangou.tool.CustomImageView;
@@ -193,7 +194,7 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
             //设置
             case R.id.mine_setup_iv:
                 Toast.makeText(getActivity(), "点击设置", Toast.LENGTH_SHORT).show();
-                logout();
+                startNewUI(SettingActivity.class);
                 break;
             //消息
             case R.id.mine_message_rl:

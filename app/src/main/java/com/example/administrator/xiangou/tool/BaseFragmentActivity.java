@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.FragmentActivity;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
@@ -21,11 +21,10 @@ import com.example.administrator.xiangou.main.User;
 import butterknife.ButterKnife;
 
 /**
- * Created by Administrator on 2017/2/28.
- * 所有activity的基类
+ * Created by Administrator on 2017/4/20.
  */
 
-public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener{
+public abstract class BaseFragmentActivity extends FragmentActivity implements View.OnClickListener {
     private BroadcastReceiver exitReceiver=new BroadcastReceiver(){
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -141,18 +140,9 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
-//    public <T extends View> T findContentView(int id, View.OnClickListener listener){
-//        return findContentView(id,listener,false);
-//    }
-//    public <T extends View> T findContentView(int id, View.OnClickListener listener, boolean b) {
-//        View v= findViewById(id);
-//        if (b)
-//            v.setOnClickListener(listener);
-//        return (T)v;
-//    }
-public <T extends View> T findContentView(int id){
-    return findContentView(id,true);
-}
+    public <T extends View> T findContentView(int id){
+        return findContentView(id,true);
+    }
     public <T extends View> T findContentView(int id, boolean toSetClickListener){
         View view = this.findViewById(id);
         if (toSetClickListener) {
@@ -226,4 +216,5 @@ public <T extends View> T findContentView(int id){
         bUser.setExperience(Integer.parseInt(user[15]));
         bUser.setLevel(Integer.parseInt(user[16]));
     }
+
 }

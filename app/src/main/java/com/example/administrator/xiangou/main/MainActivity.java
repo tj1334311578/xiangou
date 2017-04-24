@@ -88,4 +88,9 @@ public class MainActivity extends BaseActivity {
             mFragmentTabHost.setCurrentTab(0);
         }
     }
+
+    @Override
+    public void onClick(View v) {
+
+    }
 }

@@ -81,6 +81,20 @@
         android:layout_alignTop="@id/home_store_head_storeImage"
         android:layout_toEndOf="@id/home_store_head_storeImage"
         android:textColor="#fff"/>
+    <RatingBar
+        android:layout_centerVertical="true"
+        android:layout_below="@+id/home_store_headStoreName"
+        android:padding="-3dp"
+        style="?android:attr/ratingBarStyleSmall"
+        android:rating="2.5"
+        android:foregroundGravity="top"
+        android:progressDrawable="@drawable/rating_yellow"
+        android:progressBackgroundTint="@color/white"
+        android:numStars="5"
+        android:id="@+id/home_store_ratingbar"
+        android:layout_alignStart="@+id/home_store_headStoreName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
     <com.example.administrator.xiangou.tool.SelectImageView
         android:layout_width="22dp"
         android:layout_height="22dp"
@@ -98,7 +112,7 @@
         android:textSize="11sp"
         android:id="@+id/home_store_head_salesVolume"
         android:textColor="@color/white"
-        android:layout_alignBottom="@id/home_store_head_storeImage"
+        android:layout_below="@+id/home_store_ratingbar"
         android:layout_alignStart="@id/home_store_headStoreName"/>
 
     <View
@@ -106,6 +120,7 @@
         android:background="@color/white"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
+        android:layout_marginTop="0.5dp"
         android:id="@+id/home_store_head_line"
         android:layout_toEndOf="@id/home_store_head_salesVolume"
         android:layout_alignTop="@id/home_store_head_salesVolume"

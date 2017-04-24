@@ -35,6 +35,8 @@
         <activity android:name=".mine.store_application.StoreApplicationActivity"/>
         <activity android:name=".classification.fragment.ClassificationTabActivity"/>
         <activity android:name=".goods_details.Goods_rankingActivity"/>
+        <activity android:name=".goods_details.storehome.StoreHomeActivity"/>
+        <activity android:name=".mine.setting.SettingActivity"/>
     </application>
 
 </manifest>

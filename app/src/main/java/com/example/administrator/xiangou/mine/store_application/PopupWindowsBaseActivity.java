@@ -136,4 +136,9 @@ public class PopupWindowsBaseActivity extends BaseActivity {
         Log.e("flag", "pickPhoto: "+mImagePath );
         return mImagePath;
     }
+
+    @Override
+    public void onClick(View v) {
+
+    }
 }

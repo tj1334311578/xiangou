@@ -9,6 +9,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.goods_details.storehome.storehome.homestore.HomeStoreFragment;
@@ -30,6 +31,7 @@ public class StoreHomeFragment extends MVPBaseFragment<StoreHomeContract.View, S
      TabLayout mTabLayout;
     @BindView(R.id.tabs_goodsstorehome_viewpager)
      ViewPager mViewPager;
+    ImageView backBtn;
 
     private List<Fragment> mTabFragList;
     private String[] tabTitles;
@@ -47,6 +49,8 @@ public class StoreHomeFragment extends MVPBaseFragment<StoreHomeContract.View, S
     }
 
     private void initTabFragViews() {
+        backBtn= (ImageView) mContextView.findViewById(R.id.goods_storehome_head).findViewById(R.id.home_store_head_Return);
+        findContentView(backBtn,true);
         tabTitles=new String[]{"店铺首页","所有宝贝"};
         mTabFragList =new ArrayList<>();
         mTabFragList.add(new HomeStoreFragment());

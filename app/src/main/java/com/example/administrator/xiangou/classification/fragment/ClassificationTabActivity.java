@@ -12,12 +12,15 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.classification.Model;
+import com.example.administrator.xiangou.tool.BaseActivity;
+import com.example.administrator.xiangou.tool.BaseFragmentActivity;
 import com.example.administrator.xiangou.tool.ContextUtils;
 
 import static android.view.View.GONE;
@@ -26,7 +29,7 @@ import static android.view.View.GONE;
  * Created by Administrator on 2017/4/17.
  */
 
-public class ClassificationTabActivity extends FragmentActivity {
+public class ClassificationTabActivity extends BaseFragmentActivity {
     private String[] list;
     private TextView[] tvList;
     private View[] lines;
@@ -37,6 +40,7 @@ public class ClassificationTabActivity extends FragmentActivity {
     private int currentItem = 0;
     private ShopAdapter shopAdapter;
     private Fragment fragment;
+    private ImageView backBtn;
 
 
     @Override
@@ -46,6 +50,7 @@ public class ClassificationTabActivity extends FragmentActivity {
         scrollView = (ScrollView) findViewById(R.id.tools_scrlllview);
         shopAdapter = new ShopAdapter(getSupportFragmentManager());
         inflater = LayoutInflater.from(this);
+        findContentView(R.id.goods_classification_fragment_return,true);
         showToolsView();
         initPager();
     }
@@ -115,6 +120,18 @@ public class ClassificationTabActivity extends FragmentActivity {
         public void onPageScrolled(int arg0, float arg1, int arg2) {
         }
     };
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.goods_classification_fragment_return:
+                finish();
+                break;
+            default:
+                break;
+        }
+    }
+
 
     /**
      * ViewPager 加载选项卡

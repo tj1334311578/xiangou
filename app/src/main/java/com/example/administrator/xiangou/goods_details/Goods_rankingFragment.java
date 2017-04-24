@@ -8,6 +8,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.goods_details.comprehensive.ComprehensiveFragment;
@@ -25,9 +26,11 @@ import butterknife.ButterKnife;
  * Created by Administrator on 2017/4/15.
  */
 
-public class Goods_rankingFragment extends MVPBaseFragment<NearbyContract.View, NearbyPresenter> implements NearbyContract.View,View.OnClickListener{
+public class Goods_rankingFragment extends MVPBaseFragment<NearbyContract.View, NearbyPresenter> implements NearbyContract.View{
     @BindView(R.id.tabs_goodsRanking_tab)
     TabLayout mTabLayout;
+    @BindView(R.id.goods_ranking_back)
+    ImageView backBtn;
     @BindView(R.id.tabs_goodsRanking_viewpager)
     ViewPager mViewPager;
     private RankingTabLayoutAdapter mLayoutAdapter;
@@ -43,6 +46,7 @@ public class Goods_rankingFragment extends MVPBaseFragment<NearbyContract.View, 
     @Override
     public void initView() {
         ButterKnife.bind(this,mContextView);
+        findContentView(backBtn,true);
         initTabFragViews();
     }
 
@@ -102,12 +106,17 @@ public class Goods_rankingFragment extends MVPBaseFragment<NearbyContract.View, 
 
     @Override
     public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.goods_ranking_back:
+                getActivity().finish();
+            default:
+                break;
+        }
 
     }
 
 
     @Override
     public void sendFialRequest(String message) {
-
     }
 }

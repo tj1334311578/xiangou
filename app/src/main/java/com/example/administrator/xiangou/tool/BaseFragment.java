@@ -62,7 +62,6 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(getContext(),view);
         mActivity = getActivity();
-        mBaseActivity = new BaseActivity();
     }
 
     //还可以把统一的toolbar等控件在此初始化
@@ -70,7 +69,6 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
     public void setTextToTv(TextView textView, Object data){
         textView.setText(data + "");
     }
-
     public <T extends View> T findContentView(int id){
         return findContentView(id,true);
     }
@@ -81,6 +79,14 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
         }
         return (T) view;
     }
+
+    public <T extends View> T findContentView(View v, boolean toSetClickListener){
+        if (toSetClickListener) {
+            v.setOnClickListener(this);
+        }
+        return (T) v;
+    }
+
     /**
      * 页面跳转方法
      * @param context

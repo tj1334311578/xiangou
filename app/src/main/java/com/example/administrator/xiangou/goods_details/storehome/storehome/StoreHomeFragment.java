@@ -95,7 +95,6 @@ public class StoreHomeFragment extends MVPBaseFragment<StoreHomeContract.View, S
                     }
                 }
             }
-
             @Override
             public void onPageScrollStateChanged(int state) {
 

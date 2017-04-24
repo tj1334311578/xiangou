@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.administrator.xiangou.R;
+import com.example.administrator.xiangou.classification.fragment.ClassificationTabActivity;
 import com.example.administrator.xiangou.mvp.MVPBaseFragment;
 import com.example.administrator.xiangou.nearby.nearbygoods.NearbyGoodsFragment;
 import com.example.administrator.xiangou.nearby.nearbypreferential.NearbyPreferentialFragment;
@@ -131,6 +132,7 @@ public class NearbyFragment extends MVPBaseFragment<NearbyContract.View, NearbyP
         switch (v.getId()) {
             case R.id.classify_nearby_iv:
                 Toast.makeText(getContext(), "看分类了", Toast.LENGTH_SHORT).show();
+                startNewUI(ClassificationTabActivity.class);
                 break;
             case R.id.scan_nearby_iv:
                 Toast.makeText(getContext(), "扫描个锤锤", Toast.LENGTH_SHORT).show();
@@ -154,7 +156,6 @@ public class NearbyFragment extends MVPBaseFragment<NearbyContract.View, NearbyP
                     default:
                     case "ppw0":
                         nearyDistance = 1000000;
-
                         // TODO: 2017/3/13
                         setPopupWindowCurrentItem(v);
 

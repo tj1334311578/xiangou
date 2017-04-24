@@ -4,14 +4,80 @@
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent">
-    <include layout="@layout/free_link_head"/>
-<android.support.design.widget.TabLayout
-    android:layout_width="match_parent"
-    android:id="@+id/tabs_goodsRanking_tab"
-    style="@style/MyTabLayoutStyle"
-    app:tabIndicatorColor="@color/nearbyTabLine"
-    app:tabIndicatorHeight="0dp"
-    android:layout_height="wrap_content"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:id="@+id/goods_ranking_back"
+            android:layout_marginStart="13dp"
+            android:src="@mipmap/return_icon"
+            />
+        <LinearLayout
+            android:layout_gravity="center"
+            android:id="@+id/home_store_head_searchLl"
+            android:layout_marginTop="5dp"
+            android:layout_centerHorizontal="true"
+            android:layout_width="205dp"
+            android:layout_height="28dp">
+            <ImageView
+                android:layout_width="14dp"
+                android:id="@+id/home_store_head_startSearch"
+                android:layout_height="14dp"
+                android:layout_gravity="center"
+                android:src="@mipmap/search"/>
+            <EditText
+                android:id="@+id/home_store_head_searchEdit"
+                android:layout_width="match_parent"
+                android:paddingStart="8dp"
+                android:hint="清新可爱校园装"
+                android:textColorHint="@color/black"
+                android:textSize="12sp"
+                android:padding="0dp"
+                android:layout_marginStart="8dp"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+        <RelativeLayout
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignBottom="@+id/home_store_head_searchLl"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="13dp"
+            >
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_marginEnd="3dp"
+                android:layout_alignParentBottom="true"
+                android:src="@mipmap/information"
+                android:clickable="true"
+                android:id="@+id/news_topbar_iv"/>
+            <TextView
+                android:layout_width="11dp"
+                android:layout_height="11dp"
+                android:padding="1dp"
+                android:background="@drawable/news_num"
+                android:text="3"
+                android:textSize="8sp"
+                android:textColor="@color/textcolor_tab_select"
+                android:gravity="center"
+                android:clickable="true"
+                android:id="@+id/news_num_topbar_tv"
+                android:layout_alignParentRight="true"/>
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+    <android.support.design.widget.TabLayout
+        android:layout_width="match_parent"
+        android:id="@+id/tabs_goodsRanking_tab"
+        style="@style/MyTabLayoutStyle"
+        app:tabIndicatorColor="@color/nearbyTabLine"
+        app:tabIndicatorHeight="0dp"
+        android:layout_height="wrap_content"/>
+
     <android.support.v4.view.ViewPager
         android:layout_width="match_parent"
         android:id="@+id/tabs_goodsRanking_viewpager"

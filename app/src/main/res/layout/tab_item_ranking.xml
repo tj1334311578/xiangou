@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:gravity="center_horizontal">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/tv_title_tab"
+        android:gravity="center"
+        android:text="附近商店"
+        android:textColor="@color/textcolor_tab"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:padding="3dp"
+        android:id="@+id/iv_title_tab"
+        android:layout_gravity="bottom"
+        android:visibility="gone"
+        android:src="@mipmap/screen"/>
+</LinearLayout>

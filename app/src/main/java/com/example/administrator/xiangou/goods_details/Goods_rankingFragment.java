@@ -8,13 +8,13 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.example.administrator.xiangou.R;
+import com.example.administrator.xiangou.goods_details.comprehensive.ComprehensiveFragment;
 import com.example.administrator.xiangou.mvp.MVPBaseFragment;
 import com.example.administrator.xiangou.nearby.NearbyContract;
 import com.example.administrator.xiangou.nearby.NearbyPresenter;
-import com.example.administrator.xiangou.nearby.NearbyTabLayoutAdapter;
-import com.example.administrator.xiangou.nearby.nearbygoods.NearbyGoodsFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,12 +26,14 @@ import butterknife.ButterKnife;
  * Created by Administrator on 2017/4/15.
  */
 
-public class Goods_rankingFragment extends MVPBaseFragment<NearbyContract.View, NearbyPresenter> implements NearbyContract.View,View.OnClickListener{
+public class Goods_rankingFragment extends MVPBaseFragment<NearbyContract.View, NearbyPresenter> implements NearbyContract.View{
     @BindView(R.id.tabs_goodsRanking_tab)
     TabLayout mTabLayout;
+    @BindView(R.id.goods_ranking_back)
+    ImageView backBtn;
     @BindView(R.id.tabs_goodsRanking_viewpager)
     ViewPager mViewPager;
-    private NearbyTabLayoutAdapter mLayoutAdapter;
+    private RankingTabLayoutAdapter mLayoutAdapter;
     private List<Fragment> mTabFragList;
     private String[] tabTitles;
 
@@ -44,18 +46,19 @@ public class Goods_rankingFragment extends MVPBaseFragment<NearbyContract.View, 
     @Override
     public void initView() {
         ButterKnife.bind(this,mContextView);
+        findContentView(backBtn,true);
         initTabFragViews();
     }
 
     private void initTabFragViews() {
         tabTitles = new String[]{"综合", "销量", "新品", "价格"};
         mTabFragList = new ArrayList<>();
-        mTabFragList.add(new NearbyGoodsFragment());
-        mTabFragList.add(new NearbyGoodsFragment());
-        mTabFragList.add(new NearbyGoodsFragment());
-        mTabFragList.add(new NearbyGoodsFragment());
+        mTabFragList.add(new ComprehensiveFragment());
+        mTabFragList.add(new ComprehensiveFragment());
+        mTabFragList.add(new ComprehensiveFragment());
+        mTabFragList.add(new ComprehensiveFragment());
         mTabLayout.setTabMode(TabLayout.MODE_FIXED);
-        mLayoutAdapter = new NearbyTabLayoutAdapter(getContext(), getChildFragmentManager(), mTabFragList, tabTitles);
+        mLayoutAdapter = new RankingTabLayoutAdapter(getContext(), getChildFragmentManager(), mTabFragList, tabTitles);
         mViewPager.setAdapter(mLayoutAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
         for (int i = 0; i < tabTitles.length; i++) {
@@ -103,12 +106,17 @@ public class Goods_rankingFragment extends MVPBaseFragment<NearbyContract.View, 
 
     @Override
     public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.goods_ranking_back:
+                getActivity().finish();
+            default:
+                break;
+        }
 
     }
 
 
     @Override
     public void sendFialRequest(String message) {
-
     }
 }

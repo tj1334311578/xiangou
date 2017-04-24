@@ -24,22 +24,12 @@ import java.util.List;
 
 public class NearbyPreferentialAdapter extends AutoRVAdapter implements RVBaseAdapter.OnItemViewClickListener {
     private static Context context;
-    private  List<String> list;
     RecyclerView dayRecycer,hourRecycler,moreRecycler;
-//    //无参构造用于设置监听
-//    public NearbyPreferentialAdapter(){}
-//
+
     public NearbyPreferentialAdapter(Context context, List<String> list) {
         super(context, list);
         this.context=context;
-        this.list=list;
     }
-
-    @Override
-    public int getItemCount() {
-        return this.list.size();
-    }
-
     /**
      *   设置item的类型
      * @param position

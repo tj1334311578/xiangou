@@ -1,7 +1,6 @@
 package com.example.administrator.xiangou.tool;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -89,7 +88,6 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
     public void setTextToTv(TextView textView, Object data){
         textView.setText(data + "");
     }
-
     public <T extends View> T findContentView(int id){
         return findContentView(id,true);
     }
@@ -100,6 +98,14 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
         }
         return (T) view;
     }
+
+    public <T extends View> T findContentView(View v, boolean toSetClickListener){
+        if (toSetClickListener) {
+            v.setOnClickListener(this);
+        }
+        return (T) v;
+    }
+
     /**
      * 页面跳转方法
      * @param context

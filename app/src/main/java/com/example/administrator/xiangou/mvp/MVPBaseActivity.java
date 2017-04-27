@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.example.administrator.xiangou.mine.store_application.PopupWindowsBaseActivity;
 import com.example.administrator.xiangou.tool.BaseActivity;
 
 import java.lang.reflect.ParameterizedType;
@@ -12,7 +13,7 @@ import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
 
 
-public abstract class MVPBaseActivity<V extends BaseView,T extends BasePresenterImpl<V>> extends BaseActivity implements BaseView{
+public abstract class MVPBaseActivity<V extends BaseView,T extends BasePresenterImpl<V>> extends PopupWindowsBaseActivity implements BaseView{
     public T mPresenter;
     private CompositeSubscription mCompositeSubscription;
 

@@ -87,13 +87,13 @@ public class ContextUtils extends Application{
      * @param num
      * @return
      */
-    public static String S2places(float num){
+    public static String S2places(double num){
         DecimalFormat df = new DecimalFormat("0.00");
         return df.format(num);
     }
-    public static float F2places(float num){
+    public static double F2places(double num){
         BigDecimal bd = new BigDecimal(num);
-        return bd.setScale(2).floatValue();
+        return bd.setScale(2).doubleValue();
     }
 
     /**

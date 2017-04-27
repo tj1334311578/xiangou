@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+<TextView
+    android:layout_marginTop="15dp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="张某某"
+    android:id="@+id/manageraddress_username"
+    android:layout_marginStart="13sp"
+    android:textSize="14sp"
+    android:textColor="#cc161616"
+    />
+    <TextView
+        android:id="@+id/manageraddress_usernumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="18182109879"
+        android:layout_marginStart="15dp"
+        android:textSize="14sp"
+        android:textColor="#cc161616"
+        android:layout_alignBottom="@id/manageraddress_username"
+        android:layout_toEndOf="@id/manageraddress_username"
+        />
+
+    <CheckBox
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginTop="19dp"
+        android:button="@null"
+        android:background="@drawable/circlebg_checkbox"
+        android:id="@+id/manageraddress_defaultaddress"
+        android:layout_alignStart="@id/manageraddress_username"
+        android:layout_below="@+id/manageraddress_useraddress" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginStart="5dp"
+        android:textSize="12sp"
+        android:textColor="#fb4a89"
+        android:layout_toEndOf="@id/manageraddress_defaultaddress"
+        android:layout_alignBottom="@id/manageraddress_defaultaddress"
+        android:text="默认地址"/>
+    <com.example.administrator.xiangou.tool.DrawableTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="删除"
+        android:id="@+id/manageraddress_delTv"
+        android:textSize="12sp"
+        android:gravity="center"
+        android:layout_marginEnd="13dp"
+        android:layout_alignParentEnd="true"
+        app:leftDrawable="@drawable/home"
+        app:leftDrawableHeight="16dp"
+        android:paddingEnd="10dp"
+        android:paddingStart="10dp"
+        app:leftDrawableWidth="16dp"
+        android:layout_alignBottom="@id/manageraddress_defaultaddress"
+        android:textColor="#cc161616"/>
+    <com.example.administrator.xiangou.tool.DrawableTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="编辑"
+        android:id="@+id/manageraddress_editTv"
+        android:textSize="12sp"
+        android:gravity="center"
+        app:leftDrawable="@drawable/home"
+        app:leftDrawableHeight="16dp"
+        android:paddingEnd="10dp"
+        android:paddingStart="10dp"
+        android:layout_marginEnd="10dp"
+        app:leftDrawableWidth="16dp"
+        android:layout_toStartOf="@id/manageraddress_delTv"
+        android:layout_alignBottom="@id/manageraddress_defaultaddress"
+        android:textColor="#cc161616"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/manageraddress_useraddress"
+        android:textSize="14sp"
+        android:textColor="#cc161616"
+        android:text="四川省成都市成华区驷马桥杨子姗圣地亚1懂2单元"
+        android:layout_centerVertical="true"
+        android:layout_alignStart="@+id/manageraddress_username" />
+
+</RelativeLayout>

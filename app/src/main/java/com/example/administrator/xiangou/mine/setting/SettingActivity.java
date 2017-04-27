@@ -8,7 +8,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.administrator.xiangou.R;
+import com.example.administrator.xiangou.mine.setting.manageraddress.ManagerAddressActivity;
+import com.example.administrator.xiangou.mine.setting.personal.PersonalActivity;
 import com.example.administrator.xiangou.mvp.MVPBaseActivity;
+import com.example.administrator.xiangou.tool.MySelfDialog;
 
 
 /**
@@ -32,6 +35,7 @@ public class SettingActivity extends MVPBaseActivity<SettingContract.View, Setti
 ////    @BindView(R.id.Feedback_Btn)
 //    ImageView feedBtn;
     Button unloginBtn;
+    private MySelfDialog mySelfDialog;
     //    @BindViews({R.id.person_setting_Btn,R.id.setting_address_Btn,R.id.Version_information_Btn,R.id.Help_counseling_Btn,R.id.Clear_cache_img,R.id.Feedback_Btn})
 //    List<ImageButton> Btns;
     LinearLayout personalBtn,addressBtn,versionBtn,helpBtn,clean_cacheBtn,feedBtn;
@@ -69,12 +73,14 @@ public class SettingActivity extends MVPBaseActivity<SettingContract.View, Setti
                 break;
             case R.id.person_setting_Ll:
                 showToast("0");
+                startNewUI(PersonalActivity.class);
                 break;
             case R.id.person_address_Ll:
                 showToast("1");
+                startNewUI(ManagerAddressActivity.class);
                 break;
             case R.id.Version_information_Ll:
-                showToast("2");
+                showToast("2版本信息：V1.00版本\n我们正在持续更新中，谢谢支持！");
                 break;
             case R.id.Help_counseling_Ll:
                 showToast("3");
@@ -87,8 +93,27 @@ public class SettingActivity extends MVPBaseActivity<SettingContract.View, Setti
                 break;
             case R.id.exit_login:
                 showToast("退出当前账号");
-                logout();
-                finish();
+                mySelfDialog=new MySelfDialog(SettingActivity.this);
+                mySelfDialog.setMessage("亲，您确定要退出当前账号吗？");
+                mySelfDialog.setNoOnclickListener("取消", new MySelfDialog.onNoOnclickListener() {
+                    @Override
+                    public void onNoClick() {
+                        showToast("点击了取消按钮");
+                        mySelfDialog.dismiss();
+                    }
+                });
+                mySelfDialog.setYesOnclickListener("确定", new MySelfDialog.onYesOnclickListener() {
+                    @Override
+                    public void onYesClick() {
+                        showToast("点击了确定按钮");
+                        logout();
+                        mySelfDialog.dismiss();
+                        finish();
+                    }
+                });
+                mySelfDialog.show();
+//                logout();
+//                finish();
                 break;
             default:
                 break;

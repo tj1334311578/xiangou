@@ -21,6 +21,7 @@ import com.example.administrator.xiangou.classification.fragment.ClassificationT
 import com.example.administrator.xiangou.goods_details.Goods_rankingActivity;
 import com.example.administrator.xiangou.goods_details.storehome.StoreHomeActivity;
 import com.example.administrator.xiangou.login.idlogin.IDLoginActivity;
+import com.example.administrator.xiangou.mine.myorder.MyOrderActivity;
 import com.example.administrator.xiangou.mine.setting.SettingActivity;
 import com.example.administrator.xiangou.mine.store_application.StoreApplicationActivity;
 import com.example.administrator.xiangou.mvp.MVPBaseFragment;
@@ -232,26 +233,32 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
             //查看所有订单
             case R.id.see_all_orders:
                 Toast.makeText(getActivity(), "点击查看所有订单", Toast.LENGTH_SHORT).show();
+                startNewUICarryStr(MyOrderActivity.class,"position","0");
                 break;
             //未付款
             case R.id.unpaid_Rl:
                 Toast.makeText(getActivity(), "点击未付款", Toast.LENGTH_SHORT).show();
+                startNewUICarryStr(MyOrderActivity.class,"position","1");
                 break;
             //等待发货
             case R.id.delivery_Rl:
                 Toast.makeText(getActivity(), "点击等待发货", Toast.LENGTH_SHORT).show();
+                startNewUICarryStr(MyOrderActivity.class,"position","2");
                 break;
             //待收货
             case R.id.receive_Rl:
                 Toast.makeText(getActivity(), "点击待收货", Toast.LENGTH_SHORT).show();
+                startNewUICarryStr(MyOrderActivity.class,"position","3");
                 break;
             //待评价
             case R.id.evaluation_Rl:
                 Toast.makeText(getActivity(), "点击待评价", Toast.LENGTH_SHORT).show();
+                startNewUICarryStr(MyOrderActivity.class,"position","4");
                 break;
             //退货or售后
             case R.id.returns_Rl:
                 Toast.makeText(getActivity(), "点击退货or售后", Toast.LENGTH_SHORT).show();
+//                startNewUICarryStr(MyOrderActivity.class,"position","0");
                 break;
         }
 

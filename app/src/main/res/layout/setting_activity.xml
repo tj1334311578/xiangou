@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent">
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="24dp"
@@ -167,7 +169,7 @@
         android:text="个人信息设置"
         android:textSize="14sp"
         android:id="@+id/person_setting"
-        android:textColor="#161616"
+        android:textColor="#e6161616"
         android:gravity="center_vertical"/>
         <ImageButton
         android:layout_width="25dp"
@@ -194,7 +196,7 @@
         android:text="我的收货地址"
         android:textSize="14sp"
         android:id="@+id/person_address"
-        android:textColor="#161616"
+        android:textColor="#e6161616"
         android:gravity="center_vertical"
         android:layout_alignStart="@id/setting_back"
         android:layout_below="@id/person_setting"/>
@@ -210,8 +212,19 @@
         android:layout_height="41dp" />
 
     </LinearLayout>
-
+    <View
+        android:layout_width="match_parent"
+        android:background="@drawable/black_lines"
+        android:layout_below="@+id/person_address_Ll"
+        android:layout_height="10dp"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_below="@+id/person_address_Ll"
+        android:layout_marginTop="11dp"
+        android:background="#e5e5e5"
+        android:layout_height="10dp"/>
     <LinearLayout
+        android:layout_marginTop="20dp"
         android:id="@+id/Version_information_Ll"
         android:layout_width="match_parent"
         android:layout_marginEnd="13dp"
@@ -225,7 +238,7 @@
         android:text="版本信息"
         android:textSize="14sp"
         android:id="@+id/Version_information"
-        android:textColor="#161616"
+        android:textColor="#e6161616"
         android:gravity="center_vertical"
         android:layout_alignStart="@id/setting_back"
         android:layout_below="@id/person_address"/>
@@ -255,7 +268,7 @@
         android:text="帮助与咨询"
         android:textSize="14sp"
         android:id="@+id/Help_counseling"
-        android:textColor="#161616"
+        android:textColor="#e6161616"
         android:gravity="center_vertical"
         android:layout_alignStart="@id/setting_back"
         android:layout_below="@id/Version_information"/>
@@ -285,7 +298,7 @@
         android:text="清除缓存"
         android:textSize="14sp"
         android:id="@+id/Clear_cache"
-        android:textColor="#161616"
+        android:textColor="#e6161616"
         android:gravity="center_vertical"
         android:layout_alignStart="@id/setting_back"
         android:layout_below="@id/Help_counseling"/>
@@ -325,7 +338,7 @@
         android:text="意见反馈"
         android:textSize="14sp"
         android:id="@+id/Feedback"
-        android:textColor="#161616"
+        android:textColor="#e6161616"
         android:gravity="center_vertical"
         android:layout_alignStart="@id/setting_back"
         android:layout_below="@id/Clear_cache"/>

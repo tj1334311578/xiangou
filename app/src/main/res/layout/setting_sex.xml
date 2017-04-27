@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include layout="@layout/setting_head"
+        android:id="@+id/setting_sex_head"/>
+    <RadioGroup
+        android:paddingStart="13dp"
+        android:paddingEnd="13dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <!--android:button="@null" 删除原本系统默认在左的选择框-->
+        <!--android:background="@android:color/transparent"  去除左边选择框被删除后的空白-->
+        <!--android:drawableRight="@android:drawable/btn_radio"  选择框绘制在右-->
+        <RadioButton
+            android:layout_width="match_parent"
+            android:text="男"
+            android:id="@+id/sex_nan"
+            android:button="@null"
+            android:checked="true"
+            android:drawableRight="@android:drawable/btn_radio"
+            android:paddingLeft="5dip"
+            android:background="@android:color/transparent"
+            android:layout_height="wrap_content" />
+        <RadioButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="女"
+            android:id="@+id/sex_nv"
+            android:button="@null"
+            android:drawableRight="@android:drawable/btn_radio"
+            android:background="@android:color/transparent"
+            android:paddingLeft="5dip"/>
+    </RadioGroup>
+</LinearLayout>

@@ -8,6 +8,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.TextView;
 
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.mvp.MVPBaseFragment;
@@ -75,10 +77,15 @@ public class WaitDeliveryFragment extends MVPBaseFragment<WaitDeliveryContract.V
         mWaitDeliveryRecycle= (RecyclerView) mContextView.findViewById(R.id.goods_ranking_recycle);
         mWaitDeliveryRecycle.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false));
         mWaitDeliveryRecycle.addItemDecoration(new ItemIntervalDecoration(0,0,10));
-//      lists = new ArrayList<>();
-
         mWaitDeliveryAdapter adapter=new mWaitDeliveryAdapter(getContext(), lists,position);
         mWaitDeliveryRecycle.setAdapter(adapter);
-    }
+        adapter.setOnitemClickListener(new mWaitDeliveryAdapter.ViewClickListener() {
+            @Override
+            public void itemviewclick(View view, int position) {
+                Log.e("itemviewclick", "itemviewclick: "+lists.get(position).toString()+lists.size()+"\n\n"+position);
+                showToast(((TextView)view).getText().toString()+position);
+            }
+        });
 
+    }
 }

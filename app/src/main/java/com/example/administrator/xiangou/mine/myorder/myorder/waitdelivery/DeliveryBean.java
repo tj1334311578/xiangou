@@ -74,12 +74,12 @@ public class DeliveryBean {
     @Override
     public String toString() {
         return "DeliveryBean{" +
-                "storeName='" + storeName + '\'' +
-                ", status='" + status + '\'' +
-                ", list=" + list +
-                ", goodsAcounts='" + goodsAcounts + '\'' +
-                ", allprice='" + allprice + '\'' +
-                ", freight='" + freight + '\'' +
+                "\nstoreName='" + storeName + '\'' +
+                ", \nstatus='" + status + '\'' +
+                ", \nlist=" + list +
+                ", \ngoodsAcounts='" + goodsAcounts + '\'' +
+                ", \nallprice='" + allprice + '\'' +
+                ", \nfreight='" + freight + '\'' +
                 '}';
     }
 }

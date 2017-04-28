@@ -28,7 +28,6 @@
     <CheckBox
         android:layout_width="16dp"
         android:layout_height="16dp"
-        android:layout_marginTop="19dp"
         android:button="@null"
         android:background="@drawable/circlebg_checkbox"
         android:id="@+id/manageraddress_defaultaddress"
@@ -83,7 +82,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/manageraddress_useraddress"
         android:textSize="14sp"
+        android:paddingTop="19dp"
+        android:paddingBottom="19dp"
         android:textColor="#cc161616"
+        android:layout_below="@+id/manageraddress_username"
         android:text="四川省成都市成华区驷马桥杨子姗圣地亚1懂2单元"
         android:layout_centerVertical="true"
         android:layout_alignStart="@+id/manageraddress_username" />

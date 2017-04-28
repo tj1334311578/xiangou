@@ -127,6 +127,19 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     public void startNewUIForResult(Class<?> context,int code,Bundle options){
         startActivityForResult(new Intent(this,context),code,options);
     }
+    public void startNewUIForResult(Class<?> context,int code,String name,Object str){
+        Intent intent = new Intent(this,context);
+        if (str instanceof String) {
+            intent.putExtra(name, str.toString());
+        }else if (str instanceof Serializable){
+            Serializable s = (Serializable) str;
+            intent.putExtra(name,s);
+        }else if (str instanceof Bundle){
+            Bundle s = (Bundle) str;
+            intent.putExtra(name,s);
+        }
+        startActivityForResult(new Intent(this,context),code);
+    }
 
     /**
      * Toast

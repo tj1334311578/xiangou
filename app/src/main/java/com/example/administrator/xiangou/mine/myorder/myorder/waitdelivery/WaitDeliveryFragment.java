@@ -71,7 +71,6 @@ public class WaitDeliveryFragment extends MVPBaseFragment<WaitDeliveryContract.V
         lists.add(new DeliveryBean("呆呆画质品牌店","卖家已发货",items,2,171.01,10.00));
         lists.add(new DeliveryBean("呆呆画质品牌店","等待付款",items,2,171.01,10.00));
     }
-
     @Override
     public void initView() {
         mWaitDeliveryRecycle= (RecyclerView) mContextView.findViewById(R.id.goods_ranking_recycle);

@@ -1,6 +1,7 @@
 package com.example.administrator.xiangou.mine.setting.manageraddress.editaddress;
 
 
+import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -35,22 +36,27 @@ public class EditAddressActivity extends MVPBaseActivity<EditAddressContract.Vie
         numEt=findContentView(R.id.editaddress_number_edit);
         locationEt=findContentView(R.id.editaddress_locationEt);
         detailedEt=findContentView(R.id.editaddress_detailed);
-        AddressBean bean= (AddressBean) getIntent().getSerializableExtra("name");
-        receiveEt.setText(bean.getName());
-        numEt.setText(bean.getNumber());
-        locationEt.setText(bean.getAddress().substring(0,bean.getAddress().indexOf("省")+1)+"    "
-                           +bean.getAddress().substring(bean.getAddress().indexOf("省")+1,bean.getAddress().indexOf("市")+1)+"    "
-                           +bean.getAddress().substring(bean.getAddress().indexOf("市")+1,bean.getAddress().indexOf("区")+1)
+        if (getIntent().getStringExtra("name").equals("add")){
+            //添加数据地址
 
-        );
-        detailedEt.setText(bean.getAddress());
-        back= (ImageView) findContentView(R.id.editaddress_head).findViewById(R.id.setting_head_back);
-        TitleTv= (TextView) findContentView(R.id.editaddress_head).findViewById(R.id.setting_head_center);
-        SuccessTv= (TextView) findContentView(R.id.editaddress_head).findViewById(R.id.setting_head_right);
-        findContentView(back,true);
-        TitleTv.setText("编辑收货地址");
-        SuccessTv.setText("完成");
-        SuccessTv.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG|Paint.ANTI_ALIAS_FLAG);
+        }else {
+            AddressBean bean = (AddressBean) getIntent().getSerializableExtra("name");
+            receiveEt.setText(bean.getName());
+            numEt.setText(bean.getNumber());
+            locationEt.setText(bean.getAddress().substring(0, bean.getAddress().indexOf("省") + 1) + "    "
+                    + bean.getAddress().substring(bean.getAddress().indexOf("省") + 1, bean.getAddress().indexOf("市") + 1) + "    "
+                    + bean.getAddress().substring(bean.getAddress().indexOf("市") + 1, bean.getAddress().indexOf("区") + 1)
+
+            );
+            detailedEt.setText(bean.getAddress());
+            back = (ImageView) findContentView(R.id.editaddress_head).findViewById(R.id.setting_head_back);
+            TitleTv = (TextView) findContentView(R.id.editaddress_head).findViewById(R.id.setting_head_center);
+            SuccessTv = (TextView) findContentView(R.id.editaddress_head).findViewById(R.id.setting_head_right);
+            findContentView(back, true);
+            TitleTv.setText("编辑收货地址");
+            SuccessTv.setText("完成");
+            SuccessTv.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
+        }
         findContentView(SuccessTv,true);
     }
 
@@ -65,6 +71,14 @@ public class EditAddressActivity extends MVPBaseActivity<EditAddressContract.Vie
             finish();
         }else if (v==SuccessTv){
             // TODO: 2017/4/25 请求修改信息
+            if (!getIntent().getStringExtra("name").equals("add")){
+
+            }else{if (receiveEt.getText()!=null && numEt.getText()!=null && locationEt.getText()!=null && detailedEt.getText()!=null){
+                    Intent intent =new Intent();
+
+                    this.setResult(200,intent);
+                }
+            }
         }
 //        super.onClick(v);
     }

@@ -2,6 +2,7 @@ package com.example.administrator.xiangou.mine.setting.manageraddress;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -30,11 +31,29 @@ import java.util.List;
  */
 
 public class ManagerAddressActivity extends MVPBaseActivity<ManagerAddressContract.View, ManagerAddressPresenter> implements ManagerAddressContract.View {
+    private static final int REQUEST = 100;
     private RecyclerView mRecyclerView;
     private Button newaddressBtn;
     private ImageView backBtn;
     private TextView TitleTv,SaveTv;
     private DrawableTextView editText,delText;
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode==200){
+            this.list.add(data.getSerializableExtra("data"));
+        }
+    }
+
+    public List<AddressBean> getList() {
+        return list;
+    }
+
+    public void setList(List<AddressBean> list) {
+        this.list = list;
+    }
+
     private List<AddressBean> list;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -74,7 +93,8 @@ public class ManagerAddressActivity extends MVPBaseActivity<ManagerAddressContra
         if (v==backBtn){
             finish();
         }else if (v==newaddressBtn){
-            // TODO: 2017/4/24 添加新地址 
+            // TODO: 2017/4/24 添加新地址
+            startNewUIForResult(EditAddressActivity.class,REQUEST,"name","add");
         }
     }
     public class AddressAdapter extends AutoRVAdapter{

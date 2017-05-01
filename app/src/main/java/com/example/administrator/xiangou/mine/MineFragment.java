@@ -63,7 +63,7 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         showToast("isVisible:"+getUserVisibleHint()+"----isLogin"+isLogined());
         if (getUserVisibleHint()){
             if (!isLogined()) {
-                startNewUI(IDLoginActivity.class);
+//                startNewUI(IDLoginActivity.class);
             }
         }
         if (bUser!= null){

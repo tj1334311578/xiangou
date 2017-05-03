@@ -91,7 +91,10 @@ public class ContextUtils extends Application{
         DecimalFormat df = new DecimalFormat("0.00");
         return df.format(num);
     }
-    @TargetApi(25)
+    public static String S2places(double num){
+        DecimalFormat df = new DecimalFormat("0.00");
+        return df.format(num);
+    }
     public static double D2places(double num){
         BigDecimal bd = new BigDecimal(num);
         return bd.setScale(2).doubleValue();

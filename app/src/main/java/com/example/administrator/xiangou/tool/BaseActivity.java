@@ -18,6 +18,8 @@ import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.login.LoginBean;
 import com.example.administrator.xiangou.main.User;
 
+import java.io.Serializable;
+
 import butterknife.ButterKnife;
 
 /**
@@ -144,6 +146,12 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     }
     public <T extends View> T findContentView(int id, boolean toSetClickListener){
         View view = this.findViewById(id);
+        if (toSetClickListener) {
+            view.setOnClickListener(this);
+        }
+        return (T) view;
+    }
+    public <T extends View> T findContentView(View view, boolean toSetClickListener){
         if (toSetClickListener) {
             view.setOnClickListener(this);
         }

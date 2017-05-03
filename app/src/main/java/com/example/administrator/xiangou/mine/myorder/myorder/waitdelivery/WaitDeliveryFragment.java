@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.TextView;
 
 import com.example.administrator.xiangou.R;
@@ -75,7 +74,7 @@ public class WaitDeliveryFragment extends MVPBaseFragment<WaitDeliveryContract.V
     public void initView() {
         mWaitDeliveryRecycle= (RecyclerView) mContextView.findViewById(R.id.goods_ranking_recycle);
         mWaitDeliveryRecycle.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false));
-        mWaitDeliveryRecycle.addItemDecoration(new ItemIntervalDecoration(0,0,10));
+        mWaitDeliveryRecycle.addItemDecoration(new ItemIntervalDecoration(0,0,0,10));
         mWaitDeliveryAdapter adapter=new mWaitDeliveryAdapter(getContext(), lists,position);
         mWaitDeliveryRecycle.setAdapter(adapter);
         adapter.setOnitemClickListener(new mWaitDeliveryAdapter.ViewClickListener() {

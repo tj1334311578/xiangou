@@ -130,7 +130,8 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     public void startNewUIForResult(Class<?> context,int code,String name,Object str){
         Intent intent = new Intent(this,context);
         if (str instanceof String) {
-            intent.putExtra(name, str.toString());
+            String s= (String) str;
+            intent.putExtra(name, s);
         }else if (str instanceof Serializable){
             Serializable s = (Serializable) str;
             intent.putExtra(name,s);
@@ -138,7 +139,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
             Bundle s = (Bundle) str;
             intent.putExtra(name,s);
         }
-        startActivityForResult(new Intent(this,context),code);
+        startActivityForResult(intent,code);
     }
 
     public <T extends View> T findContentView(int id){

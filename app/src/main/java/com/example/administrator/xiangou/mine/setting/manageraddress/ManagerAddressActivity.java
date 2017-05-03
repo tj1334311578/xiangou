@@ -32,18 +32,28 @@ import java.util.List;
 
 public class ManagerAddressActivity extends MVPBaseActivity<ManagerAddressContract.View, ManagerAddressPresenter> implements ManagerAddressContract.View {
     private static final int REQUEST = 100;
+    private static final int REQUEST1 = 110;
     private RecyclerView mRecyclerView;
     private Button newaddressBtn;
     private ImageView backBtn;
     private TextView TitleTv,SaveTv;
     private DrawableTextView editText,delText;
+    private int editposition;
+    private AddressAdapter adapter;
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 //        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode==200){
-            this.list.add(data.getSerializableExtra("data"));
+        Log.e("onActivityResult", "onActivityResult: "+data.getSerializableExtra("data") +"\n position  "+editposition);
+        if (data!=null) {
+            if (resultCode == 200 && requestCode == REQUEST) {
+                this.list.add((AddressBean) data.getSerializableExtra("data"));
+            } else if (resultCode == 200 && requestCode == REQUEST1) {
+                this.list.set(editposition, (AddressBean) data.getSerializableExtra("data"));
+            }
         }
+        Log.e("list", "onActivityResult: "+this.list.toString() );
+        adapter.notifyItemRangeChanged(0,list.size());
     }
 
     public List<AddressBean> getList() {
@@ -69,7 +79,7 @@ public class ManagerAddressActivity extends MVPBaseActivity<ManagerAddressContra
         backBtn= (ImageView) findViewById(R.id.manageraddress_head).findViewById(R.id.setting_head_back);
         TitleTv= (TextView) findViewById(R.id.manageraddress_head).findViewById(R.id.setting_head_center);
         SaveTv= (TextView) findViewById(R.id.manageraddress_head).findViewById(R.id.setting_head_right);
-        findContentView(backBtn,true);
+        findContentView(backBtn.getId(),true);
         SaveTv.setVisibility(View.GONE);
         TitleTv.setText("管理收货地址");
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
@@ -79,7 +89,7 @@ public class ManagerAddressActivity extends MVPBaseActivity<ManagerAddressContra
         list.add(new AddressBean("张某某","1814652568","四川省成都市成华区驷马桥杨子姗圣地亚1懂2单元"));
         list.add(new AddressBean("张某某","1814652568","四川省成都市成华区驷马桥杨子姗圣地亚1懂2单元"));
 
-        AddressAdapter adapter=new AddressAdapter(this, list);
+        adapter = new AddressAdapter(this, list);
         mRecyclerView.setAdapter(adapter);
     }
 
@@ -94,7 +104,7 @@ public class ManagerAddressActivity extends MVPBaseActivity<ManagerAddressContra
             finish();
         }else if (v==newaddressBtn){
             // TODO: 2017/4/24 添加新地址
-            startNewUIForResult(EditAddressActivity.class,REQUEST,"name","add");
+            startNewUIForResult(EditAddressActivity.class,REQUEST,"addresstype","add");
         }
     }
     public class AddressAdapter extends AutoRVAdapter{
@@ -132,7 +142,8 @@ public class ManagerAddressActivity extends MVPBaseActivity<ManagerAddressContra
             editText.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                   startNewUICarryStr(EditAddressActivity.class,"name",list.get(position));
+                   startNewUIForResult(EditAddressActivity.class,REQUEST1,"name",list.get(position));
+                    editposition = position;
                 }
             });
             //删除监听，删除当前item 的数据

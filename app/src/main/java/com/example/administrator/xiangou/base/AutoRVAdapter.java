@@ -165,5 +165,8 @@ public abstract class AutoRVAdapter extends RecyclerView.Adapter<AutoRVAdapter.R
         public CustomImageView getCustomImageView(int id){return get(id);}
         public CheckBox getCheckBox(int id){return get(id);}
 
+        public void setTextButton(int id,CharSequence charSequence) {
+             getButton(id).setText(charSequence);
+        }
     }
 }

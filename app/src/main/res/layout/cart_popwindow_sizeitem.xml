@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Button xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="40dp"
+    android:layout_height="30dp"
+    android:text="M"
+    android:id="@+id/cart_popwindow_sizeitem"
+    android:textSize="14sp"
+    android:gravity="center"
+    android:background="@drawable/cart_pop_selectstrokebg"
+    android:textColor="@color/cart_pop_selecttextcolor">
+</Button>

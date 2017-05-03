@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Button xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="100dp"
+    android:layout_height="30dp"
+    android:clickable="true"
+    android:text="白色 + 黑色"
+    android:id="@+id/cart_popwindow_coloritem"
+    android:textSize="14sp"
+    android:background="@drawable/cart_pop_selectstrokebg"
+    android:gravity="center"
+    android:textColor="@color/cart_pop_selecttextcolor">
+</Button>

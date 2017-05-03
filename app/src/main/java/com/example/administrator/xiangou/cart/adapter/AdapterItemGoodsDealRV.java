@@ -29,7 +29,6 @@ public class AdapterItemGoodsDealRV extends RVBaseAdapter<CartMergeItemBean> {
     private CustomImageView mGoodsImgCiv;
     private TextView mDeleteGoodsTv,mGoodsNameTv,mGoodsPropertyTv,mGoodsPriceTv,mOriginalpriceTv,mGoodsCountTv;
     private ImageView mDecreaseCountIv,mAddCountIv,mEditGoodsIv;
-//    private int position;
 
     public AdapterItemGoodsDealRV(Context context, List<CartMergeItemBean> mergeItemBeanList) {
         super(context, R.layout.item_cart_item_goods_rv, mergeItemBeanList);
@@ -107,10 +106,6 @@ public class AdapterItemGoodsDealRV extends RVBaseAdapter<CartMergeItemBean> {
         }else {
             holder.getView(R.id.item_cart_deal_before_ll).setVisibility(View.VISIBLE);
             holder.getView(R.id.item_cart_deal_edit_rl).setVisibility(View.GONE);
-//            mGoodsNameTv = holder.getTextView(R.id.item_cart_item_goodsname);
-//            mGoodsPropertyTv = holder.getTextView(R.id.item_cart_item_goods_property);
-//            mGoodsPriceTv = holder.getTextView(R.id.item_cart_item_price);
-//            mGoodsCountTv = holder.getTextView(R.id.item_cart_item_count);
             holder.getTextView(R.id.item_cart_item_goodsname).setText(cartMergeItemBean.getGoodsDealBean().getGoodsName());
             holder.getTextView(R.id.item_cart_item_goods_property)
                     .setText("颜色："+cartMergeItemBean.getGoodsDealBean().getGoodsColor()+";尺码："+cartMergeItemBean.getGoodsDealBean().getGoodsSize());

@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
-              android:layout_width="match_parent"
+              android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-    android:gravity="center_horizontal">
+              android:background="@color/whiteBgColor"
+              android:id="@+id/item_nearbygoods_ll">
 
     <com.example.administrator.xiangou.tool.CustomImageView
         android:layout_width="80dp"
         android:layout_height="70dp"
-        android:id="@+id/item_clothing_img"/>
+        android:scaleType="fitXY"
+        android:layout_gravity="center_horizontal"
+        android:id="@+id/item_rv_nearbygoods_iv"/>
     
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/item_clothing_text"
+        android:id="@+id/item_rv_nearbygoods_tv"
+        android:layout_gravity="center_horizontal"
         android:textSize="12sp"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="6dp"
         android:textColor="@color/textcolor_nearby_item_name"/>
 </LinearLayout>

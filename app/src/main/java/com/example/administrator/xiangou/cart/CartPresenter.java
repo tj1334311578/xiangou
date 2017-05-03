@@ -1,9 +1,14 @@
 package com.example.administrator.xiangou.cart;
 
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.util.Log;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.cart.model.CartMergeBean;
@@ -24,9 +29,14 @@ public class CartPresenter extends BasePresenterImpl<CartContract.View> implemen
     private float totalPrice=0;
 
     @Override
+    public List<CartMergeBean> initAdapterData() {
+        initData();
+        return mMergeBeanList;
+    }
+
+    @Override
     public void dealAllCheckBox(CompoundButton buttonView, boolean isChecked) {
         Log.e("全选", "onCheckedChanged:全选 " +isChecked);
-        totalPrice = 0;//重置合计
         if (isChecked){
             //全选时执行
             for (int i = 0; i < mMergeBeanList.size(); i++) {
@@ -39,8 +49,6 @@ public class CartPresenter extends BasePresenterImpl<CartContract.View> implemen
                     if (!mMergeBeanList.get(i).getMergeItemBeanList().get(j).getItemStatusBean().ischeck()){
                         mMergeBeanList.get(i).getMergeItemBeanList().get(j).getItemStatusBean().setIscheck(true);
                     }
-                    totalPrice += (mMergeBeanList.get(i).getMergeItemBeanList().get(j).getGoodsDealBean().getGoodsPrice()
-                            * mMergeBeanList.get(i).getMergeItemBeanList().get(j).getGoodsDealBean().getGoodsCount());
                 }
             }
             UpdateRecyclerView(0,mMergeBeanList.size());//更新
@@ -81,13 +89,6 @@ public class CartPresenter extends BasePresenterImpl<CartContract.View> implemen
         if (mMergeBeanList.get(position).getStoreStatusBean().ischeck()){
             for (int i = 0; i < mMergeBeanList.get(position).getMergeItemBeanList().size(); i++) {
                 if (!mMergeBeanList.get(position).getMergeItemBeanList().get(i).getItemStatusBean().ischeck()) {
-
-                    totalPrice += (mMergeBeanList.get(position).getMergeItemBeanList().get(i).getGoodsDealBean().getGoodsPrice()
-                            *
-                            mMergeBeanList.get(position).getMergeItemBeanList().get(i).getGoodsDealBean().getGoodsCount());
-                    Log.e("店铺", "店铺: "+position+" is="+isChecked+" 商品: " +i +"="
-                            +mMergeBeanList.get(position).getMergeItemBeanList().get(i).getItemStatusBean().ischeck()+" 现在价格="+totalPrice);
-
                     mMergeBeanList.get(position).getMergeItemBeanList().get(i).getItemStatusBean().setIscheck(true);
                 }
             }
@@ -97,12 +98,6 @@ public class CartPresenter extends BasePresenterImpl<CartContract.View> implemen
                 Log.e("店铺", "店铺:"+position+" all to false"  );
                 for (int i = 0; i < mMergeBeanList.get(position).getMergeItemBeanList().size(); i++) {
                     if (mMergeBeanList.get(position).getMergeItemBeanList().get(i).getItemStatusBean().ischeck()){
-
-                        totalPrice -= (mMergeBeanList.get(position).getMergeItemBeanList().get(i).getGoodsDealBean().getGoodsPrice()
-                                *
-                                mMergeBeanList.get(position).getMergeItemBeanList().get(i).getGoodsDealBean().getGoodsCount());
-                        Log.e("店铺", "店铺: "+position+" is="+isChecked+" 商品: " +i +"="
-                                +mMergeBeanList.get(position).getMergeItemBeanList().get(i).getItemStatusBean().ischeck()+" 现在价格="+totalPrice);
                         mMergeBeanList.get(position).getMergeItemBeanList().get(i).getItemStatusBean().setIscheck(false);
                     }
                 }
@@ -123,16 +118,69 @@ public class CartPresenter extends BasePresenterImpl<CartContract.View> implemen
         }else {
             mMergeBeanList.get(parentposition).getStoreStatusBean().setIsCheck(false);
         }
-        if (mMergeBeanList.get(parentposition).getMergeItemBeanList().get(chaildposition).getItemStatusBean().ischeck()) {
-            totalPrice += (mMergeBeanList.get(parentposition).getMergeItemBeanList().get(chaildposition).getGoodsDealBean().getGoodsPrice()
-                    *
-                    mMergeBeanList.get(parentposition).getMergeItemBeanList().get(chaildposition).getGoodsDealBean().getGoodsCount());
-        } else {
-            totalPrice -= (mMergeBeanList.get(parentposition).getMergeItemBeanList().get(chaildposition).getGoodsDealBean().getGoodsPrice()
-                    *
-                    mMergeBeanList.get(parentposition).getMergeItemBeanList().get(chaildposition).getGoodsDealBean().getGoodsCount());
-        }
         UpdateRecyclerView(parentposition,1);
+    }
+
+    @Override
+    public void setOnEditStoreGoods(TextView v, int position) {
+        if ( !mMergeBeanList.get(position).getStoreStatusBean().isHasToEditStore()){
+            v.setText("完成");
+            mMergeBeanList.get(position).getStoreStatusBean().setHasToEditStore(true);
+            for (int i = 0; i < mMergeBeanList.get(position).getMergeItemBeanList().size(); i++) {
+                mMergeBeanList.get(position).getMergeItemBeanList().get(i).getItemStatusBean()
+                        .setHasToEditGoods(true);
+            }
+        }else {
+            v.setText("编辑");
+            mMergeBeanList.get(position).getStoreStatusBean().setHasToEditStore(false);
+            for (int i = 0; i < mMergeBeanList.get(position).getMergeItemBeanList().size(); i++) {
+                mMergeBeanList.get(position).getMergeItemBeanList().get(i).getItemStatusBean()
+                        .setHasToEditGoods(false);
+            }
+        }
+        //                toUpdataView(position,1);
+        UpdateRecyclerView(0,mMergeBeanList.size());
+    }
+
+    @Override
+    public void setOnDeleteGoodsClick(TextView tv, final int parentposition, final int chaildposition) {
+        AlertDialog.Builder dialog = new AlertDialog.Builder(mView.getContext());
+        dialog.setTitle("购物车编辑").setMessage("是否要从购物车移除此商品").setPositiveButton("是", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                mMergeBeanList.get(parentposition).getMergeItemBeanList().remove(chaildposition);
+                //                                            toUpdataView(parentposition,1);
+            }
+        }).setNegativeButton("否", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        }).create().show();
+    }
+
+    @Override
+    public void setOnDecreaseGoodsClick(ImageView iv, int parentposition, int chaildposition, TextView goodsCountTv) {
+        if (mMergeBeanList.get(parentposition).getMergeItemBeanList().get(chaildposition).getGoodsDealBean().getGoodsCount()<2) {
+            iv.setClickable(false);
+        }else {
+            int count = mMergeBeanList.get(parentposition).getMergeItemBeanList().get(chaildposition).getGoodsDealBean().getGoodsCount() -1;
+            mMergeBeanList.get(parentposition).getMergeItemBeanList().get(chaildposition).getGoodsDealBean().setGoodsCount( count );
+            setTextToTv(goodsCountTv,count);
+        }
+    }
+
+    @Override
+    public void setOnAddGoodsClick(ImageView iv, int parentposition, int chaildposition, TextView goodsCountTv) {
+        int count = mMergeBeanList.get(parentposition).getMergeItemBeanList().get(chaildposition).getGoodsDealBean().getGoodsCount() +1;
+        mMergeBeanList.get(parentposition).getMergeItemBeanList().get(chaildposition).getGoodsDealBean().setGoodsCount(count);
+        setTextToTv(goodsCountTv,count);
+    }
+
+    @Override
+    public void setOnEditGoodsClick(ImageView view, int parentposition, int chaildposition) {
+        Toast.makeText(mView.getContext(),"编辑商品属性！-" + parentposition + " - " + chaildposition,Toast.LENGTH_SHORT).show();
     }
 
 
@@ -140,6 +188,7 @@ public class CartPresenter extends BasePresenterImpl<CartContract.View> implemen
      *更新Recycleyview刷新报错问题
      */
     private void UpdateRecyclerView(final int startpos, final int count) {
+        totalPrice = calculateTotalPrice();
         mView.toUpdataView(startpos,count,"￥ "+ ContextUtils.S2places(totalPrice)+" 元");
     }
     /**
@@ -168,6 +217,26 @@ public class CartPresenter extends BasePresenterImpl<CartContract.View> implemen
             }
         }
         return count;
+    }
+    /**
+     * 计算购物车商品价格合计
+     * @return
+     */
+    private float calculateTotalPrice(){
+        float totalPrice = 0;//重置合计
+        for (int i = 0; i < mMergeBeanList.size(); i++) {
+            for (int j = 0; j < mMergeBeanList.get(i).getMergeItemBeanList().size(); j++) {
+                if (mMergeBeanList.get(i).getMergeItemBeanList().get(j).getItemStatusBean().ischeck()){
+                    totalPrice += (mMergeBeanList.get(i).getMergeItemBeanList().get(j).getGoodsDealBean().getGoodsPrice()
+                            * mMergeBeanList.get(i).getMergeItemBeanList().get(j).getGoodsDealBean().getGoodsCount());
+                }
+            }
+        }
+        return totalPrice;
+    }
+
+    private void setTextToTv(TextView textView, Object data){
+        textView.setText(data + "");
     }
 
     private List<CartMergeBean> initData() {

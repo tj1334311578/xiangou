@@ -5,6 +5,7 @@
               xmlns:app="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical"
     android:background="@color/whiteBgColor">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -29,28 +30,31 @@
             android:textColor="@color/textcolor_black"
             android:text="附近"/>
 
-        <ImageView
-            android:layout_width="25dp"
-            android:layout_height="28dp"
-            android:scaleType="fitXY"
-            android:layout_centerVertical="true"
-            android:src="@mipmap/nearby_rock"
-            android:id="@+id/rock_nearby_iv"
-            android:clickable="true"
-            android:paddingBottom="3dp"
-            android:layout_alignParentRight="true"/>
-
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@mipmap/scan"
-            android:clickable="true"
-            android:layout_centerVertical="true"
-            android:layout_toLeftOf="@id/rock_nearby_iv"
-            android:layout_marginRight="20dp"
-            android:id="@+id/scan_nearby_iv"/>
+        <RelativeLayout
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true">
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentBottom="true"
+                android:src="@mipmap/information"
+                android:clickable="true"
+                android:id="@+id/news_topbar_iv"/>
+            <TextView
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+                android:paddingTop="1dp"
+                android:background="@drawable/news_num"
+                android:text="3"
+                android:textSize="11sp"
+                android:textColor="@color/whiteBgColor"
+                android:gravity="center"
+                android:clickable="true"
+                android:id="@+id/news_num_nearby_tv"
+                android:layout_alignParentRight="true"/>
+        </RelativeLayout>
     </RelativeLayout>
-
     <android.support.design.widget.TabLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -70,3 +74,25 @@
     </android.support.v4.view.ViewPager>
 
 </LinearLayout>
+<!--
+<ImageView
+            android:layout_width="25dp"
+            android:layout_height="28dp"
+            android:scaleType="fitXY"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/nearby_rock"
+            android:id="@+id/rock_nearby_iv"
+            android:clickable="true"
+            android:paddingBottom="3dp"
+            android:layout_alignParentRight="true"/>
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@mipmap/scan"
+            android:clickable="true"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/rock_nearby_iv"
+            android:layout_marginRight="20dp"
+            android:id="@+id/scan_nearby_iv"/>
+-->

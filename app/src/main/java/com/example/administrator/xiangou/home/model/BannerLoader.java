@@ -16,15 +16,11 @@ public class BannerLoader {
     private ArrayList<String> imgUrls;
     private Banner mBanner;
     private ArrayList<String> titles;
-//    private List<BannerBean> bannerList;
 
     public BannerLoader(Banner banner) {
         mBanner = banner;
     }
 
-    /**
-     * 待修改返回值 List<BannerBean>
-     */
     public void getBannerList() {
         //测试的数据
         imgUrls = new ArrayList<>();
@@ -39,7 +35,6 @@ public class BannerLoader {
         titles.add("美女3");
         titles.add("美女4");
         titles.add("美女5");
-//        return  bannerList;
     }
 
     /**
@@ -47,12 +42,7 @@ public class BannerLoader {
      */
     public void initBanner() {
         getBannerList();
-//        for (int i=0; i<bannerList.size(); i++) {
-//            imgUrls.clear();
-//            titles.clear();
-//            imgUrls.add(bannerList.get(i).getImgUrl());
-//            titles.add(bannerList.get(i).getTitle());
-//        }
+
         //设置banner样式
         mBanner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR_TITLE_INSIDE);
         //设置指示器位置（当banner模式中有指示器时）

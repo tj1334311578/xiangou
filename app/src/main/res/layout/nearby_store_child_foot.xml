@@ -1,36 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="horizontal"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:gravity="center_vertical"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="42dp"
                 android:layout_marginBottom="3dp"
-                android:layout_marginRight="25dp">
+                android:layout_marginRight="21dp">
+
 
     <TextView
-        android:layout_width="0dp"
-        android:layout_weight="1"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/look_store_nearby_tv"
-        android:drawableLeft="@mipmap/nearby_store_look_icon"
-        android:drawablePadding="5dp"
-        android:textSize="12sp"
-        android:textColor="@color/textcolor_nearby_title"/>
-
+        android:id="@+id/discribe_child_store_nearby"
+        android:layout_toLeftOf="@+id/open_child_store_nearby"
+        android:textSize="14sp"
+        android:lines="1"
+        android:ellipsize="end"
+        android:textColor="@color/textcolor_nearby_item_name"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:drawableLeft="@mipmap/nearby_store_like_icon"
-        android:drawablePadding="5dp"
-        android:id="@+id/like_child_store_nearby"
-        android:textSize="12sp"
-        android:layout_marginRight="15dp"/>
+        android:textSize="14sp"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:layout_below="@id/discribe_child_store_nearby"
+        android:text="进店"
+        android:id="@+id/open_child_store_nearby"
+        android:textColor="@color/textcolor_pink"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/textbg_nearby_store_enter"
+        />
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="81dp"
         android:layout_height="wrap_content"
+        android:id="@+id/attention_child_store_nearby"
+        android:textSize="12sp"
         android:drawableLeft="@mipmap/nearby_store_attention_icon"
-        android:drawablePadding="5dp"
-        android:textSize="12sp"
-        android:id="@+id/attention_child_store_nearby"/>
-</LinearLayout>
+        android:drawablePadding="3dp"
+        android:layout_alignRight="@id/discribe_child_store_nearby"
+        android:layout_alignBottom="@id/open_child_store_nearby"
+        android:padding="3dp"
+        />
+</RelativeLayout>

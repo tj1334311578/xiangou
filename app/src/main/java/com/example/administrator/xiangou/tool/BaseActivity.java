@@ -76,10 +76,10 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 
     public ProgressDialog mProgressDialog;
     public ProgressDialog showProgressDialog() {
-        this.mProgressDialog = new ProgressDialog(this);
-        this.mProgressDialog.setMessage("拼命加载中...");
-        this.mProgressDialog.show();
-        return this.mProgressDialog;
+        mProgressDialog = new ProgressDialog(this);
+        mProgressDialog.setMessage("拼命加载中...");
+        mProgressDialog.show();
+        return mProgressDialog;
     }
     public ProgressDialog showProgressDialog(CharSequence message) {
         this.mProgressDialog = new ProgressDialog(this);
@@ -151,25 +151,6 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
 
-//    public <T extends View> T findContentView(int id, View.OnClickListener listener){
-//        return findContentView(id,listener,false);
-//    }
-//    public <T extends View> T findContentView(int id, View.OnClickListener listener, boolean b) {
-//        View v= findViewById(id);
-//        if (b)
-//            v.setOnClickListener(listener);
-//        return (T)v;
-//    }
-public <T extends View> T findContentView(int id){
-    return findContentView(id,true);
-}
-    public <T extends View> T findContentView(int id, boolean toSetClickListener){
-        View view = this.findViewById(id);
-        if (toSetClickListener) {
-            view.setOnClickListener(this);
-        }
-        return (T) view;
-    }
     /**
      * 判断用户是否登录
      * @return

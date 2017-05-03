@@ -130,6 +130,10 @@ public class ExceptionHandle {
             this.code = code;
         }
 
+        @Override
+        public String getMessage() {
+            return message;
+        }
     }
 
     public class ServerException extends RuntimeException {

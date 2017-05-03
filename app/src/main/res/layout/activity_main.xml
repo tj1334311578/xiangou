@@ -27,7 +27,10 @@
         android:background="@color/white"
         android:layout_height="wrap_content"
         android:paddingLeft="6dp"
-        android:paddingRight="6dp">
+        android:paddingRight="6dp"
+        android:paddingTop="3dp"
+        android:paddingBottom="3dp"
+        >
 
         <FrameLayout
             android:id="@android:id/tabcontent"

@@ -48,7 +48,7 @@ public class ComprehensiveFragment extends MVPBaseFragment<ComprehensiveContract
     public void initView() {
         mComprehensiveRecycle= (RecyclerView) mContextView.findViewById(R.id.goods_ranking_recycle);
         mComprehensiveRecycle.setLayoutManager(new GridLayoutManager(getContext(),2));
-        mComprehensiveRecycle.addItemDecoration(new ItemIntervalDecoration(0,4,10));
+        mComprehensiveRecycle.addItemDecoration(new ItemIntervalDecoration(0,4,0,10));
         List<ComprehensiveBean> lists=new ArrayList<>();
         List<String> items=new ArrayList<>();
         items.add("新品");

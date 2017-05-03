@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
+import com.example.administrator.xiangou.tool.BaseActivity;
 import com.example.administrator.xiangou.tool.BaseFragment;
 
 import java.lang.reflect.ParameterizedType;
@@ -65,19 +66,21 @@ public abstract class MVPBaseFragment<V extends BaseView,T extends BasePresenter
     }
 
     public void addSubscription(Subscription subscription) {
-        //        if (mCompositeSubscription == null) {
-        mCompositeSubscription = new CompositeSubscription();
-        //        }
+        if (mCompositeSubscription == null) {
+            mCompositeSubscription = new CompositeSubscription();
+        }
         mCompositeSubscription.add(subscription);
     }
 
-
     @Override
     public void showLoading() {
-        showProgressDialog();
+        BaseActivity activity = (BaseActivity) getActivity();
+        activity.showProgressDialog();
     }
 
     @Override
-    public void hideLoading() { dismissProgressDialog();
+    public void hideLoading() {
+        BaseActivity activity = (BaseActivity) getActivity();
+        activity.dismissProgressDialog();
     }
 }

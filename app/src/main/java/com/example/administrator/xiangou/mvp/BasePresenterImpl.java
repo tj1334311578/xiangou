@@ -1,6 +1,6 @@
 package com.example.administrator.xiangou.mvp;
 
-import com.example.administrator.xiangou.net.XiaoGouApiService;
+import com.example.administrator.xiangou.net.XianGouApiService;
 import com.example.administrator.xiangou.net.RetrofitClient;
 
 import rx.Observable;
@@ -11,13 +11,14 @@ import rx.subscriptions.CompositeSubscription;
 
 public class BasePresenterImpl<V extends BaseView> implements BasePresenter<V>{
     protected V mView;
-    protected XiaoGouApiService mApiService;
+    protected XianGouApiService mApiService;
     private CompositeSubscription mCompositeSubscription;
 
     @Override
     public void attachView(V view) {
         mView=view;
-        mApiService = RetrofitClient.getInstance(mView.getContext()).create(XiaoGouApiService.class);
+        mApiService = RetrofitClient.getInstance(mView.getContext()).create(XianGouApiService.class);
+        RetrofitClient.addCookie();
     }
 
     @Override

@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_marginRight="5dp"
-    android:paddingTop="8dp"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="3dp"
+                android:id="@+id/nearby_dayitem_rl"
+    >
     <ImageView
-        android:layout_width="87dp"
-        android:layout_height="wrap_content"
+        android:layout_width="112dp"
+        android:layout_height="102dp"
         android:src="@mipmap/nearby_store_dfimg"
         android:id="@+id/item_day_item_img"
-        android:adjustViewBounds="true"
         />
     <TextView
         android:layout_width="match_parent"
@@ -21,15 +22,14 @@
         android:layout_below="@id/item_day_item_img"
         android:layout_alignRight="@+id/item_day_item_img"
         android:layout_alignLeft="@id/item_day_item_img"
-        android:gravity="center"
         android:ellipsize="end"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="9dp"
         android:text="新款韩版时尚潮流" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="￥69.00"
-        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
         android:id="@+id/item_day_item_presentprice"
         android:textSize="12sp"
         android:textColor="@color/textcolor_advs_topic_title"
@@ -40,9 +40,9 @@
         android:layout_height="wrap_content"
         android:text="￥169.00"
         android:textSize="10sp"
-        android:layout_centerHorizontal="true"
-        android:layout_alignLeft="@id/item_day_item_presentprice"
+        android:layout_marginLeft="3dp"
+        android:layout_alignBottom="@id/item_day_item_presentprice"
         android:id="@+id/item_day_item_originalprice"
-        android:layout_below="@id/item_day_item_presentprice"/>
+        android:layout_toRightOf="@id/item_day_item_presentprice"/>
 
 </RelativeLayout>

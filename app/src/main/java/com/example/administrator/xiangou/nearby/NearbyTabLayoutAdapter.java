@@ -1,7 +1,6 @@
 package com.example.administrator.xiangou.nearby;
 
 import android.content.Context;
-import android.graphics.Paint;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -25,6 +24,7 @@ public class NearbyTabLayoutAdapter extends FragmentPagerAdapter {
     private Context mContext;
     private TextView mTabTv;
     private ImageView mTabIv;
+    private View mTabV;
 
     public NearbyTabLayoutAdapter(Context mContext, FragmentManager fm, List<Fragment> list_fragment, String[] tabs) {
         super(fm);
@@ -48,10 +48,12 @@ public class NearbyTabLayoutAdapter extends FragmentPagerAdapter {
         View view = LayoutInflater.from(mContext).inflate(R.layout.tab_item_nearby,null);
         mTabTv = (TextView) view.findViewById(R.id.tv_title_tab);
         mTabTv.setText(tabs[position]);
-        mTabTv.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);
-        if (position==0){
+        mTabV = view.findViewById(R.id.title_tab_line);
+        mTabV.setTag(position);
+//        mTabTv.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);//下划线
+        if (position!=0){
             mTabIv = (ImageView) view.findViewById(R.id.iv_title_tab);
-            mTabIv.setVisibility(View.VISIBLE);
+            mTabIv.setVisibility(View.GONE);
         }
         return view;
     }

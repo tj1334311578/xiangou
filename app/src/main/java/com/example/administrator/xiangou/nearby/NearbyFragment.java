@@ -32,10 +32,8 @@ public class NearbyFragment extends MVPBaseFragment<NearbyContract.View, NearbyP
         implements NearbyContract.View{
     @BindView(R.id.classify_nearby_iv)
     ImageView mClassifyIv;
-    @BindView(R.id.scan_nearby_iv)
-    ImageView mScanIv;
-    @BindView(R.id.rock_nearby_iv)
-    ImageView mRockIv;
+    @BindView(R.id.news_num_nearby_tv)
+    TextView mNewsCountTv;
 
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
@@ -45,6 +43,7 @@ public class NearbyFragment extends MVPBaseFragment<NearbyContract.View, NearbyP
     private List<TextView> mPpwTvs;
     private PopupWindow mPopupWindow;
     private int nearyDistance;//附近距离
+    private int currentNum,lastPpwTvPos;//当前页号
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -68,8 +67,7 @@ public class NearbyFragment extends MVPBaseFragment<NearbyContract.View, NearbyP
     public void initView() {
         ButterKnife.bind(this,mContextView);
         mClassifyIv.setOnClickListener(this);
-        mScanIv.setOnClickListener(this);
-        mRockIv.setOnClickListener(this);
+        mNewsCountTv.setOnClickListener(this);
         initTabFragViews(mContextView);
     }
 
@@ -99,13 +97,25 @@ public class NearbyFragment extends MVPBaseFragment<NearbyContract.View, NearbyP
             }
         }
 
-        mViewPager.setCurrentItem(0);
+        mTabLayout.getTabAt(currentNum).getCustomView().findViewById(R.id.title_tab_line).setVisibility(View.VISIBLE);
+        mViewPager.setCurrentItem(currentNum);
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
             @Override
             public void onPageSelected(int position) {
+                currentNum = position;
                 mViewPager.setCurrentItem(position);
+                //动态设置tab的下划线
+                for (int i = 0; i < tabTitles.length; i++) {
+                    View tabline = mTabLayout.getTabAt(i).getCustomView().findViewById(R.id.title_tab_line);
+                    if (((int)tabline.getTag()) == position) {
+                        tabline.setVisibility(View.VISIBLE);
+                    }else {
+                        tabline.setVisibility(View.INVISIBLE);
+                    }
+                }
+                //fragment的相应切换
                 for (int i=0; i<mTabFragList.size(); i++) {
                     if (mTabFragList.get(i).isAdded()) {
                         if (i==position) {
@@ -131,20 +141,18 @@ public class NearbyFragment extends MVPBaseFragment<NearbyContract.View, NearbyP
 
         switch (v.getId()) {
             case R.id.classify_nearby_iv:
-                Toast.makeText(getContext(), "看分类了", Toast.LENGTH_SHORT).show();
+                toastShow("看分类了");
                 startNewUI(ClassificationTabActivity.class);
                 break;
-            case R.id.scan_nearby_iv:
-                Toast.makeText(getContext(), "扫描个锤锤", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.rock_nearby_iv:
-                Toast.makeText(getContext(), "come on baby，摇起来", Toast.LENGTH_SHORT).show();
+            case R.id.news_num_nearby_tv:
+                toastShow("clicked news!");
                 break;
             default:
                 switch ((String) v.getTag()) {
                     case "tab0":
-                        if (mViewPager.getCurrentItem()==0)
+                        if (mViewPager.getCurrentItem()==0) {
                             showPopupwindow(v);
+                        }
                         Toast.makeText(getContext(), "商品", Toast.LENGTH_SHORT).show();
                         break;
                     case "tab1":
@@ -153,46 +161,44 @@ public class NearbyFragment extends MVPBaseFragment<NearbyContract.View, NearbyP
                     case "tab2":
                         Toast.makeText(getContext(), "mon mon", Toast.LENGTH_SHORT).show();
                         break;
-                    default:
                     case "ppw0":
-                        nearyDistance = 1000000;
+                        nearyDistance = 200000;
                         // TODO: 2017/3/13
-                        setPopupWindowCurrentItem(v);
+                        setPopupWindowCurrentItem(v,nearyDistance);
 
                         break;
                     case "ppw1":
                         nearyDistance = 1000;
-                        setPopupWindowCurrentItem(v);
+                        setPopupWindowCurrentItem(v,nearyDistance);
                         break;
                     case "ppw2":
                         nearyDistance = 2000;
-                        setPopupWindowCurrentItem(v);
+                        setPopupWindowCurrentItem(v,nearyDistance);
                         break;
                     case "ppw3":
                         nearyDistance = 3000;
-                        setPopupWindowCurrentItem(v);
+                        setPopupWindowCurrentItem(v,nearyDistance);
                         break;
                     case "ppw4":
                         nearyDistance = 4000;
-                        setPopupWindowCurrentItem(v);
+                        setPopupWindowCurrentItem(v,nearyDistance);
                         break;
                     case "ppw5":
                         nearyDistance = 5000;
-                        setPopupWindowCurrentItem(v);
+                        setPopupWindowCurrentItem(v,nearyDistance);
                         break;
                 }
         }
     }
-    private void setPopupWindowCurrentItem(View v){
-        for (View view : mPpwTvs){
-            if (view==v){
-                if (!v.isSelected())
-                    Toast.makeText(getContext(), "mon true"+v.getId(), Toast.LENGTH_SHORT).show();
-                view.setSelected(true);
-            }else {
-                view.setSelected(false);
+    private void setPopupWindowCurrentItem(View v, int nearyDistance){
+        for (int i = 0; i < mPpwTvs.size(); i++) {
+            if (mPpwTvs.get(i)==v) {
+                ((NearbyGoodsFragment) mTabFragList.get(0)).setNearyDistance(nearyDistance);
+                Toast.makeText(getContext(), "mon true" + v.getId(), Toast.LENGTH_SHORT).show();
+                lastPpwTvPos = i;
             }
         }
+        mPopupWindow.dismiss();
     }
     private void showPopupwindow(View view) {
         View mContentView = LayoutInflater.from(getContext()).inflate(R.layout.popupwindow_nearby_goods,null);
@@ -207,7 +213,7 @@ public class NearbyFragment extends MVPBaseFragment<NearbyContract.View, NearbyP
             mPpwTvs.get(i).setTag("ppw"+i);
             mPpwTvs.get(i).setOnClickListener(this);
         }
-        mPpwTvs.get(0).setSelected(true);
+        mPpwTvs.get(lastPpwTvPos).setSelected(true);
         mPopupWindow = new PopupWindow(mContentView, view.getWidth(), ViewPager.LayoutParams.WRAP_CONTENT,true);
         mPopupWindow.setTouchable(true);
         mPopupWindow.setTouchInterceptor(new View.OnTouchListener() {

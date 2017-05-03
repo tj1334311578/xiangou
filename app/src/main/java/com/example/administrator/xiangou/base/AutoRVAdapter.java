@@ -69,7 +69,7 @@ public abstract class AutoRVAdapter extends RecyclerView.Adapter<AutoRVAdapter.R
 //    public abstract void setItemData(List<?> list);
 
     public int getItemCount() {
-        return list.size();
+        return list!=null?list.size():0;
     }
 
     private AdapterView.OnItemClickListener onItemClickListener;

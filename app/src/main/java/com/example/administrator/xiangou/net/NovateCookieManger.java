@@ -8,7 +8,9 @@ import okhttp3.Cookie;
 import okhttp3.CookieJar;
 import okhttp3.HttpUrl;
 
-
+/**
+ *
+ */
 public class NovateCookieManger implements CookieJar {
 
     private static final String TAG = "NovateCookieManger";

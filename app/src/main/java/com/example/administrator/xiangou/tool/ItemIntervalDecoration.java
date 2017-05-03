@@ -10,12 +10,12 @@ import android.view.View;
 
 public class ItemIntervalDecoration extends RecyclerView.ItemDecoration{
     //RecyclerView的item的间隔
-    private float mTopInterval;
-    private float mLeftInterval;
-    private float mRightInterval;
-    private float mBottomInterval;
+    private int mTopInterval;
+    private int mLeftInterval;
+    private int mRightInterval;
+    private int mBottomInterval;
 
-    public ItemIntervalDecoration(float interval) {
+    public ItemIntervalDecoration(int interval) {
         interval = ContextUtils.dp2px(interval);
         mLeftInterval = interval;
         mTopInterval = interval;
@@ -23,7 +23,7 @@ public class ItemIntervalDecoration extends RecyclerView.ItemDecoration{
         mBottomInterval = interval;
     }
 
-    public ItemIntervalDecoration(float leftInterval, float topInterval, float bottomInterval, float rightInterval) {
+    public ItemIntervalDecoration(int leftInterval, int topInterval, int rightInterval, int bottomInterval) {
         mLeftInterval = ContextUtils.dp2px(leftInterval);
         mTopInterval = ContextUtils.dp2px(topInterval);
         mRightInterval = ContextUtils.dp2px(rightInterval);
@@ -32,16 +32,47 @@ public class ItemIntervalDecoration extends RecyclerView.ItemDecoration{
 
     @Override
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-        super.getItemOffsets(outRect, view, parent, state);
+//        super.getItemOffsets(outRect, view, parent, state);
         //判断item的position
         if (parent.getChildAdapterPosition(view) == 0) {
 //            outRect.left = 0;
             outRect.top = 0;
         }else {
-            outRect.top = (int) mTopInterval;
+            outRect.top = mTopInterval;
         }
-        outRect.left = (int) mLeftInterval;
-        outRect.bottom = (int) mBottomInterval;
-        outRect.right = (int) mRightInterval;
+        outRect.left = mLeftInterval;
+        outRect.right = mRightInterval;
+        outRect.bottom = mBottomInterval;
+
+//        GridLayoutManager layoutManager = (GridLayoutManager) parent.getLayoutManager();
+//        //判断总的数量是否可以整除
+//        int totalCount = layoutManager.getItemCount();
+//        int surplusCount = totalCount % layoutManager.getSpanCount();
+//        int childPosition = parent.getChildAdapterPosition(view);
+//        if (layoutManager.getOrientation() == GridLayoutManager.VERTICAL) {//竖直方向的
+//            if (surplusCount == 0 && childPosition > totalCount - layoutManager.getSpanCount() - 1) {
+//                //后面几项需要bottom
+//                outRect.bottom =  mTopInterval;
+//            } else if (surplusCount != 0 && childPosition > totalCount - surplusCount - 1) {
+//                outRect.bottom =  mTopInterval;
+//            }
+//            if ((childPosition + 1) % layoutManager.getSpanCount() == 0) {//被整除的需要右边
+//                outRect.right = mLeftInterval;
+//            }
+//            outRect.top = mBottomInterval;
+//            outRect.left = mLeftInterval;
+//        } else {
+//            if (surplusCount == 0 && childPosition > totalCount - layoutManager.getSpanCount() - 1) {
+//                //后面几项需要右边
+//                outRect.right = mLeftInterval;
+//            } else if (surplusCount != 0 && childPosition > totalCount - surplusCount - 1) {
+//                outRect.right = mLeftInterval;
+//            }
+//            if ((childPosition + 1) % layoutManager.getSpanCount() == 0) {//被整除的需要下边
+//                outRect.bottom = mTopInterval;
+//            }
+//            outRect.top = mBottomInterval;
+//            outRect.left = mLeftInterval;
+//        }
     }
 }

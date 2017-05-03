@@ -15,7 +15,7 @@ import java.util.List;
 public abstract class RVBaseAdapter<T> extends RecyclerView.Adapter<RVBaseViewHolder> {
     public Context mContext;
     protected List<T> mDatas;
-    protected  int mLayoutResId;
+    protected int mLayoutResId;
     private static View mItemView;
 
     /**
@@ -33,7 +33,7 @@ public abstract class RVBaseAdapter<T> extends RecyclerView.Adapter<RVBaseViewHo
     public RVBaseAdapter(Context context, List<T> mDatas) {
         mContext = context;
         this.mDatas = mDatas;
-//        setLayoutResId(mLayoutResId);
+        //        setLayoutResId(mLayoutResId);
     }
     public RVBaseAdapter(Context context, int mLayoutResId, List<T> mDatas) {
         mContext = context;

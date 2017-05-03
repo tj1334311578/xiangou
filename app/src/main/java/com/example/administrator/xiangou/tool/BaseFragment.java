@@ -63,25 +63,25 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
         mActivity = getActivity();
     }
 
-    public ProgressDialog mProgressDialog;
-    public ProgressDialog showProgressDialog() {
-        this.mProgressDialog = new ProgressDialog(mActivity);
-        this.mProgressDialog.setMessage("拼命加载中...");
-        this.mProgressDialog.show();
-        return this.mProgressDialog;
-    }
-    public ProgressDialog showProgressDialog(CharSequence message) {
-        this.mProgressDialog = new ProgressDialog(mActivity);
-        this.mProgressDialog.setMessage(message);
-        this.mProgressDialog.show();
-        return this.mProgressDialog;
-    }
-    public void dismissProgressDialog() {
-        if (this.mProgressDialog != null && this.mProgressDialog.isShowing()) {
-            // progressDialog.hide();会导致android.view.WindowLeaked
-            this.mProgressDialog.dismiss();
-        }
-    }
+//    public ProgressDialog mProgressDialog;
+//    public ProgressDialog showProgressDialog() {
+//        mProgressDialog = new ProgressDialog(mActivity);
+//        mProgressDialog.setMessage("拼命加载中...");
+//        mProgressDialog.show();
+//        return mProgressDialog;
+//    }
+//    public ProgressDialog showProgressDialog(CharSequence message) {
+//        mProgressDialog = new ProgressDialog(mActivity);
+//        mProgressDialog.setMessage(message);
+//        mProgressDialog.show();
+//        return mProgressDialog;
+//    }
+//    public void dismissProgressDialog() {
+//        if (mProgressDialog != null && mProgressDialog.isShowing()) {
+//            // progressDialog.hide();会导致android.view.WindowLeaked
+//            mProgressDialog.dismiss();
+//        }
+//    }
 
     //还可以把统一的toolbar等控件在此初始化
     //如public Toolbar initToolBar(View view, String title)

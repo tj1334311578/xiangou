@@ -2,63 +2,36 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="wrap_content">
+              android:layout_height="wrap_content"
+    android:background="@color/whiteBgColor">
 
 
-    <include layout="@layout/nearby_store_child_title"/>
-    
+    <include layout="@layout/nearby_store_child_title"
+        android:id="@+id/title_nearby_store_child"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginLeft="42dp">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginRight="8dp">
-            <com.example.administrator.xiangou.tool.CustomImageView
+        android:orientation="horizontal"
+        android:layout_marginLeft="42dp"
+        android:layout_marginRight="8dp">
+        <com.example.administrator.xiangou.tool.CustomImageView
                 android:layout_width="0dp"
                 android:layout_height="108dp"
                 android:layout_weight="1"
                 android:id="@+id/img1_child_store_nearby"/>
-            <com.example.administrator.xiangou.tool.CustomImageView
+        <com.example.administrator.xiangou.tool.CustomImageView
                 android:layout_width="0dp"
                 android:layout_height="108dp"
                 android:layout_weight="1"
                 android:layout_marginLeft="5dp"
                 android:id="@+id/img2_child_store_nearby"/>
-            <com.example.administrator.xiangou.tool.CustomImageView
+        <com.example.administrator.xiangou.tool.CustomImageView
                 android:layout_width="0dp"
                 android:layout_height="108dp"
                 android:layout_weight="1"
                 android:layout_marginLeft="5dp"
                 android:id="@+id/img3_child_store_nearby"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginRight="25dp"
-            android:layout_marginTop="8dp">
-            <TextView
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:id="@+id/discribe_child_store_nearby"
-                android:textSize="14sp"
-                android:lines="1"
-                android:ellipsize="end"
-                android:textColor="@color/textcolor_nearby_item_name"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:text="展开"
-                android:layout_marginLeft="15dp"
-                android:id="@+id/open_child_store_nearby"
-                android:textColor="@color/textcolor_pink"/>
-        </LinearLayout>
-        <include layout="@layout/nearby_store_child_foot"/>
     </LinearLayout>
+    <include layout="@layout/nearby_store_child_foot"
+             android:id="@+id/foot_nearby_store_child"/>
 </LinearLayout>

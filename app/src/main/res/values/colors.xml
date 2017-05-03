@@ -13,7 +13,7 @@
     <color name="fragBgColor">#f5eef5</color>
     <color name="grayBgColor">#d2d2d2</color>
     <color name="whiteBgColor">#ffffff</color>
-    <color name="lineBgColor">#c7c7c7</color>
+    <color name="lineBgColor">#dfe9ef</color>
     <color name="homeBgColor">#f8f8f8</color>
     <color name="nearbyTabLine">#e20755</color>
     <color name="textcolor_black">#f5060002</color>
@@ -26,6 +26,7 @@
     <color name="textcolor_nearby_item_name">#e0161616</color>
     <color name="textcolor_nearby_hint">#80040404</color>
     <color name="distance_store_bg">#86bef2</color>
+    <color name="bg_f6f7f7_rvitem_decoration">#f6f7f7</color>
     <color name="cart_textb316color">#b3161616</color>
     <color name="cart_text16color">#161616</color>
 

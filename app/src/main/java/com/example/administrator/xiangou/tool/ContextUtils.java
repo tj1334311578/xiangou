@@ -1,5 +1,6 @@
 package com.example.administrator.xiangou.tool;
 
+import android.annotation.TargetApi;
 import android.app.Application;
 import android.util.Base64;
 import android.util.DisplayMetrics;
@@ -62,22 +63,22 @@ public class ContextUtils extends Application{
      * px与dp、sp的转换：
      * 将px值转换为dip或dp值，保证尺寸大小不变
      */
-    public static int px2dp(float pxValue) {
+    public static int px2dp(int pxValue) {
         final float scale = sDisplayMetrics.density;
         return (int) (pxValue / scale + 0.5f);
     }
     //将dip或dp值转换为px值，保证尺寸大小不变
-    public static int dp2px(float dipValue) {
+    public static int dp2px(int dipValue) {
         final float scale = sDisplayMetrics.density;
         return (int) (dipValue * scale + 0.5f);
     }
     //将px值转换为sp值，保证文字大小不变
-    public static int px2sp(float pxValue) {
+    public static int px2sp(int pxValue) {
         final float fontScale = sDisplayMetrics.scaledDensity;
         return (int) (pxValue / fontScale + 0.5f);
     }
     //将sp值转换为px值，保证文字大小不变
-    public static int sp2px(float spValue) {
+    public static int sp2px(int spValue) {
         final float fontScale = sDisplayMetrics.scaledDensity;
         return (int) (spValue * fontScale + 0.5f);
     }
@@ -91,9 +92,10 @@ public class ContextUtils extends Application{
         DecimalFormat df = new DecimalFormat("0.00");
         return df.format(num);
     }
-    public static float F2places(float num){
+    @TargetApi(25)
+    public static double D2places(double num){
         BigDecimal bd = new BigDecimal(num);
-        return bd.setScale(2).floatValue();
+        return bd.setScale(2).doubleValue();
     }
 
     /**

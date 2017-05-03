@@ -36,6 +36,7 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/home_store_treasure_item_recycle"
         android:layout_width="match_parent"
-        android:paddingStart="2dp"
+        android:paddingStart="8dp"
+        android:paddingTop="10dp"
         android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
 </LinearLayout>

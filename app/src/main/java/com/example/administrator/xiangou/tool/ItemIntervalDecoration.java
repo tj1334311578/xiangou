@@ -1,6 +1,8 @@
 package com.example.administrator.xiangou.tool;
 
 import android.graphics.Rect;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -30,19 +32,42 @@ public class ItemIntervalDecoration extends RecyclerView.ItemDecoration{
         mBottomInterval = ContextUtils.dp2px(bottomInterval);
     }
 
+
     @Override
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
 //        super.getItemOffsets(outRect, view, parent, state);
-        //判断item的position
-        if (parent.getChildAdapterPosition(view) == 0) {
-//            outRect.left = 0;
-            outRect.top = 0;
-        }else {
+        if (parent.getLayoutManager() instanceof GridLayoutManager){
+            //网格布局item间隔，左、右边距只需设置左边距
+            GridLayoutManager layoutManager = (GridLayoutManager) parent.getLayoutManager();
             outRect.top = mTopInterval;
+            if (parent.getChildAdapterPosition(view) < layoutManager.getSpanCount())
+            {
+                outRect.top = 0;
+            }
+            outRect.left = mLeftInterval;
+            if ( (parent.getChildAdapterPosition(view) % layoutManager.getSpanCount())==0){
+                outRect.left = 0;
+            }
+            outRect.right = mRightInterval;
+            outRect.bottom = mBottomInterval;
+        }else if (parent.getLayoutManager() instanceof LinearLayoutManager){
+            //判断item的position
+            if (parent.getChildAdapterPosition(view) == 0) {
+                outRect.top = 0;
+            }else {
+                outRect.top = mTopInterval;
+            }
+            outRect.left = mLeftInterval;
+            outRect.right = mRightInterval;
+            outRect.bottom = mBottomInterval;
+        }else {
+            outRect.left = mLeftInterval;
+            outRect.top = mTopInterval;
+            outRect.right = mRightInterval;
+            outRect.bottom = mBottomInterval;
         }
-        outRect.left = mLeftInterval;
-        outRect.right = mRightInterval;
-        outRect.bottom = mBottomInterval;
+    }
+}
 
 //        GridLayoutManager layoutManager = (GridLayoutManager) parent.getLayoutManager();
 //        //判断总的数量是否可以整除
@@ -74,5 +99,3 @@ public class ItemIntervalDecoration extends RecyclerView.ItemDecoration{
 //            outRect.top = mBottomInterval;
 //            outRect.left = mLeftInterval;
 //        }
-    }
-}

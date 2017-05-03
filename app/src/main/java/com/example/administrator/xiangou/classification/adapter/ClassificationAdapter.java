@@ -2,7 +2,6 @@ package com.example.administrator.xiangou.classification.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -42,24 +41,23 @@ public class ClassificationAdapter extends AutoRVAdapter implements RVBaseAdapte
     public void onBindViewHolder(ViewHolder holder, int position) {
         List<PreferBean3> list=new ArrayList<>();
         holder.getImgeView(R.id.goods_item1_img).setImageResource(R.mipmap.girl_v);
-        list.add(new PreferBean3(R.mipmap.girl_h,"欧兰雅护肤品套装"));
-        list.add(new PreferBean3(R.mipmap.girl_h,"欧兰雅护肤品套装"));
-        list.add(new PreferBean3(R.mipmap.girl_h,"欧兰雅护肤品套装"));
-        list.add(new PreferBean3(R.mipmap.girl_h,"欧兰雅护肤品套装"));
-        list.add(new PreferBean3(R.mipmap.girl_h,"欧兰雅护肤品套装"));
-        list.add(new PreferBean3(R.mipmap.girl_h,"欧兰雅护肤品套装"));
-        list.add(new PreferBean3(R.mipmap.girl_h,"欧兰雅护肤品套装"));
-        list.add(new PreferBean3(R.mipmap.girl_h,"欧兰雅护肤品套装"));
-        list.add(new PreferBean3(R.mipmap.girl_h,"欧兰雅护肤品套装"));
-        list.add(new PreferBean3(R.mipmap.girl_h,"欧兰雅护肤品套装"));
-        list.add(new PreferBean3(R.mipmap.girl_h,"欧兰雅护肤品套装"));
-        list.add(new PreferBean3(R.mipmap.girl_h,"欧兰雅护肤品套装"));
+        list.add(new PreferBean3(R.mipmap.girl_v,"欧兰雅护肤品套装"));
+        list.add(new PreferBean3(R.mipmap.girl_v,"欧兰雅护肤品套装"));
+        list.add(new PreferBean3(R.mipmap.girl_v,"欧兰雅护肤品套装"));
+        list.add(new PreferBean3(R.mipmap.girl_v,"欧兰雅护肤品套装"));
+        list.add(new PreferBean3(R.mipmap.girl_v,"欧兰雅护肤品套装"));
+        list.add(new PreferBean3(R.mipmap.girl_v,"欧兰雅护肤品套装"));
+        list.add(new PreferBean3(R.mipmap.girl_v,"欧兰雅护肤品套装"));
+        list.add(new PreferBean3(R.mipmap.girl_v,"欧兰雅护肤品套装"));
+        list.add(new PreferBean3(R.mipmap.girl_v,"欧兰雅护肤品套装"));
+        list.add(new PreferBean3(R.mipmap.girl_v,"欧兰雅护肤品套装"));
+        list.add(new PreferBean3(R.mipmap.girl_v,"欧兰雅护肤品套装"));
+        list.add(new PreferBean3(R.mipmap.girl_v,"欧兰雅护肤品套装"));
         RecyclerView recy=holder.getRecycleView(R.id.goods_classfication_item1_recycle);
-        recy.addItemDecoration(new ItemIntervalDecoration(20,10,20,20));
-        recy.setLayoutManager(new GridLayoutManager(context,3, LinearLayoutManager.VERTICAL,false));
+        recy.setLayoutManager(new GridLayoutManager(context,3, GridLayoutManager.VERTICAL,false));
+        recy.addItemDecoration(new ItemIntervalDecoration(0,10,0,20));
         recy.setAdapter(new ClassificationAdapter2(context,list));
     }
-
 
     @Override
     public void setOnItemViewClick(View view, int position) {

@@ -80,7 +80,7 @@ public class mHomeStoreAdapter extends AutoRVAdapter implements RVBaseAdapter.On
         lists.add(new Treasure("套装透气宽松连衣裙",R.mipmap.girl_h,45,310.00,420.00,true));
         treasureRecycler=holder.getRecycleView(R.id.home_store_treasure_item_recycle);
         treasureRecycler.setLayoutManager(new GridLayoutManager(context,2));
-        treasureRecycler.addItemDecoration(new ItemIntervalDecoration(10,5,4,5));
+        treasureRecycler.addItemDecoration(new ItemIntervalDecoration(0,0,9,15));
         treasureRecycler.setAdapter(new TreasureAdapter(context,lists));
     }
     private void bindHolder1(ViewHolder holder) {
@@ -91,7 +91,7 @@ public class mHomeStoreAdapter extends AutoRVAdapter implements RVBaseAdapter.On
         lists.add(new Coupon(20,"满399元立减"));
         couponRecycle=holder.getRecycleView(R.id.home_store_coupon_item_recycle);
         couponRecycle.setLayoutManager(new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false));
-        couponRecycle.addItemDecoration(new ItemIntervalDecoration(0,14,4,4));
+        couponRecycle.addItemDecoration(new ItemIntervalDecoration(4,0,4,14));
         couponRecycle.setAdapter(new CouponAdapter(context,lists));
     }
 

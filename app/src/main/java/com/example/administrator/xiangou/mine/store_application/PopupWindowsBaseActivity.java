@@ -25,6 +25,11 @@ import java.util.Locale;
  */
 
 public class PopupWindowsBaseActivity extends BaseActivity {
+    public void setShowatlocation(int showatlocation) {
+        this.showatlocation = showatlocation;
+    }
+
+    private int showatlocation=R.id.application_parent_rl;
     /**
      * 选择图片的返回码
      */
@@ -88,7 +93,7 @@ public class PopupWindowsBaseActivity extends BaseActivity {
                 }
             }
         });
-        menuWindow.showAtLocation(findViewById(R.id.application_parent_rl), Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL, 0, 0);
+        menuWindow.showAtLocation(findViewById(showatlocation), Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL, 0, 0);
         return imgpath;
     }
 

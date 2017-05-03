@@ -76,10 +76,10 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 
     public ProgressDialog mProgressDialog;
     public ProgressDialog showProgressDialog() {
-        mProgressDialog = new ProgressDialog(this);
-        mProgressDialog.setMessage("拼命加载中...");
-        mProgressDialog.show();
-        return mProgressDialog;
+        this.mProgressDialog = new ProgressDialog(this);
+        this.mProgressDialog.setMessage("拼命加载中...");
+        this.mProgressDialog.show();
+        return this.mProgressDialog;
     }
     public ProgressDialog showProgressDialog(CharSequence message) {
         this.mProgressDialog = new ProgressDialog(this);
@@ -101,9 +101,17 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     public void startNewUI(Class<?> context){
         startActivity(new Intent(this,context));
     }
-    public void startNewUICarryStr(Class<?> context, String name, String str ){
+    public void startNewUICarryStr(Class<?> context, String name, Object str ){
         Intent intent = new Intent(this,context);
-        intent.putExtra(name,str);
+        if (str instanceof String) {
+            intent.putExtra(name, str.toString());
+        }else if (str instanceof Serializable){
+            Serializable s = (Serializable) str;
+            intent.putExtra(name,s);
+        }else if (str instanceof Bundle){
+            Bundle s = (Bundle) str;
+            intent.putExtra(name,s);
+        }
         startActivity(intent);
     }
     public void startNewUICarryStrs(Class<?> context, String name, String[] strs ){
@@ -116,6 +124,19 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     }
     public void startNewUIForResult(Class<?> context,int code,Bundle options){
         startActivityForResult(new Intent(this,context),code,options);
+    }
+    public void startNewUIForResult(Class<?> context,int code,String name,Object str){
+        Intent intent = new Intent(this,context);
+        if (str instanceof String) {
+            intent.putExtra(name, str.toString());
+        }else if (str instanceof Serializable){
+            Serializable s = (Serializable) str;
+            intent.putExtra(name,s);
+        }else if (str instanceof Bundle){
+            Bundle s = (Bundle) str;
+            intent.putExtra(name,s);
+        }
+        startActivityForResult(new Intent(this,context),code);
     }
 
     public <T extends View> T findContentView(int id){

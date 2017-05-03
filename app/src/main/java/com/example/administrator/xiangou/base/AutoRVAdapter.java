@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -162,6 +163,7 @@ public abstract class AutoRVAdapter extends RecyclerView.Adapter<AutoRVAdapter.R
             return get(id);
         }
         public CustomImageView getCustomImageView(int id){return get(id);}
+        public CheckBox getCheckBox(int id){return get(id);}
 
     }
 }

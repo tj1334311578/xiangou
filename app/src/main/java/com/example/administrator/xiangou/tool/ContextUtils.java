@@ -1,6 +1,5 @@
 package com.example.administrator.xiangou.tool;
 
-import android.annotation.TargetApi;
 import android.app.Application;
 import android.util.Base64;
 import android.util.DisplayMetrics;

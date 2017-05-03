@@ -108,8 +108,12 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
 
     /**
      * 页面跳转方法
-     * @param context
      */
+    public void startCarryData(Bundle bundle){
+        Intent intent = new Intent();
+        intent.putExtras(bundle);
+        startActivity(intent);
+    }
     public void startNewUI(Class<?> context){
         startActivity(new Intent(getContext(),context));
     }

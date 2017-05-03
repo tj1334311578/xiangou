@@ -45,7 +45,8 @@ public class StoreHomeFragment extends MVPBaseFragment<StoreHomeContract.View, S
 
     @Override
     public void onClick(View v) {
-
+        if (v==backBtn)
+            getActivity().finish();
     }
 
     private void initTabFragViews() {

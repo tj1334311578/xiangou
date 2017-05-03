@@ -31,6 +31,7 @@ public class ComprehensiveFragment extends MVPBaseFragment<ComprehensiveContract
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+//        getArguments().putInt("data",3);
         return setContextView(inflater,container, R.layout.goods_ranking_gride);
     }
 

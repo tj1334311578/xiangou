@@ -37,6 +37,12 @@
         <activity android:name=".goods_details.Goods_rankingActivity"/>
         <activity android:name=".goods_details.storehome.StoreHomeActivity"/>
         <activity android:name=".mine.setting.SettingActivity"/>
+        <activity android:name=".mine.setting.personal.PersonalActivity"/>
+        <activity android:name=".mine.setting.personal.NicknameActivity"/>
+        <activity android:name=".mine.setting.personal.SexActivity"/>
+        <activity android:name=".mine.setting.manageraddress.ManagerAddressActivity"/>
+        <activity android:name=".mine.setting.manageraddress.editaddress.EditAddressActivity"/>
+        <activity android:name=".mine.myorder.MyOrderActivity"/>
     </application>
 
 </manifest>

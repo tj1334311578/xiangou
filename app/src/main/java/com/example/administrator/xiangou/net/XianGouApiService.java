@@ -9,7 +9,15 @@ import com.example.administrator.xiangou.nearby.apimodel.NearbyGoodsDataBean;
 import com.example.administrator.xiangou.nearby.apimodel.NearbyGoodsDetailDataBean;
 import com.example.administrator.xiangou.nearby.apimodel.NearbyStoreApiDataBean;
 
+import java.util.Map;
+
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
+import retrofit2.http.Body;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
+import retrofit2.http.PartMap;
 import retrofit2.http.Query;
 import rx.Observable;
 
@@ -67,6 +75,16 @@ public interface XianGouApiService {
     //设新密码--找回密码
     @POST("Api/Login/findpsw/")
     Observable<Captcha> resetPwd(@Query("tel") String tel, @Query("password") String password, @Query("code") String code);
+
+
+    //店铺申请
+    @Multipart
+    @POST("api/Stores/apply/")
+    Observable<ResponseBody> applyShop(@Body RequestBody infos,
+                                       @PartMap Map<String,RequestBody> id_img,
+                                       @Part RequestBody logo,
+                                       @Part RequestBody licence,
+                                       @Part RequestBody contract);
 
 /***********商品接口************/
     //附近商品

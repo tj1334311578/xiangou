@@ -66,7 +66,7 @@ public class MyOrderFragment extends MVPBaseFragment<MyOrderContract.View, MyOrd
         TitleTv.setText("我的订单");
         SaveTv.setVisibility(View.GONE);
         ButterKnife.bind(this,mContextView);
-        findContentView(backBtn,true);
+        backBtn.setOnClickListener(this);
         initTabFragViews();
     }
 

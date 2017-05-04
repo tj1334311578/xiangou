@@ -5,6 +5,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+
+import com.example.administrator.xiangou.net.XianGouApiService;
+import com.example.administrator.xiangou.tool.GlideImageLoader;
 
 import java.util.List;
 
@@ -31,14 +35,13 @@ public abstract class RVBaseAdapter<T> extends RecyclerView.Adapter<RVBaseViewHo
     }
 
     public RVBaseAdapter(Context context, List<T> mDatas) {
-        mContext = context;
-        this.mDatas = mDatas;
-        //        setLayoutResId(mLayoutResId);
+        this(context,0,mDatas);
     }
     public RVBaseAdapter(Context context, int mLayoutResId, List<T> mDatas) {
         mContext = context;
         this.mDatas = mDatas;
         setLayoutResId(mLayoutResId);
+        mImageLoader = new GlideImageLoader();
     }
 
     @Override
@@ -83,5 +86,10 @@ public abstract class RVBaseAdapter<T> extends RecyclerView.Adapter<RVBaseViewHo
             mDatas.addAll(datas);
             notifyItemRangeChanged(position,mDatas.size());
         }
+    }
+
+    private  GlideImageLoader mImageLoader;
+    public void loadImg(String imgUrl, ImageView imageView) {
+        mImageLoader.displayImage(mContext, XianGouApiService.BASEURL+imgUrl,imageView);
     }
 }

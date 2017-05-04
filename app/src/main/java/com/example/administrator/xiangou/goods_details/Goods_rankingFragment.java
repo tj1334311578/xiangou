@@ -46,7 +46,7 @@ public class Goods_rankingFragment extends MVPBaseFragment<NearbyContract.View, 
     @Override
     public void initView() {
         ButterKnife.bind(this,mContextView);
-        findContentView(backBtn,true);
+        backBtn.setOnClickListener(this);
         initTabFragViews();
     }
 

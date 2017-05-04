@@ -40,10 +40,9 @@ public class EditAddressActivity extends MVPBaseActivity<EditAddressContract.Vie
         locationEt=findContentView(R.id.editaddress_locationEt);
         detailedEt=findContentView(R.id.editaddress_detailed);
 
-        back = (ImageView) findContentView(R.id.editaddress_head).findViewById(R.id.setting_head_back);
-        TitleTv = (TextView) findContentView(R.id.editaddress_head).findViewById(R.id.setting_head_center);
-        SuccessTv = (TextView) findContentView(R.id.editaddress_head).findViewById(R.id.setting_head_right);
-        findContentView(back, true);
+        back = findContentView(R.id.setting_head_back);
+        TitleTv = findContentView(R.id.setting_head_center,false);
+        SuccessTv = findContentView(R.id.setting_head_right);
         if (getIntent().getStringExtra("addresstype")!= null && getIntent().getStringExtra("addresstype").equals("add")){
             Log.e("添加", "initView: "+getIntent().getStringExtra("addresstype"));
             //添加数据地址
@@ -66,7 +65,6 @@ public class EditAddressActivity extends MVPBaseActivity<EditAddressContract.Vie
             SuccessTv.setText("完成");
             SuccessTv.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG | Paint.ANTI_ALIAS_FLAG);
         }
-        findContentView(SuccessTv,true);
     }
 
     @Override

@@ -9,11 +9,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
+
 import com.example.administrator.xiangou.R;
-import com.example.administrator.xiangou.tool.CustomImageView;
 import com.example.administrator.xiangou.tool.ImageUtils;
 import com.example.administrator.xiangou.tool.ReadLocalJsonUtil;
 
@@ -21,9 +23,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -63,12 +63,12 @@ public class StoreApplicationActivity extends PopupWindowsBaseActivity implement
      * ---------------------------------------------------------------------------------------------
      */
     private RelativeLayout ID_positive,ID_opposite,logo_potato,Business_license,Lease_contract;
-
+    private EditText mApplicantNameEdt,mTelEdt,mIDCardEdt,mStoreNameEdt,mShopAdressEdt;
     private ImageView backBtn;
+    private Button mCommitBtn;
     private Spinner province,city,districts;
-//    private List<String> imagepaths=new ArrayList<>();
     private Map<Integer,String> imgpathMap;
-    private String imagepath;
+//    private String imagepath;
 
     /**                                         分割线
      * ---------------------------------------------------------------------------------------------
@@ -84,6 +84,12 @@ public class StoreApplicationActivity extends PopupWindowsBaseActivity implement
     }
 
     private void initView() {
+        mApplicantNameEdt = findContentView(R.id.application_name_edit,false);
+        mTelEdt = findContentView(R.id.application_number_edit,false);
+        mIDCardEdt = findContentView(R.id.application_ID_Card_edit,false);
+        mStoreNameEdt = findContentView(R.id.store_name_edit,false);
+        mShopAdressEdt = findContentView(R.id.store_address_edit,false);
+        mCommitBtn = findContentView(R.id.commit_application_btn);
 
         ID_positive= (RelativeLayout) findViewById(R.id.ID_positive);
         ID_positive.setOnClickListener(this);
@@ -178,8 +184,8 @@ public class StoreApplicationActivity extends PopupWindowsBaseActivity implement
             case R.id.ID_positive:
                showPicturePopupWindow(0);
 //                imagepath=getmImagePath();
-                showToast(imagepath);
-                Log.e("ID_position", "onClick: "+imagepath );
+//                showToast(imagepath);
+//                Log.e("ID_position", "onClick: "+imagepath );
                 break;
             case R.id.ID_opposite:
                 showPicturePopupWindow(1);
@@ -196,7 +202,13 @@ public class StoreApplicationActivity extends PopupWindowsBaseActivity implement
             case R.id.store_headback:
                 finish();
                 break;
+            case R.id.commit_application_btn:
+                commitApplicationShop();
          }
+    }
+
+    private void commitApplicationShop() {
+
     }
 
     private void setImg(int requestCode, int resultCode, Intent data){

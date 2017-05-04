@@ -51,7 +51,7 @@ public class StoreHomeFragment extends MVPBaseFragment<StoreHomeContract.View, S
 
     private void initTabFragViews() {
         backBtn= (ImageView) mContextView.findViewById(R.id.goods_storehome_head).findViewById(R.id.home_store_head_Return);
-        findContentView(backBtn,true);
+        backBtn.setOnClickListener(this);
         tabTitles=new String[]{"店铺首页","所有宝贝"};
         mTabFragList =new ArrayList<>();
         mTabFragList.add(new HomeStoreFragment());

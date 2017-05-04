@@ -414,6 +414,7 @@
                 android:background="@drawable/round20dp"
                 android:gravity="center"
                 android:text="提交申请"
+                android:id="@+id/commit_application_btn"
                 android:textColor="@color/white"
                 android:textSize="14sp" />
         </RelativeLayout>

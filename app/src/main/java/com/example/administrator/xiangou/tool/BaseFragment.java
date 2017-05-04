@@ -15,10 +15,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.administrator.xiangou.R;
-import com.example.administrator.xiangou.login.LoginBean;
 import com.example.administrator.xiangou.main.User;
 
 import butterknife.ButterKnife;
+import rx.Observable;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
+import rx.subscriptions.CompositeSubscription;
 
 /**
  * @author zhouzongyao
@@ -30,6 +34,7 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
     public Activity mActivity;
     private Toast mToast;
 
+    private CompositeSubscription mCompositeSubscription;
     public User bUser;
     public MySharedPreferences bSharedPreferences;
     public View mContextView;
@@ -83,6 +88,22 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
 //        }
 //    }
 
+    //RXjava取消注册，以避免内存泄露
+    public void onUnsubscribe() {
+        if (mCompositeSubscription != null && mCompositeSubscription.hasSubscriptions()) {
+            mCompositeSubscription.unsubscribe();
+        }
+    }
+    public void addSubscription(Observable observable, Subscriber subscriber) {
+        if (mCompositeSubscription == null) {
+            mCompositeSubscription = new CompositeSubscription();
+        }
+        mCompositeSubscription.add(observable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscriber));
+    }
+
     //还可以把统一的toolbar等控件在此初始化
     //如public Toolbar initToolBar(View view, String title)
     public void setTextToTv(TextView textView, Object data){
@@ -97,13 +118,6 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
             view.setOnClickListener(this);
         }
         return (T) view;
-    }
-
-    public <T extends View> T findContentView(View v, boolean toSetClickListener){
-        if (toSetClickListener) {
-            v.setOnClickListener(this);
-        }
-        return (T) v;
     }
 
     /**
@@ -164,13 +178,6 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
     }
 //项目：
 
-    public User getbUser() {
-        return bUser;
-    }
-    public void setbUser(LoginBean.DataBean data) {
-        bUser.setUser(data);
-    }
-
     //将本地存储的用户信息赋值给用户类对象
     public void setbUserBySP(String str){
         String[] user = str.split(",");
@@ -193,8 +200,4 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
         bUser.setLevel(Integer.parseInt(user[16]));
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-    }
 }

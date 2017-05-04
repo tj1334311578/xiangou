@@ -25,13 +25,11 @@ public class NicknameActivity extends BaseActivity {
     }
 
     private void initView() {
-        backBtn= (ImageView) findViewById(R.id.setting_nickname_head).findViewById(R.id.setting_head_back);
+        backBtn= findContentView(R.id.setting_head_back);
         TitleTv= (TextView) findViewById(R.id.setting_nickname_head).findViewById(R.id.setting_head_center);
-        SaveTv= (TextView) findViewById(R.id.setting_nickname_head).findViewById(R.id.setting_head_right);
+        SaveTv= findContentView(R.id.setting_head_right);
         TitleTv.setText("昵称");
         SaveTv.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG|Paint.ANTI_ALIAS_FLAG);
-        findContentView(backBtn,true);
-        findContentView(SaveTv,true);
     }
 
     @Override

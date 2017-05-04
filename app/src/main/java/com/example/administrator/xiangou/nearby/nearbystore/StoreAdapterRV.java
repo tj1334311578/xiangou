@@ -9,8 +9,6 @@ import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.base.RVBaseAdapter;
 import com.example.administrator.xiangou.base.RVBaseViewHolder;
 import com.example.administrator.xiangou.nearby.apimodel.NearbyStoreApiDataBean;
-import com.example.administrator.xiangou.net.XianGouApiService;
-import com.example.administrator.xiangou.tool.GlideImageLoader;
 
 import java.util.List;
 
@@ -21,12 +19,10 @@ import java.util.List;
 
 public class StoreAdapterRV extends RVBaseAdapter<NearbyStoreApiDataBean.DataBean> {
 
-    private final GlideImageLoader mImageLoader;
     private ImageView[] goodsImgs;
 
     public StoreAdapterRV(Context context, List<NearbyStoreApiDataBean.DataBean> dataList) {
         super(context, R.layout.child_store_nearby, dataList);
-        mImageLoader = new GlideImageLoader();
         goodsImgs = new ImageView[3];
     }
 
@@ -60,7 +56,4 @@ public class StoreAdapterRV extends RVBaseAdapter<NearbyStoreApiDataBean.DataBea
         });
     }
 
-    private void loadImg(String imgUrl, ImageView imageView) {
-        mImageLoader.displayImage(mContext,XianGouApiService.BASEURL+imgUrl,imageView);
-    }
 }

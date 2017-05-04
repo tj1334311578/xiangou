@@ -7,7 +7,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,8 +15,6 @@ import com.example.administrator.xiangou.base.AutoRVAdapter;
 import com.example.administrator.xiangou.base.RVBaseAdapter;
 import com.example.administrator.xiangou.base.RVBaseViewHolder;
 import com.example.administrator.xiangou.nearby.apimodel.NearbyBenifitDataBean;
-import com.example.administrator.xiangou.net.XianGouApiService;
-import com.example.administrator.xiangou.tool.GlideImageLoader;
 
 import java.util.List;
 
@@ -28,7 +25,6 @@ import java.util.List;
 
 public class NearbyPreferentialAdapter extends RVBaseAdapter<NearbyBenifitDataBean.DataBean> {
     RecyclerView dayRecycer,hourRecycler,moreRecycler;
-    private static GlideImageLoader mImageLoader;
 
     public static final int TYPE_DATE = 1;
     public static final int TYPE_PREFERENTIAL = 2;
@@ -47,7 +43,6 @@ public class NearbyPreferentialAdapter extends RVBaseAdapter<NearbyBenifitDataBe
 
     public NearbyPreferentialAdapter(Context context, List<NearbyBenifitDataBean.DataBean> mDatas) {
         super(context, mDatas);
-        mImageLoader = new GlideImageLoader();
         mDataBean = mDatas.get(0);
         hasDownTieme = true;
     }
@@ -240,7 +235,4 @@ public class NearbyPreferentialAdapter extends RVBaseAdapter<NearbyBenifitDataBe
         }
     }
 
-    private void loadImg(String imgUrl, ImageView imageView) {
-        mImageLoader.displayImage(mContext, XianGouApiService.BASEURL+imgUrl,imageView);
-    }
 }

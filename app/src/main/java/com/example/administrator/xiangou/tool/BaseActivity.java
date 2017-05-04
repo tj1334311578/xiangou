@@ -15,12 +15,16 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.administrator.xiangou.R;
-import com.example.administrator.xiangou.login.LoginBean;
 import com.example.administrator.xiangou.main.User;
 
 import java.io.Serializable;
 
 import butterknife.ButterKnife;
+import rx.Observable;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
+import rx.subscriptions.CompositeSubscription;
 
 /**
  * Created by Administrator on 2017/2/28.
@@ -36,6 +40,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     };
     private Toast mToast;
 
+    private CompositeSubscription mCompositeSubscription;
     //    public static ContextUtils bContextUtils;
     public static User bUser;
     public static MySharedPreferences bSharedPreferences;
@@ -74,6 +79,22 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     protected void onDestroy() {
         super.onDestroy();
         unRegisterExitReceiver();
+    }
+
+    //RXjava取消注册，以避免内存泄露
+    public void onUnsubscribe() {
+        if (mCompositeSubscription != null && mCompositeSubscription.hasSubscriptions()) {
+            mCompositeSubscription.unsubscribe();
+        }
+    }
+    public void addSubscription(Observable observable, Subscriber subscriber) {
+        if (mCompositeSubscription == null) {
+            mCompositeSubscription = new CompositeSubscription();
+        }
+        mCompositeSubscription.add(observable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscriber));
     }
 
     public ProgressDialog mProgressDialog;
@@ -121,12 +142,6 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         intent.putExtra(name, strs);
         startActivity(intent);
     }
-    public void startNewUIForResult(Class<?> context,int code){
-        startActivityForResult(new Intent(this,context),code);
-    }
-    public void startNewUIForResult(Class<?> context,int code,Bundle options){
-        startActivityForResult(new Intent(this,context),code,options);
-    }
     public void startNewUIForResult(Class<?> context,int code,String name,Object str){
         Intent intent = new Intent(this,context);
         if (str instanceof String) {
@@ -147,12 +162,6 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     }
     public <T extends View> T findContentView(int id, boolean toSetClickListener){
         View view = this.findViewById(id);
-        if (toSetClickListener) {
-            view.setOnClickListener(this);
-        }
-        return (T) view;
-    }
-    public <T extends View> T findContentView(View view, boolean toSetClickListener){
         if (toSetClickListener) {
             view.setOnClickListener(this);
         }
@@ -218,13 +227,6 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 //    }
 
     //项目：
-
-    public User getbUser() {
-        return bUser;
-    }
-    public void setbUser(LoginBean.DataBean data) {
-        bUser.setUser(data);
-    }
 
     //将本地存储的用户信息赋值给用户类对象
     public void setbUserBySP(String str) {

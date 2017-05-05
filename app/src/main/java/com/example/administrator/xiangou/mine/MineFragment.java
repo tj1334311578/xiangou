@@ -22,6 +22,7 @@ import com.example.administrator.xiangou.goods_details.Goods_rankingActivity;
 import com.example.administrator.xiangou.goods_details.storehome.StoreHomeActivity;
 import com.example.administrator.xiangou.login.idlogin.IDLoginActivity;
 import com.example.administrator.xiangou.mine.myorder.MyOrderActivity;
+import com.example.administrator.xiangou.mine.mystore.MyStoreActivity;
 import com.example.administrator.xiangou.mine.setting.SettingActivity;
 import com.example.administrator.xiangou.mine.store_application.StoreApplicationActivity;
 import com.example.administrator.xiangou.mvp.MVPBaseFragment;
@@ -35,7 +36,9 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
     private ListView listView;
     private int content_img[]={R.mipmap.personal_footprint_icon,
             R.mipmap.personal_comment_icon,R.mipmap.mine_share_icon,R.mipmap.mine_shop_icon};
-    private String content_text[]={"我的足迹","我的评论","我的分享","申请店铺",};
+    private String content_text[]=
+//            new String[4];
+            {"我的足迹","我的评论","我的分享","申请店铺"};
     private CustomImageView mHeadImgCiv;
     private TextView mUserLevelTv,mLevelNumberTv,mUserNameTv,mMessageTv,mUnpaidTv,mWaitDekiveryTv,mReceiveTv,mEvaluationTv,mReturnsOrSalesTv;
     private int mine_MsgCount=0;
@@ -73,12 +76,12 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
 
     @Override
     public void initView() {
-        Log.e("user", "initView: " +bUser );
         findContentView(R.id.mine_message_rl);
         listView= findContentView(R.id.mine_list,false);
         findContentView(R.id.mine_setup_iv);
         mMessageTv = findContentView(R.id.mine_message_tv);
         mHeadImgCiv = findContentView(R.id.mine_user_img_iv);
+
         if (bUser.getHead_pic()==null){
             mHeadImgCiv.setImageResource(R.mipmap.mine_user_img);
         }else {
@@ -141,6 +144,9 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
                         startNewUI(ClassificationTabActivity.class);
                         break;
                     case 3:
+                        if (bUser.getType()==1){
+                            startNewUI(MyStoreActivity.class);
+                        }else
                         startNewUI(StoreApplicationActivity.class);
                         break;
                     default:
@@ -148,7 +154,6 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
                 }
             }
         });
-        initSet();
         initDate();
     }
 
@@ -165,6 +170,8 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         setTextToTv(mReceiveTv,bUser.getWaitReceive());
         setTextToTv(mEvaluationTv,bUser.getWaitCcomment());
         setTextToTv(mReturnsOrSalesTv,bUser.getRefund());
+        ////初始化数据
+        initSet();
     }
 
     @Override
@@ -178,10 +185,15 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         }
         super.setTextToTv(textView, data);
     }
-
     private void initSet() {
         //初始化数据
+        if (bUser.getType()==1){
+            content_text[content_text.length-1]="我的店铺";
+        }else {
+            content_text[content_text.length-1]="申请店铺";
+        }
         List<ItemImage> list=new ArrayList<>();
+        Log.e("initSet", "initSet: "+content_text[content_text.length-1]);
         for (int i = 0; i <content_img.length ; i++) {
             list.add(new ItemImage(content_img[i],content_text[i]));
         }

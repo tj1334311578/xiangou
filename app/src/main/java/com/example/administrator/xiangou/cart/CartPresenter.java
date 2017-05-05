@@ -4,6 +4,9 @@ package com.example.administrator.xiangou.cart;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
@@ -17,6 +20,7 @@ import com.example.administrator.xiangou.cart.model.GoodsDealBean;
 import com.example.administrator.xiangou.cart.model.ItemStatusBean;
 import com.example.administrator.xiangou.cart.model.StoreDealBean;
 import com.example.administrator.xiangou.cart.model.StoreStatusBean;
+import com.example.administrator.xiangou.main.MainActivity;
 import com.example.administrator.xiangou.mvp.BasePresenterImpl;
 import com.example.administrator.xiangou.tool.ContextUtils;
 
@@ -181,6 +185,13 @@ public class CartPresenter extends BasePresenterImpl<CartContract.View> implemen
     @Override
     public void setOnEditGoodsClick(ImageView view, int parentposition, int chaildposition) {
         Toast.makeText(mView.getContext(),"编辑商品属性！-" + parentposition + " - " + chaildposition,Toast.LENGTH_SHORT).show();
+        PopWindow_EditCart popwindow=new PopWindow_EditCart(view.getContext(), new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        popwindow.showAtLocation(LayoutInflater.from(mView.getContext()).inflate(R.layout.fragment_cart,null,false), Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL, 0, 0);
     }
 
 

@@ -6,20 +6,26 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.example.administrator.xiangou.R;
+import com.example.administrator.xiangou.goods_details.comprehensive.ComprehensiveFragment;
+import com.example.administrator.xiangou.goods_details.storehome.HomePageBean;
 import com.example.administrator.xiangou.goods_details.storehome.storehome.homestore.HomeStoreFragment;
 import com.example.administrator.xiangou.mvp.MVPBaseFragment;
+import com.example.administrator.xiangou.tool.DrawableTextView;
+import com.example.administrator.xiangou.tool.GlideImageLoader;
+import com.example.administrator.xiangou.tool.SelectImageView;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * MVPPlugin
@@ -27,15 +33,18 @@ import butterknife.ButterKnife;
  */
 
 public class StoreHomeFragment extends MVPBaseFragment<StoreHomeContract.View, StoreHomePresenter> implements StoreHomeContract.View {
-    @BindView(R.id.tabs_goodsstorehome_tab)
      TabLayout mTabLayout;
-    @BindView(R.id.tabs_goodsstorehome_viewpager)
      ViewPager mViewPager;
-    ImageView backBtn;
-
+     ImageView backBtn;
+     RelativeLayout background;
+     SelectImageView storeImg;
+     TextView storeName,salesVolume,follow;
+     RatingBar ratingBar;
+     DrawableTextView showstore;
     private List<Fragment> mTabFragList;
     private String[] tabTitles;
     private StoreHomeTabLayoutAdapter mLayoutAdapter;
+    private HomeStoreFragment homeStoreFragment;
 
     @Nullable
     @Override
@@ -47,15 +56,60 @@ public class StoreHomeFragment extends MVPBaseFragment<StoreHomeContract.View, S
     public void onClick(View v) {
         if (v==backBtn)
             getActivity().finish();
+
     }
 
     private void initTabFragViews() {
-        backBtn= (ImageView) mContextView.findViewById(R.id.goods_storehome_head).findViewById(R.id.home_store_head_Return);
-        backBtn.setOnClickListener(this);
+//        backBtn= (ImageView) mContextView.findViewById(R.id.goods_storehome_head).findViewById(R.id.home_store_head_Return);
+        mTabLayout=findContentView(R.id.tabs_goodsstorehome_tab,false);
+        mViewPager=findContentView(R.id.tabs_goodsstorehome_viewpager,false);
+        backBtn=findContentView(R.id.home_store_head_Return);
+
+        background=findContentView(R.id.home_store_head_background,false);
+        storeImg=findContentView(R.id.home_store_head_storeImage,false);
+        storeName=findContentView(R.id.home_store_headStoreName,false);
+        ratingBar=findContentView(R.id.home_store_ratingbar,false);
+        salesVolume=findContentView(R.id.home_store_head_salesVolume,false);
+        follow=findContentView(R.id.home_store_head_follow,false);
+        showstore=findContentView(R.id.home_store_head_showStore,false);
+        findContentView(R.id.home_store_head_Return,true);
+        //网络获取数据
+        mPresenter.dealStoreHomeCall(1,bUser.getUser_id());
+    }
+
+    private void initHeadView(HomePageBean dataBean) {
+        GlideImageLoader imageLoader = new GlideImageLoader();
+        imageLoader.displayImage(getContext(),"http://192.168.0.106"+dataBean.getData().getLogo(),storeImg);
+        storeName.setText(dataBean.getData().getName());
+        ratingBar.setRating((float) Double.parseDouble(dataBean.getData().getScore()));
+        salesVolume.setText("销量"+dataBean.getData().getTotal_sale());
+        follow.setText("关注"+dataBean.getData().getFollow());
+    }
+
+    @Override
+    public void sendFialRequest(String message) {
+
+    }
+
+    @Override
+    public void initView() {
+        initTabFragViews();
+    }
+//
+    @Override
+    public void sendDataBeanToView(HomePageBean dataBean) {
+        Log.e("sendDataBeanToView", "sendDataBeanToView: "+dataBean.toString() );
+        //传递数据
+        initHeadView(dataBean);
         tabTitles=new String[]{"店铺首页","所有宝贝"};
         mTabFragList =new ArrayList<>();
-        mTabFragList.add(new HomeStoreFragment());
-        mTabFragList.add(new HomeStoreFragment());
+        homeStoreFragment = new HomeStoreFragment();
+        Bundle bundle=new Bundle();
+        bundle.putSerializable("databean",dataBean);
+        homeStoreFragment.setArguments(bundle);
+
+        mTabFragList.add(homeStoreFragment);
+        mTabFragList.add(new ComprehensiveFragment());
         mTabLayout.setTabMode(TabLayout.MODE_FIXED);
         mLayoutAdapter = new StoreHomeTabLayoutAdapter(getContext(), getChildFragmentManager(), mTabFragList,tabTitles);
         mViewPager.setAdapter(mLayoutAdapter);
@@ -101,16 +155,5 @@ public class StoreHomeFragment extends MVPBaseFragment<StoreHomeContract.View, S
 
             }
         });
-    }
-
-    @Override
-    public void sendFialRequest(String message) {
-
-    }
-
-    @Override
-    public void initView() {
-        ButterKnife.bind(this,mContextView);
-        initTabFragViews();
     }
 }

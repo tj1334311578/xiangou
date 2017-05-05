@@ -1,5 +1,6 @@
 package com.example.administrator.xiangou.goods_details.storehome.storehome;
 
+import com.example.administrator.xiangou.goods_details.storehome.HomePageBean;
 import com.example.administrator.xiangou.mvp.BasePresenter;
 import com.example.administrator.xiangou.mvp.BaseView;
 
@@ -10,10 +11,10 @@ import com.example.administrator.xiangou.mvp.BaseView;
 
 public class StoreHomeContract {
     interface View extends BaseView {
-        
+        void sendDataBeanToView(HomePageBean dataBean);
     }
 
     interface  Presenter extends BasePresenter<View> {
-        
+        void dealStoreHomeCall(int did,int user_id);
     }
 }

@@ -1,5 +1,6 @@
 package com.example.administrator.xiangou.net;
 
+import com.example.administrator.xiangou.goods_details.storehome.HomePageBean;
 import com.example.administrator.xiangou.login.Captcha;
 import com.example.administrator.xiangou.login.LoginBean;
 import com.example.administrator.xiangou.nearby.apimodel.CommentDataBean;
@@ -124,5 +125,8 @@ public interface XianGouApiService {
     @POST("Api/benefit/near_benift/")
     Observable<NearbyBenifitDataBean> callNearbyBenifit(@Query("map_x") String mapX,//经度 no
                                                     @Query("map_y") String mapY);//纬度 no
-
+    //店铺首页
+    @POST("api/User/store_index/")
+    Observable<HomePageBean> callHomePagerData(@Query("did") int storeId,//店铺did
+                                                @Query("user_id") int userId);//若用户已经登录的状态下传过来
 }

@@ -14,6 +14,7 @@
         android:src="@drawable/girl_v"
         />
     <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="20dp"
         android:id="@+id/goods_classfication_item1_recycle"
         android:layout_width="match_parent"
         android:paddingStart="15dp"

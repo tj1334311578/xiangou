@@ -96,15 +96,14 @@
         android:layout_alignStart="@+id/home_store_headStoreName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-    <com.example.administrator.xiangou.tool.SelectImageView
+    <ImageView
         android:layout_width="22dp"
         android:layout_height="22dp"
         android:id="@+id/home_store_head_mapLocation"
         android:layout_toEndOf="@id/home_store_headStoreName"
         android:layout_alignTop="@id/home_store_headStoreName"
         android:layout_marginStart="6dp"
-        android:src="@drawable/girl_v"
-        app:ImageType="TYPE_CIRCLE"
+        android:src="@mipmap/my_order_map_icon"
         />
     <TextView
         android:layout_width="wrap_content"

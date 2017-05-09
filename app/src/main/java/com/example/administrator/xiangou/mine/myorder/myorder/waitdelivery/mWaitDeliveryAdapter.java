@@ -133,8 +133,13 @@ public class mWaitDeliveryAdapter extends AutoRVAdapter implements View.OnClickL
     private void waitpaid(int position) {
         lists.get(position).setStatus("等待付款");
         status.setText("等待付款");
-        seeLogistics.setVisibility(View.INVISIBLE);
-        seeLogistics.setFocusable(false);
+//        seeLogistics.setVisibility(View.INVISIBLE);
+//        seeLogistics.setFocusable(false);
+        seeLogistics.setText("取消订单");
+        seeLogistics.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG|Paint.ANTI_ALIAS_FLAG);
+        evaluate.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG|Paint.ANTI_ALIAS_FLAG);
+        evaluate.setTextColor(mcontext.getResources().getColor(R.color.white));
+        evaluate.setBackgroundColor(mcontext.getResources().getColor(R.color.textcolor_pink));
         evaluate.setText("付款");
         initLocationView(position);
     }

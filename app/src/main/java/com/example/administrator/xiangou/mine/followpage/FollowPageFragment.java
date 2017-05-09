@@ -1,5 +1,7 @@
-package com.example.administrator.xiangou.mine.myorder.myorder;
+package com.example.administrator.xiangou.mine.followpage;
 
+
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -13,44 +15,34 @@ import android.widget.TextView;
 
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.goods_details.RankingTabLayoutAdapter;
-import com.example.administrator.xiangou.mine.myorder.myorder.waitdelivery.WaitDeliveryFragment;
+import com.example.administrator.xiangou.mine.followpage.followgoods.FollowGoodsFragment;
+import com.example.administrator.xiangou.mine.followpage.followstore.FollowStoreFragment;
 import com.example.administrator.xiangou.mvp.MVPBaseFragment;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * MVPPlugin
  *  邮箱 784787081@qq.com
  */
 
-public class MyOrderFragment extends MVPBaseFragment<MyOrderContract.View, MyOrderPresenter> implements MyOrderContract.View {
+public class FollowPageFragment extends MVPBaseFragment<FollowPageContract.View, FollowPagePresenter> implements FollowPageContract.View {
     private int position=0;
     private TextView TitleTv,SaveTv;
-//    @BindView(R.id.myorder_tab)
+//    @BindView(R.id.followpage_tab)
     TabLayout mTabLayout;
     ImageView backBtn;
-//    @BindView(R.id.myorder_pager)
+//    @BindView(R.id.followpage_viewpager)
     ViewPager mViewPager;
     private RankingTabLayoutAdapter mLayoutAdapter;
     private List<Fragment> mTabFragList;
     private String[] tabTitles;
 
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return setContextView(inflater,container, R.layout.myorder);
-    }
-
-    @Override
-    public void onClick(View v) {
-        if (v==backBtn){
-            getActivity().finish();
-        }
+        return setContextView(inflater,container,R.layout.followpage);
     }
 
     @Override
@@ -60,45 +52,25 @@ public class MyOrderFragment extends MVPBaseFragment<MyOrderContract.View, MyOrd
 
     @Override
     public void initView() {
-        mTabLayout=findContentView(R.id.myorder_tab,false);
-        mViewPager=findContentView(R.id.myorder_pager,false);
-
-        backBtn= (ImageView) mContextView.findViewById(R.id.myorder_head).findViewById(R.id.setting_head_back);
-        TitleTv= (TextView) mContextView.findViewById(R.id.myorder_head).findViewById(R.id.setting_head_center);
-        SaveTv= (TextView) mContextView.findViewById(R.id.myorder_head).findViewById(R.id.setting_head_right);
-        TitleTv.setText("我的订单");
-        SaveTv.setVisibility(View.GONE);
+        mTabLayout=findContentView(R.id.followpage_tab,false);
+        mViewPager=findContentView(R.id.followpage_viewpager,false);
+        backBtn= (ImageView) mContextView.findViewById(R.id.followpage_head).findViewById(R.id.setting_head_back);
+        TitleTv= (TextView) mContextView.findViewById(R.id.followpage_head).findViewById(R.id.setting_head_center);
+        SaveTv= (TextView) mContextView.findViewById(R.id.followpage_head).findViewById(R.id.setting_head_right);
+        TitleTv.setText("我的关注");
+        SaveTv.setText("编辑");
+        SaveTv.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG|Paint.ANTI_ALIAS_FLAG);
 //        ButterKnife.bind(this,mContextView);
         backBtn.setOnClickListener(this);
         initTabFragViews();
     }
 
     private void initTabFragViews() {
-        position=Integer.parseInt(getActivity().getIntent().getStringExtra("position"));
-        tabTitles = new String[]{"全部", "待付款", "待发货", "待收货","待评价"};
+        position=0;
+        tabTitles = new String[]{"商品", "店铺"};
         mTabFragList = new ArrayList<>();
-
-//        mTabFragList.add(new ComprehensiveFragment());
-//        mTabFragList.add(new ComprehensiveFragment());
-//        mTabFragList.add(new ComprehensiveFragment());
-//        mTabFragList.add( new WaitDeliveryFragment());
-//        mTabFragList.add(new WaitDeliveryFragment());
-//        List<DeliveryBean> lists=new ArrayList<>();
-//        List<WaitDeliveryFragment> fts=new ArrayList<>();
-        for (int i=0;i<tabTitles.length;i++){
-           WaitDeliveryFragment ft=new WaitDeliveryFragment();
-//            fts.add(ft);
-            ft.setPosition(i);
-            mTabFragList.add(ft);
-        }
-//        for (int i = fts.size()-1; i >=0 ; i--) {
-//            if (i!=0) {
-//                Log.e("initTabFragViews", "initTabFragViews: "+ fts.get(i).getLists());
-//                lists.addAll(fts.get(i).getLists());
-//            }else{
-//                fts.get(i).setLists(lists);
-//            }
-//        }
+        mTabFragList.add(new FollowGoodsFragment());
+        mTabFragList.add(new FollowStoreFragment());
 
         mTabLayout.setTabMode(TabLayout.MODE_FIXED);
         mLayoutAdapter = new RankingTabLayoutAdapter(getContext(), getChildFragmentManager(), mTabFragList, tabTitles);
@@ -124,7 +96,6 @@ public class MyOrderFragment extends MVPBaseFragment<MyOrderContract.View, MyOrd
 
             @Override
             public void onPageSelected(int position) {
-
                 mViewPager.setCurrentItem(position);
                 for (int i=0; i<mTabFragList.size(); i++) {
                     if (mTabFragList.get(i).isAdded()) {
@@ -147,5 +118,12 @@ public class MyOrderFragment extends MVPBaseFragment<MyOrderContract.View, MyOrd
 
             }
         });
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v==backBtn){
+            getActivity().finish();
+        }
     }
 }

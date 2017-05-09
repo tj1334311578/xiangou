@@ -39,7 +39,7 @@ public class WaitDeliveryFragment extends MVPBaseFragment<WaitDeliveryContract.V
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Log.e("onCreateView", "onCreateView: +++++++++++++++++" );
-        return setContextView(inflater,container, R.layout.goods_ranking_gride);
+        return setContextView(inflater,container, R.layout.recycleview_style);
     }
     @Override
     public void onClick(View v) {
@@ -72,7 +72,7 @@ public class WaitDeliveryFragment extends MVPBaseFragment<WaitDeliveryContract.V
     }
     @Override
     public void initView() {
-        mWaitDeliveryRecycle= (RecyclerView) mContextView.findViewById(R.id.goods_ranking_recycle);
+        mWaitDeliveryRecycle= (RecyclerView) mContextView.findViewById(R.id.recycleview_style_recycle);
         mWaitDeliveryRecycle.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false));
         mWaitDeliveryRecycle.addItemDecoration(new ItemIntervalDecoration(0,0,0,10));
         mWaitDeliveryAdapter adapter=new mWaitDeliveryAdapter(getContext(), lists,position);

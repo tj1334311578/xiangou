@@ -32,7 +32,7 @@ public class ComprehensiveFragment extends MVPBaseFragment<ComprehensiveContract
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 //        getArguments().putInt("data",3);
-        return setContextView(inflater,container, R.layout.goods_ranking_gride);
+        return setContextView(inflater,container, R.layout.recycleview_style);
     }
 
     @Override
@@ -47,7 +47,7 @@ public class ComprehensiveFragment extends MVPBaseFragment<ComprehensiveContract
 
     @Override
     public void initView() {
-        mComprehensiveRecycle= (RecyclerView) mContextView.findViewById(R.id.goods_ranking_recycle);
+        mComprehensiveRecycle= (RecyclerView) mContextView.findViewById(R.id.recycleview_style_recycle);
         mComprehensiveRecycle.setLayoutManager(new GridLayoutManager(getContext(),2));
         mComprehensiveRecycle.addItemDecoration(new ItemIntervalDecoration(0,4,0,10));
         List<ComprehensiveBean> lists=new ArrayList<>();

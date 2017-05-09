@@ -45,6 +45,7 @@ public class StoreHomeFragment extends MVPBaseFragment<StoreHomeContract.View, S
     private String[] tabTitles;
     private StoreHomeTabLayoutAdapter mLayoutAdapter;
     private HomeStoreFragment homeStoreFragment;
+    private View view;
 
     @Nullable
     @Override
@@ -72,18 +73,27 @@ public class StoreHomeFragment extends MVPBaseFragment<StoreHomeContract.View, S
         salesVolume=findContentView(R.id.home_store_head_salesVolume,false);
         follow=findContentView(R.id.home_store_head_follow,false);
         showstore=findContentView(R.id.home_store_head_showStore,false);
-        findContentView(R.id.home_store_head_Return,true);
+//        background=findContentView(R.id.home_store_head_background,false);
+//        storeImg=findContentView(R.id.home_store_head_storeImage,false);
+//        storeName=findContentView(R.id.home_store_headStoreName,false);
+//        ratingBar=findContentView(R.id.home_store_ratingbar,false);
+//        salesVolume=findContentView(R.id.home_store_head_salesVolume,false);
+//        follow=findContentView(R.id.home_store_head_follow,false);
+//        showstore=findContentView(R.id.home_store_head_showStore,false);
+//        findContentView(R.id.home_store_head_Return,true);
         //网络获取数据
         mPresenter.dealStoreHomeCall(1,bUser.getUser_id());
     }
 
     private void initHeadView(HomePageBean dataBean) {
+
         GlideImageLoader imageLoader = new GlideImageLoader();
         imageLoader.displayImage(getContext(),"http://192.168.0.106"+dataBean.getData().getLogo(),storeImg);
         storeName.setText(dataBean.getData().getName());
         ratingBar.setRating((float) Double.parseDouble(dataBean.getData().getScore()));
         salesVolume.setText("销量"+dataBean.getData().getTotal_sale());
         follow.setText("关注"+dataBean.getData().getFollow());
+        mContextView.findViewById(R.id.goods_storehome_head).setVisibility(View.VISIBLE);
     }
 
     @Override

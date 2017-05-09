@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<include layout="@layout/setting_head"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="28dp">
+
+        <CheckedTextView
+            android:layout_weight="1"
+            android:gravity="center"
+            android:drawableLeft="?android:attr/listChoiceIndicatorSingle"
+            android:drawableTint="@color/textcolor_pink"
+            android:textSize="14sp"
+            android:textColor="@color/textcolor_pink"
+            android:background="@drawable/feedback_stylebg1"
+            android:layout_marginStart="13dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="功能异常"/>
+        <TextView
+            android:gravity="center"
+            android:textSize="14sp"
+            android:layout_weight="1"
+            android:background="@drawable/feedback_stylebg2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="12dp"
+            android:text="体验建议"/>
+        <TextView
+            android:gravity="center"
+            android:layout_weight="1"
+            android:background="@drawable/feedback_stylebg2"
+            android:textSize="14sp"
+            android:layout_marginStart="12dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="功能需求"
+            />
+        <TextView
+            android:gravity="center"
+            android:background="@drawable/feedback_stylebg2"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_weight="1"
+            android:textSize="14sp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="其他"
+            />
+    </LinearLayout>
+
+    <EditText
+        android:layout_marginTop="17dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginEnd="13dp"
+        android:paddingTop="7dp"
+        android:paddingEnd="5dp"
+        android:paddingStart="5dp"
+        android:paddingBottom="7dp"
+        android:textSize="12sp"
+        android:textColorHint="#66161616"
+        android:background="@drawable/feedback_editbg"
+        android:hint="不能正常使用现有功能？上传截图能更快解决问题哦"
+        android:gravity="start"
+        android:layout_width="match_parent"
+        android:layout_height="160dp" />
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginEnd="13dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </android.support.v7.widget.RecyclerView>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_marginTop="32dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginEnd="13dp"
+        android:layout_width="match_parent"
+        android:layout_gravity="center_vertical"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="手机号"
+            android:textSize="14sp"
+            android:textColor="#e6161616"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:layout_marginStart="15dp"
+            android:layout_width="match_parent"
+            android:hint="请输入手机号"
+            android:textColorHint="#66161616"
+            android:textColor="#66161616"
+            android:textSize="12sp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+</LinearLayout>

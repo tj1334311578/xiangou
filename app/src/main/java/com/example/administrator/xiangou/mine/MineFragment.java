@@ -21,6 +21,7 @@ import com.example.administrator.xiangou.classification.fragment.ClassificationT
 import com.example.administrator.xiangou.goods_details.Goods_rankingActivity;
 import com.example.administrator.xiangou.goods_details.storehome.StoreHomeActivity;
 import com.example.administrator.xiangou.login.idlogin.IDLoginActivity;
+import com.example.administrator.xiangou.mine.followpage.FollowPageActivity;
 import com.example.administrator.xiangou.mine.myorder.MyOrderActivity;
 import com.example.administrator.xiangou.mine.mystore.MyStoreActivity;
 import com.example.administrator.xiangou.mine.setting.SettingActivity;
@@ -233,6 +234,7 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
             //关注
             case R.id.mine_attention:
                 Toast.makeText(getActivity(), "点击关注", Toast.LENGTH_SHORT).show();
+                startNewUI(FollowPageActivity.class);
                 break;
             //优惠券
             case R.id.mine_Coupon:

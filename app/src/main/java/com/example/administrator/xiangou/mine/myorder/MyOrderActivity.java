@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.View;
 
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.mine.myorder.myorder.MyOrderFragment;
@@ -31,6 +32,11 @@ public class MyOrderActivity extends MVPBaseActivity<MyOrderContract.View, MyOrd
 
     @Override
     public void sendFialRequest(String message) {
+
+    }
+
+    @Override
+    public void onClick(View v) {
 
     }
 }

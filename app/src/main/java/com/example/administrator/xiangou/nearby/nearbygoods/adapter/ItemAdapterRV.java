@@ -33,6 +33,7 @@ public class ItemAdapterRV extends RVBaseAdapter<NearbyGoodsDataBean.DataBean.Ca
         holder.getView(R.id.item_nearbygoods_ll).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(mOnItemViewClickListener!=null)
                 mOnItemViewClickListener.setOnItemViewClick(v,position);
             }
         });

@@ -28,6 +28,10 @@ public class RVBaseViewHolder extends RecyclerView.ViewHolder implements View.On
         itemView.setOnClickListener(this);
     }
 
+    public RVBaseViewHolder(View itemView ) {
+        this(itemView,null);
+    }
+
     /**
      * 通过ID获取控件
      * @param id

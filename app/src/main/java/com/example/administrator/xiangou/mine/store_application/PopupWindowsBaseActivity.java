@@ -8,6 +8,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
 
@@ -24,7 +25,7 @@ import java.util.Locale;
  * Created by Administrator on 2017/3/28.
  */
 
-public class PopupWindowsBaseActivity extends BaseActivity {
+public abstract class PopupWindowsBaseActivity extends BaseActivity {
     public void setShowatlocation(int showatlocation) {
         this.showatlocation = showatlocation;
     }
@@ -93,7 +94,7 @@ public class PopupWindowsBaseActivity extends BaseActivity {
                 }
             }
         });
-        menuWindow.showAtLocation(findViewById(showatlocation), Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL, 0, 0);
+        menuWindow.showAtLocation(LayoutInflater.from(this).inflate(R.layout.application_store,null,false), Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL, 0, 0);
         return imgpath;
     }
 
@@ -137,8 +138,4 @@ public class PopupWindowsBaseActivity extends BaseActivity {
         return mImagePath;
     }
 
-    @Override
-    public void onClick(View v) {
-
-    }
 }

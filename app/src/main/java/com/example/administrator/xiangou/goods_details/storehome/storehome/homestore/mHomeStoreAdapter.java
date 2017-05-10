@@ -96,7 +96,7 @@ public class mHomeStoreAdapter extends AutoRVAdapter implements RVBaseAdapter.On
     }
 
     @Override
-    public void setOnItemViewClick(View view, int position) {
+    public void setOnItemViewClick(View view, int pos) {
 
     }
 

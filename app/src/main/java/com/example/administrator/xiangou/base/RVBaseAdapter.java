@@ -11,7 +11,6 @@ import com.example.administrator.xiangou.net.XianGouApiService;
 import com.example.administrator.xiangou.tool.GlideImageLoader;
 
 import java.util.List;
-
 /**
  * Created by zhouzongyao on 2017/3/6.
  */
@@ -26,12 +25,18 @@ public abstract class RVBaseAdapter<T> extends RecyclerView.Adapter<RVBaseViewHo
      * 提供itemview监听
      */
     protected OnItemViewClickListener mOnItemViewClickListener;
-
     public interface OnItemViewClickListener {
-        void setOnItemViewClick(View view, int position);
+        void setOnItemViewClick(View view, int pos);
     }
     public void setOnItemViewClickListener(OnItemViewClickListener itemViewClickListener) {
         this.mOnItemViewClickListener = itemViewClickListener;
+    }
+    protected OnItemViewHolderListener mOnItemViewHolderListener;
+    public interface OnItemViewHolderListener {
+        void bindItemViewHolder(View view,RVBaseViewHolder holder, int pos);
+    }
+    public void setOnItemViewHolderListener(OnItemViewHolderListener itemViewHolderListener) {
+        this.mOnItemViewHolderListener = itemViewHolderListener;
     }
 
     public RVBaseAdapter(Context context, List<T> mDatas) {

@@ -78,6 +78,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        onUnsubscribe();//这里调用RXjava取消注册方法
         unRegisterExitReceiver();
     }
 
@@ -134,12 +135,10 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         }else if (str instanceof Bundle){
             Bundle s = (Bundle) str;
             intent.putExtra(name,s);
+        }else if (str instanceof String[]){
+            String[] strs = (String[]) str;
+            intent.putExtra(name, strs);
         }
-        startActivity(intent);
-    }
-    public void startNewUICarryStrs(Class<?> context, String name, String[] strs ){
-        Intent intent = new Intent(this,context);
-        intent.putExtra(name, strs);
         startActivity(intent);
     }
     public void startNewUIForResult(Class<?> context,int code,String name,Object str){

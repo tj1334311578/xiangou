@@ -9,8 +9,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.administrator.xiangou.R;
+import com.example.administrator.xiangou.base.RVBaseAdapter;
+import com.example.administrator.xiangou.base.RVBaseViewHolder;
+import com.example.administrator.xiangou.cart.CartFragment;
 import com.example.administrator.xiangou.mvp.MVPBaseFragment;
 import com.example.administrator.xiangou.nearby.apimodel.NearbyGoodsDataBean;
 import com.example.administrator.xiangou.nearby.nearbygoods.adapter.NearbyGoodsAdapterRV;
@@ -56,7 +61,8 @@ public class NearbyGoodsFragment extends MVPBaseFragment<NearbyGoodsContract.Vie
 
     @Override
     public void initView() {
-        mBanner = findContentView(R.id.advs_nearbygoods_banner,false);
+//        mBanner = findContentView(R.id.advs_nearbygoods_banner,false);]
+        mBanner = (Banner) LayoutInflater.from(getContext()).inflate(R.layout.banner_nearbygoods_item,null,false);
         mGoodsRv = findContentView(R.id.goods_nearby_rv,false);
         mGoodsRv.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,false));
         mGoodsRv.setPadding(ContextUtils.dp2px(0),ContextUtils.dp2px(13),ContextUtils.dp2px(0),ContextUtils.dp2px(8));
@@ -103,14 +109,30 @@ public class NearbyGoodsFragment extends MVPBaseFragment<NearbyGoodsContract.Vie
             imgUrls.add(XianGouApiService.BASEURL+data.getBanner().get(i).getAd_code());
         }
         mDataBeanList = data.getCatelist();
-        initBanner(imgUrls,null);
-        mBanner.setOnBannerListener(new OnBannerListener() {
+//        initBanner(imgUrls,null);
+        mAdapter = new NearbyGoodsAdapterRV(getContext(), mDataBeanList);
+        mAdapter.setOnItemViewHolderListener(new RVBaseAdapter.OnItemViewHolderListener() {
             @Override
-            public void OnBannerClick(int position) {
-                showToast("点击了第 "+position+" 个");
+            public void bindItemViewHolder(View view, RVBaseViewHolder holder, int pos) {
+                mBanner = (Banner) view;
+                initBanner(imgUrls,null);
+                mBanner.setOnBannerListener(new OnBannerListener() {
+                    @Override
+                    public void OnBannerClick(int position) {
+                        showToast("点击了第 "+position+" 个");
+                    }
+                });
+
             }
         });
-        mAdapter = new NearbyGoodsAdapterRV(getContext(), mDataBeanList);
+        mAdapter.setOnNearbyGoodsItemClickListener(new NearbyGoodsAdapterRV.NearbyGoodsItemCall() {
+            @Override
+            public void setOnNearbyGoodsItemCall(View view, int parentposition, int childposition) {
+                showToast("mItemRv "+ childposition +((TextView)((LinearLayout)view).getChildAt(1)).getText().toString());
+                // TODO: 2017/5/9 这里应该跳到商品详情页，现在就先直接添加到购物车
+                startNewUICarryStr(CartFragment.class,"goods_id",mDataBeanList.get(parentposition).getGoodslist().get(childposition).getGoods_id());
+            }
+        });
         mGoodsRv.setAdapter(mAdapter);
     }
 }

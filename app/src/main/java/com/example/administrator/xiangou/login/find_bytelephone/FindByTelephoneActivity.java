@@ -135,7 +135,7 @@ public class FindByTelephoneActivity extends MVPBaseActivity<FindByTelephoneCont
         String[] strs = {tel,code};
         bSharedPreferences.putString("tel_findpwd",tel);
         bSharedPreferences.putString("code_findpwd",code);
-        startNewUICarryStrs(ResetpwdActivity.class,"datas_findpwd",strs);
+        startNewUICarryStr(ResetpwdActivity.class,"datas_findpwd",strs);
     }
 
     @Override

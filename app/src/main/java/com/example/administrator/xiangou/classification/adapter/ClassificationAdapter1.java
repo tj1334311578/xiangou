@@ -103,7 +103,7 @@ public class ClassificationAdapter1 extends AutoRVAdapter implements RVBaseAdapt
 
 
     @Override
-    public void setOnItemViewClick(View view, int position) {
+    public void setOnItemViewClick(View view, int pos) {
 
     }
 

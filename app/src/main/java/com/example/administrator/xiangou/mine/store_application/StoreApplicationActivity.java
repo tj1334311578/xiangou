@@ -1,4 +1,7 @@
 package com.example.administrator.xiangou.mine.store_application;
+
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -16,15 +19,27 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 
 import com.example.administrator.xiangou.R;
+import com.example.administrator.xiangou.login.Captcha;
+import com.example.administrator.xiangou.net.BaseSubscriber;
+import com.example.administrator.xiangou.net.ExceptionHandle;
+import com.example.administrator.xiangou.net.RetrofitClient;
+import com.example.administrator.xiangou.net.XianGouApiService;
 import com.example.administrator.xiangou.tool.ImageUtils;
 import com.example.administrator.xiangou.tool.ReadLocalJsonUtil;
+import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 
 /**
  * Created by Administrator on 2017/3/28.
@@ -69,6 +84,8 @@ public class StoreApplicationActivity extends PopupWindowsBaseActivity implement
     private Spinner province,city,districts;
     private Map<Integer,String> imgpathMap;
 //    private String imagepath;
+
+    private ApplicantInfoBean mApplicantInfoBean;
 
     /**                                         分割线
      * ---------------------------------------------------------------------------------------------
@@ -207,39 +224,119 @@ public class StoreApplicationActivity extends PopupWindowsBaseActivity implement
          }
     }
 
-    private void commitApplicationShop() {
-
+    private String changeEdtext(EditText text) {
+        return text.getText().toString();
     }
+    //提交店铺申请
+    private void commitApplicationShop() {
+        mApplicantInfoBean = new ApplicantInfoBean();
+        mApplicantInfoBean.setRealname(changeEdtext(mApplicantNameEdt));
+        mApplicantInfoBean.setIdcard(changeEdtext(mIDCardEdt));
+        mApplicantInfoBean.setTel(changeEdtext(mTelEdt));
+        mApplicantInfoBean.setCid(new ArrayList<Integer>());
+        mApplicantInfoBean.setName(changeEdtext(mStoreNameEdt));
+        mApplicantInfoBean.setAddress(changeEdtext(mShopAdressEdt));
+        String info = new Gson().toJson(mApplicantInfoBean);
 
+        XianGouApiService mApi = RetrofitClient.getInstance(this).create(XianGouApiService.class);
+//        RequestBody infos = RequestBody.create(MediaType.parse("application/infos; charset=utf-8"),info);
+        MultipartBody.Part[] id_img = new MultipartBody.Part[2];
+        MultipartBody.Part logo = null,licence= null,contract= null;
+        for (int i = 0; i < 5; i++) {
+            if (imgpathMap.get(i)!=null){
+                File file = new File(imgpathMap.get(i));
+                RequestBody img = RequestBody.create(MediaType.parse("multipart/form-data"),file);
+                if (i<2) {
+                    //注--这里的key是id_img[]，而后台给的字段是id_img，是因为这个字段里其实是放了多个元素的，所以要加[]
+                    //至于id_img[]与id_img的匹配问题--据后台妹子说是她后台那边字段名后的[]不是归在字段名内，而是代表这个字段里存放多个元素。
+                    id_img[i] = MultipartBody.Part.createFormData("id_img[]",file.getName(),img);
+                }else {
+                    switch (i){
+                        case 2:
+//                            RequestBody img_logo = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+                            logo = MultipartBody.Part.createFormData("logo",file.getName(), img);
+                        case 3:
+//                            RequestBody img_licence = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+                            licence = MultipartBody.Part.createFormData("licence",file.getName(),img);
+                        case 4:
+//                            RequestBody img_contract = RequestBody.create(MediaType.parse("multipart/form-data"), file);
+                            contract = MultipartBody.Part.createFormData("contract",file.getName(),img);
+                    }
+                }
+
+                //// TODO: 2017/5/5 这里报空了logo那里 
+//                Log.e("imgfile", "commitApplicationShop: " + id_img[i].body().toString()
+//                        +"/\n"+logo.body().toString()+"/\n"
+//                        +licence.body().toString()+"/\n"
+//                        +contract.body().toString());
+            }
+        }
+        //
+        addSubscription(mApi.applyShop(info,
+                id_img, logo, licence, contract), new BaseSubscriber<Captcha>(this) {
+            @Override
+            public void onNext(Captcha captcha) {
+                Log.e("applyshop", "onNext: ");
+                if (captcha.getState().getCode()==200){
+                    toastShow("OK!");
+                }
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+
+            @Override
+            public void onError(ExceptionHandle.ResponeThrowable e) {
+                Log.e("applyshop", "onError: "+e.message+e.getMessage());
+                showToast(e.getMessage());
+            }
+        });
+    }
+    private void showDialog(){
+        AlertDialog.Builder dialog = new AlertDialog.Builder(StoreApplicationActivity.this);
+        dialog.setIcon(R.mipmap.shop_treasure_icon);
+        dialog.setTitle("店铺申请");
+        dialog.setMessage("您的店铺申请已成功提交,请等待处理消息!");
+        dialog.setNegativeButton("确定", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                finish();
+            }
+        });
+        dialog.show();
+    }
     private void setImg(int requestCode, int resultCode, Intent data){
-        if (resultCode == RESULT_OK) {
             String imagePath = "";
-            if (data != null && data.getData() != null) {//有数据返回直接使用返回的图片地址
+            if ( data.getData() != null) {//有数据返回直接使用返回的图片地址
                 imagePath = ImageUtils.getFilePathByFileUri(this, data.getData());
                 imgpathMap.put(requestCode,imagePath);
             }
             update(requestCode,imgpathMap);// 刷新图片
-        }
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.e("TGA", "onActivityResult: "+data.getData());
-        switch (requestCode){
-            case 0:
-                setImg(0,resultCode,data);
-                break;
-            case 1:
-                setImg(1,resultCode,data);
-                break;
-            case 2:
-                setImg(2,resultCode,data);
-                break;
-            case 3:
-                setImg(3,resultCode,data);
-                break;
-            case 4:
-                setImg(4,resultCode,data);
+        if (data!=null && resultCode == RESULT_OK) {
+            Log.e("TGA", "onActivityResult: " + data.getData());
+            switch (requestCode) {
+                case 0:
+                    setImg(0, resultCode, data);
+                    break;
+                case 1:
+                    setImg(1, resultCode, data);
+                    break;
+                case 2:
+                    setImg(2, resultCode, data);
+                    break;
+                case 3:
+                    setImg(3, resultCode, data);
+                    break;
+                case 4:
+                    setImg(4, resultCode, data);
+            }
         }
     }
 

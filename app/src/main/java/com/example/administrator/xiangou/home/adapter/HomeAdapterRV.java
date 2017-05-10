@@ -258,13 +258,13 @@ public class HomeAdapterRV extends RVBaseAdapter<HomeChildBean> implements RVBas
     }
 
     @Override
-    public void setOnItemViewClick(View view, int position) {
+    public void setOnItemViewClick(View view, int pos) {
         if (view.getParent() == mBoutiqueRv) {
-            Toast.makeText(mContext, "mBoutiqueRv "+position+" 甭点了，木有彩蛋", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext, "mBoutiqueRv "+ pos +" 甭点了，木有彩蛋", Toast.LENGTH_SHORT).show();
         }else if (view.getParent() == mReferralsRv) {
-            Toast.makeText(mContext, "mReferralsRv "+position+" 甭点了，木有彩蛋", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext, "mReferralsRv "+ pos +" 甭点了，木有彩蛋", Toast.LENGTH_SHORT).show();
         }else if (view.getParent() == mTopicRv) {
-            Toast.makeText(mContext, "mTopicRv "+position+" 甭点了，木有彩蛋", Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext, "mTopicRv "+ pos +" 甭点了，木有彩蛋", Toast.LENGTH_SHORT).show();
         }
     }
 }

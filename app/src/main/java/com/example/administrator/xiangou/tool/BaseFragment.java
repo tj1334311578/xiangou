@@ -17,6 +17,8 @@ import android.widget.Toast;
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.main.User;
 
+import java.io.Serializable;
+
 import butterknife.ButterKnife;
 import rx.Observable;
 import rx.Subscriber;
@@ -88,6 +90,13 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
 //        }
 //    }
 
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        onUnsubscribe();//这里调用RXjava取消注册方法
+    }
+
     //RXjava取消注册，以避免内存泄露
     public void onUnsubscribe() {
         if (mCompositeSubscription != null && mCompositeSubscription.hasSubscriptions()) {
@@ -123,24 +132,41 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
     /**
      * 页面跳转方法
      */
-    public void startCarryData(Bundle bundle){
-        Intent intent = new Intent();
-        intent.putExtras(bundle);
-        startActivity(intent);
-    }
     public void startNewUI(Class<?> context){
         startActivity(new Intent(getContext(),context));
     }
-    public void startNewUICarryStr(Class<?> context, String name, String str ){
-        Intent intent = new Intent(getContext(),context);
-        intent.putExtra(name,str);
+    public void startNewUICarryStr(Class<?> context, String name, Object str ){
+        Intent intent = new Intent(mActivity,context);
+        if (str instanceof String) {
+            intent.putExtra(name, str.toString());
+        }else if (str instanceof Integer){
+            int s = (Integer) str;
+            intent.putExtra(name,s);
+        }else if (str instanceof Serializable){
+            Serializable s = (Serializable) str;
+            intent.putExtra(name,s);
+        }else if (str instanceof Bundle){
+            Bundle s = (Bundle) str;
+            intent.putExtra(name,s);
+        }else if (str instanceof String[]){
+            String[] strs = (String[]) str;
+            intent.putExtra(name, strs);
+        }
         startActivity(intent);
     }
-    public void startNewUIForResult(Class<?> context,int code){
-        startActivityForResult(new Intent(getContext(),context),code);
-    }
-    public void startNewUIForResult(Class<?> context,int code,Bundle options){
-        startActivityForResult(new Intent(getContext(),context),code,options);
+    public void startNewUIForResult(Class<?> context,int code,String name,Object str){
+        Intent intent = new Intent(mActivity,context);
+        if (str instanceof String) {
+            String s= (String) str;
+            intent.putExtra(name, s);
+        }else if (str instanceof Serializable){
+            Serializable s = (Serializable) str;
+            intent.putExtra(name,s);
+        }else if (str instanceof Bundle){
+            Bundle s = (Bundle) str;
+            intent.putExtra(name,s);
+        }
+        startActivityForResult(intent,code);
     }
 
     /**

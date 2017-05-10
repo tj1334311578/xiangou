@@ -1,5 +1,6 @@
 package com.example.administrator.xiangou.mine.store_application;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -8,7 +9,7 @@ import java.util.List;
  * @email 18482195579@163.com
  * @Date 2017-05-04 10:59
  */
-public class ApplicantInfoBean {
+public class ApplicantInfoBean implements Serializable{
     /**
      * realname : 杨小贤
      * tel : 18349264993

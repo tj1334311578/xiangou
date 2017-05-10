@@ -3,9 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <include layout="@layout/store_head"
+        android:id="@+id/store_information_address_head"
+        />
 <TextView
     android:layout_width="wrap_content"
     android:layout_height="45dp"
+    android:layout_below="@id/store_information_address_head"
     android:id="@+id/store_information_logo_tv"
     android:gravity="center_vertical"
     android:layout_marginTop="20dp"
@@ -81,12 +85,34 @@
         android:layout_toEndOf="@id/store_information_phone_tv"
         android:layout_alignTop="@id/store_information_phone_tv"
         android:id="@+id/store_information_phone_show"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="41dp"
         android:gravity="center_vertical"
         android:layout_below="@id/store_information_phone_tv"
         android:layout_alignStart="@id/store_information_phone_tv"
+        android:text="所在地区"
+        android:id="@+id/store_information_location_tv"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="41dp"
+        android:gravity="center_vertical"
+        android:layout_toEndOf="@id/store_information_location_tv"
+        android:layout_alignTop="@id/store_information_location_tv"
+        android:layout_alignStart="@id/store_information_name_show"
+        android:layout_alignEnd="@id/store_information_logo_showright"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:text="四川省 成都市 成华区"
+        android:id="@+id/store_information_location_show"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="41dp"
+        android:gravity="center_vertical"
+        android:layout_below="@id/store_information_location_tv"
+        android:layout_alignStart="@id/store_information_location_tv"
         android:text="店铺地址"
         android:id="@+id/store_information_address_tv"/>
     <TextView
@@ -116,6 +142,7 @@
         android:layout_alignStart="@id/store_information_name_tv"
         android:layout_alignEnd="@id/store_information_logo_showright"
         android:maxLength="50"
+        android:gravity="start"
         android:hint="50字以内......"
         android:id="@+id/store_information_describe_edit"/>
         <Button

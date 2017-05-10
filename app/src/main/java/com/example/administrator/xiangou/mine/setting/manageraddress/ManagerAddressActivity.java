@@ -44,8 +44,8 @@ public class ManagerAddressActivity extends MVPBaseActivity<ManagerAddressContra
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 //        super.onActivityResult(requestCode, resultCode, data);
-        Log.e("onActivityResult", "onActivityResult: "+data.getSerializableExtra("data") +"\n position  "+editposition);
         if (data!=null) {
+                Log.e("onActivityResult", "onActivityResult: "+data.getSerializableExtra("data") +"\n position  "+editposition);
             if (resultCode == 200 && requestCode == REQUEST) {
                 this.list.add((AddressBean) data.getSerializableExtra("data"));
             } else if (resultCode == 200 && requestCode == REQUEST1) {

@@ -9,11 +9,15 @@ import com.example.administrator.xiangou.nearby.apimodel.NearbyGoodsDataBean;
 import com.example.administrator.xiangou.nearby.apimodel.NearbyGoodsDetailDataBean;
 import com.example.administrator.xiangou.nearby.apimodel.NearbyStoreApiDataBean;
 
-import okhttp3.MultipartBody;
-import retrofit2.http.Field;
+import java.util.Map;
+
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
+import retrofit2.http.Body;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
+import retrofit2.http.PartMap;
 import retrofit2.http.Query;
 import rx.Observable;
 
@@ -130,4 +134,8 @@ public interface XianGouApiService {
                                          @Field("goods_num") int goods_num,
                                          @Field("goods_spec") int[] goods_spec
                                          );
+    //店铺首页
+    @POST("api/User/store_index/")
+    Observable<HomePageBean> callHomePagerData(@Query("did") int storeId,//店铺did
+                                                @Query("user_id") int userId);//若用户已经登录的状态下传过来
 }

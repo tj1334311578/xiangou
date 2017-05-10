@@ -43,6 +43,8 @@
         <activity android:name=".mine.setting.manageraddress.ManagerAddressActivity"/>
         <activity android:name=".mine.setting.manageraddress.editaddress.EditAddressActivity"/>
         <activity android:name=".mine.myorder.MyOrderActivity"/>
+        <activity android:name=".mine.mystore.MyStoreActivity"/>
+        <activity android:name=".mine.followpage.FollowPageActivity"/>
     </application>
 
 </manifest>

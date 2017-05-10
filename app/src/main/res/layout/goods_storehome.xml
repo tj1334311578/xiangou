@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <include layout="@layout/home_store_head"
+        android:visibility="invisible"
         android:id="@+id/goods_storehome_head"/>
     <android.support.design.widget.TabLayout
         android:layout_width="match_parent"

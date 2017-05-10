@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:fitsSystemWindows="true"
+    android:orientation="vertical"
     android:background="@color/textcolor_pink"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="wrap_content">
     <RelativeLayout
         android:background="@color/textcolor_pink"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:id="@+id/seller_center_headRL"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -68,29 +72,28 @@
             android:id="@+id/seller_center_fundDetails"
             android:text="资金明细"
             android:paddingStart="15dp"
-            android:paddingEnd="15dp"
+            android:paddingEnd="6dp"
+            android:drawablePadding="5dp"
             app:rightDrawable="@mipmap/mine_showright"
-            app:rightDrawableWidth="30dp"
-            app:rightDrawableHeight="30dp"
+            app:rightDrawableWidth="7dp"
+            app:rightDrawableHeight="15dp"
             android:layout_below="@id/seller_center_createTime"
             android:layout_alignEnd="@id/seller_center_userMessage"
             android:textSize="14sp"
             android:textColor="@color/white"
             android:layout_height="wrap_content" />
-
-        <GridLayout
-            android:background="@color/grayBgColor"
-            android:columnCount="3"
+    </RelativeLayout>
+        <LinearLayout
             android:layout_marginTop="10dp"
-            android:rowCount="4"
+            android:background="#fc84af"
             android:layout_width="match_parent"
+            android:orientation="horizontal"
             android:id="@+id/seller_center_gridLayout"
-            android:layout_below="@id/seller_center_fundDetails"
             android:layout_height="wrap_content">
             <LinearLayout
+                android:layout_weight="1"
                 android:layout_marginTop="1dp"
-                android:layout_columnWeight="1"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:background="@color/textcolor_pink"
                 android:orientation="vertical"
@@ -111,10 +114,9 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_columnWeight="1"
-                android:layout_rowWeight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
                 android:layout_marginTop="1dp"
                 android:layout_marginStart="1dp"
                 android:layout_marginEnd="1dp"
@@ -137,12 +139,11 @@
             </LinearLayout>
 
             <LinearLayout
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:layout_width="match_parent"
                 android:background="@color/textcolor_pink"
                 android:layout_marginTop="1dp"
-                android:layout_height="wrap_content"
+                android:layout_height="80dp"
                 android:orientation="vertical"
                 android:gravity="center">
                 <TextView
@@ -159,156 +160,313 @@
                     android:textSize="14sp"
                     android:text="交易量"/>
             </LinearLayout>
+            <!--<LinearLayout-->
+                <!--android:layout_rowWeight="1"-->
+                <!--android:layout_columnWeight="1"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:background="@color/white"-->
+                <!--android:layout_marginTop="1dp"-->
+                <!--android:layout_height="80dp"-->
+                <!--android:orientation="vertical"-->
+                <!--android:gravity="center">-->
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:textSize="14sp"-->
+                    <!--android:id="@+id/seller_center_waitingDelivery"-->
+                    <!--android:text="6"/>-->
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:textSize="14sp"-->
+                    <!--android:text="待发货"/>-->
+            <!--</LinearLayout>-->
 
-            <LinearLayout
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:layout_width="wrap_content"
-                android:background="@color/white"
-                android:layout_marginTop="1dp"
-                android:layout_height="80dp"
-                android:orientation="vertical"
-                android:gravity="center">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:id="@+id/seller_center_waitingDelivery"
-                    android:text="6"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:text="待发货"/>
-            </LinearLayout>
+            <!--<LinearLayout-->
+                <!--android:layout_rowWeight="1"-->
+                <!--android:layout_columnWeight="1"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:background="@color/white"-->
+                <!--android:layout_marginTop="1dp"-->
+                <!--android:layout_marginStart="1dp"-->
+                <!--android:layout_marginEnd="1dp"-->
+                <!--android:layout_height="80dp"-->
+                <!--android:orientation="vertical"-->
+                <!--android:gravity="center">-->
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:textSize="14sp"-->
+                    <!--android:id="@+id/seller_center_pendingPayment"-->
+                    <!--android:text="2"/>-->
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:textSize="14sp"-->
+                    <!--android:text="待付款"/>-->
+            <!--</LinearLayout>-->
 
-            <LinearLayout
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:layout_width="wrap_content"
-                android:background="@color/white"
-                android:layout_marginTop="1dp"
-                android:layout_marginStart="1dp"
-                android:layout_marginEnd="1dp"
-                android:layout_height="80dp"
-                android:orientation="vertical"
-                android:gravity="center">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:id="@+id/seller_center_pendingPayment"
-                    android:text="2"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:text="待付款"/>
-            </LinearLayout>
+            <!--<LinearLayout-->
+                <!--android:layout_rowWeight="1"-->
+                <!--android:layout_columnWeight="1"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:background="@color/white"-->
+                <!--android:layout_marginTop="1dp"-->
+                <!--android:layout_height="80dp"-->
+                <!--android:orientation="vertical"-->
+                <!--android:gravity="center">-->
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:textSize="14sp"-->
+                    <!--android:id="@+id/seller_center_concernUs"-->
+                    <!--android:text="36"/>-->
+                <!--<TextView-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:textSize="14sp"-->
+                    <!--android:text="关注我们"/>-->
+            <!--</LinearLayout>-->
+            <!--<com.example.administrator.xiangou.tool.DrawableTextView-->
+                <!--android:text="店铺管理"-->
+                <!--app:topDrawable="@mipmap/seller_center_store_management_icon"-->
+                <!--android:layout_height="80dp"-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--android:background="@color/white"-->
+                <!--android:layout_columnWeight="1"-->
+                <!--android:layout_rowWeight="1"-->
+                <!--app:topDrawableWidth="30dp"-->
+                <!--app:topDrawableHeight="30dp"-->
+                <!--android:gravity="center"-->
+                <!--/>-->
+            <!--<com.example.administrator.xiangou.tool.DrawableTextView-->
+                <!--android:text="商店管理"-->
+                <!--app:topDrawable="@mipmap/seller_center_goods_management_icon"-->
+                <!--android:layout_height="80dp"-->
+                <!--android:background="@color/white"-->
+                <!--android:layout_marginStart="1dp"-->
+                <!--android:layout_marginEnd="1dp"-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--android:layout_columnWeight="1"-->
+                <!--android:layout_rowWeight="1"-->
+                <!--app:topDrawableWidth="30dp"-->
+                <!--app:topDrawableHeight="30dp"-->
+                <!--android:gravity="center"-->
+                <!--/>-->
+            <!--<com.example.administrator.xiangou.tool.DrawableTextView-->
+                <!--android:text="订单管理"-->
+                <!--app:topDrawable="@mipmap/seller_center_order_management_icon"-->
+                <!--android:layout_height="80dp"-->
+                <!--android:background="@color/white"-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--android:layout_columnWeight="1"-->
+                <!--android:layout_rowWeight="1"-->
+                <!--app:topDrawableWidth="30dp"-->
+                <!--app:topDrawableHeight="30dp"-->
+                <!--android:gravity="center"-->
+                <!--/>-->
 
-            <LinearLayout
-                android:layout_rowWeight="1"
-                android:layout_columnWeight="1"
-                android:layout_width="wrap_content"
-                android:background="@color/white"
-                android:layout_marginTop="1dp"
-                android:layout_height="80dp"
-                android:orientation="vertical"
-                android:gravity="center">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:id="@+id/seller_center_concernUs"
-                    android:text="36"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:text="关注我们"/>
-            </LinearLayout>
-            <com.example.administrator.xiangou.tool.DrawableTextView
-                android:text="店铺管理"
-                app:topDrawable="@drawable/mine"
-                android:layout_height="80dp"
-                android:layout_marginTop="10dp"
-                android:background="@color/white"
-                android:layout_columnWeight="1"
-                android:layout_rowWeight="1"
-                app:topDrawableWidth="30dp"
-                app:topDrawableHeight="30dp"
-                android:gravity="center"
-                />
-            <com.example.administrator.xiangou.tool.DrawableTextView
-                android:text="商店管理"
-                app:topDrawable="@drawable/mine"
-                android:layout_height="80dp"
-                android:background="@color/white"
-                android:layout_marginStart="1dp"
-                android:layout_marginEnd="1dp"
-                android:layout_marginTop="10dp"
-                android:layout_columnWeight="1"
-                android:layout_rowWeight="1"
-                app:topDrawableWidth="30dp"
-                app:topDrawableHeight="30dp"
-                android:gravity="center"
-                />
-            <com.example.administrator.xiangou.tool.DrawableTextView
-                android:text="订单管理"
-                app:topDrawable="@drawable/mine"
-                android:layout_height="80dp"
-                android:background="@color/white"
-                android:layout_marginTop="10dp"
-                android:layout_columnWeight="1"
-                android:layout_rowWeight="1"
-                app:topDrawableWidth="30dp"
-                app:topDrawableHeight="30dp"
-                android:gravity="center"
-                />
+            <!--<com.example.administrator.xiangou.tool.DrawableTextView-->
+                <!--android:layout_columnWeight="1"-->
+                <!--android:layout_rowWeight="1"-->
+                <!--android:text="数据统计"-->
+                <!--android:layout_marginBottom="1dp"-->
+                <!--app:topDrawable="@mipmap/seller_center_data_management_icon"-->
+                <!--app:topDrawableHeight="30dp"-->
+                <!--android:gravity="center"-->
+                <!--android:layout_marginTop="1dp"-->
+                <!--app:topDrawableWidth="30dp"-->
+                <!--android:layout_height="80dp"-->
+                <!--android:background="@color/white"-->
+                <!--/>-->
 
-            <com.example.administrator.xiangou.tool.DrawableTextView
-                android:layout_columnWeight="1"
-                android:layout_rowWeight="1"
-                android:text="数据管理"
-                android:layout_marginBottom="1dp"
-                app:topDrawable="@drawable/home"
-                app:topDrawableHeight="30dp"
-                android:gravity="center"
-                android:layout_marginTop="1dp"
-                app:topDrawableWidth="30dp"
-                android:layout_height="80dp"
-                android:background="@color/white"
-                />
+            <!--<com.example.administrator.xiangou.tool.DrawableTextView-->
+                <!--android:layout_columnWeight="1"-->
+                <!--android:layout_rowWeight="1"-->
+                <!--android:text="商品营销"-->
+                <!--app:topDrawable="@mipmap/seller_center_marketing_icon"-->
+                <!--app:topDrawableHeight="30dp"-->
+                <!--android:layout_marginStart="1dp"-->
+                <!--android:layout_marginEnd="1dp"-->
+                <!--android:layout_marginBottom="1dp"-->
+                <!--android:gravity="center"-->
+                <!--android:layout_marginTop="1dp"-->
+                <!--app:topDrawableWidth="30dp"-->
+                <!--android:layout_height="80dp"-->
+                <!--android:background="@color/white"-->
+                <!--/>-->
 
-            <com.example.administrator.xiangou.tool.DrawableTextView
-                android:layout_columnWeight="1"
-                android:layout_rowWeight="1"
-                android:text="优惠管理"
-                app:topDrawable="@drawable/home"
-                app:topDrawableHeight="30dp"
-                android:layout_marginStart="1dp"
-                android:layout_marginEnd="1dp"
-                android:layout_marginBottom="1dp"
-                android:gravity="center"
-                android:layout_marginTop="1dp"
-                app:topDrawableWidth="30dp"
-                android:layout_height="80dp"
-                android:background="@color/white"
-                />
+            <!--<com.example.administrator.xiangou.tool.DrawableTextView-->
+                <!--android:layout_columnWeight="1"-->
+                <!--android:layout_rowWeight="1"-->
+                <!--android:text="优惠管理"-->
+                <!--app:topDrawable="@mipmap/seller_center_discount_management_icon"-->
+                <!--app:topDrawableHeight="30dp"-->
+                <!--android:gravity="center"-->
+                <!--android:layout_marginTop="1dp"-->
+                <!--android:layout_marginBottom="1dp"-->
+                <!--app:topDrawableWidth="30dp"-->
+                <!--android:layout_height="80dp"-->
+                <!--android:background="@color/white"-->
+                <!--/>-->
+        </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:background="@color/register_text"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_weight="1"
+        android:layout_width="0dp"
+        android:background="@color/white"
+        android:layout_height="80dp"
+        android:orientation="vertical"
+        android:gravity="center">
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:id="@+id/seller_center_waitingDelivery"
+        android:text="6"/>
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:text="待发货"/>
+        </LinearLayout>
 
-            <com.example.administrator.xiangou.tool.DrawableTextView
-                android:layout_columnWeight="1"
-                android:layout_rowWeight="1"
-                android:text="添加模块"
-                app:topDrawable="@drawable/home"
-                app:topDrawableHeight="30dp"
-                android:gravity="center"
-                android:layout_marginTop="1dp"
-                android:layout_marginBottom="1dp"
-                app:topDrawableWidth="30dp"
-                android:layout_height="80dp"
-                android:background="@color/white"
-                />
-        </GridLayout>
-    </RelativeLayout>
-</RelativeLayout>
+        <LinearLayout android:layout_weight="1"
+        android:layout_width="0dp"
+        android:background="@color/white"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_height="80dp"
+        android:orientation="vertical"
+        android:gravity="center">
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:id="@+id/seller_center_pendingPayment"
+        android:text="2"/>
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:text="待付款"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_weight="1"
+        android:layout_width="0dp"
+        android:background="@color/white"
+        android:layout_height="80dp"
+        android:orientation="vertical"
+        android:gravity="center">
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:id="@+id/seller_center_concernUs"
+        android:text="36"/>
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:text="关注我们"/>
+        </LinearLayout>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="#e7e7e7"/>
+    <LinearLayout
+        android:background="#e7e7e7"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.example.administrator.xiangou.tool.DrawableTextView
+        android:text="店铺管理"
+            android:layout_weight="1"
+        android:layout_width="0dp"
+        app:topDrawable="@mipmap/seller_center_store_management_icon"
+        android:layout_height="80dp"
+        android:background="@color/white"
+        app:topDrawableWidth="30dp"
+        app:topDrawableHeight="30dp"
+        android:gravity="center" />
+        <com.example.administrator.xiangou.tool.DrawableTextView
+        android:text="商店管理"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+        app:topDrawable="@mipmap/seller_center_goods_management_icon"
+        android:layout_height="80dp"
+        android:background="@color/white"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        app:topDrawableWidth="30dp"
+        app:topDrawableHeight="30dp"
+        android:gravity="center"
+        />
+        <com.example.administrator.xiangou.tool.DrawableTextView
+        android:text="订单管理"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+        app:topDrawable="@mipmap/seller_center_order_management_icon"
+        android:layout_height="80dp"
+        android:background="@color/white"
+        app:topDrawableWidth="30dp"
+        app:topDrawableHeight="30dp"
+        android:gravity="center"
+        />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:background="#e7e7e7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.example.administrator.xiangou.tool.DrawableTextView
+        android:layout_width="0dp"
+            android:layout_weight="1"
+        android:text="数据统计"
+        android:layout_marginBottom="1dp"
+        app:topDrawable="@mipmap/seller_center_data_management_icon"
+        app:topDrawableHeight="30dp"
+        android:gravity="center"
+        android:layout_marginTop="1dp"
+        app:topDrawableWidth="30dp"
+        android:layout_height="80dp"
+        android:background="@color/white"
+        />
+
+        <com.example.administrator.xiangou.tool.DrawableTextView
+        android:layout_width="0dp"
+            android:layout_weight="1"
+        android:text="商品营销"
+        app:topDrawable="@mipmap/seller_center_marketing_icon"
+        app:topDrawableHeight="30dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+            android:layout_marginTop="1dp"
+            android:gravity="center"
+        app:topDrawableWidth="30dp"
+        android:layout_height="80dp"
+        android:background="@color/white"
+        />
+
+        <com.example.administrator.xiangou.tool.DrawableTextView
+        android:layout_weight="1"
+            android:layout_width="0dp"
+        android:text="优惠管理"
+        app:topDrawable="@mipmap/seller_center_discount_management_icon"
+        app:topDrawableHeight="30dp"
+        android:gravity="center"
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="1dp"
+        app:topDrawableWidth="30dp"
+        android:layout_height="80dp"
+        android:background="@color/white"
+        />
+    </LinearLayout>
+</LinearLayout>

@@ -30,10 +30,10 @@ import butterknife.ButterKnife;
 public class MyOrderFragment extends MVPBaseFragment<MyOrderContract.View, MyOrderPresenter> implements MyOrderContract.View {
     private int position=0;
     private TextView TitleTv,SaveTv;
-    @BindView(R.id.myorder_tab)
+//    @BindView(R.id.myorder_tab)
     TabLayout mTabLayout;
     ImageView backBtn;
-    @BindView(R.id.myorder_pager)
+//    @BindView(R.id.myorder_pager)
     ViewPager mViewPager;
     private RankingTabLayoutAdapter mLayoutAdapter;
     private List<Fragment> mTabFragList;
@@ -60,12 +60,15 @@ public class MyOrderFragment extends MVPBaseFragment<MyOrderContract.View, MyOrd
 
     @Override
     public void initView() {
+        mTabLayout=findContentView(R.id.myorder_tab,false);
+        mViewPager=findContentView(R.id.myorder_pager,false);
+
         backBtn= (ImageView) mContextView.findViewById(R.id.myorder_head).findViewById(R.id.setting_head_back);
         TitleTv= (TextView) mContextView.findViewById(R.id.myorder_head).findViewById(R.id.setting_head_center);
         SaveTv= (TextView) mContextView.findViewById(R.id.myorder_head).findViewById(R.id.setting_head_right);
         TitleTv.setText("我的订单");
         SaveTv.setVisibility(View.GONE);
-        ButterKnife.bind(this,mContextView);
+//        ButterKnife.bind(this,mContextView);
         backBtn.setOnClickListener(this);
         initTabFragViews();
     }

@@ -10,6 +10,7 @@
         android:id="@+id/tv_title_tab"
         android:gravity="center"
         android:text="附近商店"
+        android:textSize="14sp"
         android:textColor="@color/textcolor_tab"/>
 
     <ImageView

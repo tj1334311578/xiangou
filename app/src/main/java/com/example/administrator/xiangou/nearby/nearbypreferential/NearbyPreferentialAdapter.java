@@ -1,6 +1,7 @@
 package com.example.administrator.xiangou.nearby.nearbypreferential;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Paint;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,6 +15,7 @@ import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.base.AutoRVAdapter;
 import com.example.administrator.xiangou.base.RVBaseAdapter;
 import com.example.administrator.xiangou.base.RVBaseViewHolder;
+import com.example.administrator.xiangou.goods_details.simplegoodsdetails.SimpleGoodsDetailsActivity;
 import com.example.administrator.xiangou.nearby.apimodel.NearbyBenifitDataBean;
 
 import java.util.List;
@@ -164,6 +166,9 @@ public class NearbyPreferentialAdapter extends RVBaseAdapter<NearbyBenifitDataBe
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(mContext, "点击了今日:"+position, Toast.LENGTH_SHORT).show();
+                    Intent intent=new Intent(mContext, SimpleGoodsDetailsActivity.class);
+                    intent.putExtra("goods_id",mBeanList.get(position).getGoods_id());
+                    mContext.startActivity(intent);
                 }
             });
         }

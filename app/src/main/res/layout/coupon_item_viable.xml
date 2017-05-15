@@ -3,21 +3,30 @@
     android:layout_width="match_parent"
     xmlns:dash="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="#fad4e1"
+    android:background="#f2f2f2"
+    android:layout_marginTop="11dp"
     android:layout_height="wrap_content">
+    <LinearLayout
+        android:background="#fad4e1"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
 <TextView
     android:layout_marginTop="8dp"
     android:layout_marginStart="10dp"
     android:layout_width="match_parent"
     android:textSize="14sp"
+    android:id="@+id/coupon_item_viable_style"
     android:textColor="@color/textcolor_pink"
     android:layout_height="wrap_content"
     android:text="店铺券 • 轩轩格调店铺"/>
     <com.example.administrator.xiangou.tool.DashedLine
         android:layout_width= "match_parent"
         android:layout_height= "1dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="23dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="20dp"
         dash:lineColor= "@color/textcolor_pink"  />
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,10 +35,10 @@
         >
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:text="￥"
             android:layout_marginStart="10dp"
-            android:layout_gravity="top"
+            android:layout_gravity="center_horizontal"
             android:textSize="18sp"
             android:textColor="#333333"
             />
@@ -37,6 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="10.00"
+            android:id="@+id/coupon_item_viable_discount"
             android:textSize="35sp"
             android:textColor="#333333"
             android:gravity="center"
@@ -48,6 +58,7 @@
             android:text="[满199元可用]"
             android:layout_marginStart="11dp"
             android:textSize="16sp"
+            android:id="@+id/coupon_item_viable_condition"
             android:gravity="center_vertical"
             android:textColor="#99161616"/>
         <TextView
@@ -55,6 +66,7 @@
             android:layout_height="25dp"
             android:text="立即使用"
             android:gravity="center"
+            android:id="@+id/coupon_item_viable_use"
             android:textSize="14sp"
             android:background="@drawable/coupon_item_userable"
             android:textColor="@color/textcolor_pink"
@@ -64,11 +76,12 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="15dp"
+        android:id="@+id/coupon_item_viable_effectivedate"
         android:layout_marginStart="10dp"
         android:text="2017.01.01～2017.06.01"
         android:textSize="14sp"
+        android:layout_marginBottom="8dp"
         android:textColor="#80161616"
         />
+    </LinearLayout>
 </LinearLayout>

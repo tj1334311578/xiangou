@@ -1,5 +1,7 @@
 package com.example.administrator.xiangou.net;
 
+import com.example.administrator.xiangou.goods_details.simplegoodsdetails.SimpleGoodsDetialBean;
+import com.example.administrator.xiangou.goods_details.storehome.HomePageBean;
 import com.example.administrator.xiangou.login.Captcha;
 import com.example.administrator.xiangou.login.LoginBean;
 import com.example.administrator.xiangou.nearby.apimodel.CommentDataBean;
@@ -11,9 +13,11 @@ import com.example.administrator.xiangou.nearby.apimodel.NearbyStoreApiDataBean;
 
 import java.util.Map;
 
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.http.Body;
+import retrofit2.http.Field;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
@@ -137,5 +141,13 @@ public interface XianGouApiService {
     //店铺首页
     @POST("api/User/store_index/")
     Observable<HomePageBean> callHomePagerData(@Query("did") int storeId,//店铺did
-                                                @Query("user_id") int userId);//若用户已经登录的状态下传过来
+                                               @Query("user_id") int userId);//若用户已经登录的状态下传过来
+    //商品详情页接口
+    @POST("Api/Good/goods_detail/")
+    Observable<SimpleGoodsDetialBean> callSimpleGoodsDetails(@Query("goods_id") int goods_id,
+//                                                             @Query("user_id") int user_id,
+//                                                             @Query("map_x") String map_x,
+//                                                             @Query("map_y") String map_y,
+                                                             @Query("type") int type
+                                                             );//根据货物id获取该物品信息
 }

@@ -15,10 +15,10 @@
         android:layout_width="wrap_content"
         android:layout_height="41dp"
         android:text="设置"
-        android:textSize="14sp"
+        android:textSize="18sp"
         android:layout_centerHorizontal="true"
         android:gravity="center_vertical"
-        android:textColor="#161616"/>
+        android:textColor="#e6161616"/>
 
     <!--<TextView-->
         <!--android:layout_width="wrap_content"-->
@@ -216,15 +216,8 @@
         android:layout_width="match_parent"
         android:background="@drawable/black_lines"
         android:layout_below="@+id/person_address_Ll"
-        android:layout_height="10dp"/>
-    <View
-        android:layout_width="match_parent"
-        android:layout_below="@+id/person_address_Ll"
-        android:layout_marginTop="11dp"
-        android:background="#e5e5e5"
-        android:layout_height="10dp"/>
+        android:layout_height="1dp"/>
     <LinearLayout
-        android:layout_marginTop="20dp"
         android:id="@+id/Version_information_Ll"
         android:layout_width="match_parent"
         android:layout_marginEnd="13dp"
@@ -253,7 +246,11 @@
         android:layout_alignBottom="@id/Version_information"
         android:layout_height="41dp" />
     </LinearLayout>
-
+    <View
+        android:layout_width="match_parent"
+        android:background="@drawable/black_lines"
+        android:layout_below="@+id/Version_information_Ll"
+        android:layout_height="1dp"/>
     <LinearLayout
         android:id="@+id/Help_counseling_Ll"
         android:layout_width="match_parent"
@@ -283,7 +280,11 @@
         android:layout_alignBottom="@id/Help_counseling"
         android:layout_height="41dp" />
     </LinearLayout>
-
+    <View
+        android:layout_width="match_parent"
+        android:background="@drawable/black_lines"
+        android:layout_below="@+id/Help_counseling_Ll"
+        android:layout_height="1dp"/>
     <LinearLayout
         android:id="@+id/Clear_cache_Ll"
         android:layout_width="match_parent"
@@ -305,11 +306,12 @@
         <TextView
         android:layout_width="wrap_content"
         android:layout_height="41dp"
-        android:textSize="12sp"
+        android:textSize="14sp"
         android:id="@+id/Clear_cacheSize"
         android:layout_toStartOf="@+id/Clear_cache_Btn"
         android:layout_alignBottom="@id/Clear_cache"
         android:layout_marginEnd="15dp"
+        android:textColor="#99161616"
         android:gravity="center_vertical"
         android:text="已使用0M"/>
         <ImageButton
@@ -323,7 +325,11 @@
         android:layout_below="@+id/Help_counseling_Btn"
         android:layout_alignStart="@+id/Help_counseling_Btn" />
     </LinearLayout>
-
+    <View
+        android:layout_width="match_parent"
+        android:background="@drawable/black_lines"
+        android:layout_below="@+id/Clear_cache_Ll"
+        android:layout_height="1dp"/>
     <LinearLayout
         android:id="@+id/Feedback_Ll"
         android:layout_width="match_parent"
@@ -356,11 +362,11 @@
 
     <Button
         android:layout_width="match_parent"
-        android:layout_height="46dp"
+        android:layout_height="41dp"
         android:layout_marginEnd="13dp"
         android:layout_alignStart="@id/setting_back"
         android:layout_below="@id/Feedback_Ll"
-        android:background="@drawable/round20dp"
+        android:background="@drawable/radius5dp"
         android:gravity="center"
         android:id="@+id/exit_login"
         android:text="退出当前账号"

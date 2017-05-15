@@ -137,5 +137,4 @@ public abstract class PopupWindowsBaseActivity extends BaseActivity {
         Log.e("flag", "pickPhoto: "+mImagePath );
         return mImagePath;
     }
-
 }

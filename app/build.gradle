@@ -7,7 +7,12 @@ android {
 //    去除掉PNG合法性检测
     aaptOptions.cruncherEnabled = false
     aaptOptions.useNewCruncher = false
-
+////后添加
+//    sourceSets{
+//        main{
+//            jniLibs.srcDirs=['libs']
+//        }
+//    }
     defaultConfig {
         applicationId "com.example.administrator.xiangou"
         minSdkVersion 19
@@ -23,9 +28,16 @@ android {
         }
     }
 }
+//后添加
+//repositories {
+//    flatDir {
+//        dirs 'libs'
+//    }
+//}
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
+//    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile fileTree(dir: 'libs',include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
@@ -53,4 +65,5 @@ dependencies {
     compile 'com.squareup.okhttp3:okhttp:3.6.0'
     compile 'io.reactivex:rxjava:1.2.7'
     compile 'io.reactivex:rxandroid:1.2.1'
+
 }

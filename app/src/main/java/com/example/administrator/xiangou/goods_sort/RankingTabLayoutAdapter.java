@@ -1,4 +1,4 @@
-package com.example.administrator.xiangou.goods_details;
+package com.example.administrator.xiangou.goods_sort;
 
 import android.content.Context;
 import android.graphics.Paint;

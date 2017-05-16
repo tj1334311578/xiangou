@@ -1,15 +1,9 @@
-package com.example.administrator.xiangou.goods_details.storehome.storehome.homestore;
+package com.example.administrator.xiangou.goods_sort.storehome.storehome.homestore;
 
-import android.content.Context;
-import android.util.Log;
 import android.widget.Toast;
 
-import com.example.administrator.xiangou.goods_details.storehome.HomePageBean;
+import com.example.administrator.xiangou.goods_sort.storehome.HomePageBean;
 import com.example.administrator.xiangou.mvp.BasePresenterImpl;
-import com.example.administrator.xiangou.net.BaseSubscriber;
-import com.example.administrator.xiangou.net.ExceptionHandle;
-
-import java.util.List;
 
 /**
  * MVPPlugin

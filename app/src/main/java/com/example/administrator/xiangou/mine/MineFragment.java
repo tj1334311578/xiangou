@@ -18,8 +18,8 @@ import android.widget.Toast;
 
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.classification.fragment.ClassificationTabActivity;
-import com.example.administrator.xiangou.goods_details.Goods_rankingActivity;
-import com.example.administrator.xiangou.goods_details.storehome.StoreHomeActivity;
+import com.example.administrator.xiangou.goods_sort.Goods_rankingActivity;
+import com.example.administrator.xiangou.goods_sort.storehome.StoreHomeActivity;
 import com.example.administrator.xiangou.login.idlogin.IDLoginActivity;
 import com.example.administrator.xiangou.mine.followpage.FollowPageActivity;
 import com.example.administrator.xiangou.mine.myorder.MyOrderActivity;
@@ -32,8 +32,11 @@ import com.example.administrator.xiangou.tool.CustomImageView;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.app.Activity.RESULT_OK;
+
 public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresenter>
         implements MineContract.View {
+    private static final int APPLYCODE=101;
     private ListView listView;
     private int content_img[]={R.mipmap.personal_footprint_icon,
             R.mipmap.personal_comment_icon,R.mipmap.mine_share_icon,R.mipmap.mine_shop_icon};
@@ -64,7 +67,7 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
     @Override
     public void onResume() {
         super.onResume();
-        showToast("isVisible:"+getUserVisibleHint()+"----isLogin"+isLogined());
+        showToast("isVisible:"+getUserVisibleHint()+"----isLogin"+isLogined()+"user id:"+bUser.getUser_id());
         if (getUserVisibleHint()){
             if (!isLogined()) {
                 startNewUI(IDLoginActivity.class);
@@ -145,10 +148,11 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
                         startNewUI(ClassificationTabActivity.class);
                         break;
                     case 3:
-                        if (bUser.getType()==1){
+                        if (bUser.getType()==3){
                             startNewUI(MyStoreActivity.class);
-                        }else
-                        startNewUI(StoreApplicationActivity.class);
+                        }else {
+                            startNewUIForResult(StoreApplicationActivity.class,APPLYCODE,"user_id",bUser.getUser_id());
+                        }
                         break;
                     default:
                         break;
@@ -188,7 +192,8 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
     }
     private void initSet() {
         //初始化数据
-        if (bUser.getType()==1){
+        Log.e("usertype", "initSet: " + bUser.getType());
+        if (bUser.getType()==3){
             content_text[content_text.length-1]="我的店铺";
         }else {
             content_text[content_text.length-1]="申请店铺";
@@ -200,6 +205,18 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         }
         MineAdapter adapter=new MineAdapter(getContext(),list);
         listView.setAdapter(adapter);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (data!=null && resultCode == RESULT_OK) {
+            switch (requestCode){
+                case APPLYCODE:
+                    // TODO: 2017/5/16 店铺申请中  str = "申请审核中"
+                    String str = data.getStringExtra("applying");
+            }
+        }
     }
 
     @Override

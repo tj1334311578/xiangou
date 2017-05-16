@@ -32,10 +32,10 @@
         <activity android:name=".login.register.RegisterActivity" />
         <activity android:name=".login.find_bytelephone.FindByTelephoneActivity" />
         <activity android:name=".login.find_resetpwd.ResetpwdActivity" />
-        <activity android:name=".mine.store_application.StoreApplicationActivity"/>
+        <activity android:name=".mine.store_application.StoreApplicationActivity" android:launchMode="singleTask"/>
         <activity android:name=".classification.fragment.ClassificationTabActivity"/>
-        <activity android:name=".goods_details.Goods_rankingActivity"/>
-        <activity android:name=".goods_details.storehome.StoreHomeActivity"/>
+        <activity android:name=".goods_sort.Goods_rankingActivity"/>
+        <activity android:name=".goods_sort.storehome.StoreHomeActivity"/>
         <activity android:name=".mine.setting.SettingActivity"/>
         <activity android:name=".mine.setting.personal.PersonalActivity"/>
         <activity android:name=".mine.setting.personal.NicknameActivity"/>
@@ -45,6 +45,7 @@
         <activity android:name=".mine.myorder.MyOrderActivity"/>
         <activity android:name=".mine.mystore.MyStoreActivity"/>
         <activity android:name=".mine.followpage.FollowPageActivity"/>
+        <activity android:name=".mine.store_application.CategoryTypeActivity"/>
     </application>
 
 </manifest>

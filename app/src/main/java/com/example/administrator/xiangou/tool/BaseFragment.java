@@ -136,7 +136,9 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
         startActivity(new Intent(getContext(),context));
     }
     public void startNewUICarryStr(Class<?> context, String name, Object str ){
-        Intent intent = new Intent(mActivity,context);
+        Intent intent = new Intent();
+        if (context != null)
+            intent.setClass(mActivity,context);
         if (str instanceof String) {
             intent.putExtra(name, str.toString());
         }else if (str instanceof Integer){

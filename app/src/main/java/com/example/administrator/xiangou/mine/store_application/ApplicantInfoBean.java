@@ -1,7 +1,7 @@
 package com.example.administrator.xiangou.mine.store_application;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Arrays;
 
 /**
  * @author zhouzongyao
@@ -10,6 +10,24 @@ import java.util.List;
  * @Date 2017-05-04 10:59
  */
 public class ApplicantInfoBean implements Serializable{
+    @Override
+    public String toString() {
+        return "ApplicantInfoBean{" +
+                "realname='" + realname + '\'' +
+                ", tel='" + tel + '\'' +
+                ", idcard='" + idcard + '\'' +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", map_x='" + map_x + '\'' +
+                ", map_y='" + map_y + '\'' +
+                ", user_id=" + user_id +
+                ", province=" + province +
+                ", city=" + city +
+                ", district=" + district +
+                ", cid=" + Arrays.toString(cid) +
+                '}';
+    }
+
     /**
      * realname : 杨小贤
      * tel : 18349264993
@@ -32,11 +50,11 @@ public class ApplicantInfoBean implements Serializable{
     private String address;
     private String map_x;
     private String map_y;
-    private String user_id;
+    private int user_id;
     private int province;
     private int city;
     private int district;
-    private List<Integer> cid;
+    private int[] cid;
 
     public String getRealname() {
         return realname;
@@ -94,11 +112,11 @@ public class ApplicantInfoBean implements Serializable{
         this.map_y = map_y;
     }
 
-    public String getUser_id() {
+    public int getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(String user_id) {
+    public void setUser_id(int user_id) {
         this.user_id = user_id;
     }
 
@@ -126,11 +144,11 @@ public class ApplicantInfoBean implements Serializable{
         this.district = district;
     }
 
-    public List<Integer> getCid() {
+    public int[] getCid() {
         return cid;
     }
 
-    public void setCid(List<Integer> cid) {
+    public void setCid(int[] cid) {
         this.cid = cid;
     }
 }

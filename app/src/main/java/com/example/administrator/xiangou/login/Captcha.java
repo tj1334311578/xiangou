@@ -5,6 +5,14 @@ package com.example.administrator.xiangou.login;
  */
 
 public class Captcha {
+    @Override
+    public String toString() {
+        return "Captcha{" +
+                "data='" + data + '\'' +
+                ", state=" + state +
+                '}';
+    }
+
     /**
      * data :
      * state : {"code":200,"msg":"注册成功","debugMsg":"","url":"api/Register/register"}
@@ -30,6 +38,16 @@ public class Captcha {
     }
 
     public static class StateBean {
+        @Override
+        public String toString() {
+            return "StateBean{" +
+                    "code=" + code +
+                    ", msg='" + msg + '\'' +
+                    ", debugMsg='" + debugMsg + '\'' +
+                    ", url='" + url + '\'' +
+                    '}';
+        }
+
         /**
          * code : 200
          * msg : 注册成功

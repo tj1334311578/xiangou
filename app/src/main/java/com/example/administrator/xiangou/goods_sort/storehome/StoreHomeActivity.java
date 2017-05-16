@@ -1,4 +1,4 @@
-package com.example.administrator.xiangou.mine.mystore;
+package com.example.administrator.xiangou.goods_sort.storehome;
 
 
 import android.os.Bundle;
@@ -14,12 +14,12 @@ import com.example.administrator.xiangou.mvp.MVPBaseActivity;
  *  邮箱 784787081@qq.com
  */
 
-public class MyStoreActivity extends MVPBaseActivity<MyStoreContract.View, MyStorePresenter> implements MyStoreContract.View {
+public class StoreHomeActivity extends MVPBaseActivity<StoreHomeContract.View, StoreHomePresenter> implements StoreHomeContract.View {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.seller_center);
+        setContentView(R.layout.store_homefragment);
     }
 
     @Override

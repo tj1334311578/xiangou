@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.xiangou.R;
-import com.example.administrator.xiangou.goods_details.RankingTabLayoutAdapter;
+import com.example.administrator.xiangou.goods_sort.RankingTabLayoutAdapter;
 import com.example.administrator.xiangou.mine.followpage.followgoods.FollowGoodsFragment;
 import com.example.administrator.xiangou.mine.followpage.followstore.FollowStoreFragment;
 import com.example.administrator.xiangou.mvp.MVPBaseFragment;

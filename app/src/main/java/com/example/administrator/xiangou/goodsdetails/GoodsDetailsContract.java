@@ -1,4 +1,4 @@
-package com.example.administrator.xiangou.goods_details.comprehensive;
+package com.example.administrator.xiangou.goodsdetails;
 
 import android.content.Context;
 
@@ -10,7 +10,7 @@ import com.example.administrator.xiangou.mvp.BaseView;
  *  邮箱 784787081@qq.com
  */
 
-public class ComprehensiveContract {
+public class GoodsDetailsContract {
     interface View extends BaseView {
         
     }

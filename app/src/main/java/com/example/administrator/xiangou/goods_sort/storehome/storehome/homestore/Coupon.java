@@ -1,4 +1,4 @@
-package com.example.administrator.xiangou.goods_details.storehome.storehome.homestore;
+package com.example.administrator.xiangou.goods_sort.storehome.storehome.homestore;
 
 /**
  * Created by Administrator on 2017/4/19.

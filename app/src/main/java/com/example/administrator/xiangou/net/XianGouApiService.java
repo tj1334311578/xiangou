@@ -1,7 +1,11 @@
 package com.example.administrator.xiangou.net;
 
+import com.example.administrator.xiangou.goods_sort.storehome.HomePageBean;
 import com.example.administrator.xiangou.login.Captcha;
 import com.example.administrator.xiangou.login.LoginBean;
+import com.example.administrator.xiangou.mine.ToApplyStoreBean;
+import com.example.administrator.xiangou.mine.store_application.ApplicantInfoBean;
+import com.example.administrator.xiangou.mine.store_application.model.CategoryListDataBean;
 import com.example.administrator.xiangou.nearby.apimodel.CommentDataBean;
 import com.example.administrator.xiangou.nearby.apimodel.GoodsListDataBean;
 import com.example.administrator.xiangou.nearby.apimodel.NearbyBenifitDataBean;
@@ -11,9 +15,9 @@ import com.example.administrator.xiangou.nearby.apimodel.NearbyStoreApiDataBean;
 
 import java.util.Map;
 
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
-import retrofit2.http.Body;
+import retrofit2.http.Field;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
@@ -43,19 +47,24 @@ public interface XianGouApiService {
     public static final String mBASEURL = "http://192.168.0.106/";
     public static final String BASEURL = "http://192.168.0.106";
 
+
     //获取验证码--注册
     @POST("index.php/Api/Register/send_code/")
     Observable<Captcha> getCapture(@Query("tel") String tel);
+
     //验证验证码--注册
     @POST("index.php/Api/Register/register1/")
     Observable<Captcha> goRegister(@Query("tel") String tel, @Query("code") String code);
+
     //完成--注册
     @POST("index.php/Api/Register/register/")
     Observable<Captcha> toRegister(@Query("tel") String tel, @Query("code") String code, @Query("password") String password);
+
     //账号登录
 //    @FormUrlEncoded
     @POST("api/Login/login/")
     Observable<LoginBean> loginID(@Query("tel") String tel, @Query("password") String password);
+
     /**
      * 请求验证码（登录、找回密码）
      * @param tel
@@ -72,20 +81,37 @@ public interface XianGouApiService {
     //验证验证码--找回密码
     @POST("Api/Login/check_code/")
     Observable<Captcha> verifyFindPwd(@Query("tel") String tel, @Query("code") String code);
+
     //设新密码--找回密码
     @POST("Api/Login/findpsw/")
     Observable<Captcha> resetPwd(@Query("tel") String tel, @Query("password") String password, @Query("code") String code);
+
+/***********店铺接口************/
+
+    //进入店铺申请
+    @POST("Api/Stores/inter/")
+    Observable<ToApplyStoreBean> toApplyShop(@Query("user_id") int user_id);
+
+    //获取选择城市列表
+    @POST("Api/Stores/area/")
+    Observable<ToApplyStoreBean> chooseNextAdr(@Query("region_id") int region_id);
+
+    //获取主营类别列表数据
+    @POST("Api/Stores/getcate/")
+    Observable<CategoryListDataBean> getCategoryList();
 
 
     //店铺申请
     @Multipart
     @POST("api/Stores/apply/")
-    Observable<Captcha> applyShop(  @Part("infos") String infos,
-                                       @Part MultipartBody.Part[] id_img,
-                                       @Part MultipartBody.Part logo,
-                                       @Part MultipartBody.Part licence,
-                                       @Part MultipartBody.Part contract
-    );
+    Observable<Captcha> applyShop(
+            @Part("infos") ApplicantInfoBean infos,
+            @Part MultipartBody.Part[] id_img,
+            @Part MultipartBody.Part logo,
+//            @Part MultipartBody.Part licence,
+//            @Part MultipartBody.Part contract
+            @PartMap Map<String, RequestBody> imgs
+            );
 
 /***********商品接口************/
     //附近商品
@@ -137,5 +163,5 @@ public interface XianGouApiService {
     //店铺首页
     @POST("api/User/store_index/")
     Observable<HomePageBean> callHomePagerData(@Query("did") int storeId,//店铺did
-                                                @Query("user_id") int userId);//若用户已经登录的状态下传过来
+                                               @Query("user_id") int userId);//若用户已经登录的状态下传过来
 }

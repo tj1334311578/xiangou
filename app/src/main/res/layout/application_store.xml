@@ -203,16 +203,6 @@
                 android:textColor="#161616"
                 android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/main_category_edit"
-                android:layout_width="match_parent"
-                android:layout_height="41dp"
-                android:layout_alignBottom="@id/main_category"
-                android:layout_alignEnd="@id/store_name_edit"
-                android:layout_toEndOf="@+id/store_name"
-                android:gravity="center_vertical"
-                android:text="请选择" />
-
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="wrap_content"
@@ -417,6 +407,16 @@
                 android:id="@+id/commit_application_btn"
                 android:textColor="@color/white"
                 android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/main_category_edit"
+                android:layout_width="match_parent"
+                android:layout_height="41dp"
+                android:gravity="center_vertical"
+                android:text="请选择"
+                android:layout_alignBaseline="@+id/main_category"
+                android:layout_alignBottom="@+id/main_category"
+                android:layout_toEndOf="@+id/store_name"/>
         </RelativeLayout>
     </ScrollView>
 </RelativeLayout>

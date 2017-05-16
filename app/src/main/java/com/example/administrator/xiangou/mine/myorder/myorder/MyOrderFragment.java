@@ -12,15 +12,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.xiangou.R;
-import com.example.administrator.xiangou.goods_details.RankingTabLayoutAdapter;
+import com.example.administrator.xiangou.goods_sort.RankingTabLayoutAdapter;
 import com.example.administrator.xiangou.mine.myorder.myorder.waitdelivery.WaitDeliveryFragment;
 import com.example.administrator.xiangou.mvp.MVPBaseFragment;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * MVPPlugin

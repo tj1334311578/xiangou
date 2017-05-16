@@ -1,10 +1,10 @@
-package com.example.administrator.xiangou.goods_details.storehome.storehome;
+package com.example.administrator.xiangou.goods_sort.storehome.storehome;
 
 
 import android.util.Log;
 import android.widget.Toast;
 
-import com.example.administrator.xiangou.goods_details.storehome.HomePageBean;
+import com.example.administrator.xiangou.goods_sort.storehome.HomePageBean;
 import com.example.administrator.xiangou.mvp.BasePresenterImpl;
 import com.example.administrator.xiangou.net.BaseSubscriber;
 import com.example.administrator.xiangou.net.ExceptionHandle;

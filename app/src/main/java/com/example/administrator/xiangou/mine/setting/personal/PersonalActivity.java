@@ -2,6 +2,8 @@ package com.example.administrator.xiangou.mine.setting.personal;
 
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -82,7 +84,9 @@ public class PersonalActivity extends MVPBaseActivity<PersonalContract.View, Per
     }
 //刷新图片方法
     private void update(String imagePath) {
-       Drawable drawable=new BitmapDrawable(ImageUtils.getImageThumbnail(imagePath,person_img.getWidth() ,person_img.getHeight() ));
+        //为解决图片每次变小
+//       Drawable drawable=new BitmapDrawable(ImageUtils.getImageThumbnail(imagePath,person_img.getWidth() ,person_img.getHeight() ));
+        Drawable drawable=new BitmapDrawable(BitmapFactory.decodeFile(imagePath));
         person_img.setImageDrawable(drawable);
     }
 }

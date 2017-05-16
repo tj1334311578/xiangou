@@ -5,13 +5,15 @@
     android:paddingEnd="13dp"
     android:paddingTop="10dp"
     android:paddingBottom="10dp"
+    android:background="@color/white"
     android:layout_height="wrap_content">
     <CheckBox
         android:layout_centerVertical="true"
         android:layout_width="19dp"
         android:layout_height="20dp"
         android:button="@null"
-        android:visibility="gone"
+        android:layout_marginEnd="12dp"
+        android:visibility="visible"
         android:id="@+id/follow_store_item_checkbox"
         android:background="@drawable/circlebg_checkbox"/>
     <com.example.administrator.xiangou.tool.SelectImageView
@@ -50,5 +52,5 @@
         android:layout_alignParentEnd="true"
         android:background="@color/white"
         android:layout_centerVertical="true"
-        android:src="@drawable/show_right"/>
+        android:src="@mipmap/attention_more_icon"/>
 </RelativeLayout>

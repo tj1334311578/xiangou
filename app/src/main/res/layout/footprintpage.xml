@@ -9,6 +9,7 @@
         android:background="#f8f8f8"
         android:layout_height="62dp">
         <ImageView
+            android:id="@+id/footprintpage_back"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_centerVertical="true"

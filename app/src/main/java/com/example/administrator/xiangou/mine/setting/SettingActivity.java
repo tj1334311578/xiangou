@@ -1,18 +1,24 @@
 package com.example.administrator.xiangou.mine.setting;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.view.Display;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.example.administrator.xiangou.R;
+import com.example.administrator.xiangou.mine.setting.feedback.FeedBackActivity;
 import com.example.administrator.xiangou.mine.setting.manageraddress.ManagerAddressActivity;
 import com.example.administrator.xiangou.mine.setting.personal.PersonalActivity;
 import com.example.administrator.xiangou.mvp.MVPBaseActivity;
-import com.example.administrator.xiangou.tool.MySelfDialog;
-
 
 /**
  * MVPPlugin
@@ -35,7 +41,7 @@ public class SettingActivity extends MVPBaseActivity<SettingContract.View, Setti
 ////    @BindView(R.id.Feedback_Btn)
 //    ImageView feedBtn;
     Button unloginBtn;
-    private MySelfDialog mySelfDialog;
+    private Dialog mySelfDialog;
     //    @BindViews({R.id.person_setting_Btn,R.id.setting_address_Btn,R.id.Version_information_Btn,R.id.Help_counseling_Btn,R.id.Clear_cache_img,R.id.Feedback_Btn})
 //    List<ImageButton> Btns;
     LinearLayout personalBtn,addressBtn,versionBtn,helpBtn,clean_cacheBtn,feedBtn;
@@ -89,29 +95,37 @@ public class SettingActivity extends MVPBaseActivity<SettingContract.View, Setti
                 showToast("4");
                 break;
             case R.id.Feedback_Ll:
+                startNewUI(FeedBackActivity.class);
                 showToast("5");
                 break;
             case R.id.exit_login:
                 showToast("退出当前账号");
-                mySelfDialog=new MySelfDialog(SettingActivity.this);
-                mySelfDialog.setMessage("亲，您确定要退出当前账号吗？");
-                mySelfDialog.setNoOnclickListener("取消", new MySelfDialog.onNoOnclickListener() {
-                    @Override
-                    public void onNoClick() {
-                        showToast("点击了取消按钮");
-                        mySelfDialog.dismiss();
-                    }
-                });
-                mySelfDialog.setYesOnclickListener("确定", new MySelfDialog.onYesOnclickListener() {
-                    @Override
-                    public void onYesClick() {
-                        showToast("点击了确定按钮");
-                        logout();
-                        mySelfDialog.dismiss();
-                        finish();
-                    }
-                });
-                mySelfDialog.show();
+                exit_login();
+//                mySelfDialog.setOtherOnclickListener(new MySelfDialog.otherOnclickListener() {
+//                    @Override
+//                    public void onOtherClick() {
+//                        mySelfDialog.dismiss();
+//                    }
+//                });
+//                mySelfDialog.setMessage("亲，您确定要退出当前账号吗？");
+//                mySelfDialog.setNoOnclickListener("取消", new MySelfDialog.onNoOnclickListener() {
+//                    @Override
+//                    public void onNoClick() {
+//                        showToast("点击了取消按钮");
+//                        mySelfDialog.dismiss();
+//                    }
+//                });
+//                mySelfDialog.setYesOnclickListener("确定", new MySelfDialog.onYesOnclickListener() {
+//                    @Override
+//                    public void onYesClick() {
+//                        showToast("点击了确定按钮");
+//                        logout();
+//                        mySelfDialog.dismiss();
+//                        finish();
+//                    }
+//                });
+
+//                mySelfDialog.show();
 //                logout();
 //                finish();
                 break;
@@ -119,5 +133,54 @@ public class SettingActivity extends MVPBaseActivity<SettingContract.View, Setti
                 break;
         }
 
+    }
+    //退出登录方法
+    private void exit_login() {
+        mySelfDialog=new Dialog(this,R.style.custom_dialog);
+        mySelfDialog.getWindow().setGravity(Gravity.CENTER);
+        // 设置全屏
+        WindowManager windowManager = getWindowManager();
+        Display display = windowManager.getDefaultDisplay();
+        WindowManager.LayoutParams lp = mySelfDialog.getWindow().getAttributes();
+        lp.width = display.getWidth(); // 设置宽度
+        mySelfDialog.getWindow().setAttributes(lp);
+
+        final View location= LayoutInflater.from(this).inflate(R.layout.myself_dialog,null);
+        mySelfDialog.setContentView(location);
+        Button cancelBtn,makeSureBtn;
+        cancelBtn= (Button) location.findViewById(R.id.dialog_cancel);
+        makeSureBtn= (Button) location.findViewById(R.id.dialog_makeSure);
+        //取消按钮
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mySelfDialog.dismiss();
+            }
+        });
+        //点击确定退出账号
+        makeSureBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                logout();
+                mySelfDialog.dismiss();
+                finish();
+            }
+        });
+
+        //设置点击区域外的监听
+        location.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                int height =location.findViewById(R.id.myself_dialog_rl).getTop();
+                int y = (int) event.getY();
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    if (y < height) {
+                        mySelfDialog.dismiss();
+                    }
+                }
+                return true;
+            }
+        });
+        mySelfDialog.show();
     }
 }

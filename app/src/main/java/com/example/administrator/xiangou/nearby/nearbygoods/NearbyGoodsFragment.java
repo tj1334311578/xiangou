@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.base.RVBaseAdapter;
 import com.example.administrator.xiangou.base.RVBaseViewHolder;
+import com.example.administrator.xiangou.cart.CartFragment;
 import com.example.administrator.xiangou.mvp.MVPBaseFragment;
 import com.example.administrator.xiangou.nearby.apimodel.NearbyGoodsDataBean;
 import com.example.administrator.xiangou.nearby.nearbygoods.adapter.NearbyGoodsAdapterRV;
@@ -130,6 +131,7 @@ public class NearbyGoodsFragment extends MVPBaseFragment<NearbyGoodsContract.Vie
                 showToast("mItemRv "+ childposition +((TextView)((LinearLayout)view).getChildAt(1)).getText().toString());
                 // TODO: 2017/5/9 这里应该跳到商品详情页，现在就先直接添加到购物车
 //                startNewUICarryStr(null,"goods_id",mDataBeanList.get(parentposition).getGoodslist().get(childposition).getGoods_id());
+//                startNewUICarryStr(CartFragment.class,"goods_id",mDataBeanList.get(parentposition).getGoodslist().get(childposition).getGoods_id());
             }
         });
         mGoodsRv.setAdapter(mAdapter);

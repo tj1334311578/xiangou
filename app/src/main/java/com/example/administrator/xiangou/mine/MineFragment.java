@@ -21,7 +21,9 @@ import com.example.administrator.xiangou.classification.fragment.ClassificationT
 import com.example.administrator.xiangou.goods_sort.Goods_rankingActivity;
 import com.example.administrator.xiangou.goods_sort.storehome.StoreHomeActivity;
 import com.example.administrator.xiangou.login.idlogin.IDLoginActivity;
+import com.example.administrator.xiangou.mine.couponpage.CouponPageActivity;
 import com.example.administrator.xiangou.mine.followpage.FollowPageActivity;
+import com.example.administrator.xiangou.mine.myfootprint.MyFootPrintActivity;
 import com.example.administrator.xiangou.mine.myorder.MyOrderActivity;
 import com.example.administrator.xiangou.mine.mystore.MyStoreActivity;
 import com.example.administrator.xiangou.mine.setting.SettingActivity;
@@ -137,9 +139,18 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
                 TextView tv = (TextView) listView.getChildAt(position).findViewById(R.id.mine_item_text);
                 //等价于=>((TextView)(listView.getChildAt(position).findViewById(R.id.mine_item_text)))
                 Toast.makeText(getContext(),tv.getText() +"被点击了", Toast.LENGTH_SHORT).show();
+                //设置点击位置改变条件
+                if (bUser.getType()==1){
+                    if (position==0)
+                        position=3;
+                    else
+                    position-=1;
+                }
+                Log.e("jjf", "onItemClick: "+position );
                 switch (position){
                     case 0:
-                        startNewUI(StoreHomeActivity.class);
+//                        startNewUI(StoreHomeActivity.class);
+                        startNewUI(MyFootPrintActivity.class);
                         break;
                     case 1:
                         startNewUI(Goods_rankingActivity.class);
@@ -203,6 +214,13 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         for (int i = 0; i <content_img.length ; i++) {
             list.add(new ItemImage(content_img[i],content_text[i]));
         }
+        //更改最后一个位置到第一个位置
+        Log.e("tga", "initSet: "+bUser.getType()+"\n"+list.get(list.size()-1).getStr()+"\n"+list.get(0).getStr());
+        if (bUser.getType()==1) {
+            list.add(0, new ItemImage(content_img[list.size()-1],content_text[list.size()-1]));
+            list.remove(list.get(list.size()-1));
+            Log.e("tga", "initSet: "+bUser.getType()+"\n"+list.get(list.size()-1).getStr()+"\n"+list.get(0).getStr());
+        }
         MineAdapter adapter=new MineAdapter(getContext(),list);
         listView.setAdapter(adapter);
     }
@@ -256,6 +274,7 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
             //优惠券
             case R.id.mine_Coupon:
                 Toast.makeText(getActivity(), "点击优惠券", Toast.LENGTH_SHORT).show();
+                startNewUI(CouponPageActivity.class);
                 break;
             //签到
             case R.id.mine_sign_in:

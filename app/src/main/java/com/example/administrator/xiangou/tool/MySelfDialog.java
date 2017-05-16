@@ -3,8 +3,10 @@ package com.example.administrator.xiangou.tool;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.administrator.xiangou.R;
@@ -22,6 +24,13 @@ public class MySelfDialog extends Dialog {
     private String yesStr, noStr;
     private onNoOnclickListener noOnclickListener;//取消按钮被点击了的监听器
     private onYesOnclickListener yesOnclickListener;//确定按钮被点击了的监听器
+    private RelativeLayout rl;
+
+    public void setOtherOnclickListener(MySelfDialog.otherOnclickListener otherOnclickListener) {
+        this.otherOnclickListener = otherOnclickListener;
+    }
+
+    private otherOnclickListener otherOnclickListener;//点击控件外的监听
 
     /**
      * 设置取消按钮的显示内容和监听
@@ -86,12 +95,35 @@ public class MySelfDialog extends Dialog {
         yes= (Button) findViewById(R.id.dialog_makeSure);
         no= (Button) findViewById(R.id.dialog_cancel);
         messageTv= (TextView) findViewById(R.id.dialog_message);
+        rl = (RelativeLayout) findViewById(R.id.myself_dialog_rl);
 
     }
     /**
      * 初始化界面的确定和取消监听器
      */
     private void initEvent(){
+        rl.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                int height =findViewById(R.id.myself_dialog_rl).getTop();
+                int y = (int) event.getY();
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    if (y < height) {
+//                        mySelfDialog.dismiss();
+                        otherOnclickListener.onOtherClick();
+                    }
+                }
+                return true;
+            }
+        });
+//        rl.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (otherOnclickListener!=null){
+//                    otherOnclickListener.onOtherClick();
+//                }
+//            }
+//        });
         yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,7 +142,7 @@ public class MySelfDialog extends Dialog {
         });
     }
     public MySelfDialog(Context context) {
-        super(context,R.style.MyDialog);
+        super(context,R.style.custom_dialog);
     }
 
     public MySelfDialog(Context context, int themeResId) {
@@ -130,7 +162,9 @@ public class MySelfDialog extends Dialog {
     public interface onNoOnclickListener {
         public void onNoClick();
     }
-
+    public interface otherOnclickListener{
+        public void onOtherClick();
+    }
     /**
      * 从外界Activity为Dialog设置标题
      *

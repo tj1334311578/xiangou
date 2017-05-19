@@ -1,4 +1,4 @@
-package com.example.administrator.xiangou.goods_details.storehome;
+package com.example.administrator.xiangou.goods_sort.storehome;
 
 import java.io.Serializable;
 import java.util.List;

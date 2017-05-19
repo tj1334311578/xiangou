@@ -1,51 +1,43 @@
-package com.example.administrator.xiangou.goods_details;
+package com.example.administrator.xiangou.goods_sort;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.example.administrator.xiangou.R;
-import com.example.administrator.xiangou.goods_details.comprehensive.ComprehensiveFragment;
-import com.example.administrator.xiangou.mvp.MVPBaseFragment;
-import com.example.administrator.xiangou.nearby.NearbyContract;
-import com.example.administrator.xiangou.nearby.NearbyPresenter;
+import com.example.administrator.xiangou.goods_sort.comprehensive.ComprehensiveFragment;
+import com.example.administrator.xiangou.tool.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Created by Administrator on 2017/4/15.
  */
 
-public class Goods_rankingFragment extends MVPBaseFragment<NearbyContract.View, NearbyPresenter> implements NearbyContract.View{
-    @BindView(R.id.tabs_goodsRanking_tab)
+public class Goods_rankingActivity extends BaseActivity {
+//    @BindView(R.id.tabs_goodsRanking_tab)
     TabLayout mTabLayout;
-    @BindView(R.id.goods_ranking_back)
+//    @BindView(R.id.goods_ranking_back)
     ImageView backBtn;
-    @BindView(R.id.tabs_goodsRanking_viewpager)
+//    @BindView(R.id.tabs_goodsRanking_viewpager)
     ViewPager mViewPager;
     private RankingTabLayoutAdapter mLayoutAdapter;
     private List<Fragment> mTabFragList;
     private String[] tabTitles;
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return setContextView(inflater,container,R.layout.goods_ranking);
-    }
-
-    @Override
-    public void initView() {
-        ButterKnife.bind(this,mContextView);
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        setContentView(R.layout.goods_ranking);
+//        setContentView(R.layout.goods_details_activity);
+        super.onCreate(savedInstanceState);
+        mTabLayout = (TabLayout) findViewById(R.id.tabs_goodsRanking_tab);
+        backBtn = (ImageView) findViewById(R.id.goods_ranking_back);
+        mViewPager = (ViewPager) findViewById(R.id.tabs_goodsRanking_viewpager);
         backBtn.setOnClickListener(this);
         initTabFragViews();
     }
@@ -58,7 +50,7 @@ public class Goods_rankingFragment extends MVPBaseFragment<NearbyContract.View, 
         mTabFragList.add(new ComprehensiveFragment());
         mTabFragList.add(new ComprehensiveFragment());
         mTabLayout.setTabMode(TabLayout.MODE_FIXED);
-        mLayoutAdapter = new RankingTabLayoutAdapter(getContext(), getChildFragmentManager(), mTabFragList, tabTitles);
+        mLayoutAdapter = new RankingTabLayoutAdapter(this, getSupportFragmentManager(), mTabFragList, tabTitles);
         mViewPager.setAdapter(mLayoutAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
         for (int i = 0; i < tabTitles.length; i++) {
@@ -85,11 +77,11 @@ public class Goods_rankingFragment extends MVPBaseFragment<NearbyContract.View, 
                 for (int i=0; i<mTabFragList.size(); i++) {
                     if (mTabFragList.get(i).isAdded()) {
                         if (i==position) {
-                            getChildFragmentManager().beginTransaction()
+                            getSupportFragmentManager().beginTransaction()
                                     .show(mTabFragList.get(i))
                                     .commit();
                         }else {
-                            getChildFragmentManager().beginTransaction()
+                            getSupportFragmentManager().beginTransaction()
                                     .hide(mTabFragList.get(i))
                                     .commit();
                         }
@@ -108,15 +100,10 @@ public class Goods_rankingFragment extends MVPBaseFragment<NearbyContract.View, 
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.goods_ranking_back:
-                getActivity().finish();
+                finish();
             default:
                 break;
         }
 
-    }
-
-
-    @Override
-    public void sendFialRequest(String message) {
     }
 }

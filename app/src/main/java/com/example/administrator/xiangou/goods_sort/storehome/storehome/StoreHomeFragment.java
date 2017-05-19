@@ -1,4 +1,4 @@
-package com.example.administrator.xiangou.goods_details.storehome.storehome;
+package com.example.administrator.xiangou.goods_sort.storehome.storehome;
 
 
 import android.os.Bundle;
@@ -16,9 +16,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.administrator.xiangou.R;
-import com.example.administrator.xiangou.goods_details.comprehensive.ComprehensiveFragment;
-import com.example.administrator.xiangou.goods_details.storehome.HomePageBean;
-import com.example.administrator.xiangou.goods_details.storehome.storehome.homestore.HomeStoreFragment;
+import com.example.administrator.xiangou.goods_sort.comprehensive.ComprehensiveFragment;
+import com.example.administrator.xiangou.goods_sort.storehome.HomePageBean;
+import com.example.administrator.xiangou.goods_sort.storehome.storehome.homestore.HomeStoreFragment;
 import com.example.administrator.xiangou.mvp.MVPBaseFragment;
 import com.example.administrator.xiangou.tool.DrawableTextView;
 import com.example.administrator.xiangou.tool.GlideImageLoader;

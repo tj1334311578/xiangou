@@ -1,4 +1,4 @@
-package com.example.administrator.xiangou.goods_details.storehome.storehome.homestore;
+package com.example.administrator.xiangou.goods_sort.storehome.storehome.homestore;
 
 import android.content.Context;
 import android.graphics.Paint;
@@ -11,12 +11,10 @@ import android.widget.TextView;
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.base.AutoRVAdapter;
 import com.example.administrator.xiangou.base.RVBaseAdapter;
-import com.example.administrator.xiangou.goods_details.storehome.HomePageBean;
-import com.example.administrator.xiangou.tool.ContextUtils;
+import com.example.administrator.xiangou.goods_sort.storehome.HomePageBean;
 import com.example.administrator.xiangou.tool.GlideImageLoader;
 import com.example.administrator.xiangou.tool.ItemIntervalDecoration;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

@@ -1,4 +1,4 @@
-package com.example.administrator.xiangou.goods_details.storehome.storehome;
+package com.example.administrator.xiangou.goods_sort.storehome.storehome;
 
 import android.content.Context;
 import android.graphics.Paint;
@@ -7,7 +7,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 

@@ -1,4 +1,4 @@
-package com.example.administrator.xiangou.goods_details.storehome.storehome.homestore;
+package com.example.administrator.xiangou.goods_sort.storehome.storehome.homestore;
 
 
 import android.os.Bundle;
@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.administrator.xiangou.R;
-import com.example.administrator.xiangou.goods_details.storehome.HomePageBean;
+import com.example.administrator.xiangou.goods_sort.storehome.HomePageBean;
 import com.example.administrator.xiangou.mvp.MVPBaseFragment;
 
 

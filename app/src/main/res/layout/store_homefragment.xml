@@ -5,7 +5,7 @@
     android:layout_height="match_parent">
     <fragment
         android:layout_width="match_parent"
-        android:name="com.example.administrator.xiangou.goods_details.storehome.storehome.StoreHomeFragment"
+        android:name="com.example.administrator.xiangou.goods_sort.storehome.storehome.StoreHomeFragment"
         android:id="@+id/goods_storehome_fragment"
         android:layout_height="match_parent"/>
 </LinearLayout>

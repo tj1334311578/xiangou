@@ -16,6 +16,8 @@ import android.widget.Toast;
 
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.main.User;
+import com.example.administrator.xiangou.net.RetrofitClient;
+import com.example.administrator.xiangou.net.XianGouApiService;
 
 import java.io.Serializable;
 
@@ -43,6 +45,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     private CompositeSubscription mCompositeSubscription;
     //    public static ContextUtils bContextUtils;
     public static User bUser;
+    public static XianGouApiService mApiService;
     public static MySharedPreferences bSharedPreferences;
 
     //注册广播
@@ -71,6 +74,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 //        bContextUtils = ContextUtils.getInstance();
         bUser = ContextUtils.gUser;
         bSharedPreferences = ContextUtils.gSharedPreferences;
+        mApiService = RetrofitClient.getInstance(this).create(XianGouApiService.class);
         ButterKnife.bind(this);
         registerExitReceiver();
     }
@@ -141,7 +145,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         }
         startActivity(intent);
     }
-    public void startNewUIForResult(Class<?> context,int code,String name,Object str){
+    public void startNewUIForResult(Class<?> context,int requestCode,String name,Object str){
         Intent intent = new Intent(this,context);
         if (str instanceof String) {
             String s= (String) str;
@@ -153,7 +157,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
             Bundle s = (Bundle) str;
             intent.putExtra(name,s);
         }
-        startActivityForResult(intent,code);
+        startActivityForResult(intent,requestCode);
     }
 
     public <T extends View> T findContentView(int id){

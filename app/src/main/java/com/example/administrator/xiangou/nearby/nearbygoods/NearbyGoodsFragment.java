@@ -130,6 +130,7 @@ public class NearbyGoodsFragment extends MVPBaseFragment<NearbyGoodsContract.Vie
             public void setOnNearbyGoodsItemCall(View view, int parentposition, int childposition) {
                 showToast("mItemRv "+ childposition +((TextView)((LinearLayout)view).getChildAt(1)).getText().toString());
                 // TODO: 2017/5/9 这里应该跳到商品详情页，现在就先直接添加到购物车
+//                startNewUICarryStr(null,"goods_id",mDataBeanList.get(parentposition).getGoodslist().get(childposition).getGoods_id());
 //                startNewUICarryStr(CartFragment.class,"goods_id",mDataBeanList.get(parentposition).getGoodslist().get(childposition).getGoods_id());
             }
         });

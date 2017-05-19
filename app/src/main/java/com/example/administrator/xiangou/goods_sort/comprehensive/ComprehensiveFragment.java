@@ -1,4 +1,4 @@
-package com.example.administrator.xiangou.goods_details.comprehensive;
+package com.example.administrator.xiangou.goods_sort.comprehensive;
 
 
 import android.content.Context;

@@ -1,21 +1,20 @@
-package com.example.administrator.xiangou.net;
+package com.example.administrator.xiangou.tool;
 
-import android.net.ParseException;
 import android.util.Log;
 
 import com.google.gson.JsonParseException;
-import com.google.gson.JsonSyntaxException;
 
-import org.apache.http.conn.ConnectTimeoutException;
 import org.json.JSONException;
 
 import java.net.ConnectException;
 
 import retrofit2.adapter.rxjava.HttpException;
 
+/**
+ * Created by Administrator on 2017/5/16.
+ */
 
-public class ExceptionHandle {
-
+public  class NetErrorUtil {
     private static final int UNAUTHORIZED = 401;
     private static final int FORBIDDEN = 403;
     private static final int NOT_FOUND = 404;
@@ -24,8 +23,10 @@ public class ExceptionHandle {
     private static final int BAD_GATEWAY = 502;
     private static final int SERVICE_UNAVAILABLE = 503;
     private static final int GATEWAY_TIMEOUT = 504;
-    public static ExceptionHandle.ResponeThrowable handleException(Throwable e) {
+
+    public static ResponeThrowable handleException(Throwable e) {
         ResponeThrowable ex;
+        Log.i("tag", "e.toString = " + e.toString());
         if (e instanceof HttpException) {
             HttpException httpException = (HttpException) e;
             ex = new ResponeThrowable(e, ERROR.HTTP_ERROR);
@@ -39,6 +40,7 @@ public class ExceptionHandle {
                 case BAD_GATEWAY:
                 case SERVICE_UNAVAILABLE:
                 default:
+                    //ex.code = httpException.code();
                     ex.message = "网络错误";
                     break;
             }
@@ -50,9 +52,8 @@ public class ExceptionHandle {
             return ex;
         } else if (e instanceof JsonParseException
                 || e instanceof JSONException
-                || e instanceof ParseException) {
+                /*|| e instanceof ParseException*/) {
             ex = new ResponeThrowable(e, ERROR.PARSE_ERROR);
-            Log.e("error", "handleException:----------- "  );
             ex.message = "解析错误";
             return ex;
         } else if (e instanceof ConnectException) {
@@ -63,19 +64,7 @@ public class ExceptionHandle {
             ex = new ResponeThrowable(e, ERROR.SSL_ERROR);
             ex.message = "证书验证失败";
             return ex;
-        } else if (e instanceof ConnectTimeoutException){
-            ex = new ResponeThrowable(e, ERROR.TIMEOUT_ERROR);
-            ex.message = "连接超时";
-            return ex;
-        } else if (e instanceof java.net.SocketTimeoutException) {
-            ex = new ResponeThrowable(e, ERROR.TIMEOUT_ERROR);
-            ex.message = "连接超时";
-            return ex;
-        } else if (e instanceof JsonSyntaxException){
-            ex = new ResponeThrowable(e,ERROR.Data_ERROR);
-            ex.message = "账号或密码错误";
-            return ex;
-        }else {
+        } else {
             ex = new ResponeThrowable(e, ERROR.UNKNOWN);
             ex.message = "未知错误";
             return ex;
@@ -86,7 +75,7 @@ public class ExceptionHandle {
     /**
      * 约定异常
      */
-    public static class  ERROR {
+    class ERROR {
         /**
          * 未知错误
          */
@@ -108,16 +97,6 @@ public class ExceptionHandle {
          * 证书出错
          */
         public static final int SSL_ERROR = 1005;
-
-        /**
-         * 连接超时
-         */
-        public static final int TIMEOUT_ERROR = 1006;
-
-        /**
-         *账号或密码错误
-         */
-        public static final int Data_ERROR = 1000;
     }
 
     public static class ResponeThrowable extends Exception {
@@ -128,33 +107,13 @@ public class ExceptionHandle {
             super(throwable);
             this.code = code;
         }
-
-
-
-        @Override
-        public String getMessage() {
-            return message;
-        }
-        @Override
-        public String toString() {
-            return "ResponeThrowable{" +
-                    "code=" + code +
-                    ", message='" + message + '\'' +
-                    '}';
-        }
     }
 
+    /**
+     * ServerException发生后，将自动转换为ResponeThrowable返回
+     */
     public class ServerException extends RuntimeException {
-        public int code;
-        public String message;
-
-        @Override
-        public String toString() {
-            return "ServerException{" +
-                    "code=" + code +
-                    ", message='" + message + '\'' +
-                    '}';
-        }
+        int code;
+        String message;
     }
 }
-

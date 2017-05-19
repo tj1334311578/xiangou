@@ -194,7 +194,7 @@
             android:text="运费：包邮"
             android:textSize="12sp"
             android:textColor="#cc161616"
-            android:visibility="visible"
+            android:visibility="gone"
             android:layout_marginStart="38dp"
             android:layout_toEndOf="@+id/simple_goodsdetails_attentionquantity"
             android:layout_height="wrap_content" />
@@ -235,9 +235,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="正品保证"
+            android:text="极速退款"
             android:textSize="11sp"
             android:gravity="center"
+            android:id="@+id/simple_goodsdetails_refund"
             android:drawableStart="@mipmap/product_details_default_service_icon"
             android:layout_alignTop="@id/simple_goodsdetails_deliver"
             android:layout_marginStart="39dp"
@@ -267,6 +268,15 @@
                 android:textColor="#e6161616"
                 android:gravity="center_vertical"
                 android:layout_height="match_parent" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:layout_weight="0.5"
+                android:id="@+id/simple_goodsdetails_colorandsize_Tv"
+                android:textSize="14sp"
+                android:textColor="#cc161616"
+                android:text="颜色：尺码"/>
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -319,11 +329,14 @@
             android:layout_width="match_parent"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
+            android:visibility="visible"
+            android:orientation="horizontal"
             android:id="@+id/simple_goodsdetails_getcoupons_ll"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:layout_height="wrap_content">
             <TextView
+                android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="领券"
@@ -333,6 +346,7 @@
             <android.support.v7.widget.RecyclerView
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
+                android:layout_gravity="center_vertical"
                 android:padding="0dp"
                 android:id="@+id/simple_goodsdetails_getcoupons_recycle"
                 android:layout_width="match_parent"
@@ -340,6 +354,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:src="@mipmap/product_details_next_icon"
                 />
         </LinearLayout>
@@ -355,13 +370,13 @@
             android:layout_below="@id/simple_goodsdetails_getcoupons_ll"
             android:layout_alignStart="@id/simple_goodsdetails_description"
             android:layout_marginTop="24dp"
-            android:layout_marginBottom="10dp"
             android:layout_marginEnd="5dp"
             android:layout_height="35dp" />
         <TextView
             android:layout_width="wrap_content"
             android:text="金科来特嗯"
             android:textSize="14sp"
+            android:gravity="center"
             android:textColor="#e6161616"
             android:id="@+id/simple_goodsdetails_storename"
             android:layout_toEndOf="@id/simple_goodsdetails_storelogo"
@@ -377,6 +392,7 @@
             android:id="@+id/simple_goodsdetails_rank"
             android:progressBackgroundTint="@color/white"
             android:layout_alignStart="@id/simple_goodsdetails_storename"
+            android:layout_alignBottom="@+id/simple_goodsdetails_storelogo"
             android:layout_below="@id/simple_goodsdetails_storename"
             android:layout_height="wrap_content" />
         <TextView
@@ -397,76 +413,93 @@
             android:layout_toEndOf="@id/simple_goodsdetails_distance"
             android:layout_alignBottom="@id/simple_goodsdetails_distance"
             android:src="@mipmap/product_details_map_icon"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:text="8009"
-            android:textSize="15sp"
-            android:id="@+id/simple_goodsdetails_total_attention_num"
+        <LinearLayout
+            android:id="@+id/simple_goodsdetails_attention_ll"
             android:layout_below="@id/simple_goodsdetails_storelogo"
             android:layout_centerHorizontal="true"
-            android:textColor="#e6161616"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="1dp"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="23451"
-            android:textSize="15sp"
-            android:id="@+id/simple_goodsdetails_totalsales_num"
-            android:textColor="#e6161616"
-            android:layout_toStartOf="@id/simple_goodsdetails_total_attention_num"
-            android:layout_marginEnd="68dp"
-            android:layout_alignTop="@id/simple_goodsdetails_total_attention_num"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="关注量"
-            android:layout_below="@id/simple_goodsdetails_total_attention_num"
-            android:textSize="11sp"
-            android:textColor="#b3161616"
-            android:id="@+id/simple_goodsdetails_total_attention_msg"
-            android:layout_marginBottom="15dp"
-            android:layout_centerHorizontal="true"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="总销量"
-            android:textSize="11sp"
-            android:textColor="#b3161616"
-            android:id="@+id/simple_goodsdetails_totalsales_msg"
-            android:layout_alignTop="@id/simple_goodsdetails_total_attention_msg"
-            android:layout_toStartOf="@id/simple_goodsdetails_total_attention_msg"
-            android:layout_alignStart="@+id/simple_goodsdetails_totalsales_num"
-            android:gravity="center"
-            android:layout_alignEnd="@+id/simple_goodsdetails_totalsales_num"
-            />
+            android:layout_height="wrap_content">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="8009"
+                android:textSize="15sp"
+                android:layout_gravity="center"
+                android:id="@+id/simple_goodsdetails_total_attention_num"
+                android:layout_below="@id/simple_goodsdetails_storelogo"
+                android:layout_centerHorizontal="true"
+                android:textColor="#e6161616"
+                android:layout_marginBottom="1dp"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="关注量"
+                android:textSize="11sp"
+                android:textColor="#b3161616"
+                android:id="@+id/simple_goodsdetails_total_attention_msg"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/simple_goodsdetails_attention_ll"
+            android:layout_toStartOf="@id/simple_goodsdetails_attention_ll"
+            android:layout_marginEnd="68dp"
+            android:gravity="center_vertical|right"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="23451"
+                android:layout_gravity="center"
+                android:textSize="15sp"
+                android:id="@+id/simple_goodsdetails_totalsales_num"
+                android:textColor="#e6161616"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="总销量"
+                android:textSize="11sp"
+                android:textColor="#b3161616"
+                android:id="@+id/simple_goodsdetails_totalsales_msg"
+                android:layout_gravity="center"
+                />
+
+        </LinearLayout>
         <View
             android:layout_width="1dp"
             android:layout_height="match_parent"
             android:background="#33161616"
-            android:layout_alignTop="@id/simple_goodsdetails_total_attention_num"
-            android:layout_alignBottom="@id/simple_goodsdetails_total_attention_msg"
-            android:layout_toStartOf="@id/simple_goodsdetails_total_attention_msg"
+            android:layout_alignTop="@id/simple_goodsdetails_attention_ll"
+            android:layout_alignBottom="@id/simple_goodsdetails_attention_ll"
+            android:layout_toStartOf="@id/simple_goodsdetails_attention_ll"
             android:layout_marginEnd="37dp"
             />
         <Button
             android:layout_width="75dp"
             android:text="进店逛逛"
             android:textSize="12sp"
+            android:id="@+id/simple_goodsdetails_gotoStore"
             android:background="@drawable/radius5dp"
-            android:layout_alignTop="@id/simple_goodsdetails_total_attention_num"
+            android:layout_alignTop="@id/simple_goodsdetails_attention_ll"
             android:textColor="@color/white"
             android:layout_marginEnd="8dp"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="8dp"
             android:layout_height="25dp" />
 
         <RelativeLayout
+            android:layout_marginTop="15dp"
             android:layout_marginBottom="15dp"
-            android:layout_below="@+id/simple_goodsdetails_total_attention_msg"
+            android:layout_below="@+id/simple_goodsdetails_attention_ll"
             android:layout_width="match_parent"
             android:background="#f6f7f7"
             android:id="@+id/simple_goodsdetails_comments_rl"
@@ -498,29 +531,31 @@
                 android:layout_height="1dp"/>
         </RelativeLayout>
 
-        <RelativeLayout
+        <LinearLayout
+            android:orientation="horizontal"
             android:layout_below="@+id/simple_goodsdetails_comments_rl"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             android:id="@+id/simple_goodsdetails_comments_head"
             android:layout_width="match_parent"
+            android:gravity="center_vertical"
             android:layout_height="wrap_content">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
                 android:text="买家评价（20）"
                 android:textSize="12sp"
-                android:layout_marginBottom="15dp"
+                android:layout_gravity="center_vertical"
+                android:layout_weight="1"
                 android:textColor="#b3161616"
                 android:id="@+id/simple_goodsdetails_comments_sum"
                 />
             <ImageView
                 android:src="@mipmap/product_details_next_icon"
-                android:layout_alignParentEnd="true"
+                android:layout_gravity="center_vertical"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-        </RelativeLayout>
+        </LinearLayout>
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/simple_goodsdetails_comments_recycle"

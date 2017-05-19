@@ -4,6 +4,7 @@ import com.example.administrator.xiangou.goods_details.simplegoodsdetails.Simple
 import com.example.administrator.xiangou.goods_details.storehome.HomePageBean;
 import com.example.administrator.xiangou.login.Captcha;
 import com.example.administrator.xiangou.login.LoginBean;
+import com.example.administrator.xiangou.mine.setting.personal.PersonalDetialsBean;
 import com.example.administrator.xiangou.nearby.apimodel.CommentDataBean;
 import com.example.administrator.xiangou.nearby.apimodel.GoodsListDataBean;
 import com.example.administrator.xiangou.nearby.apimodel.NearbyBenifitDataBean;
@@ -11,17 +12,12 @@ import com.example.administrator.xiangou.nearby.apimodel.NearbyGoodsDataBean;
 import com.example.administrator.xiangou.nearby.apimodel.NearbyGoodsDetailDataBean;
 import com.example.administrator.xiangou.nearby.apimodel.NearbyStoreApiDataBean;
 
-import java.util.Map;
-
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
-import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
-import retrofit2.http.PartMap;
 import retrofit2.http.Query;
 import rx.Observable;
 
@@ -44,8 +40,8 @@ import rx.Observable;
 //      ┗┻┛　┗┻┛
 
 public interface XianGouApiService {
-    public static final String mBASEURL = "http://192.168.0.106/";
-    public static final String BASEURL = "http://192.168.0.106";
+    public static final String mBASEURL = "http://192.168.0.123/";
+    public static final String BASEURL = "http://192.168.0.123";
 
     //获取验证码--注册
     @POST("index.php/Api/Register/send_code/")
@@ -143,11 +139,24 @@ public interface XianGouApiService {
     Observable<HomePageBean> callHomePagerData(@Query("did") int storeId,//店铺did
                                                @Query("user_id") int userId);//若用户已经登录的状态下传过来
     //商品详情页接口
+    // TODO: 2017/5/16 出现请求未知异常，可获得数据，但不能进入rxjava的next代码，直接跳转到error方法异常为code:1000未知异常（待解决）
     @POST("Api/Good/goods_detail/")
     Observable<SimpleGoodsDetialBean> callSimpleGoodsDetails(@Query("goods_id") int goods_id,
-//                                                             @Query("user_id") int user_id,
-//                                                             @Query("map_x") String map_x,
-//                                                             @Query("map_y") String map_y,
+//                                                @Query("user_id") int user_id,
+//                                                @Query("map_x") String map_x,
+//                                                @Query("map_y") String map_y,
                                                              @Query("type") int type
-                                                             );//根据货物id获取该物品信息
+                                                           );//根据货物id获取该物品信息
+    @Multipart
+    @POST("/Api/User/personals/")
+    Observable<PersonalDetialsBean> uploadUserDetials(@Query("user_id") int user_id,
+                                                      @Query("sex") int sex,
+                                                      @Part("head_img") RequestBody file,
+                                                      @Query("nickname") String nickname
+                                                    );
+    @POST("/Api/User/personals/")
+    Observable<PersonalDetialsBean> uploadUserNickname(@Query("user_id") int user_id,
+                                                       @Query("sex") int sex,
+                                                       @Query("nickname") String nickname
+    );
 }

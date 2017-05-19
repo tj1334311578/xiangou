@@ -4,14 +4,17 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-/**
- * Created by Administrator on 2017/5/13.
- */
-
 public class SimpleGoodsDetialBean {
+    @Override
+    public String toString() {
+        return "SimpleGoodsDetialBean{" +
+                "data=" + data +
+                ", state=" + state +
+                '}';
+    }
 
     /**
-     * data : {"goods_id":126,"original_img":"/public/upload/goods/2016/04-21/57187bd5c0178.jpg","goods_name":"Canon/佳能 EOS 700D套机（18-55mm)数码单反相机 苏宁易购","market_price":"3599.00","shop_price":"3499.00","store_count":2,"sales_sum":0,"name":"柠檬店升级店","prom_type":0,"prom_id":0,"logo":"","store_id":435,"distance":15,"goods_img":[{"img_id":488,"goods_id":126,"image_url":"/public/upload/goods/2016/04-21/57187bc13f7f6.jpg"},{"img_id":489,"goods_id":126,"image_url":"/public/upload/goods/2016/04-21/57187bd601eaf.jpg"},{"img_id":490,"goods_id":126,"image_url":"/public/upload/goods/2016/04-21/57187bd5dd859.jpg"},{"img_id":491,"goods_id":126,"image_url":"/public/upload/goods/2016/04-21/57187bd5c0178.jpg"},{"img_id":492,"goods_id":126,"image_url":"/public/upload/goods/2016/04-21/57187bd5a2705.jpg"}],"favorite":1,"filter_spec":[{"spec_id":20,"name":"颜色","item_id":139,"item":"白色"},{"spec_id":27,"name":"尺寸","item_id":145,"item":"26寸"}],"goods_attr":[{"attr_name":"品牌","attr_value":"佳能"},{"attr_name":"单反级别","attr_value":"入门级"},{"attr_name":"屏幕尺寸","attr_value":"3英寸"},{"attr_name":"储存介质","attr_value":"sd卡"},{"attr_name":"像素","attr_value":"1800万"}],"spec_goods_count":{"139_145":55},"is_favorite":0,"cart_num":0,"coupon":[],"score":0,"store_total_sale":"0","store_follow":0,"fare":0,"comment_counts":2,"comment":[{"comment_id":298,"content":"买来送给我老公的, 嘻嘻....","username":"貌美*****","img":["/public/upload/goods/2016/04-21/57187bc13f7f6.jpg","/public/upload/goods/2016/04-21/57187bd601eaf.jpg","/public/upload/goods/2016/04-21/57187bd5dd859.jpg"],"add_time":"2016-04-21","order_id":1,"head_pic":"/public/upload/head_pic/2017/05-09/3BkJzg59Mhz4zRTTj6MTZAV9m.png","spec":""},{"comment_id":264,"content":"买回去男朋友很喜欢 ..","username":"美女*****","img":[],"add_time":"2016-04-21","order_id":1,"head_pic":"/public/upload/head_pic/2017/05-09/3BkJzg59Mhz4zRTTj6MTZAV9m.png","spec":""}]}
+     * data : {"goods_id":126,"original_img":"/public/upload/goods/2016/04-21/57187bd5c0178.jpg","goods_name":"Canon/佳能 EOS 700D套机（18-55mm)数码单反相机 苏宁易购","market_price":"3599.00","shop_price":"3499.00","store_count":2,"sales_sum":0,"name":"柠檬店升级店","prom_type":0,"prom_id":0,"logo":"","store_id":435,"distance":15,"goods_img":[{"img_id":488,"goods_id":126,"image_url":"/public/upload/goods/2016/04-21/57187bc13f7f6.jpg"},{"img_id":489,"goods_id":126,"image_url":"/public/upload/goods/2016/04-21/57187bd601eaf.jpg"},{"img_id":490,"goods_id":126,"image_url":"/public/upload/goods/2016/04-21/57187bd5dd859.jpg"},{"img_id":491,"goods_id":126,"image_url":"/public/upload/goods/2016/04-21/57187bd5c0178.jpg"},{"img_id":492,"goods_id":126,"image_url":"/public/upload/goods/2016/04-21/57187bd5a2705.jpg"}],"favorite":1,"filter_spec":{"颜色":[{"item_id":139,"item":"白色"}],"尺寸":[{"item_id":145,"item":"26寸"}]},"goods_attr":[{"attr_name":"品牌","attr_value":"佳能"},{"attr_name":"单反级别","attr_value":"入门级"},{"attr_name":"屏幕尺寸","attr_value":"3英寸"},{"attr_name":"储存介质","attr_value":"sd卡"},{"attr_name":"像素","attr_value":"1800万"}],"spec_goods_count":{"139_145":55},"is_favorite":0,"cart_num":0,"coupon":[{"coupon_id":27,"money":"10.00","condition":"99.00","use_start_time":"2017.04.27","use_end_time":"2017.05.20","store_id":435,"is_get":0}],"score":0,"store_total_sale":"0","store_follow":0,"fare":0,"comment_counts":3,"comment":[{"comment_id":298,"content":"买来送给我老公的, 嘻嘻....","username":"貌美*****","img":["/public/upload/goods/2016/04-21/57187bc13f7f6.jpg","/public/upload/goods/2016/04-21/57187bd601eaf.jpg","/public/upload/goods/2016/04-21/57187bd5dd859.jpg"],"add_time":"2016-04-21","order_id":1,"head_pic":"/public/upload/head_pic/2017/05-15/UqSUKfvARCakYFYC8wwkTaTpa.png","spec":""},{"comment_id":264,"content":"买回去男朋友很喜欢 ..","username":"美女*****","img":[],"add_time":"2016-04-21","order_id":1,"head_pic":"/public/upload/head_pic/2017/05-15/UqSUKfvARCakYFYC8wwkTaTpa.png","spec":""}]}
      * state : {"code":200,"msg":"获取成功","debugMsg":"","url":"api/Good/goods_detail"}
      */
 
@@ -36,6 +39,39 @@ public class SimpleGoodsDetialBean {
 
     public static class DataBean {
 
+        @Override
+        public String toString() {
+            return "DataBean{" +
+                    "goods_id=" + goods_id +
+                    ", original_img='" + original_img + '\'' +
+                    ", goods_name='" + goods_name + '\'' +
+                    ", market_price='" + market_price + '\'' +
+                    ", shop_price='" + shop_price + '\'' +
+                    ", store_count=" + store_count +
+                    ", sales_sum=" + sales_sum +
+                    ", name='" + name + '\'' +
+                    ", prom_type=" + prom_type +
+                    ", prom_id=" + prom_id +
+                    ", logo='" + logo + '\'' +
+                    ", store_id=" + store_id +
+                    ", distance=" + distance +
+                    ", favorite=" + favorite +
+                    ", filter_spec=" + filter_spec +
+                    ", spec_goods_count=" + spec_goods_count +
+                    ", is_favorite=" + is_favorite +
+                    ", cart_num=" + cart_num +
+                    ", score=" + score +
+                    ", store_total_sale='" + store_total_sale + '\'' +
+                    ", store_follow=" + store_follow +
+                    ", fare=" + fare +
+                    ", comment_counts=" + comment_counts +
+                    ", goods_img=" + goods_img +
+                    ", goods_attr=" + goods_attr +
+                    ", coupon=" + coupon +
+                    ", comment=" + comment +
+                    '}';
+        }
+
         /**
          * goods_id : 126
          * original_img : /public/upload/goods/2016/04-21/57187bd5c0178.jpg
@@ -52,18 +88,18 @@ public class SimpleGoodsDetialBean {
          * distance : 15
          * goods_img : [{"img_id":488,"goods_id":126,"image_url":"/public/upload/goods/2016/04-21/57187bc13f7f6.jpg"},{"img_id":489,"goods_id":126,"image_url":"/public/upload/goods/2016/04-21/57187bd601eaf.jpg"},{"img_id":490,"goods_id":126,"image_url":"/public/upload/goods/2016/04-21/57187bd5dd859.jpg"},{"img_id":491,"goods_id":126,"image_url":"/public/upload/goods/2016/04-21/57187bd5c0178.jpg"},{"img_id":492,"goods_id":126,"image_url":"/public/upload/goods/2016/04-21/57187bd5a2705.jpg"}]
          * favorite : 1
-         * filter_spec : [{"spec_id":20,"name":"颜色","item_id":139,"item":"白色"},{"spec_id":27,"name":"尺寸","item_id":145,"item":"26寸"}]
+         * filter_spec : {"颜色":[{"item_id":139,"item":"白色"}],"尺寸":[{"item_id":145,"item":"26寸"}]}
          * goods_attr : [{"attr_name":"品牌","attr_value":"佳能"},{"attr_name":"单反级别","attr_value":"入门级"},{"attr_name":"屏幕尺寸","attr_value":"3英寸"},{"attr_name":"储存介质","attr_value":"sd卡"},{"attr_name":"像素","attr_value":"1800万"}]
          * spec_goods_count : {"139_145":55}
          * is_favorite : 0
          * cart_num : 0
-         * coupon : []
+         * coupon : [{"coupon_id":27,"money":"10.00","condition":"99.00","use_start_time":"2017.04.27","use_end_time":"2017.05.20","store_id":435,"is_get":0}]
          * score : 0
          * store_total_sale : 0
          * store_follow : 0
          * fare : 0
-         * comment_counts : 2
-         * comment : [{"comment_id":298,"content":"买来送给我老公的, 嘻嘻....","username":"貌美*****","img":["/public/upload/goods/2016/04-21/57187bc13f7f6.jpg","/public/upload/goods/2016/04-21/57187bd601eaf.jpg","/public/upload/goods/2016/04-21/57187bd5dd859.jpg"],"add_time":"2016-04-21","order_id":1,"head_pic":"/public/upload/head_pic/2017/05-09/3BkJzg59Mhz4zRTTj6MTZAV9m.png","spec":""},{"comment_id":264,"content":"买回去男朋友很喜欢 ..","username":"美女*****","img":[],"add_time":"2016-04-21","order_id":1,"head_pic":"/public/upload/head_pic/2017/05-09/3BkJzg59Mhz4zRTTj6MTZAV9m.png","spec":""}]
+         * comment_counts : 3
+         * comment : [{"comment_id":298,"content":"买来送给我老公的, 嘻嘻....","username":"貌美*****","img":["/public/upload/goods/2016/04-21/57187bc13f7f6.jpg","/public/upload/goods/2016/04-21/57187bd601eaf.jpg","/public/upload/goods/2016/04-21/57187bd5dd859.jpg"],"add_time":"2016-04-21","order_id":1,"head_pic":"/public/upload/head_pic/2017/05-15/UqSUKfvARCakYFYC8wwkTaTpa.png","spec":""},{"comment_id":264,"content":"买回去男朋友很喜欢 ..","username":"美女*****","img":[],"add_time":"2016-04-21","order_id":1,"head_pic":"/public/upload/head_pic/2017/05-15/UqSUKfvARCakYFYC8wwkTaTpa.png","spec":""}]
          */
 
         private int goods_id;
@@ -80,6 +116,7 @@ public class SimpleGoodsDetialBean {
         private int store_id;
         private int distance;
         private int favorite;
+        private FilterSpecBean filter_spec;
         private SpecGoodsCountBean spec_goods_count;
         private int is_favorite;
         private int cart_num;
@@ -89,9 +126,8 @@ public class SimpleGoodsDetialBean {
         private int fare;
         private int comment_counts;
         private List<GoodsImgBean> goods_img;
-        private List<FilterSpecBean> filter_spec;
         private List<GoodsAttrBean> goods_attr;
-        private List<?> coupon;
+        private List<CouponBean> coupon;
         private List<CommentBean> comment;
 
         public int getGoods_id() {
@@ -206,6 +242,14 @@ public class SimpleGoodsDetialBean {
             this.favorite = favorite;
         }
 
+        public FilterSpecBean getFilter_spec() {
+            return filter_spec;
+        }
+
+        public void setFilter_spec(FilterSpecBean filter_spec) {
+            this.filter_spec = filter_spec;
+        }
+
         public SpecGoodsCountBean getSpec_goods_count() {
             return spec_goods_count;
         }
@@ -278,14 +322,6 @@ public class SimpleGoodsDetialBean {
             this.goods_img = goods_img;
         }
 
-        public List<FilterSpecBean> getFilter_spec() {
-            return filter_spec;
-        }
-
-        public void setFilter_spec(List<FilterSpecBean> filter_spec) {
-            this.filter_spec = filter_spec;
-        }
-
         public List<GoodsAttrBean> getGoods_attr() {
             return goods_attr;
         }
@@ -294,11 +330,11 @@ public class SimpleGoodsDetialBean {
             this.goods_attr = goods_attr;
         }
 
-        public List<?> getCoupon() {
+        public List<CouponBean> getCoupon() {
             return coupon;
         }
 
-        public void setCoupon(List<?> coupon) {
+        public void setCoupon(List<CouponBean> coupon) {
             this.coupon = coupon;
         }
 
@@ -310,7 +346,117 @@ public class SimpleGoodsDetialBean {
             this.comment = comment;
         }
 
+        public static class FilterSpecBean {
+
+
+            @Override
+            public String toString() {
+                return "FilterSpecBean{" +
+                        "颜色=" + 颜色 +
+                        ", 尺寸=" + 尺寸 +
+                        '}';
+            }
+
+            private List<颜色Bean> 颜色;
+            private List<尺寸Bean> 尺寸;
+
+            public List<颜色Bean> get颜色() {
+                return 颜色;
+            }
+
+            public void set颜色(List<颜色Bean> 颜色) {
+                this.颜色 = 颜色;
+            }
+
+            public List<尺寸Bean> get尺寸() {
+                return 尺寸;
+            }
+
+            public void set尺寸(List<尺寸Bean> 尺寸) {
+                this.尺寸 = 尺寸;
+            }
+
+            public static class 颜色Bean {
+                @Override
+                public String toString() {
+                    return "颜色Bean{" +
+                            "item_id=" + item_id +
+                            ", item='" + item + '\'' +
+                            '}';
+                }
+
+                /**
+                 * item_id : 139
+                 * item : 白色
+                 */
+
+                private int item_id;
+                private String item;
+
+                public int getItem_id() {
+                    return item_id;
+                }
+
+                public void setItem_id(int item_id) {
+                    this.item_id = item_id;
+                }
+
+                public String getItem() {
+                    return item;
+                }
+
+                public void setItem(String item) {
+                    this.item = item;
+                }
+            }
+
+            public static class 尺寸Bean {
+
+
+                @Override
+                public String toString() {
+                    return "尺寸Bean{" +
+                            "item_id=" + item_id +
+                            ", item='" + item + '\'' +
+                            '}';
+                }
+
+                /**
+                 * item_id : 145
+                 * item : 26寸
+                 */
+
+                private int item_id;
+                private String item;
+
+                public int getItem_id() {
+                    return item_id;
+                }
+
+                public void setItem_id(int item_id) {
+                    this.item_id = item_id;
+                }
+
+                public String getItem() {
+                    return item;
+                }
+
+                public void setItem(String item) {
+                    this.item = item;
+                }
+            }
+        }
+
         public static class SpecGoodsCountBean {
+
+
+            @Override
+            public String toString() {
+                return "SpecGoodsCountBean{" +
+                        "_$139_145=" + _$139_145 +
+                        '}';
+            }
+
             /**
              * 139_145 : 55
              */
@@ -325,15 +471,18 @@ public class SimpleGoodsDetialBean {
             public void set_$139_145(int _$139_145) {
                 this._$139_145 = _$139_145;
             }
-            @Override
-            public String toString() {
-                return "SpecGoodsCountBean{" +
-                        "_$139_145=" + _$139_145 +
-                        '}';
-            }
         }
 
         public static class GoodsImgBean {
+
+            @Override
+            public String toString() {
+                return "GoodsImgBean{" +
+                        "img_id=" + img_id +
+                        ", goods_id=" + goods_id +
+                        ", image_url='" + image_url + '\'' +
+                        '}';
+            }
 
             /**
              * img_id : 488
@@ -368,74 +517,16 @@ public class SimpleGoodsDetialBean {
             public void setImage_url(String image_url) {
                 this.image_url = image_url;
             }
-            @Override
-            public String toString() {
-                return "GoodsImgBean{" +
-                        "img_id=" + img_id +
-                        ", goods_id=" + goods_id +
-                        ", image_url='" + image_url + '\'' +
-                        '}';
-            }
-        }
-
-        public static class FilterSpecBean {
-            @Override
-            public String toString() {
-                return "FilterSpecBean{" +
-                        "spec_id=" + spec_id +
-                        ", name='" + name + '\'' +
-                        ", item_id=" + item_id +
-                        ", item='" + item + '\'' +
-                        '}';
-            }
-
-            /**
-             * spec_id : 20
-             * name : 颜色
-             * item_id : 139
-             * item : 白色
-             */
-
-            private int spec_id;
-            private String name;
-            private int item_id;
-            private String item;
-
-            public int getSpec_id() {
-                return spec_id;
-            }
-
-            public void setSpec_id(int spec_id) {
-                this.spec_id = spec_id;
-            }
-
-            public String getName() {
-                return name;
-            }
-
-            public void setName(String name) {
-                this.name = name;
-            }
-
-            public int getItem_id() {
-                return item_id;
-            }
-
-            public void setItem_id(int item_id) {
-                this.item_id = item_id;
-            }
-
-            public String getItem() {
-                return item;
-            }
-
-            public void setItem(String item) {
-                this.item = item;
-            }
         }
 
         public static class GoodsAttrBean {
-
+            @Override
+            public String toString() {
+                return "GoodsAttrBean{" +
+                        "attr_name='" + attr_name + '\'' +
+                        ", attr_value='" + attr_value + '\'' +
+                        '}';
+            }
 
             /**
              * attr_name : 品牌
@@ -460,16 +551,111 @@ public class SimpleGoodsDetialBean {
             public void setAttr_value(String attr_value) {
                 this.attr_value = attr_value;
             }
+        }
+
+        public static class CouponBean {
             @Override
             public String toString() {
-                return "GoodsAttrBean{" +
-                        "attr_name='" + attr_name + '\'' +
-                        ", attr_value='" + attr_value + '\'' +
+                return "CouponBean{" +
+                        "coupon_id=" + coupon_id +
+                        ", money='" + money + '\'' +
+                        ", condition='" + condition + '\'' +
+                        ", use_start_time='" + use_start_time + '\'' +
+                        ", use_end_time='" + use_end_time + '\'' +
+                        ", store_id=" + store_id +
+                        ", is_get=" + is_get +
                         '}';
+            }
+
+            /**
+             * coupon_id : 27
+             * money : 10.00
+             * condition : 99.00
+             * use_start_time : 2017.04.27
+             * use_end_time : 2017.05.20
+             * store_id : 435
+             * is_get : 0
+             */
+
+            private int coupon_id;
+            private String money;
+            private String condition;
+            private String use_start_time;
+            private String use_end_time;
+            private int store_id;
+            private int is_get;
+
+            public int getCoupon_id() {
+                return coupon_id;
+            }
+
+            public void setCoupon_id(int coupon_id) {
+                this.coupon_id = coupon_id;
+            }
+
+            public String getMoney() {
+                return money;
+            }
+
+            public void setMoney(String money) {
+                this.money = money;
+            }
+
+            public String getCondition() {
+                return condition;
+            }
+
+            public void setCondition(String condition) {
+                this.condition = condition;
+            }
+
+            public String getUse_start_time() {
+                return use_start_time;
+            }
+
+            public void setUse_start_time(String use_start_time) {
+                this.use_start_time = use_start_time;
+            }
+
+            public String getUse_end_time() {
+                return use_end_time;
+            }
+
+            public void setUse_end_time(String use_end_time) {
+                this.use_end_time = use_end_time;
+            }
+
+            public int getStore_id() {
+                return store_id;
+            }
+
+            public void setStore_id(int store_id) {
+                this.store_id = store_id;
+            }
+
+            public int getIs_get() {
+                return is_get;
+            }
+
+            public void setIs_get(int is_get) {
+                this.is_get = is_get;
             }
         }
 
         public static class CommentBean {
+            @Override
+            public String toString() {
+                return "CommentBean{" +
+                        "comment_id=" + comment_id +
+                        ", content='" + content + '\'' +
+                        ", username='" + username + '\'' +
+                        ", add_time='" + add_time + '\'' +
+                        ", order_id=" + order_id +
+                        ", head_pic='" + head_pic + '\'' +
+                        ", spec='" + spec + '\'' +
+                        ", img=" + img +
+                        '}';
+            }
 
             /**
              * comment_id : 298
@@ -478,7 +664,7 @@ public class SimpleGoodsDetialBean {
              * img : ["/public/upload/goods/2016/04-21/57187bc13f7f6.jpg","/public/upload/goods/2016/04-21/57187bd601eaf.jpg","/public/upload/goods/2016/04-21/57187bd5dd859.jpg"]
              * add_time : 2016-04-21
              * order_id : 1
-             * head_pic : /public/upload/head_pic/2017/05-09/3BkJzg59Mhz4zRTTj6MTZAV9m.png
+             * head_pic : /public/upload/head_pic/2017/05-15/UqSUKfvARCakYFYC8wwkTaTpa.png
              * spec :
              */
 
@@ -554,57 +740,10 @@ public class SimpleGoodsDetialBean {
             public void setImg(List<String> img) {
                 this.img = img;
             }
-            @Override
-            public String toString() {
-                return "CommentBean{" +
-                        "comment_id=" + comment_id +
-                        ", content='" + content + '\'' +
-                        ", username='" + username + '\'' +
-                        ", add_time='" + add_time + '\'' +
-                        ", order_id=" + order_id +
-                        ", head_pic='" + head_pic + '\'' +
-                        ", spec='" + spec + '\'' +
-                        ", img=" + img +
-                        '}';
-            }
         }
-        @Override
-        public String toString() {
-            return "DataBean{" +
-                    "goods_id=" + goods_id +
-                    ", original_img='" + original_img + '\'' +
-                    ", goods_name='" + goods_name + '\'' +
-                    ", market_price='" + market_price + '\'' +
-                    ", shop_price='" + shop_price + '\'' +
-                    ", store_count=" + store_count +
-                    ", sales_sum=" + sales_sum +
-                    ", name='" + name + '\'' +
-                    ", prom_type=" + prom_type +
-                    ", prom_id=" + prom_id +
-                    ", logo='" + logo + '\'' +
-                    ", store_id=" + store_id +
-                    ", distance=" + distance +
-                    ", favorite=" + favorite +
-                    ", spec_goods_count=" + spec_goods_count +
-                    ", is_favorite=" + is_favorite +
-                    ", cart_num=" + cart_num +
-                    ", score=" + score +
-                    ", store_total_sale='" + store_total_sale + '\'' +
-                    ", store_follow=" + store_follow +
-                    ", fare=" + fare +
-                    ", comment_counts=" + comment_counts +
-                    ", goods_img=" + goods_img +
-                    ", filter_spec=" + filter_spec +
-                    ", goods_attr=" + goods_attr +
-                    ", coupon=" + coupon +
-                    ", comment=" + comment +
-                    '}';
-        }
-
     }
 
     public static class StateBean {
-
         /**
          * code : 200
          * msg : 获取成功
@@ -648,22 +787,6 @@ public class SimpleGoodsDetialBean {
         public void setUrl(String url) {
             this.url = url;
         }
+    }
 
-        @Override
-        public String toString() {
-            return "StateBean{" +
-                    "code=" + code +
-                    ", msg='" + msg + '\'' +
-                    ", debugMsg='" + debugMsg + '\'' +
-                    ", url='" + url + '\'' +
-                    '}';
-        }
-    }
-    @Override
-    public String toString() {
-        return "SimpleGoodsDetialBean{" +
-                "data=" + data +
-                ", state=" + state +
-                '}';
-    }
 }

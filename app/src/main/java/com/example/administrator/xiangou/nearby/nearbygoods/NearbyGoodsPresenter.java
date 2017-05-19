@@ -1,6 +1,8 @@
 package com.example.administrator.xiangou.nearby.nearbygoods;
 
 
+import android.util.Log;
+
 import com.example.administrator.xiangou.mvp.BasePresenterImpl;
 import com.example.administrator.xiangou.nearby.apimodel.NearbyGoodsDataBean;
 import com.example.administrator.xiangou.net.BaseSubscriber;
@@ -16,7 +18,7 @@ public class NearbyGoodsPresenter extends BasePresenterImpl<NearbyGoodsContract.
             @Override
             public void onNext(NearbyGoodsDataBean nearbyGoodsDataBean) {
                 if (nearbyGoodsDataBean.getState().getCode()==200){
-//                    Log.e("nearbygoods", "onNext: " + nearbyGoodsDataBean.toString());
+                    Log.e("nearbygoods", "onNext: " + nearbyGoodsDataBean.toString());
                     mView.sendDataBeanToView(nearbyGoodsDataBean.getData());
                 }
             }

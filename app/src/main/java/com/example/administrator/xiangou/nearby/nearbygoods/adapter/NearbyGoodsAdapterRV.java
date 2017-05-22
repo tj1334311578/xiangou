@@ -91,7 +91,8 @@ public class NearbyGoodsAdapterRV extends RVBaseAdapter<NearbyGoodsDataBean.Data
 
     private void bindBannerData(RVBaseViewHolder holder) {
         Banner mBanner = holder.getBanner(R.id.advs_nearbygoods_banner);
-        mOnItemViewHolderListener.bindItemViewHolder(mBanner,holder,0);
+//        mOnItemViewHolderListener.bindItemViewHolder(mBanner,holder,0);
+        mOnItemViewClickListener.setOnItemViewClick(mBanner,0);
     }
 
     private void bindNormalData(RVBaseViewHolder holder, final int position) {

@@ -1,7 +1,6 @@
 package com.example.administrator.xiangou.mine.setting.manageraddress;
 
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,17 +10,15 @@ import android.support.v7.widget.SimpleItemAnimator;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.xiangou.R;
-import com.example.administrator.xiangou.base.AutoRVAdapter;
 import com.example.administrator.xiangou.mine.setting.manageraddress.editaddress.EditAddressActivity;
+import com.example.administrator.xiangou.mine.setting.manageraddress.model.UserAddressBean;
 import com.example.administrator.xiangou.mvp.MVPBaseActivity;
-import com.example.administrator.xiangou.tool.DrawableTextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -37,7 +34,6 @@ public class ManagerAddressActivity extends MVPBaseActivity<ManagerAddressContra
     private Button newaddressBtn;
     private ImageView backBtn;
     private TextView TitleTv,SaveTv;
-    private DrawableTextView editText,delText;
     private int editposition;
     private AddressAdapter adapter;
 
@@ -69,6 +65,7 @@ public class ManagerAddressActivity extends MVPBaseActivity<ManagerAddressContra
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.manageraddress);
+        mPresenter.getUserAddressList(bUser.getUser_id());
         initView();
     }
 
@@ -84,13 +81,8 @@ public class ManagerAddressActivity extends MVPBaseActivity<ManagerAddressContra
         TitleTv.setText("管理收货地址");
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
         ((SimpleItemAnimator)mRecyclerView.getItemAnimator()).setSupportsChangeAnimations(false);//关闭动画。
-        list=new ArrayList<>();
-        list.add(new AddressBean("张某某","1814652568","四川省成都市成华区驷马桥杨子姗圣地亚1懂2单元"));
-        list.add(new AddressBean("张某某","1814652568","四川省成都市成华区驷马桥杨子姗圣地亚1懂2单元"));
-        list.add(new AddressBean("张某某","1814652568","四川省成都市成华区驷马桥杨子姗圣地亚1懂2单元"));
 
-        adapter = new AddressAdapter(this, list);
-        mRecyclerView.setAdapter(adapter);
+
     }
 
     @Override
@@ -107,76 +99,32 @@ public class ManagerAddressActivity extends MVPBaseActivity<ManagerAddressContra
             startNewUIForResult(EditAddressActivity.class,REQUEST,"addresstype","add");
         }
     }
-    public class AddressAdapter extends AutoRVAdapter{
-        public List<AddressBean> getList() {
-            return list;
-        }
 
-        public void setList(List<AddressBean> list) {
-            this.list = list;
-        }
+    @Override
+    public void dealDataToView(final List<UserAddressBean.DataBean> data) {
+        adapter = new AddressAdapter(this, data);
+        adapter.setAddressManagerListener(new AddressAdapter.AddressManagerListener() {
+            @Override
+            public void dealCheckBox(CompoundButton buttonView, boolean isChecked, int position) {
+                mPresenter.setDefaultAddress(bUser.getUser_id(),data.get(position).getAddress_id());
+            }
 
-        private List<AddressBean> list;
-        public AddressAdapter(Context context, List<AddressBean> list) {
-            super(context, list);
-            this.list= list;
-        }
-        @Override
-        protected int onCreateViewHolderID(int viewType) {
-            return R.layout.manageraddress_item;
-        }
-        @Override
-        public void onBindViewHolder(final ViewHolder holder, final int position) {
-            Log.e("enterbnd", "onBindViewHolder: " +position);
-            CheckBox checkBox;
-            holder.setTextView(R.id.manageraddress_username,list.get(position).getName());
-            holder.setTextView(R.id.manageraddress_usernumber,list.get(position).getNumber());
-            holder.setTextView(R.id.manageraddress_useraddress,list.get(position).getAddress());
-            checkBox=holder.getCheckBox(R.id.manageraddress_defaultaddress);
-            checkBox.setTag(position);
-            checkBox.setChecked(list.get(position).isDefaultAddress());
+            @Override
+            public void dealEditTextTv(View v, int position) {
+                startNewUIForResult(EditAddressActivity.class,REQUEST1,"name",data.get(position));
+                editposition = position;
+            }
 
-            editText=holder.getDrawableTextView(R.id.manageraddress_editTv);
-            delText=holder.getDrawableTextView(R.id.manageraddress_delTv);
-            //编辑监听跳转到编辑页面
-            editText.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                   startNewUIForResult(EditAddressActivity.class,REQUEST1,"name",list.get(position));
-                    editposition = position;
-                }
-            });
-            //删除监听，删除当前item 的数据
-            delText.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    list.remove(position);
-                    notifyDataSetChanged();
-                }
-            });
+            @Override
+            public void dealDelTextTv(View v, int position) {
 
-            checkBox.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-//                        for (int i = 0; i <list.size() ; i++) {
-//                            list.get(i).setDefaultAddress(false);
-//                            if (i != position && holder.getCheckBox(R.id.manageraddress_defaultaddress).getTag(i)!=null){
-//                                CheckBox cb = (CheckBox) holder.getCheckBox(R.id.manageraddress_defaultaddress).getTag(i);
-//                                cb.setClickable(true);
-//                            }
-//                        }
-//                        list.get(position).setDefaultAddress(true);
-//                        ((CheckBox)v).setClickable(false);
-//                        notifyItemRangeChanged(0,list.si ze());
-                    if (!list.get(position).isDefaultAddress()) {
-                        for (int i = 0; i < list.size(); i++) {
-                            list.get(i).setDefaultAddress(false);
-                        }
-                        list.get(position).setDefaultAddress(true);
-                    }
-                    notifyItemRangeChanged(0,list.size());
-                }
-            });
-        }
+            }
+        });
+        mRecyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void setDefaultAddressSuccess(String str) {
+        showToast(str);
     }
 }

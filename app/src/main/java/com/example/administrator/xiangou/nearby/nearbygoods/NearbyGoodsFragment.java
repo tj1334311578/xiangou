@@ -14,8 +14,6 @@ import android.widget.TextView;
 
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.base.RVBaseAdapter;
-import com.example.administrator.xiangou.base.RVBaseViewHolder;
-import com.example.administrator.xiangou.cart.CartFragment;
 import com.example.administrator.xiangou.mvp.MVPBaseFragment;
 import com.example.administrator.xiangou.nearby.apimodel.NearbyGoodsDataBean;
 import com.example.administrator.xiangou.nearby.nearbygoods.adapter.NearbyGoodsAdapterRV;
@@ -111,9 +109,9 @@ public class NearbyGoodsFragment extends MVPBaseFragment<NearbyGoodsContract.Vie
         mDataBeanList = data.getCatelist();
 //        initBanner(imgUrls,null);
         mAdapter = new NearbyGoodsAdapterRV(getContext(), mDataBeanList);
-        mAdapter.setOnItemViewHolderListener(new RVBaseAdapter.OnItemViewHolderListener() {
+        mAdapter.setOnItemViewClickListener(new RVBaseAdapter.OnItemViewClickListener() {
             @Override
-            public void bindItemViewHolder(View view, RVBaseViewHolder holder, int pos) {
+            public void setOnItemViewClick(View view, int pos) {
                 mBanner = (Banner) view;
                 initBanner(imgUrls,null);
                 mBanner.setOnBannerListener(new OnBannerListener() {
@@ -122,9 +120,22 @@ public class NearbyGoodsFragment extends MVPBaseFragment<NearbyGoodsContract.Vie
                         showToast("点击了第 "+position+" 个");
                     }
                 });
-
             }
         });
+//        mAdapter.setOnItemViewHolderListener(new RVBaseAdapter.OnItemViewHolderListener() {
+//            @Override
+//            public void bindItemViewHolder(View view, RVBaseViewHolder holder, int pos) {
+//                mBanner = (Banner) view;
+//                initBanner(imgUrls,null);
+//                mBanner.setOnBannerListener(new OnBannerListener() {
+//                    @Override
+//                    public void OnBannerClick(int position) {
+//                        showToast("点击了第 "+position+" 个");
+//                    }
+//                });
+//
+//            }
+//        });
         mAdapter.setOnNearbyGoodsItemClickListener(new NearbyGoodsAdapterRV.NearbyGoodsItemCall() {
             @Override
             public void setOnNearbyGoodsItemCall(View view, int parentposition, int childposition) {

@@ -2,7 +2,6 @@ package com.example.administrator.xiangou.mine.setting.personal;
 
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -18,17 +17,16 @@ import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.mvp.MVPBaseActivity;
 import com.example.administrator.xiangou.net.BaseSubscriber;
 import com.example.administrator.xiangou.net.ExceptionHandle;
-import com.example.administrator.xiangou.net.RetrofitClient;
-import com.example.administrator.xiangou.net.XianGouApiService;
 import com.example.administrator.xiangou.tool.CustomImageView;
 import com.example.administrator.xiangou.tool.ImageUtils;
-
-import org.w3c.dom.Text;
 
 import java.io.File;
 
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+
+import static okhttp3.MultipartBody.Part.createFormData;
 
 
 /**
@@ -41,14 +39,12 @@ public class PersonalActivity extends MVPBaseActivity<PersonalContract.View, Per
     private CustomImageView person_img;
     private ImageView back;
     private TextView nickname_Tv,sex_Tv;
-    private XianGouApiService mApiService;
 
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.setting_personal);
-        mApiService = RetrofitClient.getInstance(this).create(XianGouApiService.class);
         initView();
     }
 
@@ -122,21 +118,23 @@ public class PersonalActivity extends MVPBaseActivity<PersonalContract.View, Per
             if (data.getData() != null) {//有数据返回直接使用返回的图片地址
                 imagePath = ImageUtils.getFilePathByFileUri(this, data.getData());
 //                imgpathMap.put(requestCode,imagePath);
-                RequestBody requestbody=RequestBody.create(MediaType.parse("multipart/form-data"),new File(imagePath));
-                uploadUserLogo(requestbody);
+                File img = new File(imagePath);
+                RequestBody requestbody=RequestBody.create(MediaType.parse("multipart/form-data"),img);
+                MultipartBody.Part file = createFormData("head_img",img.getName(),requestbody);
+                uploadUserLogo(file);
             }
 //            update(requestCode,imgpathMap);// 刷新图片
                     update(imagePath);
     }
 
-    private void uploadUserLogo(RequestBody requestbody) {
-        Log.e("uploadUserLogo", "uploadUserLogo: "+requestbody.toString() );
-        addSubscription(mApiService.uploadUserDetials(bUser.getUser_id(),0,requestbody,null),
+    private void uploadUserLogo(MultipartBody.Part requestbody) {
+//        Log.e("uploadUserLogo", "uploadUserLogo: "+requestbody.toString() );
+        addSubscription(mApiService.uploadUserDetials(bUser.getUser_id(),0,"",requestbody),
                 new BaseSubscriber<PersonalDetialsBean>(this) {
                     @Override
                     public void onNext(PersonalDetialsBean personalDetialsBean) {
                         Log.e("onNext", "onNext: "+personalDetialsBean.getState().getCode()+"\ndata:"+personalDetialsBean.getData().toString());
-                        if (personalDetialsBean.getState().getCode()==200){
+                        if ( personalDetialsBean.getState().getCode()==200 ){
                             showToast("头像修改成功！");
                         }else{
                             showToast("头像修改失败！");

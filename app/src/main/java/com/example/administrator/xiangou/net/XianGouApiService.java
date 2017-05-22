@@ -1,8 +1,14 @@
 package com.example.administrator.xiangou.net;
 
+import com.example.administrator.xiangou.goods_details.simplegoodsdetails.SimpleGoodsDetialBean;
+import com.example.administrator.xiangou.goods_sort.storehome.HomePageBean;
 import com.example.administrator.xiangou.login.Captcha;
 import com.example.administrator.xiangou.login.LoginBean;
+import com.example.administrator.xiangou.mine.ToApplyStoreBean;
+import com.example.administrator.xiangou.mine.setting.manageraddress.model.UserAddressBean;
 import com.example.administrator.xiangou.mine.setting.personal.PersonalDetialsBean;
+import com.example.administrator.xiangou.mine.store_application.ApplicantInfoBean;
+import com.example.administrator.xiangou.mine.store_application.model.CategoryListDataBean;
 import com.example.administrator.xiangou.nearby.apimodel.CommentDataBean;
 import com.example.administrator.xiangou.nearby.apimodel.GoodsListDataBean;
 import com.example.administrator.xiangou.nearby.apimodel.NearbyBenifitDataBean;
@@ -10,16 +16,20 @@ import com.example.administrator.xiangou.nearby.apimodel.NearbyGoodsDataBean;
 import com.example.administrator.xiangou.nearby.apimodel.NearbyGoodsDetailDataBean;
 import com.example.administrator.xiangou.nearby.apimodel.NearbyStoreApiDataBean;
 
+import java.util.Map;
+
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
+import retrofit2.http.PartMap;
 import retrofit2.http.Query;
 import rx.Observable;
 
-//┏┓　　　┏┓
+//  ┏┓　　　┏┓
 //┏┛┻━━━┛┻┓
 //┃　　　　　　　┃ 　
 //┃　　　━　　　┃
@@ -167,16 +177,19 @@ public interface XianGouApiService {
 //                                                @Query("map_y") String map_y,
                                                              @Query("type") int type
                                                            );//根据货物id获取该物品信息
+/************用户中心**************/
+    //
     @Multipart
-    @POST("/Api/User/personals/")
-    Observable<PersonalDetialsBean> uploadUserDetials(@Query("user_id") int user_id,
-                                                      @Query("sex") int sex,
-                                                      @Part("head_img") RequestBody file,
-                                                      @Query("nickname") String nickname
+    @POST("Api/User/personals/")
+    Observable<PersonalDetialsBean> uploadUserDetials(@Part("user_id") int user_id,
+                                                      @Part("sex") int sex,
+                                                      @Part("nickname") String nickname,
+                                                      @Part MultipartBody.Part file
                                                     );
-    @POST("/Api/User/personals/")
-    Observable<PersonalDetialsBean> uploadUserNickname(@Query("user_id") int user_id,
-                                                       @Query("sex") int sex,
-                                                       @Query("nickname") String nickname
-    );
+    @POST("api/User/address/")
+    Observable<UserAddressBean> getUserAddrApi(@Query("user_id") int user_id);
+
+    @FormUrlEncoded
+    @POST("api/User/set_default")
+    Observable<Captcha> setUserDefaultAddrApi(@Field("user_id") int user_id,@Field("address_id") int address_id);
 }

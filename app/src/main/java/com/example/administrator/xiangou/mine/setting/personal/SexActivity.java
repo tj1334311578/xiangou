@@ -72,14 +72,13 @@ public class SexActivity extends BaseActivity {
 
     private void uploadSex(int sex_tag) {
         Log.e("sex", "uploadSex: "+sex_tag +"\nbUser:"+bUser.getUser_id());
-        addSubscription(mApiService.uploadUserNickname(bUser.getUser_id(),sex_tag,null),
+        addSubscription(mApiService.uploadUserDetials(bUser.getUser_id(),sex_tag,null,null),
                 new BaseSubscriber<PersonalDetialsBean>(this) {
                     @Override
                     public void onNext(PersonalDetialsBean Detial) {
                         Log.e("Detial", "onNext: "+Detial.getData().toString() );
                         if (Detial.getState().getCode()==200){
                             showToast("昵称修改成功！");
-
                         }else{
                             showToast("修改昵称失败！code:"+Detial.getState().getCode());
                         }

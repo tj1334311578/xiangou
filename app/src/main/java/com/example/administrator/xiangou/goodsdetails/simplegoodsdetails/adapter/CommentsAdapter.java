@@ -1,24 +1,19 @@
-package com.example.administrator.xiangou.goods_details.simplegoodsdetails;
+package com.example.administrator.xiangou.goodsdetails.simplegoodsdetails.adapter;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
-import com.bumptech.glide.Glide;
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.base.AutoRVAdapter;
+import com.example.administrator.xiangou.goodsdetails.simplegoodsdetails.SimpleGoodsDetialBean;
 import com.example.administrator.xiangou.net.XianGouApiService;
-import com.example.administrator.xiangou.tool.CustomImageView;
-import com.example.administrator.xiangou.tool.DrawableTextView;
 import com.example.administrator.xiangou.tool.GlideImageLoader;
 import com.example.administrator.xiangou.tool.ItemIntervalDecoration;
 
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 /**
  * Created by Administrator on 2017/5/19.
@@ -41,7 +36,6 @@ public class CommentsAdapter extends AutoRVAdapter {
     public void onBindViewHolder(ViewHolder holder, final int position) {
         holder.setTextView(R.id.simple_goodsdetails_comment_item_msg,comment.get(position).getContent());
         holder.setTextView(R.id.simple_goodsdetails_attribute,comment.get(position).getAdd_time());
-
         //设置评论用户的头像和昵称
         new GlideImageLoader().displayImage(mContext,XianGouApiService.BASEURL+comment.get(position).getHead_pic(),holder.getCustomImageView(R.id.simple_goodsdetails_comment_item_userlogo));
         holder.setTextView(R.id.simple_goodsdetails_comment_item_usernickname,comment.get(position).getUsername());
@@ -49,7 +43,7 @@ public class CommentsAdapter extends AutoRVAdapter {
         //设置是否有数据，有显示，无gone掉
         if (comment.get(position).getImg().size()>0) {
             Log.e("commentimg", "onBindViewHolder: "+comment.get(position).getImg()+"\nsize:"+comment.get(position).getImg().size() );
-            recycle.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, true));
+            recycle.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
             recycle.setAdapter(new CommentsItemAdapter(mContext, comment.get(position).getImg()));
             recycle.addItemDecoration(new ItemIntervalDecoration(1,0,0,0));
         }else{

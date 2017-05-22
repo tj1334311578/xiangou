@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="wrap_content">
+    <TextView
+        android:layout_width="match_parent"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
+        android:textSize="14sp"
+        android:id="@+id/simplegoodsdetails_productparameter_parameter"
+        android:layout_weight="3"
+        android:text="材质成分"
+        android:textColor="#99161616"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
+        android:id="@+id/simplegoodsdetails_productparameter_value"
+        android:layout_weight="1"
+        android:text="棉100%"
+        android:textSize="14sp"
+        android:textColor="#e6161616"
+        />
+
+</LinearLayout>

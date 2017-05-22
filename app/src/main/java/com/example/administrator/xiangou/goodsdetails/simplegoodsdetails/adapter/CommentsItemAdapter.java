@@ -1,9 +1,7 @@
-package com.example.administrator.xiangou.goods_details.simplegoodsdetails;
+package com.example.administrator.xiangou.goodsdetails.simplegoodsdetails.adapter;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
-import android.widget.ImageView;
-import android.widget.TextView;
+import android.util.Log;
 
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.base.AutoRVAdapter;
@@ -40,6 +38,7 @@ public class CommentsItemAdapter extends AutoRVAdapter {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+        Log.e("imgurl", "onBindViewHolder: "+position+" --------"+imgs.get(position) );
         new GlideImageLoader().displayImage(mContext, XianGouApiService.BASEURL+imgs.get(position),holder.getImgeView(R.id.imageview_type_img));
     }
 }

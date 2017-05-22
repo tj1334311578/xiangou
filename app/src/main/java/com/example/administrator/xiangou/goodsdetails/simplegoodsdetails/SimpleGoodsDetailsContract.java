@@ -1,4 +1,4 @@
-package com.example.administrator.xiangou.goods_details.simplegoodsdetails;
+package com.example.administrator.xiangou.goodsdetails.simplegoodsdetails;
 
 import com.example.administrator.xiangou.mvp.BasePresenter;
 import com.example.administrator.xiangou.mvp.BaseView;

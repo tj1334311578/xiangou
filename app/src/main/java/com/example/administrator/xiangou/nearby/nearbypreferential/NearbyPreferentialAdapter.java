@@ -15,7 +15,7 @@ import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.base.AutoRVAdapter;
 import com.example.administrator.xiangou.base.RVBaseAdapter;
 import com.example.administrator.xiangou.base.RVBaseViewHolder;
-import com.example.administrator.xiangou.goods_details.simplegoodsdetails.SimpleGoodsDetailsActivity;
+import com.example.administrator.xiangou.goodsdetails.simplegoodsdetails.SimpleGoodsDetailsActivity;
 import com.example.administrator.xiangou.nearby.apimodel.NearbyBenifitDataBean;
 
 import java.util.List;

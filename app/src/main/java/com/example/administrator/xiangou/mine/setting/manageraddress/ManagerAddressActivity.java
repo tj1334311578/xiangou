@@ -47,9 +47,9 @@ public class ManagerAddressActivity extends MVPBaseActivity<ManagerAddressContra
             } else if (resultCode == 200 && requestCode == REQUEST1) {
                 this.list.set(editposition, (AddressBean) data.getSerializableExtra("data"));
             }
+            Log.e("list", "onActivityResult: "+this.list.toString() );
+            adapter.notifyItemRangeChanged(0,list.size());
         }
-        Log.e("list", "onActivityResult: "+this.list.toString() );
-        adapter.notifyItemRangeChanged(0,list.size());
     }
 
     public List<AddressBean> getList() {

@@ -1,11 +1,10 @@
-package com.example.administrator.xiangou.goods_details.simplegoodsdetails;
+package com.example.administrator.xiangou.goodsdetails.simplegoodsdetails.adapter;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.base.AutoRVAdapter;
-import com.example.administrator.xiangou.tool.ContextUtils;
+import com.example.administrator.xiangou.goodsdetails.simplegoodsdetails.SimpleGoodsDetialBean;
 
 import java.util.List;
 

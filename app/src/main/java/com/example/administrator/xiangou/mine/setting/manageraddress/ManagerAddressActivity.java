@@ -47,9 +47,9 @@ public class ManagerAddressActivity extends MVPBaseActivity<ManagerAddressContra
 //                adapter.notifyItemInserted(list.size()-1);
                 mPresenter.getUserAddressList(bUser.getUser_id());
             }
+            Log.e("list", "onActivityResult: "+this.list.toString() );
+            adapter.notifyItemRangeChanged(0,list.size());
         }
-        Log.e("list", "onActivityResult: "+this.list.toString() );
-        adapter.notifyItemRangeChanged(0,list.size());
     }
 
     private UserAddressBean.DataBean bean2bean(AddressBean bean){

@@ -48,7 +48,7 @@
         <activity android:name=".mine.setting.feedback.FeedBackActivity"/>
         <activity android:name=".mine.myfootprint.MyFootPrintActivity"/>
         <activity android:name=".mine.couponpage.CouponPageActivity"/>
-        <activity android:name=".goods_details.simplegoodsdetails.SimpleGoodsDetailsActivity"/>
+        <activity android:name=".goodsdetails.simplegoodsdetails.SimpleGoodsDetailsActivity"/>
         <activity android:name=".mine.store_application.CategoryTypeActivity"/>
     </application>
 

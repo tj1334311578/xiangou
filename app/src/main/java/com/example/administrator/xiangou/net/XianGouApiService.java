@@ -1,7 +1,7 @@
 package com.example.administrator.xiangou.net;
 
-import com.example.administrator.xiangou.goods_details.simplegoodsdetails.SimpleGoodsDetialBean;
 import com.example.administrator.xiangou.goods_sort.storehome.HomePageBean;
+import com.example.administrator.xiangou.goodsdetails.simplegoodsdetails.SimpleGoodsDetialBean;
 import com.example.administrator.xiangou.login.Captcha;
 import com.example.administrator.xiangou.login.LoginBean;
 import com.example.administrator.xiangou.mine.ToApplyStoreBean;

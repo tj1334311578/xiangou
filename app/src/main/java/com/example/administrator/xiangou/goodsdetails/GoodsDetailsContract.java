@@ -1,7 +1,5 @@
 package com.example.administrator.xiangou.goodsdetails;
 
-import android.content.Context;
-
 import com.example.administrator.xiangou.mvp.BasePresenter;
 import com.example.administrator.xiangou.mvp.BaseView;
 

@@ -1,21 +1,33 @@
-package com.example.administrator.xiangou.goods_details.simplegoodsdetails;
+package com.example.administrator.xiangou.goodsdetails.simplegoodsdetails;
 
 
+import android.app.Dialog;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Display;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.administrator.xiangou.R;
+import com.example.administrator.xiangou.goodsdetails.simplegoodsdetails.adapter.CommentsAdapter;
+import com.example.administrator.xiangou.goodsdetails.simplegoodsdetails.adapter.CouponAdapter;
+import com.example.administrator.xiangou.goodsdetails.simplegoodsdetails.adapter.CouponDialogAdapter;
+import com.example.administrator.xiangou.goodsdetails.simplegoodsdetails.adapter.SimpleGoodsParameterAdapter;
 import com.example.administrator.xiangou.mvp.MVPBaseActivity;
 import com.example.administrator.xiangou.net.XianGouApiService;
 import com.example.administrator.xiangou.tool.GlideImageLoader;
@@ -44,6 +56,10 @@ public class SimpleGoodsDetailsActivity extends MVPBaseActivity<SimpleGoodsDetai
     private RatingBar store_ratb;
     private Button goStore_Btn;
     private RelativeLayout comments_rl;
+
+    private SimpleGoodsDetialBean mData;
+    private Dialog dialog;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -116,10 +132,99 @@ public class SimpleGoodsDetailsActivity extends MVPBaseActivity<SimpleGoodsDetai
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.simple_goodsdetails_return:
+            case R.id.simple_goodsdetails_return://返回上一层
                 finish();
+                break;
+            case R.id.simple_goodsdetails_parameter_ll://产品参数
+                Log.e("mData", "onClick: "+mData.toString() );
+                if (mData.getData().getGoods_attr()!=null)
+                showParameter(mData);
+                break;
+            case R.id.simple_goodsdetails_getcoupons_ll://优惠券详情
+                if (mData.getData().getCoupon().size()>0)
+                showCoupon(mData.getData().getCoupon());
+                break;
         }
     }
+
+    private void showCoupon(List<SimpleGoodsDetialBean.DataBean.CouponBean> coupon) {
+        creatdialog();
+        final View location=LayoutInflater.from(this).inflate(R.layout.simple_goodsdetails_coupon_dialog,null);
+        dialog.setContentView(location);
+        //设置dialog外的点击事件
+        location.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                int height=location.findViewById(R.id.simple_goodsdetails_coupon_dialog_ll).getTop();
+                int y= (int) event.getY();
+                if (event.getAction()==MotionEvent.ACTION_UP)
+                    if (y<height)
+                        dialog.dismiss();
+                return true;
+            }
+        });
+        ImageButton cancel= (ImageButton) location.findViewById(R.id.simple_goodsdetails_coupon_dialog_cancel);
+        RecyclerView recycle= (RecyclerView) location.findViewById(R.id.simple_goodsdetails_coupon_dialog_recycle);
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        recycle.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
+        recycle.setAdapter(new CouponDialogAdapter(this,coupon));
+        recycle.addItemDecoration(new ItemIntervalDecoration(0,15,0,0));
+    }
+
+    //配置dialog基本数据属性
+    public void creatdialog(){
+        dialog = new Dialog(this, R.style.custom_dialog);
+        dialog.show();
+        dialog.getWindow().setGravity(Gravity.BOTTOM);
+        //设置全屏
+        WindowManager wm=getWindowManager();
+        Display display=wm.getDefaultDisplay();
+        WindowManager.LayoutParams lp= dialog.getWindow().getAttributes();
+        lp.width=display.getWidth();//设置宽度
+        dialog.getWindow().setAttributes(lp);
+        //全屏無padding
+        dialog.getWindow().getDecorView().setPadding(0,0,0,0);
+    }
+
+    private void showParameter(SimpleGoodsDetialBean mData) {
+        //创建dialog；
+        creatdialog();
+
+        final View location= LayoutInflater.from(this).inflate(R.layout.simple_goodsdetails_productparameter,null);
+        dialog.setContentView(location);
+        Button OK_Button= (Button) location.findViewById(R.id.simplegoodsdetails_productparameter_button);
+        ListView listView = (ListView) location.findViewById(R.id.simplegoodsdetails_productparameter_listview);
+        if (mData.getData().getGoods_attr().size()>0)
+        listView.setAdapter(new SimpleGoodsParameterAdapter(this,mData.getData().getGoods_attr()));
+
+        OK_Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        //设置点击区域外的监听
+        location.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                int height=location.findViewById(R.id.simplegoodsdetails_productparameter_Rl).getTop();
+                int y= (int) event.getY();
+                if (event.getAction()==MotionEvent.ACTION_UP){
+                    if (y<height){
+                        dialog.dismiss();
+                    }
+                }
+                return true;
+            }
+        });
+    }
+
     @Override
     public void sendFialRequest(String message) {
 
@@ -128,6 +233,7 @@ public class SimpleGoodsDetailsActivity extends MVPBaseActivity<SimpleGoodsDetai
     @Override
     public void sendDataBeanToView(SimpleGoodsDetialBean data) {
         Log.e("tt", "sendDataBeanToView: "+data.toString() );
+        mData=data;
         //设置banner数据并显示
         initBanner(data.getData().getGoods_img());
         loadDetialsShow(data);

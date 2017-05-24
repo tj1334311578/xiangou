@@ -79,7 +79,6 @@ public class SexActivity extends BaseActivity {
                         Log.e("Detial", "onNext: "+Detial.getData().toString() );
                         if (Detial.getState().getCode()==200){
                             showToast("昵称修改成功！");
-
                         }else{
                             showToast("修改昵称失败！code:"+Detial.getState().getCode());
                         }

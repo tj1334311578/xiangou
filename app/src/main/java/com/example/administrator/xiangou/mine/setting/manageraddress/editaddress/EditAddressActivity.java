@@ -153,14 +153,12 @@ public class EditAddressActivity extends MVPBaseActivity<EditAddressContract.Vie
                 // 根据省份更新城市区域信息
                 mAreaId[i] = data.get(position).getRegion_id();
                 mAreaName[i] = data.get(position).getName();
-                int num;
                 if (i<2) {
+                    int num;
                     num = i + 1;
-                }else {
-                    num=i;
+                    toastShow("点咯！"+i);
+                    getChooseListData(mApiService.chooseNextAdr(data.get(position).getRegion_id()),num);
                 }
-                toastShow("点咯！"+i);
-                getChooseListData(mApiService.chooseNextAdr(data.get(position).getRegion_id()),num);
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {

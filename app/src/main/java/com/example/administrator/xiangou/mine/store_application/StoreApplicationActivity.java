@@ -190,13 +190,12 @@ public class StoreApplicationActivity extends PopupWindowsBaseActivity implement
 //                }else {
 //                    mAreaList.get(0) = data.get(position).getRegion_id();
 //                }
-                int num;
-                if (type<103) {
+                if (type<2){
+                    int num;
                     num = type + 1;
-                }else {
-                    num=type;
+                    getChooseListData(mApiService.chooseNextAdr(data.get(position).getRegion_id()),num);
+
                 }
-                getChooseListData(mApiService.chooseNextAdr(data.get(position).getRegion_id()),num);
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
@@ -430,4 +429,9 @@ public class StoreApplicationActivity extends PopupWindowsBaseActivity implement
         temp.addView(img);
     }
 
+    @Override
+    protected void onStop() {
+        super.onStop();
+        bSharedPreferences.putString("StoreApplyInfo",mApplicantInfoBean.toString());
+    }
 }

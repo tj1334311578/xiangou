@@ -20,7 +20,7 @@ public class FollowPageActivity extends MVPBaseActivity<FollowPageContract.View,
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_myorder);
+        setContentView(R.layout.linearlayout_style);
         FollowPageFragment fragment = new FollowPageFragment();
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction ft = manager.beginTransaction();

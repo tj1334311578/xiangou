@@ -101,26 +101,29 @@ public class StoreApplicationActivity extends PopupWindowsBaseActivity implement
         mCommitBtn = findContentView(R.id.commit_application_btn);
         mCategoryTv = findContentView(R.id.main_category_edit);
         //获取上次记录数据
-        Log.e("storeinfo", "onStop: " + bSharedPreferences.getString("StoreApplyInfo",null));
-        String[] user =  bSharedPreferences.getString("StoreApplyInfo",null).split(",");
-        for (int i = 0; i < user.length; i++) {
-            if (!user[i].equals("")){
-                switch (i){
-                    case 0:
-                        mApplicantNameEdt.setText(user[0]);
-                        break;
-                    case 1:
-                        mTelEdt.setText(user[1]);
-                        break;
-                    case 2:
-                        mIDCardEdt.setText(user[2]);
-                        break;
-                    case 3:
-                        mStoreNameEdt.setText(user[3]);
-                        break;
-                    case 4:
-                        mShopAdressEdt.setText(user[4]);
-                        break;
+        if (bSharedPreferences.getString("StoreApplyInfo",null)!=null) {
+            Log.e("storeinfo", "onStop: " + bSharedPreferences.getString("StoreApplyInfo", null));
+            String[] user = bSharedPreferences.getString("StoreApplyInfo", null).split(",");
+
+            for (int i = 0; i < user.length; i++) {
+                if (!user[i].equals("")) {
+                    switch (i) {
+                        case 0:
+                            mApplicantNameEdt.setText(user[0]);
+                            break;
+                        case 1:
+                            mTelEdt.setText(user[1]);
+                            break;
+                        case 2:
+                            mIDCardEdt.setText(user[2]);
+                            break;
+                        case 3:
+                            mStoreNameEdt.setText(user[3]);
+                            break;
+                        case 4:
+                            mShopAdressEdt.setText(user[4]);
+                            break;
+                    }
                 }
             }
         }

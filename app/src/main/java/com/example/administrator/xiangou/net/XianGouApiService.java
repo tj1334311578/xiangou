@@ -1,7 +1,9 @@
 package com.example.administrator.xiangou.net;
 
 import com.example.administrator.xiangou.goods_sort.storehome.HomePageBean;
-import com.example.administrator.xiangou.goodsdetails.simplegoodsdetails.SimpleGoodsDetialBean;
+import com.example.administrator.xiangou.goodsdetails.simplegoodsdetails.goodsbean.CommentBean;
+import com.example.administrator.xiangou.goodsdetails.simplegoodsdetails.goodsbean.SimpleGoodsDetialBean;
+import com.example.administrator.xiangou.goodsdetails.simplegoodsdetails.goodsbean.commenttempBean;
 import com.example.administrator.xiangou.login.Captcha;
 import com.example.administrator.xiangou.login.LoginBean;
 import com.example.administrator.xiangou.mine.ToApplyStoreBean;
@@ -136,9 +138,13 @@ public interface XianGouApiService {
                                                        @Query("page_no") int page_no);//页数不传默认取第一页的数据
     //评价列表
     @POST("Api/Good/comment_list/")
-    Observable<CommentDataBean> callCommentList(@Query("goods_id") int goodsId,//商品分类id(从哪个分类进去就传不是就不传
-                                                @Query("page_no") int page_no,//页数不传默认取第一页的数据
-                                                @Query("condition") String condition);//条件不传默认全部评价好评(nice)中评(ordinary)差评(poor)
+    Observable<CommentBean> callCommentList(@Query("goods_id") int goodsId,//商品分类id(从哪个分类进去就传不是就不传
+                                            @Query("page_no") int page_no,//页数不传默认取第一页的数据
+                                            @Query("condition") String condition);//条件不传默认全部评价好评(nice)中评(ordinary)差评(poor)  //评价列表
+    @POST("Api/Good/comment_list/")
+    Observable<commenttempBean> callComments(@Query("goods_id") int goodsId,//商品分类id(从哪个分类进去就传不是就不传
+                                            @Query("page_no") int page_no,//页数不传默认取第一页的数据
+                                             @Query("condition") String condition);//条件不传默认全部评价好评(nice)中评(ordinary)差评(poor)
     //商品列表
     @POST("Api/Good/goodsList/")
     Observable<GoodsListDataBean> callGoodsList(@Query("cat_id") int catId,//商品分类id(从哪个分类进去就传不是就不传

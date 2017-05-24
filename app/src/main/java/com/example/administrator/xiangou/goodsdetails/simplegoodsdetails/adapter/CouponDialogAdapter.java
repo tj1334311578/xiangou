@@ -1,7 +1,6 @@
 package com.example.administrator.xiangou.goodsdetails.simplegoodsdetails.adapter;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -9,7 +8,7 @@ import android.widget.Toast;
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.base.RVBaseAdapter;
 import com.example.administrator.xiangou.base.RVBaseViewHolder;
-import com.example.administrator.xiangou.goodsdetails.simplegoodsdetails.SimpleGoodsDetialBean;
+import com.example.administrator.xiangou.goodsdetails.simplegoodsdetails.goodsbean.SimpleGoodsDetialBean;
 
 import java.util.List;
 
@@ -52,5 +51,4 @@ public class CouponDialogAdapter extends RVBaseAdapter<SimpleGoodsDetialBean.Dat
             Tv1.setVisibility(View.VISIBLE);
         }
     }
-
 }

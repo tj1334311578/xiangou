@@ -1,4 +1,4 @@
-package com.example.administrator.xiangou.goodsdetails.simplegoodsdetails;
+package com.example.administrator.xiangou.goodsdetails.simplegoodsdetails.goodsbean;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -643,6 +643,24 @@ public class SimpleGoodsDetialBean {
         }
 
         public static class CommentBean {
+
+            public  CommentBean(int comment_id,
+                    String content,
+                    String username,
+                    String add_time,
+                    int order_id,
+                    String head_pic,
+                    String spec,
+                    List<String> img){
+                this.comment_id=comment_id;
+                this.content=content;
+                this.username=username;
+                this.add_time=add_time;
+                this.order_id=order_id;
+                this.head_pic=head_pic;
+                this.spec=spec;
+                this.img=img;
+            }
             @Override
             public String toString() {
                 return "CommentBean{" +

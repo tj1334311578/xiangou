@@ -30,7 +30,7 @@ public class MyOrderFragment extends MVPBaseFragment<MyOrderContract.View, MyOrd
 //    @BindView(R.id.myorder_tab)
     TabLayout mTabLayout;
     ImageView backBtn;
-//    @BindView(R.id.myorder_pager)
+    //    @BindView(R.id.myorder_pager)
     ViewPager mViewPager;
     private RankingTabLayoutAdapter mLayoutAdapter;
     private List<Fragment> mTabFragList;

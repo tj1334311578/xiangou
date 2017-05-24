@@ -61,10 +61,10 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
     }
 
     //当fragment可见时再判断用户是否登录
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-    }
+//    @Override
+//    public void setUserVisibleHint(boolean isVisibleToUser) {
+//        super.setUserVisibleHint(isVisibleToUser);
+//    }
 
     @Override
     public void onResume() {
@@ -174,10 +174,7 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
     }
 
     private void initDate() {
-        if (bSharedPreferences.getString("user_info",null)!=null)
-        setbUserBySP(bSharedPreferences.getString("user_info",null));
         setTextToTv(mMessageTv,mine_MsgCount);
-
         setTextToTv(mUserLevelTv,"V"+bUser.getLevel());
         setTextToTv(mLevelNumberTv,bUser.getExperience());
         setTextToTv(mUserNameTv,bUser.getNickname());
@@ -203,23 +200,23 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
     }
     private void initSet() {
         //初始化数据
-        Log.e("usertype", "initSet: " + bUser.getType());
+//        Log.e("usertype", "initSet: " + bUser.getType());
         if (bUser.getType()==3){
             content_text[content_text.length-1]="我的店铺";
         }else {
             content_text[content_text.length-1]="申请店铺";
         }
         List<ItemImage> list=new ArrayList<>();
-        Log.e("initSet", "initSet: "+content_text[content_text.length-1]);
+//        Log.e("initSet", "initSet: "+content_text[content_text.length-1]);
         for (int i = 0; i <content_img.length ; i++) {
             list.add(new ItemImage(content_img[i],content_text[i]));
         }
         //更改最后一个位置到第一个位置
-        Log.e("tga", "initSet: "+bUser.getType()+"\n"+list.get(list.size()-1).getStr()+"\n"+list.get(0).getStr());
+//        Log.e("tga", "initSet: "+bUser.getType()+"\n"+list.get(list.size()-1).getStr()+"\n"+list.get(0).getStr());
         if (bUser.getType()==1) {
             list.add(0, new ItemImage(content_img[list.size()-1],content_text[list.size()-1]));
             list.remove(list.get(list.size()-1));
-            Log.e("tga", "initSet: "+bUser.getType()+"\n"+list.get(list.size()-1).getStr()+"\n"+list.get(0).getStr());
+//            Log.e("tga", "initSet: "+bUser.getType()+"\n"+list.get(list.size()-1).getStr()+"\n"+list.get(0).getStr());
         }
         MineAdapter adapter=new MineAdapter(getContext(),list);
         listView.setAdapter(adapter);

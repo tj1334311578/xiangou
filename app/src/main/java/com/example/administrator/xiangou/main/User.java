@@ -8,6 +8,7 @@ import com.example.administrator.xiangou.login.LoginBean;
  */
 
 public class User {
+
     private static User user;
     private User(){}
     public static User getUser(){
@@ -70,29 +71,6 @@ public class User {
     private int refund;
     private int experience;
     private int level;
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "user_id=" + user_id +
-                ", sex=" + sex +
-                ", mobile='" + mobile + '\'' +
-                ", nickname='" + nickname + '\'' +
-                ", type=" + type +
-                ", status=" + status +
-                ", head_pic=" + head_pic +
-                ", coupon_count=" + coupon_count +
-                ", follow=" + follow +
-                ", waitPay=" + waitPay +
-                ", waitSend=" + waitSend +
-                ", waitReceive=" + waitReceive +
-                ", waitCcomment=" + waitCcomment +
-                ", order_count=" + order_count +
-                ", refund=" + refund +
-                ", experience=" + experience +
-                ", level=" + level +
-                '}';
-    }
 
     public int getLevel() {
         return level;
@@ -228,5 +206,28 @@ public class User {
 
     public void setExperience(int experience) {
         this.experience = experience;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "user_id=" + user_id +
+                ", sex=" + sex +
+                ", mobile='" + mobile + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", type=" + type +
+                ", status=" + status +
+                ", head_pic=" + head_pic +
+                ", coupon_count=" + coupon_count +
+                ", follow=" + follow +
+                ", waitPay=" + waitPay +
+                ", waitSend=" + waitSend +
+                ", waitReceive=" + waitReceive +
+                ", waitCcomment=" + waitCcomment +
+                ", order_count=" + order_count +
+                ", refund=" + refund +
+                ", experience=" + experience +
+                ", level=" + level +
+                '}';
     }
 }

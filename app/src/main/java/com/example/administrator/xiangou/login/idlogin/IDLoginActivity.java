@@ -29,6 +29,7 @@ public class IDLoginActivity extends MVPBaseActivity<IDLoginContract.View, IDLog
     private EditText IDLogin_TelNumber, IDLogin_PWD;
     private Button mIDLoginBtn;
     private InputMethodManager imm;
+    private LoginBean.DataBean mDataBean;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -155,9 +156,10 @@ public class IDLoginActivity extends MVPBaseActivity<IDLoginContract.View, IDLog
 //        Set<String> userSet = new HashSet();
 //        userSet.add(data.getNickname());
 //        userSet.addAll(data.toString());
+        mDataBean = data;
         bSharedPreferences.putString("user_info",data.toString());
         Log.e("User", "LoginidSuccess: "+ bUser.toString());
-        bUser.setUser_id(data.getUser_id());
+//        bUser.setUser_id(data.getUser_id());
         bSharedPreferences.putBoolean(MySharedPreferences.STATUS_LOGIN,true);
         startNewUI(MainActivity.class);
 //        showToast("登录成功！");
@@ -174,5 +176,9 @@ public class IDLoginActivity extends MVPBaseActivity<IDLoginContract.View, IDLog
         super.onStop();
         bSharedPreferences.putString("IDLogin_TelNumber",IDLogin_TelNumber.getText().toString());
         bSharedPreferences.putString("IDLogin_PWD",IDLogin_PWD.getText().toString());
+        if (mDataBean!=null) {
+            setbUserBySP(mDataBean.toString());
+        }
+        Log.e("user_info", "onStop: " +bUser.toString() );
     }
 }

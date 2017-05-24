@@ -33,6 +33,10 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        if (bSharedPreferences.getString("user_info",null)!=null) {
+            setbUserBySP(bSharedPreferences.getString("user_info", null));
+        }
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         initTabHost();

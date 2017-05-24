@@ -69,8 +69,8 @@ public class AddressAdapter extends RVBaseAdapter<UserAddressBean.DataBean> {
         delText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mDatas.remove(position);
-                notifyDataSetChanged();
+//                mDatas.remove(position);
+//                notifyDataSetChanged();
                 mAddressManagerListener.dealDelTextTv(v,position);
             }
         });

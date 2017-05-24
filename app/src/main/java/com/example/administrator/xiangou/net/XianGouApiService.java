@@ -5,6 +5,8 @@ import com.example.administrator.xiangou.goods_sort.storehome.HomePageBean;
 import com.example.administrator.xiangou.login.Captcha;
 import com.example.administrator.xiangou.login.LoginBean;
 import com.example.administrator.xiangou.mine.ToApplyStoreBean;
+import com.example.administrator.xiangou.mine.setting.manageraddress.AddressBean;
+import com.example.administrator.xiangou.mine.setting.manageraddress.EditAddressEnterBean;
 import com.example.administrator.xiangou.mine.setting.manageraddress.model.UserAddressBean;
 import com.example.administrator.xiangou.mine.setting.personal.PersonalDetialsBean;
 import com.example.administrator.xiangou.mine.store_application.ApplicantInfoBean;
@@ -178,7 +180,7 @@ public interface XianGouApiService {
                                                              @Query("type") int type
                                                            );//根据货物id获取该物品信息
 /************用户中心**************/
-    //
+    //个人信息修改
     @Multipart
     @POST("Api/User/personals/")
     Observable<PersonalDetialsBean> uploadUserDetials(@Part("user_id") int user_id,
@@ -186,10 +188,27 @@ public interface XianGouApiService {
                                                       @Part("nickname") String nickname,
                                                       @Part MultipartBody.Part file
                                                     );
+    //进入地址页面
     @POST("api/User/address/")
     Observable<UserAddressBean> getUserAddrApi(@Query("user_id") int user_id);
 
+    //进入编辑地址页面
+    @POST("api/User/into_address/")
+    Observable<EditAddressEnterBean> enterEditAddrApi(@Query("user_id") int user_id, @Query("address_id") int address_id);
+
+    //设置默认地址
     @FormUrlEncoded
-    @POST("api/User/set_default")
+    @POST("api/User/set_default/")
     Observable<Captcha> setUserDefaultAddrApi(@Field("user_id") int user_id,@Field("address_id") int address_id);
+
+
+    //获取选择省市区列表
+    @POST("Api/User/area/")
+    Observable<ToApplyStoreBean> chooseAreaAddrApi(@Query("region_id") int region_id);
+
+    //添加/编辑收货地址
+    @POST("Api/User/edit_address/")
+    Observable<Captcha> saveUserAddrApi(@Part("info") AddressBean info);
+
+
 }

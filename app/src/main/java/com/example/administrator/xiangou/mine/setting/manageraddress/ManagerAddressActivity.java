@@ -42,25 +42,35 @@ public class ManagerAddressActivity extends MVPBaseActivity<ManagerAddressContra
 //        super.onActivityResult(requestCode, resultCode, data);
         if (data!=null) {
                 Log.e("onActivityResult", "onActivityResult: "+data.getSerializableExtra("data") +"\n position  "+editposition);
-            if (resultCode == 200 && requestCode == REQUEST) {
-                this.list.add((AddressBean) data.getSerializableExtra("data"));
-            } else if (resultCode == 200 && requestCode == REQUEST1) {
-                this.list.set(editposition, (AddressBean) data.getSerializableExtra("data"));
+            if (resultCode == RESULT_OK && requestCode == REQUEST) {
+                this.list.add((UserAddressBean.DataBean) data.getSerializableExtra("data"));
+//                adapter.notifyItemInserted(list.size()-1);
+                mPresenter.getUserAddressList(bUser.getUser_id());
             }
         }
         Log.e("list", "onActivityResult: "+this.list.toString() );
         adapter.notifyItemRangeChanged(0,list.size());
     }
 
-    public List<AddressBean> getList() {
+    private UserAddressBean.DataBean bean2bean(AddressBean bean){
+        UserAddressBean.DataBean dataBean = new UserAddressBean.DataBean();
+        dataBean.setAddress(bean.getAddress());
+        dataBean.setConsignee(bean.getConsignee());
+        dataBean.setMobile(bean.getMobile());
+        dataBean.setUser_id(bean.getUser_id());
+        dataBean.setProvince_id(bean.getProvince());
+        return dataBean;
+    }
+    public List<UserAddressBean.DataBean> getList() {
         return list;
     }
 
-    public void setList(List<AddressBean> list) {
+    public void setList(List<UserAddressBean.DataBean> list) {
         this.list = list;
     }
 
-    private List<AddressBean> list;
+    private List<UserAddressBean.DataBean> list;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -82,12 +92,11 @@ public class ManagerAddressActivity extends MVPBaseActivity<ManagerAddressContra
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
         ((SimpleItemAnimator)mRecyclerView.getItemAnimator()).setSupportsChangeAnimations(false);//关闭动画。
 
-
     }
 
     @Override
     public void sendFialRequest(String message) {
-
+        showToast(message);
     }
 
     @Override
@@ -96,31 +105,41 @@ public class ManagerAddressActivity extends MVPBaseActivity<ManagerAddressContra
             finish();
         }else if (v==newaddressBtn){
             // TODO: 2017/4/24 添加新地址
-            startNewUIForResult(EditAddressActivity.class,REQUEST,"addresstype","add");
+            UserAddressBean.DataBean dataBean = new UserAddressBean.DataBean();
+            dataBean.setUser_id(bUser.getUser_id());
+            dataBean.setAddress_id(-110);
+            startNewUIForResult(EditAddressActivity.class,REQUEST,"edit_address",dataBean);
         }
     }
 
     @Override
-    public void dealDataToView(final List<UserAddressBean.DataBean> data) {
-        adapter = new AddressAdapter(this, data);
-        adapter.setAddressManagerListener(new AddressAdapter.AddressManagerListener() {
-            @Override
-            public void dealCheckBox(CompoundButton buttonView, boolean isChecked, int position) {
-                mPresenter.setDefaultAddress(bUser.getUser_id(),data.get(position).getAddress_id());
-            }
+    public void dealDataToView(List<UserAddressBean.DataBean> data) {
+        list = data;
+        Log.e("list", "dealDataToView: " +list );
+//        if (adapter==null) {
+            adapter = new AddressAdapter(this, list);
+            adapter.setAddressManagerListener(new AddressAdapter.AddressManagerListener() {
+                @Override
+                public void dealCheckBox(CompoundButton buttonView, boolean isChecked, int position) {
+                    mPresenter.setDefaultAddress(bUser.getUser_id(), list.get(position).getAddress_id());
+                }
 
-            @Override
-            public void dealEditTextTv(View v, int position) {
-                startNewUIForResult(EditAddressActivity.class,REQUEST1,"name",data.get(position));
-                editposition = position;
-            }
+                @Override
+                public void dealEditTextTv(View v, int position) {
+                    startNewUIForResult(EditAddressActivity.class, REQUEST, "edit_address", list.get(position));
+                    editposition = position;
+                }
 
-            @Override
-            public void dealDelTextTv(View v, int position) {
-
-            }
-        });
-        mRecyclerView.setAdapter(adapter);
+                @Override
+                public void dealDelTextTv(View v, int position) {
+                    list.remove(position);
+                    adapter.notifyItemRemoved(position);
+                }
+            });
+            mRecyclerView.setAdapter(adapter);
+//        }else {
+//            adapter.notifyItemRangeChanged(0,list.size());
+//        }
     }
 
     @Override

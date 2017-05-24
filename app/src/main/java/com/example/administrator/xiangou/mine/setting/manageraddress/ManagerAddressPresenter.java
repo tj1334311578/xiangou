@@ -17,22 +17,24 @@ public class ManagerAddressPresenter extends BasePresenterImpl<ManagerAddressCon
 
     @Override
     public void getUserAddressList(int user_id) {
+        mView.showLoading();
         addSubscription(mApiService.getUserAddrApi(user_id), new BaseSubscriber<UserAddressBean>(mView.getContext()) {
             @Override
             public void onNext(UserAddressBean userAddressBean) {
                 if (userAddressBean.getState().getCode() == 200){
+                    Log.e("UserAddressBean", "onNext: " +userAddressBean.getData().toString() );
                     mView.dealDataToView(userAddressBean.getData());
                 }
             }
 
             @Override
             public void onFinish() {
-
+                mView.hideLoading();
             }
 
             @Override
             public void onError(ExceptionHandle.ResponeThrowable e) {
-
+                mView.sendFialRequest(e.getMessage());
             }
         });
     }

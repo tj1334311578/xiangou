@@ -18,14 +18,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.administrator.xiangou.R;
+import com.example.administrator.xiangou.base.SpinnerBaseAdapter;
 import com.example.administrator.xiangou.login.Captcha;
 import com.example.administrator.xiangou.mine.ToApplyStoreBean;
 import com.example.administrator.xiangou.net.BaseSubscriber;
 import com.example.administrator.xiangou.net.ExceptionHandle;
 import com.example.administrator.xiangou.tool.ImageUtils;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.File;
 import java.util.HashMap;
@@ -50,11 +48,6 @@ public class StoreApplicationActivity extends PopupWindowsBaseActivity implement
      */
     public static String TAG="bug";
 
-    private static final int PROVINCE = 1;
-    private static final int CITY = 2;
-    private static final int DISTRICTS = 3;
-//    private ApplicantInfoBean mApplicantInfoBean;
-
     /**                                         分割线
      * ---------------------------------------------------------------------------------------------
      */
@@ -64,16 +57,17 @@ public class StoreApplicationActivity extends PopupWindowsBaseActivity implement
     private ImageView backBtn;
     private Button mCommitBtn;
     private TextView mCategoryTv;
-    private Spinner province,city,districts;
     private Map<Integer,String> imgpathMap;
     private ApplicantInfoBean mApplicantInfoBean;
-    private JSONObject mInfos;
-    private SpinnerBaseAdapter mProvinceAdapter;
-    private SpinnerBaseAdapter mCityAdapter;
-    private SpinnerBaseAdapter mDistrictsAdapter;
+//    private JSONObject mInfos;
     private Intent mIntent;
 
 
+    private final int sizeCount = 3;
+    private SpinnerBaseAdapter[] mSpinnerBaseAdapters;
+    private Spinner[] mSpinners;
+    private int[] mAreaId;
+    private String[] mAreaName;
     /**                                         分割线
      * ---------------------------------------------------------------------------------------------
      */
@@ -85,16 +79,16 @@ public class StoreApplicationActivity extends PopupWindowsBaseActivity implement
         mIntent = getIntent();
         imgpathMap = new HashMap<>();
         mApplicantInfoBean = new ApplicantInfoBean();
-        mInfos = new JSONObject();
+//        mInfos = new JSONObject();
         int mUserId = mIntent.getIntExtra("user_id",0);
             mApplicantInfoBean.setUser_id(mUserId);
-        try {
-            mInfos.put("user_id",mUserId);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            mInfos.put("user_id",mUserId);
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
         initView();
-        getChooseListData(mApiService.toApplyShop(mUserId),PROVINCE);
+        getChooseListData(mApiService.toApplyShop(mUserId),0);
 //        Log.e("intent+++++", "onCreate:" +getIntent().getStringExtra("position") );
     }
 
@@ -102,6 +96,11 @@ public class StoreApplicationActivity extends PopupWindowsBaseActivity implement
      * 初始化控件
      */
     private void initView() {
+        mSpinners = new Spinner[sizeCount];
+        mSpinnerBaseAdapters = new SpinnerBaseAdapter[sizeCount];
+        mAreaId = new int[sizeCount];
+        mAreaName = new String[sizeCount];
+
         mApplicantNameEdt = findContentView(R.id.application_name_edit,false);
         mTelEdt = findContentView(R.id.application_number_edit,false);
         mIDCardEdt = findContentView(R.id.application_ID_Card_edit,false);
@@ -117,9 +116,9 @@ public class StoreApplicationActivity extends PopupWindowsBaseActivity implement
         Lease_contract= findContentView(R.id.Lease_contract);
         backBtn= findContentView(R.id.store_headback);
 
-        province= (Spinner) findViewById(R.id.store_address_province);
-        city= (Spinner) findViewById(R.id.store_address_city);
-        districts= (Spinner) findViewById(R.id.store_address_districts);
+        mSpinners[0]= (Spinner) findViewById(R.id.store_address_province);
+        mSpinners[1]= (Spinner) findViewById(R.id.store_address_city);
+        mSpinners[2]= (Spinner) findViewById(R.id.store_address_districts);
     }
 
     //获取省、市、区列表数据
@@ -130,14 +129,14 @@ public class StoreApplicationActivity extends PopupWindowsBaseActivity implement
                 Log.e("ToApplyStore", "onNext: " +toApplyStoreBean.getData().toString());
                 switch (toApplyStoreBean.getState().getCode()){
                     case 200:
-                        if (type == PROVINCE) {
-                            initProvince(toApplyStoreBean.getData());
+                        if (type == 0) {
+                            initArea(toApplyStoreBean.getData(),type,"province");
                             return;
-                        }else if (type == CITY) {
-                            initCity(toApplyStoreBean.getData());
+                        }else if (type == 1) {
+                            initArea(toApplyStoreBean.getData(),type,"city");
                             return;
-                        }else if (type == DISTRICTS) {
-                            initDistricts(toApplyStoreBean.getData());
+                        }else if (type == 2) {
+                            initArea(toApplyStoreBean.getData(),type,"district");
                             return;
                         }
                         break;
@@ -157,113 +156,54 @@ public class StoreApplicationActivity extends PopupWindowsBaseActivity implement
         });
     }
     //省市区数据绑定到控件
-    private void initProvince(final List<ToApplyStoreBean.DataBean> data) {
-        mProvinceAdapter = new SpinnerBaseAdapter(this, R.layout.item_spinner_applystore,data) {
+    private void initArea(final List<ToApplyStoreBean.DataBean> data, final int type, final String name) {
+        mSpinnerBaseAdapters[type] = new SpinnerBaseAdapter(this, R.layout.item_spinner_applystore,data) {
             @Override
             public void bindDataToView(TextView textView, int position) {
                 textView.setText(data.get(position).getName());
-                mApplicantInfoBean.setProvince(data.get(position).getRegion_id());
-                try {
-                    mInfos.put("province",data.get(position).getRegion_id());
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                mAreaId[type] = data.get(position).getRegion_id();
+//                try {
+//                    mInfos.put(name,data.get(position).getRegion_id());
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
             }
         };
         Log.e(TAG, "initView: "+ data.toString());
 //        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        province.setAdapter(mProvinceAdapter);
+        mSpinners[type].setAdapter(mSpinnerBaseAdapters[type]);
         /**
          * 省级下拉框监听
          */
-        province.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        mSpinners[type].setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                // 根据省份更新城市区域信息
-                mApplicantInfoBean.setProvince(data.get(position).getRegion_id());
-                try {
-                    mInfos.put("province", data.get(position).getRegion_id());
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                // 根据省份更新城市区域信息;
+                mAreaId[type] = data.get(position).getRegion_id();
+//                try {
+//                    mInfos.put(name, data.get(position).getRegion_id());
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
                 //                if (mAreaList.get(0)==null) {
 //                    mAreaList.add(data.get(position).getRegion_id());
 //                }else {
 //                    mAreaList.get(0) = data.get(position).getRegion_id();
 //                }
-                getChooseListData(mApiService.chooseNextAdr(data.get(position).getRegion_id()),CITY);
+                int num;
+                if (type<103) {
+                    num = type + 1;
+                }else {
+                    num=type;
+                }
+                getChooseListData(mApiService.chooseNextAdr(data.get(position).getRegion_id()),num);
             }
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
     }
-    private void initCity(final List<ToApplyStoreBean.DataBean> data) {
-        mCityAdapter = new SpinnerBaseAdapter(this, R.layout.item_spinner_applystore,data) {
-            @Override
-            public void bindDataToView(TextView textView, int position) {
-                textView.setText(data.get(position).getName());
-                mApplicantInfoBean.setCity(data.get(position).getRegion_id());
-                try {
-                    mInfos.put("city",data.get(position).getRegion_id());
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-        city.setAdapter(mCityAdapter);
-        Log.e(TAG, "initView: "+ data.toString());
-        city.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-//                mAreaList.add(data.get(position).getRegion_id());
-                mApplicantInfoBean.setCity(data.get(position).getRegion_id());
-                try {
-                    mInfos.put("city",data.get(position).getRegion_id());
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-                getChooseListData(mApiService.chooseNextAdr(data.get(position).getRegion_id()),DISTRICTS);
-            }
 
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-    }
-    private void initDistricts(final List<ToApplyStoreBean.DataBean> data) {
-        mDistrictsAdapter = new SpinnerBaseAdapter(this, R.layout.item_spinner_applystore,data) {
-            @Override
-            public void bindDataToView(TextView textView, int position) {
-                textView.setText(data.get(position).getName());
-                mApplicantInfoBean.setDistrict(data.get(position).getRegion_id());
-                try {
-                    mInfos.put("district",data.get(position).getRegion_id());
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-        districts.setAdapter(mDistrictsAdapter);
-        Log.e(TAG, "initView: "+ data.toString());
-        districts.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                mApplicantInfoBean.setDistrict(data.get(position).getRegion_id());
-                try {
-                    mInfos.put("district",data.get(position).getRegion_id());
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-
-            }
-        });
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -290,11 +230,11 @@ public class StoreApplicationActivity extends PopupWindowsBaseActivity implement
                     StringBuilder text = new StringBuilder();
                     int[] categoryData = data.getIntArrayExtra("category_list");
                     Log.e("cid", "onActivityResult: " + categoryData.toString());
-                    try {
-                        mInfos.put("cid",categoryData);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
+//                    try {
+//                        mInfos.put("cid",categoryData);
+//                    } catch (JSONException e) {
+//                        e.printStackTrace();
+//                    }
 
                     String[] categoryNameData = data.getStringArrayExtra("category_namelist");
                     mApplicantInfoBean.setCid(categoryData);
@@ -347,19 +287,22 @@ public class StoreApplicationActivity extends PopupWindowsBaseActivity implement
         mApplicantInfoBean.setIdcard(changeEdtext(mIDCardEdt));
         mApplicantInfoBean.setName(changeEdtext(mStoreNameEdt));
         mApplicantInfoBean.setAddress(changeEdtext(mShopAdressEdt));
+        mApplicantInfoBean.setProvince(mAreaId[0]);
+        mApplicantInfoBean.setCity(mAreaId[1]);
+        mApplicantInfoBean.setDistrict(mAreaId[2]);
         //待修改
         mApplicantInfoBean.setMap_x("104.234452");
         mApplicantInfoBean.setMap_y("30.123434");
-        try {
-            mInfos.put("realname",changeEdtext(mApplicantNameEdt));
-            mInfos.put("tel",changeEdtext(mTelEdt));
-            mInfos.put("idcard",changeEdtext(mIDCardEdt));
-            mInfos.put("name",changeEdtext(mStoreNameEdt));
-            mInfos.put("address",changeEdtext(mShopAdressEdt));
-//            mInfos.put("map_x",0);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            mInfos.put("realname",changeEdtext(mApplicantNameEdt));
+//            mInfos.put("tel",changeEdtext(mTelEdt));
+//            mInfos.put("idcard",changeEdtext(mIDCardEdt));
+//            mInfos.put("name",changeEdtext(mStoreNameEdt));
+//            mInfos.put("address",changeEdtext(mShopAdressEdt));
+////            mInfos.put("map_x",0);
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
         Log.e("ApplicantInfoBean", "commitApplicationShop: " + mApplicantInfoBean.toString() );
 
         Map<String, RequestBody> imgs = new HashMap<>();
@@ -423,9 +366,7 @@ public class StoreApplicationActivity extends PopupWindowsBaseActivity implement
             }
 
             @Override
-            public void onFinish() {
-
-            }
+            public void onFinish() {}
 
             @Override
             public void onError(ExceptionHandle.ResponeThrowable e) {

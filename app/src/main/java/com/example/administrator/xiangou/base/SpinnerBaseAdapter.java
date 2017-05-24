@@ -1,4 +1,4 @@
-package com.example.administrator.xiangou.mine.store_application;
+package com.example.administrator.xiangou.base;
 
 import android.content.Context;
 import android.view.LayoutInflater;

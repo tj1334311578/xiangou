@@ -157,6 +157,8 @@ public class IDLoginActivity extends MVPBaseActivity<IDLoginContract.View, IDLog
 //        userSet.addAll(data.toString());
         bSharedPreferences.putString("user_info",data.toString());
         Log.e("User", "LoginidSuccess: "+ bUser.toString());
+        setbUserBySP(data.toString());
+        bUser.setUser_id(data.getUser_id());
         bSharedPreferences.putBoolean(MySharedPreferences.STATUS_LOGIN,true);
         startNewUI(MainActivity.class);
 //        showToast("登录成功！");

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.text.Editable;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -64,7 +63,7 @@ public class NicknameActivity extends BaseActivity {
     }
 
     private void uploadNickname(String nickname) {
-        addSubscription(mApiService.uploadUserNickname(bUser.getUser_id(),0,nickname),
+        addSubscription(mApiService.uploadUserDetials(bUser.getUser_id(),0,nickname,null),
                 new BaseSubscriber<PersonalDetialsBean>(this) {
                     @Override
                     public void onNext(PersonalDetialsBean Detial) {

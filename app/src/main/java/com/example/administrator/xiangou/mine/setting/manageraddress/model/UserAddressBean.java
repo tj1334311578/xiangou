@@ -11,10 +11,19 @@ import java.util.List;
  */
 public class UserAddressBean implements Serializable{
 
+    @Override
+    public String toString() {
+        return "UserAddressBean{" +
+                "state=" + state +
+                ", data=" + data +
+                '}';
+    }
+
     /**
      * data : [{"address_id":859,"user_id":1,"consignee":"11125565","email":"","country":0,"province":"天津市","city":"市辖区","district":"和平区","twon":0,"address":"他他他他","zipcode":"","mobile":"55555555555","is_default":1,"is_pickup":0,"map_x":"39.118327","map_y":"117.195907","province_id":338,"city_id":339,"district_id":340},{"address_id":857,"user_id":1,"consignee":"fds","email":"","country":0,"province":"北京市","city":"市辖区","district":"东城区","twon":0,"address":"Fdsafds","zipcode":"","mobile":"43214231432","is_default":0,"is_pickup":0,"map_x":"39.917544","map_y":"116.418757","province_id":1,"city_id":2,"district_id":3},{"address_id":844,"user_id":1,"consignee":"xia欧晓","email":"","country":0,"province":"浙江省","city":"绍兴市","district":"诸暨市","twon":13491,"address":"登记卡萨龙岗街道斯科拉和；飞快的老师；按键了；","zipcode":"4141254321","mobile":"15368590233","is_default":0,"is_pickup":0,"map_x":0,"map_y":0,"province_id":12596,"city_id":13437,"district_id":13490}]
      * state : {"code":200,"msg":"获取成功","debugMsg":"","url":"api/User/address"}
      */
+
 
     private StateBean state;
     private List<DataBean> data;
@@ -36,12 +45,23 @@ public class UserAddressBean implements Serializable{
     }
 
     public static class StateBean {
+        @Override
+        public String toString() {
+            return "StateBean{" +
+                    "code=" + code +
+                    ", msg='" + msg + '\'' +
+                    ", debugMsg='" + debugMsg + '\'' +
+                    ", url='" + url + '\'' +
+                    '}';
+        }
+
         /**
          * code : 200
          * msg : 获取成功
          * debugMsg :
          * url : api/User/address
          */
+
 
         private int code;
         private String msg;
@@ -81,7 +101,56 @@ public class UserAddressBean implements Serializable{
         }
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable{
+        @Override
+        public String toString() {
+            return "DataBean{" +
+                    "address_id=" + address_id +
+                    ", user_id=" + user_id +
+                    ", consignee='" + consignee + '\'' +
+                    ", email='" + email + '\'' +
+                    ", country=" + country +
+                    ", province='" + province + '\'' +
+                    ", city='" + city + '\'' +
+                    ", district='" + district + '\'' +
+                    ", twon=" + twon +
+                    ", address='" + address + '\'' +
+                    ", zipcode='" + zipcode + '\'' +
+                    ", mobile='" + mobile + '\'' +
+                    ", is_default=" + is_default +
+                    ", is_pickup=" + is_pickup +
+                    ", map_x='" + map_x + '\'' +
+                    ", map_y='" + map_y + '\'' +
+                    ", province_id=" + province_id +
+                    ", city_id=" + city_id +
+                    ", district_id=" + district_id +
+                    '}';
+        }
+
+        public DataBean() {
+        }
+        public DataBean(int address_id, int user_id, String consignee, String email, int country, String province, String city, String district, int twon, String address, String zipcode, String mobile, int is_default, int is_pickup, String map_x, String map_y, int province_id, int city_id, int district_id) {
+            this.address_id = address_id;
+            this.user_id = user_id;
+            this.consignee = consignee;
+            this.email = email;
+            this.country = country;
+            this.province = province;
+            this.city = city;
+            this.district = district;
+            this.twon = twon;
+            this.address = address;
+            this.zipcode = zipcode;
+            this.mobile = mobile;
+            this.is_default = is_default;
+            this.is_pickup = is_pickup;
+            this.map_x = map_x;
+            this.map_y = map_y;
+            this.province_id = province_id;
+            this.city_id = city_id;
+            this.district_id = district_id;
+        }
+
         /**
          * address_id : 859
          * user_id : 1
@@ -103,6 +172,7 @@ public class UserAddressBean implements Serializable{
          * city_id : 339
          * district_id : 340
          */
+
 
         private int address_id;
         private int user_id;

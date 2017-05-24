@@ -64,11 +64,13 @@
             android:textSize="14sp"
             android:textColor="#e6161616"
             android:text="所在地区："/>
-        <EditText
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textSize="14sp"
             android:textColor="#e6161616"
+            android:hint="点击选择地区省份"
+            android:gravity="center"
             android:id="@+id/editaddress_locationEt"
             android:layout_weight="1"/>
     </LinearLayout>
@@ -76,11 +78,11 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="44dp"
-        android:text="四川省成都市成华区驷马桥羊子山神迪玛利亚栋2单元"
         android:textSize="14sp"
-        android:singleLine="true"
+        android:maxLines="1"
         android:ellipsize="end"
         android:textColor="#e6161616"
+        android:hint="请填写详细地址信息"
         android:id="@+id/editaddress_detailed"
         android:layout_below="@+id/editaddress_location_Ll"
         android:layout_alignStart="@+id/editaddress_location_Ll" />

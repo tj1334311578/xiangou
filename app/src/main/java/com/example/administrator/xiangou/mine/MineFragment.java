@@ -175,7 +175,7 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
 
     private void initDate() {
         if (bSharedPreferences.getString("user_info",null)!=null)
-//        setbUserBySP(bSharedPreferences.getString("user_info",null));
+        setbUserBySP(bSharedPreferences.getString("user_info",null));
         setTextToTv(mMessageTv,mine_MsgCount);
 
         setTextToTv(mUserLevelTv,"V"+bUser.getLevel());

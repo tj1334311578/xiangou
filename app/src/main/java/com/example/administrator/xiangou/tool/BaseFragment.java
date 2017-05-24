@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -209,6 +210,7 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
     //将本地存储的用户信息赋值给用户类对象
     public void setbUserBySP(String str){
         String[] user = str.split(",");
+        Log.e("userinfo", "setbUserBySP: " + user.toString());
         bUser.setUser_id(Integer.parseInt(user[0]));
         bUser.setSex(Integer.parseInt(user[1]));
         bUser.setMobile(user[2]);

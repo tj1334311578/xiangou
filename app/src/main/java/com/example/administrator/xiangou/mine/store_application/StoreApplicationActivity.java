@@ -59,7 +59,6 @@ public class StoreApplicationActivity extends PopupWindowsBaseActivity implement
     private TextView mCategoryTv;
     private Map<Integer,String> imgpathMap;
     private ApplicantInfoBean mApplicantInfoBean;
-//    private JSONObject mInfos;
     private Intent mIntent;
 
 
@@ -79,17 +78,10 @@ public class StoreApplicationActivity extends PopupWindowsBaseActivity implement
         mIntent = getIntent();
         imgpathMap = new HashMap<>();
         mApplicantInfoBean = new ApplicantInfoBean();
-//        mInfos = new JSONObject();
         int mUserId = mIntent.getIntExtra("user_id",0);
-            mApplicantInfoBean.setUser_id(mUserId);
-//        try {
-//            mInfos.put("user_id",mUserId);
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
+        mApplicantInfoBean.setUser_id(mUserId);
         initView();
         getChooseListData(mApiService.toApplyShop(mUserId),0);
-//        Log.e("intent+++++", "onCreate:" +getIntent().getStringExtra("position") );
     }
 
     /**
@@ -108,7 +100,30 @@ public class StoreApplicationActivity extends PopupWindowsBaseActivity implement
         mShopAdressEdt = findContentView(R.id.store_address_edit,false);
         mCommitBtn = findContentView(R.id.commit_application_btn);
         mCategoryTv = findContentView(R.id.main_category_edit);
-
+        //获取上次记录数据
+        Log.e("storeinfo", "onStop: " + bSharedPreferences.getString("StoreApplyInfo",null));
+        String[] user =  bSharedPreferences.getString("StoreApplyInfo",null).split(",");
+        for (int i = 0; i < user.length; i++) {
+            if (!user[i].equals("")){
+                switch (i){
+                    case 0:
+                        mApplicantNameEdt.setText(user[0]);
+                        break;
+                    case 1:
+                        mTelEdt.setText(user[1]);
+                        break;
+                    case 2:
+                        mIDCardEdt.setText(user[2]);
+                        break;
+                    case 3:
+                        mStoreNameEdt.setText(user[3]);
+                        break;
+                    case 4:
+                        mShopAdressEdt.setText(user[4]);
+                        break;
+                }
+            }
+        }
         ID_positive= findContentView(R.id.ID_positive);
         ID_opposite= findContentView(R.id.ID_opposite);
         logo_potato= findContentView(R.id.logo_potato);
@@ -162,11 +177,6 @@ public class StoreApplicationActivity extends PopupWindowsBaseActivity implement
             public void bindDataToView(TextView textView, int position) {
                 textView.setText(data.get(position).getName());
                 mAreaId[type] = data.get(position).getRegion_id();
-//                try {
-//                    mInfos.put(name,data.get(position).getRegion_id());
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
             }
         };
         Log.e(TAG, "initView: "+ data.toString());
@@ -180,16 +190,6 @@ public class StoreApplicationActivity extends PopupWindowsBaseActivity implement
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 // 根据省份更新城市区域信息;
                 mAreaId[type] = data.get(position).getRegion_id();
-//                try {
-//                    mInfos.put(name, data.get(position).getRegion_id());
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-                //                if (mAreaList.get(0)==null) {
-//                    mAreaList.add(data.get(position).getRegion_id());
-//                }else {
-//                    mAreaList.get(0) = data.get(position).getRegion_id();
-//                }
                 if (type<2){
                     int num;
                     num = type + 1;
@@ -229,11 +229,6 @@ public class StoreApplicationActivity extends PopupWindowsBaseActivity implement
                     StringBuilder text = new StringBuilder();
                     int[] categoryData = data.getIntArrayExtra("category_list");
                     Log.e("cid", "onActivityResult: " + categoryData.toString());
-//                    try {
-//                        mInfos.put("cid",categoryData);
-//                    } catch (JSONException e) {
-//                        e.printStackTrace();
-//                    }
 
                     String[] categoryNameData = data.getStringArrayExtra("category_namelist");
                     mApplicantInfoBean.setCid(categoryData);
@@ -292,22 +287,11 @@ public class StoreApplicationActivity extends PopupWindowsBaseActivity implement
         //待修改
         mApplicantInfoBean.setMap_x("104.234452");
         mApplicantInfoBean.setMap_y("30.123434");
-//        try {
-//            mInfos.put("realname",changeEdtext(mApplicantNameEdt));
-//            mInfos.put("tel",changeEdtext(mTelEdt));
-//            mInfos.put("idcard",changeEdtext(mIDCardEdt));
-//            mInfos.put("name",changeEdtext(mStoreNameEdt));
-//            mInfos.put("address",changeEdtext(mShopAdressEdt));
-////            mInfos.put("map_x",0);
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
         Log.e("ApplicantInfoBean", "commitApplicationShop: " + mApplicantInfoBean.toString() );
 
         Map<String, RequestBody> imgs = new HashMap<>();
         MultipartBody.Part[] id_img = new MultipartBody.Part[2];
-        MultipartBody.Part logo = null;
-        RequestBody licence= null,contract= null;
+        MultipartBody.Part logo = null,licence= null,contract= null;
         for (int i = 0; i < 5; i++) {
             if (imgpathMap.get(i)!=null){
                 File file = new File(imgpathMap.get(i));
@@ -322,34 +306,41 @@ public class StoreApplicationActivity extends PopupWindowsBaseActivity implement
                             logo = createFormData("logo",file.getName(), img);
                             break;
                         case 3:
-                            imgs.put("licence",img);
+//                            imgs.put("licence",img);
+                            licence = createFormData("licence",file.getName(),img);
+//                            licence = img;
                             break;
-//                            licence = RequestBody.create("licence",file.getName(),img);
                         case 4:
-
-                            imgs.put("contract",img);
+//                            contract = img;
+//                            imgs.put("contract",img);
+                            contract = createFormData("contract",file.getName(),img);
                             break;
-//                            contract = createFormData("contract",file.getName(),img);
                     }
                 }
 
             }
-            else {
-
-            }
+//            else {
+//                switch (i){
+//                    case 3:
+//                        imgs.put("licence",null);
+//                        break;
+//                    case 4:
+//                        imgs.put("contract",null);
+//                        break;
+//                }
+//            }
         }
-        if (licence!=null)
-        if (contract!=null)
-        imgs.put("contract",contract);
-        //
+//        if (licence!=null)
+//        if (contract!=null)
+//        imgs.put("contract",contract);
+
         addSubscription(mApiService.applyShop(
-//                mInfos.toString(),
                 mApplicantInfoBean,
                 id_img,
                 logo,
-                imgs
-//                licence,
-//                contract
+//                imgs
+                licence,
+                contract
         ), new BaseSubscriber<Captcha>(this) {
             @Override
             public void onNext(Captcha captcha) {
@@ -432,6 +423,12 @@ public class StoreApplicationActivity extends PopupWindowsBaseActivity implement
     @Override
     protected void onStop() {
         super.onStop();
+        mApplicantInfoBean.setRealname(changeEdtext(mApplicantNameEdt));
+        mApplicantInfoBean.setTel(changeEdtext(mTelEdt));
+        mApplicantInfoBean.setIdcard(changeEdtext(mIDCardEdt));
+        mApplicantInfoBean.setName(changeEdtext(mStoreNameEdt));
+        mApplicantInfoBean.setAddress(changeEdtext(mShopAdressEdt));
         bSharedPreferences.putString("StoreApplyInfo",mApplicantInfoBean.toString());
     }
+
 }

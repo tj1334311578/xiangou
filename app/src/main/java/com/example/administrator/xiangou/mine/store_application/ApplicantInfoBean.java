@@ -12,20 +12,18 @@ import java.util.Arrays;
 public class ApplicantInfoBean implements Serializable{
     @Override
     public String toString() {
-        return "ApplicantInfoBean{" +
-                "realname='" + realname + '\'' +
-                ", tel='" + tel + '\'' +
-                ", idcard='" + idcard + '\'' +
-                ", name='" + name + '\'' +
-                ", address='" + address + '\'' +
-                ", map_x='" + map_x + '\'' +
-                ", map_y='" + map_y + '\'' +
-                ", user_id=" + user_id +
-                ", province=" + province +
-                ", city=" + city +
-                ", district=" + district +
-                ", cid=" + Arrays.toString(cid) +
-                '}';
+        return realname +
+                "," + tel +
+                "," + idcard +
+                ","+ name +
+                ","+ address +
+                "," + map_x +
+                "," + map_y +
+                ","+ user_id +
+                ","+ province +
+                "," + city +
+                ","+ district +
+                "," + Arrays.toString(cid) ;
     }
 
     /**

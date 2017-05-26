@@ -48,6 +48,7 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
     private CustomImageView mHeadImgCiv;
     private TextView mUserLevelTv,mLevelNumberTv,mUserNameTv,mMessageTv,mUnpaidTv,mWaitDekiveryTv,mReceiveTv,mEvaluationTv,mReturnsOrSalesTv;
     private int mine_MsgCount=0;
+    private static int userType=0;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -97,7 +98,7 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         mUserLevelTv = findContentView(R.id.mine_level_tv);
         mLevelNumberTv = findContentView(R.id.mine_level_number_tv);
         mUserNameTv = findContentView(R.id.mine_username_tv);
-        Log.e("name","initView: " + bUser.getNickname());
+        Log.e("name","initView: " + bUser.getNickname()+"\ntype:"+bUser.getType()+"\nstatus:"+bUser.getStatus());
 
         findContentView(R.id.mine_attention);
         findContentView(R.id.mine_Coupon);
@@ -130,6 +131,9 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
                 }
             }
         });
+        //获取用户类型
+        userType=bUser.getType();
+//        userType=3;
 
         //ListView点击事件设置
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -140,12 +144,21 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
                 //等价于=>((TextView)(listView.getChildAt(position).findViewById(R.id.mine_item_text)))
                 Toast.makeText(getContext(),tv.getText() +"被点击了", Toast.LENGTH_SHORT).show();
                 //设置点击位置改变条件
-                if (bUser.getType()==1){
-                    if (position==0)
-                        position=3;
-                    else
-                    position-=1;
+                switch (userType){
+                    case 3:
+                        if (position==0)
+                            position=3;
+                        else
+                            position-=1;
+                        break;
+                    default:break;
                 }
+//                if (bUser.getType()==userType){
+//                    if (position==0)
+//                        position=3;
+//                    else
+//                    position-=1;
+//                }
                 Log.e("jjf", "onItemClick: "+position );
                 switch (position){
                     case 0:
@@ -159,11 +172,21 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
                         startNewUI(ClassificationTabActivity.class);
                         break;
                     case 3:
-                        if (bUser.getType()==3){
-                            startNewUI(MyStoreActivity.class);
-                        }else {
-                            startNewUIForResult(StoreApplicationActivity.class,APPLYCODE,"user_id",bUser.getUser_id());
+                        switch (userType){
+                            case 1:
+                                startNewUIForResult(StoreApplicationActivity.class,APPLYCODE,"user_id",bUser.getUser_id());
+                                break;
+                            case 3:
+                                startNewUI(MyStoreActivity.class);
+                                break;
+                            default:
+                                break;
                         }
+//                        if (bUser.getType()==userType){
+//                            startNewUI(MyStoreActivity.class);
+//                        }else {
+//                            startNewUIForResult(StoreApplicationActivity.class,APPLYCODE,"user_id",bUser.getUser_id());
+//                        }
                         break;
                     default:
                         break;
@@ -201,11 +224,22 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
     private void initSet() {
         //初始化数据
 //        Log.e("usertype", "initSet: " + bUser.getType());
-        if (bUser.getType()==3){
-            content_text[content_text.length-1]="我的店铺";
-        }else {
-            content_text[content_text.length-1]="申请店铺";
+
+        switch (userType){
+            case 1:
+                content_text[content_text.length-1]="申请店铺";
+                break;
+            case 3:
+                content_text[content_text.length-1]="我的店铺";
+                break;
+            default:
+                break;
         }
+//        if (bUser.getType()==userType){
+//            content_text[content_text.length-1]="我的店铺";
+//        }else {
+//            content_text[content_text.length-1]="申请店铺";
+//        }
         List<ItemImage> list=new ArrayList<>();
 //        Log.e("initSet", "initSet: "+content_text[content_text.length-1]);
         for (int i = 0; i <content_img.length ; i++) {
@@ -213,10 +247,19 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         }
         //更改最后一个位置到第一个位置
 //        Log.e("tga", "initSet: "+bUser.getType()+"\n"+list.get(list.size()-1).getStr()+"\n"+list.get(0).getStr());
-        if (bUser.getType()==1) {
-            list.add(0, new ItemImage(content_img[list.size()-1],content_text[list.size()-1]));
-            list.remove(list.get(list.size()-1));
-//            Log.e("tga", "initSet: "+bUser.getType()+"\n"+list.get(list.size()-1).getStr()+"\n"+list.get(0).getStr());
+
+//        if (bUser.getType()==userType) {
+//            list.add(0, new ItemImage(content_img[list.size()-1],content_text[list.size()-1]));
+//            list.remove(list.get(list.size()-1));
+////            Log.e("tga", "initSet: "+bUser.getType()+"\n"+list.get(list.size()-1).getStr()+"\n"+list.get(0).getStr());
+//        }
+        switch (userType){
+            case 3:
+                list.add(0, new ItemImage(content_img[list.size()-1],content_text[list.size()-1]));
+                list.remove(list.get(list.size()-1));
+                break;
+            default:
+                break;
         }
         MineAdapter adapter=new MineAdapter(getContext(),list);
         listView.setAdapter(adapter);

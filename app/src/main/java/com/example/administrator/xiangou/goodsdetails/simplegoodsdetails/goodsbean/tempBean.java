@@ -1,4 +1,4 @@
-package com.example.administrator.xiangou.goodsdetails.simplegoodsdetails;
+package com.example.administrator.xiangou.goodsdetails.simplegoodsdetails.goodsbean;
 
 import com.google.gson.annotations.SerializedName;
 

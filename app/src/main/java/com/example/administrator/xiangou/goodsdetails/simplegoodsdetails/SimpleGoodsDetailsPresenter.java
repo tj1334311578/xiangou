@@ -2,6 +2,7 @@ package com.example.administrator.xiangou.goodsdetails.simplegoodsdetails;
 
 import android.util.Log;
 
+import com.example.administrator.xiangou.goodsdetails.simplegoodsdetails.goodsbean.SimpleGoodsDetialBean;
 import com.example.administrator.xiangou.mvp.BasePresenterImpl;
 import com.example.administrator.xiangou.net.BaseSubscriber;
 import com.example.administrator.xiangou.net.ExceptionHandle;

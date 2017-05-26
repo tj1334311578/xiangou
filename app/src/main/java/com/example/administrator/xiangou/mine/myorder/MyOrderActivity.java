@@ -21,7 +21,7 @@ public class MyOrderActivity extends MVPBaseActivity<MyOrderContract.View, MyOrd
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_myorder);
+        setContentView(R.layout.linearlayout_style);
         MyOrderFragment fragment = new MyOrderFragment();
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction ft = manager.beginTransaction();

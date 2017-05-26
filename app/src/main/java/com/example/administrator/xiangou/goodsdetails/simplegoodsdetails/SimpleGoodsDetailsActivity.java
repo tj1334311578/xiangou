@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -28,6 +29,8 @@ import com.example.administrator.xiangou.goodsdetails.simplegoodsdetails.adapter
 import com.example.administrator.xiangou.goodsdetails.simplegoodsdetails.adapter.CouponAdapter;
 import com.example.administrator.xiangou.goodsdetails.simplegoodsdetails.adapter.CouponDialogAdapter;
 import com.example.administrator.xiangou.goodsdetails.simplegoodsdetails.adapter.SimpleGoodsParameterAdapter;
+import com.example.administrator.xiangou.goodsdetails.simplegoodsdetails.goodsbean.SimpleGoodsDetialBean;
+import com.example.administrator.xiangou.goodsdetails.simplegoodsdetails.goodsdetailscomment.GoodsDetailsCommentActivity;
 import com.example.administrator.xiangou.mvp.MVPBaseActivity;
 import com.example.administrator.xiangou.net.XianGouApiService;
 import com.example.administrator.xiangou.tool.GlideImageLoader;
@@ -95,8 +98,8 @@ public class SimpleGoodsDetailsActivity extends MVPBaseActivity<SimpleGoodsDetai
         attention_Tv=findContentView(R.id.simple_goodsdetails_total_attention_num,false);
         goStore_Btn=findContentView(R.id.simple_goodsdetails_gotoStore,false);
         comments_sum_Tv=findContentView(R.id.simple_goodsdetails_comments_sum,false);
-        comments_rl=findContentView(R.id.simple_goodsdetails_comments_rl);
-        comments_head=findContentView(R.id.simple_goodsdetails_comments_head,false);
+        comments_rl=findContentView(R.id.simple_goodsdetails_comments_rl,false);
+        comments_head=findContentView(R.id.simple_goodsdetails_comments_head);
         commentsRecycle=findContentView(R.id.simple_goodsdetails_comments_recycle,false);
         colorandsize_Tv=findContentView(R.id.simple_goodsdetails_colorandsize_Tv,false);
         //进行网络请求goods_id的详情
@@ -144,7 +147,83 @@ public class SimpleGoodsDetailsActivity extends MVPBaseActivity<SimpleGoodsDetai
                 if (mData.getData().getCoupon().size()>0)
                 showCoupon(mData.getData().getCoupon());
                 break;
+            case R.id.simple_goodsdetails_comments_head://买家评论
+//                if (mData.getData().getComment().size()>0)
+                 showComment();
+            case R.id.simple_goodsdetails_colorandsize_ll://颜色尺码
+                showColorAndSizeDialog();
+                break;
         }
+    }
+
+    private void showColorAndSizeDialog() {
+        creatdialog();
+        final View location=LayoutInflater.from(this).inflate(R.layout.simple_goodsdetails_colorandsize,null);
+        dialog.setContentView(location);
+        //设置点击外的事件
+        location.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                int height=location.findViewById(R.id.simple_goodsdetails_colorandsize_rl).getTop();
+                int y= (int) event.getY();
+                if (event.getAction()==MotionEvent.ACTION_UP){
+                    if (y<height){
+                        dialog.dismiss();
+                    }
+                }
+                return true;
+            }
+        });
+        ImageView addBtn,reduceBtn,cancelBtn;
+        TextView totalValue,operand,addToCartBtn,buyNowBtn;
+        addBtn= (ImageView) location.findViewById(R.id.simple_goodsdetails_colorandsize_addoperand);
+        //可能出现问题
+        reduceBtn= (ImageView) location.findViewById(R.id.simple_goodsdetails_colorandsize_addoperand);
+        cancelBtn=(ImageView) location.findViewById(R.id.simple_goodsdetails_colorandsize_cancel);
+        //退出dialog
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        totalValue= (TextView) location.findViewById(R.id.simple_goodsdetails_colorandsize_numbervalue);
+        operand= (TextView) location.findViewById(R.id.simple_goodsdetails_colorandsize_operand);
+        addToCartBtn= (TextView) location.findViewById(R.id.simple_goodsdetails_colorandsize_addtocart);
+        buyNowBtn= (TextView) location.findViewById(R.id.simple_goodsdetails_colorandsize_buynow);
+
+        RecyclerView colorrecycle,sizerecycle;
+        colorrecycle= (RecyclerView) location.findViewById(R.id.simple_goodsdetails_colorandsize_colorrecycle);
+        sizerecycle= (RecyclerView) location.findViewById(R.id.simple_goodsdetails_colorandsize_sizerecycle);
+        colorrecycle.addItemDecoration(new ItemIntervalDecoration(0,0,0,10));
+        sizerecycle.addItemDecoration(new ItemIntervalDecoration(0,0,0,10));
+        colorrecycle.setLayoutManager(new GridLayoutManager(this,5,LinearLayoutManager.VERTICAL,false));
+        sizerecycle.setLayoutManager(new GridLayoutManager(this,5,LinearLayoutManager.VERTICAL,false));
+
+        /**模拟数据*/
+        List<String> sizes=new ArrayList<>(),colors=new ArrayList<>();
+        sizes.add("S");
+        sizes.add("M");
+        sizes.add("L");
+        sizes.add("XL");
+        sizes.add("XXL");
+        sizes.add("XXXL");
+
+        colors.add("白色");
+        colors.add("红色");
+        colors.add("黑色");
+        colors.add("蓝色");
+        colors.add("灰色");
+        /**模拟数据*/
+        colorrecycle.setAdapter(new ColorandSizeAdapter(dialog.getContext(),colors));
+        sizerecycle.setAdapter(new ColorandSizeAdapter(dialog.getContext(),sizes));
+
+    }
+
+    //跳转到评论详情页
+    private void showComment() {
+        Log.e("showcomment", "showComment: "+goods_id );
+        startNewUICarryStr(GoodsDetailsCommentActivity.class,"goods_id",goods_id);
     }
 
     private void showCoupon(List<SimpleGoodsDetialBean.DataBean.CouponBean> coupon) {

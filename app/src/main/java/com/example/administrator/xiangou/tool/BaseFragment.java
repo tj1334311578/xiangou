@@ -46,9 +46,9 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         bUser = ContextUtils.gUser;
         bSharedPreferences = ContextUtils.gSharedPreferences;
+        Log.e("onCreate", "onCreate: "+bUser.toString() );
     }
 
     @Nullable

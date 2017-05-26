@@ -52,9 +52,6 @@ public class CartFragment extends MVPBaseFragment<CartContract.View, CartPresent
     @Override
     public void initView() {
         mMergeBeanList = new ArrayList<>();
-//        mMergeItemBeanList = new ArrayList<>();
-//        mMergeItemBeanList1 = new ArrayList<>();
-//        mMergeItemBeanList2 = new ArrayList<>();
 
         mAllCountTv = findContentView(R.id.cart_goods_allcount);
         setTextToTv(mAllCountTv,"购物车("+10+")");
@@ -126,97 +123,7 @@ public class CartFragment extends MVPBaseFragment<CartContract.View, CartPresent
     @Override
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
         mPresenter.dealAllCheckBox(buttonView, isChecked);
-//        Log.e("全选", "onCheckedChanged:全选 " +isChecked);
-//        if (isChecked){
-//            //全选时执行
-//            for (int i = 0; i < mMergeBeanList.size(); i++) {
-//                //选择店铺
-//                if (!mMergeBeanList.get(i).getStoreStatusBean().ischeck()){
-//                    mMergeBeanList.get(i).getStoreStatusBean().setIsCheck(true);
-//                }
-//                //店铺里的商品
-//                for (int j = 0; j < mMergeBeanList.get(i).getMergeItemBeanList().size(); j++) {
-//                    if (!mMergeBeanList.get(i).getMergeItemBeanList().get(j).getItemStatusBean().ischeck()){
-//                        mMergeBeanList.get(i).getMergeItemBeanList().get(j).getItemStatusBean().setIscheck(true);
-//                    }
-//                }
-//            }
-//            toUpdataView(0,mMergeBeanList.size());//更新
-//        }else {
-//            //全不选时执行
-//            if (allSelect() == mMergeBeanList.size()) {
-//                Log.e("unallSelect", "here is unAllselect: " +allSelect() );
-//                for (int i = 0; i < mMergeBeanList.size(); i++) {
-//                    //选择店铺
-//                    if (mMergeBeanList.get(i).getStoreStatusBean().ischeck()) {
-//                        mMergeBeanList.get(i).getStoreStatusBean().setIsCheck(false);
-//                    }
-//                    //店铺里的商品
-//                    for (int j = 0; j < mMergeBeanList.get(i).getMergeItemBeanList().size(); j++) {
-//                        if (mMergeBeanList.get(i).getMergeItemBeanList().get(j).getItemStatusBean().ischeck()) {
-//                            mMergeBeanList.get(i).getMergeItemBeanList().get(j).getItemStatusBean().setIscheck(false);
-//                        }
-//                    }
-//                }
-//                toUpdataView(0,mMergeBeanList.size());//更新
-//            }
-//        }
     }
-    /**
-     *解决Recycleyview刷新报错问题
-     */
-//    private void toUpdataView(final int startpos, final int count) {
-//        Handler handler = new Handler();
-//        final Runnable r = new Runnable() {
-//            public void run() {
-//                mAdapterDealCartRV.notifyItemRangeChanged(startpos,count);//更新
-//                calculateTotalPrice();
-//                setTextToTv(mTotalTv,"￥ "+ ContextUtils.S2places(totalPrice)+" 元");
-//            }
-//        };
-//        handler.post(r);
-//    }
-//    private void calculateTotalPrice(){
-//        totalPrice = 0;//重置合计
-//        for (int i = 0; i < mMergeBeanList.size(); i++) {
-//            for (int j = 0; j < mMergeBeanList.get(i).getMergeItemBeanList().size(); j++) {
-//                if (mMergeBeanList.get(i).getMergeItemBeanList().get(j).getItemStatusBean().ischeck()){
-//                    totalPrice += (mMergeBeanList.get(i).getMergeItemBeanList().get(j).getGoodsDealBean().getGoodsPrice()
-//                        * mMergeBeanList.get(i).getMergeItemBeanList().get(j).getGoodsDealBean().getGoodsCount());
-//                }
-//            }
-//        }
-//    }
-//
-//    /**
-//     *计算店铺的选择数量
-//     */
-//    private int allSelect(){
-//        int count=0;
-//        for (int i = 0; i < mMergeBeanList.size(); i++) {
-//            if (mMergeBeanList.get(i).getStoreStatusBean().ischeck()){
-//                count++;
-//            }
-//        }
-//        return count;
-//    }
-//
-//    /**
-//     * 计算每个店铺商品的选择数量
-//     * @param position 店铺的位置
-//     * @return
-//     */
-//    private int allItemSelect(int position){
-//        int count=0;
-//        for (int i = 0; i < mMergeBeanList.get(position).getMergeItemBeanList().size(); i++) {
-//            if (mMergeBeanList.get(position).getMergeItemBeanList().get(i).getItemStatusBean().ischeck()) {
-//                count++;
-//            }
-//        }
-//        return count;
-//    }
-
-
 
     @Override
     public void onClick(View v) {
@@ -229,7 +136,7 @@ public class CartFragment extends MVPBaseFragment<CartContract.View, CartPresent
 
     @Override
     public void sendFialRequest(String message) {
-
+        toastShow(message);
     }
 
     @Override

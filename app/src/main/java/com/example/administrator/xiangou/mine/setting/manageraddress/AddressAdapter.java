@@ -23,12 +23,15 @@ import java.util.List;
 public class AddressAdapter extends RVBaseAdapter<UserAddressBean.DataBean> {
 
     private DrawableTextView editText,delText;
+    private CheckBox mCheckBox;
+
     public AddressAdapter(Context context, List<UserAddressBean.DataBean> mDatas) {
         super(context, mDatas);
         setLayoutResId(R.layout.manageraddress_item);
     }
 
     public interface AddressManagerListener{
+//        void dealCheckBox(CompoundButton buttonView, boolean isChecked, int position);
         void dealCheckBox(CompoundButton buttonView, boolean isChecked, int position);
         void dealEditTextTv(View v, int position);
         void dealDelTextTv(View v, int position);
@@ -41,21 +44,30 @@ public class AddressAdapter extends RVBaseAdapter<UserAddressBean.DataBean> {
     @Override
     protected void bindData(RVBaseViewHolder holder, final UserAddressBean.DataBean dataBean, final int position) {
 
-        Log.e("enterbnd", "onBindViewHolder: " +position);
+        Log.e("enterbnd", "onBindViewHolder: " +position+" =="+dataBean.toString());
         holder.getTextView(R.id.manageraddress_username).setText(dataBean.getConsignee());
         holder.getTextView(R.id.manageraddress_usernumber).setText(dataBean.getMobile());
         holder.getTextView(R.id.manageraddress_useraddress).setText(dataBean.getAddress());
-        CheckBox checkBox=holder.getCheckBox(R.id.manageraddress_defaultaddress);
-        checkBox.setTag(position);
+        mCheckBox = holder.getCheckBox(R.id.manageraddress_defaultaddress);
+        mCheckBox.setOnCheckedChangeListener(null);
+//        if (holder.getCheckBox(R.id.manageraddress_defaultaddress).getTag()!=dataBean) {
+//            mCheckBox.setTag(dataBean);
+//        }
         if (dataBean.getIs_default()==1) {
-            checkBox.setChecked(true);
+            mCheckBox.setChecked(true);
+            mCheckBox.setClickable(false);
+        }else {
+            mCheckBox.setChecked(false);
+            mCheckBox.setClickable(true);
         }
-        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        mCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Log.e("adaper", "onCheckedChanged: " + position + " :" +isChecked );
                 mAddressManagerListener.dealCheckBox(buttonView,isChecked,position);
             }
         });
+
         editText= (DrawableTextView) holder.getView(R.id.manageraddress_editTv);
         delText= (DrawableTextView) holder.getView(R.id.manageraddress_delTv);
         //编辑监听跳转到编辑页面

@@ -5,7 +5,6 @@ import com.example.administrator.xiangou.goodsdetails.simplegoodsdetails.SimpleG
 import com.example.administrator.xiangou.login.Captcha;
 import com.example.administrator.xiangou.login.LoginBean;
 import com.example.administrator.xiangou.mine.ToApplyStoreBean;
-import com.example.administrator.xiangou.mine.setting.manageraddress.AddressBean;
 import com.example.administrator.xiangou.mine.setting.manageraddress.EditAddressEnterBean;
 import com.example.administrator.xiangou.mine.setting.manageraddress.model.UserAddressBean;
 import com.example.administrator.xiangou.mine.setting.personal.PersonalDetialsBean;
@@ -17,6 +16,8 @@ import com.example.administrator.xiangou.nearby.apimodel.NearbyBenifitDataBean;
 import com.example.administrator.xiangou.nearby.apimodel.NearbyGoodsDataBean;
 import com.example.administrator.xiangou.nearby.apimodel.NearbyGoodsDetailDataBean;
 import com.example.administrator.xiangou.nearby.apimodel.NearbyStoreApiDataBean;
+
+import org.json.JSONObject;
 
 import okhttp3.MultipartBody;
 import retrofit2.http.Field;
@@ -203,8 +204,15 @@ public interface XianGouApiService {
     Observable<ToApplyStoreBean> chooseAreaAddrApi(@Query("region_id") int region_id);
 
     //添加/编辑收货地址
+    @FormUrlEncoded
     @POST("Api/User/edit_address/")
-    Observable<Captcha> saveUserAddrApi(@Part("info") AddressBean info);
+    Observable<Captcha> saveUserAddrApi(@Field("info") JSONObject info);
+
+    //删除地址
+    @FormUrlEncoded
+    @POST("api/User/del_address/")
+    Observable<Captcha> delUserAddrApi(@Field("user_id") int user_id, @Field("address_id") int address_id);
+
 
 
 }

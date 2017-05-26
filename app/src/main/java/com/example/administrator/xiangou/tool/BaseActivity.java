@@ -104,15 +104,23 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 
     public ProgressDialog mProgressDialog;
     public ProgressDialog showProgressDialog() {
-        this.mProgressDialog = new ProgressDialog(this);
-        this.mProgressDialog.setMessage("拼命加载中...");
-        this.mProgressDialog.show();
+        if (this.mProgressDialog==null ) {
+            this.mProgressDialog = new ProgressDialog(this);
+            this.mProgressDialog.setMessage("拼命加载中...");
+            this.mProgressDialog.show();
+        }else if (!this.mProgressDialog.isShowing()){
+            this.mProgressDialog.show();
+        }
         return this.mProgressDialog;
     }
     public ProgressDialog showProgressDialog(CharSequence message) {
-        this.mProgressDialog = new ProgressDialog(this);
-        this.mProgressDialog.setMessage(message);
-        this.mProgressDialog.show();
+        if (this.mProgressDialog==null ) {
+            this.mProgressDialog = new ProgressDialog(this);
+            this.mProgressDialog.setMessage(message);
+            this.mProgressDialog.show();
+        }else if (!this.mProgressDialog.isShowing()){
+            this.mProgressDialog.show();
+        }
         return this.mProgressDialog;
     }
     public void dismissProgressDialog() {
@@ -145,17 +153,36 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         }
         startActivity(intent);
     }
-    public void startNewUIForResult(Class<?> context,int requestCode,String name,Object str){
+    public void startNewUIForResult(Class<?> context,int requestCode,String name,Object str ){
+//        Intent intent = new Intent(this,context);
+//            if (str instanceof String) {
+//                String s= (String) str;
+//                intent.putExtra(name, s);
+//            }else if (str instanceof Serializable){
+//                Serializable s = (Serializable) str;
+//                intent.putExtra(name,s);
+//            }else if (str instanceof Bundle){
+//                Bundle s = (Bundle) str;
+//                intent.putExtra(name,s);
+//            }
+//        startActivityForResult(intent,requestCode);
+        String[] names = {name};
+        Object[] strs = {str};
+        startNewUIForResult(context,requestCode,names,strs);
+    }
+    public void startNewUIForResult(Class<?> context,int requestCode,String[] names,Object[] strs ){
         Intent intent = new Intent(this,context);
-        if (str instanceof String) {
-            String s= (String) str;
-            intent.putExtra(name, s);
-        }else if (str instanceof Serializable){
-            Serializable s = (Serializable) str;
-            intent.putExtra(name,s);
-        }else if (str instanceof Bundle){
-            Bundle s = (Bundle) str;
-            intent.putExtra(name,s);
+        for (int i = 0; i < strs.length; i++) {
+            if (strs[i] instanceof String) {
+                String s= (String) strs[i];
+                intent.putExtra(names[i], s);
+            }else if (strs[i] instanceof Serializable){
+                Serializable s = (Serializable) strs[i];
+                intent.putExtra(names[i],s);
+            }else if (strs[i] instanceof Bundle){
+                Bundle s = (Bundle) strs[i];
+                intent.putExtra(names[i],s);
+            }
         }
         startActivityForResult(intent,requestCode);
     }

@@ -51,6 +51,8 @@
         <activity android:name=".goodsdetails.simplegoodsdetails.SimpleGoodsDetailsActivity"/>
         <activity android:name=".mine.store_application.CategoryTypeActivity"/>
         <activity android:name=".goodsdetails.simplegoodsdetails.goodsdetailscomment.GoodsDetailsCommentActivity"/>
+        <activity android:name=".mine.mystore.datamanager.DataManagerActivity"/>
+        <activity android:name=".mine.mystore.storemanager.StoreManagerActivity"/>
     </application>
 
 </manifest>

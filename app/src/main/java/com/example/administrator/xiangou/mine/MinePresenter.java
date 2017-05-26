@@ -9,6 +9,10 @@ import com.example.administrator.xiangou.net.BaseSubscriber;
 import com.example.administrator.xiangou.net.ExceptionHandle;
 import com.example.administrator.xiangou.tool.ContextUtils;
 
+import java.io.IOException;
+
+import okhttp3.ResponseBody;
+
 import static com.example.administrator.xiangou.tool.BaseActivity.bSharedPreferences;
 import static com.example.administrator.xiangou.tool.BaseActivity.bUser;
 
@@ -52,4 +56,29 @@ public void IDlogin(String userName, String password) {
             }
     );
 }
+
+    @Override
+    public void ceshi(String channel, String order_sn, int amount) {
+        addSubscription(mApiService.callceshiApi(channel,order_sn,amount),
+                new BaseSubscriber<ResponseBody>(mView.getContext()) {
+
+                    @Override
+                    public void onNext(ResponseBody responseBody) {
+                        try {
+                            Log.e("response", "onNext: "+responseBody.string());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    @Override
+                    public void onFinish() {
+
+                    }
+
+                    @Override
+                    public void onError(ExceptionHandle.ResponeThrowable e) {
+
+                    }
+                });
+    }
 }

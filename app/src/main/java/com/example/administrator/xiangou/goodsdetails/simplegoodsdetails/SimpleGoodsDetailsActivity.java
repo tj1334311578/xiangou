@@ -150,6 +150,7 @@ public class SimpleGoodsDetailsActivity extends MVPBaseActivity<SimpleGoodsDetai
             case R.id.simple_goodsdetails_comments_head://买家评论
 //                if (mData.getData().getComment().size()>0)
                  showComment();
+                break;
             case R.id.simple_goodsdetails_colorandsize_ll://颜色尺码
                 showColorAndSizeDialog();
                 break;

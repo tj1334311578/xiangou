@@ -2,60 +2,84 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#f8f8f8"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <include layout="@layout/store_head"
         android:id="@+id/store_information_address_head"
         />
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="45dp"
-    android:layout_below="@id/store_information_address_head"
-    android:id="@+id/store_information_logo_tv"
-    android:gravity="center_vertical"
-    android:layout_marginTop="20dp"
-    android:layout_marginStart="15dp"
-    android:text="店铺logo"/>
-    <com.example.administrator.xiangou.tool.CustomImageView
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_centerHorizontal="true"
-        android:layout_alignTop="@id/store_information_logo_tv"
-        android:id="@+id/store_information_logo_img"
-        app:civ_type="TYPE_ROUND"
-        android:adjustViewBounds="true"
-        android:src="@drawable/girl_v"/>
-    <ImageButton
-        android:background="@null"
-        android:layout_width="45dp"
-        android:adjustViewBounds="true"
-        android:id="@+id/store_information_logo_showright"
-        android:layout_alignTop="@id/store_information_logo_tv"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="20dp"
-        android:src="@mipmap/mine_showright"
-        android:layout_height="45dp" />
+
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:id="@+id/store_information_storelogo_rl"
+        android:layout_below="@id/store_information_address_head"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:textColor="@color/textcolor_gray"
+            android:textSize="14sp"
+            android:id="@+id/store_information_logo_tv"
+            android:gravity="center_vertical"
+            android:text="店铺logo"/>
+        <com.example.administrator.xiangou.tool.CustomImageView
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignTop="@id/store_information_logo_tv"
+            android:id="@+id/store_information_logo_img"
+            app:civ_type="TYPE_ROUND"
+            android:adjustViewBounds="true"
+            android:src="@drawable/girl_v"/>
+        <ImageButton
+            android:background="@null"
+            android:layout_width="wrap_content"
+            android:adjustViewBounds="true"
+            android:id="@+id/store_information_logo_showright"
+            android:layout_alignTop="@id/store_information_logo_tv"
+            android:layout_alignParentEnd="true"
+            android:src="@mipmap/mine_showright"
+            android:layout_height="45dp" />
+    </RelativeLayout>
+
     <TextView
         android:layout_width="wrap_content"
         android:id="@+id/store_information_name_tv"
         android:layout_height="41dp"
+        android:textColor="@color/textcolor_gray"
+        android:textSize="14sp"
         android:gravity="center_vertical"
-        android:layout_alignStart="@id/store_information_logo_tv"
-        android:layout_below="@id/store_information_logo_tv"
+        android:layout_alignStart="@id/store_information_storelogo_rl"
+        android:layout_below="@id/store_information_storelogo_rl"
         android:text="店铺名称"/>
     <TextView
         android:layout_width="wrap_content"
         android:id="@+id/store_information_name_show"
         android:layout_height="41dp"
-        android:layout_toEndOf="@id/store_information_logo_tv"
+        android:textSize="14sp"
+        android:textColor="@color/cart_textb316color"
+        android:layout_toEndOf="@id/store_information_name_tv"
         android:gravity="center_vertical"
         android:layout_alignTop="@id/store_information_name_tv"
         android:layout_marginStart="30dp"
         android:text="伊拉克店铺"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/viewback_ed"
+        android:layout_below="@+id/store_information_name_tv"
+        />
+
     <TextView
         android:layout_width="wrap_content"
         android:id="@+id/store_information_style_tv"
         android:gravity="center_vertical"
         android:layout_height="41dp"
+        android:textColor="@color/textcolor_gray"
+        android:textSize="14sp"
         android:layout_below="@id/store_information_name_tv"
         android:layout_alignStart="@id/store_information_name_tv"
         android:text="店铺类别"/>
@@ -63,28 +87,49 @@
         android:layout_width="wrap_content"
         android:id="@+id/store_information_style_show"
         android:layout_height="41dp"
+        android:textSize="14sp"
+        android:textColor="@color/cart_textb316color"
         android:layout_toEndOf="@id/store_information_style_tv"
         android:layout_alignTop="@id/store_information_style_tv"
         android:gravity="center_vertical"
         android:layout_alignStart="@id/store_information_name_show"
         android:text="女装"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/viewback_ed"
+        android:layout_below="@+id/store_information_style_tv"
+        />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="41dp"
         android:gravity="center_vertical"
         android:text="服务电话"
+        android:textColor="@color/textcolor_gray"
+        android:textSize="14sp"
         android:layout_alignStart="@id/store_information_name_tv"
         android:layout_below="@id/store_information_style_tv"
         android:id="@+id/store_information_phone_tv"/>
-    <TextView
-        android:layout_width="wrap_content"
+    <EditText
+        android:layout_width="match_parent"
         android:layout_height="41dp"
         android:gravity="center_vertical"
+        android:textColor="@color/cart_textb316color"
         android:text="0812-8584888"
+        android:textSize="14sp"
+        android:layout_alignEnd="@+id/store_information_storelogo_rl"
         android:layout_alignStart="@id/store_information_name_show"
         android:layout_toEndOf="@id/store_information_phone_tv"
         android:layout_alignTop="@id/store_information_phone_tv"
         android:id="@+id/store_information_phone_show"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/viewback_ed"
+        android:layout_below="@+id/store_information_phone_tv"
+        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -93,19 +138,30 @@
         android:layout_below="@id/store_information_phone_tv"
         android:layout_alignStart="@id/store_information_phone_tv"
         android:text="所在地区"
+        android:textColor="@color/textcolor_gray"
+        android:textSize="14sp"
         android:id="@+id/store_information_location_tv"/>
-    <TextView
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="41dp"
+        android:textColor="@color/cart_textb316color"
         android:gravity="center_vertical"
         android:layout_toEndOf="@id/store_information_location_tv"
         android:layout_alignTop="@id/store_information_location_tv"
         android:layout_alignStart="@id/store_information_name_show"
-        android:layout_alignEnd="@id/store_information_logo_showright"
+        android:layout_alignEnd="@id/store_information_storelogo_rl"
         android:maxLines="1"
+        android:textSize="14sp"
         android:ellipsize="end"
         android:text="四川省 成都市 成华区"
         android:id="@+id/store_information_location_show"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/viewback_ed"
+        android:layout_below="@+id/store_information_location_tv"
+        />
 
     <TextView
         android:layout_width="wrap_content"
@@ -114,48 +170,69 @@
         android:layout_below="@id/store_information_location_tv"
         android:layout_alignStart="@id/store_information_location_tv"
         android:text="店铺地址"
+        android:textColor="@color/textcolor_gray"
+        android:textSize="14sp"
         android:id="@+id/store_information_address_tv"/>
-    <TextView
+    <EditText
+        android:padding="0dp"
+        android:textSize="14sp"
         android:layout_width="wrap_content"
         android:layout_height="41dp"
         android:gravity="center_vertical"
         android:layout_toEndOf="@id/store_information_address_tv"
         android:layout_alignTop="@id/store_information_address_tv"
         android:layout_alignStart="@id/store_information_name_show"
-        android:layout_alignEnd="@id/store_information_logo_showright"
-        android:maxLines="1"
-        android:ellipsize="end"
+        android:layout_alignEnd="@id/store_information_storelogo_rl"
+        android:singleLine="true"
+        android:textColor="@color/cart_textb316color"
         android:text="四川省成都市成华区驷马桥东立国际1懂1单元"
         android:id="@+id/store_information_address_show"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:background="#f2f2f2"
+        android:layout_below="@+id/store_information_address_tv"
+        />
+
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="41dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="11dp"
+        android:paddingBottom="11dp"
+        android:layout_marginTop="10dp"
         android:gravity="center_vertical"
+        android:textColor="@color/textcolor_gray"
+        android:textSize="14sp"
         android:layout_below="@id/store_information_address_tv"
         android:layout_alignStart="@id/store_information_address_tv"
         android:id="@+id/store_information_describe_tv"
         android:text="店铺描述"/>
     <EditText
         android:layout_width="wrap_content"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
+        android:minHeight="100dp"
         android:layout_below="@id/store_information_describe_tv"
         android:layout_alignStart="@id/store_information_name_tv"
-        android:layout_alignEnd="@id/store_information_logo_showright"
+        android:layout_alignEnd="@id/store_information_storelogo_rl"
         android:maxLength="50"
         android:gravity="start"
+        android:textColor="@color/cart_textb316color"
+        android:textColorHint="@color/cart_textb316color"
         android:hint="50字以内......"
+        android:textSize="14sp"
         android:id="@+id/store_information_describe_edit"/>
         <Button
             android:layout_width="match_parent"
-            android:background="@drawable/round20dp"
+            android:background="@drawable/radius5dp"
             android:text="保存"
             android:textSize="16sp"
             android:id="@+id/store_information_btn"
             android:textColor="@color/white"
             android:layout_below="@id/store_information_describe_edit"
             android:layout_alignStart="@id/store_information_name_tv"
-            android:layout_alignEnd="@id/store_information_logo_showright"
-            android:layout_marginTop="20dp"
+            android:layout_alignEnd="@id/store_information_storelogo_rl"
+            android:layout_marginTop="44dp"
             android:layout_height="40dp" />
 
 </RelativeLayout>

@@ -71,10 +71,10 @@ public class PersonalActivity extends MVPBaseActivity<PersonalContract.View, Per
                 showPicturePopupWindow(0);
                 break;
             case R.id.setting_personal_nickname_Rl:
-                startNewUIForResult(NicknameActivity.class,1,null,null);
+                startNewUIForResult(NicknameActivity.class,1,"",null);
                 break;
             case R.id.setting_personal_sex_Rl:
-                startNewUIForResult(SexActivity.class,2,null,null);
+                startNewUIForResult(SexActivity.class,2,"",null);
                 break;
             case R.id.setting_personal_back:
                 finish();

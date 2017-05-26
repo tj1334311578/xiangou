@@ -66,7 +66,6 @@ public class StoreApplicationActivity extends PopupWindowsBaseActivity implement
     private SpinnerBaseAdapter[] mSpinnerBaseAdapters;
     private Spinner[] mSpinners;
     private int[] mAreaId;
-    private String[] mAreaName;
     /**                                         分割线
      * ---------------------------------------------------------------------------------------------
      */
@@ -91,7 +90,6 @@ public class StoreApplicationActivity extends PopupWindowsBaseActivity implement
         mSpinners = new Spinner[sizeCount];
         mSpinnerBaseAdapters = new SpinnerBaseAdapter[sizeCount];
         mAreaId = new int[sizeCount];
-        mAreaName = new String[sizeCount];
 
         mApplicantNameEdt = findContentView(R.id.application_name_edit,false);
         mTelEdt = findContentView(R.id.application_number_edit,false);
@@ -148,13 +146,13 @@ public class StoreApplicationActivity extends PopupWindowsBaseActivity implement
                 switch (toApplyStoreBean.getState().getCode()){
                     case 200:
                         if (type == 0) {
-                            initArea(toApplyStoreBean.getData(),type,"province");
+                            initArea(toApplyStoreBean.getData(),type);
                             return;
                         }else if (type == 1) {
-                            initArea(toApplyStoreBean.getData(),type,"city");
+                            initArea(toApplyStoreBean.getData(),type);
                             return;
                         }else if (type == 2) {
-                            initArea(toApplyStoreBean.getData(),type,"district");
+                            initArea(toApplyStoreBean.getData(),type);
                             return;
                         }
                         break;
@@ -174,7 +172,7 @@ public class StoreApplicationActivity extends PopupWindowsBaseActivity implement
         });
     }
     //省市区数据绑定到控件
-    private void initArea(final List<ToApplyStoreBean.DataBean> data, final int type, final String name) {
+    private void initArea(final List<ToApplyStoreBean.DataBean> data, final int type) {
         mSpinnerBaseAdapters[type] = new SpinnerBaseAdapter(this, R.layout.item_spinner_applystore,data) {
             @Override
             public void bindDataToView(TextView textView, int position) {
@@ -197,7 +195,6 @@ public class StoreApplicationActivity extends PopupWindowsBaseActivity implement
                     int num;
                     num = type + 1;
                     getChooseListData(mApiService.chooseNextAdr(data.get(position).getRegion_id()),num);
-
                 }
             }
             @Override
@@ -322,20 +319,7 @@ public class StoreApplicationActivity extends PopupWindowsBaseActivity implement
                 }
 
             }
-//            else {
-//                switch (i){
-//                    case 3:
-//                        imgs.put("licence",null);
-//                        break;
-//                    case 4:
-//                        imgs.put("contract",null);
-//                        break;
-//                }
-//            }
         }
-//        if (licence!=null)
-//        if (contract!=null)
-//        imgs.put("contract",contract);
 
         addSubscription(mApiService.applyShop(
                 mApplicantInfoBean,

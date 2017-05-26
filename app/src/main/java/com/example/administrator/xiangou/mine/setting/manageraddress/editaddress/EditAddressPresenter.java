@@ -4,21 +4,17 @@ import android.util.Log;
 
 import com.example.administrator.xiangou.login.Captcha;
 import com.example.administrator.xiangou.mine.ToApplyStoreBean;
-import com.example.administrator.xiangou.mine.setting.manageraddress.AddressBean;
 import com.example.administrator.xiangou.mine.setting.manageraddress.EditAddressEnterBean;
 import com.example.administrator.xiangou.mvp.BasePresenterImpl;
 import com.example.administrator.xiangou.net.BaseSubscriber;
 import com.example.administrator.xiangou.net.ExceptionHandle;
 
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import rx.Observable;
-
-/**
- * MVPPlugin
- *  邮箱 784787081@qq.com
- */
 
 public class EditAddressPresenter extends BasePresenterImpl<EditAddressContract.View> implements EditAddressContract.Presenter{
 
@@ -54,12 +50,13 @@ public class EditAddressPresenter extends BasePresenterImpl<EditAddressContract.
             }
         });
     }
-
+//AddressBean info
     @Override
-    public void commitEditAddress(AddressBean info) {
+    public void commitEditAddress(JSONObject info) {
         addSubscription(mApiService.saveUserAddrApi(info), new BaseSubscriber<Captcha>(mView.getContext()) {
             @Override
             public void onNext(Captcha captcha) {
+                Log.e("commit", "onNext: " + captcha.toString());
                 if (captcha.getState().getCode()==200){
                     mView.commitSuccess(captcha);
                 }
@@ -72,7 +69,8 @@ public class EditAddressPresenter extends BasePresenterImpl<EditAddressContract.
 
             @Override
             public void onError(ExceptionHandle.ResponeThrowable e) {
-
+                Log.e("commit", "onError: " + e.toString()+"/\n ---"+e.getMessage());
+                mView.sendFialRequest(e.getMessage());
             }
         });
     }

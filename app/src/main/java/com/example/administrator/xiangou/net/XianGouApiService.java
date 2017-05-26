@@ -15,11 +15,14 @@ import com.example.administrator.xiangou.mine.setting.manageraddress.model.UserA
 import com.example.administrator.xiangou.mine.setting.personal.PersonalDetialsBean;
 import com.example.administrator.xiangou.mine.store_application.ApplicantInfoBean;
 import com.example.administrator.xiangou.mine.store_application.model.CategoryListDataBean;
+import com.example.administrator.xiangou.nearby.apimodel.CommentDataBean;
 import com.example.administrator.xiangou.nearby.apimodel.GoodsListDataBean;
 import com.example.administrator.xiangou.nearby.apimodel.NearbyBenifitDataBean;
 import com.example.administrator.xiangou.nearby.apimodel.NearbyGoodsDataBean;
 import com.example.administrator.xiangou.nearby.apimodel.NearbyGoodsDetailDataBean;
 import com.example.administrator.xiangou.nearby.apimodel.NearbyStoreApiDataBean;
+
+import org.json.JSONObject;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -212,8 +215,15 @@ public interface XianGouApiService {
     Observable<ToApplyStoreBean> chooseAreaAddrApi(@Query("region_id") int region_id);
 
     //添加/编辑收货地址
+    @FormUrlEncoded
     @POST("Api/User/edit_address/")
-    Observable<Captcha> saveUserAddrApi(@Part("info") AddressBean info);
+    Observable<Captcha> saveUserAddrApi(@Field("info") JSONObject info);
+
+    //删除地址
+    @FormUrlEncoded
+    @POST("api/User/del_address/")
+    Observable<Captcha> delUserAddrApi(@Field("user_id") int user_id, @Field("address_id") int address_id);
+
 
     //店铺数据统计
     @POST("api/stores/data_manage/")

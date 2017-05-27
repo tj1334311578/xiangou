@@ -17,10 +17,11 @@
     <color name="homeBgColor">#f8f8f8</color>
     <color name="nearbyTabLine">#e20755</color>
     <color name="textcolor_black">#f5060002</color>
-    <color name="textcolor_pink">#fb4a89</color>
+    <!--<color name="textcolor_pink">#fb4a89</color>-->
     <color name="textcolor_referrals">#e6000000</color>
     <color name="textcolor_adr">#cc050505</color>
-    <color name="textcolor_advs_topic_title">#fb4a89</color>
+    <color name="textcolor_pink">#fb4a89</color>
+    <!--<color name="textcolor_advs_topic_title">#fb4a89</color>-->
     <color name="textcolor_hint">#80888888</color>
     <color name="textcolor_nearby_title">#e6050505</color>
     <color name="textcolor_nearby_item_name">#e0161616</color>
@@ -42,4 +43,8 @@
     <color name="textcolor_mine_black3">#800b0b0b</color>
     <color name="textcolor_gray">#e6161616</color>
     <color name="viewback_ed">#ededed</color>
+    <color name="red_d0d4d6">#d0d4d6</color>
+    <color name="red_b3pink">#b3fb4a89</color>
+    <color name="white_f2">#f2f2f2</color>
+    <color name="white_b3">#b3ffffff</color>
 </resources>

@@ -53,6 +53,7 @@
         <activity android:name=".goodsdetails.simplegoodsdetails.goodsdetailscomment.GoodsDetailsCommentActivity"/>
         <activity android:name=".mine.mystore.datamanager.DataManagerActivity"/>
         <activity android:name=".mine.mystore.storemanager.StoreManagerActivity"/>
+        <activity android:name=".mine.mystore.couponmanager.CouponManagerActivity"/>
     </application>
 
 </manifest>

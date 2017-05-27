@@ -51,14 +51,12 @@ public class StoreManagerPresenter extends BasePresenterImpl<StoreManagerContrac
                     new BaseSubscriber<ResponseBody>(mView.getContext()) {
                         @Override
                         public void onNext(ResponseBody responseBody) {
-                                if (responseBody!=null){
                                     try {
                                         Log.e("xiu", "onNext: "+responseBody.string());
                                         mView.modifySuccessd();
                                     } catch (IOException e) {
                                         e.printStackTrace();
                                     }
-                                }
                         }
 
                         @Override

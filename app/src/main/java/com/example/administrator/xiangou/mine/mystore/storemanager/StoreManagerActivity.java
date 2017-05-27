@@ -1,6 +1,9 @@
 package com.example.administrator.xiangou.mine.mystore.storemanager;
 
 
+import android.content.Intent;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -15,6 +18,7 @@ import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.mvp.MVPBaseActivity;
 import com.example.administrator.xiangou.tool.CustomImageView;
 import com.example.administrator.xiangou.tool.GlideImageLoader;
+import com.example.administrator.xiangou.tool.ImageUtils;
 
 import java.io.File;
 import java.util.Arrays;
@@ -45,6 +49,21 @@ public class StoreManagerActivity extends MVPBaseActivity<StoreManagerContract.V
         initView();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode==RESULT_OK){
+            switch (requestCode){
+                case 1://更新logo图片
+                    storeLogo.setImageDrawable(new BitmapDrawable(BitmapFactory.decodeFile(ImageUtils.getFilePathByFileUri(this,data.getData()))));
+                    imgpath=ImageUtils.getFilePathByFileUri(this,data.getData());
+                    Log.e("2_____________", "onActivityResult: "+imgpath);
+                    storeInfo.setLogo(imgpath);
+                    break;
+            }
+        }
+    }
+
     /**
      * 查找控件以及第一次请求店铺信息数据
      */
@@ -54,6 +73,7 @@ public class StoreManagerActivity extends MVPBaseActivity<StoreManagerContract.V
         modityBtn=findContentView(R.id.store_information_btn);
         titleTv =findContentView(R.id.store_headTitleTv,false);
         titleTv.setText("店铺信息管理");
+        storeLogoBtn=findContentView(R.id.store_information_storelogo_rl);
         storeType=findContentView(R.id.store_information_style_show,false);
         storeName=findContentView(R.id.store_information_name_show,false);
         location=findContentView(R.id.store_information_location_show,false);
@@ -69,13 +89,13 @@ public class StoreManagerActivity extends MVPBaseActivity<StoreManagerContract.V
             case R.id.store_headback://返回按钮
                 finish();
             case R.id.store_information_storelogo_rl://更换店铺logo按钮
-
+                setShowatlocation(R.id.store_information_rl);//设置popupwindow的父布局
+                showPicturePopupWindow(1);
                 break;
             case R.id.store_information_btn://
                 Log.e("修改上传", "onClick: " );
                 // TODO: 2017/5/26 修改数据保存至storeinfo中 未做
-//                saveDataToStoreInfo();//先保存再请求数据
-
+                saveDataToStoreInfo();//先保存再请求数据
                 /**
                  * 这一步的文件上传可以分开写
                  *  imagePath = ImageUtils.getFilePathByFileUri(this, data.getData());
@@ -84,13 +104,18 @@ public class StoreManagerActivity extends MVPBaseActivity<StoreManagerContract.V
                  *  RequestBody requestbody=RequestBody.create(MediaType.parse("multipart/form-data"),img);
                  *  MultipartBody.Part file = createFormData("head_img",img.getName(),requestbody);
                  */
-                if (storeInfo!=null)
-                mPresenter.callEditStoreInfo(storeInfo.getDid(),storeInfo.getMap_x(),storeInfo.getMap_y(),
-                        storeInfo.getAddress(),storeInfo.getProvince(),storeInfo.getCity(),storeInfo.getDistrict(),
-                        storeInfo.getSynopsis(),storeInfo.getTelephone(),
-                        MultipartBody.Part.createFormData("logo","logo/png",
-                                RequestBody.create(MediaType.parse("multipart/form-data"),
-                                        new File(storeInfo.getLogo()))));
+                File logo=new File(storeInfo.getLogo());
+                RequestBody requestbody=RequestBody.create(MediaType.parse("multipart/form-data"),logo);
+                MultipartBody.Part file= MultipartBody.Part.createFormData("logo","logo.png",requestbody);
+                Log.e("info", "onClick: "+storeInfo.toString() );
+                mPresenter.callEditStoreInfo(1,"104.014725","30.676117","四川省成都市青羊区府南街道锦屏社区南方向",33007,33008,33027,"1239688465jfioef","18349264995",file);
+//                if (storeInfo!=null)
+//                mPresenter.callEditStoreInfo(storeInfo.getDid(),storeInfo.getMap_x(),storeInfo.getMap_y(),
+//                        storeInfo.getAddress(),storeInfo.getProvince(),storeInfo.getCity(),storeInfo.getDistrict(),
+//                        storeInfo.getSynopsis(),storeInfo.getTelephone(),file);
+//                        MultipartBody.Part.createFormData("logo","logo/png",
+//                                RequestBody.create(MediaType.parse("multipart/form-data"),
+//                                        new File(storeInfo.getLogo()))));
                 break;
         }
 
@@ -123,7 +148,7 @@ public class StoreManagerActivity extends MVPBaseActivity<StoreManagerContract.V
 
     @Override
     public void infoDataToView(StoreManagerInfoBean data) {
-//        storeInfo = data.getData();//保存数据
+        storeInfo = data.getData();//保存数据
         showView(data);//数据显示在界面上的方法
 
     }

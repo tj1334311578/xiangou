@@ -111,7 +111,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="3dp"
             android:text="闲购用户注册协议"
-            android:textColor="@color/textcolor_advs_topic_title"
+            android:textColor="@color/textcolor_pink"
             android:textSize="11sp"/>
     </LinearLayout>
 

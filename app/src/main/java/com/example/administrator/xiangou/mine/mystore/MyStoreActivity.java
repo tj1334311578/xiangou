@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.example.administrator.xiangou.R;
+import com.example.administrator.xiangou.mine.mystore.couponmanager.CouponManagerActivity;
 import com.example.administrator.xiangou.mine.mystore.datamanager.DataManagerActivity;
 import com.example.administrator.xiangou.mine.mystore.storemanager.StoreManagerActivity;
 import com.example.administrator.xiangou.mvp.MVPBaseActivity;
@@ -69,7 +70,7 @@ public class MyStoreActivity extends MVPBaseActivity<MyStoreContract.View, MySto
 
                 break;
             case R.id.seller_center_store_management_preferentialmanager://优惠管理
-
+                startNewUI(CouponManagerActivity.class);
                 break;
         }
     }

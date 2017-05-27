@@ -10,6 +10,13 @@ package com.example.administrator.xiangou.mine.mystore.storemanager;
  */
 
 public class StoreManagerInfoBean {
+    @Override
+    public String toString() {
+        return "StoreManagerInfoBean{" +
+                "data=" + data +
+                ", state=" + state +
+                '}';
+    }
 
     /**
      * data : {"did":1,"name":"闲购小铺","address":"四川省成都市青羊区府南街道锦屏社区南方向","synopsis":"1239688465","telephone":"18349264995","cid":"4","logo":"/public/upload/logo/2017/05-04/sqGhZ5fNfhB4hsbkEeWM39tsA.png","map_x":"104.014725","map_y":"30.676117","province":33007,"city":33008,"district":33027,"cate_name":"家居","province_name":"四川省","city_name":"成都市","district_name":"青羊区"}
@@ -36,6 +43,28 @@ public class StoreManagerInfoBean {
     }
 
     public static class DataBean {
+        @Override
+        public String toString() {
+            return "DataBean{" +
+                    "did=" + did +
+                    ", name='" + name + '\'' +
+                    ", address='" + address + '\'' +
+                    ", synopsis='" + synopsis + '\'' +
+                    ", telephone='" + telephone + '\'' +
+                    ", cid='" + cid + '\'' +
+                    ", logo='" + logo + '\'' +
+                    ", map_x='" + map_x + '\'' +
+                    ", map_y='" + map_y + '\'' +
+                    ", province=" + province +
+                    ", city=" + city +
+                    ", district=" + district +
+                    ", cate_name='" + cate_name + '\'' +
+                    ", province_name='" + province_name + '\'' +
+                    ", city_name='" + city_name + '\'' +
+                    ", district_name='" + district_name + '\'' +
+                    '}';
+        }
+
         /**
          * did : 1
          * name : 闲购小铺
@@ -202,6 +231,16 @@ public class StoreManagerInfoBean {
     }
 
     public static class StateBean {
+        @Override
+        public String toString() {
+            return "StateBean{" +
+                    "code=" + code +
+                    ", msg='" + msg + '\'' +
+                    ", debugMsg='" + debugMsg + '\'' +
+                    ", url='" + url + '\'' +
+                    '}';
+        }
+
         /**
          * code : 200
          * msg : 获取成功

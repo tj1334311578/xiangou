@@ -7,11 +7,12 @@ import com.example.administrator.xiangou.goodsdetails.simplegoodsdetails.goodsbe
 import com.example.administrator.xiangou.login.Captcha;
 import com.example.administrator.xiangou.login.LoginBean;
 import com.example.administrator.xiangou.mine.ToApplyStoreBean;
-import com.example.administrator.xiangou.mine.setting.manageraddress.model.EditAddressEnterBean;
+import com.example.administrator.xiangou.mine.setting.manageraddress.EditAddressEnterBean;
 import com.example.administrator.xiangou.mine.setting.manageraddress.model.UserAddressBean;
 import com.example.administrator.xiangou.mine.setting.personal.PersonalDetialsBean;
 import com.example.administrator.xiangou.mine.store_application.ApplicantInfoBean;
 import com.example.administrator.xiangou.mine.store_application.model.CategoryListDataBean;
+import com.example.administrator.xiangou.nearby.apimodel.CommentDataBean;
 import com.example.administrator.xiangou.nearby.apimodel.GoodsListDataBean;
 import com.example.administrator.xiangou.nearby.apimodel.NearbyBenifitDataBean;
 import com.example.administrator.xiangou.nearby.apimodel.NearbyGoodsDataBean;
@@ -21,6 +22,8 @@ import com.example.administrator.xiangou.nearby.apimodel.NearbyStoreApiDataBean;
 import org.json.JSONObject;
 
 import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.Multipart;
@@ -219,5 +222,47 @@ public interface XianGouApiService {
     Observable<Captcha> delUserAddrApi(@Field("user_id") int user_id, @Field("address_id") int address_id);
 
 
+    //店铺数据统计
+    @POST("api/stores/data_manage/")
+    Observable<TotalDataBean> callTotalDataApi(@Query("did") int did,
+                                                @Query("Time") String Time);
+    //测试数据模块
+    @POST("/api/order/ppay/")
+    Observable<ResponseBody> callceshiApi(@Query("channel") String alipay,
+                                                @Query("order_sn") String order_sn,
+                                                @Query("amount") int amount);
+    //店铺信息请求
+    @POST("/api/stores/edit/")
+    Observable<StoreManagerInfoBean> callStoreInfo(@Query("did") int store_id);
+    //店铺信息修改请求
+    @Multipart
+    @POST("/api/stores/do_edit/")
+    Observable<RequestBody> callEditStoreInfo(@Part("did") int store_id,//店铺id
+                                              @Part("map_x") String map_x,//店铺经度
+                                              @Part("map_y") String map_y,//店铺纬度
+                                              @Part("address") String address,//店铺地址
+                                              @Part("province") int province_id,//店铺省份
+                                              @Part("city") int city_id,//店铺城市id
+                                              @Part("district") int district_id,//店铺区域id
+                                              @Part("synopsis") String synopsis,//店铺简介
+                                              @Part("tel") String tel,//店铺电话
+                                              @Part MultipartBody.Part logo);//店铺头像
+
+    //店铺管理商品列表
+    @POST("/Api/Stores/goodslist/")
+    Observable<ResponseBody> callStoreGoodsList(@Query("did") int store_id,//店铺id
+                                                 @Query("key_word") String key_word,//根据名称查找相关商品
+                                                 @Query("page_no") int page_no,//分页不传查找第一页商品
+                                                 @Query("type") int type);//必填1
+
+    //店铺添加商品/Api/Stores/add_goods
+    @Multipart
+    @POST("/Api/Stores/add_goods/")
+    Observable<ResponseBody> callAddGoods(@Part("data") AddGoodsDataBean data,//商品基本信息
+                                          @Part("specs")AddGoodsSpecBean specs,//传产品当前页面若未传默认第一页
+                                          @Part("goods_attr")AddGoodsAttrBean goods_attr,//商品属性(若用户选择了模型填写属性传)
+                                          @Part MultipartBody.Part original_img,//商品列表图(单图)
+                                          @Part MultipartBody.Part[] goods_img//商品图片(多图)若用户只上传一张也用表单多图上传
+                                          );
 
 }

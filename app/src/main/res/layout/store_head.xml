@@ -8,6 +8,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="申请成为商家"
+    android:id="@+id/store_headTitleTv"
     android:textSize="18sp"
     android:textColor="@color/white"
     android:layout_centerHorizontal="true"/>

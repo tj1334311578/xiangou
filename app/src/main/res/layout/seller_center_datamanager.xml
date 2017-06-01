@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+    <include layout="@layout/store_head"
+        android:id="@+id/seller_center_datamanager_head"
+        />
+    <!--<LinearLayout-->
+        <!--android:background="@color/textcolor_pink"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:paddingBottom="10dp"-->
+        <!--android:paddingTop="20dp"-->
+        <!--android:orientation="horizontal">-->
+        <!--<ImageView-->
+            <!--android:paddingStart="13dp"-->
+            <!--android:paddingEnd="5dp"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:src="@mipmap/return_icon"-->
+            <!--android:id="@+id/seller_center_datamanager_cancel"-->
+            <!--/>-->
+        <!--<TextView-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="数据统计"-->
+            <!--android:gravity="center"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:layout_weight="1"-->
+            <!--android:textSize="18sp"-->
+            <!--/>-->
+    <!--</LinearLayout>-->
+    <LinearLayout
+        android:layout_marginTop="9dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="28dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="年份："
+            android:gravity="center"
+            android:textSize="14sp"
+            android:textColor="#b3161616"
+            android:layout_height="match_parent" />
+        <Spinner
+            android:layout_width="match_parent"
+            android:id="@+id/seller_center_datamanager_spinner"
+            android:spinnerMode="dropdown"
+            android:layout_height="match_parent"></Spinner>
+    </LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="数据统计："
+        android:layout_marginBottom="10dp"
+        android:layout_marginStart="13dp"
+        />
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:id="@+id/seller_center_datamanager_recycle"
+        android:layout_marginStart="13dp"
+        android:layout_marginEnd="13dp"
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
+
+</LinearLayout>

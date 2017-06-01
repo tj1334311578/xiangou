@@ -75,6 +75,6 @@ public class CountDownTimerUtils extends CountDownTimer {
         if (editText.getText().length()==0){
             mTextView.setTextColor(mContext.getResources().getColor(R.color.gray));
         }
-        else mTextView.setTextColor(mContext.getResources().getColor(R.color.textcolor_advs_topic_title));
+        else mTextView.setTextColor(mContext.getResources().getColor(R.color.textcolor_pink));
     }
 }

@@ -26,6 +26,7 @@ import java.util.Locale;
  */
 
 public abstract class PopupWindowsBaseActivity extends BaseActivity {
+
     public void setShowatlocation(int showatlocation) {
         this.showatlocation = showatlocation;
     }

@@ -15,12 +15,10 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.administrator.xiangou.R;
-import com.example.administrator.xiangou.goodsdetails.simplegoodsdetails.goodsbean.CommentBean;
 import com.example.administrator.xiangou.goodsdetails.simplegoodsdetails.goodsbean.commenttempBean;
 import com.example.administrator.xiangou.goodsdetails.simplegoodsdetails.goodsdetailscomment.goodsdetailscommentitem.GoodsDetailsCommentItemFragment;
 import com.example.administrator.xiangou.goodsdetails.simplegoodsdetails.goodsdetailscomment.goodsdetailscommentitem.GoodsDetailsCommentPagAdapter;
 import com.example.administrator.xiangou.mvp.MVPBaseFragment;
-import com.example.administrator.xiangou.nearby.apimodel.CommentDataBean;
 
 import java.util.ArrayList;
 import java.util.List;

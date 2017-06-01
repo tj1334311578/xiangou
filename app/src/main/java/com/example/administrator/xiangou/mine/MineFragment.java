@@ -288,6 +288,7 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
             //消息
             case R.id.mine_message_rl:
                 Toast.makeText(getActivity(), "点击消息", Toast.LENGTH_SHORT).show();
+                mPresenter.ceshi("alipay","xg201705221833249336",20);
                 break;
             //用户图标
             case R.id.mine_user_img_iv:
@@ -353,6 +354,7 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         }
 
     }
+
 
     @Override
     public void sendFialRequest(String message) {

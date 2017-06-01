@@ -32,7 +32,7 @@
         android:layout_marginTop="8dp"
         android:id="@+id/item_day_item_presentprice"
         android:textSize="12sp"
-        android:textColor="@color/textcolor_advs_topic_title"
+        android:textColor="@color/textcolor_pink"
         android:layout_below="@id/item_day_item_description"
         />
     <TextView

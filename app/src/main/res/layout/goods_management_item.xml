@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <com.example.administrator.xiangou.tool.CustomImageView
-        android:layout_width="120dp"
-        android:layout_height="130dp"
+        android:layout_width="95dp"
+        android:layout_height="103dp"
         app:civ_type="TYPE_ROUND"
         android:src="@mipmap/girl_v"
-        app:civ_roundradius="10"
+        app:civ_roundradius="5"
         android:id="@+id/goods_management_item_img"
         android:layout_marginTop="8dp"
         android:layout_marginStart="8dp"
@@ -18,18 +18,22 @@
         android:layout_height="wrap_content"
         android:text="宿本春装新款文艺显瘦小立领纯棉套头白色长袖寸衫衣物"
         android:ellipsize="end"
+        android:textSize="14sp"
+        android:textColor="@color/textcolor_gray"
         android:id="@+id/goods_management_item_description_tv"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="11dp"
         android:layout_marginEnd="15dp"
         android:layout_alignTop="@id/goods_management_item_img"
         android:layout_toEndOf="@id/goods_management_item_img"
         android:maxLines="2"/>
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="25dp"
+        android:layout_height="15dp"
         android:gravity="center_vertical"
         android:text="尺码："
-        android:layout_marginTop="5dp"
+        android:textSize="12sp"
+        android:textColor="@color/cart_textb316color"
+
         android:layout_below="@id/goods_management_item_description_tv"
         android:layout_alignStart="@id/goods_management_item_description_tv"
         android:id="@+id/goods_management_item_size_tv"
@@ -43,37 +47,47 @@
         android:layout_height="wrap_content">
 
         <Button
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="20dp"
+            android:layout_height="15dp"
             android:background="@null"
+            android:textColor="@color/cart_textb316color"
+            android:textSize="12sp"
             android:id="@+id/goods_management_item_size_S"
-            android:layout_marginStart="-10dp"
+            android:layout_marginStart="-5dp"
             android:text="S"/>
         <Button
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="20dp"
+            android:layout_height="15dp"
+            android:textColor="@color/cart_textb316color"
+            android:textSize="12sp"
             android:background="@null"
             android:id="@+id/goods_management_item_size_M"
             android:layout_toEndOf="@id/goods_management_item_size_S"
             android:text="M"/>
         <Button
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="20dp"
+            android:layout_height="15dp"
+            android:textColor="@color/cart_textb316color"
+            android:textSize="12sp"
             android:background="@null"
             android:id="@+id/goods_management_item_size_L"
             android:layout_toEndOf="@id/goods_management_item_size_M"
             android:text="L"/>
         <Button
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="20dp"
+            android:layout_height="15dp"
             android:background="@null"
+            android:textColor="@color/cart_textb316color"
+            android:textSize="12sp"
             android:id="@+id/goods_management_item_size_XL"
             android:layout_toEndOf="@id/goods_management_item_size_L"
             android:text="XL"/>
         <Button
             android:layout_width="30dp"
-            android:layout_height="25dp"
+            android:layout_height="15dp"
             android:background="@null"
+            android:textColor="@color/cart_textb316color"
+            android:textSize="12sp"
             android:id="@+id/goods_management_item_size_XXL"
             android:layout_toEndOf="@id/goods_management_item_size_XL"
             android:text="XXL"/>
@@ -81,8 +95,10 @@
 
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="25dp"
+        android:layout_height="15dp"
         android:gravity="center_vertical"
+        android:textSize="12sp"
+        android:textColor="@color/cart_textb316color"
         android:layout_below="@id/goods_management_item_sizegroup"
         android:layout_alignStart="@id/goods_management_item_size_tv"
         android:id="@+id/goods_management_item_color_tv"
@@ -96,21 +112,27 @@
         android:layout_height="wrap_content">
         <Button
             android:layout_width="50dp"
-            android:layout_height="25dp"
+            android:layout_height="15dp"
+            android:textColor="@color/cart_textb316color"
+            android:textSize="12sp"
             android:background="@null"
             android:id="@+id/goods_management_item_color_white"
             android:layout_marginStart="-10dp"
             android:text="白色"/>
         <Button
             android:layout_width="50dp"
-            android:layout_height="25dp"
+            android:layout_height="15dp"
             android:background="@null"
+            android:textColor="@color/cart_textb316color"
+            android:textSize="12sp"
             android:id="@+id/goods_management_item_color_black"
             android:layout_toEndOf="@id/goods_management_item_color_white"
             android:text="黑色"/>
         <Button
             android:layout_width="50dp"
-            android:layout_height="25dp"
+            android:layout_height="15dp"
+            android:textColor="@color/cart_textb316color"
+            android:textSize="12sp"
             android:background="@null"
             android:id="@+id/goods_management_item_color_yellow"
             android:layout_toEndOf="@id/goods_management_item_color_black"
@@ -120,7 +142,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="￥179.10"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:id="@+id/goods_management_item_newprice"
         android:layout_below="@id/goods_management_item_colorgroup"
         android:layout_alignStart="@id/goods_management_item_size_tv"
@@ -129,6 +151,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="￥284.29"
+        android:layout_marginStart="10dp"
         android:layout_toEndOf="@id/goods_management_item_newprice"
         android:layout_alignBottom="@id/goods_management_item_newprice"
         android:id="@+id/goods_management_item_oldprice"/>
@@ -136,8 +159,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="库存量"
-        android:layout_marginTop="5dp"
+        android:text="库存："
         android:id="@+id/goods_management_item_Inventory_tv"
         android:layout_below="@id/goods_management_item_oldprice"
         android:layout_alignStart="@id/goods_management_item_description_tv"
@@ -150,4 +172,71 @@
         android:layout_toEndOf="@id/goods_management_item_Inventory_tv"
         android:layout_marginStart="10dp"
         android:text="null"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/white_e7"
+        android:layout_below="@+id/goods_management_item_img"
+        android:layout_marginTop="15dp"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        android:layout_below="@+id/goods_management_item_img"
+        android:layout_height="wrap_content">
+        <com.example.administrator.xiangou.tool.DrawableTextView
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:text="编辑"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:textSize="14sp"
+            android:id="@+id/goods_management_item_eidt"
+            android:layout_weight="1"
+            android:textColor="#b3161616"
+            app:leftDrawable="@mipmap/address_edit_icon"
+            app:leftDrawableHeight="20dp"
+            app:leftDrawableWidth="20dp"
+            android:drawablePadding="4dp"
+            />
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/white_e7"/>
+
+        <com.example.administrator.xiangou.tool.DrawableTextView
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:text="下架"
+            android:id="@+id/goods_management_upordownBtn"
+            android:textSize="14sp"
+            android:layout_weight="1"
+            android:textColor="#b3161616"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            app:leftDrawable="@mipmap/goods_management_sold_out_icon"
+            app:leftDrawableHeight="20dp"
+            app:leftDrawableWidth="20dp"
+            android:drawablePadding="4dp"
+            />
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/white_e7"/> <com.example.administrator.xiangou.tool.DrawableTextView
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:text="删除"
+        android:textSize="14sp"
+        android:layout_weight="1"
+        android:id="@+id/goods_management_delBtn"
+        android:textColor="#b3161616"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        app:leftDrawable="@mipmap/goods_management_delete_icon"
+        app:leftDrawableHeight="20dp"
+        app:leftDrawableWidth="20dp"
+        android:drawablePadding="4dp"
+        />
+    </LinearLayout>
 </RelativeLayout>

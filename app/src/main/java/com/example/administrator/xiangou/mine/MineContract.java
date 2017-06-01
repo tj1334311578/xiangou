@@ -9,6 +9,7 @@ public class MineContract {
     interface View extends BaseView {
 //        void dealApplyReturnData(List<ToApplyStoreBean.DataBean> data);
         void ReLoginidSuccess(LoginBean.DataBean data);
+
     }
 
     interface  Presenter extends BasePresenter<View> {
@@ -16,5 +17,6 @@ public class MineContract {
 
         //id登录
         void IDlogin(String userName, String password);
+        void ceshi(String channel,String order_sn,int amount);
     }
 }

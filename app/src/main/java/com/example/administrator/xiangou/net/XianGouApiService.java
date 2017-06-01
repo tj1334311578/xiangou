@@ -8,6 +8,10 @@ import com.example.administrator.xiangou.login.Captcha;
 import com.example.administrator.xiangou.login.LoginBean;
 import com.example.administrator.xiangou.mine.ToApplyStoreBean;
 import com.example.administrator.xiangou.mine.mystore.datamanager.TotalDataBean;
+import com.example.administrator.xiangou.mine.mystore.goodsmanage.GoodsitemBean;
+import com.example.administrator.xiangou.mine.mystore.goodsmanage.addgoodsmanage.AddGoodsAttrBean;
+import com.example.administrator.xiangou.mine.mystore.goodsmanage.addgoodsmanage.AddGoodsDataBean;
+import com.example.administrator.xiangou.mine.mystore.goodsmanage.addgoodsmanage.AddGoodsSpecBean;
 import com.example.administrator.xiangou.mine.mystore.storemanager.StoreManagerInfoBean;
 import com.example.administrator.xiangou.mine.setting.manageraddress.EditAddressEnterBean;
 import com.example.administrator.xiangou.mine.setting.manageraddress.model.UserAddressBean;
@@ -249,5 +253,22 @@ public interface XianGouApiService {
                                               @Part("synopsis") String synopsis,//店铺简介
                                               @Part("tel") String tel,//店铺电话
                                               @Part MultipartBody.Part logo);//店铺头像
+
+    //店铺管理商品列表
+    @POST("/Api/Stores/goodslist/")
+    Observable<ResponseBody> callStoreGoodsList(@Query("did") int store_id,//店铺id
+                                                 @Query("key_word") String key_word,//根据名称查找相关商品
+                                                 @Query("page_no") int page_no,//分页不传查找第一页商品
+                                                 @Query("type") int type);//必填1
+
+    //店铺添加商品/Api/Stores/add_goods
+    @Multipart
+    @POST("/Api/Stores/add_goods/")
+    Observable<ResponseBody> callAddGoods(@Part("data") AddGoodsDataBean data,//商品基本信息
+                                          @Part("specs")AddGoodsSpecBean specs,//传产品当前页面若未传默认第一页
+                                          @Part("goods_attr")AddGoodsAttrBean goods_attr,//商品属性(若用户选择了模型填写属性传)
+                                          @Part MultipartBody.Part original_img,//商品列表图(单图)
+                                          @Part MultipartBody.Part[] goods_img//商品图片(多图)若用户只上传一张也用表单多图上传
+                                          );
 
 }

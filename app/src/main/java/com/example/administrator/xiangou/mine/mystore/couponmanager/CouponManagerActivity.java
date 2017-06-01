@@ -108,6 +108,7 @@ public class CouponManagerActivity extends MVPBaseActivity<CouponManagerContract
                 finish();
                 break;
             case R.id.seller_center_coupon_add://添加按钮
+                startNewUI(NewCreateCouponActivity.class);
                 break;
         }
     }

@@ -80,6 +80,7 @@
         android:layout_alignBottom="@+id/seller_center_coupon_style_rl"
         android:background="@color/textcolor_pink"
         android:text="删除"
+        android:id="@+id/seller_center_coupon_del"
         android:visibility="gone"
         android:gravity="center"
         android:textColor="@color/white"

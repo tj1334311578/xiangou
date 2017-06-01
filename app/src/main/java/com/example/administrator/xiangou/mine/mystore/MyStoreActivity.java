@@ -9,6 +9,7 @@ import android.widget.ImageButton;
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.mine.mystore.couponmanager.CouponManagerActivity;
 import com.example.administrator.xiangou.mine.mystore.datamanager.DataManagerActivity;
+import com.example.administrator.xiangou.mine.mystore.goodsmanage.GoodsManageActivity;
 import com.example.administrator.xiangou.mine.mystore.storemanager.StoreManagerActivity;
 import com.example.administrator.xiangou.mvp.MVPBaseActivity;
 import com.example.administrator.xiangou.tool.DrawableTextView;
@@ -58,7 +59,7 @@ public class MyStoreActivity extends MVPBaseActivity<MyStoreContract.View, MySto
                 startNewUI(StoreManagerActivity.class);
                 break;
             case R.id.seller_center_store_management_goodsmanager://商品管理
-
+                startNewUI(GoodsManageActivity.class);
                 break;
             case R.id.seller_center_store_management_ordermanager://订单管理
 

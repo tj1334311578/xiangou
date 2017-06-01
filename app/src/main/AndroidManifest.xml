@@ -54,6 +54,8 @@
         <activity android:name=".mine.mystore.datamanager.DataManagerActivity"/>
         <activity android:name=".mine.mystore.storemanager.StoreManagerActivity"/>
         <activity android:name=".mine.mystore.couponmanager.CouponManagerActivity"/>
+        <activity android:name=".mine.mystore.couponmanager.NewCreateCouponActivity"/>
+        <activity android:name=".mine.mystore.goodsmanage.GoodsManageActivity"/>
+        <activity android:name=".mine.mystore.goodsmanage.addgoodsmanage.AddGoodsManageActivity"/>
     </application>
-
 </manifest>

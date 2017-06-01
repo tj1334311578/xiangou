@@ -2,6 +2,7 @@ package com.example.administrator.xiangou.base;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import com.example.administrator.xiangou.net.XianGouApiService;
 import com.example.administrator.xiangou.tool.GlideImageLoader;
 
+import java.util.ArrayList;
 import java.util.List;
 /**
  * Created by zhouzongyao on 2017/3/6.
@@ -19,7 +21,7 @@ public abstract class RVBaseAdapter<T> extends RecyclerView.Adapter<RVBaseViewHo
     public Context mContext;
     protected List<T> mDatas;
     protected int mLayoutResId;
-    private static View mItemView;
+    protected static View mItemView;
     private  GlideImageLoader mImageLoader;
 
     /**
@@ -32,6 +34,7 @@ public abstract class RVBaseAdapter<T> extends RecyclerView.Adapter<RVBaseViewHo
     public void setOnItemViewClickListener(OnItemViewClickListener itemViewClickListener) {
         this.mOnItemViewClickListener = itemViewClickListener;
     }
+
     /**
      * 提供控件的点击监听，需要holder时可调用
      */
@@ -124,6 +127,12 @@ public abstract class RVBaseAdapter<T> extends RecyclerView.Adapter<RVBaseViewHo
     }
     public void addData(List<T> datas){
         addData(0,datas);
+    }
+    public void upData(){
+//        if (mDatas!=null)
+//        mDatas.clear();
+//        Log.e("Data size", "onClick: "+mDatas.size() );
+        notifyItemRangeChanged(0,mDatas.size());
     }
 
 

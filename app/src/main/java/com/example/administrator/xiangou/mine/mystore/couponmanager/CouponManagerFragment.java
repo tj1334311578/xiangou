@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.administrator.xiangou.R;
+import com.example.administrator.xiangou.base.RVBaseAdapter;
 import com.example.administrator.xiangou.mvp.MVPBaseFragment;
 import com.example.administrator.xiangou.tool.ItemIntervalDecoration;
 
@@ -54,8 +55,16 @@ public class CouponManagerFragment extends MVPBaseFragment<CouponManagerContract
         data.add(new CouponManageBean("订单满299元可用","满299可用","开始时间：2017-06-23","结束时间：2017-06-23","剩余张数：220张","15元"));
 
         recycle=findContentView(R.id.recycleview_style_recycle);
+        CouponManagerAdapter adapter=new CouponManagerAdapter(getContext(),data,tag);
         recycle.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
-        recycle.setAdapter(new CouponManagerAdapter(getContext(),data,tag));
+        recycle.setAdapter(adapter);
         recycle.addItemDecoration(new ItemIntervalDecoration(0,-5,0,0));
+
+        adapter.setOnLongClickListener(new CouponManagerAdapter.OnLongClickListener() {
+            @Override
+            public void setOnLongClickListener(View view, int position) {
+                showToast("position"+position);
+            }
+        });
     }
 }

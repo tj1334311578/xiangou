@@ -4,8 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     android:layout_height="match_parent">
+
     <include layout="@layout/good_management_head"
-        android:id="@+id/goods_management_addGoods_head"
+        android:id="@+id/goods_management_addgoods_head"
         />
     <!--<RelativeLayout-->
         <!--android:layout_width="match_parent"-->
@@ -55,7 +56,7 @@
         <!--</RelativeLayout>-->
 <!--</RelativeLayout>-->
    <ScrollView
-       android:layout_below="@id/goods_management_addGoods_head"
+       android:layout_below="@id/goods_management_addgoods_head"
        android:layout_width="match_parent"
        android:layout_height="wrap_content">
        <RelativeLayout
@@ -74,7 +75,7 @@
         android:layout_marginTop="8dp"
         android:textColor="@color/textcolor_gray"
         android:layout_marginStart="13dp"
-        android:id="@+id/goods_management_addGoods_classification"
+        android:id="@+id/goods_management_addgoods_classification"
         android:text="商品分类"/>
     <TextView
         android:layout_width="match_parent"
@@ -85,17 +86,17 @@
         android:textSize="14sp"
         android:gravity="center_vertical"
         android:textColorHint="#4d161616"
-        android:id="@+id/goods_management_addGoods_classification_text"
-        android:layout_toEndOf="@id/goods_management_addGoods_classification"
-        android:layout_toStartOf="@+id/goods_management_addGoods_classification_btn"
-        android:layout_alignTop="@id/goods_management_addGoods_classification"
+        android:id="@+id/goods_management_addgoods_classification_text"
+        android:layout_toEndOf="@id/goods_management_addgoods_classification"
+        android:layout_toStartOf="@+id/goods_management_addgoods_classification_btn"
+        android:layout_alignTop="@id/goods_management_addgoods_classification"
         android:hint="请选择商品分类"/>
     <ImageButton
         android:background="@null"
         android:src="@mipmap/mine_showright"
         android:layout_width="15dp"
-        android:id="@+id/goods_management_addGoods_classification_btn"
-        android:layout_alignTop="@id/goods_management_addGoods_classification"
+        android:id="@+id/goods_management_addgoods_classification_btn"
+        android:layout_alignTop="@id/goods_management_addgoods_classification"
         android:layout_alignParentRight="true"
         android:layout_marginRight="15dp"
         android:layout_height="41dp" />
@@ -103,16 +104,16 @@
     android:layout_width="match_parent"
     android:layout_height="1dp"
     android:background="#e7e7e7"
-    android:layout_below="@id/goods_management_addGoods_classification_btn"/>
+    android:layout_below="@id/goods_management_addgoods_classification_btn"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="42dp"
         android:gravity="center_vertical"
         android:textSize="14dp"
-        android:layout_below="@id/goods_management_addGoods_classification"
+        android:layout_below="@id/goods_management_addgoods_classification"
         android:textColor="@color/textcolor_gray"
         android:layout_marginStart="13dp"
-        android:id="@+id/goods_management_addGoods_model"
+        android:id="@+id/goods_management_addgoods_model"
         android:text="商品模型"/>
     <TextView
         android:layout_width="match_parent"
@@ -122,34 +123,34 @@
         android:background="@color/white"
         android:textColorHint="#4d161616"
         android:gravity="center_vertical"
-        android:id="@+id/goods_management_addGoods_model_text"
-        android:layout_toEndOf="@id/goods_management_addGoods_classification"
-        android:layout_toStartOf="@id/goods_management_addGoods_classification_btn"
-        android:layout_alignTop="@id/goods_management_addGoods_model"
+        android:id="@+id/goods_management_addgoods_model_text"
+        android:layout_toEndOf="@id/goods_management_addgoods_classification"
+        android:layout_toStartOf="@id/goods_management_addgoods_classification_btn"
+        android:layout_alignTop="@id/goods_management_addgoods_model"
         android:hint="请选择商品模型"/>
     <ImageButton
         android:background="@null"
         android:src="@mipmap/mine_showright"
         android:layout_width="15dp"
-        android:layout_alignEnd="@id/goods_management_addGoods_classification_btn"
-        android:id="@+id/goods_management_addGoods_model_btn"
-        android:layout_alignTop="@id/goods_management_addGoods_model"
+        android:layout_alignEnd="@id/goods_management_addgoods_classification_btn"
+        android:id="@+id/goods_management_addgoods_model_btn"
+        android:layout_alignTop="@id/goods_management_addgoods_model"
         android:layout_height="41dp" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#e7e7e7"
-        android:layout_below="@id/goods_management_addGoods_model_btn"/>
+        android:layout_below="@id/goods_management_addgoods_model_btn"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="42dp"
         android:gravity="center_vertical"
         android:textSize="14dp"
-        android:layout_below="@id/goods_management_addGoods_model"
+        android:layout_below="@id/goods_management_addgoods_model"
         android:textColor="@color/textcolor_gray"
         android:layout_marginStart="13dp"
-        android:id="@+id/goods_management_addGoods_goodName"
+        android:id="@+id/goods_management_addgoods_goodname"
         android:text="商品名称"/>
     <EditText
         android:layout_width="match_parent"
@@ -158,16 +159,16 @@
         android:textSize="14sp"
         android:textColorHint="#4d161616"
         android:background="@color/white"
-        android:id="@+id/goods_management_addGoods_goodName_edit"
-        android:layout_toEndOf="@id/goods_management_addGoods_classification"
-        android:layout_toStartOf="@id/goods_management_addGoods_classification_btn"
-        android:layout_alignTop="@id/goods_management_addGoods_goodName"
+        android:id="@+id/goods_management_addgoods_goodname_edit"
+        android:layout_toEndOf="@id/goods_management_addgoods_classification"
+        android:layout_toStartOf="@id/goods_management_addgoods_classification_btn"
+        android:layout_alignTop="@id/goods_management_addgoods_goodname"
         android:hint="请选择商品模型"/>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="10dp"
-        android:layout_below="@id/goods_management_addGoods_goodName_edit"
+        android:layout_below="@id/goods_management_addgoods_goodname_edit"
         android:background="#f2f2f2"/>
 
     <TextView
@@ -176,10 +177,10 @@
         android:gravity="center_vertical"
         android:textSize="14dp"
         android:layout_marginTop="10dp"
-        android:layout_below="@id/goods_management_addGoods_goodName"
+        android:layout_below="@id/goods_management_addgoods_goodname"
         android:textColor="@color/textcolor_gray"
         android:layout_marginStart="13dp"
-        android:id="@+id/goods_management_addGoods_shopPrice"
+        android:id="@+id/goods_management_addgoods_shopprice"
         android:text="本店价格"/>
     <EditText
         android:layout_width="match_parent"
@@ -188,17 +189,17 @@
         android:textSize="14sp"
         android:textColorHint="#4d161616"
         android:background="@color/white"
-        android:id="@+id/goods_management_addGoods_shopPrice_edit"
-        android:layout_toEndOf="@id/goods_management_addGoods_classification"
-        android:layout_toStartOf="@id/goods_management_addGoods_classification_btn"
-        android:layout_alignTop="@id/goods_management_addGoods_shopPrice"
+        android:id="@+id/goods_management_addgoods_shopprice_edit"
+        android:layout_toEndOf="@id/goods_management_addgoods_classification"
+        android:layout_toStartOf="@id/goods_management_addgoods_classification_btn"
+        android:layout_alignTop="@id/goods_management_addgoods_shopprice"
         android:hint="请填写你的商品价格"/>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#e7e7e7"
-        android:layout_below="@id/goods_management_addGoods_shopPrice_edit"/>
+        android:layout_below="@id/goods_management_addgoods_shopprice_edit"/>
 
     <TextView
         android:layout_marginTop="1dp"
@@ -207,10 +208,10 @@
         android:gravity="center_vertical"
         android:textSize="14dp"
         android:textColor="@color/textcolor_gray"
-        android:id="@+id/goods_management_addGoods_marketPrice"
+        android:id="@+id/goods_management_addgoods_marketprice"
         android:text="市场价格"
-        android:layout_below="@+id/goods_management_addGoods_shopPrice"
-        android:layout_alignStart="@+id/goods_management_addGoods_shopPrice" />
+        android:layout_below="@+id/goods_management_addgoods_shopprice"
+        android:layout_alignStart="@+id/goods_management_addgoods_shopprice" />
 
     <EditText
         android:layout_width="match_parent"
@@ -219,10 +220,10 @@
         android:textSize="14sp"
         android:textColorHint="#4d161616"
         android:background="@color/white"
-        android:id="@+id/goods_management_addGoods_marketPrice_edit"
-        android:layout_toEndOf="@id/goods_management_addGoods_classification"
-        android:layout_toStartOf="@id/goods_management_addGoods_classification_btn"
-        android:layout_alignTop="@id/goods_management_addGoods_marketPrice"
+        android:id="@+id/goods_management_addgoods_marketprice_edit"
+        android:layout_toEndOf="@id/goods_management_addgoods_classification"
+        android:layout_toStartOf="@id/goods_management_addgoods_classification_btn"
+        android:layout_alignTop="@id/goods_management_addgoods_marketprice"
         android:hint="请填写商品的市场价格"/>
 
 
@@ -230,7 +231,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#e7e7e7"
-        android:layout_below="@id/goods_management_addGoods_marketPrice_edit"/>
+        android:layout_below="@id/goods_management_addgoods_marketprice_edit"/>
 
 
     <TextView
@@ -239,10 +240,10 @@
         android:layout_height="42dp"
         android:gravity="center_vertical"
         android:textSize="14dp"
-        android:layout_below="@id/goods_management_addGoods_marketPrice"
+        android:layout_below="@id/goods_management_addgoods_marketprice"
         android:textColor="@color/textcolor_gray"
         android:layout_marginStart="13dp"
-        android:id="@+id/goods_management_addGoods_goodsAmount"
+        android:id="@+id/goods_management_addgoods_goodsamount"
         android:text="商品库存"/>
     <EditText
         android:layout_width="match_parent"
@@ -253,16 +254,16 @@
         android:background="@color/white"
         android:maxLines="1"
         android:ellipsize="end"
-        android:id="@+id/goods_management_addGoods_goodsAmount_edit"
-        android:layout_toEndOf="@id/goods_management_addGoods_classification"
-        android:layout_toStartOf="@id/goods_management_addGoods_classification_btn"
-        android:layout_alignTop="@id/goods_management_addGoods_goodsAmount"
+        android:id="@+id/goods_management_addgoods_goodsamount_edit"
+        android:layout_toEndOf="@id/goods_management_addgoods_classification"
+        android:layout_toStartOf="@id/goods_management_addgoods_classification_btn"
+        android:layout_alignTop="@id/goods_management_addgoods_goodsamount"
         android:hint="请填写库存连(不填为系统默认数量)"/>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="10dp"
-        android:layout_below="@id/goods_management_addGoods_goodsAmount_edit"
+        android:layout_below="@id/goods_management_addgoods_goodsamount_edit"
         android:background="#f2f2f2"/>
 
     <LinearLayout
@@ -271,10 +272,10 @@
       android:orientation="horizontal"
       android:layout_marginTop="10dp"
       android:id="@+id/goods_management_addGoods_newGoodOrNot_Ll"
-      android:layout_below="@id/goods_management_addGoods_goodsAmount"
-      android:layout_alignStart="@id/goods_management_addGoods_shopPrice"
+      android:layout_below="@id/goods_management_addgoods_goodsamount"
+      android:layout_alignStart="@id/goods_management_addgoods_shopprice"
       android:gravity="center_vertical"
-      android:layout_alignEnd="@+id/goods_management_addGoods_goodsAmount_edit">
+      android:layout_alignEnd="@+id/goods_management_addgoods_goodsamount_edit">
       <TextView
           android:layout_width="wrap_content"
           android:layout_height="42dp"
@@ -351,9 +352,9 @@
         android:orientation="horizontal"
         android:id="@+id/goods_management_addGoods_isRecommendOrNot_Ll"
         android:layout_below="@id/goods_management_addGoods_newGoodOrNot_Ll"
-        android:layout_alignStart="@id/goods_management_addGoods_shopPrice"
+        android:layout_alignStart="@id/goods_management_addgoods_shopprice"
         android:gravity="center_vertical"
-        android:layout_alignEnd="@+id/goods_management_addGoods_goodsAmount_edit">
+        android:layout_alignEnd="@+id/goods_management_addgoods_goodsamount_edit">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="42dp"
@@ -426,8 +427,8 @@
         android:textColorHint="#4d161616"
         android:id="@+id/goods_management_addGoods_Labels_text"
         android:gravity="center_vertical"
-        android:layout_toEndOf="@id/goods_management_addGoods_classification"
-        android:layout_toStartOf="@id/goods_management_addGoods_classification_btn"
+        android:layout_toEndOf="@id/goods_management_addgoods_classification"
+        android:layout_toStartOf="@id/goods_management_addgoods_classification_btn"
         android:layout_alignTop="@id/goods_management_addGoods_Labels"
         android:hint="请选择标签"/>
 
@@ -454,7 +455,7 @@
         android:orientation="horizontal"
         android:id="@+id/goods_management_addGoods_isWhetherOrNot_Ll"
         android:layout_below="@id/goods_management_addGoods_Labels_btn"
-        android:layout_alignStart="@id/goods_management_addGoods_shopPrice"
+        android:layout_alignStart="@id/goods_management_addgoods_shopprice"
         android:gravity="center_vertical"
         android:layout_alignEnd="@+id/goods_management_addGoods_Labels_btn">
         <TextView
@@ -540,7 +541,7 @@
         android:layout_width="wrap_content"
         android:layout_marginTop="10dp"
         android:layout_below="@id/goods_management_addGoods_isWhetherOrNot_Ll"
-        android:layout_alignStart="@id/goods_management_addGoods_classification"
+        android:layout_alignStart="@id/goods_management_addgoods_classification"
         android:text="上传图片"
         android:gravity="center_vertical"
         android:textSize="14sp"
@@ -556,7 +557,7 @@
         android:textColorHint="#4d161616"
         android:padding="0dp"
         android:gravity="center_vertical"
-        android:layout_alignStart="@id/goods_management_addGoods_classification_text"
+        android:layout_alignStart="@id/goods_management_addgoods_classification_text"
         android:hint="第一张图片为商品图片"
         android:layout_alignTop="@id/goods_management_addGoods_upDown_img"
         android:id="@+id/editText" />

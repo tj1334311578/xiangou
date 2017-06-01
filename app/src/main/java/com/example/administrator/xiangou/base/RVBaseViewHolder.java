@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.xiangou.tool.CustomImageView;
+import com.example.administrator.xiangou.tool.DrawableTextView;
 import com.youth.banner.Banner;
 
 /**

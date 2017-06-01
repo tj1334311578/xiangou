@@ -81,31 +81,31 @@ public class AddGoodsManageActivity extends MVPBaseActivity<AddGoodsManageContra
         titleTv=findContentView(R.id.store_headTitleTv,false);
         titleTv.setText("添加商品");
         backBtn=findContentView(R.id.store_headback);
-        releaseBtn=findContentView(R.id.goods_management_addGoods_releaseBtn);
-        good_classification=findContentView(R.id.goods_management_addGoods_classification_text);
-        classificationBtn=findContentView(R.id.goods_management_addGoods_classification_btn);
-        good_model=findContentView(R.id.goods_management_addGoods_model_text);
-        modelBtn=findContentView(R.id.goods_management_addGoods_model_btn);
-        good_Labels=findContentView(R.id.goods_management_addGoods_Labels_text);
-        labelsBtn=findContentView(R.id.goods_management_addGoods_Labels_btn);
-        good_name=findContentView(R.id.goods_management_addGoods_goodName_edit,false);
-        shopprice=findContentView(R.id.goods_management_addGoods_shopPrice_edit,false);
-        marketprice=findContentView(R.id.goods_management_addGoods_marketPrice_edit,false);
-        good_Amount=findContentView(R.id.goods_management_addGoods_goodsAmount_edit,false);
+        releaseBtn=findContentView(R.id.goods_management_addgoods_releasebtn);
+        good_classification=findContentView(R.id.goods_management_addgoods_classification_text);
+        classificationBtn=findContentView(R.id.goods_management_addgoods_classification_btn);
+        good_model=findContentView(R.id.goods_management_addgoods_model_text);
+        modelBtn=findContentView(R.id.goods_management_addgoods_model_btn);
+        good_Labels=findContentView(R.id.goods_management_addgoods_labels_text);
+        labelsBtn=findContentView(R.id.goods_management_addgoods_labels_btn);
+        good_name=findContentView(R.id.goods_management_addgoods_goodname_edit,false);
+        shopprice=findContentView(R.id.goods_management_addgoods_shopprice_edit,false);
+        marketprice=findContentView(R.id.goods_management_addgoods_marketprice_edit,false);
+        good_Amount=findContentView(R.id.goods_management_addgoods_goodsamount_edit,false);
 
-        isNew_no=findContentView(R.id.goods_management_addGoods_isNewGoodOrNot_check,false);
-        isNew_yes=findContentView(R.id.goods_management_addGoods_isNewGoodOrNot_isNewGood_check,false);
-        initCheckBox(isNew_yes,R.id.goods_management_addGoods_isNewGoodOrNot_check,
-                isNew_no,R.id.goods_management_addGoods_isNewGoodOrNot_isNewGood_check);
-        isRecommend_no=findContentView(R.id.goods_management_addGoods_isNotRecommend_check,false);
-        isRecommend_yes=findContentView(R.id.goods_management_addGoods_isRecommend_check,false);
-        initCheckBox(isRecommend_yes,R.id.goods_management_addGoods_isRecommend_check,
-                isRecommend_no,R.id.goods_management_addGoods_isNotRecommend_check);
-        freeShipping_no=findContentView(R.id.goods_management_addGoods_isNotWhether_check,false);
-        freeShipping_yes=findContentView(R.id.goods_management_addGoods_isWhether_check,false);
-        initCheckBox(freeShipping_yes,R.id.goods_management_addGoods_isWhether_check,
-                freeShipping_no,R.id.goods_management_addGoods_isNotWhether_check);
-        gridView=findContentView(R.id.goods_management_addGoods_upDown_grid,false);
+        isNew_no=findContentView(R.id.goods_management_addgoods_isnewgoodornot_check,false);
+        isNew_yes=findContentView(R.id.goods_management_addgoods_isnewgoodornot_isnewgood_check,false);
+        initCheckBox(isNew_yes,R.id.goods_management_addgoods_isnewgoodornot_check,
+                isNew_no,R.id.goods_management_addgoods_isnewgoodornot_isnewgood_check);
+        isRecommend_no=findContentView(R.id.goods_management_addgoods_isnotrecommend_check,false);
+        isRecommend_yes=findContentView(R.id.goods_management_addgoods_isrecommend_check,false);
+        initCheckBox(isRecommend_yes,R.id.goods_management_addgoods_isrecommend_check,
+                isRecommend_no,R.id.goods_management_addgoods_isnotrecommend_check);
+        freeShipping_no=findContentView(R.id.goods_management_addgoods_isnotwhether_check,false);
+        freeShipping_yes=findContentView(R.id.goods_management_addgoods_iswhether_check,false);
+        initCheckBox(freeShipping_yes,R.id.goods_management_addgoods_iswhether_check,
+                freeShipping_no,R.id.goods_management_addgoods_isnotwhether_check);
+        gridView=findContentView(R.id.goods_management_addgoods_updown_grid,false);
 
 
         //上传图片相关
@@ -256,16 +256,16 @@ public class AddGoodsManageActivity extends MVPBaseActivity<AddGoodsManageContra
             case R.id.store_headback://返回上一级
                 finish();
                 break;
-            case R.id.goods_management_addGoods_releaseBtn://发布新商品
+            case R.id.goods_management_addgoods_releasebtn://发布新商品
                 showToast("发布新商品");
                 break;
-            case R.id.goods_management_addGoods_classification_btn://进入商品分类扩展页
+            case R.id.goods_management_addgoods_classification_btn://进入商品分类扩展页
                 showToast("进入商品分类扩展页");
                 break;
-            case R.id.goods_management_addGoods_model_btn://进入模型扩展页
+            case R.id.goods_management_addgoods_model_btn://进入模型扩展页
                 showToast("进入商品模型扩展页");
                 break;
-            case R.id.goods_management_addGoods_Labels_btn://进入标签扩展页
+            case R.id.goods_management_addgoods_labels_btn://进入标签扩展页
                 showToast("进入商品标签扩展页");
                 break;
         }

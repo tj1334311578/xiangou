@@ -9,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.administrator.xiangou.tool.CustomImageView;
-import com.example.administrator.xiangou.tool.DrawableTextView;
 import com.youth.banner.Banner;
 
 /**
@@ -18,12 +17,12 @@ import com.youth.banner.Banner;
 
 public class RVBaseViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
     private SparseArray<View> mViews;
-    public View mItemView;
+//    private View mItemView;
     private RVBaseAdapter.OnItemViewClickListener mOnItemViewClickListener;
 
     public RVBaseViewHolder(View itemView , final RVBaseAdapter.OnItemViewClickListener onItemViewClickListener ) {
         super(itemView);
-        mItemView = itemView;
+//         = itemView;
         mViews = new SparseArray<>();
         mOnItemViewClickListener = onItemViewClickListener;
         itemView.setOnClickListener(this);

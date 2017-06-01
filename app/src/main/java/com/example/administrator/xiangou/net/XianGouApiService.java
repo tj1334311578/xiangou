@@ -7,12 +7,6 @@ import com.example.administrator.xiangou.goodsdetails.simplegoodsdetails.goodsbe
 import com.example.administrator.xiangou.login.Captcha;
 import com.example.administrator.xiangou.login.LoginBean;
 import com.example.administrator.xiangou.mine.ToApplyStoreBean;
-import com.example.administrator.xiangou.mine.mystore.datamanager.TotalDataBean;
-import com.example.administrator.xiangou.mine.mystore.goodsmanage.GoodsitemBean;
-import com.example.administrator.xiangou.mine.mystore.goodsmanage.addgoodsmanage.AddGoodsAttrBean;
-import com.example.administrator.xiangou.mine.mystore.goodsmanage.addgoodsmanage.AddGoodsDataBean;
-import com.example.administrator.xiangou.mine.mystore.goodsmanage.addgoodsmanage.AddGoodsSpecBean;
-import com.example.administrator.xiangou.mine.mystore.storemanager.StoreManagerInfoBean;
 import com.example.administrator.xiangou.mine.setting.manageraddress.EditAddressEnterBean;
 import com.example.administrator.xiangou.mine.setting.manageraddress.model.UserAddressBean;
 import com.example.administrator.xiangou.mine.setting.personal.PersonalDetialsBean;

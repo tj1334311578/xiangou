@@ -8,10 +8,7 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Gravity;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.administrator.xiangou.R;
@@ -47,6 +44,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     public static User bUser;
     public static XianGouApiService mApiService;
     public static MySharedPreferences bSharedPreferences;
+    private CustomToast mCustomToast;
 
     //注册广播
     private void registerExitReceiver() {
@@ -137,35 +135,42 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     public void startNewUI(Class<?> context){
         startActivity(new Intent(this,context));
     }
-    public void startNewUICarryStr(Class<?> context, String name, Object str ){
+    public void startNewUICarryStr(Class<?> context, String[] name, Object... str ){
         Intent intent = new Intent(this,context);
-        if (str instanceof String) {
-            intent.putExtra(name, str.toString());
-        }else if (str instanceof Serializable){
-            Serializable s = (Serializable) str;
-            intent.putExtra(name,s);
-        }else if (str instanceof Bundle){
-            Bundle s = (Bundle) str;
-            intent.putExtra(name,s);
-        }else if (str instanceof String[]){
-            String[] strs = (String[]) str;
-            intent.putExtra(name, strs);
+        for (int i = 0; i < str.length; i++) {
+            if (str[i] instanceof String) {
+                intent.putExtra(name[i], str[i].toString());
+            }else if (str[i] instanceof Serializable){
+                Serializable s = (Serializable) str[i];
+                intent.putExtra(name[i],s);
+            }else if (str[i] instanceof Bundle){
+                Bundle s = (Bundle) str[i];
+                intent.putExtra(name[i],s);
+            }else if (str[i] instanceof String[]){
+                String[] strs = (String[]) str[i];
+                intent.putExtra(name[i], strs);
+            }
         }
         startActivity(intent);
     }
+    public void startNewUICarryStr(Class<?> context, String name, Object str ){
+        Intent intent = new Intent(this,context);
+            if (str instanceof String) {
+                intent.putExtra(name, str.toString());
+            }else if (str instanceof Serializable){
+                Serializable s = (Serializable) str;
+                intent.putExtra(name,s);
+            }else if (str instanceof Bundle){
+                Bundle s = (Bundle) str;
+                intent.putExtra(name,s);
+            }else if (str instanceof String[]){
+                String[] strs = (String[]) str;
+                intent.putExtra(name, strs);
+            }
+
+        startActivity(intent);
+    }
     public void startNewUIForResult(Class<?> context,int requestCode,String name,Object str ){
-//        Intent intent = new Intent(this,context);
-//            if (str instanceof String) {
-//                String s= (String) str;
-//                intent.putExtra(name, s);
-//            }else if (str instanceof Serializable){
-//                Serializable s = (Serializable) str;
-//                intent.putExtra(name,s);
-//            }else if (str instanceof Bundle){
-//                Bundle s = (Bundle) str;
-//                intent.putExtra(name,s);
-//            }
-//        startActivityForResult(intent,requestCode);
         String[] names = {name};
         Object[] strs = {str};
         startNewUIForResult(context,requestCode,names,strs);
@@ -202,24 +207,29 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
      * @param msg
      */
     public  void showToast(String msg){
-        if (mToast==null) {
-            mToast = Toast.makeText(this, msg, Toast.LENGTH_SHORT);
-            mToast.setGravity(Gravity.CENTER, 0, 0);
-            LinearLayout toastView = (LinearLayout) mToast.getView();
-            toastView.setBackgroundResource(R.drawable.toastbg); //你可以在这里放入你的背景
-            toastView.setPadding(ContextUtils.px2dp(8), ContextUtils.px2dp(0), ContextUtils.px2dp(8), ContextUtils.px2dp(0));
-            ImageView imageView = new ImageView(this);
-            imageView.setImageResource(R.mipmap.ic_launcher);
-            toastView.addView(imageView, 0);
-        }else {
-            mToast.setText(msg);
+        mCustomToast = CustomToast.createToast(getApplicationContext());
+        mCustomToast.setTitle("温馨提示").setIcon(R.mipmap.icon_app).setMsgNTime(msg).showToast();
+    }
+    public  void showToast(String title,String msg){
+        mCustomToast = CustomToast.createToast(getApplicationContext());
+        mCustomToast.setTitle(title).setMsgNTime(msg).showToast();
+    }
+    public void cancelToast() {
+        if (mCustomToast != null && mCustomToast.getToast()!=null) {
+            mCustomToast.getToast().cancel();
         }
-        mToast.show();
+    }
+    /**
+     * 按返回键后立即使Toast不再显示
+     */
+    @Override
+    public void onBackPressed() {
+        cancelToast();
+        super.onBackPressed();
     }
     public void toastShow(String msg) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
     }
-
     /**
      * 判断用户是否登录
      * @return

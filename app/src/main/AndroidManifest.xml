@@ -40,7 +40,7 @@
         <activity android:name=".mine.setting.personal.PersonalActivity"/>
         <activity android:name=".mine.setting.personal.NicknameActivity"/>
         <activity android:name=".mine.setting.personal.SexActivity"/>
-        <activity android:name=".mine.setting.manageraddress.ManagerAddressActivity"/>
+        <activity android:name=".mine.setting.manageraddress.ManagerAddressActivity" android:launchMode="singleTask"/>
         <activity android:name=".mine.setting.manageraddress.editaddress.EditAddressActivity"/>
         <activity android:name=".mine.myorder.MyOrderActivity"/>
         <activity android:name=".mine.mystore.MyStoreActivity"/>

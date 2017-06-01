@@ -50,6 +50,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/grayBgColor"
+        android:layout_above="@+id/editaddress_location_Ll"
+        />
     <LinearLayout
         android:id="@+id/editaddress_location_Ll"
         android:layout_below="@id/editaddress_number_Ll"
@@ -70,7 +77,7 @@
             android:textSize="14sp"
             android:textColor="#e6161616"
             android:hint="点击选择地区省份"
-            android:gravity="center"
+            android:gravity="center_vertical"
             android:id="@+id/editaddress_locationEt"
             android:layout_weight="1"/>
     </LinearLayout>
@@ -83,6 +90,7 @@
         android:ellipsize="end"
         android:textColor="#e6161616"
         android:hint="请填写详细地址信息"
+        android:textColorHint="@color/textcolor_8016"
         android:id="@+id/editaddress_detailed"
         android:layout_below="@+id/editaddress_location_Ll"
         android:layout_alignStart="@+id/editaddress_location_Ll" />

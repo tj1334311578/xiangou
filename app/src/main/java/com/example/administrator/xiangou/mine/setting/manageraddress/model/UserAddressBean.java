@@ -104,27 +104,25 @@ public class UserAddressBean implements Serializable{
     public static class DataBean implements Serializable{
         @Override
         public String toString() {
-            return "DataBean{" +
-                    "address_id=" + address_id +
-                    ", user_id=" + user_id +
-                    ", consignee='" + consignee + '\'' +
-                    ", email='" + email + '\'' +
-                    ", country=" + country +
-                    ", province='" + province + '\'' +
-                    ", city='" + city + '\'' +
-                    ", district='" + district + '\'' +
-                    ", twon=" + twon +
-                    ", address='" + address + '\'' +
-                    ", zipcode='" + zipcode + '\'' +
-                    ", mobile='" + mobile + '\'' +
-                    ", is_default=" + is_default +
-                    ", is_pickup=" + is_pickup +
-                    ", map_x='" + map_x + '\'' +
-                    ", map_y='" + map_y + '\'' +
-                    ", province_id=" + province_id +
-                    ", city_id=" + city_id +
-                    ", district_id=" + district_id +
-                    '}';
+            return  address_id +
+                    "," + user_id +
+                    "," + consignee +
+                    "," + email +
+                    "," + country +
+                    "," + province +
+                    "," + city +
+                    "," + district +
+                    "," + twon +
+                    "," + address +
+                    "," + zipcode +
+                    "," + mobile +
+                    "," + is_default +
+                    "," + is_pickup +
+                    "," + map_x +
+                    "," + map_y +
+                    "," + province_id +
+                    "," + city_id +
+                    "," + district_id ;
         }
 
         public DataBean() {

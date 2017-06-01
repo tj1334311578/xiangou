@@ -1,4 +1,4 @@
-package com.example.administrator.xiangou.mine.setting.manageraddress;
+package com.example.administrator.xiangou.mine.setting.manageraddress.model;
 
 import java.util.List;
 

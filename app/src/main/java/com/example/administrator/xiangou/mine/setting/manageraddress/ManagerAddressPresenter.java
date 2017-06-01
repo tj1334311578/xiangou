@@ -17,7 +17,9 @@ public class ManagerAddressPresenter extends BasePresenterImpl<ManagerAddressCon
 
     @Override
     public void getUserAddressList(int user_id, final String type) {
-        mView.showLoading();
+        if (type.equals("get")) {
+            mView.showLoading();
+        }
         addSubscription(mApiService.getUserAddrApi(user_id), new BaseSubscriber<UserAddressBean>(mView.getContext()) {
             @Override
             public void onNext(UserAddressBean userAddressBean) {
@@ -29,7 +31,9 @@ public class ManagerAddressPresenter extends BasePresenterImpl<ManagerAddressCon
 
             @Override
             public void onFinish() {
-                mView.hideLoading();
+                if (type.equals("get")) {
+                    mView.hideLoading();
+                }
             }
 
             @Override
@@ -40,18 +44,18 @@ public class ManagerAddressPresenter extends BasePresenterImpl<ManagerAddressCon
     }
 
     @Override
-    public void setDefaultAddress(final int user_id, int address_id, final int position) {
+    public void setDefaultAddress(final int user_id, int address_id) {
         addSubscription(mApiService.setUserDefaultAddrApi(user_id, address_id), new BaseSubscriber<Captcha>(mView.getContext()) {
             @Override
             public void onNext(Captcha captcha) {
                 if (captcha.getState().getCode()==200){
-                    mView.setDefaultAddressSuccess("默认收货地址设置成功！",position);
+                    getUserAddressList(user_id,"set");
+                    mView.setDefaultAddressSuccess("默认收货地址设置成功！");
                 }
             }
 
             @Override
             public void onFinish() {
-
             }
 
             @Override
@@ -64,18 +68,20 @@ public class ManagerAddressPresenter extends BasePresenterImpl<ManagerAddressCon
     }
 
     @Override
-    public void deleteUserAddress(int user_id, final int address_id , final int position) {
+    public void deleteUserAddress(final int user_id, final int address_id) {
+//        mView.showLoading();
         addSubscription(mApiService.delUserAddrApi(user_id, address_id), new BaseSubscriber<Captcha>(mView.getContext()) {
             @Override
             public void onNext(Captcha captcha) {
                 if (captcha.getState().getCode()==200){
-                    mView.deleteAddressSuccess("收货地址删除成功！",address_id,position);
+                    getUserAddressList(user_id,"delete");
+                    mView.deleteAddressSuccess("收货地址删除成功！");
                 }
             }
 
             @Override
             public void onFinish() {
-
+//                mView.hideLoading();
             }
 
             @Override

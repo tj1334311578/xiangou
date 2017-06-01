@@ -43,16 +43,12 @@ public class AddressAdapter extends RVBaseAdapter<UserAddressBean.DataBean> {
 
     @Override
     protected void bindData(RVBaseViewHolder holder, final UserAddressBean.DataBean dataBean, final int position) {
-
         Log.e("enterbnd", "onBindViewHolder: " +position+" =="+dataBean.toString());
         holder.getTextView(R.id.manageraddress_username).setText(dataBean.getConsignee());
         holder.getTextView(R.id.manageraddress_usernumber).setText(dataBean.getMobile());
         holder.getTextView(R.id.manageraddress_useraddress).setText(dataBean.getAddress());
         mCheckBox = holder.getCheckBox(R.id.manageraddress_defaultaddress);
         mCheckBox.setOnCheckedChangeListener(null);
-//        if (holder.getCheckBox(R.id.manageraddress_defaultaddress).getTag()!=dataBean) {
-//            mCheckBox.setTag(dataBean);
-//        }
         if (dataBean.getIs_default()==1) {
             mCheckBox.setChecked(true);
             mCheckBox.setClickable(false);
@@ -81,8 +77,6 @@ public class AddressAdapter extends RVBaseAdapter<UserAddressBean.DataBean> {
         delText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                mDatas.remove(position);
-//                notifyDataSetChanged();
                 mAddressManagerListener.dealDelTextTv(v,position);
             }
         });

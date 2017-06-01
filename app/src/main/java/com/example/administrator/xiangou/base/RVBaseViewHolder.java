@@ -22,7 +22,7 @@ public class RVBaseViewHolder extends RecyclerView.ViewHolder implements View.On
 
     public RVBaseViewHolder(View itemView , final RVBaseAdapter.OnItemViewClickListener onItemViewClickListener ) {
         super(itemView);
-//         = itemView;
+//        mItemView = itemView;
         mViews = new SparseArray<>();
         mOnItemViewClickListener = onItemViewClickListener;
         itemView.setOnClickListener(this);

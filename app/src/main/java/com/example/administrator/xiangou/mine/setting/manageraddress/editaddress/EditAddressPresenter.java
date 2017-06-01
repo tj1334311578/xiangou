@@ -4,7 +4,7 @@ import android.util.Log;
 
 import com.example.administrator.xiangou.login.Captcha;
 import com.example.administrator.xiangou.mine.ToApplyStoreBean;
-import com.example.administrator.xiangou.mine.setting.manageraddress.EditAddressEnterBean;
+import com.example.administrator.xiangou.mine.setting.manageraddress.model.EditAddressEnterBean;
 import com.example.administrator.xiangou.mvp.BasePresenterImpl;
 import com.example.administrator.xiangou.net.BaseSubscriber;
 import com.example.administrator.xiangou.net.ExceptionHandle;
@@ -57,8 +57,13 @@ public class EditAddressPresenter extends BasePresenterImpl<EditAddressContract.
             @Override
             public void onNext(Captcha captcha) {
                 Log.e("commit", "onNext: " + captcha.toString());
-                if (captcha.getState().getCode()==200){
-                    mView.commitSuccess(captcha);
+                switch (captcha.getState().getCode()){
+                    case 200:
+                        mView.commitSuccess("地址信息保存成功！");
+                        break;
+                    case 104:
+                        mView.commitSuccess("没有修改信息！");
+                        break;
                 }
             }
 

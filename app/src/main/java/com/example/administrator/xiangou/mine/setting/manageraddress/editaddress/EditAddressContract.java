@@ -18,7 +18,7 @@ import rx.Observable;
 
 public class EditAddressContract {
     interface View extends BaseView {
-        void commitSuccess(Captcha captcha);
+        void commitSuccess(String captcha);
         void enterSuccess(List<ToApplyStoreBean.DataBean> addressEnterBean);
 
         //bind地区列表数据

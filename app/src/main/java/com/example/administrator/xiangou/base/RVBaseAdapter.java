@@ -19,7 +19,7 @@ public abstract class RVBaseAdapter<T> extends RecyclerView.Adapter<RVBaseViewHo
     public Context mContext;
     protected List<T> mDatas;
     protected int mLayoutResId;
-    private static View mItemView;
+    protected static View mItemView;
     private  GlideImageLoader mImageLoader;
 
     /**

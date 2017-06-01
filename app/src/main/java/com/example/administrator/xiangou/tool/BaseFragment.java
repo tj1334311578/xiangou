@@ -6,12 +6,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,12 +32,12 @@ import rx.subscriptions.CompositeSubscription;
  */
 public abstract class BaseFragment extends Fragment implements View.OnClickListener{
     public Activity mActivity;
-    private Toast mToast;
 
     private CompositeSubscription mCompositeSubscription;
     public User bUser;
     public MySharedPreferences bSharedPreferences;
     public View mContextView;
+    private CustomToast mCustomToast;
 
 
     @Override
@@ -177,20 +174,18 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
      * @param msg
      */
     public  void showToast(String msg){
-        if (mToast==null) {
-            mToast = Toast.makeText(mActivity, msg, Toast.LENGTH_SHORT);
-            mToast.setGravity(Gravity.CENTER, 0, 0);
-            LinearLayout toastView = (LinearLayout) mToast.getView();
-            toastView.setBackgroundResource(R.drawable.toastbg); //你可以在这里放入你的背景
-            toastView.setPadding(ContextUtils.px2dp(8), ContextUtils.px2dp(0), ContextUtils.px2dp(8), ContextUtils.px2dp(0));
-            ImageView imageView = new ImageView(mActivity);
-            imageView.setImageResource(R.mipmap.ic_launcher);
-            toastView.addView(imageView, 0);
-        }else {
-            mToast.setText(msg);
-        }
-        mToast.show();
+        mCustomToast = CustomToast.createToast(getContext());
+        mCustomToast.setTitle("温馨提示").setIcon(R.mipmap.icon_app).setMsgNTime(msg).showToast();
     }
+    public  void showToast(String title,String msg){
+        mCustomToast = CustomToast.createToast(getContext());
+        mCustomToast.setTitle(title).setMsgNTime(msg).showToast();
+    }
+
+    /**
+     * 按返回键后立即使Toast不再显示
+     */
+
     public void toastShow(String msg) {
         Toast.makeText(mActivity, msg, Toast.LENGTH_SHORT).show();
     }

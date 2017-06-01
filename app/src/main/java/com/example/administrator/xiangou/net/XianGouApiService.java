@@ -7,12 +7,11 @@ import com.example.administrator.xiangou.goodsdetails.simplegoodsdetails.goodsbe
 import com.example.administrator.xiangou.login.Captcha;
 import com.example.administrator.xiangou.login.LoginBean;
 import com.example.administrator.xiangou.mine.ToApplyStoreBean;
-import com.example.administrator.xiangou.mine.setting.manageraddress.EditAddressEnterBean;
+import com.example.administrator.xiangou.mine.setting.manageraddress.model.EditAddressEnterBean;
 import com.example.administrator.xiangou.mine.setting.manageraddress.model.UserAddressBean;
 import com.example.administrator.xiangou.mine.setting.personal.PersonalDetialsBean;
 import com.example.administrator.xiangou.mine.store_application.ApplicantInfoBean;
 import com.example.administrator.xiangou.mine.store_application.model.CategoryListDataBean;
-import com.example.administrator.xiangou.nearby.apimodel.CommentDataBean;
 import com.example.administrator.xiangou.nearby.apimodel.GoodsListDataBean;
 import com.example.administrator.xiangou.nearby.apimodel.NearbyBenifitDataBean;
 import com.example.administrator.xiangou.nearby.apimodel.NearbyGoodsDataBean;

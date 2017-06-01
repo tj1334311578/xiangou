@@ -7,7 +7,12 @@ import com.example.administrator.xiangou.goodsdetails.simplegoodsdetails.goodsbe
 import com.example.administrator.xiangou.login.Captcha;
 import com.example.administrator.xiangou.login.LoginBean;
 import com.example.administrator.xiangou.mine.ToApplyStoreBean;
-import com.example.administrator.xiangou.mine.setting.manageraddress.EditAddressEnterBean;
+import com.example.administrator.xiangou.mine.mystore.datamanager.TotalDataBean;
+import com.example.administrator.xiangou.mine.mystore.goodsmanage.addgoodsmanage.AddGoodsAttrBean;
+import com.example.administrator.xiangou.mine.mystore.goodsmanage.addgoodsmanage.AddGoodsDataBean;
+import com.example.administrator.xiangou.mine.mystore.goodsmanage.addgoodsmanage.AddGoodsSpecBean;
+import com.example.administrator.xiangou.mine.mystore.storemanager.StoreManagerInfoBean;
+import com.example.administrator.xiangou.mine.setting.manageraddress.model.EditAddressEnterBean;
 import com.example.administrator.xiangou.mine.setting.manageraddress.model.UserAddressBean;
 import com.example.administrator.xiangou.mine.setting.personal.PersonalDetialsBean;
 import com.example.administrator.xiangou.mine.store_application.ApplicantInfoBean;
@@ -225,7 +230,7 @@ public interface XianGouApiService {
     //店铺数据统计
     @POST("api/stores/data_manage/")
     Observable<TotalDataBean> callTotalDataApi(@Query("did") int did,
-                                                @Query("Time") String Time);
+                                               @Query("Time") String Time);
     //测试数据模块
     @POST("/api/order/ppay/")
     Observable<ResponseBody> callceshiApi(@Query("channel") String alipay,

@@ -630,6 +630,7 @@
                android:id="@+id/goods_management_addgoods_updown_grid"
                android:layout_below="@+id/goods_management_addgoods_updown_edit"
                android:layout_height="130dp">
+
            </GridView>
     <Button
         android:layout_width="180dp"

@@ -65,6 +65,13 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
     @Override
     public void onResume() {
         super.onResume();
+//        if (bSharedPreferences.getString("IDLogin_TelNumber",null)!=null &&
+//                bSharedPreferences.getString("IDLogin_PWD",null)!=null) {
+//            Log.e("user pwd", "onResume: " +bSharedPreferences.getString("IDLogin_TelNumber", null)+"-=-"+
+//                    bSharedPreferences.getString("IDLogin_PWD", null));
+//            mPresenter.IDlogin(bSharedPreferences.getString("IDLogin_TelNumber", null),
+//                    bSharedPreferences.getString("IDLogin_PWD", null));
+//        }
         showToast("isVisible:"+getUserVisibleHint()+"----isLogin"+isLogined()+"user id:"+bUser.getUser_id());
         if (getUserVisibleHint()){
             if (!isLogined()) {
@@ -83,13 +90,6 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         findContentView(R.id.mine_setup_iv);
         mMessageTv = findContentView(R.id.mine_message_tv);
         mHeadImgCiv = findContentView(R.id.mine_user_img_iv);
-
-        if (bUser.getHead_pic()==null){
-            mHeadImgCiv.setImageResource(R.mipmap.mine_user_img);
-        }else {
-            // TODO: 2017/4/13 set img
-        }
-
         mUserLevelTv = findContentView(R.id.mine_level_tv);
         mLevelNumberTv = findContentView(R.id.mine_level_number_tv);
         mUserNameTv = findContentView(R.id.mine_username_tv);
@@ -148,12 +148,6 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
                         break;
                     default:break;
                 }
-//                if (bUser.getType()==userType){
-//                    if (position==0)
-//                        position=3;
-//                    else
-//                    position-=1;
-//                }
                 Log.e("jjf", "onItemClick: "+position );
                 switch (position){
                     case 0:
@@ -177,11 +171,6 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
                             default:
                                 break;
                         }
-//                        if (bUser.getType()==userType){
-//                            startNewUI(MyStoreActivity.class);
-//                        }else {
-//                            startNewUIForResult(StoreApplicationActivity.class,APPLYCODE,"user_id",bUser.getUser_id());
-//                        }
                         break;
                     default:
                         break;
@@ -192,6 +181,11 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
     }
 
     private void initDate() {
+        if (bUser.getHead_pic()==null){
+            mHeadImgCiv.setImageResource(R.mipmap.mine_user_img);
+        }else {
+            loadImg(bUser.getHead_pic(),mHeadImgCiv);
+        }
         setTextToTv(mMessageTv,mine_MsgCount);
         setTextToTv(mUserLevelTv,"V"+bUser.getLevel());
         setTextToTv(mLevelNumberTv,bUser.getExperience());
@@ -238,7 +232,7 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
     @Override
     public void setTextToTv(TextView textView, Object data) {
         if (data instanceof Integer){
-            if (((int)data)==0){
+            if (((int)data)==0 && textView!=mLevelNumberTv){
                 textView.setVisibility(View.INVISIBLE);
             }else if (textView.getVisibility()!=View.VISIBLE){
                 textView.setVisibility(View.VISIBLE);
@@ -340,14 +334,12 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
 
     @Override
     public void sendFialRequest(String message) {
-
+        showToast(message);
     }
 
     @Override
     public void ReLoginidSuccess(LoginBean.DataBean data) {
-        if ( data.getStatus()== 0){
-            // TODO: 2017/5/22  
-        }
+        initDate();
     }
 
     public class MineAdapter extends BaseAdapter {

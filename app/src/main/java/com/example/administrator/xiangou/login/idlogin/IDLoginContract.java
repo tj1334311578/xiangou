@@ -12,5 +12,8 @@ public class IDLoginContract {
     interface  Presenter extends BasePresenter<View> {
         //id登录
         void IDlogin(String userName, String password);
+
+        //保存登录页面信息和用户信息
+        void saveInfo(String TelKey, String Tel, String PwdKey, String Pwd);
     }
 }

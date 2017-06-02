@@ -9,11 +9,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.main.User;
+import com.example.administrator.xiangou.net.XianGouApiService;
 
 import java.io.Serializable;
 
@@ -33,6 +34,7 @@ import rx.subscriptions.CompositeSubscription;
 public abstract class BaseFragment extends Fragment implements View.OnClickListener{
     public Activity mActivity;
 
+    private  GlideImageLoader mImageLoader;
     private CompositeSubscription mCompositeSubscription;
     public User bUser;
     public MySharedPreferences bSharedPreferences;
@@ -45,6 +47,7 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
         super.onCreate(savedInstanceState);
         bUser = ContextUtils.gUser;
         bSharedPreferences = ContextUtils.gSharedPreferences;
+        mImageLoader = new GlideImageLoader();
         Log.e("onCreate", "onCreate: "+bUser.toString() );
     }
 
@@ -67,27 +70,6 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
         ButterKnife.bind(getContext(),view);
         mActivity = getActivity();
     }
-
-//    public ProgressDialog mProgressDialog;
-//    public ProgressDialog showProgressDialog() {
-//        mProgressDialog = new ProgressDialog(mActivity);
-//        mProgressDialog.setMessage("拼命加载中...");
-//        mProgressDialog.show();
-//        return mProgressDialog;
-//    }
-//    public ProgressDialog showProgressDialog(CharSequence message) {
-//        mProgressDialog = new ProgressDialog(mActivity);
-//        mProgressDialog.setMessage(message);
-//        mProgressDialog.show();
-//        return mProgressDialog;
-//    }
-//    public void dismissProgressDialog() {
-//        if (mProgressDialog != null && mProgressDialog.isShowing()) {
-//            // progressDialog.hide();会导致android.view.WindowLeaked
-//            mProgressDialog.dismiss();
-//        }
-//    }
-
 
     @Override
     public void onDestroy() {
@@ -175,7 +157,7 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
      */
     public  void showToast(String msg){
         mCustomToast = CustomToast.createToast(getContext());
-        mCustomToast.setTitle("温馨提示").setIcon(R.mipmap.icon_app).setMsgNTime(msg).showToast();
+        mCustomToast.setMsgNTime(msg,2000).showToast();
     }
     public  void showToast(String title,String msg){
         mCustomToast = CustomToast.createToast(getContext());
@@ -198,14 +180,34 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
     public void logout(){
         bSharedPreferences.putBoolean(MySharedPreferences.STATUS_LOGIN,false);
         showToast("now "+isLogined()+"");
-//        startNewUI(IDLoginActivity.class);
     }
-//项目：
 
+    /**************** 项目 *****************/
+    /**
+     * 提供图片加载方法
+     * @param imgUrl 图片的网址（不需要加baseURL）
+     * @param imageView 显示图片的imageview控件
+     */
+    public void loadImg(String imgUrl, ImageView imageView) {
+        if (imgUrl!=null && imageView!=null) {
+            mImageLoader.displayImage(getContext(), XianGouApiService.BASEURL + imgUrl, imageView);
+        }else {
+            showToast("图片资源为空");
+        }
+    }
+    //更新用户信息
+    public void upDateUserInfo(String info){
+        if (bSharedPreferences.getString("user_info",null)!=null){
+            bSharedPreferences.remove("user_info");
+        }
+        bSharedPreferences.putString("user_info",info);
+        if (!bSharedPreferences.getBoolean(MySharedPreferences.STATUS_LOGIN,false)) {
+            bSharedPreferences.putBoolean(MySharedPreferences.STATUS_LOGIN, true);
+        }
+    }
     //将本地存储的用户信息赋值给用户类对象
-    public void setbUserBySP(String str){
+    public void setbUserBySP(String str) {
         String[] user = str.split(",");
-        Log.e("userinfo", "setbUserBySP: " + user.toString());
         bUser.setUser_id(Integer.parseInt(user[0]));
         bUser.setSex(Integer.parseInt(user[1]));
         bUser.setMobile(user[2]);
@@ -224,5 +226,4 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
         bUser.setExperience(Integer.parseInt(user[15]));
         bUser.setLevel(Integer.parseInt(user[16]));
     }
-
 }

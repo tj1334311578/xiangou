@@ -60,7 +60,7 @@ public class User {
     private String nickname;
     private int type;
     private int status;
-    private Object head_pic;
+    private String head_pic;
     private int coupon_count;
     private int follow;
     private int waitPay;
@@ -71,6 +71,27 @@ public class User {
     private int refund;
     private int experience;
     private int level;
+    @Override
+    public String toString() {
+        return user_id +
+                "," + sex +
+                "," + mobile +
+                "," + nickname +
+                "," + type +
+                "," + status +
+                "," + head_pic +
+                "," + coupon_count +
+                "," + follow +
+                "," + waitPay +
+                "," + waitSend +
+                "," + waitReceive +
+                "," + waitCcomment +
+                "," + order_count +
+                "," + refund +
+                "," + experience +
+                "," + level
+                ;
+    }
 
     public int getLevel() {
         return level;
@@ -128,11 +149,11 @@ public class User {
         this.status = status;
     }
 
-    public Object getHead_pic() {
+    public String getHead_pic() {
         return head_pic;
     }
 
-    public void setHead_pic(Object head_pic) {
+    public void setHead_pic(String head_pic) {
         this.head_pic = head_pic;
     }
 
@@ -208,26 +229,4 @@ public class User {
         this.experience = experience;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "user_id=" + user_id +
-                ", sex=" + sex +
-                ", mobile='" + mobile + '\'' +
-                ", nickname='" + nickname + '\'' +
-                ", type=" + type +
-                ", status=" + status +
-                ", head_pic=" + head_pic +
-                ", coupon_count=" + coupon_count +
-                ", follow=" + follow +
-                ", waitPay=" + waitPay +
-                ", waitSend=" + waitSend +
-                ", waitReceive=" + waitReceive +
-                ", waitCcomment=" + waitCcomment +
-                ", order_count=" + order_count +
-                ", refund=" + refund +
-                ", experience=" + experience +
-                ", level=" + level +
-                '}';
-    }
 }

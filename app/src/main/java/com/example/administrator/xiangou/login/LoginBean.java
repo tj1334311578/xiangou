@@ -117,7 +117,7 @@ public class LoginBean{
         private String nickname;
         private int type;
         private int status;
-        private Object head_pic;
+        private String head_pic;
         private int coupon_count;
         private int follow;
         private int waitPay;
@@ -185,11 +185,11 @@ public class LoginBean{
             this.status = status;
         }
 
-        public Object getHead_pic() {
+        public String getHead_pic() {
             return head_pic;
         }
 
-        public void setHead_pic(Object head_pic) {
+        public void setHead_pic(String head_pic) {
             this.head_pic = head_pic;
         }
 

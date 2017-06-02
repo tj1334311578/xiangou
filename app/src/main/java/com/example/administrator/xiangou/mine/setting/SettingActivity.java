@@ -74,7 +74,6 @@ public class SettingActivity extends MVPBaseActivity<SettingContract.View, Setti
         switch (v.getId()){
             case R.id.setting_back:
                 finish();
-                showToast("返回");
                 break;
             case R.id.person_setting_Ll:
                 startNewUI(PersonalActivity.class);

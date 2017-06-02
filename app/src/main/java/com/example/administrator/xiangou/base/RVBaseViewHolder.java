@@ -59,7 +59,8 @@ public class RVBaseViewHolder extends RecyclerView.ViewHolder implements View.On
     }
     public CheckBox getCheckBox(int id) {
         CheckBox cbView = findView(id);
-        return cbView;}
+        return cbView;
+    }
 
     public Banner getBanner(int id){
         return findView(id);

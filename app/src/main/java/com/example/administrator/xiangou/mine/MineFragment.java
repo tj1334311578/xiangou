@@ -61,11 +61,6 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         return setContextView(inflater,container,R.layout.fragment_mine);
     }
 
-    //当fragment可见时再判断用户是否登录
-//    @Override
-//    public void setUserVisibleHint(boolean isVisibleToUser) {
-//        super.setUserVisibleHint(isVisibleToUser);
-//    }
 
     @Override
     public void onResume() {
@@ -210,17 +205,6 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         initSet();
     }
 
-    @Override
-    public void setTextToTv(TextView textView, Object data) {
-        if (data instanceof Integer){
-            if (((int)data)==0){
-                textView.setVisibility(View.INVISIBLE);
-            }else if (textView.getVisibility()!=View.VISIBLE){
-                textView.setVisibility(View.VISIBLE);
-            }
-        }
-        super.setTextToTv(textView, data);
-    }
     private void initSet() {
         //初始化数据
 //        Log.e("usertype", "initSet: " + bUser.getType());
@@ -235,24 +219,10 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
             default:
                 break;
         }
-//        if (bUser.getType()==userType){
-//            content_text[content_text.length-1]="我的店铺";
-//        }else {
-//            content_text[content_text.length-1]="申请店铺";
-//        }
         List<ItemImage> list=new ArrayList<>();
-//        Log.e("initSet", "initSet: "+content_text[content_text.length-1]);
         for (int i = 0; i <content_img.length ; i++) {
             list.add(new ItemImage(content_img[i],content_text[i]));
         }
-        //更改最后一个位置到第一个位置
-//        Log.e("tga", "initSet: "+bUser.getType()+"\n"+list.get(list.size()-1).getStr()+"\n"+list.get(0).getStr());
-
-//        if (bUser.getType()==userType) {
-//            list.add(0, new ItemImage(content_img[list.size()-1],content_text[list.size()-1]));
-//            list.remove(list.get(list.size()-1));
-////            Log.e("tga", "initSet: "+bUser.getType()+"\n"+list.get(list.size()-1).getStr()+"\n"+list.get(0).getStr());
-//        }
         switch (userType){
             case 3:
                 list.add(0, new ItemImage(content_img[list.size()-1],content_text[list.size()-1]));
@@ -263,6 +233,18 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         }
         MineAdapter adapter=new MineAdapter(getContext(),list);
         listView.setAdapter(adapter);
+    }
+
+    @Override
+    public void setTextToTv(TextView textView, Object data) {
+        if (data instanceof Integer){
+            if (((int)data)==0){
+                textView.setVisibility(View.INVISIBLE);
+            }else if (textView.getVisibility()!=View.VISIBLE){
+                textView.setVisibility(View.VISIBLE);
+            }
+        }
+        super.setTextToTv(textView, data);
     }
 
     @Override
@@ -403,7 +385,7 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
                 viewHolder.textView= (TextView) convertView.findViewById(R.id.mine_item_text);
                 convertView.setTag(viewHolder);
             }else{
-                viewHolder= (ViewHolder) convertView.getTag();
+                viewHolder = (ViewHolder) convertView.getTag();
             }
 
             viewHolder.imageView.setImageResource(Datas.get(position).getSrc());

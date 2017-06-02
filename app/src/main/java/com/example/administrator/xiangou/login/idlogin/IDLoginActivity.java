@@ -157,6 +157,9 @@ public class IDLoginActivity extends MVPBaseActivity<IDLoginContract.View, IDLog
 //        userSet.add(data.getNickname());
 //        userSet.addAll(data.toString());
         mDataBean = data;
+        if (bSharedPreferences.getString("user_info",null)!=null){
+            bSharedPreferences.remove("user_info");
+        }
         bSharedPreferences.putString("user_info",data.toString());
         Log.e("User", "LoginidSuccess: "+ bUser.toString());
 //        bUser.setUser_id(data.getUser_id());

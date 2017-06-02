@@ -3,16 +3,16 @@ package com.example.administrator.xiangou.classification.fragment;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.classification.adapter.ClassificationAdapter1;
+import com.example.administrator.xiangou.classification.bean.FirstLevelBean;
 import com.example.administrator.xiangou.mvp.MVPBaseFragment;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class ClassificationFragment1 extends MVPBaseFragment<ClassificationContract.View,ClassificationPresenter> implements ClassificationContract.View {
 
@@ -31,12 +31,11 @@ public class ClassificationFragment1 extends MVPBaseFragment<ClassificationContr
 
 	@Override
 	public void initView() {
-		List<String> list=new ArrayList<>();
-		list.add("jefi");
-		list.add("jjif");
+
+		Log.e("index", "initView: "+this.getArguments().getInt("index") );
 		recyclerView = (RecyclerView) view.findViewById(R.id.goods_classfication_recycle);
 		recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
-		recyclerView.setAdapter(new ClassificationAdapter1(getContext(),list));
+		mPresenter.callclassificationarray(0);
 	}
 
 	@Override
@@ -47,5 +46,13 @@ public class ClassificationFragment1 extends MVPBaseFragment<ClassificationContr
 	@Override
 	public void onClick(View v) {
 
+	}
+
+	@Override
+	public void datatoView(FirstLevelBean data) {
+//		List<String> list=new ArrayList<>();
+//		list.add("jefi");
+//		list.add("jjif");
+		recyclerView.setAdapter(new ClassificationAdapter1(getContext(),data));
 	}
 }

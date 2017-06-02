@@ -1,4 +1,4 @@
-package com.example.administrator.xiangou.mine.mystore.goodsmanage.addgoodsmanage;
+package com.example.administrator.xiangou.mine.mystore.goodsmanage.addgoodsmanage.bean;
 
 /**
  * 作者： tj on 2017/6/1.

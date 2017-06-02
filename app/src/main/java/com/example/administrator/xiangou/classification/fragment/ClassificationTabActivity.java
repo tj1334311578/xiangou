@@ -4,11 +4,11 @@ package com.example.administrator.xiangou.classification.fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -18,10 +18,14 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.example.administrator.xiangou.R;
-import com.example.administrator.xiangou.classification.Model;
-import com.example.administrator.xiangou.tool.BaseActivity;
+import com.example.administrator.xiangou.classification.bean.FirstLevelBean;
+import com.example.administrator.xiangou.net.BaseSubscriber;
+import com.example.administrator.xiangou.net.ExceptionHandle;
 import com.example.administrator.xiangou.tool.BaseFragmentActivity;
 import com.example.administrator.xiangou.tool.ContextUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static android.view.View.GONE;
 
@@ -30,7 +34,6 @@ import static android.view.View.GONE;
  */
 
 public class ClassificationTabActivity extends BaseFragmentActivity {
-    private String[] list;
     private TextView[] tvList;
     private View[] lines;
     private View[] views;
@@ -40,7 +43,9 @@ public class ClassificationTabActivity extends BaseFragmentActivity {
     private int currentItem = 0;
     private ShopAdapter shopAdapter;
     private Fragment fragment;
-    private ImageView backBtn;
+    private List<String> lists;
+    private static List<Integer> lists_id;
+
 
 
     @Override
@@ -51,26 +56,57 @@ public class ClassificationTabActivity extends BaseFragmentActivity {
         shopAdapter = new ShopAdapter(getSupportFragmentManager());
         inflater = LayoutInflater.from(this);
         findContentView(R.id.goods_classification_fragment_return,true);
-        showToolsView();
-        initPager();
+        callClassification();
+    }
+
+    private void callClassification() {
+        addSubscription(mApiService.callClassification(0),
+                new BaseSubscriber<FirstLevelBean>(this.getBaseContext()) {
+                    @Override
+                    public void onNext(FirstLevelBean classificationBean) {
+                            if (classificationBean.getState().getCode()==200){
+                                showToolsView(classificationBean);
+                                initPager();
+                            }
+                    }
+
+                    @Override
+                    public void onFinish() {
+
+                    }
+
+                    @Override
+                    public void onError(ExceptionHandle.ResponeThrowable e) {
+                        Log.e("onError", "onError: "+e.toString() );
+                    }
+                });
     }
 
     /**
      * 动态生成显示items中的textview
+     * @param data
      */
-    private void showToolsView() {
-        list = Model.toolsList;
+    private void showToolsView(FirstLevelBean data) {
+        lists = new ArrayList<>();
+        lists_id=new ArrayList<>();
+        for (int j = 0; j <data.getData().getAll_cate().size() ; j++) {
+            if (j==0&&!data.getData().getAll_cate().get(0).equals("推荐")){
+                lists.add("推荐");
+            }
+            lists.add(data.getData().getAll_cate().get(j).getName());
+            lists_id.add(data.getData().getAll_cate().get(j).getCat_id());
+        }
         LinearLayout toolsLayout = (LinearLayout) findViewById(R.id.tools);
-        tvList = new TextView[list.length];
-        views = new View[list.length];
-        lines=new View[list.length];
-        for (int i = 0; i < list.length; i++) {
+        tvList = new TextView[lists.size()];
+        views = new View[lists.size()];
+        lines=new View[lists.size()];
+        for (int i = 0; i < lists.size(); i++) {
             View view = inflater.inflate(R.layout.item_list_layout, null);
             view.setId(i);
             view.setOnClickListener(toolsItemListener);
             TextView textView = (TextView) view.findViewById(R.id.text);
             View line=  view.findViewById(R.id.left_id);
-            textView.setText(list[i]);
+            textView.setText(lists.get(i));
             toolsLayout.addView(view);
             lines[i]=line;
             tvList[i] = textView;
@@ -145,10 +181,11 @@ public class ClassificationTabActivity extends BaseFragmentActivity {
         }
 
         @Override
-        public Fragment getItem(int index) {if (index==0){
+        public Fragment getItem(int index) {
+            if (index==0){
             fragment=new ClassificationFragment1();
         }else{
-            fragment = new ClassificationFragment();
+            fragment = new ClassificationFragment(lists_id.get(index-1));
         }
             Bundle bundle = new Bundle();
             bundle.putInt("index", index);
@@ -158,7 +195,7 @@ public class ClassificationTabActivity extends BaseFragmentActivity {
 
         @Override
         public int getCount() {
-            return list.length;
+            return lists.size();
         }
     }
 

@@ -57,5 +57,6 @@
         <activity android:name=".mine.mystore.couponmanager.NewCreateCouponActivity"/>
         <activity android:name=".mine.mystore.goodsmanage.GoodsManageActivity"/>
         <activity android:name=".mine.mystore.goodsmanage.addgoodsmanage.AddGoodsManageActivity"/>
+        <activity android:name=".mine.mystore.goodsmanage.addgoodsmanage.GoodsTagActivity"/>
     </application>
 </manifest>

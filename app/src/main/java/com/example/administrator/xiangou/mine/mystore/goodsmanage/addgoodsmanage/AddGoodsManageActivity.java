@@ -42,7 +42,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import okhttp3.ResponseBody;
 
 
 /**
@@ -68,7 +67,7 @@ public class AddGoodsManageActivity extends MVPBaseActivity<AddGoodsManageContra
     private final String IMAGE_DIR = Environment.getExternalStorageDirectory() + "/gridview/";
     /* 头像名称 */
     private final String PHOTO_FILE_NAME = "temp_photo.jpg";
-    private ResponseBody mdata;
+    private IntoAddGoodPageBean.DataBean mdata;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -270,28 +269,10 @@ public class AddGoodsManageActivity extends MVPBaseActivity<AddGoodsManageContra
                 break;
             case R.id.goods_management_addgoods_labels_btn://进入标签扩展页
                 showToast("进入商品标签扩展页");
+                startNewUICarryStr(GoodsTagActivity.class,"tags",mdata.getSign());
                 break;
         }
     }
-
-//    private void checkboxoperation(final CheckBox check_no, final CheckBox check_yes) {
-//        check_no.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                if (isChecked && check_yes.isChecked()==isChecked){
-//                    check_yes.setChecked(!isChecked);
-//                }
-//            }
-//        });
-//        check_yes.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-//                if (isChecked && check_no.isChecked()==isChecked){
-//                    check_no.setChecked(!isChecked);
-//                }
-//            }
-//        });
-//    }
 
     @Override
     public void sendFialRequest(String message) {
@@ -395,7 +376,7 @@ public class AddGoodsManageActivity extends MVPBaseActivity<AddGoodsManageContra
     }
 
     @Override
-    public void dataToView(ResponseBody data) {
+    public void dataToView(IntoAddGoodPageBean.DataBean data) {
         this.mdata=data;
         Log.e("mdata", "dataToView: "+mdata.toString() );
         initView();

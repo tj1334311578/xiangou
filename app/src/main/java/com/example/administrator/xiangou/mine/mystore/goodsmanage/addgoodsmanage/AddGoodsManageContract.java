@@ -15,7 +15,7 @@ import okhttp3.ResponseBody;
 
 public class AddGoodsManageContract {
     interface View extends BaseView {
-        void dataToView(ResponseBody data);
+        void dataToView(IntoAddGoodPageBean.DataBean data);
     }
 
     interface  Presenter extends BasePresenter<View> {

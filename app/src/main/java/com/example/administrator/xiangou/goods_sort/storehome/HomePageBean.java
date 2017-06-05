@@ -252,6 +252,11 @@ public class HomePageBean implements Serializable{
         }
 
         public static class CouponBean {
+            public CouponBean(String money, String condition) {
+                this.money = money;
+                this.condition = condition;
+            }
+
             @Override
             public String toString() {
                 return "CouponBean{" +

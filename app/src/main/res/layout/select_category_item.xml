@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 <TextView
     android:layout_width="wrap_content"
     android:layout_height="41dp"
     android:text="女装"
+    android:layout_centerVertical="true"
     android:id="@+id/select_category_item_tv"
     android:layout_marginStart="23dp"
     android:gravity="center_vertical"
     />
     <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="41dp"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
         android:button="@null"
+        android:layout_centerVertical="true"
         android:layout_marginEnd="23dp"
         android:background="@drawable/circlebg_checkbox"
         android:id="@+id/select_category_item_selectCb"

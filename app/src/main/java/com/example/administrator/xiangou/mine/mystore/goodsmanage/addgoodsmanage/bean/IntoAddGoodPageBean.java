@@ -1,5 +1,6 @@
 package com.example.administrator.xiangou.mine.mystore.goodsmanage.addgoodsmanage.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -12,6 +13,14 @@ import java.util.List;
  */
 
 public class IntoAddGoodPageBean {
+
+    @Override
+    public String toString() {
+        return "IntoAddGoodPageBean{" +
+                "data=" + data +
+                ", state=" + state +
+                '}';
+    }
 
     /**
      * data : {"cate":[{"cat_id":31,"name":"生活家具"},{"cat_id":32,"name":"生活家纺"},{"cat_id":33,"name":"生活厨具"},{"cat_id":34,"name":"生活日用"},{"cat_id":35,"name":"生活装饰"},{"cat_id":36,"name":"鲜花盆栽"}],"model":[{"model_id":33,"name":"鞋子"},{"model_id":32,"name":"箱包"},{"model_id":31,"name":"电器"},{"model_id":30,"name":"母婴"},{"model_id":29,"name":"冰箱"},{"model_id":13,"name":"衣服"},{"model_id":26,"name":"宠物"},{"model_id":27,"name":"香水"},{"model_id":28,"name":"家居"}],"sign":[{"sign_id":1,"name":"时尚"},{"sign_id":2,"name":"爆款"},{"sign_id":3,"name":"人气"},{"sign_id":4,"name":"文艺"},{"sign_id":5,"name":"复古"},{"sign_id":6,"name":"韩版"}],"goodsinfo":{"goods_name":"Apple iPhone 6s Plus 16G 玫瑰金 移动联通电信4G手机","store_count":295,"market_price":"6107.00","shop_price":"6007.00","model_id":4,"is_recommend":1,"is_new":1,"sign":[{"sign_id":1,"name":"时尚"},{"sign_id":2,"name":"爆款"}],"is_free_shipping":1,"fare":"12.00","goods_img":[{"img_id":382,"goods_id":1,"image_url":"/public/upload/goods/2016/03-09/56e01a54a2c6d.jpg"},{"img_id":381,"goods_id":1,"image_url":"/public/upload/goods/2016/03-09/56e01a54bcc53.jpg"},{"img_id":380,"goods_id":1,"image_url":"/public/upload/goods/2016/03-09/56e01a54de5a9.jpg"},{"img_id":544,"goods_id":1,"image_url":"/public/upload/goods/2016/03-09/56e01a4088d3b.jpg"}]},"good_model":{"specList":[],"items_ids":[],"store_count":[],"goods_attr":[],"allattr":[]}}
@@ -37,7 +46,18 @@ public class IntoAddGoodPageBean {
         this.state = state;
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable{
+        @Override
+        public String toString() {
+            return "DataBean{" +
+                    "goodsinfo=" + goodsinfo +
+                    ", good_model=" + good_model +
+                    ", cate=" + cate +
+                    ", model=" + model +
+                    ", sign=" + sign +
+                    '}';
+        }
+
         /**
          * cate : [{"cat_id":31,"name":"生活家具"},{"cat_id":32,"name":"生活家纺"},{"cat_id":33,"name":"生活厨具"},{"cat_id":34,"name":"生活日用"},{"cat_id":35,"name":"生活装饰"},{"cat_id":36,"name":"鲜花盆栽"}]
          * model : [{"model_id":33,"name":"鞋子"},{"model_id":32,"name":"箱包"},{"model_id":31,"name":"电器"},{"model_id":30,"name":"母婴"},{"model_id":29,"name":"冰箱"},{"model_id":13,"name":"衣服"},{"model_id":26,"name":"宠物"},{"model_id":27,"name":"香水"},{"model_id":28,"name":"家居"}]
@@ -93,6 +113,24 @@ public class IntoAddGoodPageBean {
         }
 
         public static class GoodsinfoBean {
+
+            @Override
+            public String toString() {
+                return "GoodsinfoBean{" +
+                        "goods_name='" + goods_name + '\'' +
+                        ", store_count=" + store_count +
+                        ", market_price='" + market_price + '\'' +
+                        ", shop_price='" + shop_price + '\'' +
+                        ", model_id=" + model_id +
+                        ", is_recommend=" + is_recommend +
+                        ", is_new=" + is_new +
+                        ", is_free_shipping=" + is_free_shipping +
+                        ", fare='" + fare + '\'' +
+                        ", sign=" + sign +
+                        ", goods_img=" + goods_img +
+                        '}';
+            }
+
             /**
              * goods_name : Apple iPhone 6s Plus 16G 玫瑰金 移动联通电信4G手机
              * store_count : 295
@@ -208,6 +246,14 @@ public class IntoAddGoodPageBean {
             }
 
             public static class SignBean {
+                @Override
+                public String toString() {
+                    return "SignBean{" +
+                            "sign_id=" + sign_id +
+                            ", name='" + name + '\'' +
+                            '}';
+                }
+
                 /**
                  * sign_id : 1
                  * name : 时尚
@@ -234,6 +280,16 @@ public class IntoAddGoodPageBean {
             }
 
             public static class GoodsImgBean {
+
+                @Override
+                public String toString() {
+                    return "GoodsImgBean{" +
+                            "img_id=" + img_id +
+                            ", goods_id=" + goods_id +
+                            ", image_url='" + image_url + '\'' +
+                            '}';
+                }
+
                 /**
                  * img_id : 382
                  * goods_id : 1
@@ -319,6 +375,14 @@ public class IntoAddGoodPageBean {
         }
 
         public static class CateBean {
+            @Override
+            public String toString() {
+                return "CateBean{" +
+                        "cat_id=" + cat_id +
+                        ", name='" + name + '\'' +
+                        '}';
+            }
+
             /**
              * cat_id : 31
              * name : 生活家具
@@ -345,6 +409,14 @@ public class IntoAddGoodPageBean {
         }
 
         public static class ModelBean {
+            @Override
+            public String toString() {
+                return "ModelBean{" +
+                        "model_id=" + model_id +
+                        ", name='" + name + '\'' +
+                        '}';
+            }
+
             /**
              * model_id : 33
              * name : 鞋子
@@ -370,7 +442,15 @@ public class IntoAddGoodPageBean {
             }
         }
 
-        public static class SignBeanX {
+        public static class SignBeanX implements Serializable{
+            @Override
+            public String toString() {
+                return "SignBeanX{" +
+                        "sign_id=" + sign_id +
+                        ", name='" + name + '\'' +
+                        '}';
+            }
+
             /**
              * sign_id : 1
              * name : 时尚
@@ -398,6 +478,16 @@ public class IntoAddGoodPageBean {
     }
 
     public static class StateBean {
+        @Override
+        public String toString() {
+            return "StateBean{" +
+                    "code=" + code +
+                    ", msg='" + msg + '\'' +
+                    ", debugMsg='" + debugMsg + '\'' +
+                    ", url='" + url + '\'' +
+                    '}';
+        }
+
         /**
          * code : 200
          * msg : 获取成功

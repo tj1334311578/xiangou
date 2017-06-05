@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,9 +27,13 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
     ImageView mNewsIv;
     private RecyclerView mRvHome;
 
+    private HomeDataBean.DataBean mDataBean;
+    private HomeAdapterRV mAdapterHomeRv;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.e("date", "onCreate: " );
         //获取首页数据
         mPresenter.getHomeData("","",0);
     }
@@ -36,11 +41,13 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        Log.e("date", "onCreateView: " );
         return setContextView(inflater,container,R.layout.fragment_home);
     }
 
     @Override
     public void initView() {
+        Log.e("date", "initView: "  );
         mRvHome = findContentView(R.id.rv_frag_home,false);
         LinearLayoutManager glm = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,false);
         mRvHome.setLayoutManager(glm);
@@ -50,6 +57,33 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
         mScanIv = findContentView(R.id.scan_topbar_iv);
         mSearchIv = findContentView(R.id.search_topbar_iv);
         mSearchTv = findContentView(R.id.serach_topbar_tv);
+    }
+
+    @Override
+    public void onStart() {
+        Log.e("date", "onStart: ");
+        super.onStart();
+        if (mDataBean!=null){
+            initRv(mDataBean);
+        }
+    }
+
+    @Override
+    public void onResume() {
+        Log.e("date", "onResume: " );
+        super.onResume();
+    }
+
+    @Override
+    public void onStop() {
+        Log.e("date", "onStop: " );
+        super.onStop();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.e("date", "onDestroy: " );
     }
 
     @Override
@@ -73,9 +107,15 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
 
     @Override
     public void getHomeDataSuccess(HomeDataBean.DataBean data) {
-        HomeAdapterRV adapterHomeRv = new HomeAdapterRV(getContext(),data);
-        mRvHome.setAdapter(adapterHomeRv);
-        adapterHomeRv.setDealItemClick(new HomeAdapterRV.DealItemClick() {
+        Log.e("date", "getHomeDataSuccess: "  );
+        mDataBean = data;
+        initRv(mDataBean);
+    }
+
+    private void initRv(HomeDataBean.DataBean dataBean) {
+        mAdapterHomeRv = new HomeAdapterRV(getContext(),dataBean);
+        mRvHome.setAdapter(mAdapterHomeRv);
+        mAdapterHomeRv.setDealItemClick(new HomeAdapterRV.DealItemClick() {
             @Override
             public void dealBoutique(View view, int pos) {
                 showToast("mBoutiqueRv "+ pos +" 甭点了，木有彩蛋");

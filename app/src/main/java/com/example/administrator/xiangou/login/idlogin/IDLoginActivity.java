@@ -48,8 +48,10 @@ public class IDLoginActivity extends MVPBaseActivity<IDLoginContract.View, IDLog
         IDLogin_Register = (TextView) findViewById(R.id.mainlogin_register);
         IDLogin_Backimg = (ImageView) findViewById(R.id.mainlogin_back);
         IDLogin_Userimg = findContentView(R.id.mainlogin_img,false);
-        if (bUser.getHead_pic()!=null)
-            loadImg(bUser.getHead_pic(),IDLogin_Userimg);
+        //头像加载
+        if (bUser.getHead_pic()!=null) {
+            loadImg(bUser.getHead_pic(), IDLogin_Userimg);
+        }
         IDLogin_Cls = (ImageView) findViewById(R.id.mainlogin_clean);
         IDLogin_Cls.setOnClickListener(this);
         IDlogin_Dynamic.setOnClickListener(this);
@@ -159,6 +161,7 @@ public class IDLoginActivity extends MVPBaseActivity<IDLoginContract.View, IDLog
         }
     }
 
+    //登录请求成功
     @Override
     public void LoginidSuccess(LoginBean.DataBean data) {
         Log.e("User", "LoginidSuccess: "+ bUser.toString());
@@ -171,6 +174,7 @@ public class IDLoginActivity extends MVPBaseActivity<IDLoginContract.View, IDLog
         showToast(message);
     }
 
+    //保存信息
     @Override
     protected void onStop() {
         mPresenter.saveInfo("IDLogin_TelNumber",IDLogin_TelNumber.getText().toString(),

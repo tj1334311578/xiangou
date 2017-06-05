@@ -32,7 +32,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.administrator.xiangou.R;
-import com.example.administrator.xiangou.mine.setting.feedback.GridViewAddImgesAdpter;
+import com.example.administrator.xiangou.mine.mystore.goodsmanage.addgoodsmanage.bean.IntoAddGoodPageBean;
 import com.example.administrator.xiangou.mvp.MVPBaseActivity;
 import com.example.administrator.xiangou.tool.ImageQualityUtil;
 
@@ -41,6 +41,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 
 /**
@@ -58,7 +59,7 @@ public class AddGoodsManageActivity extends MVPBaseActivity<AddGoodsManageContra
     private CheckBox isNew_no,isNew_yes,isRecommend_no,isRecommend_yes,freeShipping_no,freeShipping_yes;
     private GridView gridView;
     private List<Map<String, Object>> datas;
-    private GridViewAddImgesAdpter gridViewAddImgesAdpter;
+    private AddGoodsImgesAdpter gridViewAddImgesAdpter;
     private Dialog dialog;
     private final int PHOTO_REQUEST_CAREMA = 1;// 拍照
     private final int PHOTO_REQUEST_GALLERY = 2;// 从相册中选择private static final String PHOTO_FILE_NAME = "temp_photo.jpg";
@@ -66,13 +67,14 @@ public class AddGoodsManageActivity extends MVPBaseActivity<AddGoodsManageContra
     private final String IMAGE_DIR = Environment.getExternalStorageDirectory() + "/gridview/";
     /* 头像名称 */
     private final String PHOTO_FILE_NAME = "temp_photo.jpg";
-
+    private IntoAddGoodPageBean.DataBean mdata;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.goods_management_addgoods);
-        initView();
+        Log.e("statu", "onCreate: "+getIntent().getIntExtra("statu",0) );
+        mPresenter.callIntoAddGoodPage(1,getIntent().getIntExtra("statu",0));
     }
 //查找控件
     private void initView() {
@@ -101,19 +103,19 @@ public class AddGoodsManageActivity extends MVPBaseActivity<AddGoodsManageContra
         isRecommend_yes=findContentView(R.id.goods_management_addgoods_isrecommend_check,false);
         initCheckBox(isRecommend_yes,R.id.goods_management_addgoods_isrecommend_check,
                 isRecommend_no,R.id.goods_management_addgoods_isnotrecommend_check);
-        freeShipping_no=findContentView(R.id.goods_management_addgoods_isnotwhether_check,false);
-        freeShipping_yes=findContentView(R.id.goods_management_addgoods_iswhether_check,false);
-        initCheckBox(freeShipping_yes,R.id.goods_management_addgoods_iswhether_check,
-                freeShipping_no,R.id.goods_management_addgoods_isnotwhether_check);
+//        freeShipping_no=findContentView(R.id.goods_management_addgoods_isnotwhether_check,false);
+//        freeShipping_yes=findContentView(R.id.goods_management_addgoods_iswhether_check,false);
+//        initCheckBox(freeShipping_yes,R.id.goods_management_addgoods_iswhether_check,
+//                freeShipping_no,R.id.goods_management_addgoods_isnotwhether_check);
         gridView=findContentView(R.id.goods_management_addgoods_updown_grid,false);
 
 
         //上传图片相关
         datas = new ArrayList<>();
-        gridViewAddImgesAdpter=new GridViewAddImgesAdpter(this,datas);
+        gridViewAddImgesAdpter=new AddGoodsImgesAdpter(this,datas);
         //设置grideview的列数以及水平，垂直view之间的间距
-        gridView.setNumColumns(4);
-        gridView.setVerticalSpacing(10);
+        gridView.setNumColumns(3);
+//        gridView.setVerticalSpacing(50);//行间距
         gridView.setAdapter((ListAdapter) gridViewAddImgesAdpter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -267,27 +269,9 @@ public class AddGoodsManageActivity extends MVPBaseActivity<AddGoodsManageContra
                 break;
             case R.id.goods_management_addgoods_labels_btn://进入标签扩展页
                 showToast("进入商品标签扩展页");
+                startNewUICarryStr(GoodsTagActivity.class,"tags",mdata.getSign());
                 break;
         }
-    }
-
-    private void checkboxoperation(final CheckBox check_no, final CheckBox check_yes) {
-        check_no.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked && check_yes.isChecked()==isChecked){
-                    check_yes.setChecked(!isChecked);
-                }
-            }
-        });
-        check_yes.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked && check_no.isChecked()==isChecked){
-                    check_no.setChecked(!isChecked);
-                }
-            }
-        });
     }
 
     @Override
@@ -389,5 +373,12 @@ public class AddGoodsManageActivity extends MVPBaseActivity<AddGoodsManageContra
                 handler.sendMessage(message);
             }
         }.start();
+    }
+
+    @Override
+    public void dataToView(IntoAddGoodPageBean.DataBean data) {
+        this.mdata=data;
+        Log.e("mdata", "dataToView: "+mdata.toString() );
+        initView();
     }
 }

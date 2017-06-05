@@ -17,8 +17,15 @@ import android.widget.Toast;
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.login.LoginBean;
 import com.example.administrator.xiangou.main.User;
+import com.example.administrator.xiangou.net.RetrofitClient;
+import com.example.administrator.xiangou.net.XianGouApiService;
 
 import butterknife.ButterKnife;
+import rx.Observable;
+import rx.Subscriber;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
+import rx.subscriptions.CompositeSubscription;
 
 /**
  * Created by Administrator on 2017/4/20.
@@ -32,10 +39,11 @@ public abstract class BaseFragmentActivity extends FragmentActivity implements V
         }
     };
     private Toast mToast;
-
+    private CompositeSubscription mCompositeSubscription;
     //    public static ContextUtils bContextUtils;
     public static User bUser;
     public static MySharedPreferences bSharedPreferences;
+    public static XianGouApiService mApiService;
 
     //注册广播
     private void registerExitReceiver() {
@@ -63,6 +71,7 @@ public abstract class BaseFragmentActivity extends FragmentActivity implements V
 //        bContextUtils = ContextUtils.getInstance();
         bUser = ContextUtils.gUser;
         bSharedPreferences = ContextUtils.gSharedPreferences;
+        mApiService = RetrofitClient.getInstance(this).create(XianGouApiService.class);
         ButterKnife.bind(this);
         registerExitReceiver();
     }
@@ -116,6 +125,18 @@ public abstract class BaseFragmentActivity extends FragmentActivity implements V
     public void startNewUIForResult(Class<?> context,int code,Bundle options){
         startActivityForResult(new Intent(this,context),code,options);
     }
+
+
+    public void addSubscription(Observable observable, Subscriber subscriber) {
+        if (mCompositeSubscription == null) {
+            mCompositeSubscription = new CompositeSubscription();
+        }
+        mCompositeSubscription.add(observable
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscriber));
+    }
+
 
     /**
      * Toast

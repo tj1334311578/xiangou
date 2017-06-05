@@ -20,6 +20,7 @@ import com.example.administrator.xiangou.goods_sort.comprehensive.ComprehensiveF
 import com.example.administrator.xiangou.goods_sort.storehome.HomePageBean;
 import com.example.administrator.xiangou.goods_sort.storehome.storehome.homestore.HomeStoreFragment;
 import com.example.administrator.xiangou.mvp.MVPBaseFragment;
+import com.example.administrator.xiangou.net.XianGouApiService;
 import com.example.administrator.xiangou.tool.DrawableTextView;
 import com.example.administrator.xiangou.tool.GlideImageLoader;
 import com.example.administrator.xiangou.tool.SelectImageView;
@@ -88,7 +89,7 @@ public class StoreHomeFragment extends MVPBaseFragment<StoreHomeContract.View, S
     private void initHeadView(HomePageBean dataBean) {
 
         GlideImageLoader imageLoader = new GlideImageLoader();
-        imageLoader.displayImage(getContext(),"http://192.168.0.106"+dataBean.getData().getLogo(),storeImg);
+        imageLoader.displayImage(getContext(), XianGouApiService.BASEURL+dataBean.getData().getLogo(),storeImg);
         storeName.setText(dataBean.getData().getName());
         ratingBar.setRating((float) Double.parseDouble(dataBean.getData().getScore()));
         salesVolume.setText("销量"+dataBean.getData().getTotal_sale());

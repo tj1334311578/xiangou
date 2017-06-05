@@ -1,5 +1,6 @@
 package com.example.administrator.xiangou.net;
 
+import com.example.administrator.xiangou.classification.bean.FirstLevelBean;
 import com.example.administrator.xiangou.goods_sort.storehome.HomePageBean;
 import com.example.administrator.xiangou.goodsdetails.simplegoodsdetails.goodsbean.CommentBean;
 import com.example.administrator.xiangou.goodsdetails.simplegoodsdetails.goodsbean.SimpleGoodsDetialBean;
@@ -9,9 +10,10 @@ import com.example.administrator.xiangou.login.Captcha;
 import com.example.administrator.xiangou.login.LoginBean;
 import com.example.administrator.xiangou.mine.ToApplyStoreBean;
 import com.example.administrator.xiangou.mine.mystore.datamanager.TotalDataBean;
-import com.example.administrator.xiangou.mine.mystore.goodsmanage.addgoodsmanage.AddGoodsAttrBean;
-import com.example.administrator.xiangou.mine.mystore.goodsmanage.addgoodsmanage.AddGoodsDataBean;
-import com.example.administrator.xiangou.mine.mystore.goodsmanage.addgoodsmanage.AddGoodsSpecBean;
+import com.example.administrator.xiangou.mine.mystore.goodsmanage.addgoodsmanage.bean.AddGoodsAttrBean;
+import com.example.administrator.xiangou.mine.mystore.goodsmanage.addgoodsmanage.bean.AddGoodsDataBean;
+import com.example.administrator.xiangou.mine.mystore.goodsmanage.addgoodsmanage.bean.AddGoodsSpecBean;
+import com.example.administrator.xiangou.mine.mystore.goodsmanage.addgoodsmanage.bean.IntoAddGoodPageBean;
 import com.example.administrator.xiangou.mine.mystore.storemanager.StoreManagerInfoBean;
 import com.example.administrator.xiangou.mine.setting.manageraddress.model.EditAddressEnterBean;
 import com.example.administrator.xiangou.mine.setting.manageraddress.model.UserAddressBean;
@@ -266,14 +268,25 @@ public interface XianGouApiService {
                                                  @Query("page_no") int page_no,//分页不传查找第一页商品
                                                  @Query("type") int type);//必填1
 
+    //分类列表
+    //    @GET("/Api/Stores/getcate")
+    @POST("/api/good/goods_cate")
+    Observable<FirstLevelBean> callClassification(@Query("cat_id") int cat_id );//一级分类不传默认为推荐
+
+
+    //进入修改或添加商品
+    @POST("/Api/Stores/into_add/")
+    Observable<ResponseBody> callIntoAddGoodsPage(@Query("did") int did,//店铺id
+                                                  @Query("goods_id") int goods_id);//商品id（编辑商品时传，添加商品时不传）
+
     //店铺添加商品/Api/Stores/add_goods
     @Multipart
     @POST("/Api/Stores/add_goods/")
     Observable<ResponseBody> callAddGoods(@Part("data") AddGoodsDataBean data,//商品基本信息
-                                          @Part("specs")AddGoodsSpecBean specs,//传产品当前页面若未传默认第一页
-                                          @Part("goods_attr")AddGoodsAttrBean goods_attr,//商品属性(若用户选择了模型填写属性传)
-                                          @Part MultipartBody.Part original_img,//商品列表图(单图)
-                                          @Part MultipartBody.Part[] goods_img//商品图片(多图)若用户只上传一张也用表单多图上传
+                                                 @Part("specs")AddGoodsSpecBean specs,//传产品当前页面若未传默认第一页
+                                                 @Part("goods_attr")AddGoodsAttrBean goods_attr,//商品属性(若用户选择了模型填写属性传)
+                                                 @Part MultipartBody.Part original_img,//商品列表图(单图)
+                                                 @Part MultipartBody.Part[] goods_img//商品图片(多图)若用户只上传一张也用表单多图上传
                                           );
 
 }

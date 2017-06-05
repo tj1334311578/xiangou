@@ -53,7 +53,7 @@ public class GoodsManageActivity extends MVPBaseActivity<GoodsManageContract.Vie
                 finish();
                 break;
             case R.id.goods_management_page_addBtn://添加商品控件
-                startNewUI(AddGoodsManageActivity.class);
+                startNewUICarryStr(AddGoodsManageActivity.class,"statu",0);
                 break;
         }
     }

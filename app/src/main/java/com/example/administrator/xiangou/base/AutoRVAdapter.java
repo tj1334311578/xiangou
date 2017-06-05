@@ -28,6 +28,7 @@ public abstract class AutoRVAdapter extends RecyclerView.Adapter<AutoRVAdapter.R
     private Context context;
     //无参构造
     public AutoRVAdapter(){}
+    public AutoRVAdapter(Context context){this.context=context;}
     //有参构造
     public AutoRVAdapter(Context context, List<?> list) {
         this.list = list;

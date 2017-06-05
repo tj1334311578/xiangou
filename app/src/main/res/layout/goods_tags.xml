@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 <TextView
     android:layout_width="wrap_content"
     android:layout_height="28dp"
     android:text="商品标签"
-    android:layout_marginTop="20dp"
+    android:layout_marginTop="10dp"
     android:gravity="center_vertical"
     android:layout_centerHorizontal="true"
     android:textSize="18sp"
+    android:layout_marginBottom="10dp"
     android:id="@+id/goods_tags_title"
     android:textColor="#e6161616"/>
     <ImageButton
@@ -35,6 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_below="@id/goods_tags_title"
+        android:background="@color/register_gray"
         />
     <TextView
         android:layout_width="match_parent"
@@ -47,12 +51,15 @@
         android:layout_alignStart="@id/goods_tags_back"
         android:layout_alignEnd="@id/goods_tags_saved"
         android:layout_below="@id/goods_tags_title"
+        android:layout_marginBottom="10dp"
         android:layout_height="16dp" />
-    <android.support.v7.widget.RecyclerView
+    <com.zhy.view.flowlayout.TagFlowLayout
         android:layout_width="match_parent"
-        android:layout_marginStart="5dp"
-        android:id="@+id/goods_tags_recycle"
+        android:id="@+id/goods_tags_tagflowlayout"
+        android:paddingStart="15dp"
+        android:paddingEnd="15dp"
+        app:max_select="5"
         android:layout_below="@id/goods_tags_tv"
         android:layout_height="match_parent">
-    </android.support.v7.widget.RecyclerView>
+    </com.zhy.view.flowlayout.TagFlowLayout>
 </RelativeLayout>

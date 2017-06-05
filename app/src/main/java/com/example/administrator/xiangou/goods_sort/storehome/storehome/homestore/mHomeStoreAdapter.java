@@ -12,9 +12,11 @@ import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.base.AutoRVAdapter;
 import com.example.administrator.xiangou.base.RVBaseAdapter;
 import com.example.administrator.xiangou.goods_sort.storehome.HomePageBean;
+import com.example.administrator.xiangou.net.XianGouApiService;
 import com.example.administrator.xiangou.tool.GlideImageLoader;
 import com.example.administrator.xiangou.tool.ItemIntervalDecoration;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -93,15 +95,20 @@ public class mHomeStoreAdapter extends AutoRVAdapter implements RVBaseAdapter.On
         treasureRecycler.setAdapter(new TreasureAdapter(context,dataBean.getData().getGoods_list()));
     }
     private void bindHolder1(ViewHolder holder) {
-//        List<Coupon> lists=new ArrayList<>();
-//        lists.add(new Coupon(5,"满99元立减"));
-//        lists.add(new Coupon(10,"满199元立减"));
-//        lists.add(new Coupon(15,"满299元立减"));
-//        lists.add(new Coupon(20,"满399元立减"));
         couponRecycle=holder.getRecycleView(R.id.home_store_coupon_item_recycle);
         couponRecycle.setLayoutManager(new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false));
         couponRecycle.addItemDecoration(new ItemIntervalDecoration(4,0,4,14));
+        if (dataBean.getData().getCoupon().size()!=0)
         couponRecycle.setAdapter(new CouponAdapter(context,dataBean.getData().getCoupon()));
+        else{
+            //模拟数据
+            List<HomePageBean.DataBean.CouponBean> lists=new ArrayList<>();
+            lists.add(new HomePageBean.DataBean.CouponBean("5","99"));
+            lists.add(new HomePageBean.DataBean.CouponBean("10","199"));
+            lists.add(new HomePageBean.DataBean.CouponBean("15","299"));
+            lists.add(new HomePageBean.DataBean.CouponBean("20","399"));
+            couponRecycle.setAdapter(new CouponAdapter(context,lists));
+        }
     }
 
     @Override
@@ -148,7 +155,7 @@ public class mHomeStoreAdapter extends AutoRVAdapter implements RVBaseAdapter.On
         public void onBindViewHolder(ViewHolder holder, int position) {
             //设置网络图片到指定view中显示
             GlideImageLoader imageLoader = new GlideImageLoader();
-            imageLoader.displayImage(context,"http://192.168.0.106"+lists.get(position).getOriginal_img(),holder.getImgeView(R.id.home_store_treasure_item_img));
+            imageLoader.displayImage(context, XianGouApiService.BASEURL+lists.get(position).getOriginal_img(),holder.getImgeView(R.id.home_store_treasure_item_img));
 //            holder.getImgeView(R.id.home_store_treasure_item_img).setImageResource(lists.get(position).get());
             holder.getTextView(R.id.description_item_recommend_home_tv).setText(lists.get(position).getGoods_name());
             holder.getTextView(R.id.price_item_recommend_home_tv).setText("已有"+lists.get(position).getSales_sum()+"人购买");

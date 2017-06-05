@@ -20,11 +20,13 @@ import com.example.administrator.xiangou.login.find_bytelephone.FindByTelephoneA
 import com.example.administrator.xiangou.login.registerverify.RegisterVerifyActivity;
 import com.example.administrator.xiangou.main.MainActivity;
 import com.example.administrator.xiangou.mvp.MVPBaseActivity;
+import com.example.administrator.xiangou.tool.CustomImageView;
 
 public class IDLoginActivity extends MVPBaseActivity<IDLoginContract.View, IDLoginPresenter>
         implements IDLoginContract.View ,View.OnClickListener{
     private TextView IDlogin_Dynamic, IDLogin_Forget, IDLogin_Register;
-    private ImageView IDLogin_Backimg, IDLogin_Userimg, IDLogin_Cls;
+    private ImageView IDLogin_Backimg, IDLogin_Cls;
+    private CustomImageView IDLogin_Userimg;
     private EditText IDLogin_TelNumber, IDLogin_PWD;
     private Button mIDLoginBtn;
     private InputMethodManager imm;
@@ -45,6 +47,9 @@ public class IDLoginActivity extends MVPBaseActivity<IDLoginContract.View, IDLog
         IDLogin_Forget = (TextView) findViewById(R.id.mainlogin_forgetpassword);
         IDLogin_Register = (TextView) findViewById(R.id.mainlogin_register);
         IDLogin_Backimg = (ImageView) findViewById(R.id.mainlogin_back);
+        IDLogin_Userimg = findContentView(R.id.mainlogin_img,false);
+        if (bUser.getHead_pic()!=null)
+            loadImg(bUser.getHead_pic(),IDLogin_Userimg);
         IDLogin_Cls = (ImageView) findViewById(R.id.mainlogin_clean);
         IDLogin_Cls.setOnClickListener(this);
         IDlogin_Dynamic.setOnClickListener(this);
@@ -99,8 +104,7 @@ public class IDLoginActivity extends MVPBaseActivity<IDLoginContract.View, IDLog
                     mIDLoginBtn.setFocusable(false);
                     mIDLoginBtn.setClickable(false);
                     mIDLoginBtn.setBackground(getResources().getDrawable(R.drawable.btnbg_unchecked));
-                }else if (s.length()==11)
-                {
+                }else if (s.length()==11) {
                     if ( IDLogin_PWD.getText().length()>7 ){
                         mIDLoginBtn.setOnClickListener(IDLoginActivity.this);
                         mIDLoginBtn.setBackground(getResources().getDrawable(R.drawable.btnbg_checked));

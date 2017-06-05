@@ -180,7 +180,6 @@ public abstract class BaseFragmentActivity extends FragmentActivity implements V
     }
     /**
      * 注销用户
-     * @return
      */
     public void logout(){
         bSharedPreferences.putBoolean(MySharedPreferences.STATUS_LOGIN,false);

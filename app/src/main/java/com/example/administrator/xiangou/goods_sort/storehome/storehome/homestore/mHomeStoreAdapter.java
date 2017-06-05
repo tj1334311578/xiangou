@@ -155,7 +155,7 @@ public class mHomeStoreAdapter extends AutoRVAdapter implements RVBaseAdapter.On
         public void onBindViewHolder(ViewHolder holder, int position) {
             //设置网络图片到指定view中显示
             GlideImageLoader imageLoader = new GlideImageLoader();
-            imageLoader.displayImage(context, XianGouApiService.BASEURL+lists.get(position).getOriginal_img(),holder.getImgeView(R.id.home_store_treasure_item_img));
+            imageLoader.displayImage(context, XianGouApiService.IMGBASEURL +lists.get(position).getOriginal_img(),holder.getImgeView(R.id.home_store_treasure_item_img));
 //            holder.getImgeView(R.id.home_store_treasure_item_img).setImageResource(lists.get(position).get());
             holder.getTextView(R.id.description_item_recommend_home_tv).setText(lists.get(position).getGoods_name());
             holder.getTextView(R.id.price_item_recommend_home_tv).setText("已有"+lists.get(position).getSales_sum()+"人购买");

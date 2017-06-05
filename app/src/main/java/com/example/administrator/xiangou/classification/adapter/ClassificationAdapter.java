@@ -40,7 +40,7 @@ public class ClassificationAdapter extends AutoRVAdapter implements RVBaseAdapte
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        new GlideImageLoader().displayImage(context, XianGouApiService.BASEURL+mdata.getData().getAdv().getImg_url(),holder.getImgeView(R.id.goods_item1_img));
+        new GlideImageLoader().displayImage(context, XianGouApiService.IMGBASEURL +mdata.getData().getAdv().getImg_url(),holder.getImgeView(R.id.goods_item1_img));
 
         RecyclerView recy=holder.getRecycleView(R.id.goods_classfication_item1_recycle);
         recy.setLayoutManager(new GridLayoutManager(context,3, GridLayoutManager.VERTICAL,false));
@@ -69,7 +69,7 @@ public class ClassificationAdapter extends AutoRVAdapter implements RVBaseAdapte
 
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {
-            new GlideImageLoader().displayImage(mContext,XianGouApiService.BASEURL+list.get(position).getImage(),holder.getImgeView(R.id.classfication_item1_item_img));
+            new GlideImageLoader().displayImage(mContext,XianGouApiService.IMGBASEURL +list.get(position).getImage(),holder.getImgeView(R.id.classfication_item1_item_img));
             holder.getTextView(R.id.classfication_item1_item_tv).setText(list.get(position).getName());
         }
     }

@@ -13,7 +13,6 @@ import com.example.administrator.xiangou.mine.mystore.datamanager.TotalDataBean;
 import com.example.administrator.xiangou.mine.mystore.goodsmanage.addgoodsmanage.bean.AddGoodsAttrBean;
 import com.example.administrator.xiangou.mine.mystore.goodsmanage.addgoodsmanage.bean.AddGoodsDataBean;
 import com.example.administrator.xiangou.mine.mystore.goodsmanage.addgoodsmanage.bean.AddGoodsSpecBean;
-import com.example.administrator.xiangou.mine.mystore.goodsmanage.addgoodsmanage.bean.IntoAddGoodPageBean;
 import com.example.administrator.xiangou.mine.mystore.storemanager.StoreManagerInfoBean;
 import com.example.administrator.xiangou.mine.setting.manageraddress.model.EditAddressEnterBean;
 import com.example.administrator.xiangou.mine.setting.manageraddress.model.UserAddressBean;

@@ -113,7 +113,7 @@ public class ClassificationAdapter1 extends AutoRVAdapter implements RVBaseAdapt
 
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {
-            new GlideImageLoader().displayImage(mContext,XianGouApiService.BASEURL+list.get(position).getImage(),holder.getImgeView(R.id.classfication_item2_item_img));
+            new GlideImageLoader().displayImage(mContext,XianGouApiService.IMGBASEURL +list.get(position).getImage(),holder.getImgeView(R.id.classfication_item2_item_img));
             holder.getTextView(R.id.classfication_item2_item_tv).setText(list.get(position).getName());
         }
     }
@@ -134,7 +134,7 @@ public class ClassificationAdapter1 extends AutoRVAdapter implements RVBaseAdapt
 
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {
-            new GlideImageLoader().displayImage(mContext, XianGouApiService.BASEURL+list.get(position).getImage(),holder.getImgeView(R.id.classfication_item1_item_img));
+            new GlideImageLoader().displayImage(mContext, XianGouApiService.IMGBASEURL +list.get(position).getImage(),holder.getImgeView(R.id.classfication_item1_item_img));
             holder.getTextView(R.id.classfication_item1_item_tv).setText(list.get(position).getName());
         }
     }

@@ -89,7 +89,7 @@ public class StoreHomeFragment extends MVPBaseFragment<StoreHomeContract.View, S
     private void initHeadView(HomePageBean dataBean) {
 
         GlideImageLoader imageLoader = new GlideImageLoader();
-        imageLoader.displayImage(getContext(), XianGouApiService.BASEURL+dataBean.getData().getLogo(),storeImg);
+        imageLoader.displayImage(getContext(), XianGouApiService.IMGBASEURL +dataBean.getData().getLogo(),storeImg);
         storeName.setText(dataBean.getData().getName());
         ratingBar.setRating((float) Double.parseDouble(dataBean.getData().getScore()));
         salesVolume.setText("销量"+dataBean.getData().getTotal_sale());

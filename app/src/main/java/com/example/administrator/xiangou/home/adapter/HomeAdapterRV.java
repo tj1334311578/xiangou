@@ -115,7 +115,6 @@ public class HomeAdapterRV extends RVBaseAdapter<HomeDataBean.DataBean> implemen
         return super.onCreateViewHolder(parent, viewType);
     }
 
-
     @Override
     protected void bindData(RVBaseViewHolder holder, HomeDataBean.DataBean homeDataBean, int position) {
         switch (position){
@@ -289,7 +288,6 @@ public class HomeAdapterRV extends RVBaseAdapter<HomeDataBean.DataBean> implemen
     }
 
     public Banner initBanner(Banner mBanner, List<String> imgUrls,List<String> titles) {
-
         //设置banner样式
         if (titles!=null) {
             mBanner.setBannerTitles(titles);

@@ -14,13 +14,13 @@ public class IDLoginPresenter extends BasePresenterImpl<IDLoginContract.View> im
     public void IDlogin(String userName, String password) {
         mView.showLoading();//加载等待
         Log.e("IDlogin", "enter：IDlogin"+ContextUtils.MD5(password));
-
         addSubscription(
                 mApiService.loginID(userName, ContextUtils.MD5(password)),
 
                 new BaseSubscriber<LoginBean>(mView.getContext()) {
                     @Override
                     public void onNext(LoginBean loginBean) {
+                        Log.e("next", "onNext: " +loginBean.getData().toString()+"\n"+loginBean.getState().toString());
                         switch (loginBean.getState().getCode()){
                             case 200:
                                 if (loginBean.getData()!=null){

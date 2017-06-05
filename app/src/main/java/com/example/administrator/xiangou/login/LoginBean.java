@@ -46,6 +46,16 @@ public class LoginBean{
 
 
     public static class StateBean {
+        @Override
+        public String toString() {
+            return "StateBean{" +
+                    "code=" + code +
+                    ", msg='" + msg + '\'' +
+                    ", debugMsg='" + debugMsg + '\'' +
+                    ", url='" + url + '\'' +
+                    '}';
+        }
+
         /**
          * code : 200
          * msg : 登录成功

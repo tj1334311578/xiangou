@@ -72,7 +72,7 @@ public class AddGoodsManageActivity extends MVPBaseActivity<AddGoodsManageContra
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.goods_management_addgoods);
+        setContentView(R.layout.goods_management_add);
         Log.e("statu", "onCreate: "+getIntent().getIntExtra("statu",0) );
         mPresenter.callIntoAddGoodPage(1,getIntent().getIntExtra("statu",0));
     }

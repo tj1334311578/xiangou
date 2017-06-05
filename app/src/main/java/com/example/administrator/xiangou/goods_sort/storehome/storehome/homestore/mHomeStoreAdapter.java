@@ -150,17 +150,17 @@ public class mHomeStoreAdapter extends AutoRVAdapter implements RVBaseAdapter.On
             GlideImageLoader imageLoader = new GlideImageLoader();
             imageLoader.displayImage(context,"http://192.168.0.106"+lists.get(position).getOriginal_img(),holder.getImgeView(R.id.home_store_treasure_item_img));
 //            holder.getImgeView(R.id.home_store_treasure_item_img).setImageResource(lists.get(position).get());
-            holder.getTextView(R.id.home_store_treasure_item_description).setText(lists.get(position).getGoods_name());
-            holder.getTextView(R.id.home_store_treasure_item_buyers).setText("已有"+lists.get(position).getSales_sum()+"人购买");
+            holder.getTextView(R.id.description_item_recommend_home_tv).setText(lists.get(position).getGoods_name());
+            holder.getTextView(R.id.price_item_recommend_home_tv).setText("已有"+lists.get(position).getSales_sum()+"人购买");
             holder.getTextView(R.id.home_store_treasure_item_discountPrice).setText("￥"+lists.get(position).getShop_price());
-            TextView oldTv=holder.getTextView(R.id.home_store_treasure_item_oldPrice);
+            TextView oldTv=holder.getTextView(R.id.distance_item_recommend_home_tv);
             oldTv.setText("￥"+lists.get(position).getMarket_price());
             oldTv.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG|Paint.ANTI_ALIAS_FLAG);//加中线并加清晰
             //是否为新品
             if (lists.get(position).getIs_new()==1){
-                holder.getTextView(R.id.home_store_treasure_item_status).setVisibility(View.VISIBLE);
+                holder.getTextView(R.id.status_item_recommend_home_tv).setVisibility(View.VISIBLE);
             }else{
-                holder.getTextView(R.id.home_store_treasure_item_status).setVisibility(View.GONE);
+                holder.getTextView(R.id.status_item_recommend_home_tv).setVisibility(View.GONE);
             }
         }
     }

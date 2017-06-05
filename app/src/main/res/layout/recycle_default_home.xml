@@ -1,23 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="200dp"
-              android:padding="3dp"
+              android:paddingLeft="8dp"
+                android:paddingRight="8dp"
               android:background="@color/whiteBgColor">
 
-    <com.example.administrator.xiangou.tool.CustomImageView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:adjustViewBounds="true"
-        android:id="@+id/civ_default_recycle"
-        android:src="@mipmap/girl_h"
-        android:scaleType="centerCrop"/>
+
+    <ImageView
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+        android:id="@+id/icon_recommend_home_iv"
+        android:src="@mipmap/cart_recommend_icon"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/tv_default_recycle"
-        android:textSize="16sp"
-        android:layout_gravity="center_horizontal"/>
-</LinearLayout>
+        android:id="@+id/text_recommend_home_tv"
+        android:layout_toRightOf="@id/icon_recommend_home_iv"
+        android:layout_alignBottom="@id/icon_recommend_home_iv"
+        android:text="为你推荐"
+        android:textColor="@color/textcolor_black"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:layout_marginLeft="3dp"
+        />
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/recommend_home_rv"
+        android:layout_marginTop="13dp"
+        android:layout_below="@id/icon_recommend_home_iv"
+        >
+    </android.support.v7.widget.RecyclerView>
+
+</RelativeLayout>

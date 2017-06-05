@@ -22,7 +22,7 @@
             android:text="优惠券"
             android:textSize="18sp"
             android:gravity="center"
-            android:textColor="@color/textcolor_gray"
+            android:textColor="@color/textcolor_e616gray"
             android:layout_gravity="center"
             />
         <TextView

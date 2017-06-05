@@ -14,30 +14,30 @@
         <ImageView
             android:layout_width="14dp"
             android:layout_height="14dp"
-            android:id="@+id/icon_child_shop"
+            android:id="@+id/icon_recommend_home_iv"
             android:src="@mipmap/referrals"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/title_referrals_home"
-            android:text="商品推介"
+            android:text="精选商品"
             android:textColor="@color/textcolor_black"
             android:textSize="14sp"
             android:layout_marginLeft="3dp"/>
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
+        <!--<View-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_weight="1"/>-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableRight="@drawable/icon_goto"
-            android:id="@+id/enterseeall_referrals_recycle"
-            android:text="全部"
-            android:textSize="12sp"
-            android:gravity="center" />
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:drawableRight="@drawable/icon_goto"-->
+            <!--android:id="@+id/enterseeall_referrals_recycle"-->
+            <!--android:text="全部"-->
+            <!--android:textSize="12sp"-->
+            <!--android:gravity="center" />-->
     </LinearLayout>
 
    <android.support.v7.widget.RecyclerView

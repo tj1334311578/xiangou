@@ -146,8 +146,8 @@ public class GoodsDetailsCommentFragment extends MVPBaseFragment<GoodsDetailsCom
                         tabTv.setTextColor(getResources().getColor(R.color.textcolor_pink));
                     }else{
                         tabline.setVisibility(View.INVISIBLE);
-                        tabValue.setTextColor(getResources().getColor(R.color.textcolor_gray));
-                        tabTv.setTextColor(getResources().getColor(R.color.textcolor_gray));
+                        tabValue.setTextColor(getResources().getColor(R.color.textcolor_e616gray));
+                        tabTv.setTextColor(getResources().getColor(R.color.textcolor_e616gray));
                     }
                 }
                 //fragment的相应切换

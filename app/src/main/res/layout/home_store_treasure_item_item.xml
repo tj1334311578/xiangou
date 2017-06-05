@@ -14,7 +14,7 @@
         android:id="@+id/home_store_treasure_item_img"
         />
     <LinearLayout
-        android:id="@+id/home_store_treasure_item_Ll"
+        android:id="@+id/item_recommend_home_Ll"
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:layout_height="wrap_content"
@@ -30,7 +30,7 @@
             android:textSize="14sp"
             android:textColor="#e6161616"
             android:maxLines="1"
-            android:id="@+id/home_store_treasure_item_description"
+            android:id="@+id/description_item_recommend_home_tv"
             android:ellipsize="end"
             />
         <TextView
@@ -40,7 +40,7 @@
             android:padding="1dp"
             android:gravity="center"
             android:textColor="@color/white"
-            android:id="@+id/home_store_treasure_item_status"
+            android:id="@+id/status_item_recommend_home_tv"
             android:background="@drawable/home_store_followshap"
             android:layout_height="wrap_content" />
     </LinearLayout>
@@ -51,17 +51,17 @@
         android:textSize="12sp"
         android:layout_marginTop="7dp"
         android:layout_marginStart="5dp"
-        android:layout_alignStart="@id/home_store_treasure_item_Ll"
+        android:layout_alignStart="@id/item_recommend_home_Ll"
         android:textColor="#80000000"
-        android:layout_below="@id/home_store_treasure_item_Ll"
-        android:id="@+id/home_store_treasure_item_buyers"
+        android:layout_below="@id/item_recommend_home_Ll"
+        android:id="@+id/price_item_recommend_home_tv"
         android:text="已有45人购买"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="￥210.00"
-        android:layout_below="@id/home_store_treasure_item_buyers"
-        android:layout_alignStart="@id/home_store_treasure_item_buyers"
+        android:layout_below="@id/price_item_recommend_home_tv"
+        android:layout_alignStart="@id/price_item_recommend_home_tv"
         android:layout_marginTop="7dp"
         android:textSize="14sp"
         android:textColor="#fb4a89"
@@ -70,7 +70,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/home_store_treasure_item_oldPrice"
+        android:id="@+id/distance_item_recommend_home_tv"
         android:layout_marginStart="7dp"
         android:textSize="12sp"
         android:textColor="#4d161616"

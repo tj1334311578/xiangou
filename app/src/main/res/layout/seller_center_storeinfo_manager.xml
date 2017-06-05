@@ -21,7 +21,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="45dp"
-            android:textColor="@color/textcolor_gray"
+            android:textColor="@color/textcolor_e616gray"
             android:textSize="14sp"
             android:id="@+id/store_information_logo_tv"
             android:gravity="center_vertical"
@@ -50,7 +50,7 @@
         android:layout_width="wrap_content"
         android:id="@+id/store_information_name_tv"
         android:layout_height="41dp"
-        android:textColor="@color/textcolor_gray"
+        android:textColor="@color/textcolor_e616gray"
         android:textSize="14sp"
         android:gravity="center_vertical"
         android:layout_alignStart="@id/store_information_storelogo_rl"
@@ -79,7 +79,7 @@
         android:id="@+id/store_information_style_tv"
         android:gravity="center_vertical"
         android:layout_height="41dp"
-        android:textColor="@color/textcolor_gray"
+        android:textColor="@color/textcolor_e616gray"
         android:textSize="14sp"
         android:layout_below="@id/store_information_name_tv"
         android:layout_alignStart="@id/store_information_name_tv"
@@ -107,7 +107,7 @@
         android:layout_height="41dp"
         android:gravity="center_vertical"
         android:text="服务电话"
-        android:textColor="@color/textcolor_gray"
+        android:textColor="@color/textcolor_e616gray"
         android:textSize="14sp"
         android:layout_alignStart="@id/store_information_name_tv"
         android:layout_below="@id/store_information_style_tv"
@@ -139,7 +139,7 @@
         android:layout_below="@id/store_information_phone_tv"
         android:layout_alignStart="@id/store_information_phone_tv"
         android:text="所在地区"
-        android:textColor="@color/textcolor_gray"
+        android:textColor="@color/textcolor_e616gray"
         android:textSize="14sp"
         android:id="@+id/store_information_location_tv"/>
     <EditText
@@ -171,7 +171,7 @@
         android:layout_below="@id/store_information_location_tv"
         android:layout_alignStart="@id/store_information_location_tv"
         android:text="店铺地址"
-        android:textColor="@color/textcolor_gray"
+        android:textColor="@color/textcolor_e616gray"
         android:textSize="14sp"
         android:id="@+id/store_information_address_tv"/>
     <EditText
@@ -203,7 +203,7 @@
         android:paddingBottom="11dp"
         android:layout_marginTop="10dp"
         android:gravity="center_vertical"
-        android:textColor="@color/textcolor_gray"
+        android:textColor="@color/textcolor_e616gray"
         android:textSize="14sp"
         android:layout_below="@id/store_information_address_tv"
         android:layout_alignStart="@id/store_information_address_tv"

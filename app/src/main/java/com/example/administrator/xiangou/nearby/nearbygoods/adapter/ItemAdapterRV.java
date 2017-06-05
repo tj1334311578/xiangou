@@ -41,6 +41,6 @@ public class ItemAdapterRV extends RVBaseAdapter<NearbyGoodsDataBean.DataBean.Ca
         goodsName = holder.getTextView(R.id.item_rv_nearbygoods_tv);
 
         goodsName.setText(goodsBean.getName());
-        mImageLoader.displayImage(mContext, XianGouApiService.BASEURL+goodsBean.getOriginal_img(),goodsImg);
+        mImageLoader.displayImage(mContext, XianGouApiService.IMGBASEURL +goodsBean.getOriginal_img(),goodsImg);
     }
 }

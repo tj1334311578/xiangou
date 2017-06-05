@@ -104,7 +104,7 @@ public class NearbyGoodsFragment extends MVPBaseFragment<NearbyGoodsContract.Vie
 //        mDataBean = data;
         imgUrls = new ArrayList<>();
         for (int i = 0; i < data.getBanner().size(); i++) {
-            imgUrls.add(XianGouApiService.BASEURL+data.getBanner().get(i).getAd_code());
+            imgUrls.add(XianGouApiService.IMGBASEURL +data.getBanner().get(i).getAd_code());
         }
         mDataBeanList = data.getCatelist();
 //        initBanner(imgUrls,null);

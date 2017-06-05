@@ -18,7 +18,6 @@ import com.example.administrator.xiangou.net.XianGouApiService;
 
 import java.io.Serializable;
 
-import butterknife.ButterKnife;
 import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -58,6 +57,7 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
     }
     public View setContextView(LayoutInflater inflater,ViewGroup container, int layoutId){
         mContextView = inflater.inflate(layoutId,container,false);
+//        ButterKnife.bind(getContext(),mContextView);
         initView();
         return mContextView;
     }
@@ -67,7 +67,7 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        ButterKnife.bind(getContext(),view);
+//        ButterKnife.bind(getContext(),view);
         mActivity = getActivity();
     }
 
@@ -190,7 +190,7 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
      */
     public void loadImg(String imgUrl, ImageView imageView) {
         if (imgUrl!=null && imageView!=null) {
-            mImageLoader.displayImage(getContext(), XianGouApiService.BASEURL + imgUrl, imageView);
+            mImageLoader.displayImage(getContext(), XianGouApiService.IMGBASEURL + imgUrl, imageView);
         }else {
             showToast("图片资源为空");
         }

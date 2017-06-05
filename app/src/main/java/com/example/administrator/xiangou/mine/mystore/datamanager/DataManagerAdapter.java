@@ -30,7 +30,7 @@ public class DataManagerAdapter extends RVBaseAdapter<String> {
             Tv.setTextColor(mContext.getResources().getColor(R.color.cart_textb316color));
             Tv.setText(recordBean);
         }else if (position%4==0){
-            Tv.setTextColor(mContext.getResources().getColor(R.color.textcolor_gray));
+            Tv.setTextColor(mContext.getResources().getColor(R.color.textcolor_e616gray));
             //将01数字格式的月份转化为大写格式
             Tv.setText(IntToParseCapital(recordBean));
         }else{//设置字体颜色

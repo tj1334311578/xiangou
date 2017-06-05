@@ -3,7 +3,7 @@ package com.example.administrator.xiangou.home;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,70 +14,42 @@ import android.widget.Toast;
 
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.home.adapter.HomeAdapterRV;
-import com.example.administrator.xiangou.home.model.HomeChildBean;
+import com.example.administrator.xiangou.home.model.HomeDataBean;
 import com.example.administrator.xiangou.mvp.MVPBaseFragment;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresenter> implements HomeContract.View,View.OnClickListener {
-    @BindView(R.id.addrtv_topbar)
     TextView mAddrTv;
-    @BindView(R.id.serach_topbar_tv)
     TextView mSearchTv;
-    @BindView(R.id.news_num_topbar_tv)
     TextView mNewsTv;
-    @BindView(R.id.search_topbar_iv)
     ImageView mSearchIv;
-    @BindView(R.id.scan_topbar_iv)
     ImageView mScanIv;
-    @BindView(R.id.news_topbar_iv)
     ImageView mNewsIv;
-    //不同recycle的type
-    public static final int TYPE_DEFAULT = 0;
-    public static final int TYPE_BANNER = 1;
-    public static final int TYPE_BOUTIQUE = 2;
-    public static final int TYPE_REFERRALS = 3;
-    public static final int TYPE_ADVS = 4;
-    public static final int TYPE_TOPIC = 5;
-    private View mFragView;
-    public static HomeFragment newInstance() {
-        HomeFragment homeFrag = new HomeFragment();
-        return homeFrag;
+    private RecyclerView mRvHome;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //获取首页数据
+        mPresenter.getHomeData("","",0);
     }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mFragView = inflater.inflate(R.layout.fragment_home,container,false);
-        ButterKnife.bind(this,mFragView);
-        initView();
-        return mFragView;
+        return setContextView(inflater,container,R.layout.fragment_home);
     }
 
     @Override
     public void initView() {
-        mAddrTv.setOnClickListener(this);
-        mNewsTv.setOnClickListener(this);
-        mNewsIv.setOnClickListener(this);
-        mScanIv.setOnClickListener(this);
-        mSearchIv.setOnClickListener(this);
-        mSearchTv.setOnClickListener(this);
-        RecyclerView rvHome = (RecyclerView) mFragView.findViewById(R.id.rv_frag_home);
-        GridLayoutManager glm = new GridLayoutManager(getContext(),60, GridLayoutManager.VERTICAL,false);
-        rvHome.setLayoutManager(glm);
-
-        List<HomeChildBean> beanList = new ArrayList<>();
-        beanList.add(new HomeChildBean(TYPE_BANNER));
-        beanList.add(new HomeChildBean(TYPE_BOUTIQUE));
-        beanList.add(new HomeChildBean(TYPE_REFERRALS));
-        beanList.add(new HomeChildBean(TYPE_ADVS));
-        beanList.add(new HomeChildBean(TYPE_TOPIC));
-        HomeAdapterRV adapterHomeRv = new HomeAdapterRV(getContext(),beanList);
-        rvHome.setAdapter(adapterHomeRv);
+        mRvHome = findContentView(R.id.rv_frag_home,false);
+        LinearLayoutManager glm = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,false);
+        mRvHome.setLayoutManager(glm);
+        mAddrTv = findContentView(R.id.addrtv_topbar);
+        mNewsTv = findContentView(R.id.news_num_topbar_tv);
+        mNewsIv = findContentView(R.id.news_topbar_iv);
+        mScanIv = findContentView(R.id.scan_topbar_iv);
+        mSearchIv = findContentView(R.id.search_topbar_iv);
+        mSearchTv = findContentView(R.id.serach_topbar_tv);
     }
 
     @Override
@@ -96,6 +68,34 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
 
     @Override
     public void sendFialRequest(String message) {
+        showToast(message);
+    }
 
+    @Override
+    public void getHomeDataSuccess(HomeDataBean.DataBean data) {
+        HomeAdapterRV adapterHomeRv = new HomeAdapterRV(getContext(),data);
+        mRvHome.setAdapter(adapterHomeRv);
+        adapterHomeRv.setDealItemClick(new HomeAdapterRV.DealItemClick() {
+            @Override
+            public void dealBoutique(View view, int pos) {
+                showToast("mBoutiqueRv "+ pos +" 甭点了，木有彩蛋");
+            }
+
+            @Override
+            public void dealReferrals(View view, int pos) {
+                showToast("mReferralsRv "+ pos +" 甭点了，木有彩蛋");
+            }
+
+            @Override
+            public void dealTopic(View view, int pos) {
+                showToast("mTopicRv "+ pos +" 甭点了，木有彩蛋");
+            }
+
+            @Override
+            public void dealRecommened(View view, int pos) {
+                showToast("mRecommendRv "+ pos +" 甭点了，木有彩蛋");
+            }
+
+        });
     }
 }

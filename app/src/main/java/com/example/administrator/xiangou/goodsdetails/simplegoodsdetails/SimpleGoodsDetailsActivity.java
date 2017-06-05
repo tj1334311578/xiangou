@@ -114,12 +114,12 @@ public class SimpleGoodsDetailsActivity extends MVPBaseActivity<SimpleGoodsDetai
         List<String> imgs=new ArrayList<>();
         if (goods_img!=null)
             for (SimpleGoodsDetialBean.DataBean.GoodsImgBean img_url:goods_img) {
-                imgs.add(XianGouApiService.BASEURL+img_url.getImage_url());
+                imgs.add(XianGouApiService.IMGBASEURL +img_url.getImage_url());
             }else{
-        imgs.add(XianGouApiService.BASEURL+"/public/upload/goods/2016/01-13/569611334359e.jpg");
-        imgs.add(XianGouApiService.BASEURL+"/public/upload/goods/2016/01-13/569611334359e.jpg");
-        imgs.add(XianGouApiService.BASEURL+"/public/upload/goods/2016/01-13/569611334359e.jpg");
-        imgs.add(XianGouApiService.BASEURL+"/public/upload/goods/2016/01-13/569611334359e.jpg");
+        imgs.add(XianGouApiService.IMGBASEURL +"/public/upload/goods/2016/01-13/569611334359e.jpg");
+        imgs.add(XianGouApiService.IMGBASEURL +"/public/upload/goods/2016/01-13/569611334359e.jpg");
+        imgs.add(XianGouApiService.IMGBASEURL +"/public/upload/goods/2016/01-13/569611334359e.jpg");
+        imgs.add(XianGouApiService.IMGBASEURL +"/public/upload/goods/2016/01-13/569611334359e.jpg");
         }
         //设置指示器位置（当banner模式中有指示器时）
         banner.setIndicatorGravity(BannerConfig.CENTER);
@@ -336,7 +336,7 @@ public class SimpleGoodsDetailsActivity extends MVPBaseActivity<SimpleGoodsDetai
         }
         //添加商店logo图片
         if (!data.getData().getLogo().equals(""))
-            new GlideImageLoader().displayImage(this, XianGouApiService.BASEURL+data.getData().getLogo(),storelogo);//加载店铺logo
+            new GlideImageLoader().displayImage(this, XianGouApiService.IMGBASEURL +data.getData().getLogo(),storelogo);//加载店铺logo
 
         storename_Tv.setText(data.getData().getName());
         distance_Tv.setText("距离当前位置：<"+data.getData().getDistance()+"m");

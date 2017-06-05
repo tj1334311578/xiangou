@@ -276,7 +276,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
      */
     public void loadImg(String imgUrl, ImageView imageView) {
         if (imgUrl!=null && imageView!=null) {
-            mImageLoader.displayImage(this, XianGouApiService.BASEURL + imgUrl, imageView);
+            mImageLoader.displayImage(this, XianGouApiService.IMGBASEURL + imgUrl, imageView);
         }else {
             showToast("图片资源为空");
         }

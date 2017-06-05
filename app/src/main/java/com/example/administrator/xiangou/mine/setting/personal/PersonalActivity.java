@@ -171,6 +171,7 @@ public class PersonalActivity extends MVPBaseActivity<PersonalContract.View, Per
         //为解决图片每次变小
 //      Drawable drawable=new BitmapDrawable(ImageUtils.getImageThumbnail(imagePath,person_img.getWidth() ,person_img.getHeight() ));
         Drawable drawable=new BitmapDrawable(BitmapFactory.decodeFile(imagePath));
+        // TODO: 2017/6/2 图片保存到本地 
         person_img.setImageDrawable(drawable);
     }
 }

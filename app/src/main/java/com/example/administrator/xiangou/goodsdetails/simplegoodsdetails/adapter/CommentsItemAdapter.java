@@ -39,6 +39,6 @@ public class CommentsItemAdapter extends AutoRVAdapter {
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Log.e("imgurl", "onBindViewHolder: "+position+" --------"+imgs.get(position) );
-        new GlideImageLoader().displayImage(mContext, XianGouApiService.BASEURL+imgs.get(position),holder.getImgeView(R.id.imageview_type_img));
+        new GlideImageLoader().displayImage(mContext, XianGouApiService.IMGBASEURL +imgs.get(position),holder.getImgeView(R.id.imageview_type_img));
     }
 }

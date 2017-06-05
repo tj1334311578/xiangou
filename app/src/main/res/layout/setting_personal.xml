@@ -37,13 +37,13 @@
             android:textColor="#e6161616"/>
         <com.example.administrator.xiangou.tool.CustomImageView
             android:layout_width="45dp"
+            android:layout_height="45dp"
             android:id="@+id/setting_personal_img"
             android:layout_centerVertical="true"
             android:layout_toStartOf="@+id/setting_personal_imageButton"
             android:src="@drawable/girl_v"
             app:civ_type="TYPE_CIRCLE"
             android:layout_marginEnd="15dp"
-            android:layout_height="45dp"
             android:scaleType="matrix"
             />
 

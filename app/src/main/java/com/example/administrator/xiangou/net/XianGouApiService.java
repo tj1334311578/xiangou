@@ -4,6 +4,7 @@ import com.example.administrator.xiangou.goods_sort.storehome.HomePageBean;
 import com.example.administrator.xiangou.goodsdetails.simplegoodsdetails.goodsbean.CommentBean;
 import com.example.administrator.xiangou.goodsdetails.simplegoodsdetails.goodsbean.SimpleGoodsDetialBean;
 import com.example.administrator.xiangou.goodsdetails.simplegoodsdetails.goodsbean.commenttempBean;
+import com.example.administrator.xiangou.home.model.HomeDataBean;
 import com.example.administrator.xiangou.login.Captcha;
 import com.example.administrator.xiangou.login.LoginBean;
 import com.example.administrator.xiangou.mine.ToApplyStoreBean;
@@ -55,10 +56,16 @@ import rx.Observable;
 //      ┗┻┛　┗┻┛
 
 public interface XianGouApiService {
-    public static final String mBASEURL = "http://192.168.0.123/";
-    public static final String BASEURL = "http://192.168.0.123";
+    String mBASEURL = "http://192.168.0.123/";
+    String IMGBASEURL = "http://192.168.0.123";
+    //     http://192.168.0.123/
+/***********首页接口************/
+    @POST("api/Index/index/")
+    Observable<HomeDataBean> getHomePageData(@Query("map_x") String map_x,
+                                             @Query("map_y") String map_y,
+                                             @Query("cityid") int cityid);
 
-
+/***********登录接口************/
     //获取验证码--注册
     @POST("index.php/Api/Register/send_code/")
     Observable<Captcha> getCapture(@Query("tel") String tel);

@@ -37,7 +37,7 @@ public class CommentsAdapter extends AutoRVAdapter {
         holder.setTextView(R.id.simple_goodsdetails_comment_item_msg,comment.get(position).getContent());
         holder.setTextView(R.id.simple_goodsdetails_attribute,comment.get(position).getAdd_time());
         //设置评论用户的头像和昵称
-        new GlideImageLoader().displayImage(mContext,XianGouApiService.BASEURL+comment.get(position).getHead_pic(),holder.getCustomImageView(R.id.simple_goodsdetails_comment_item_userlogo));
+        new GlideImageLoader().displayImage(mContext,XianGouApiService.IMGBASEURL +comment.get(position).getHead_pic(),holder.getCustomImageView(R.id.simple_goodsdetails_comment_item_userlogo));
         holder.setTextView(R.id.simple_goodsdetails_comment_item_usernickname,comment.get(position).getUsername());
         RecyclerView recycle=holder.getRecycleView(R.id.simple_goodsdetails_recycle);
         //设置是否有数据，有显示，无gone掉

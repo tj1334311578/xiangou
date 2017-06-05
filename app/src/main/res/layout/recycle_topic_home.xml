@@ -15,7 +15,7 @@
         <ImageView
             android:layout_width="14dp"
             android:layout_height="14dp"
-            android:id="@+id/icon_child_shop"
+            android:id="@+id/icon_recommend_home_iv"
             android:src="@mipmap/special_topic"/>
         <TextView
             android:layout_width="wrap_content"
@@ -27,19 +27,19 @@
             android:gravity="center"
             android:layout_marginLeft="3dp"/>
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
+        <!--<View-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_weight="1"/>-->
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableRight="@drawable/icon_goto"
-            android:id="@+id/enterseeall_topic"
-            android:text="全部"
-            android:textSize="15sp"
-            android:gravity="center" />
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:drawableRight="@drawable/icon_goto"-->
+            <!--android:id="@+id/enterseeall_topic"-->
+            <!--android:text="全部"-->
+            <!--android:textSize="15sp"-->
+            <!--android:gravity="center" />-->
     </LinearLayout>
 
     <RelativeLayout

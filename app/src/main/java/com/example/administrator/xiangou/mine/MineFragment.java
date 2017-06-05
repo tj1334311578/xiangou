@@ -65,13 +65,6 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
     @Override
     public void onResume() {
         super.onResume();
-//        if (bSharedPreferences.getString("IDLogin_TelNumber",null)!=null &&
-//                bSharedPreferences.getString("IDLogin_PWD",null)!=null) {
-//            Log.e("user pwd", "onResume: " +bSharedPreferences.getString("IDLogin_TelNumber", null)+"-=-"+
-//                    bSharedPreferences.getString("IDLogin_PWD", null));
-//            mPresenter.IDlogin(bSharedPreferences.getString("IDLogin_TelNumber", null),
-//                    bSharedPreferences.getString("IDLogin_PWD", null));
-//        }
         showToast("isVisible:"+getUserVisibleHint()+"----isLogin"+isLogined()+"user id:"+bUser.getUser_id());
         if (getUserVisibleHint()){
             if (!isLogined()) {
@@ -181,9 +174,7 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
     }
 
     private void initDate() {
-        if (bUser.getHead_pic()==null){
-            mHeadImgCiv.setImageResource(R.mipmap.mine_user_img);
-        }else {
+        if (bUser.getHead_pic()!=null){
             loadImg(bUser.getHead_pic(),mHeadImgCiv);
         }
         setTextToTv(mMessageTv,mine_MsgCount);

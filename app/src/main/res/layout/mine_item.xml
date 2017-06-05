@@ -23,7 +23,7 @@
         android:layout_height="47dp"
         android:text="我的钱包"
         android:textSize="14sp"
-        android:textColor="@color/textcolor_gray"
+        android:textColor="@color/textcolor_e616gray"
         android:id="@+id/mine_item_text" />
 
     <ImageView

@@ -102,7 +102,7 @@ public class NearbyGoodsAdapterRV extends RVBaseAdapter<NearbyGoodsDataBean.Data
         Log.e("catelist", "bindData: " + catelistBean.toString());
 
         if (catelistBean.getImage()!=null) {
-            mImageLoader.displayImage(mContext, XianGouApiService.BASEURL+catelistBean.getImage(),mIcon);
+            mImageLoader.displayImage(mContext, XianGouApiService.IMGBASEURL +catelistBean.getImage(),mIcon);
         }
         mText.setText(catelistBean.getCate_name());
 

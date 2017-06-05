@@ -18,7 +18,7 @@ import com.example.administrator.xiangou.login.LoginBean;
 import com.example.administrator.xiangou.login.dynamiclogin.DynamicLoginActivity;
 import com.example.administrator.xiangou.login.find_bytelephone.FindByTelephoneActivity;
 import com.example.administrator.xiangou.login.registerverify.RegisterVerifyActivity;
-import com.example.administrator.xiangou.mine.MineFragment;
+import com.example.administrator.xiangou.main.MainActivity;
 import com.example.administrator.xiangou.mvp.MVPBaseActivity;
 
 public class IDLoginActivity extends MVPBaseActivity<IDLoginContract.View, IDLoginPresenter>
@@ -158,7 +158,7 @@ public class IDLoginActivity extends MVPBaseActivity<IDLoginContract.View, IDLog
     @Override
     public void LoginidSuccess(LoginBean.DataBean data) {
         Log.e("User", "LoginidSuccess: "+ bUser.toString());
-        startNewUI(MineFragment.class);
+        startNewUI(MainActivity.class);
         finish();
     }
 
@@ -169,8 +169,8 @@ public class IDLoginActivity extends MVPBaseActivity<IDLoginContract.View, IDLog
 
     @Override
     protected void onStop() {
-        super.onStop();
         mPresenter.saveInfo("IDLogin_TelNumber",IDLogin_TelNumber.getText().toString(),
                 "IDLogin_PWD",IDLogin_PWD.getText().toString());
+        super.onStop();
     }
 }

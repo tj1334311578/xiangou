@@ -6,6 +6,7 @@ import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Administrator on 2017/3/4.
@@ -40,7 +41,7 @@ public class BannerLoader {
     /**
      * 可根据后台接口返回的json数据添加此属性： , List<BannerBean> bannerList
      */
-    public void initBanner() {
+    public void initBanner(Banner mBanner, List<String> imgUrls,List<String> titles) {
         getBannerList();
 
         //设置banner样式

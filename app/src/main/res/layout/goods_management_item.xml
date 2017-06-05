@@ -19,7 +19,7 @@
         android:text="宿本春装新款文艺显瘦小立领纯棉套头白色长袖寸衫衣物"
         android:ellipsize="end"
         android:textSize="14sp"
-        android:textColor="@color/textcolor_gray"
+        android:textColor="@color/textcolor_e616gray"
         android:id="@+id/goods_management_item_description_tv"
         android:layout_marginStart="11dp"
         android:layout_marginEnd="15dp"

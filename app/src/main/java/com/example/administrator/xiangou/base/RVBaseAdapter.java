@@ -2,7 +2,6 @@ package com.example.administrator.xiangou.base;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +10,6 @@ import android.widget.ImageView;
 import com.example.administrator.xiangou.net.XianGouApiService;
 import com.example.administrator.xiangou.tool.GlideImageLoader;
 
-import java.util.ArrayList;
 import java.util.List;
 /**
  * Created by zhouzongyao on 2017/3/6.
@@ -20,6 +18,7 @@ import java.util.List;
 public abstract class RVBaseAdapter<T> extends RecyclerView.Adapter<RVBaseViewHolder> {
     public Context mContext;
     protected List<T> mDatas;
+    protected T mData;
     protected int mLayoutResId;
     protected static View mItemView;
     private  GlideImageLoader mImageLoader;
@@ -54,6 +53,9 @@ public abstract class RVBaseAdapter<T> extends RecyclerView.Adapter<RVBaseViewHo
     public RVBaseAdapter(Context context, List<T> mDatas) {
         this(context,0,mDatas);
     }
+    public RVBaseAdapter(Context context, T mData) {
+        this(context,0,mData);
+    }
 
     /**
      * 三参构造器
@@ -64,6 +66,12 @@ public abstract class RVBaseAdapter<T> extends RecyclerView.Adapter<RVBaseViewHo
     public RVBaseAdapter(Context context, int mLayoutResId, List<T> mDatas) {
         mContext = context;
         this.mDatas = mDatas;
+        setLayoutResId(mLayoutResId);
+        mImageLoader = new GlideImageLoader();
+    }
+    public RVBaseAdapter(Context context, int mLayoutResId, T mData) {
+        mContext = context;
+        this.mData = mData;
         setLayoutResId(mLayoutResId);
         mImageLoader = new GlideImageLoader();
     }
@@ -84,10 +92,15 @@ public abstract class RVBaseAdapter<T> extends RecyclerView.Adapter<RVBaseViewHo
     protected abstract void bindData(RVBaseViewHolder holder, T t, int position);
     @Override
     public void onBindViewHolder(RVBaseViewHolder holder, final int position) {
-        T t = getItem(position);
-        bindData(holder,t,position);
+        if (mDatas!=null) {
+            T t = getItem(position);
+            bindData(holder, t, position);
+        }else if (mData!=null){
+            bindData(holder, mData, position);
+        }
     }
 
+    //注：如果数据源不是list而是一个类，那么就需要重写getItemCount()方法
     @Override
     public int getItemCount() {
         return mDatas!=null ? mDatas.size():0;
@@ -142,6 +155,6 @@ public abstract class RVBaseAdapter<T> extends RecyclerView.Adapter<RVBaseViewHo
      * @param imageView 显示图片的imageview控件
      */
     public void loadImg(String imgUrl, ImageView imageView) {
-        mImageLoader.displayImage(mContext, XianGouApiService.BASEURL+imgUrl,imageView);
+        mImageLoader.displayImage(mContext, XianGouApiService.IMGBASEURL +imgUrl,imageView);
     }
 }

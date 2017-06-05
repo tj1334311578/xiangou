@@ -18,9 +18,8 @@ import com.example.administrator.xiangou.login.LoginBean;
 import com.example.administrator.xiangou.login.dynamiclogin.DynamicLoginActivity;
 import com.example.administrator.xiangou.login.find_bytelephone.FindByTelephoneActivity;
 import com.example.administrator.xiangou.login.registerverify.RegisterVerifyActivity;
-import com.example.administrator.xiangou.main.MainActivity;
+import com.example.administrator.xiangou.mine.MineFragment;
 import com.example.administrator.xiangou.mvp.MVPBaseActivity;
-import com.example.administrator.xiangou.tool.MySharedPreferences;
 
 public class IDLoginActivity extends MVPBaseActivity<IDLoginContract.View, IDLoginPresenter>
         implements IDLoginContract.View ,View.OnClickListener{
@@ -29,13 +28,12 @@ public class IDLoginActivity extends MVPBaseActivity<IDLoginContract.View, IDLog
     private EditText IDLogin_TelNumber, IDLogin_PWD;
     private Button mIDLoginBtn;
     private InputMethodManager imm;
-    private LoginBean.DataBean mDataBean;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_login);
         initView();
-        IDLogin_TelNumber.setText(bSharedPreferences.getString("IDLogin_TelNumber",""));
     }
 
     private void initView() {
@@ -126,6 +124,13 @@ public class IDLoginActivity extends MVPBaseActivity<IDLoginContract.View, IDLog
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        IDLogin_TelNumber.setText(bSharedPreferences.getString("IDLogin_TelNumber",""));
+        IDLogin_PWD.setText(bSharedPreferences.getString("IDLogin_PWD",""));
+    }
+
+    @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.mainlogin_login:
@@ -152,17 +157,8 @@ public class IDLoginActivity extends MVPBaseActivity<IDLoginContract.View, IDLog
 
     @Override
     public void LoginidSuccess(LoginBean.DataBean data) {
-//        setbUser(data);
-//        Set<String> userSet = new HashSet();
-//        userSet.add(data.getNickname());
-//        userSet.addAll(data.toString());
-        mDataBean = data;
-        bSharedPreferences.putString("user_info",data.toString());
         Log.e("User", "LoginidSuccess: "+ bUser.toString());
-//        bUser.setUser_id(data.getUser_id());
-        bSharedPreferences.putBoolean(MySharedPreferences.STATUS_LOGIN,true);
-        startNewUI(MainActivity.class);
-//        showToast("登录成功！");
+        startNewUI(MineFragment.class);
         finish();
     }
 
@@ -174,11 +170,7 @@ public class IDLoginActivity extends MVPBaseActivity<IDLoginContract.View, IDLog
     @Override
     protected void onStop() {
         super.onStop();
-        bSharedPreferences.putString("IDLogin_TelNumber",IDLogin_TelNumber.getText().toString());
-        bSharedPreferences.putString("IDLogin_PWD",IDLogin_PWD.getText().toString());
-        if (mDataBean!=null) {
-            setbUserBySP(mDataBean.toString());
-        }
-        Log.e("user_info", "onStop: " +bUser.toString() );
+        mPresenter.saveInfo("IDLogin_TelNumber",IDLogin_TelNumber.getText().toString(),
+                "IDLogin_PWD",IDLogin_PWD.getText().toString());
     }
 }

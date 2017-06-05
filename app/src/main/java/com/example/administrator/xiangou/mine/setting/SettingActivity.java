@@ -12,7 +12,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.mine.setting.feedback.FeedBackActivity;
@@ -75,65 +74,32 @@ public class SettingActivity extends MVPBaseActivity<SettingContract.View, Setti
         switch (v.getId()){
             case R.id.setting_back:
                 finish();
-                showToast("返回");
                 break;
             case R.id.person_setting_Ll:
-                showToast("0");
                 startNewUI(PersonalActivity.class);
                 break;
             case R.id.person_address_Ll:
-                showToast("1");
                 startNewUI(ManagerAddressActivity.class);
                 break;
             case R.id.Version_information_Ll:
                 showToast("2版本信息：V1.00版本\n我们正在持续更新中，谢谢支持！");
                 break;
             case R.id.Help_counseling_Ll:
-                showToast("3");
                 break;
             case R.id.Clear_cache_Ll:
-                showToast("4");
                 break;
             case R.id.Feedback_Ll:
                 startNewUI(FeedBackActivity.class);
-                showToast("5");
                 break;
             case R.id.exit_login:
-                showToast("退出当前账号");
                 exit_login();
-//                mySelfDialog.setOtherOnclickListener(new MySelfDialog.otherOnclickListener() {
-//                    @Override
-//                    public void onOtherClick() {
-//                        mySelfDialog.dismiss();
-//                    }
-//                });
-//                mySelfDialog.setMessage("亲，您确定要退出当前账号吗？");
-//                mySelfDialog.setNoOnclickListener("取消", new MySelfDialog.onNoOnclickListener() {
-//                    @Override
-//                    public void onNoClick() {
-//                        showToast("点击了取消按钮");
-//                        mySelfDialog.dismiss();
-//                    }
-//                });
-//                mySelfDialog.setYesOnclickListener("确定", new MySelfDialog.onYesOnclickListener() {
-//                    @Override
-//                    public void onYesClick() {
-//                        showToast("点击了确定按钮");
-//                        logout();
-//                        mySelfDialog.dismiss();
-//                        finish();
-//                    }
-//                });
-
-//                mySelfDialog.show();
-//                logout();
-//                finish();
                 break;
             default:
                 break;
         }
 
     }
+
     //退出登录方法
     private void exit_login() {
         mySelfDialog=new Dialog(this,R.style.custom_dialog);

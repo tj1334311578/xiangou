@@ -9,9 +9,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.main.User;
 import com.example.administrator.xiangou.net.RetrofitClient;
 import com.example.administrator.xiangou.net.XianGouApiService;
@@ -37,13 +37,13 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
             System.exit(0);
         }
     };
-    private Toast mToast;
 
+    private  GlideImageLoader mImageLoader;
     private CompositeSubscription mCompositeSubscription;
     //    public static ContextUtils bContextUtils;
     public static User bUser;
-    public static XianGouApiService mApiService;
     public static MySharedPreferences bSharedPreferences;
+    public static XianGouApiService mApiService;
     private CustomToast mCustomToast;
 
     //注册广播
@@ -70,6 +70,7 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        bContextUtils = ContextUtils.getInstance();
+        mImageLoader = new GlideImageLoader();
         bUser = ContextUtils.gUser;
         bSharedPreferences = ContextUtils.gSharedPreferences;
         mApiService = RetrofitClient.getInstance(this).create(XianGouApiService.class);
@@ -203,12 +204,12 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
         return (T) view;
     }
     /**
-     * Toast
+     * 定义需要的Toast
      * @param msg
      */
     public  void showToast(String msg){
         mCustomToast = CustomToast.createToast(getApplicationContext());
-        mCustomToast.setTitle("温馨提示").setIcon(R.mipmap.icon_app).setMsgNTime(msg).showToast();
+        mCustomToast.setMsgNTime(msg,2000).showToast();
     }
     public  void showToast(String title,String msg){
         mCustomToast = CustomToast.createToast(getApplicationContext());
@@ -244,8 +245,8 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     public void logout(){
         bSharedPreferences.putBoolean(MySharedPreferences.STATUS_LOGIN,false);
         showToast("now "+isLogined()+"");
-//        startNewUI(IDLoginActivity.class);
     }
+
     //双击退出APP
 //    public long firstTime=0;
 //    @Override
@@ -266,8 +267,30 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
 //        return super.onKeyUp(keyCode, event);
 //    }
 
-    //项目：
 
+    /**************** 项目 *****************/
+    /**
+     * 提供图片加载方法
+     * @param imgUrl 图片的网址（不需要加baseURL）
+     * @param imageView 显示图片的imageview控件
+     */
+    public void loadImg(String imgUrl, ImageView imageView) {
+        if (imgUrl!=null && imageView!=null) {
+            mImageLoader.displayImage(this, XianGouApiService.BASEURL + imgUrl, imageView);
+        }else {
+            showToast("图片资源为空");
+        }
+    }
+    //更新用户信息
+    public void upDateUserInfo(String info){
+        if (bSharedPreferences.getString("user_info",null)!=null){
+            bSharedPreferences.remove("user_info");
+        }
+        bSharedPreferences.putString("user_info",info);
+        if (!bSharedPreferences.getBoolean(MySharedPreferences.STATUS_LOGIN,false)) {
+            bSharedPreferences.putBoolean(MySharedPreferences.STATUS_LOGIN, true);
+        }
+    }
     //将本地存储的用户信息赋值给用户类对象
     public void setbUserBySP(String str) {
         String[] user = str.split(",");

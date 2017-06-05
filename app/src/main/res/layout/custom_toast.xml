@@ -13,15 +13,14 @@
         android:background="@drawable/toast_title_bg"
         android:textSize="18sp"
         android:gravity="center"
-        android:layout_margin="2dp"
         android:padding="6dp"
         android:id="@+id/title_toast_tv"
+        android:visibility="gone"
         />
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/content_toast_ll"
-        android:paddingTop="6dp"
         android:orientation="vertical"
         android:layout_gravity="center_horizontal"
         android:gravity="center_horizontal"
@@ -36,15 +35,21 @@
             android:layout_margin="6dp"
             android:background="@mipmap/icon_app"
             android:id="@+id/icon_content_toast_civ"
+            android:visibility="gone"
             />
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:gravity="center"
             android:id="@+id/text_content_toast_tv"
-            android:layout_margin="6dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:paddingLeft="9dp"
+            android:paddingRight="9dp"
+            android:text="积极考虑"
             android:textSize="14sp"
+            android:textColor="@color/white"
             />
     </LinearLayout>
 </LinearLayout>

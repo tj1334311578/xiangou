@@ -61,15 +61,17 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         return setContextView(inflater,container,R.layout.fragment_mine);
     }
 
-    //当fragment可见时再判断用户是否登录
-//    @Override
-//    public void setUserVisibleHint(boolean isVisibleToUser) {
-//        super.setUserVisibleHint(isVisibleToUser);
-//    }
 
     @Override
     public void onResume() {
         super.onResume();
+//        if (bSharedPreferences.getString("IDLogin_TelNumber",null)!=null &&
+//                bSharedPreferences.getString("IDLogin_PWD",null)!=null) {
+//            Log.e("user pwd", "onResume: " +bSharedPreferences.getString("IDLogin_TelNumber", null)+"-=-"+
+//                    bSharedPreferences.getString("IDLogin_PWD", null));
+//            mPresenter.IDlogin(bSharedPreferences.getString("IDLogin_TelNumber", null),
+//                    bSharedPreferences.getString("IDLogin_PWD", null));
+//        }
         showToast("isVisible:"+getUserVisibleHint()+"----isLogin"+isLogined()+"user id:"+bUser.getUser_id());
         if (getUserVisibleHint()){
             if (!isLogined()) {
@@ -88,13 +90,6 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         findContentView(R.id.mine_setup_iv);
         mMessageTv = findContentView(R.id.mine_message_tv);
         mHeadImgCiv = findContentView(R.id.mine_user_img_iv);
-
-        if (bUser.getHead_pic()==null){
-            mHeadImgCiv.setImageResource(R.mipmap.mine_user_img);
-        }else {
-            // TODO: 2017/4/13 set img
-        }
-
         mUserLevelTv = findContentView(R.id.mine_level_tv);
         mLevelNumberTv = findContentView(R.id.mine_level_number_tv);
         mUserNameTv = findContentView(R.id.mine_username_tv);
@@ -153,12 +148,6 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
                         break;
                     default:break;
                 }
-//                if (bUser.getType()==userType){
-//                    if (position==0)
-//                        position=3;
-//                    else
-//                    position-=1;
-//                }
                 Log.e("jjf", "onItemClick: "+position );
                 switch (position){
                     case 0:
@@ -182,11 +171,6 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
                             default:
                                 break;
                         }
-//                        if (bUser.getType()==userType){
-//                            startNewUI(MyStoreActivity.class);
-//                        }else {
-//                            startNewUIForResult(StoreApplicationActivity.class,APPLYCODE,"user_id",bUser.getUser_id());
-//                        }
                         break;
                     default:
                         break;
@@ -197,6 +181,11 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
     }
 
     private void initDate() {
+        if (bUser.getHead_pic()==null){
+            mHeadImgCiv.setImageResource(R.mipmap.mine_user_img);
+        }else {
+            loadImg(bUser.getHead_pic(),mHeadImgCiv);
+        }
         setTextToTv(mMessageTv,mine_MsgCount);
         setTextToTv(mUserLevelTv,"V"+bUser.getLevel());
         setTextToTv(mLevelNumberTv,bUser.getExperience());
@@ -210,17 +199,6 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         initSet();
     }
 
-    @Override
-    public void setTextToTv(TextView textView, Object data) {
-        if (data instanceof Integer){
-            if (((int)data)==0){
-                textView.setVisibility(View.INVISIBLE);
-            }else if (textView.getVisibility()!=View.VISIBLE){
-                textView.setVisibility(View.VISIBLE);
-            }
-        }
-        super.setTextToTv(textView, data);
-    }
     private void initSet() {
         //初始化数据
 //        Log.e("usertype", "initSet: " + bUser.getType());
@@ -235,24 +213,10 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
             default:
                 break;
         }
-//        if (bUser.getType()==userType){
-//            content_text[content_text.length-1]="我的店铺";
-//        }else {
-//            content_text[content_text.length-1]="申请店铺";
-//        }
         List<ItemImage> list=new ArrayList<>();
-//        Log.e("initSet", "initSet: "+content_text[content_text.length-1]);
         for (int i = 0; i <content_img.length ; i++) {
             list.add(new ItemImage(content_img[i],content_text[i]));
         }
-        //更改最后一个位置到第一个位置
-//        Log.e("tga", "initSet: "+bUser.getType()+"\n"+list.get(list.size()-1).getStr()+"\n"+list.get(0).getStr());
-
-//        if (bUser.getType()==userType) {
-//            list.add(0, new ItemImage(content_img[list.size()-1],content_text[list.size()-1]));
-//            list.remove(list.get(list.size()-1));
-////            Log.e("tga", "initSet: "+bUser.getType()+"\n"+list.get(list.size()-1).getStr()+"\n"+list.get(0).getStr());
-//        }
         switch (userType){
             case 3:
                 list.add(0, new ItemImage(content_img[list.size()-1],content_text[list.size()-1]));
@@ -263,6 +227,18 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         }
         MineAdapter adapter=new MineAdapter(getContext(),list);
         listView.setAdapter(adapter);
+    }
+
+    @Override
+    public void setTextToTv(TextView textView, Object data) {
+        if (data instanceof Integer){
+            if (((int)data)==0 && textView!=mLevelNumberTv){
+                textView.setVisibility(View.INVISIBLE);
+            }else if (textView.getVisibility()!=View.VISIBLE){
+                textView.setVisibility(View.VISIBLE);
+            }
+        }
+        super.setTextToTv(textView, data);
     }
 
     @Override
@@ -358,14 +334,12 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
 
     @Override
     public void sendFialRequest(String message) {
-
+        showToast(message);
     }
 
     @Override
     public void ReLoginidSuccess(LoginBean.DataBean data) {
-        if ( data.getStatus()== 0){
-            // TODO: 2017/5/22  
-        }
+        initDate();
     }
 
     public class MineAdapter extends BaseAdapter {
@@ -403,7 +377,7 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
                 viewHolder.textView= (TextView) convertView.findViewById(R.id.mine_item_text);
                 convertView.setTag(viewHolder);
             }else{
-                viewHolder= (ViewHolder) convertView.getTag();
+                viewHolder = (ViewHolder) convertView.getTag();
             }
 
             viewHolder.imageView.setImageResource(Datas.get(position).getSrc());

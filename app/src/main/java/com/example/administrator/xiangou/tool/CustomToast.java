@@ -55,9 +55,6 @@ public class CustomToast {
             mMsgTv = (TextView) mToastView.findViewById(R.id.text_content_toast_tv);
             mIconCIV = (CustomImageView) mToastView.findViewById(R.id.icon_content_toast_civ);
             setContentHorizontal(false);
-            //默认没有图片和title
-            mTitleTv.setVisibility(View.GONE);
-            mIconCIV.setVisibility(View.GONE);
 
             //获取屏幕高度
             WindowManager wm = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);

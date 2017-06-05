@@ -18,7 +18,6 @@
             android:paddingStart="13dp"
             android:gravity="center_vertical"
             android:layout_width="match_parent"
-            android:text="闲购粑粑和麻麻"
             android:layout_height="44dp" />
         <ImageView
             android:layout_width="wrap_content"

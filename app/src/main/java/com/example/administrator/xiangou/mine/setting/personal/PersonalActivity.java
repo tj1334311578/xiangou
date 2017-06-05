@@ -40,7 +40,6 @@ public class PersonalActivity extends MVPBaseActivity<PersonalContract.View, Per
     private ImageView back;
     private TextView nickname_Tv,sex_Tv;
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +55,20 @@ public class PersonalActivity extends MVPBaseActivity<PersonalContract.View, Per
         back=findContentView(R.id.setting_personal_back,true);
         nickname_Tv=findContentView(R.id.setting_personal_nickname_Tv,false);
         sex_Tv=findContentView(R.id.setting_personal_sex_Tv,false);
+
+        //根据上次记录设初始值
+        loadImg(bUser.getHead_pic(),person_img);
+        nickname_Tv.setText(bUser.getNickname());
+        String sex ;
+        switch (bUser.getSex()){
+            case 1:
+                sex = new String("男");
+            case 2:
+                sex = new String("女");
+            default:
+                sex = new String("");
+        }
+        sex_Tv.setText(sex);
     }
 
     @Override
@@ -88,9 +101,8 @@ public class PersonalActivity extends MVPBaseActivity<PersonalContract.View, Per
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (data!=null)
-        Log.e("data", "onActivityResult: "+data.toString()+"\nrequestCode:"+requestCode+"\nresultCode:"+resultCode);
         if (data!=null&&resultCode==RESULT_OK){
+        Log.e("data", "onActivityResult: "+data.toString()+"\nrequestCode:"+requestCode+"\nresultCode:"+resultCode);
         switch (requestCode){
             case 1:
                 setNickName(data);
@@ -114,7 +126,7 @@ public class PersonalActivity extends MVPBaseActivity<PersonalContract.View, Per
     }
     //设置头像
     private void setImg( Intent data) {
-                String imagePath = "";
+        String imagePath = "";
             if (data.getData() != null) {//有数据返回直接使用返回的图片地址
                 imagePath = ImageUtils.getFilePathByFileUri(this, data.getData());
 //                imgpathMap.put(requestCode,imagePath);
@@ -124,7 +136,7 @@ public class PersonalActivity extends MVPBaseActivity<PersonalContract.View, Per
                 uploadUserLogo(file);
             }
 //            update(requestCode,imgpathMap);// 刷新图片
-                    update(imagePath);
+        update(imagePath);
     }
 
     private void uploadUserLogo(MultipartBody.Part requestbody) {

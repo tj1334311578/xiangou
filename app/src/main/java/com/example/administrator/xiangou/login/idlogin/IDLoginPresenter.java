@@ -24,6 +24,9 @@ public class IDLoginPresenter extends BasePresenterImpl<IDLoginContract.View> im
                         switch (loginBean.getState().getCode()){
                             case 200:
                                 if (loginBean.getData()!=null){
+                                    //更新用户信息
+                                    setbUserBySP(loginBean.getData().toString());
+                                    upDateUserInfo(loginBean.getData().toString());
                                     mView.LoginidSuccess(loginBean.getData());
                                 }
                                 break;
@@ -46,5 +49,11 @@ public class IDLoginPresenter extends BasePresenterImpl<IDLoginContract.View> im
                     }
                 }
         );
+    }
+
+    @Override
+    public void saveInfo(String TelKey, String Tel, String PwdKey, String Pwd) {
+        bSharedPreferences.putString(TelKey,Tel);
+        bSharedPreferences.putString(PwdKey,Pwd);
     }
 }

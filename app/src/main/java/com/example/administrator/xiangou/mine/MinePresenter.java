@@ -13,49 +13,50 @@ import java.io.IOException;
 
 import okhttp3.ResponseBody;
 
-import static com.example.administrator.xiangou.tool.BaseActivity.bSharedPreferences;
-import static com.example.administrator.xiangou.tool.BaseActivity.bUser;
 
+public class MinePresenter extends BasePresenterImpl<MineContract.View> implements MineContract.Presenter{
 
-public class MinePresenter extends BasePresenterImpl<MineContract.View> implements MineContract.Presenter{@Override
-public void IDlogin(String userName, String password) {
-    Log.e("IDlogin", "enter：IDlogin"+ ContextUtils.MD5(password));
+    @Override
+    public void IDlogin(String userName, String password) {
+        Log.e("IDlogin", "enter：IDlogin "+userName+" p="+password+" --pwd: "+ ContextUtils.MD5(password));
+        addSubscription(
+                mApiService.loginID(userName, ContextUtils.MD5(password)),
 
-    addSubscription(
-            mApiService.loginID(userName, ContextUtils.MD5(password)),
-
-            new BaseSubscriber<LoginBean>(mView.getContext()) {
-                @Override
-                public void onNext(LoginBean loginBean) {
-                    switch (loginBean.getState().getCode()){
-                        case 200:
-                            if (loginBean.getData()!=null){
-                                mView.ReLoginidSuccess(loginBean.getData());
-                                bSharedPreferences.putString("user_info",loginBean.getData().toString());
-                                Log.e("User", "LoginidSuccess: "+ bUser.toString());
-                                mView.ReLoginidSuccess(loginBean.getData());
-                            }
-                            break;
-                        case 100:
-                        default:
-                            mView.sendFialRequest(loginBean.getState().getMsg());
-                            break;
+                new BaseSubscriber<LoginBean>(mView.getContext()) {
+                    @Override
+                    public void onNext(LoginBean loginBean) {
+                        switch (loginBean.getState().getCode()){
+                            case 200:
+                                if (loginBean.getData()!=null){
+                                    if (!bSharedPreferences.getString("user_info",null).equals(loginBean.getData().toString())){
+                                        setbUserBySP(loginBean.getData().toString());
+                                        upDateUserInfo(loginBean.getData().toString());
+                                        mView.ReLoginidSuccess(loginBean.getData());
+                                        Log.e("User", "LoginidSuccess: "+ bUser.toString());
+                                        return;
+                                    }
+                                }
+                                break;
+                            case 100:
+                            default:
+                                mView.sendFialRequest(loginBean.getState().getMsg());
+                                break;
+                        }
+                    }
+                    @Override
+                    public void onFinish() {
+                        Log.e("IDlogin", "onFinish：IDlogin");
+                        mView.hideLoading();
+                    }
+                    @Override
+                    public void onError(ExceptionHandle.ResponeThrowable e) {
+                        Log.e("IDlogin", e.code+"onError：" + e.getMessage());
+                        if (e.code ==1000)
+                            mView.sendFialRequest("账号或密码错误");
                     }
                 }
-                @Override
-                public void onFinish() {
-                    Log.e("IDlogin", "onFinish：IDlogin");
-                    mView.hideLoading();
-                }
-                @Override
-                public void onError(ExceptionHandle.ResponeThrowable e) {
-                    Log.e("IDlogin", e.code+"onError：" + e.getMessage());
-                    if (e.code ==1000)
-                        mView.sendFialRequest("账号或密码错误");
-                }
-            }
-    );
-}
+        );
+    }
 
     @Override
     public void ceshi(String channel, String order_sn, int amount) {

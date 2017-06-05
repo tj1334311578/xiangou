@@ -40,6 +40,9 @@ public class NicknameActivity extends BaseActivity {
         SaveTv= findContentView(R.id.setting_head_right);
         CleanTv=findContentView(R.id.setting_nickname_delimage);
         nickName=findContentView(R.id.setting_nickname_edit,false);
+        if (bUser.getNickname()!=null) {
+            nickName.setText(bUser.getNickname());
+        }
         TitleTv.setText("昵称");
         SaveTv.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG|Paint.ANTI_ALIAS_FLAG);
     }
@@ -51,8 +54,7 @@ public class NicknameActivity extends BaseActivity {
         }else if (v==SaveTv){
             // TODO: 2017/4/24上传到服务器数据
             if (!nickName.getText().toString().equals("")){
-            uploadNickname(nickName.getText().toString());
-            showToast("昵称修改成功！");
+                uploadNickname(nickName.getText().toString());
             }else{
                 showToast("昵称修改失败！\n可能存在原因：昵称修改为空");
             }
@@ -62,21 +64,30 @@ public class NicknameActivity extends BaseActivity {
 
     }
 
-    private void uploadNickname(String nickname) {
+    private void changeSuccess(){
+        finish();
+    }
+    private void uploadNickname(final String nickname) {
         addSubscription(mApiService.uploadUserDetials(bUser.getUser_id(),0,nickname,null),
                 new BaseSubscriber<PersonalDetialsBean>(this) {
                     @Override
                     public void onNext(PersonalDetialsBean Detial) {
                             if (Detial.getState().getCode()==200){
+                                showToast("昵称修改成功！");
+                                bUser.setNickname(nickname);
+                                upDateUserInfo(bUser.toString());
+
                                 Intent intent=new Intent();
-                                intent.putExtra("nickname",Detial.getData().toString());
+                                intent.putExtra("nickname",nickname);
                                 setResult(RESULT_OK,intent);
+
+                                changeSuccess();
                             }
                     }
 
                     @Override
                     public void onFinish() {
-                        finish();
+
                     }
 
                     @Override

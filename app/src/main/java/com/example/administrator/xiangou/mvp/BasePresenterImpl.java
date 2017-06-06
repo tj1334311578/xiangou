@@ -50,7 +50,7 @@ public class BasePresenterImpl<V extends BaseView> implements BasePresenter<V>{
 
     //更新用户信息
     public void upDateUserInfo(String info){
-        if (!bSharedPreferences.getString("user_info",null).equals(info)){
+        if (bSharedPreferences.getString("user_info",null)!=null&&!bSharedPreferences.getString("user_info",null).equals(info)){
             bSharedPreferences.putString("user_info",info);
         }
         if (!bSharedPreferences.getBoolean(MySharedPreferences.STATUS_LOGIN,false)) {

@@ -19,7 +19,6 @@ import android.widget.Toast;
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.classification.fragment.ClassificationTabActivity;
 import com.example.administrator.xiangou.goods_sort.Goods_rankingActivity;
-import com.example.administrator.xiangou.goods_sort.storehome.StoreHomeActivity;
 import com.example.administrator.xiangou.login.LoginBean;
 import com.example.administrator.xiangou.login.idlogin.IDLoginActivity;
 import com.example.administrator.xiangou.mine.couponpage.CouponPageActivity;
@@ -331,6 +330,7 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
 
     @Override
     public void ReLoginidSuccess(LoginBean.DataBean data) {
+        Log.e("nickname", "ReLoginidSuccess: " + data.getNickname());
         initDate();
     }
 

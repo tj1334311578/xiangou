@@ -1,6 +1,8 @@
 package com.example.administrator.xiangou.main;
 
 
+import android.util.Log;
+
 import com.example.administrator.xiangou.login.LoginBean;
 
 /**
@@ -21,7 +23,13 @@ public class User {
         user.user_id = data.getUser_id();
         user.sex = data.getSex();
         user.mobile = data.getMobile();
-        user.nickname = data.getNickname();
+        if (data.getNickname().length()>0&&data.getNickname().charAt(0) == '\"'){
+            String name = data.getNickname().split("\"")[1];
+            Log.e("split", "initDate: " + name);
+            user.nickname = name;
+        }else {
+            user.nickname = data.getNickname();
+        }
         user.type = data.getType();
         user.status = data.getStatus();
         user.head_pic = data.getHead_pic();

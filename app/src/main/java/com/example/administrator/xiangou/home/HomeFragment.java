@@ -3,6 +3,7 @@ package com.example.administrator.xiangou.home;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -17,6 +18,7 @@ import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.home.adapter.HomeAdapterRV;
 import com.example.administrator.xiangou.home.model.HomeDataBean;
 import com.example.administrator.xiangou.mvp.MVPBaseFragment;
+import com.example.administrator.xiangou.tool.ItemIntervalDecoration;
 
 public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresenter> implements HomeContract.View,View.OnClickListener {
     TextView mAddrTv;
@@ -25,7 +27,7 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
     ImageView mSearchIv;
     ImageView mScanIv;
     ImageView mNewsIv;
-    private RecyclerView mRvHome;
+    private RecyclerView mRvHome,mRecommendRv;
 
     private HomeDataBean.DataBean mDataBean;
     private HomeAdapterRV mAdapterHomeRv;
@@ -49,8 +51,12 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
     public void initView() {
         Log.e("date", "initView: "  );
         mRvHome = findContentView(R.id.rv_frag_home,false);
-        LinearLayoutManager glm = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,false);
-        mRvHome.setLayoutManager(glm);
+        mRecommendRv = findContentView(R.id.recommend_home_rv,false);
+        mRvHome.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,false));
+        mRecommendRv.setLayoutManager(
+                new GridLayoutManager(getContext(),2, GridLayoutManager.VERTICAL,false));
+        mRecommendRv.addItemDecoration(new ItemIntervalDecoration(8,0,0,0));
+//        mRecommendRv.setNestedScrollingEnabled(true);
         mAddrTv = findContentView(R.id.addrtv_topbar);
         mNewsTv = findContentView(R.id.news_num_topbar_tv);
         mNewsIv = findContentView(R.id.news_topbar_iv);

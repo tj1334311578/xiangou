@@ -165,6 +165,7 @@ public class IDLoginActivity extends MVPBaseActivity<IDLoginContract.View, IDLog
     @Override
     public void LoginidSuccess(LoginBean.DataBean data) {
         Log.e("User", "LoginidSuccess: "+ bUser.toString());
+        hasLogined();
         startNewUI(MainActivity.class);
         finish();
     }

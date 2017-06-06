@@ -48,7 +48,6 @@ public class BasePresenterImpl<V extends BaseView> implements BasePresenter<V>{
                 .subscribe(subscriber));
     }
 
-
     //更新用户信息
     public void upDateUserInfo(String info){
         if (!bSharedPreferences.getString("user_info",null).equals(info)){

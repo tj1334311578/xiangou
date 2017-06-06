@@ -176,6 +176,13 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
     public boolean isLogined(){
         return bSharedPreferences.getBoolean(MySharedPreferences.STATUS_LOGIN,false);
     }
+    //用户已登录
+    public boolean hasLogined(){
+        if (!bSharedPreferences.getBoolean(MySharedPreferences.STATUS_LOGIN,false)) {
+            bSharedPreferences.putBoolean(MySharedPreferences.STATUS_LOGIN, true);
+        }
+        return true;
+    }
     //判断用户注销
     public void logout(){
         bSharedPreferences.putBoolean(MySharedPreferences.STATUS_LOGIN,false);

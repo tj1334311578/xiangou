@@ -238,6 +238,13 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     public static boolean isLogined(){
         return bSharedPreferences.getBoolean(MySharedPreferences.STATUS_LOGIN,false);
     }
+    //用户已登录
+    public boolean hasLogined(){
+        if (!bSharedPreferences.getBoolean(MySharedPreferences.STATUS_LOGIN,false)) {
+            bSharedPreferences.putBoolean(MySharedPreferences.STATUS_LOGIN, true);
+        }
+        return true;
+    }
     /**
      * 注销用户
      * @return

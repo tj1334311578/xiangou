@@ -10,9 +10,42 @@
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/rv_frag_home"
         android:scrollbars="none"
         android:background="@color/homeBgColor">
+    </android.support.v7.widget.RecyclerView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        >
+        <ImageView
+            android:layout_width="14dp"
+            android:layout_height="14dp"
+            android:id="@+id/icon_recommend_home_iv"
+            android:src="@mipmap/cart_recommend_icon"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/text_recommend_home_tv"
+            android:layout_toRightOf="@id/icon_recommend_home_iv"
+            android:layout_alignBottom="@id/icon_recommend_home_iv"
+            android:text="为你推荐"
+            android:textColor="@color/textcolor_black"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:layout_marginLeft="3dp"
+            />
+    </LinearLayout>
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/recommend_home_rv"
+        android:layout_marginTop="13dp"
+        android:layout_below="@id/icon_recommend_home_iv"
+        >
     </android.support.v7.widget.RecyclerView>
 </LinearLayout>

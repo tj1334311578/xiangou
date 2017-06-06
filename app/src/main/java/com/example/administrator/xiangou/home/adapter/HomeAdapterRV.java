@@ -31,7 +31,7 @@ public class HomeAdapterRV extends RVBaseAdapter<HomeDataBean.DataBean> implemen
     public static final int TYPE_REFERRALS = 2;
     public static final int TYPE_ADVS = 3;
     public static final int TYPE_TOPIC = 4;
-    public static final int TYPE_DEFAULT = 5;
+//    public static final int TYPE_DEFAULT = 5;
     
     private RecyclerView mBoutiqueRv;
     private RecyclerView mReferralsRv;
@@ -45,12 +45,12 @@ public class HomeAdapterRV extends RVBaseAdapter<HomeDataBean.DataBean> implemen
     //数据源是类，所以重写此方法
     @Override
     public int getItemCount() {
-        return 6;
+        return 5;
     }
 
     @Override
     public int getItemViewType(int position) {
-        switch (position){
+        switch (position) {
             case 0:
                 return TYPE_BANNER;
             case 1:
@@ -62,7 +62,8 @@ public class HomeAdapterRV extends RVBaseAdapter<HomeDataBean.DataBean> implemen
             case 4:
                 return TYPE_TOPIC;
             default:
-                return TYPE_DEFAULT;
+                return -1;
+            //                return TYPE_DEFAULT;
         }
     }
 
@@ -108,9 +109,9 @@ public class HomeAdapterRV extends RVBaseAdapter<HomeDataBean.DataBean> implemen
             case TYPE_TOPIC:
                 setLayoutResId(R.layout.recycle_topic_home);
                 break;
-            case TYPE_DEFAULT:
-                setLayoutResId(R.layout.recycle_default_home);
-                break;
+//            case TYPE_DEFAULT:
+//                setLayoutResId(R.layout.recycle_default_home);
+//                break;
         }
         return super.onCreateViewHolder(parent, viewType);
     }
@@ -138,9 +139,9 @@ public class HomeAdapterRV extends RVBaseAdapter<HomeDataBean.DataBean> implemen
             case TYPE_TOPIC:
                 bindTopicType(holder,homeDataBean.getToptics().get(0).getAd_code(),homeDataBean.getGoods_toptics());
                 break;
-            case TYPE_DEFAULT:
-                bindDefaultType(holder,homeDataBean.getRecommened_list());
-                break;
+//            case TYPE_DEFAULT:
+//                bindDefaultType(holder,homeDataBean.getRecommened_list());
+//                break;
         }
     }
 
@@ -250,7 +251,6 @@ public class HomeAdapterRV extends RVBaseAdapter<HomeDataBean.DataBean> implemen
     }
     private void bindDefaultType(RVBaseViewHolder holder, List<HomeDataBean.DataBean.RecommenedListBean> recommened_list){
         mRecommendRv = holder.getRecyclerView(R.id.recommend_home_rv);
-
         mRecommendRv.setLayoutManager(
                 new GridLayoutManager(mContext,2, GridLayoutManager.VERTICAL,false));
         mRecommendRv.addItemDecoration(new ItemIntervalDecoration(8,0,0,0));

@@ -20,13 +20,16 @@ public class IDLoginPresenter extends BasePresenterImpl<IDLoginContract.View> im
                 new BaseSubscriber<LoginBean>(mView.getContext()) {
                     @Override
                     public void onNext(LoginBean loginBean) {
-                        Log.e("next", "onNext: " +loginBean.getData().toString()+"\n"+loginBean.getState().toString());
+                        Log.e("next", "onNext333333: " +loginBean.getData().toString()+"\n"+loginBean.getState().toString());
                         switch (loginBean.getState().getCode()){
                             case 200:
                                 if (loginBean.getData()!=null){
                                     //更新用户信息
+                                    Log.e("code", "onNext: 1"+loginBean.getState().getCode() );
                                     setbUserBySP(loginBean.getData().toString());
+                                    Log.e("code", "onNext: 2"+loginBean.getState().getCode() );
                                     upDateUserInfo(loginBean.getData().toString());
+                                    Log.e("code", "onNext: 3"+loginBean.getState().getCode() );
                                     mView.LoginidSuccess(loginBean.getData());
                                 }
                                 break;

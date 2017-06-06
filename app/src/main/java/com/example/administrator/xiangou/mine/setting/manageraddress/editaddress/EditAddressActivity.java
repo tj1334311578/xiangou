@@ -194,7 +194,7 @@ public class EditAddressActivity extends MVPBaseActivity<EditAddressContract.Vie
             TextView cancelBtn = (TextView) dialogView.findViewById(R.id.cancel_change_address_btn);
             cancelBtn.setOnClickListener(this);
             sureBtn.setOnClickListener(this);
-            Log.e("dialog", "createDialog: w: " +dialogView.getMeasuredWidth()+" h:"+dialogView.getMeasuredHeight());
+            Log.e("multiselectionspinner_dialog", "createDialog: w: " +dialogView.getMeasuredWidth()+" h:"+dialogView.getMeasuredHeight());
             mDialog.setCancelable(false);//点击外部不关闭
         }
     }

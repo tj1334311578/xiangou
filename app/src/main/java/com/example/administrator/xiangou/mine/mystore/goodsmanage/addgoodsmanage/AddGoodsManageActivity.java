@@ -19,6 +19,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -38,10 +39,12 @@ import com.example.administrator.xiangou.tool.ImageQualityUtil;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import io.apptik.widget.multiselectspinner.MultiSelectSpinner;
 
 
 /**
@@ -69,6 +72,10 @@ public class AddGoodsManageActivity extends MVPBaseActivity<AddGoodsManageContra
     private final String PHOTO_FILE_NAME = "temp_photo.jpg";
     private IntoAddGoodPageBean.DataBean mdata;
 
+    private MultiSelectSpinner myMultispinner;
+    private static boolean[] selecteds;
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -84,8 +91,7 @@ public class AddGoodsManageActivity extends MVPBaseActivity<AddGoodsManageContra
         titleTv.setText("添加商品");
         backBtn=findContentView(R.id.store_headback);
         releaseBtn=findContentView(R.id.goods_management_addgoods_releasebtn);
-        good_classification=findContentView(R.id.goods_management_addgoods_classification_text);
-        classificationBtn=findContentView(R.id.goods_management_addgoods_classification_btn);
+
         good_model=findContentView(R.id.goods_management_addgoods_model_text);
         modelBtn=findContentView(R.id.goods_management_addgoods_model_btn);
         good_Labels=findContentView(R.id.goods_management_addgoods_labels_text);
@@ -103,10 +109,7 @@ public class AddGoodsManageActivity extends MVPBaseActivity<AddGoodsManageContra
         isRecommend_yes=findContentView(R.id.goods_management_addgoods_isrecommend_check,false);
         initCheckBox(isRecommend_yes,R.id.goods_management_addgoods_isrecommend_check,
                 isRecommend_no,R.id.goods_management_addgoods_isnotrecommend_check);
-//        freeShipping_no=findContentView(R.id.goods_management_addgoods_isnotwhether_check,false);
-//        freeShipping_yes=findContentView(R.id.goods_management_addgoods_iswhether_check,false);
-//        initCheckBox(freeShipping_yes,R.id.goods_management_addgoods_iswhether_check,
-//                freeShipping_no,R.id.goods_management_addgoods_isnotwhether_check);
+
         gridView=findContentView(R.id.goods_management_addgoods_updown_grid,false);
 
 
@@ -124,7 +127,40 @@ public class AddGoodsManageActivity extends MVPBaseActivity<AddGoodsManageContra
             }
         });
         //给在其他区域点击操作
+        List<String > strs=new ArrayList<>();
+        for (int i = 0; i < mdata.getCate().size(); i++) {
+            strs.add(mdata.getModel().get(i).getName());
+        }
+        myMultispinner=findContentView(R.id.goods_management_addgoods_multiselectspinner,false);
+        ArrayAdapter<String> adapter=new ArrayAdapter<String>(getContext(),android.R.layout.simple_list_item_multiple_choice,strs);
+        myMultispinner.setListAdapter(adapter).setMinSelectedItems(1).setMaxSelectedItems(3);
+        final   List<Integer> item_ids=new ArrayList<>();
+        myMultispinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                Log.e("position1", "onItemClick: "+Arrays.toString(myMultispinner.getSelected()));
+                selecteds = myMultispinner.getSelected();
+                Log.e("position2", "onItemClick: "+Arrays.toString(selecteds));
+                        item_ids.clear();
+                for (int i = 0; i < selecteds.length; i++) {
+                    if (selecteds[i]){
+                        item_ids.add(mdata.getModel().get(i).getModel_id());
+                    }
+                }
+                Log.e("selecteds", "initView: "+item_ids.toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+//                Log.e("position2", "onItemClick: "+ Arrays.toString(myMultispinner.getSelected()));
+            }
+        });
+
+
+
     }
+
+
     /**
      * 选择图片对话框
      */
@@ -261,9 +297,9 @@ public class AddGoodsManageActivity extends MVPBaseActivity<AddGoodsManageContra
             case R.id.goods_management_addgoods_releasebtn://发布新商品
                 showToast("发布新商品");
                 break;
-            case R.id.goods_management_addgoods_classification_btn://进入商品分类扩展页
-                showToast("进入商品分类扩展页");
-                break;
+//            case R.id.goods_management_addgoods_classification_btn://进入商品分类扩展页
+//                showToast("进入商品分类扩展页");
+//                break;
             case R.id.goods_management_addgoods_model_btn://进入模型扩展页
                 showToast("进入商品模型扩展页");
                 break;

@@ -1,5 +1,7 @@
 package com.example.administrator.xiangou.mvp;
 
+import android.util.Log;
+
 import com.example.administrator.xiangou.main.User;
 import com.example.administrator.xiangou.net.RetrofitClient;
 import com.example.administrator.xiangou.net.XianGouApiService;
@@ -50,9 +52,11 @@ public class BasePresenterImpl<V extends BaseView> implements BasePresenter<V>{
 
     //更新用户信息
     public void upDateUserInfo(String info){
+        Log.e("", "upDateUserInfo: save0" );
         if (bSharedPreferences.getString("user_info",null)!=null&&!bSharedPreferences.getString("user_info",null).equals(info)){
             bSharedPreferences.putString("user_info",info);
         }
+        Log.e("info", "upDateUserInfo: save");
         if (!bSharedPreferences.getBoolean(MySharedPreferences.STATUS_LOGIN,false)) {
             bSharedPreferences.putBoolean(MySharedPreferences.STATUS_LOGIN, true);
         }

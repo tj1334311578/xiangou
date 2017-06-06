@@ -167,6 +167,7 @@ public class IDLoginActivity extends MVPBaseActivity<IDLoginContract.View, IDLog
         Log.e("User", "LoginidSuccess: "+ bUser.toString());
         hasLogined();
         startNewUI(MainActivity.class);
+        Log.e("code", "onNext: 4" );
         finish();
     }
 

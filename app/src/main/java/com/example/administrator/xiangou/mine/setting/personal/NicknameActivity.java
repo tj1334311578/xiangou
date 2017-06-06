@@ -76,7 +76,7 @@ public class NicknameActivity extends BaseActivity {
                                 showToast("昵称修改成功！");
                                 bUser.setNickname(nickname);
                                 upDateUserInfo(bUser.toString());
-
+                                Log.e("nickname", "onNext: "+nickname );
                                 Intent intent=new Intent();
                                 intent.putExtra("nickname",nickname);
                                 setResult(RESULT_OK,intent);

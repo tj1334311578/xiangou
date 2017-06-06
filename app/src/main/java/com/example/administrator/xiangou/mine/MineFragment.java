@@ -119,6 +119,11 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
                 }
             }
         });
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
         //获取用户类型
         userType=bUser.getType();
 //        userType=3;

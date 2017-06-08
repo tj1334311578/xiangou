@@ -4,9 +4,9 @@
     android:id="@+id/goods_tags_item_tv"
     android:text="爆款"
     android:textSize="14sp"
-    android:layout_marginTop="16dp"
-    android:layout_marginStart="10dp"
-    android:textColor="@drawable/goods_tags_item_textbg"
+    android:layout_marginTop="14dp"
+    android:layout_marginEnd="25dp"
     android:background="@drawable/goods_tags_item_textbg"
+    android:textColor="@drawable/goods_tags_item_textcolor"
     android:gravity="center"
     android:layout_height="21dp" />

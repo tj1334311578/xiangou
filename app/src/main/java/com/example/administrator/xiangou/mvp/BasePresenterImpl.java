@@ -1,8 +1,5 @@
 package com.example.administrator.xiangou.mvp;
 
-import android.util.Log;
-
-import com.example.administrator.xiangou.login.LoginBean;
 import com.example.administrator.xiangou.main.User;
 import com.example.administrator.xiangou.net.RetrofitClient;
 import com.example.administrator.xiangou.net.XianGouApiService;

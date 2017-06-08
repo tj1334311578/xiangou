@@ -36,18 +36,18 @@ public class GoodsTagActivity extends BaseActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.goods_tags);
-        signs= (List<IntoAddGoodPageBean.DataBean.SignBeanX>) getIntent().getSerializableExtra("tags");
-        Log.e("signs", "onCreate: "+signs.toString() );
-
+        signs = (List<IntoAddGoodPageBean.DataBean.SignBeanX>) getIntent().getSerializableExtra("tags");
+        Log.e("signs", "onCreate: " + signs.toString());
         initView();
     }
 
+
     private void initView() {
         findContentView(R.id.goods_tags_back);
-        saveBtn=findContentView(R.id.goods_tags_saved);
-        tagFlowLayout=findContentView(R.id.goods_tags_tagflowlayout,false);
+        saveBtn = findContentView(R.id.goods_tags_saved);
+        tagFlowLayout = findContentView(R.id.goods_tags_tagflowlayout, false);
         //初始化数据
-        final List<String> tags=new ArrayList<>();
+        final List<String> tags = new ArrayList<>();
         for (int i = 0; i < signs.size(); i++) {
             tags.add(signs.get(i).getName());
         }
@@ -56,33 +56,45 @@ public class GoodsTagActivity extends BaseActivity {
         tagFlowLayout.setAdapter(new TagAdapter<String>(tags) {
             @Override
             public View getView(FlowLayout parent, int position, String s) {
-                View view =LayoutInflater.from(getBaseContext()).inflate(R.layout.goods_tags_item,tagFlowLayout,false);
-                TextView tv= (TextView) view.findViewById(R.id.goods_tags_item_tv);
-//                tv.setTextColor(getBaseContext().getResources().getColor(R.color.gray_6a747e));
+                View view = LayoutInflater.from(getBaseContext()).inflate(R.layout.goods_tags_item, tagFlowLayout, false);
+                TextView tv = (TextView) view.findViewById(R.id.goods_tags_item_tv);
+//                tv.setTextColor(getBaseContext().getResources().getColor(R.color.gray_6a747e));//在xml中设置了选择器则无需再代码中设置该属性
                 tv.setText(s);
                 return view;
             }
         });
+
+
         tagFlowLayout.setOnTagClickListener(new TagFlowLayout.OnTagClickListener() {
             @Override
             public boolean onTagClick(View view, int position, FlowLayout parent) {
-                showToast( tags.get(position));
-                TextView tv= (TextView) view.findViewById(R.id.goods_tags_item_tv);
-//                tagFlowLayout.getSelectedList().toArray();
-
-//                if (tagFlowLayout.getSelectedList().size()!=0){
-//                for ( Integer pos : tagFlowLayout.getSelectedList()) {
-//                    if (pos==position){
-//                        tv.setTextColor(getResources().getColor(R.color.white));
-//                        tv.setBackground(getResources().getDrawable(R.drawable.goods_tags_item_textbg_selected));
-//                    }else{
-//                        tv.setTextColor(getResources().getColor(R.color.gray_6a747e));
-//                        tv.setBackground(getResources().getDrawable(R.drawable.goods_tags_item_textbg_default));
+                showToast(tags.get(position));
+//                int[] poss=new int[tagFlowLayout.getSelectedList().size()];
+////                tagFlowLayout.getSelectedList().toArray();
+//                int i=0;
+//                for (Integer pos:tagFlowLayout.getSelectedList()) {
+//                    poss[i]=pos;
+//                    i++;
+//                }
+//                for (int j = 0; j <poss.length; j++) {
+//                    Log.e("poss" ,"poss["+j+"]"+ poss[j]+"size:"+poss.length);
+//                    if (position==poss[j]){
+//                        ((TextView)view).setTextColor(getResources().getColor(R.color.white));
 //                    }
 //                }
-//                }else{
-                    tv.setTextColor(getResources().getColor(R.color.gray_6a747e));
-                    tv.setBackground(getResources().getDrawable(R.drawable.goods_tags_item_textbg_default));
+//                if (tagFlowLayout.getSelectedList().size() != 0) {
+//                    for (Integer pos : tagFlowLayout.getSelectedList()) {
+//                        if (pos == position) {
+//                            tv.setTextColor(getResources().getColor(R.color.white));
+//                            tv.setBackground(getResources().getDrawable(R.drawable.goods_tags_item_textbg_selected));
+//                        } else {
+//                            tv.setTextColor(getResources().getColor(R.color.gray_6a747e));
+//                            tv.setBackground(getResources().getDrawable(R.drawable.goods_tags_item_textbg_default));
+//                        }
+//                    }
+//                } else {
+//                    tv.setTextColor(getResources().getColor(R.color.gray_6a747e));
+//                    tv.setBackground(getResources().getDrawable(R.drawable.goods_tags_item_textbg_default));
 //                }
                 return true;
 
@@ -91,14 +103,14 @@ public class GoodsTagActivity extends BaseActivity {
         tagFlowLayout.setOnSelectListener(new TagFlowLayout.OnSelectListener() {
             @Override
             public void onSelected(Set<Integer> selectPosSet) {
-                Log.e("selectposSet:", "onSelected: "+selectPosSet.toString() );
+                Log.e("selectposSet:", "onSelected: " + selectPosSet.toString());
             }
         });
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.goods_tags_back://返回
                 finish();
                 break;

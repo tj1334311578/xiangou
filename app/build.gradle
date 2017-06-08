@@ -68,4 +68,7 @@ dependencies {
     //添加标签布局依赖
     compile 'com.zhy:flowlayout-lib:1.0.3'
 
+    //添加客服选的spinner
+    compile 'io.apptik.widget:multiselectspinner:1.0.12'
+
 }

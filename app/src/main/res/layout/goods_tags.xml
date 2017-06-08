@@ -57,8 +57,8 @@
         android:layout_width="match_parent"
         android:id="@+id/goods_tags_tagflowlayout"
         android:paddingStart="15dp"
-        android:paddingEnd="15dp"
         app:max_select="5"
+        app:auto_select_effect="true"
         android:layout_below="@id/goods_tags_tv"
         android:layout_height="match_parent">
     </com.zhy.view.flowlayout.TagFlowLayout>

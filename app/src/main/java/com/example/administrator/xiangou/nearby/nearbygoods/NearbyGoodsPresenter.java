@@ -18,7 +18,7 @@ public class NearbyGoodsPresenter extends BasePresenterImpl<NearbyGoodsContract.
             @Override
             public void onNext(NearbyGoodsDataBean nearbyGoodsDataBean) {
                 if (nearbyGoodsDataBean.getState().getCode()==200){
-                    Log.e("nearbygoods", "onNext: " + nearbyGoodsDataBean.toString());
+//                    Log.e("nearbygoods", "onNext: " + nearbyGoodsDataBean.toString());
                     mView.sendDataBeanToView(nearbyGoodsDataBean.getData());
                 }
             }

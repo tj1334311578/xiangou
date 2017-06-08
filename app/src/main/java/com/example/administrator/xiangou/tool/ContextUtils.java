@@ -52,9 +52,6 @@ public class ContextUtils extends Application{
         gSharedPreferences = new MySharedPreferences(this,"xiangouSPsave");
         gUser = User.getUser();
     }
-// TODO: you need
-
-
 
 //this is base method
 

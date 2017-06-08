@@ -3,7 +3,6 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-              android:layout_marginBottom="5dp"
               android:background="@color/whiteBgColor">
 
     <LinearLayout
@@ -45,5 +44,6 @@
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/child_boutique_recycle"></android.support.v7.widget.RecyclerView>
+        android:id="@+id/child_boutique_recycle"
+        ></android.support.v7.widget.RecyclerView>
 </LinearLayout>

@@ -6,7 +6,6 @@ import android.os.CountDownTimer;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,7 +66,7 @@ public class NearbyPreferentialFragment extends MVPBaseFragment<NearbyPreferenti
 //                mPresenter.dealTimeLimitModuleCall(hTv, mTv, sTv);
 
                 mCountDownTime = data.getFlash().getEnd_time()-data.getFlash().getCurrent_time()-(System.currentTimeMillis()-mPreTime);
-                Log.e("downtiem", "bindHolder2: " + mCountDownTime);
+//                Log.e("downtiem", "bindHolder2: " + mCountDownTime);
                 CountDownTimer timer = new CountDownTimer(mCountDownTime,1000) {
                     @Override
                     public void onTick(long millisUntilFinished) {
@@ -88,7 +87,7 @@ public class NearbyPreferentialFragment extends MVPBaseFragment<NearbyPreferenti
                 timer.start();
             }
         });
-        Log.e("NearbyBenifitDataBean", "sendPreferentialDataToView: " +data.toString() );
+//        Log.e("NearbyBenifitDataBean", "sendPreferentialDataToView: " +data.toString() );
         recyclerView.setAdapter(mPreferentialAdapter);
     }
 

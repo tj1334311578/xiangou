@@ -37,7 +37,7 @@ public class ManagerAddressActivity extends MVPBaseActivity<ManagerAddressContra
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.manageraddress);
-        mPresenter.getUserAddressList(bUser.getUser_id(),"get");
+        mPresenter.getUserAddressList(getUser().getUser_id(),"get");
         initView();
     }
 
@@ -83,7 +83,7 @@ public class ManagerAddressActivity extends MVPBaseActivity<ManagerAddressContra
                             Log.e("data look", "dealCheckBox: 0=" + data.get(0)+"\n"+position+"="+data.get(position));
                         }
                         toUpdataView(0,data.size());
-                        mPresenter.setDefaultAddress(bUser.getUser_id(), data.get(0).getAddress_id());
+                        mPresenter.setDefaultAddress(getUser().getUser_id(), data.get(0).getAddress_id());
                     }
                 }
             }
@@ -109,7 +109,7 @@ public class ManagerAddressActivity extends MVPBaseActivity<ManagerAddressContra
                 delDialog.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        mPresenter.deleteUserAddress(bUser.getUser_id(), data.get(position).getAddress_id());
+                        mPresenter.deleteUserAddress(getUser().getUser_id(), data.get(position).getAddress_id());
                         Log.e("position", "onClick: " + position+" = "+ adapter.getDatas().size());
                         adapter.getDatas().remove(position);
                         Log.e("position", "onClick: " + adapter.getDatas().size());
@@ -134,7 +134,7 @@ public class ManagerAddressActivity extends MVPBaseActivity<ManagerAddressContra
             finish();
         }else if (v==newaddressBtn){
             UserAddressBean.DataBean dataBean = new UserAddressBean.DataBean();
-            dataBean.setUser_id(bUser.getUser_id());
+            dataBean.setUser_id(getUser().getUser_id());
             String[] keys = {"edit_address","type"};
             Object[] values = {dataBean,"add"};
             startNewUICarryStr(EditAddressActivity.class,keys,values);
@@ -173,6 +173,6 @@ public class ManagerAddressActivity extends MVPBaseActivity<ManagerAddressContra
     @Override
     protected void onRestart() {
         super.onRestart();
-        mPresenter.getUserAddressList(bUser.getUser_id(),"get");
+        mPresenter.getUserAddressList(getUser().getUser_id(),"get");
     }
 }

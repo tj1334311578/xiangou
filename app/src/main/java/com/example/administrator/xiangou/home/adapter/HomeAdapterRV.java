@@ -2,6 +2,7 @@ package com.example.administrator.xiangou.home.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,9 +11,9 @@ import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.base.RVBaseAdapter;
 import com.example.administrator.xiangou.base.RVBaseViewHolder;
 import com.example.administrator.xiangou.home.model.HomeDataBean;
+import com.example.administrator.xiangou.net.XianGouApiService;
 import com.example.administrator.xiangou.tool.CustomImageView;
 import com.example.administrator.xiangou.tool.GlideImageLoader;
-import com.example.administrator.xiangou.tool.ItemIntervalDecoration;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
@@ -31,12 +32,14 @@ public class HomeAdapterRV extends RVBaseAdapter<HomeDataBean.DataBean> implemen
     public static final int TYPE_REFERRALS = 2;
     public static final int TYPE_ADVS = 3;
     public static final int TYPE_TOPIC = 4;
-//    public static final int TYPE_DEFAULT = 5;
+    public static final int TYPE_DEFAULT = 5;
     
     private RecyclerView mBoutiqueRv;
     private RecyclerView mReferralsRv;
     private RecyclerView mTopicRv;
     private RecyclerView mRecommendRv;
+
+    private boolean isFirst= true;
 
     public HomeAdapterRV(Context context, HomeDataBean.DataBean mData) {
         super(context, mData);
@@ -45,7 +48,7 @@ public class HomeAdapterRV extends RVBaseAdapter<HomeDataBean.DataBean> implemen
     //数据源是类，所以重写此方法
     @Override
     public int getItemCount() {
-        return 5;
+        return 6;
     }
 
     @Override
@@ -61,9 +64,11 @@ public class HomeAdapterRV extends RVBaseAdapter<HomeDataBean.DataBean> implemen
                 return TYPE_ADVS;
             case 4:
                 return TYPE_TOPIC;
+            case 5:
+                return TYPE_DEFAULT;
             default:
                 return -1;
-            //                return TYPE_DEFAULT;
+
         }
     }
 
@@ -77,12 +82,10 @@ public class HomeAdapterRV extends RVBaseAdapter<HomeDataBean.DataBean> implemen
 //                @Override
 //                public int getSpanSize(int position) {
 //                            return gridLayoutManager.getSpanCount();
-//
 //                }
 //            });
 //        }
 //    }
-
 
     /**
      * 因为我们recyclerview里嵌套不同的item布局，正所谓一个萝卜一个坑，因此我们要根据不同的viewtype去获取不同的viewholder，
@@ -109,9 +112,9 @@ public class HomeAdapterRV extends RVBaseAdapter<HomeDataBean.DataBean> implemen
             case TYPE_TOPIC:
                 setLayoutResId(R.layout.recycle_topic_home);
                 break;
-//            case TYPE_DEFAULT:
-//                setLayoutResId(R.layout.recycle_default_home);
-//                break;
+            case TYPE_DEFAULT:
+                setLayoutResId(R.layout.recycle_default_home);
+                break;
         }
         return super.onCreateViewHolder(parent, viewType);
     }
@@ -123,7 +126,7 @@ public class HomeAdapterRV extends RVBaseAdapter<HomeDataBean.DataBean> implemen
                 List<String> imgUrls = new ArrayList<>();
                 for (HomeDataBean.DataBean.AdTopBean url: homeDataBean.getAd_top()
                         ) {
-                    imgUrls.add(url.getAd_code());
+                    imgUrls.add(XianGouApiService.IMGBASEURL+url.getAd_code());
                 }
                 bindBannerType(holder,imgUrls);
                 break;
@@ -139,9 +142,9 @@ public class HomeAdapterRV extends RVBaseAdapter<HomeDataBean.DataBean> implemen
             case TYPE_TOPIC:
                 bindTopicType(holder,homeDataBean.getToptics().get(0).getAd_code(),homeDataBean.getGoods_toptics());
                 break;
-//            case TYPE_DEFAULT:
-//                bindDefaultType(holder,homeDataBean.getRecommened_list());
-//                break;
+            case TYPE_DEFAULT:
+                bindDefaultType(holder,homeDataBean.getRecommened_list());
+                break;
         }
     }
 
@@ -180,15 +183,20 @@ public class HomeAdapterRV extends RVBaseAdapter<HomeDataBean.DataBean> implemen
         mBoutiqueRv = holder.getRecyclerView(R.id.child_boutique_recycle);
         mBoutiqueRv.setLayoutManager(
                 new GridLayoutManager(mBoutiqueRv.getContext(),4, GridLayoutManager.VERTICAL,false));
-        mBoutiqueRv.setPadding(30,11,30,8);
-        mBoutiqueRv.addItemDecoration(
-                new ItemIntervalDecoration(16,0,0,0));
-        mBoutiqueRv.setNestedScrollingEnabled(false);
+//        ItemIntervalDecoration decoration = new ItemIntervalDecoration(30,0,0,0);
+//        if (isFirst) {
+//            isFirst =false;
+//        }else {
+//            mBoutiqueRv.removeItemDecoration(decoration);
+//        }
+//        mBoutiqueRv.addItemDecoration(decoration);
+//        mBoutiqueRv.setNestedScrollingEnabled(false);
 //mContext,R.layout.item_boutique_recycle,list
         BoutiqueAdapterRV mAdapter = new BoutiqueAdapterRV(mContext,R.layout.item_boutique_recycle,store_list);
         mAdapter.setOnItemViewClickListener(this);
         mBoutiqueRv.setAdapter(mAdapter);
     }
+
     private void bindReferralsType(RVBaseViewHolder holder, List<HomeDataBean.DataBean.GoodsPerfectBean> goods_perfect){
 //        TextView mAllr = holder.getTextView(R.id.enterseeall_referrals_recycle);
 //        mAllr.setOnClickListener(new View.OnClickListener() {
@@ -200,15 +208,14 @@ public class HomeAdapterRV extends RVBaseAdapter<HomeDataBean.DataBean> implemen
         mReferralsRv = holder.getRecyclerView(R.id.child_referrals_recycle);
         mReferralsRv.setLayoutManager(
                 new GridLayoutManager(mReferralsRv.getContext(),5, GridLayoutManager.VERTICAL,false));
-        mReferralsRv.setPadding(8,11,8,9);
-        mReferralsRv.addItemDecoration(
-                new ItemIntervalDecoration(5,0,0,0));
-        mReferralsRv.setNestedScrollingEnabled(false);
+//        mReferralsRv.addItemDecoration(new ItemIntervalDecoration(5,0,0,0));
+//        mReferralsRv.setNestedScrollingEnabled(false);
 
         ReferralsAdapterRV mAdapter = new ReferralsAdapterRV(mContext,R.layout.item_referrals_recycle,goods_perfect);
         mAdapter.setOnItemViewClickListener(this);
         mReferralsRv.setAdapter(mAdapter);
     }
+
     private void bindAdvsType(RVBaseViewHolder holder, String ad_code){
         CustomImageView mAdvsCiv = holder.getCustomView(R.id.civ_item_advs_recycle);
         if (ad_code!=null && mAdvsCiv!=null)
@@ -229,6 +236,9 @@ public class HomeAdapterRV extends RVBaseAdapter<HomeDataBean.DataBean> implemen
 //            }
 //        });
         CustomImageView mTopicCiv = holder.getCustomView(R.id.advs_topic_civ);
+//        holder.getTextView(R.id.type_advs_topic_tv).setText();
+//        holder.getTextView(R.id.title_advs_topic_tv).setText();
+//        holder.getTextView(R.id.get_advs_topic_tv);
         mTopicRv = holder.getRecyclerView(R.id.child_topic_recycle);
         if (mTopicCiv!=null && toptics!=null){
             loadImg(toptics,mTopicCiv);
@@ -240,10 +250,9 @@ public class HomeAdapterRV extends RVBaseAdapter<HomeDataBean.DataBean> implemen
 //            });
         }
         mTopicRv.setLayoutManager(
-                new GridLayoutManager(mTopicRv.getContext(),6, GridLayoutManager.VERTICAL,false));
-        mTopicRv.setPadding(8,8,8,5);
-        mTopicRv.addItemDecoration(new ItemIntervalDecoration(7,0,0,0));
-        mTopicRv.setNestedScrollingEnabled(true);
+                new LinearLayoutManager(mTopicRv.getContext(), LinearLayoutManager.HORIZONTAL,false));
+//        mTopicRv.addItemDecoration(new ItemIntervalDecoration(8,0,0,0));
+//        mTopicRv.setNestedScrollingEnabled(true);
 
         TopicAdapterRV mAdapter = new TopicAdapterRV(mContext,R.layout.item_topic_recycle,goods_toptics);
         mAdapter.setOnItemViewClickListener(this);
@@ -253,8 +262,8 @@ public class HomeAdapterRV extends RVBaseAdapter<HomeDataBean.DataBean> implemen
         mRecommendRv = holder.getRecyclerView(R.id.recommend_home_rv);
         mRecommendRv.setLayoutManager(
                 new GridLayoutManager(mContext,2, GridLayoutManager.VERTICAL,false));
-        mRecommendRv.addItemDecoration(new ItemIntervalDecoration(8,0,0,0));
-        mRecommendRv.setNestedScrollingEnabled(true);
+//        mRecommendRv.addItemDecoration(new ItemIntervalDecoration(8,0,0,0));
+//        mRecommendRv.setNestedScrollingEnabled(true);
 
         RecommendAdapterRv recommend = new RecommendAdapterRv(mContext,R.layout.item_recommend_home_recycle,recommened_list);
         mRecommendRv.setAdapter(recommend);

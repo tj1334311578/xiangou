@@ -83,7 +83,7 @@ public class StoreHomeFragment extends MVPBaseFragment<StoreHomeContract.View, S
 //        showstore=findContentView(R.id.home_store_head_showStore,false);
 //        findContentView(R.id.home_store_head_Return,true);
         //网络获取数据
-        mPresenter.dealStoreHomeCall(1,bUser.getUser_id());
+        mPresenter.dealStoreHomeCall(1,getUser().getUser_id());
     }
 
     private void initHeadView(HomePageBean dataBean) {

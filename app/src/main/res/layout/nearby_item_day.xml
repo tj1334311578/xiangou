@@ -12,10 +12,10 @@
         android:layout_marginLeft="5dp"
         android:id="@+id/item_day"
         android:layout_toRightOf="@+id/day_bg"
-        android:textColor="@color/textcolor_pink"/>
+        android:textColor="@color/color_pink_fb4a89"/>
     <View
         android:layout_width="2dp"
-        android:background="@color/textcolor_pink"
+        android:background="@color/color_pink_fb4a89"
         android:id="@+id/day_bg"
         android:layout_alignTop="@id/item_day"
         android:layout_marginLeft="1dp"

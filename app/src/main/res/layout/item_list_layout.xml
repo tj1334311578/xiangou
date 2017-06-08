@@ -19,7 +19,7 @@
         android:layout_width="2dp"
         android:id="@+id/left_id"
         android:visibility="gone"
-        android:background="@color/textcolor_pink"
+        android:background="@color/color_pink_fb4a89"
         android:layout_marginStart="1dp"
         android:layout_centerVertical="true"
         android:layout_height="13dp"/>

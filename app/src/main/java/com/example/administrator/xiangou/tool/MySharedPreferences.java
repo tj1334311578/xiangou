@@ -23,6 +23,34 @@ public class MySharedPreferences {
         mSharedPreferences = mContext.getSharedPreferences(name,Context.MODE_PRIVATE);
         mSpEditor = mSharedPreferences.edit();
     }
+
+    //判断用户是否登录
+    public boolean isLogined(){
+        return mSharedPreferences.getBoolean(MySharedPreferences.STATUS_LOGIN,false);
+    }
+    //用户已登录
+    public boolean hasLogined(){
+        if (!mSharedPreferences.getBoolean(MySharedPreferences.STATUS_LOGIN,false)) {
+            putBoolean(MySharedPreferences.STATUS_LOGIN, true);
+        }
+        return true;
+    }
+    //判断用户注销
+    public void logout(){
+        putBoolean(MySharedPreferences.STATUS_LOGIN,false);
+    }
+
+    //更新用户信息
+    public void upDateUserInfo(String info){
+//        if (mSharedPreferences.getString("user_info",null)!=null){
+//            remove("user_info");
+//        }
+        putString("user_info",info);
+        if (!mSharedPreferences.getBoolean(MySharedPreferences.STATUS_LOGIN,false)) {
+           putBoolean(MySharedPreferences.STATUS_LOGIN, true);
+        }
+    }
+
     /**
      * 向SP存入指定key对应的数据
      * 其中value可以是String、boolean、float、int、long等各种基本类型的值

@@ -12,7 +12,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -21,7 +20,7 @@ import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.classification.bean.FirstLevelBean;
 import com.example.administrator.xiangou.net.BaseSubscriber;
 import com.example.administrator.xiangou.net.ExceptionHandle;
-import com.example.administrator.xiangou.tool.BaseFragmentActivity;
+import com.example.administrator.xiangou.tool.BaseActivity;
 import com.example.administrator.xiangou.tool.ContextUtils;
 
 import java.util.ArrayList;
@@ -33,7 +32,7 @@ import static android.view.View.GONE;
  * Created by Administrator on 2017/4/17.
  */
 
-public class ClassificationTabActivity extends BaseFragmentActivity {
+public class ClassificationTabActivity extends BaseActivity {
     private TextView[] tvList;
     private View[] lines;
     private View[] views;
@@ -213,7 +212,7 @@ public class ClassificationTabActivity extends BaseFragmentActivity {
             }
         }
         tvList[id].setBackgroundColor(getResources().getColor(R.color.white));
-        tvList[id].setTextColor(getResources().getColor(R.color.textcolor_pink));
+        tvList[id].setTextColor(getResources().getColor(R.color.color_pink_fb4a89));
         lines[id].setVisibility(View.VISIBLE);
     }
 

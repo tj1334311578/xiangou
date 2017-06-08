@@ -13,7 +13,7 @@
         android:textSize="15sp"
         android:gravity="center_vertical"
         android:textColor="@color/white"
-        android:background="@color/textcolor_pink"
+        android:background="@color/color_pink_fb4a89"
         android:paddingStart="31dp"
         android:layout_below="@id/myorder_detail_head"
         android:id="@+id/myorder_detail_status"

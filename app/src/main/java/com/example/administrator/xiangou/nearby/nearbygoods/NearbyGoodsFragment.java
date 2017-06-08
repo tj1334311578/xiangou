@@ -69,7 +69,7 @@ public class NearbyGoodsFragment extends MVPBaseFragment<NearbyGoodsContract.Vie
 
         //网络请求附近商品页的数据
         //        if (mDataBeanList)
-        Log.e("附近距离", "initView: " + getNearyDistance());
+//        Log.e("附近距离", "initView: " + getNearyDistance());
         mPresenter.dealNearbyGoodsCall(null,null,getNearyDistance());
     }
 

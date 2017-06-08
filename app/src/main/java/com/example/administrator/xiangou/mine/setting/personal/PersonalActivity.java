@@ -14,6 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.administrator.xiangou.R;
+import com.example.administrator.xiangou.login.Captcha;
 import com.example.administrator.xiangou.mvp.MVPBaseActivity;
 import com.example.administrator.xiangou.net.BaseSubscriber;
 import com.example.administrator.xiangou.net.ExceptionHandle;
@@ -34,7 +35,8 @@ import static okhttp3.MultipartBody.Part.createFormData;
  *  邮箱 784787081@qq.com
  */
 
-public class PersonalActivity extends MVPBaseActivity<PersonalContract.View, PersonalPresenter> implements PersonalContract.View {
+public class PersonalActivity extends MVPBaseActivity<PersonalContract.View, PersonalPresenter>
+        implements PersonalContract.View {
     private RelativeLayout img_setting,nickname,sex;
     private CustomImageView person_img;
     private ImageView back;
@@ -48,6 +50,7 @@ public class PersonalActivity extends MVPBaseActivity<PersonalContract.View, Per
     }
 
     private void initView() {
+        Log.e("PersonalActivity", "initView: " +getUser().toString());
         img_setting=findContentView(R.id.setting_personal_Rl,true);
         person_img=findContentView(R.id.setting_personal_img);
         nickname=findContentView(R.id.setting_personal_nickname_Rl,true);
@@ -57,10 +60,10 @@ public class PersonalActivity extends MVPBaseActivity<PersonalContract.View, Per
         sex_Tv=findContentView(R.id.setting_personal_sex_Tv,false);
 
         //根据上次记录设初始值
-        loadImg(bUser.getHead_pic(),person_img);
-        nickname_Tv.setText(bUser.getNickname());
+        loadImg(getUser().getHead_pic(),person_img);
+        nickname_Tv.setText(getUser().getNickname());
         String sex ;
-        switch (bUser.getSex()){
+        switch (getUser().getSex()){
             case 1:
                 sex = new String("男");
             case 2:
@@ -129,24 +132,26 @@ public class PersonalActivity extends MVPBaseActivity<PersonalContract.View, Per
         String imagePath = "";
             if (data.getData() != null) {//有数据返回直接使用返回的图片地址
                 imagePath = ImageUtils.getFilePathByFileUri(this, data.getData());
+                Log.e("urlpath", "setImg: " + imagePath+"\n"+data.getData().getScheme());
 //                imgpathMap.put(requestCode,imagePath);
                 File img = new File(imagePath);
                 RequestBody requestbody=RequestBody.create(MediaType.parse("multipart/form-data"),img);
                 MultipartBody.Part file = createFormData("head_img",img.getName(),requestbody);
-                uploadUserLogo(file);
+                uploadUserLogo(data,file);
             }
+        loadImg(data.getData(),person_img);
 //            update(requestCode,imgpathMap);// 刷新图片
-        update(imagePath);
+//        update(imagePath);
     }
 
-    private void uploadUserLogo(MultipartBody.Part requestbody) {
-//        Log.e("uploadUserLogo", "uploadUserLogo: "+requestbody.toString() );
-        addSubscription(mApiService.uploadUserDetials(bUser.getUser_id(),0,"",requestbody),
-                new BaseSubscriber<PersonalDetialsBean>(this) {
+    private void uploadUserLogo(final Intent data, MultipartBody.Part requestbody) {
+        Log.e("uploadUserLogo", "uploadUserLogo: "+requestbody.toString() );
+        addSubscription(mApiService.uploadUserDetials(getUser().getUser_id(),0,"",requestbody),
+                new BaseSubscriber<Captcha>(this) {
                     @Override
-                    public void onNext(PersonalDetialsBean personalDetialsBean) {
-                        Log.e("onNext", "onNext: "+personalDetialsBean.getState().getCode()+"\ndata:"+personalDetialsBean.getData().toString());
-                        if ( personalDetialsBean.getState().getCode()==200 ){
+                    public void onNext(Captcha captcha) {
+                        Log.e("onNext", "onNext: "+captcha.toString());
+                        if ( captcha.getState().getCode()==200 ){
                             showToast("头像修改成功！");
                         }else{
                             showToast("头像修改失败！");
@@ -155,12 +160,11 @@ public class PersonalActivity extends MVPBaseActivity<PersonalContract.View, Per
 
                     @Override
                     public void onFinish() {
-
                     }
 
                     @Override
                     public void onError(ExceptionHandle.ResponeThrowable e) {
-
+                        Log.e("imgerror", "onError: " +e.toString() );
                     }
                 }
                 );
@@ -173,5 +177,11 @@ public class PersonalActivity extends MVPBaseActivity<PersonalContract.View, Per
         Drawable drawable=new BitmapDrawable(BitmapFactory.decodeFile(imagePath));
         // TODO: 2017/6/2 图片保存到本地 
         person_img.setImageDrawable(drawable);
+    }
+
+    @Override
+    protected void onDestroy() {
+        getSP().upDateUserInfo(getUser().toString());
+        super.onDestroy();
     }
 }

@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/item_present_price_tv"
         android:textSize="12sp"
-        android:textColor="@color/textcolor_pink"
+        android:textColor="@color/color_pink_fb4a89"
         android:layout_below="@id/item_more_item_text"
         />
     <TextView

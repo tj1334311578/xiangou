@@ -1,7 +1,5 @@
 package com.example.administrator.xiangou.nearby.nearbypreferential;
 
-import android.util.Log;
-
 import com.example.administrator.xiangou.mvp.BasePresenterImpl;
 import com.example.administrator.xiangou.nearby.apimodel.NearbyBenifitDataBean;
 import com.example.administrator.xiangou.net.BaseSubscriber;
@@ -11,13 +9,13 @@ public class NearbyPreferentialPresenter extends BasePresenterImpl<NearbyPrefere
 
     @Override
     public void dealNearbyPreferentialCall(String mapX, String mapY) {
-        Log.e("dealnearbystore", "dealNearbystoreCall: ");
+//        Log.e("dealnearbystore", "dealNearbystoreCall: ");
         addSubscription(mApiService.callNearbyBenifit(mapX, mapY),
                 new BaseSubscriber<NearbyBenifitDataBean>(mView.getContext()) {
                     @Override
                     public void onNext(NearbyBenifitDataBean nearbyBenifitDataBean) {
                         if (nearbyBenifitDataBean.getState().getCode()==200){
-                            Log.e("NearbyPreferential", "onNext: " + nearbyBenifitDataBean.getData().toString());
+//                            Log.e("NearbyPreferential", "onNext: " + nearbyBenifitDataBean.getData().toString());
                             mView.sendPreferentialDataToView(nearbyBenifitDataBean.getData());
                         }
                     }
@@ -29,7 +27,7 @@ public class NearbyPreferentialPresenter extends BasePresenterImpl<NearbyPrefere
 
                     @Override
                     public void onError(ExceptionHandle.ResponeThrowable e) {
-                        Log.e("错误", "onError: " + e.getMessage());
+//                        Log.e("错误", "onError: " + e.getMessage());
                     }
                 });
     }

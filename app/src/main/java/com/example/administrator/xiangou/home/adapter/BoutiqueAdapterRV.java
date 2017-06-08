@@ -23,7 +23,9 @@ public class BoutiqueAdapterRV extends RVBaseAdapter<HomeDataBean.DataBean.Store
     @Override
     protected void bindData(RVBaseViewHolder holder, HomeDataBean.DataBean.StoreListBean storeListBean, int position) {
         CustomImageView mCustomImageView = holder.getCustomView(R.id.civ_item_boutique_recycle);
-        loadImg(storeListBean.getLogo(),mCustomImageView);
+        if (storeListBean.getLogo()!=null) {
+            loadImg(storeListBean.getLogo(), mCustomImageView);
+        }
         TextView mTextView = holder.getTextView(R.id.tv_item_boutique_recycle);
         mTextView.setText(storeListBean.getName());
     }

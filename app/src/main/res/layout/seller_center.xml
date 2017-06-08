@@ -3,11 +3,11 @@
     android:layout_width="match_parent"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    android:background="@color/textcolor_pink"
+    android:background="@color/color_pink_fb4a89"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="wrap_content">
     <RelativeLayout
-        android:background="@color/textcolor_pink"
+        android:background="@color/color_pink_fb4a89"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/seller_center_headRL"
@@ -95,7 +95,7 @@
                 android:layout_marginTop="1dp"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
-                android:background="@color/textcolor_pink"
+                android:background="@color/color_pink_fb4a89"
                 android:orientation="vertical"
                 android:gravity="center">
                 <TextView
@@ -120,7 +120,7 @@
                 android:layout_marginTop="1dp"
                 android:layout_marginStart="1dp"
                 android:layout_marginEnd="1dp"
-                android:background="@color/textcolor_pink"
+                android:background="@color/color_pink_fb4a89"
                 android:orientation="vertical"
                 android:gravity="center">
                 <TextView
@@ -141,7 +141,7 @@
             <LinearLayout
                 android:layout_weight="1"
                 android:layout_width="match_parent"
-                android:background="@color/textcolor_pink"
+                android:background="@color/color_pink_fb4a89"
                 android:layout_marginTop="1dp"
                 android:layout_height="80dp"
                 android:orientation="vertical"

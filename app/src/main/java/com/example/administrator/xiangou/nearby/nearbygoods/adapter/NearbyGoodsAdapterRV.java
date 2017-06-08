@@ -14,7 +14,6 @@ import com.example.administrator.xiangou.base.RVBaseAdapter;
 import com.example.administrator.xiangou.base.RVBaseViewHolder;
 import com.example.administrator.xiangou.nearby.apimodel.NearbyGoodsDataBean;
 import com.example.administrator.xiangou.net.XianGouApiService;
-import com.example.administrator.xiangou.tool.ContextUtils;
 import com.example.administrator.xiangou.tool.GlideImageLoader;
 import com.example.administrator.xiangou.tool.ItemIntervalDecoration;
 import com.youth.banner.Banner;
@@ -108,7 +107,7 @@ public class NearbyGoodsAdapterRV extends RVBaseAdapter<NearbyGoodsDataBean.Data
 
         mItemRv = holder.getRecyclerView(R.id.child_goods_nearby_rv);
         mItemRv.setLayoutManager(new GridLayoutManager(mItemRv.getContext(),4, GridLayoutManager.VERTICAL,false));
-        mItemRv.setPadding(ContextUtils.dp2px(8),ContextUtils.dp2px(8),ContextUtils.dp2px(8),ContextUtils.dp2px(8));
+//        mItemRv.setPadding(ContextUtils.dp2px(8),ContextUtils.dp2px(8),ContextUtils.dp2px(8),ContextUtils.dp2px(8));
         if (isFirst) {
             isFirst =false;
         }else {

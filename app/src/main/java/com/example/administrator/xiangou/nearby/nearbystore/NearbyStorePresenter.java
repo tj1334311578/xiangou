@@ -17,7 +17,7 @@ public class NearbyStorePresenter extends BasePresenterImpl<NearbyStoreContract.
                     @Override
                     public void onNext(NearbyStoreApiDataBean nearbyStoreApiDataBean) {
                         if (nearbyStoreApiDataBean.getState().getCode()==200) {
-                            Log.e("storedata", "onNext: " + nearbyStoreApiDataBean.getData().toString());
+//                            Log.e("storedata", "onNext: " + nearbyStoreApiDataBean.getData().toString());
                             mView.sendStoreDataToView(nearbyStoreApiDataBean.getData());
                         }
                     }
@@ -29,7 +29,7 @@ public class NearbyStorePresenter extends BasePresenterImpl<NearbyStoreContract.
 
                     @Override
                     public void onError(ExceptionHandle.ResponeThrowable e) {
-                        Log.e("nearbystore", "onError: " +e.getMessage());
+//                        Log.e("nearbystore", "onError: " +e.getMessage());
                         mView.sendFialRequest(e.getMessage());
                     }
 

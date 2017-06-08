@@ -152,7 +152,7 @@
             android:textSize="14sp"
             android:background="#ffe6e8"
             android:id="@+id/simple_goodsdetails_colorandsize_addtocart"
-            android:textColor="@color/textcolor_pink"
+            android:textColor="@color/color_pink_fb4a89"
             android:gravity="center"
             android:layout_height="match_parent" />
         <TextView
@@ -162,7 +162,7 @@
             android:text="立即购买"
             android:id="@+id/simple_goodsdetails_colorandsize_buynow"
             android:textSize="14sp"
-            android:background="@color/textcolor_pink"
+            android:background="@color/color_pink_fb4a89"
             android:gravity="center"
             android:layout_height="match_parent" />
     </LinearLayout>

@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.administrator.xiangou.login.LoginBean;
 import com.example.administrator.xiangou.main.User;
 import com.example.administrator.xiangou.net.XianGouApiService;
 
@@ -35,19 +36,20 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
 
     private  GlideImageLoader mImageLoader;
     private CompositeSubscription mCompositeSubscription;
-    public User bUser;
-    public MySharedPreferences bSharedPreferences;
     public View mContextView;
     private CustomToast mCustomToast;
 
+    public static User getUser(){
+        return ContextUtils.gUser;
+    }
+    public static MySharedPreferences getSP(){
+        return ContextUtils.gSharedPreferences;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        bUser = ContextUtils.gUser;
-        bSharedPreferences = ContextUtils.gSharedPreferences;
         mImageLoader = new GlideImageLoader();
-        Log.e("onCreate", "onCreate: "+bUser.toString() );
     }
 
     @Nullable
@@ -172,22 +174,6 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
         Toast.makeText(mActivity, msg, Toast.LENGTH_SHORT).show();
     }
 
-    //判断用户是否登录
-    public boolean isLogined(){
-        return bSharedPreferences.getBoolean(MySharedPreferences.STATUS_LOGIN,false);
-    }
-    //用户已登录
-    public boolean hasLogined(){
-        if (!bSharedPreferences.getBoolean(MySharedPreferences.STATUS_LOGIN,false)) {
-            bSharedPreferences.putBoolean(MySharedPreferences.STATUS_LOGIN, true);
-        }
-        return true;
-    }
-    //判断用户注销
-    public void logout(){
-        bSharedPreferences.putBoolean(MySharedPreferences.STATUS_LOGIN,false);
-        showToast("now "+isLogined()+"");
-    }
 
     /**************** 项目 *****************/
     /**
@@ -196,41 +182,106 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
      * @param imageView 显示图片的imageview控件
      */
     public void loadImg(String imgUrl, ImageView imageView) {
-        if (imgUrl!=null && imageView!=null) {
+        if (imgUrl!=null) {
             mImageLoader.displayImage(getContext(), XianGouApiService.IMGBASEURL + imgUrl, imageView);
         }else {
             showToast("图片资源为空");
         }
     }
-    //更新用户信息
-    public void upDateUserInfo(String info){
-        if (bSharedPreferences.getString("user_info",null)!=null){
-            bSharedPreferences.remove("user_info");
-        }
-        bSharedPreferences.putString("user_info",info);
-        if (!bSharedPreferences.getBoolean(MySharedPreferences.STATUS_LOGIN,false)) {
-            bSharedPreferences.putBoolean(MySharedPreferences.STATUS_LOGIN, true);
-        }
-    }
+
     //将本地存储的用户信息赋值给用户类对象
-    public void setbUserBySP(String str) {
-        String[] user = str.split(",");
-        bUser.setUser_id(Integer.parseInt(user[0]));
-        bUser.setSex(Integer.parseInt(user[1]));
-        bUser.setMobile(user[2]);
-        bUser.setNickname(user[3]);
-        bUser.setType(Integer.parseInt(user[4]));
-        bUser.setStatus(Integer.parseInt(user[5]));
-        bUser.setHead_pic(user[6]);
-        bUser.setCoupon_count(Integer.parseInt(user[7]));
-        bUser.setFollow(Integer.parseInt(user[8]));
-        bUser.setWaitPay(Integer.parseInt(user[9]));
-        bUser.setWaitSend(Integer.parseInt(user[10]));
-        bUser.setWaitReceive(Integer.parseInt(user[11]));
-        bUser.setWaitCcomment(Integer.parseInt(user[12]));
-        bUser.setOrder_count(Integer.parseInt(user[13]));
-        bUser.setRefund(Integer.parseInt(user[14]));
-        bUser.setExperience(Integer.parseInt(user[15]));
-        bUser.setLevel(Integer.parseInt(user[16]));
+    public void setbUserBySP(Object obj) {
+//        String[] user = str.split(",");
+//        getUser().setUser_id(Integer.parseInt(user[0]));
+//        getUser().setSex(Integer.parseInt(user[1]));
+//        getUser().setMobile(user[2]);
+//        String nickName = user[3];
+//        if (nickName.charAt(0) == '\"'){
+//            String[] as = nickName.split("\"");
+//            nickName = as[0];
+//            for (String s:as
+//                    ) {
+//                if (nickName.length()<s.length()){
+//                    nickName = s;
+//                }
+//            }
+//        }
+//        getUser().setNickname(nickName);
+//        getUser().setNickname(user[3]);
+//        getUser().setType(Integer.parseInt(user[4]));
+//        getUser().setStatus(Integer.parseInt(user[5]));
+//        getUser().setHead_pic(user[6]);
+//        getUser().setCoupon_count(Integer.parseInt(user[7]));
+//        getUser().setFollow(Integer.parseInt(user[8]));
+//        getUser().setWaitPay(Integer.parseInt(user[9]));
+//        getUser().setWaitSend(Integer.parseInt(user[10]));
+//        getUser().setWaitReceive(Integer.parseInt(user[11]));
+//        getUser().setWaitCcomment(Integer.parseInt(user[12]));
+//        getUser().setOrder_count(Integer.parseInt(user[13]));
+//        getUser().setRefund(Integer.parseInt(user[14]));
+//        getUser().setExperience(Integer.parseInt(user[15]));
+//        getUser().setLevel(Integer.parseInt(user[16]));
+        if (obj instanceof String){
+            getUser().setbUserBySP((String) obj);
+        }else {
+            getUser().setUser((LoginBean.DataBean) obj);
+        }
+        Log.e("baseAt", "setbUserBySP: success " +getUser().toString());
     }
+
+    //用户登录方法
+//    public void callIDlogin(String userName, String password) {
+//        Log.e("baseAt", "enter：IDlogin "+userName+" p="+password+" --pwd: "+ ContextUtils.MD5(password));
+//        if (userName!=null&&password!=null) {
+//            addSubscription( mApiService.loginID(userName, ContextUtils.MD5(password)),
+//                    new BaseSubscriber<LoginBean>(getContext()) {
+//                        @Override
+//                        public void onNext(LoginBean loginBean) {
+//                            switch (loginBean.getState().getCode()) {
+//                                case 200:
+//                                    if (loginBean.getData() != null) {
+//                                        if (!bSharedPreferences.getString("user_info", null).equals(loginBean.getData().toString())) {
+//                                            setbUserBySP(loginBean.getData().toString());
+//                                            upDateUserInfo(loginBean.getData().toString());
+//                                            // mView.ReLoginidSuccess(loginBean.getData());
+//                                            mLoginCall.callSuccess(loginBean.getData());
+//                                            Log.e("baseAt", "LoginidSuccess: buser" + bUser.toString());
+//                                            return;
+//                                        }
+//                                    }
+//                                    break;
+//                                case 100:
+//                                default:
+//                                    //                                    mView.sendFialRequest(loginBean.getState().getMsg());
+//                                    break;
+//                            }
+//                        }
+//
+//                        @Override
+//                        public void onFinish() {
+//                            Log.e("baseAt", "onFinish：IDlogin");
+//                            //                            mView.hideLoading();
+//                        }
+//
+//                        @Override
+//                        public void onError(ExceptionHandle.ResponeThrowable e) {
+//                            Log.e("baseAt", e.code + " onError：" + e.getMessage());
+//                            mLoginCall.callError(e);
+//                            //                            if (e.code == 1000)
+//                            //                                mView.sendFialRequest("账号或密码错误");
+//                        }
+//                    }
+//            );
+//        }
+//
+//    }
+//    public interface LoginCall{
+//        void callSuccess(LoginBean.DataBean data);
+//        void callError(ExceptionHandle.ResponeThrowable e);
+//        void callDealMore(Object o);
+//    }
+//    protected LoginCall mLoginCall;
+//    public void setLoginCall(LoginCall mLoginCall){
+//            this.mLoginCall = mLoginCall;
+//        }
 }

@@ -49,8 +49,8 @@ public class IDLoginActivity extends MVPBaseActivity<IDLoginContract.View, IDLog
         IDLogin_Backimg = (ImageView) findViewById(R.id.mainlogin_back);
         IDLogin_Userimg = findContentView(R.id.mainlogin_img,false);
         //头像加载
-        if (bUser.getHead_pic()!=null) {
-            loadImg(bUser.getHead_pic(), IDLogin_Userimg);
+        if (getUser().getHead_pic()!=null) {
+            loadImg(getUser().getHead_pic(), IDLogin_Userimg);
         }
         IDLogin_Cls = (ImageView) findViewById(R.id.mainlogin_clean);
         IDLogin_Cls.setOnClickListener(this);
@@ -132,8 +132,8 @@ public class IDLoginActivity extends MVPBaseActivity<IDLoginContract.View, IDLog
     @Override
     protected void onStart() {
         super.onStart();
-        IDLogin_TelNumber.setText(bSharedPreferences.getString("IDLogin_TelNumber",""));
-        IDLogin_PWD.setText(bSharedPreferences.getString("IDLogin_PWD",""));
+        IDLogin_TelNumber.setText(getSP().getString("IDLogin_TelNumber",""));
+        IDLogin_PWD.setText(getSP().getString("IDLogin_PWD",""));
     }
 
     @Override
@@ -164,8 +164,8 @@ public class IDLoginActivity extends MVPBaseActivity<IDLoginContract.View, IDLog
     //登录请求成功
     @Override
     public void LoginidSuccess(LoginBean.DataBean data) {
-        Log.e("User", "LoginidSuccess: "+ bUser.toString());
-        hasLogined();
+        Log.e("IDloginAt", "LoginidSuccess: user "+ getUser().toString());
+        getSP().hasLogined();
         startNewUI(MainActivity.class);
         finish();
     }

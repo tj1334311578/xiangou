@@ -127,7 +127,7 @@ public class SettingActivity extends MVPBaseActivity<SettingContract.View, Setti
         makeSureBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                logout();
+                getSP().logout();
                 mySelfDialog.dismiss();
                 finish();
             }

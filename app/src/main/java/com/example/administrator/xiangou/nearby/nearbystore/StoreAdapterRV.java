@@ -1,7 +1,6 @@
 package com.example.administrator.xiangou.nearby.nearbystore;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -29,8 +28,7 @@ public class StoreAdapterRV extends RVBaseAdapter<NearbyStoreApiDataBean.DataBea
 
     @Override
     protected void bindData(RVBaseViewHolder holder, NearbyStoreApiDataBean.DataBean storeBean, final int position) {
-//        (CustomImageView) holder.getView(R.id.title_nearby_store_child).findViewById(R.id.icon_title_store)
-        Log.e("storebean", "bindData: " +storeBean.toString() );
+//        Log.e("storebean", "bindData: " +storeBean.toString() );
         loadImg(storeBean.getLogo(), holder.getCustomView(R.id.icon_title_store));
         holder.getTextView(R.id.text_title_store).setText(storeBean.getName());
         holder.getTextView(R.id.distance_title_store).setText("< "+storeBean.getDistance()+"m");

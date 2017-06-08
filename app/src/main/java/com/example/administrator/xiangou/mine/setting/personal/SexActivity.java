@@ -13,8 +13,6 @@ import android.widget.TextView;
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.net.BaseSubscriber;
 import com.example.administrator.xiangou.net.ExceptionHandle;
-import com.example.administrator.xiangou.net.RetrofitClient;
-import com.example.administrator.xiangou.net.XianGouApiService;
 import com.example.administrator.xiangou.tool.BaseActivity;
 
 
@@ -26,14 +24,11 @@ public class SexActivity extends BaseActivity {
     private ImageView backBtn;
     private TextView TitleTv,SaveTv;
     private RadioButton Rtb_nan,Rtb_nv;
-    protected XianGouApiService mApiService;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.setting_sex);
-        //不加会报空指针
-        mApiService = RetrofitClient.getInstance(this).create(XianGouApiService.class);
         initView();
     }
 
@@ -71,8 +66,8 @@ public class SexActivity extends BaseActivity {
     }
 
     private void uploadSex(int sex_tag) {
-        Log.e("sex", "uploadSex: "+sex_tag +"\nbUser:"+bUser.getUser_id());
-        addSubscription(mApiService.uploadUserDetials(bUser.getUser_id(),sex_tag,null,null),
+        Log.e("sex", "uploadSex: "+sex_tag +"\nbUser:"+getUser().getUser_id());
+        addSubscription(mApiService.uploadUserDetials(getUser().getUser_id(),sex_tag,null,null),
                 new BaseSubscriber<PersonalDetialsBean>(this) {
                     @Override
                     public void onNext(PersonalDetialsBean Detial) {

@@ -19,7 +19,7 @@
     android:layout_width="match_parent"
     android:textSize="14sp"
     android:id="@+id/coupon_item_viable_style"
-    android:textColor="@color/textcolor_pink"
+    android:textColor="@color/color_pink_fb4a89"
     android:layout_height="wrap_content"
     android:text="店铺券 • 轩轩格调店铺"/>
     <com.example.administrator.xiangou.tool.DashedLine
@@ -27,7 +27,7 @@
         android:layout_height= "1dp"
         android:layout_marginTop="4dp"
         android:layout_marginBottom="20dp"
-        dash:lineColor= "@color/textcolor_pink"  />
+        dash:lineColor= "@color/color_pink_fb4a89"  />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -69,7 +69,7 @@
             android:id="@+id/coupon_item_viable_use"
             android:textSize="14sp"
             android:background="@drawable/coupon_item_userable"
-            android:textColor="@color/textcolor_pink"
+            android:textColor="@color/color_pink_fb4a89"
             android:layout_marginEnd="10dp"
             android:layout_gravity="center"/>
     </LinearLayout>

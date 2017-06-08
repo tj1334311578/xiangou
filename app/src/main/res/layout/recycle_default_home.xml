@@ -1,21 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="200dp"
-              android:paddingLeft="8dp"
-                android:paddingRight="8dp"
-              android:background="@color/whiteBgColor">
+    android:layout_height="wrap_content"
+                android:layout_marginTop="8dp">
 
 
-    <ImageView
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/whiteBgColor"
+        android:padding="8dp"
+        >
+        <ImageView
         android:layout_width="14dp"
         android:layout_height="14dp"
+        android:layout_marginLeft="8dp"
+        android:layout_gravity="center_vertical"
         android:id="@+id/icon_recommend_home_iv"
         android:src="@mipmap/cart_recommend_icon"/>
-    <TextView
+        <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
         android:id="@+id/text_recommend_home_tv"
         android:layout_toRightOf="@id/icon_recommend_home_iv"
         android:layout_alignBottom="@id/icon_recommend_home_iv"
@@ -23,15 +31,18 @@
         android:textColor="@color/textcolor_black"
         android:textSize="14sp"
         android:gravity="center"
-        android:layout_marginLeft="3dp"
+        android:layout_marginLeft="5dp"
         />
+
+    </LinearLayout>
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/recommend_home_rv"
-        android:layout_marginTop="13dp"
-        android:layout_below="@id/icon_recommend_home_iv"
+        android:layout_marginTop="5dp"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
         >
     </android.support.v7.widget.RecyclerView>
 
-</RelativeLayout>
+</LinearLayout>

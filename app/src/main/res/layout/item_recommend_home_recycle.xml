@@ -1,19 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="wrap_content"
     android:gravity="center_horizontal"
+    android:background="@color/whiteBgColor"
+    android:layout_marginLeft="4dp"
+    android:layout_marginRight="4dp"
+    android:layout_marginBottom="6dp"
+    android:paddingBottom="10dp"
     >
 
+    <!--android:layout_width="168dp"-->
+    <!--android:layout_height="165dp"-->
     <com.example.administrator.xiangou.tool.CustomImageView
-        android:layout_width="168dp"
-        android:layout_height="165dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:src="@mipmap/girl_v"
         app:civ_type="TYPE_ROUND"
         app:civ_roundradius="3"
         android:scaleType="matrix"
+        android:adjustViewBounds="true"
         android:id="@+id/img_item_recommend_home_civ"
         />
     <LinearLayout
@@ -56,7 +64,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginStart="5dp"
         android:layout_alignStart="@id/item_recommend_home_Ll"
-        android:textColor="@color/red_b3pink"
+        android:textColor="@color/color_pink_b3fb4a89"
         android:layout_below="@id/item_recommend_home_Ll"
         android:id="@+id/price_item_recommend_home_tv"
         android:text="￥399.00"/>

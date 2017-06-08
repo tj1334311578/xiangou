@@ -2,6 +2,7 @@ package com.example.administrator.xiangou.main;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentTabHost;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -19,26 +20,27 @@ import com.example.administrator.xiangou.tool.BaseActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.ButterKnife;
-
 public class MainActivity extends BaseActivity {
 
     private FragmentTabHost mFragmentTabHost;
     private LayoutInflater mInflater;
     private List<Tab> mTabs;
     private TabHost.TabSpec mTabSpec;
-    private int mCurrentNum;
+//    private int mCurrentNum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        requestWindowFeature(Window.FEATURE_NO_TITLE);
 
-        if (bSharedPreferences.getString("user_info",null)!=null) {
-            setbUserBySP(bSharedPreferences.getString("user_info", null));
+        //先从本地保存的数据中获取用户信息
+        if (getSP().getString("user_info",null)!=null) {
+            Log.e("MainAt", "onCreate inituser" + getSP().getString("user_info",null));
+            setbUserBySP(getSP().getString("user_info", null));
         }
+
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+
         initTabHost();
     }
 
@@ -48,6 +50,7 @@ public class MainActivity extends BaseActivity {
         Tab nearby = new Tab(R.string.nearby,R.drawable.icon_nearby_select,NearbyFragment.class);
         Tab cart = new Tab(R.string.shopping_cart,R.drawable.icon_cart_select,CartFragment.class);
         Tab mine = new Tab(R.string.mine,R.drawable.icon_mine_select,MineFragment.class);
+
         mTabs = new ArrayList<>();
         mTabs.add(home);
         mTabs.add(nearby);
@@ -62,7 +65,7 @@ public class MainActivity extends BaseActivity {
             mTabSpec = mFragmentTabHost.newTabSpec(getString(tab.getTitle()));
             mTabSpec.setIndicator(buildIndicator(tab));
             mFragmentTabHost.addTab(mTabSpec,tab.getFrag(),null);
-            mCurrentNum++;
+//            mCurrentNum++;
             if (tab.getTitle()==R.string.mine){
                 findViewById(R.id.divider_main).setVisibility(View.GONE);
             }
@@ -72,8 +75,6 @@ public class MainActivity extends BaseActivity {
         //开始默认选中第一个tab
         mFragmentTabHost.setCurrentTab(0);
     }
-
-
     //初始化底栏的tab
     private View buildIndicator(Tab tab) {
         View view =mInflater.inflate(R.layout.tab_indicator,null);
@@ -88,13 +89,17 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        if (!isLogined()){
+        if (!getSP().isLogined()){
             mFragmentTabHost.setCurrentTab(0);
         }
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(View v) {}
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        exit_app();
     }
 }

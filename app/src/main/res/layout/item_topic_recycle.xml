@@ -4,21 +4,30 @@
               android:orientation="vertical"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:gravity="center_horizontal">
+              android:gravity="center_horizontal"
+              android:background="#33123456"
+              android:layout_marginLeft="4dp"
+              android:layout_marginRight="4dp"
+              android:paddingBottom="9dp"
+    >
 
     <com.example.administrator.xiangou.tool.CustomImageView
         android:id="@+id/civ_item_topic_recycle"
-        android:layout_width="53dp"
-        android:layout_height="53dp"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        app:civ_type="TYPE_ROUND"
+        app:civ_roundradius="3"
         android:scaleType="matrix"
-        app:civ_type="TYPE_ROUND"/>
+        android:adjustViewBounds="true"
+        android:background="@color/default_bg_color"
+        />
 
     <TextView
         android:id="@+id/tv_item_topic_recycle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="8dp"
         android:textSize="11sp"
-        android:textColor="@color/red_b3pink"/>
+        android:textColor="@color/color_pink_b3fb4a89"/>
 
 </LinearLayout>

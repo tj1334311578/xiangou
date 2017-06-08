@@ -54,7 +54,7 @@ public class EditAddressActivity extends MVPBaseActivity<EditAddressContract.Vie
         mAreaName = new String[3];
         mInfo = new JSONObject();
         try {
-            mInfo.put("user_id",bUser.getUser_id());
+            mInfo.put("user_id",getUser().getUser_id());
             mInfo.put("map_x","104.0647572802");
             mInfo.put("map_y","30.5701516651");
         } catch (JSONException e) {

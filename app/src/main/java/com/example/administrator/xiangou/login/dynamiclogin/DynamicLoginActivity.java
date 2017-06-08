@@ -37,17 +37,15 @@ public class DynamicLoginActivity extends MVPBaseActivity<DynamicLoginContract.V
 
     private void initView() {
         imm= (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-        dynamic_number= (EditText) findViewById(R.id.dynamic_numberedit);
-        dynamic_code= (EditText) findViewById(R.id.dynamic_codeedit);
-        dynamic_verification= (TextView) findViewById(R.id.dynamic_verification);
-        dynamic_btn= (Button) findViewById(R.id.dynamic_login);
-        dynamic_cls= (ImageView) findViewById(R.id.dynamic_clean);
-        dynamic_back= (ImageView) findViewById(R.id.dynamic_back);
-        dynamic_verification.setOnClickListener(this);
-        dynamic_cls.setOnClickListener(this);
-        dynamic_btn.setOnClickListener(this);
-        dynamic_back.setOnClickListener(this);
+        dynamic_number= findContentView(R.id.dynamic_numberedit,false);
+        dynamic_code=  findContentView(R.id.dynamic_codeedit,false);
+        dynamic_verification=  findContentView(R.id.dynamic_verification);
+        dynamic_btn= findContentView(R.id.dynamic_login);
+        dynamic_cls= findContentView(R.id.dynamic_clean);
+        dynamic_back= findContentView(R.id.dynamic_back);
+
         countDownTimerUtils = new CountDownTimerUtils(dynamic_number, dynamic_verification, 30000, 1000, this);
+
         dynamic_code.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -128,8 +126,8 @@ public class DynamicLoginActivity extends MVPBaseActivity<DynamicLoginContract.V
 
     @Override
     public void loginVerifySuccess() {
-        if ( !bSharedPreferences.getBoolean("hasLogined",false) )
-            bSharedPreferences.putBoolean("hasLogined",true);
+        if ( !getSP().getBoolean("hasLogined",false) )
+            getSP().putBoolean("hasLogined",true);
         startNewUI(MainActivity.class);
         showToast("登录成功！");
         finish();

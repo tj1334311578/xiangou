@@ -3,16 +3,19 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-    android:layout_marginBottom="5dp"
-    android:gravity="center_horizontal"
+        android:layout_marginTop="8dp"
+        android:paddingTop="4dp"
+    android:paddingBottom="4dp"
     android:background="@color/whiteBgColor">
 
     <com.example.administrator.xiangou.tool.CustomImageView
         android:id="@+id/civ_item_advs_recycle"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="100dp"
         android:src="@mipmap/advs_home_middle"
-        android:scaleType="matrix"/>
+        android:background="@color/default_bg_color"
+        android:scaleType="matrix"
+        android:adjustViewBounds="true"
+        />
 
 </LinearLayout>

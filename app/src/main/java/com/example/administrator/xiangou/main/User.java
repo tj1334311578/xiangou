@@ -1,8 +1,6 @@
 package com.example.administrator.xiangou.main;
 
 
-import android.util.Log;
-
 import com.example.administrator.xiangou.login.LoginBean;
 
 /**
@@ -23,13 +21,20 @@ public class User {
         user.user_id = data.getUser_id();
         user.sex = data.getSex();
         user.mobile = data.getMobile();
-        if (data.getNickname().length()>0&&data.getNickname().charAt(0) == '\"'){
-            String name = data.getNickname().split("\"")[1];
-            Log.e("split", "initDate: " + name);
-            user.nickname = name;
-        }else {
+//        String nickName = data.getNickname();
+//        if (nickName.charAt(0) == '\"'){
+//            String[] as = nickName.split("\"");
+//            nickName = as[0];
+//            for (String s:as
+//                    ) {
+//                if (nickName.length()<s.length()){
+//                    nickName = s;
+//                }
+//            }
+//            user.nickname = nickName;
+//        }else {
             user.nickname = data.getNickname();
-        }
+//        }
         user.type = data.getType();
         user.status = data.getStatus();
         user.head_pic = data.getHead_pic();
@@ -42,6 +47,38 @@ public class User {
         user.order_count = data.getOrder_count();
         user.refund = data.getRefund();
         user.experience = data.getExperience();
+    }
+    public void setbUserBySP(String str) {
+        String[] user = str.split(",");
+        setUser_id(Integer.parseInt(user[0]));
+        setSex(Integer.parseInt(user[1]));
+        setMobile(user[2]);
+        String nickName = user[3];
+//        if (nickName.charAt(0) == '\"'){
+//            String[] as = nickName.split("\"");
+//            nickName = as[0];
+//            for (String s:as
+//                    ) {
+//                if (nickName.length()<s.length()){
+//                    nickName = s;
+//                }
+//            }
+//        }
+        setNickname(nickName);
+        setNickname(user[3]);
+        setType(Integer.parseInt(user[4]));
+        setStatus(Integer.parseInt(user[5]));
+        setHead_pic(user[6]);
+        setCoupon_count(Integer.parseInt(user[7]));
+        setFollow(Integer.parseInt(user[8]));
+        setWaitPay(Integer.parseInt(user[9]));
+        setWaitSend(Integer.parseInt(user[10]));
+        setWaitReceive(Integer.parseInt(user[11]));
+        setWaitCcomment(Integer.parseInt(user[12]));
+        setOrder_count(Integer.parseInt(user[13]));
+        setRefund(Integer.parseInt(user[14]));
+        setExperience(Integer.parseInt(user[15]));
+        setLevel(Integer.parseInt(user[16]));
     }
     /**
      * user_id : 2629
@@ -97,8 +134,7 @@ public class User {
                 "," + order_count +
                 "," + refund +
                 "," + experience +
-                "," + level
-                ;
+                "," + level ;
     }
 
     public int getLevel() {

@@ -3,7 +3,6 @@ package com.example.administrator.xiangou.home;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -35,7 +34,7 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.e("date", "onCreate: " );
+        Log.e("homefg", "onCreate: " );
         //获取首页数据
         mPresenter.getHomeData("","",0);
     }
@@ -43,19 +42,18 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        Log.e("date", "onCreateView: " );
+        Log.e("homefg", "onCreateView: " );
         return setContextView(inflater,container,R.layout.fragment_home);
     }
 
     @Override
     public void initView() {
-        Log.e("date", "initView: "  );
+        Log.e("homefg", "initView: "  );
         mRvHome = findContentView(R.id.rv_frag_home,false);
-        mRecommendRv = findContentView(R.id.recommend_home_rv,false);
         mRvHome.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,false));
-        mRecommendRv.setLayoutManager(
-                new GridLayoutManager(getContext(),2, GridLayoutManager.VERTICAL,false));
-        mRecommendRv.addItemDecoration(new ItemIntervalDecoration(8,0,0,0));
+//        mRecommendRv = findContentView(R.id.recommend_home_rv,false);
+//        mRecommendRv.setLayoutManager(new GridLayoutManager(getContext(),2, GridLayoutManager.VERTICAL,false));
+        mRvHome.addItemDecoration(new ItemIntervalDecoration(0,8,0,0));
 //        mRecommendRv.setNestedScrollingEnabled(true);
         mAddrTv = findContentView(R.id.addrtv_topbar);
         mNewsTv = findContentView(R.id.news_num_topbar_tv);
@@ -67,7 +65,7 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
 
     @Override
     public void onStart() {
-        Log.e("date", "onStart: ");
+        Log.e("homefg", "onStart: ");
         super.onStart();
         if (mDataBean!=null){
             initRv(mDataBean);
@@ -76,20 +74,20 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
 
     @Override
     public void onResume() {
-        Log.e("date", "onResume: " );
+        Log.e("homefg", "onResume: " );
         super.onResume();
     }
 
     @Override
     public void onStop() {
-        Log.e("date", "onStop: " );
+        Log.e("homefg", "onStop: " );
         super.onStop();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.e("date", "onDestroy: " );
+        Log.e("homefg", "onDestroy: " );
     }
 
     @Override
@@ -113,7 +111,7 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
 
     @Override
     public void getHomeDataSuccess(HomeDataBean.DataBean data) {
-        Log.e("date", "getHomeDataSuccess: "  );
+        Log.e("homefg", "getHomeDataSuccess: data "  );
         mDataBean = data;
         initRv(mDataBean);
     }
@@ -143,5 +141,14 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
             }
 
         });
+//
+//        RecommendAdapterRv recommend = new RecommendAdapterRv(getContext(),R.layout.item_recommend_home_recycle,dataBean.getRecommened_list());
+//        mRecommendRv.setAdapter(recommend);
+//        recommend.setOnItemViewClickListener(new RVBaseAdapter.OnItemViewClickListener() {
+//            @Override
+//            public void setOnItemViewClick(View view, int pos) {
+//                showToast("这是第 "+pos+" 个");
+//            }
+//        });
     }
 }

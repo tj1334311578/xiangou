@@ -46,7 +46,7 @@
     <android.support.design.widget.TabLayout
         android:layout_width="match_parent"
         app:tabIndicatorHeight="2dp"
-        app:tabIndicatorColor="@color/textcolor_pink"
+        app:tabIndicatorColor="@color/color_pink_fb4a89"
         android:layout_below="@+id/seller_center_coupon_head_ll"
         android:id="@+id/seller_center_coupon_tab"
         android:layout_height="wrap_content">

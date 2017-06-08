@@ -87,7 +87,7 @@ public class RegisterActivity extends MVPBaseActivity<RegisterContract.View, Reg
             case R.id.twopagerregister_Btn:
                 //进入下一级
                 if (User.getUser().getMobile()!=null)
-                mPresenter.registerp(bUser.getMobile(), mRegisterCode, twopager_password.getText().toString());
+                mPresenter.registerp(getUser().getMobile(), mRegisterCode, twopager_password.getText().toString());
                 break;
         }
     }

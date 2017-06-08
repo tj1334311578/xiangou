@@ -293,8 +293,7 @@ public class LoginBean{
                     "," + order_count +
                     "," + refund +
                     "," + experience +
-                    "," + level
-                    ;
+                    "," + level ;
         }
 
     }

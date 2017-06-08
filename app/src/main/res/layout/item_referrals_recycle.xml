@@ -4,22 +4,31 @@
               android:orientation="vertical"
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:gravity="center_horizontal">
+              android:gravity="center_horizontal"
+              android:background="#33123456"
+              android:layout_marginTop="5dp"
+              android:layout_marginBottom="4dp"
+              android:paddingBottom="6dp"
+    >
 
     <com.example.administrator.xiangou.tool.CustomImageView
         android:id="@+id/civ_item_referrals_recycle"
         android:layout_width="65dp"
         android:layout_height="95dp"
         android:src="@mipmap/girl_v"
+        android:background="@color/default_bg_color"
         app:civ_type="TYPE_ROUND"
-        android:scaleType="matrix"/>
+        app:civ_roundradius="3"
+        android:scaleType="matrix"
+        android:adjustViewBounds="true"
+        />
 
     <TextView
         android:id="@+id/tv_item_referrals_recycle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="13sp"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="5dp"
         android:textColor="@color/textcolor_black"/>
 
 </LinearLayout>

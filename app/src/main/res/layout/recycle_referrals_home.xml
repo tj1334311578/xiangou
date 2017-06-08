@@ -3,6 +3,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+              android:layout_marginTop="8dp"
+              android:paddingTop="13dp"
               android:background="@color/whiteBgColor">
 
     <LinearLayout
@@ -10,7 +12,9 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:paddingLeft="8dp">
+        android:paddingLeft="8dp"
+        android:layout_marginBottom="5dp"
+        >
         <ImageView
             android:layout_width="14dp"
             android:layout_height="14dp"
@@ -43,5 +47,8 @@
    <android.support.v7.widget.RecyclerView
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
-       android:id="@+id/child_referrals_recycle"></android.support.v7.widget.RecyclerView>
+       android:id="@+id/child_referrals_recycle"
+       android:paddingLeft="3dp"
+       android:paddingRight="3dp"
+       ></android.support.v7.widget.RecyclerView>
 </LinearLayout>

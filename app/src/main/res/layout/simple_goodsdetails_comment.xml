@@ -57,7 +57,7 @@
         android:id="@+id/goods_details_comment_tab"
         android:layout_marginTop="1dp"
         app:tabIndicatorHeight="0dp"
-        app:tabIndicatorColor="@color/textcolor_pink"
+        app:tabIndicatorColor="@color/color_pink_fb4a89"
         android:background="@color/white"
         android:layout_below="@+id/goods_details_comment_center"
         android:layout_height="65dp">

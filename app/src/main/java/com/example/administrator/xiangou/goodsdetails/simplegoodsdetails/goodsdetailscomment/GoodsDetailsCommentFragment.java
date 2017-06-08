@@ -118,8 +118,8 @@ public class GoodsDetailsCommentFragment extends MVPBaseFragment<GoodsDetailsCom
         //设置初始状态
         mViewPager.setCurrentItem(0);
         mTabLayout.getTabAt(currentNum).getCustomView().findViewById(R.id.comment_tab_line).setVisibility(View.VISIBLE);
-        ((TextView)(mTabLayout.getTabAt(currentNum).getCustomView().findViewById(R.id.comment_title_tab))).setTextColor(getResources().getColor(R.color.textcolor_pink));
-        ((TextView)(mTabLayout.getTabAt(currentNum).getCustomView().findViewById(R.id.comment_title_value))).setTextColor(getResources().getColor(R.color.textcolor_pink));
+        ((TextView)(mTabLayout.getTabAt(currentNum).getCustomView().findViewById(R.id.comment_title_tab))).setTextColor(getResources().getColor(R.color.color_pink_fb4a89));
+        ((TextView)(mTabLayout.getTabAt(currentNum).getCustomView().findViewById(R.id.comment_title_value))).setTextColor(getResources().getColor(R.color.color_pink_fb4a89));
 
         mViewPager.setCurrentItem(currentNum);
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -142,8 +142,8 @@ public class GoodsDetailsCommentFragment extends MVPBaseFragment<GoodsDetailsCom
 
                     if ((int)(tabline.getTag())==position){
                         tabline.setVisibility(View.VISIBLE);
-                        tabValue.setTextColor(getResources().getColor(R.color.textcolor_pink));
-                        tabTv.setTextColor(getResources().getColor(R.color.textcolor_pink));
+                        tabValue.setTextColor(getResources().getColor(R.color.color_pink_fb4a89));
+                        tabTv.setTextColor(getResources().getColor(R.color.color_pink_fb4a89));
                     }else{
                         tabline.setVisibility(View.INVISIBLE);
                         tabValue.setTextColor(getResources().getColor(R.color.textcolor_e616gray));

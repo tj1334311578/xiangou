@@ -2,7 +2,6 @@ package com.example.administrator.xiangou.mine.myorder.myorder.waitdelivery;
 
 import android.content.Context;
 import android.graphics.Paint;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -15,7 +14,6 @@ import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.base.AutoRVAdapter;
 import com.example.administrator.xiangou.tool.ContextUtils;
 
-import java.text.DecimalFormat;
 import java.util.List;
 
 /**
@@ -139,7 +137,7 @@ public class mWaitDeliveryAdapter extends AutoRVAdapter implements View.OnClickL
         seeLogistics.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG|Paint.ANTI_ALIAS_FLAG);
         evaluate.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG|Paint.ANTI_ALIAS_FLAG);
         evaluate.setTextColor(mcontext.getResources().getColor(R.color.white));
-        evaluate.setBackgroundColor(mcontext.getResources().getColor(R.color.textcolor_pink));
+        evaluate.setBackgroundColor(mcontext.getResources().getColor(R.color.color_pink_fb4a89));
         evaluate.setText("付款");
         initLocationView(position);
     }

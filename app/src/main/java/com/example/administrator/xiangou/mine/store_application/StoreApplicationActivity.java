@@ -99,9 +99,9 @@ public class StoreApplicationActivity extends PopupWindowsBaseActivity implement
         mCommitBtn = findContentView(R.id.commit_application_btn);
         mCategoryTv = findContentView(R.id.main_category_edit);
         //获取上次记录数据
-        if (bSharedPreferences.getString("StoreApplyInfo",null)!=null) {
-            Log.e("storeinfo", "onStop: " + bSharedPreferences.getString("StoreApplyInfo", null));
-            String[] user = bSharedPreferences.getString("StoreApplyInfo", null).split(",");
+        if (getSP().getString("StoreApplyInfo",null)!=null) {
+            Log.e("storeinfo", "onStop: " + getSP().getString("StoreApplyInfo", null));
+            String[] user = getSP().getString("StoreApplyInfo", null).split(",");
 
             for (int i = 0; i < user.length; i++) {
                 if (!user[i].equals("")) {
@@ -415,7 +415,7 @@ public class StoreApplicationActivity extends PopupWindowsBaseActivity implement
         mApplicantInfoBean.setIdcard(changeEdtext(mIDCardEdt));
         mApplicantInfoBean.setName(changeEdtext(mStoreNameEdt));
         mApplicantInfoBean.setAddress(changeEdtext(mShopAdressEdt));
-        bSharedPreferences.putString("StoreApplyInfo",mApplicantInfoBean.toString());
+        getSP().putString("StoreApplyInfo",mApplicantInfoBean.toString());
     }
 
 }

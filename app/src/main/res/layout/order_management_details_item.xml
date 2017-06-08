@@ -128,7 +128,7 @@
             android:layout_alignBottom="@id/order_management_details_item_receiver_goods_size"
             android:layout_alignEnd="@id/order_management_details_item_receiver_phone"
             android:id="@+id/order_management_details_item_ReturnGoods_btn"
-            android:background="@color/textcolor_pink"/>
+            android:background="@color/color_pink_fb4a89"/>
 
     <TextView
         android:layout_width="wrap_content"

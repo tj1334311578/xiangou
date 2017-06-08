@@ -29,7 +29,7 @@
         android:layout_below="@id/discribe_child_store_nearby"
         android:text="进店"
         android:id="@+id/open_child_store_nearby"
-        android:textColor="@color/textcolor_pink"
+        android:textColor="@color/color_pink_fb4a89"
         android:layout_alignParentRight="true"
         android:background="@drawable/textbg_nearby_store_enter"
         />

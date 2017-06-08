@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -35,128 +34,125 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
+import static com.example.administrator.xiangou.R.mipmap.personal_footprint_icon;
 
 public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresenter>
         implements MineContract.View {
     private static final int APPLYCODE=101;
     private ListView listView;
-    private int content_img[]={R.mipmap.personal_footprint_icon,
-            R.mipmap.personal_comment_icon,R.mipmap.mine_share_icon,R.mipmap.mine_shop_icon};
-    private String content_text[]=
-//            new String[4];
-            {"我的足迹","我的评论","我的分享","申请店铺"};
+    private int content_imgC[]={personal_footprint_icon, R.mipmap.personal_comment_icon,
+            R.mipmap.mine_share_icon,R.mipmap.mine_shop_icon};
+    private int content_imgS[]={R.mipmap.mine_shop_icon ,R.mipmap.personal_footprint_icon,
+            R.mipmap.personal_comment_icon,R.mipmap.mine_share_icon};
+    private String content_textC[]= {"我的足迹","我的评论","我的分享","申请店铺"};
+    private String content_textS[]= {"我的店铺","我的足迹","我的评论","我的分享"};
     private CustomImageView mHeadImgCiv;
     private TextView mUserLevelTv,mLevelNumberTv,mUserNameTv,mMessageTv,mUnpaidTv,mWaitDekiveryTv,mReceiveTv,mEvaluationTv,mReturnsOrSalesTv;
     private int mine_MsgCount=0;
-    private static int userType=0;
+    private boolean isFirst=true;
+    private List<ItemImage> mList;
+    private MineAdapter mListAdapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //登录校验或更新
+        loginCaptcha();
     }
-
+    //登录校验或更新用户信息
+    private void loginCaptcha(){
+        mPresenter.IDlogin( getSP().getString("IDLogin_TelNumber",null),
+                getSP().getString("IDLogin_PWD",null) );
+        //        setLoginCall(new LoginCall() {
+        //            @Override
+        //            public void callSuccess(LoginBean.DataBean data) {
+        //                Log.e("miancall", "callSuccess: " );
+        //
+        //            }
+        //
+        //            @Override
+        //            public void callError(ExceptionHandle.ResponeThrowable e) {
+        //                Log.e("maincall", "callError: "  );
+        //            }
+        //
+        //            @Override
+        //            public void callDealMore(Object o) {
+        //
+        //            }
+        //        });
+    }
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return setContextView(inflater,container,R.layout.fragment_mine);
     }
 
-
     @Override
-    public void onResume() {
-        super.onResume();
-        showToast("isVisible:"+getUserVisibleHint()+"----isLogin"+isLogined()+"user id:"+bUser.getUser_id());
+    public void onStart() {
+        super.onStart();
+        showToast("isVisible:"+getUserVisibleHint()+"----isLogin"+getSP().isLogined()+"user id:"+getUser().getUser_id());
         if (getUserVisibleHint()){
-            if (!isLogined()) {
+            if (!getSP().isLogined()) {
                 startNewUI(IDLoginActivity.class);
             }
         }
-        if (bUser!= null){
-            initDate();
-        }
+//        //先从本地保存的数据中获取用户信息
+//        if (getSP().getString("user_info",null)!=null) {
+//            Log.e("minefg", "onCreate inituser" + getSP().getString("user_info",null));
+//            setbUserBySP(getSP().getString("user_info", null));
+//        }
+        initDate();
     }
 
     @Override
     public void initView() {
         findContentView(R.id.mine_message_rl);
-        listView= findContentView(R.id.mine_list,false);
         findContentView(R.id.mine_setup_iv);
+        //用户信息展示
         mMessageTv = findContentView(R.id.mine_message_tv);
         mHeadImgCiv = findContentView(R.id.mine_user_img_iv);
         mUserLevelTv = findContentView(R.id.mine_level_tv);
         mLevelNumberTv = findContentView(R.id.mine_level_number_tv);
         mUserNameTv = findContentView(R.id.mine_username_tv);
-        Log.e("name","initView: " + bUser.getNickname()+"\ntype:"+bUser.getType()+"\nstatus:"+bUser.getStatus());
 
+        //场上三巨头
         findContentView(R.id.mine_attention);
         findContentView(R.id.mine_Coupon);
         findContentView(R.id.mine_sign_in);
+        //我的订单
         findContentView(R.id.see_all_orders);
-
         findContentView(R.id.unpaid_Rl);
         findContentView(R.id.delivery_Rl);
         findContentView(R.id.receive_Rl);
         findContentView(R.id.evaluation_Rl);
         findContentView(R.id.returns_Rl);
-
-
         mUnpaidTv = findContentView(R.id.mine_unpaid_tv);
         mWaitDekiveryTv = findContentView(R.id.mine_wait_delivery_tv);
         mReceiveTv = findContentView(R.id.mine_receive_goods_tv);
         mEvaluationTv = findContentView(R.id.mine_pending_evaluation_tv);
         mReturnsOrSalesTv = findContentView(R.id.mine_returns_sales_tv);
-
-        //ListView禁止滑动设置
-        listView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                switch (event.getAction())
-                {
-                    case MotionEvent.ACTION_MOVE:
-                        return true ;
-                    default:
-                        return false;
-                }
-            }
-        });
-        //获取用户类型
-        userType=bUser.getType();
-//        userType=3;
-
+        //底下4小只--列表
+        listView= findContentView(R.id.mine_list,false);
         //ListView点击事件设置
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.e("TAG", "onItemClick: "+""+"被点击了");
                 TextView tv = (TextView) listView.getChildAt(position).findViewById(R.id.mine_item_text);
-                //等价于=>((TextView)(listView.getChildAt(position).findViewById(R.id.mine_item_text)))
-                Toast.makeText(getContext(),tv.getText() +"被点击了", Toast.LENGTH_SHORT).show();
-                //设置点击位置改变条件
-                switch (userType){
-                    case 3:
-                        if (position==0)
-                            position=3;
-                        else
-                            position-=1;
-                        break;
-                    default:break;
-                }
-                Log.e("jjf", "onItemClick: "+position );
-                switch (position){
-                    case 0:
-//                        startNewUI(StoreHomeActivity.class);
+                Log.e("MineFg", "onItemClick: "+tv.getText() +" 被点击了 "+position);
+                switch (tv.getText().toString()){
+                    case "我的足迹":
                         startNewUI(MyFootPrintActivity.class);
                         break;
-                    case 1:
+                    case "我的评论":
                         startNewUI(Goods_rankingActivity.class);
                         break;
-                    case 2:
+                    case "我的分享":
                         startNewUI(ClassificationTabActivity.class);
                         break;
-                    case 3:
-                        switch (userType){
+                    case "申请店铺":
+                        switch (getUser().getType()){
                             case 1:
-                                startNewUIForResult(StoreApplicationActivity.class,APPLYCODE,"user_id",bUser.getUser_id());
+                                startNewUIForResult(StoreApplicationActivity.class,APPLYCODE,"user_id",getUser().getUser_id());
                                 break;
                             case 3:
                                 startNewUI(MyStoreActivity.class);
@@ -166,58 +162,75 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
                         }
                         break;
                     default:
+                        showToast(tv.getText().toString());
                         break;
                 }
             }
         });
-        initDate();
+        //ListView禁止滑动设置
+//        listView.setOnTouchListener(new View.OnTouchListener() {
+//            @Override
+//            public boolean onTouch(View v, MotionEvent event) {
+//                switch (event.getAction())
+//                {
+//                    case MotionEvent.ACTION_MOVE:
+//                        return true ;
+//                    default:
+//                        return false;
+//                }
+//            }
+//        });
+
+
+//        initDate();
     }
 
     private void initDate() {
-        if (bUser.getHead_pic()!=null){
-            loadImg(bUser.getHead_pic(),mHeadImgCiv);
+        if (getUser().getHead_pic()!=null){
+            loadImg(getUser().getHead_pic(),mHeadImgCiv);
         }
         setTextToTv(mMessageTv,mine_MsgCount);
-        setTextToTv(mUserLevelTv,"V"+bUser.getLevel());
-        setTextToTv(mLevelNumberTv,bUser.getExperience());
-        setTextToTv(mUserNameTv,bUser.getNickname());
-        setTextToTv(mUnpaidTv,bUser.getWaitPay());
-        setTextToTv(mWaitDekiveryTv,bUser.getWaitSend());
-        setTextToTv(mReceiveTv,bUser.getWaitReceive());
-        setTextToTv(mEvaluationTv,bUser.getWaitCcomment());
-        setTextToTv(mReturnsOrSalesTv,bUser.getRefund());
-        ////初始化数据
-        initSet();
+        setTextToTv(mUserLevelTv,"V"+getUser().getLevel());
+        setTextToTv(mLevelNumberTv,getUser().getExperience());
+        setTextToTv(mUserNameTv,getUser().getNickname());
+        setTextToTv(mUnpaidTv,getUser().getWaitPay());
+        setTextToTv(mWaitDekiveryTv,getUser().getWaitSend());
+        setTextToTv(mReceiveTv,getUser().getWaitReceive());
+        setTextToTv(mEvaluationTv,getUser().getWaitCcomment());
+        setTextToTv(mReturnsOrSalesTv,getUser().getRefund());
+
+        initList();
     }
 
-    private void initSet() {
+    private void initList() {
         //初始化数据
-//        Log.e("usertype", "initSet: " + bUser.getType());
-
-        switch (userType){
-            case 1:
-                content_text[content_text.length-1]="申请店铺";
+        if (mList==null) {
+            mList = new ArrayList<>();
+        }else {
+            mList.clear();
+        }
+        switch (getUser().getType()){
+            case 1://是用户
+                switch (getUser().getStatus()) {//店铺审核状态：1审核中、2通过审核、3审核失败
+                    case 1:
+                        content_textC[content_textC.length - 1] = "申请审核中";
+                        break;
+//                    case 3:
+//                        content_textC[content_textC.length - 1] = "店铺申请失败";
+//                        break;
+                }
+                for (int i = 0; i < content_textC.length; i++) {
+                    mList.add(new ItemImage(content_imgC[i], content_textC[i]));
+                }
                 break;
-            case 3:
-                content_text[content_text.length-1]="我的店铺";
-                break;
-            default:
+            case 3://即是卖家也是用户
+                for (int i = 0; i < content_textC.length; i++) {
+                    mList.add(new ItemImage(content_imgS[i], content_textS[i]));
+                }
                 break;
         }
-        List<ItemImage> list=new ArrayList<>();
-        for (int i = 0; i <content_img.length ; i++) {
-            list.add(new ItemImage(content_img[i],content_text[i]));
-        }
-        switch (userType){
-            case 3:
-                list.add(0, new ItemImage(content_img[list.size()-1],content_text[list.size()-1]));
-                list.remove(list.get(list.size()-1));
-                break;
-            default:
-                break;
-        }
-        MineAdapter adapter=new MineAdapter(getContext(),list);
-        listView.setAdapter(adapter);
+        mListAdapter = new MineAdapter(getContext(), mList);
+        listView.setAdapter(mListAdapter);
     }
 
     @Override
@@ -238,8 +251,12 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         if (data!=null && resultCode == RESULT_OK) {
             switch (requestCode){
                 case APPLYCODE:
-                    // TODO: 2017/5/16 店铺申请中  str = "申请审核中"
+                    // 店铺申请中  str = "申请审核中"
                     String str = data.getStringExtra("applying");
+                    if (mList!=null) {
+                        mList.get(mList.size() - 1).setStr(str);
+                        mListAdapter.notifyDataSetChanged();
+                    }
             }
         }
     }
@@ -330,8 +347,8 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
 
     @Override
     public void ReLoginidSuccess(LoginBean.DataBean data) {
-        Log.e("nickname", "ReLoginidSuccess: " + data.getNickname());
         initDate();
+        showToast("success");
     }
 
     public class MineAdapter extends BaseAdapter {
@@ -365,7 +382,7 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
             {
                 convertView= LayoutInflater.from(mContext).inflate(R.layout.mine_item,null,false);
                 viewHolder.imageView= (ImageView) convertView.findViewById(R.id.mine_item_img);
-                Log.e("null", "getView: "+viewHolder.imageView);
+                Log.e("MineFg", "getView: "+viewHolder.imageView);
                 viewHolder.textView= (TextView) convertView.findViewById(R.id.mine_item_text);
                 convertView.setTag(viewHolder);
             }else{

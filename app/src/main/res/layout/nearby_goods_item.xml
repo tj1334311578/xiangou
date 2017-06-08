@@ -28,5 +28,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/child_goods_nearby_rv"
+        android:padding="8dp"
         ></android.support.v7.widget.RecyclerView>
 </LinearLayout>

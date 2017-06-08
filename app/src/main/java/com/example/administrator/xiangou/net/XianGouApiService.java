@@ -16,7 +16,6 @@ import com.example.administrator.xiangou.mine.mystore.goodsmanage.addgoodsmanage
 import com.example.administrator.xiangou.mine.mystore.storemanager.StoreManagerInfoBean;
 import com.example.administrator.xiangou.mine.setting.manageraddress.model.EditAddressEnterBean;
 import com.example.administrator.xiangou.mine.setting.manageraddress.model.UserAddressBean;
-import com.example.administrator.xiangou.mine.setting.personal.PersonalDetialsBean;
 import com.example.administrator.xiangou.mine.store_application.ApplicantInfoBean;
 import com.example.administrator.xiangou.mine.store_application.model.CategoryListDataBean;
 import com.example.administrator.xiangou.nearby.apimodel.GoodsListDataBean;
@@ -188,7 +187,7 @@ public interface XianGouApiService {
     Observable<HomePageBean> callHomePagerData(@Query("did") int storeId,//店铺did
                                                @Query("user_id") int userId);//若用户已经登录的状态下传过来
     //商品详情页接口
-    // TODO: 2017/5/16 出现请求未知异常，可获得数据，但不能进入rxjava的next代码，直接跳转到error方法异常为code:1000未知异常（待解决）
+    // 出现请求未知异常，可获得数据，但不能进入rxjava的next代码，直接跳转到error方法异常为code:1000未知异常（待解决）
     @POST("Api/Good/goods_detail/")
     Observable<SimpleGoodsDetialBean> callSimpleGoodsDetails(@Query("goods_id") int goods_id,
 //                                                @Query("user_id") int user_id,
@@ -200,7 +199,7 @@ public interface XianGouApiService {
     //个人信息修改
     @Multipart
     @POST("Api/User/personals/")
-    Observable<PersonalDetialsBean> uploadUserDetials(@Part("user_id") int user_id,
+    Observable<Captcha> uploadUserDetials(@Part("user_id") int user_id,
                                                       @Part("sex") int sex,
                                                       @Part("nickname") String nickname,
                                                       @Part MultipartBody.Part file

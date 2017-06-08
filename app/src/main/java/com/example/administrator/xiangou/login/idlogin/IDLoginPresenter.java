@@ -20,13 +20,13 @@ public class IDLoginPresenter extends BasePresenterImpl<IDLoginContract.View> im
                 new BaseSubscriber<LoginBean>(mView.getContext()) {
                     @Override
                     public void onNext(LoginBean loginBean) {
-                        Log.e("next", "onNext: " +loginBean.getData().toString()+"\n"+loginBean.getState().toString());
+                        Log.e("IDloginAt", "onNext: " +loginBean.getData().toString()+"\n"+loginBean.getState().toString());
                         switch (loginBean.getState().getCode()){
                             case 200:
                                 if (loginBean.getData()!=null){
                                     //更新用户信息
                                     setbUserBySP(loginBean.getData().toString());
-                                    upDateUserInfo(loginBean.getData().toString());
+                                    getSP().upDateUserInfo(loginBean.getData().toString());
                                     mView.LoginidSuccess(loginBean.getData());
                                 }
                                 break;
@@ -43,7 +43,7 @@ public class IDLoginPresenter extends BasePresenterImpl<IDLoginContract.View> im
                     }
                     @Override
                     public void onError(ExceptionHandle.ResponeThrowable e) {
-                        Log.e("IDlogin", e.code+"onError：" + e.getMessage());
+                        Log.e("IDloginAt", e.code+"onError：" + e.getMessage());
                         if (e.code ==1000)
                         mView.sendFialRequest("账号或密码错误");
                     }
@@ -53,7 +53,7 @@ public class IDLoginPresenter extends BasePresenterImpl<IDLoginContract.View> im
 
     @Override
     public void saveInfo(String TelKey, String Tel, String PwdKey, String Pwd) {
-        bSharedPreferences.putString(TelKey,Tel);
-        bSharedPreferences.putString(PwdKey,Pwd);
+        getSP().putString(TelKey,Tel);
+        getSP().putString(PwdKey,Pwd);
     }
 }

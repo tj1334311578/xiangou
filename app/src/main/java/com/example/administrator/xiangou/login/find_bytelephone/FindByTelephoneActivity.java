@@ -133,16 +133,16 @@ public class FindByTelephoneActivity extends MVPBaseActivity<FindByTelephoneCont
     @Override
     public void verifySuccess(String tel, String code) {
         String[] strs = {tel,code};
-        bSharedPreferences.putString("tel_findpwd",tel);
-        bSharedPreferences.putString("code_findpwd",code);
+        getSP().putString("tel_findpwd",tel);
+        getSP().putString("code_findpwd",code);
         startNewUICarryStr(ResetpwdActivity.class,"datas_findpwd",strs);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        mFindPSW_NumberEdt.setText(bSharedPreferences.getString("tel_findpwd",""));
-        mFindPSW_CaptchaEdt.setText(bSharedPreferences.getString("code_findpwd",""));
+        mFindPSW_NumberEdt.setText(getSP().getString("tel_findpwd",""));
+        mFindPSW_CaptchaEdt.setText(getSP().getString("code_findpwd",""));
     }
 
     @Override

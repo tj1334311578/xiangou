@@ -15,7 +15,10 @@ public class GlideImageLoader extends ImageLoader {
     @Override
     public void displayImage(Context context, Object path, ImageView imageView) {
         //Glide加载图片简单的用法
-        Glide.with(context).load(path).into(imageView);
+        Glide.with(context)
+                .load(path)
+                .crossFade() //使图片变化平滑
+                .into(imageView);
     }
 
 //    @Override

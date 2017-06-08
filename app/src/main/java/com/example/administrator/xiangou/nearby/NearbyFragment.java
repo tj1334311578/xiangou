@@ -230,6 +230,6 @@ public class NearbyFragment extends MVPBaseFragment<NearbyContract.View, NearbyP
 
     @Override
     public void sendFialRequest(String message) {
-
+        showToast(message);
     }
 }

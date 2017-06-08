@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:background="@color/whiteBgColor">
+              android:background="@color/whiteBgColor"
+              android:layout_marginTop="8dp"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical"
-        android:paddingLeft="8dp">
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        >
         <ImageView
             android:layout_width="14dp"
             android:layout_height="14dp"
@@ -44,43 +47,66 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="8dp">
+        android:layout_height="140dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginBottom="9dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        >
         <com.example.administrator.xiangou.tool.CustomImageView
             android:layout_width="match_parent"
-            android:layout_height="119dp"
+            android:layout_height="140dp"
             android:id="@+id/advs_topic_civ"
             android:src="@mipmap/girl_h"
-            app:civ_type="TYPE_ROUND"
-            app:civ_roundradius="10"
-            android:scaleType="matrix"/>
+            android:background="@color/default_bg_color"
+            android:scaleType="matrix"
+            android:adjustViewBounds="true"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="16dp"
-            android:background="@drawable/textbg_topic_advs_title"
+            android:layout_centerInParent="true"
             android:layout_marginTop="12dp"
-            android:layout_marginLeft="19dp"
-            android:id="@+id/advs_topic_title_tv"
-            android:text="街头美女一枚"
-            android:textSize="10sp"
-            android:textColor="@color/textcolor_pink"
-            android:gravity="center_vertical"
-            android:paddingLeft="10dp"
-            android:paddingRight="5dp"/>
+            android:id="@+id/title_advs_topic_tv"
+            android:text="展现不一样的烟火"
+            android:textSize="15sp"
+            android:textColor="@color/white_b3"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            android:layout_marginTop="12dp"
+            android:layout_centerHorizontal="true"
+            android:layout_above="@id/title_advs_topic_tv"
+            android:id="@+id/type_advs_topic_tv"
+            android:text="时尚套装"
+            android:textSize="15sp"
+            android:textColor="@color/white_b3"
+            />
 
-        <com.example.administrator.xiangou.tool.CustomImageView
-            android:layout_width="18dp"
-            android:layout_height="18dp"
-            android:layout_marginTop="11dp"
-            android:layout_marginLeft="10dp"
-            android:id="@+id/advs_topic_title_civ"
-            app:civ_type="TYPE_CIRCLE"
-            android:src="@drawable/girl_v"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/textbg_topic_advs_title"
+            android:layout_marginTop="13dp"
+            android:id="@+id/get_advs_topic_tv"
+            android:text="get新品"
+            android:textColor="@color/textcolor_e616gray"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:paddingTop="2dp"
+            android:paddingBottom="2dp"
+            android:layout_below="@id/title_advs_topic_tv"
+            android:layout_centerHorizontal="true"
+            />
 
     </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/child_topic_recycle"></android.support.v7.widget.RecyclerView>
+        android:id="@+id/child_topic_recycle"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        ></android.support.v7.widget.RecyclerView>
+
 </LinearLayout>

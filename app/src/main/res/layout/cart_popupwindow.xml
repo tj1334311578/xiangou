@@ -7,7 +7,7 @@
         android:layout_above="@+id/cart_botton"
         android:layout_marginBottom="5dp"
         android:layout_marginTop="177dp"
-        android:background="@color/white"
+        android:background="@color/whiteBgColor"
         android:id="@+id/cart_popwindow_Rl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -117,7 +117,7 @@
             android:layout_height="40dp"
             android:id="@+id/cart_button_sure"
             android:layout_alignParentBottom="true"
-            android:textColor="@color/white"
+            android:textColor="@color/whiteBgColor"
             android:gravity="center"
             android:background="@color/color_pink_fb4a89"
             android:textSize="15sp"

@@ -29,6 +29,7 @@ public class MinePresenter extends BasePresenterImpl<MineContract.View> implemen
                                     if (loginBean.getData() != null) {
                                         if (!getSP().getString("user_info", null)
                                                 .equals(loginBean.getData().toString())) {
+
                                             setbUserBySP(loginBean.getData().toString());
 //                                            upDateUserInfo(loginBean.getData().toString());
 //                                            Log.e("minep", "LoginidSuccess: buser" + bUser.toString());

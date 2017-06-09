@@ -9,7 +9,7 @@
     android:paddingBottom="2dp"
     android:gravity="center"
     android:id="@+id/simpele_coupon_item_Tv"
-    android:textColor="@color/white"
+    android:textColor="@color/whiteBgColor"
     android:background="@mipmap/product_details_discount_coupon_backgroundimage01"
     android:layout_height="wrap_content">
 </TextView>

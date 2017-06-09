@@ -10,7 +10,7 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:background="@color/white"
+        android:background="@color/whiteBgColor"
         android:layout_height="44dp">
         <EditText
             android:layout_weight="1"

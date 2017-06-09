@@ -11,7 +11,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:id="@+id/fragsgroup"
-        android:background="@color/white">
+        android:background="@color/whiteBgColor">
     </FrameLayout>
 
     <View
@@ -24,7 +24,7 @@
     <android.support.v4.app.FragmentTabHost
         android:id="@+id/tabhost"
         android:layout_width="match_parent"
-        android:background="@color/white"
+        android:background="@color/whiteBgColor"
         android:layout_height="wrap_content"
         android:paddingLeft="6dp"
         android:paddingRight="6dp"

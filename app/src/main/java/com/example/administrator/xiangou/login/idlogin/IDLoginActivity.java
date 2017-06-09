@@ -1,6 +1,7 @@
 package com.example.administrator.xiangou.login.idlogin;
 
 import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Editable;
@@ -21,6 +22,7 @@ import com.example.administrator.xiangou.login.registerverify.RegisterVerifyActi
 import com.example.administrator.xiangou.main.MainActivity;
 import com.example.administrator.xiangou.mvp.MVPBaseActivity;
 import com.example.administrator.xiangou.tool.CustomImageView;
+import com.example.administrator.xiangou.tool.ImageUtils;
 
 public class IDLoginActivity extends MVPBaseActivity<IDLoginContract.View, IDLoginPresenter>
         implements IDLoginContract.View ,View.OnClickListener{
@@ -49,9 +51,8 @@ public class IDLoginActivity extends MVPBaseActivity<IDLoginContract.View, IDLog
         IDLogin_Backimg = (ImageView) findViewById(R.id.mainlogin_back);
         IDLogin_Userimg = findContentView(R.id.mainlogin_img,false);
         //头像加载
-        if (getUser().getHead_pic()!=null) {
-            loadImg(getUser().getHead_pic(), IDLogin_Userimg);
-        }
+        initImageView(IDLogin_Userimg);
+
         IDLogin_Cls = (ImageView) findViewById(R.id.mainlogin_clean);
         IDLogin_Cls.setOnClickListener(this);
         IDlogin_Dynamic.setOnClickListener(this);
@@ -127,6 +128,15 @@ public class IDLoginActivity extends MVPBaseActivity<IDLoginContract.View, IDLog
             }
         });
         IDLogin_TelNumber.requestFocus();
+    }
+
+    private void initImageView(ImageView imageView){
+        Uri uri = getSP().getImgUri();
+        if (uri!=null){
+            ImageUtils.loadLocationImg(getContext(),uri,imageView);
+        }else if (getUser().getHead_pic()!=null){
+            loadImg(getUser().getHead_pic(),imageView);
+        }
     }
 
     @Override

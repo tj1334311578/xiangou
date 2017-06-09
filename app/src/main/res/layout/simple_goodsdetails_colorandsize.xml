@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <RelativeLayout
-        android:background="@color/white"
+        android:background="@color/whiteBgColor"
         android:layout_width="match_parent"
         android:id="@+id/simple_goodsdetails_colorandsize_rl"
         android:layout_height="wrap_content">
@@ -158,7 +158,7 @@
         <TextView
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:textColor="@color/white"
+            android:textColor="@color/whiteBgColor"
             android:text="立即购买"
             android:id="@+id/simple_goodsdetails_colorandsize_buynow"
             android:textSize="14sp"

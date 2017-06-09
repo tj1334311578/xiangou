@@ -10,7 +10,7 @@
         android:text="申请成为商家"
         android:id="@+id/store_headTitleTv"
         android:textSize="18sp"
-        android:textColor="@color/white"
+        android:textColor="@color/whiteBgColor"
         android:layout_centerHorizontal="true"/>
     <ImageView
         android:id="@+id/store_headback"

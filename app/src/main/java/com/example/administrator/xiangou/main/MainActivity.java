@@ -100,6 +100,9 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        //退出时保存用户信息
+        getSP().upDateUserInfo(getUser().toString());
+        //退出APP
         exit_app();
     }
 }

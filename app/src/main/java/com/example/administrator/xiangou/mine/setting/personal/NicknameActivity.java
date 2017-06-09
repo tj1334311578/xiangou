@@ -43,7 +43,6 @@ public class NicknameActivity extends BaseActivity {
             mNickName.setText(getUser().getNickname());
             nickName = getUser().getNickname();
         }
-
         TitleTv.setText("昵称");
         SaveTv.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG|Paint.ANTI_ALIAS_FLAG);
     }
@@ -53,12 +52,12 @@ public class NicknameActivity extends BaseActivity {
         if (v==backBtn){
             finish();
         }else if (v==SaveTv){
-            nickName=mNickName.getText().toString();
+            nickName= String.valueOf(mNickName.getText());
             Log.e("nickName", "onClick: " + nickName);
             if (nickName.length()>0){
                 uploadNickname(nickName);
             }else{
-                showToast("昵称修改失败！\n可能存在原因：昵称修改为空");
+                showToast("昵称不能为空");
             }
         }else if(v==CleanTv){
             mNickName.getText().clear();
@@ -83,15 +82,12 @@ public class NicknameActivity extends BaseActivity {
                     @Override
                     public void onNext(Captcha captcha) {
                         if (captcha.getState().getCode()==200){
-
                             changeSuccess();
                         }
                     }
 
                     @Override
-                    public void onFinish() {
-
-                    }
+                    public void onFinish() {}
 
                     @Override
                     public void onError(ExceptionHandle.ResponeThrowable e) {

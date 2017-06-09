@@ -4,15 +4,16 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-    <color name="grayBgColor">#d2d2d2</color>
     <color name="whiteBgColor">#ffffff</color>
+    <color name="blackBgColor">#000000</color>
+    <color name="grayBgColor">#d2d2d2</color>
     <color name="default_bg_color">#efefef</color>
     <color name="fragBgColor">#f5eef5</color>
     <color name="lineBgColor">#dfe9ef</color>
     <color name="homeBgColor">#f8f8f8</color>
 
-    <color name="color_pink_b3fb4a89">#b3fb4a89</color>
     <color name="color_pink_fb4a89">#fb4a89</color>
+    <color name="color_pink_b3fb4a89">#b3fb4a89</color>
     <color name="textcolor_tab_select">#d41283</color>
     <color name="textcolor_tab_unselect">#9c9c9c</color>
     <color name="textcolor_black">#f5060002</color>

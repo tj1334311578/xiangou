@@ -1,5 +1,6 @@
 package com.example.administrator.xiangou.mvp;
 
+import com.example.administrator.xiangou.login.LoginBean;
 import com.example.administrator.xiangou.main.User;
 import com.example.administrator.xiangou.net.RetrofitClient;
 import com.example.administrator.xiangou.net.XianGouApiService;
@@ -65,6 +66,5 @@ public class BasePresenterImpl<V extends BaseView> implements BasePresenter<V>{
         }else if (obj instanceof LoginBean.DataBean){
             getUser().setUser((LoginBean.DataBean) obj);
         }
-        Log.e("baseAt", "setbUserBySP: success " +getUser().toString());
     }
 }

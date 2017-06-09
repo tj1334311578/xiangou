@@ -2,6 +2,7 @@ package com.example.administrator.xiangou.tool;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.Uri;
 
 import java.util.Set;
 
@@ -49,6 +50,20 @@ public class MySharedPreferences {
         if (!mSharedPreferences.getBoolean(MySharedPreferences.STATUS_LOGIN,false)) {
            putBoolean(MySharedPreferences.STATUS_LOGIN, true);
         }
+    }
+
+    //保存图片URI
+    public void saveImgUri(Uri uri){
+        putString("imgUri",uri.toString());
+    }
+    //获取图片
+    public Uri getImgUri(){
+        String uri = getString("imgUri",null);
+        Uri imgUri = null;
+        if (uri!=null){
+            imgUri = Uri.parse(uri);
+        }
+        return imgUri;
     }
 
     /**

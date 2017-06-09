@@ -58,7 +58,7 @@
         android:layout_marginTop="1dp"
         app:tabIndicatorHeight="0dp"
         app:tabIndicatorColor="@color/color_pink_fb4a89"
-        android:background="@color/white"
+        android:background="@color/whiteBgColor"
         android:layout_below="@+id/goods_details_comment_center"
         android:layout_height="65dp">
     </android.support.design.widget.TabLayout>

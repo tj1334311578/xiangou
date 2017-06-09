@@ -154,7 +154,6 @@ public class StoreManagerActivity extends MVPBaseActivity<StoreManagerContract.V
     }
 
     private void showView(StoreManagerInfoBean data) {
-        Log.e("showView", "进入showView: "+data.toString() );
         new GlideImageLoader().displayImage(this,mApiService.IMGBASEURL +data.getData().getLogo(),storeLogo);//加载店铺logo
         storeName.setText(data.getData().getName());
         storeType.setText(data.getData().getCate_name());

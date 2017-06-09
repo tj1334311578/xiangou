@@ -8,7 +8,6 @@ import com.example.administrator.xiangou.login.LoginBean;
  */
 
 public class User {
-
     private static User user;
     private User(){}
     public static User getUser(){
@@ -21,20 +20,11 @@ public class User {
         user.user_id = data.getUser_id();
         user.sex = data.getSex();
         user.mobile = data.getMobile();
-//        String nickName = data.getNickname();
-//        if (nickName.charAt(0) == '\"'){
-//            String[] as = nickName.split("\"");
-//            nickName = as[0];
-//            for (String s:as
-//                    ) {
-//                if (nickName.length()<s.length()){
-//                    nickName = s;
-//                }
-//            }
-//            user.nickname = nickName;
-//        }else {
-            user.nickname = data.getNickname();
-//        }
+        String nickName = data.getNickname();
+        if (nickName.charAt(0) == '\"') {
+            nickName = nickName.substring(0,nickName.length()-1);
+        }
+        user.nickname = nickName;
         user.type = data.getType();
         user.status = data.getStatus();
         user.head_pic = data.getHead_pic();
@@ -48,24 +38,17 @@ public class User {
         user.refund = data.getRefund();
         user.experience = data.getExperience();
     }
+
     public void setbUserBySP(String str) {
         String[] user = str.split(",");
         setUser_id(Integer.parseInt(user[0]));
         setSex(Integer.parseInt(user[1]));
         setMobile(user[2]);
         String nickName = user[3];
-//        if (nickName.charAt(0) == '\"'){
-//            String[] as = nickName.split("\"");
-//            nickName = as[0];
-//            for (String s:as
-//                    ) {
-//                if (nickName.length()<s.length()){
-//                    nickName = s;
-//                }
-//            }
-//        }
+        if (nickName.charAt(0) == '\"'){
+            nickName = nickName.substring(1,nickName.length()-1);
+        }
         setNickname(nickName);
-        setNickname(user[3]);
         setType(Integer.parseInt(user[4]));
         setStatus(Integer.parseInt(user[5]));
         setHead_pic(user[6]);

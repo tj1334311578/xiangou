@@ -130,11 +130,11 @@ public class CouponManagerAdapter extends RVBaseAdapter<CouponManageBean> {
 
     //设置样式2
     private void style2() {
-        condition.setTextColor(mContext.getResources().getColor(R.color.white));
+        condition.setTextColor(mContext.getResources().getColor(R.color.whiteBgColor));
         startTime.setTextColor(mContext.getResources().getColor(R.color.white_b3));
         endTime.setTextColor(mContext.getResources().getColor(R.color.white_b3));
         remainingquantity.setTextColor(mContext.getResources().getColor(R.color.white_b3));
-        preferentialvalue.setTextColor(mContext.getResources().getColor(R.color.white));
+        preferentialvalue.setTextColor(mContext.getResources().getColor(R.color.whiteBgColor));
         condition1.setTextColor(mContext.getResources().getColor(R.color.white_b3));
         bg.setBackgroundResource(R.mipmap.privilege_management_lose_efficacy_background_color);
     }

@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/white"
+    android:background="@color/whiteBgColor"
     android:orientation="vertical" >
 <RelativeLayout
     android:background="#f6f7f7"
@@ -28,7 +28,7 @@
         android:id="@+id/line"
         android:layout_width="fill_parent"
         android:layout_height="1dp"
-        android:background="@color/white"
+        android:background="@color/whiteBgColor"
         android:contentDescription="@null"
         android:visibility="visible" />
 </LinearLayout>

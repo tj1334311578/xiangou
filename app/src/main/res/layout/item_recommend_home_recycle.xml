@@ -64,7 +64,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginStart="5dp"
         android:layout_alignStart="@id/item_recommend_home_Ll"
-        android:textColor="@color/color_pink_b3fb4a89"
+        android:textColor="@color/red_b3pink"
         android:layout_below="@id/item_recommend_home_Ll"
         android:id="@+id/price_item_recommend_home_tv"
         android:text="￥399.00"/>

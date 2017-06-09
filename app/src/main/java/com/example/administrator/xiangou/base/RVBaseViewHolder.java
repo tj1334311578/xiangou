@@ -5,6 +5,7 @@ import android.util.SparseArray;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -38,6 +39,9 @@ public class RVBaseViewHolder extends RecyclerView.ViewHolder implements View.On
      * @param id
      * @return
      */
+    public EditText getEditText(int id){
+        return findView(id);
+    }
     public DrawableTextView getDrawableTextView(int id){return findView(id);}
     public View getView(int id) {
         return findView(id);

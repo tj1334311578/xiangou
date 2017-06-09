@@ -150,15 +150,23 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
                         startNewUI(ClassificationTabActivity.class);
                         break;
                     case "申请店铺":
-                        switch (getUser().getType()){
-                            case 1:
-                                startNewUIForResult(StoreApplicationActivity.class,APPLYCODE,"user_id",getUser().getUser_id());
-                                break;
-                            case 3:
-                                startNewUI(MyStoreActivity.class);
-                                break;
-                            default:
-                                break;
+                        if (getUser().getType()==1){
+                            startNewUIForResult(StoreApplicationActivity.class,APPLYCODE,"user_id",getUser().getUser_id());
+                        }
+//                        switch (getUser().getType()){
+//                            case 1:
+//                                startNewUIForResult(StoreApplicationActivity.class,APPLYCODE,"user_id",getUser().getUser_id());
+//                                break;
+//                            case 3:
+//                                startNewUI(MyStoreActivity.class);
+//                                break;
+//                            default:
+//                                break;
+//                        }
+                        break;
+                    case "我的店铺":
+                        if (getUser().getType()==3){
+                            startNewUI(MyStoreActivity.class);
                         }
                         break;
                     default:

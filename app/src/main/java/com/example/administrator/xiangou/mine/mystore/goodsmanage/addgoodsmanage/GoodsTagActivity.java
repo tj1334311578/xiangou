@@ -56,6 +56,7 @@ public class GoodsTagActivity extends BaseActivity {
         tagFlowLayout.setAdapter(new TagAdapter<String>(tags) {
             @Override
             public View getView(FlowLayout parent, int position, String s) {
+
                 View view = LayoutInflater.from(getBaseContext()).inflate(R.layout.goods_tags_item, tagFlowLayout, false);
                 TextView tv = (TextView) view.findViewById(R.id.goods_tags_item_tv);
 //                tv.setTextColor(getBaseContext().getResources().getColor(R.color.gray_6a747e));//在xml中设置了选择器则无需再代码中设置该属性
@@ -69,33 +70,8 @@ public class GoodsTagActivity extends BaseActivity {
             @Override
             public boolean onTagClick(View view, int position, FlowLayout parent) {
                 showToast(tags.get(position));
-//                int[] poss=new int[tagFlowLayout.getSelectedList().size()];
-////                tagFlowLayout.getSelectedList().toArray();
-//                int i=0;
-//                for (Integer pos:tagFlowLayout.getSelectedList()) {
-//                    poss[i]=pos;
-//                    i++;
-//                }
-//                for (int j = 0; j <poss.length; j++) {
-//                    Log.e("poss" ,"poss["+j+"]"+ poss[j]+"size:"+poss.length);
-//                    if (position==poss[j]){
-//                        ((TextView)view).setTextColor(getResources().getColor(R.color.white));
-//                    }
-//                }
-//                if (tagFlowLayout.getSelectedList().size() != 0) {
-//                    for (Integer pos : tagFlowLayout.getSelectedList()) {
-//                        if (pos == position) {
-//                            tv.setTextColor(getResources().getColor(R.color.white));
-//                            tv.setBackground(getResources().getDrawable(R.drawable.goods_tags_item_textbg_selected));
-//                        } else {
-//                            tv.setTextColor(getResources().getColor(R.color.gray_6a747e));
-//                            tv.setBackground(getResources().getDrawable(R.drawable.goods_tags_item_textbg_default));
-//                        }
-//                    }
-//                } else {
-//                    tv.setTextColor(getResources().getColor(R.color.gray_6a747e));
-//                    tv.setBackground(getResources().getDrawable(R.drawable.goods_tags_item_textbg_default));
-//                }
+                view.setSelected(!view.isSelected());//设置是否被选中
+                Log.e("view", "getView: "+view.isSelected() );
                 return true;
 
             }

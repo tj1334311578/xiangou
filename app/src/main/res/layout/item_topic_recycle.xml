@@ -28,6 +28,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:textSize="11sp"
-        android:textColor="@color/color_pink_b3fb4a89"/>
+        android:textColor="@color/red_b3pink"/>
 
 </LinearLayout>

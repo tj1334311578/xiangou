@@ -94,7 +94,6 @@ public class StoreManagerActivity extends MVPBaseActivity<StoreManagerContract.V
                 break;
             case R.id.store_information_btn://
                 Log.e("修改上传", "onClick: " );
-                // TODO: 2017/5/26 修改数据保存至storeinfo中 未做
                 saveDataToStoreInfo();//先保存再请求数据
                 /**
                  * 这一步的文件上传可以分开写
@@ -108,7 +107,7 @@ public class StoreManagerActivity extends MVPBaseActivity<StoreManagerContract.V
                 RequestBody requestbody=RequestBody.create(MediaType.parse("multipart/form-data"),logo);
                 MultipartBody.Part file= MultipartBody.Part.createFormData("logo","logo.png",requestbody);
                 Log.e("info", "onClick: "+storeInfo.toString() );
-                mPresenter.callEditStoreInfo(1,"104.014725","30.676117","四川省成都市青羊区府南街道锦屏社区南方向",33007,33008,33027,"1239688465jfioef","18349264995",file);
+                mPresenter.callEditStoreInfo(1,"104.014725","30.676117",storeInfo.getAddress(),33007,33008,33027,storeInfo.getSynopsis(),storeInfo.getTelephone(),file);
 //                if (storeInfo!=null)
 //                mPresenter.callEditStoreInfo(storeInfo.getDid(),storeInfo.getMap_x(),storeInfo.getMap_y(),
 //                        storeInfo.getAddress(),storeInfo.getProvince(),storeInfo.getCity(),storeInfo.getDistrict(),
@@ -118,7 +117,6 @@ public class StoreManagerActivity extends MVPBaseActivity<StoreManagerContract.V
 //                                        new File(storeInfo.getLogo()))));
                 break;
         }
-
     }
 
     private void saveDataToStoreInfo() {
@@ -150,7 +148,6 @@ public class StoreManagerActivity extends MVPBaseActivity<StoreManagerContract.V
     public void infoDataToView(StoreManagerInfoBean data) {
         storeInfo = data.getData();//保存数据
         showView(data);//数据显示在界面上的方法
-
     }
 
     private void showView(StoreManagerInfoBean data) {

@@ -33,6 +33,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.administrator.xiangou.R;
+import com.example.administrator.xiangou.mine.mystore.goodsmanage.addgoodsmanage.bean.AddGoodsModelBean;
 import com.example.administrator.xiangou.mine.mystore.goodsmanage.addgoodsmanage.bean.IntoAddGoodPageBean;
 import com.example.administrator.xiangou.mvp.MVPBaseActivity;
 import com.example.administrator.xiangou.tool.ImageQualityUtil;
@@ -109,7 +110,6 @@ public class AddGoodsManageActivity extends MVPBaseActivity<AddGoodsManageContra
         isRecommend_yes=findContentView(R.id.goods_management_addgoods_isrecommend_check,false);
         initCheckBox(isRecommend_yes,R.id.goods_management_addgoods_isrecommend_check,
                 isRecommend_no,R.id.goods_management_addgoods_isnotrecommend_check);
-
         gridView=findContentView(R.id.goods_management_addgoods_updown_grid,false);
 
 
@@ -148,6 +148,8 @@ public class AddGoodsManageActivity extends MVPBaseActivity<AddGoodsManageContra
                     }
                 }
                 Log.e("selecteds", "initView: "+item_ids.toString());
+                Log.e("str", "initView: "+myMultispinner.getSpinnerText().replace(" ",""));
+
             }
 
             @Override
@@ -302,6 +304,8 @@ public class AddGoodsManageActivity extends MVPBaseActivity<AddGoodsManageContra
 //                break;
             case R.id.goods_management_addgoods_model_btn://进入模型扩展页
                 showToast("进入商品模型扩展页");
+                //添加商品进入模型页
+                startNewUICarryStr(GoodsModelActivity.class,"cateBean",mdata.getCate());
                 break;
             case R.id.goods_management_addgoods_labels_btn://进入标签扩展页
                 showToast("进入商品标签扩展页");
@@ -416,5 +420,10 @@ public class AddGoodsManageActivity extends MVPBaseActivity<AddGoodsManageContra
         this.mdata=data;
         Log.e("mdata", "dataToView: "+mdata.toString() );
         initView();
+    }
+
+    @Override
+    public void dataToModelView(AddGoodsModelBean modelBean) {
+
     }
 }

@@ -374,7 +374,7 @@ public class IntoAddGoodPageBean {
             }
         }
 
-        public static class CateBean {
+        public static class CateBean implements Serializable{
             @Override
             public String toString() {
                 return "CateBean{" +

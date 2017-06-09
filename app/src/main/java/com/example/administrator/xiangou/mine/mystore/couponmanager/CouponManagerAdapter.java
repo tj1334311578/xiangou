@@ -145,7 +145,7 @@ public class CouponManagerAdapter extends RVBaseAdapter<CouponManageBean> {
         endTime.setTextColor(mContext.getResources().getColor(R.color.cart_textb316color));
         remainingquantity.setTextColor(mContext.getResources().getColor(R.color.color_pink_fb4a89));
         preferentialvalue.setTextColor(mContext.getResources().getColor(R.color.color_pink_fb4a89));
-        condition1.setTextColor(mContext.getResources().getColor(R.color.color_pink_b3fb4a89));
+        condition1.setTextColor(mContext.getResources().getColor(R.color.red_b3pink));
         bg.setBackgroundResource(R.mipmap.privilege_management_use_background_color);
     }
 }

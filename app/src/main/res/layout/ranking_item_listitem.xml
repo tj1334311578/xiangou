@@ -9,7 +9,7 @@
         android:id="@+id/ranking_item_listitem"
         android:text="新款"
         android:textSize="11sp"
-        android:textColor="@color/white"
+        android:textColor="@color/whiteBgColor"
         android:background="@drawable/ranking_item_listitem_bg" />
 
 </LinearLayout>

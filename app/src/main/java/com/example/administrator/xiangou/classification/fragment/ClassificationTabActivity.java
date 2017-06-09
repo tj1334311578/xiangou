@@ -211,7 +211,7 @@ public class ClassificationTabActivity extends BaseActivity {
                 lines[i].setVisibility(GONE);
             }
         }
-        tvList[id].setBackgroundColor(getResources().getColor(R.color.white));
+        tvList[id].setBackgroundColor(getResources().getColor(R.color.whiteBgColor));
         tvList[id].setTextColor(getResources().getColor(R.color.color_pink_fb4a89));
         lines[id].setVisibility(View.VISIBLE);
     }

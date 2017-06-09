@@ -91,7 +91,7 @@
         android:background="@drawable/unround20dp"
         android:id="@+id/findpswthree_login"
         android:layout_marginRight="17dp"
-        android:textColor="@color/white"
+        android:textColor="@color/whiteBgColor"
         android:layout_height="40dp"
         android:visibility="visible"
         android:layout_marginTop="5dp"

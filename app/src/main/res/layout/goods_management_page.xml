@@ -31,7 +31,7 @@
         android:textSize="15sp"
         android:id="@+id/goods_management_page_addBtn"
         android:gravity="center"
-        android:textColor="@color/white"
+        android:textColor="@color/whiteBgColor"
         android:layout_marginBottom="10dp"
         android:background="@drawable/radius5dp"
         />

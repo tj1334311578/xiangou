@@ -26,9 +26,9 @@
         android:layout_width="16dp"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:background="@color/black"
+        android:background="@color/blackBgColor"
         android:textSize="12sp"
-        android:textColor="@color/white"
+        android:textColor="@color/whiteBgColor"
         android:id="@+id/item_hour_hour"
         android:layout_marginLeft="20dp"
         android:layout_alignTop="@id/item_hour"
@@ -39,7 +39,7 @@
         android:layout_width="16dp"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:background="@color/black"
+        android:background="@color/blackBgColor"
         android:textSize="12sp"
         android:layout_marginLeft="10dp"
         android:layout_alignTop="@id/item_hour"
@@ -53,12 +53,12 @@
         android:layout_width="16dp"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:background="@color/black"
+        android:background="@color/blackBgColor"
         android:textSize="12sp"
         android:layout_marginLeft="10dp"
         android:layout_alignTop="@id/item_hour"
         android:layout_alignBottom="@id/item_hour"
-        android:textColor="@color/white"
+        android:textColor="@color/whiteBgColor"
         android:id="@+id/item_hour_sec"
         android:layout_toRightOf="@id/item_hour_min"/>
     <TextView
@@ -69,7 +69,7 @@
         android:textSize="14sp"
         android:layout_toRightOf="@id/item_hour_hour"
         android:layout_marginStart="3dp"
-        android:textColor="@color/black"/>
+        android:textColor="@color/blackBgColor"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -79,7 +79,7 @@
         android:textSize="14sp"
         android:layout_toRightOf="@id/item_hour_min"
         android:layout_marginStart="3dp"
-        android:textColor="@color/black"/>
+        android:textColor="@color/blackBgColor"/>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

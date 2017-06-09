@@ -124,7 +124,7 @@
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:text="退款"
-            android:textColor="@color/white"
+            android:textColor="@color/whiteBgColor"
             android:layout_alignBottom="@id/order_management_details_item_receiver_goods_size"
             android:layout_alignEnd="@id/order_management_details_item_receiver_phone"
             android:id="@+id/order_management_details_item_ReturnGoods_btn"

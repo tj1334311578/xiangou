@@ -97,7 +97,7 @@
                 android:id="@+id/item_cart_item_goods_delete"
                 android:text="删除"
                 android:textSize="15sp"
-                android:textColor="@color/white"
+                android:textColor="@color/whiteBgColor"
                 android:gravity="center"
                 android:paddingTop="26dp"
                 android:layout_centerInParent="true"

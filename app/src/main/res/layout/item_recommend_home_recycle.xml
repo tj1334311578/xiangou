@@ -50,7 +50,7 @@
             android:textSize="11sp"
             android:padding="1dp"
             android:gravity="center"
-            android:textColor="@color/white"
+            android:textColor="@color/whiteBgColor"
             android:visibility="gone"
             android:id="@+id/status_item_recommend_home_tv"
             android:background="@drawable/itembg_rv_recommend_home"

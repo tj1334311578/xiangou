@@ -27,7 +27,6 @@ import com.example.administrator.xiangou.nearby.apimodel.NearbyStoreApiDataBean;
 import org.json.JSONObject;
 
 import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -200,10 +199,9 @@ public interface XianGouApiService {
     @Multipart
     @POST("Api/User/personals/")
     Observable<Captcha> uploadUserDetials(@Part("user_id") int user_id,
-                                                      @Part("sex") int sex,
-                                                      @Part("nickname") String nickname,
-                                                      @Part MultipartBody.Part file
-                                                    );
+                                          @Part("sex") int sex,
+                                          @Part("nickname") String nickname,
+                                          @Part MultipartBody.Part file);
     //进入地址页面
     @POST("api/User/address/")
     Observable<UserAddressBean> getUserAddrApi(@Query("user_id") int user_id);
@@ -248,7 +246,7 @@ public interface XianGouApiService {
     //店铺信息修改请求
     @Multipart
     @POST("/api/stores/do_edit/")
-    Observable<RequestBody> callEditStoreInfo(@Part("did") int store_id,//店铺id
+    Observable<Captcha> callEditStoreInfo(@Part("did") int store_id,//店铺id
                                               @Part("map_x") String map_x,//店铺经度
                                               @Part("map_y") String map_y,//店铺纬度
                                               @Part("address") String address,//店铺地址
@@ -256,8 +254,8 @@ public interface XianGouApiService {
                                               @Part("city") int city_id,//店铺城市id
                                               @Part("district") int district_id,//店铺区域id
                                               @Part("synopsis") String synopsis,//店铺简介
-                                              @Part("tel") String tel,//店铺电话
-                                              @Part MultipartBody.Part logo);//店铺头像
+                                              @Part MultipartBody.Part logo,//店铺头像
+                                              @Part("tel") String tel);//店铺电话
 
     //店铺管理商品列表
     @POST("/Api/Stores/goodslist/")

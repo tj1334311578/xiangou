@@ -9,7 +9,7 @@
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="48dp"
-            android:background="@color/white"
+            android:background="@color/whiteBgColor"
             android:gravity="center"
             android:textColor="#e6161616"
             android:text="商品分类"

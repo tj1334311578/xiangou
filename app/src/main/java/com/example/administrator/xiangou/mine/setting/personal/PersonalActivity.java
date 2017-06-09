@@ -2,9 +2,7 @@ package com.example.administrator.xiangou.mine.setting.personal;
 
 
 import android.content.Intent;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -137,22 +135,21 @@ public class PersonalActivity extends MVPBaseActivity<PersonalContract.View, Per
                 File img = new File(imagePath);
                 RequestBody requestbody=RequestBody.create(MediaType.parse("multipart/form-data"),img);
                 MultipartBody.Part file = createFormData("head_img",img.getName(),requestbody);
-                uploadUserLogo(data,file);
+                uploadUserLogo(data,file);//上传图片
             }
-        loadImg(data.getData(),person_img);
-//            update(requestCode,imgpathMap);// 刷新图片
-//        update(imagePath);
+//        loadImg(data.getData(),person_img);// 刷新图片
     }
 
     private void uploadUserLogo(final Intent data, MultipartBody.Part requestbody) {
         Log.e("uploadUserLogo", "uploadUserLogo: "+requestbody.toString() );
-        addSubscription(mApiService.uploadUserDetials(getUser().getUser_id(),0,"",requestbody),
+        addSubscription(mApiService.uploadUserDetials(getUser().getUser_id(),0,null,requestbody),
                 new BaseSubscriber<Captcha>(this) {
                     @Override
                     public void onNext(Captcha captcha) {
                         Log.e("onNext", "onNext: "+captcha.toString());
                         if ( captcha.getState().getCode()==200 ){
                             showToast("头像修改成功！");
+                            update(data.getData());
                         }else{
                             showToast("头像修改失败！");
                         }
@@ -171,12 +168,9 @@ public class PersonalActivity extends MVPBaseActivity<PersonalContract.View, Per
     }
 
     //刷新图片方法
-    private void update(String imagePath) {
-        //为解决图片每次变小
-//      Drawable drawable=new BitmapDrawable(ImageUtils.getImageThumbnail(imagePath,person_img.getWidth() ,person_img.getHeight() ));
-        Drawable drawable=new BitmapDrawable(BitmapFactory.decodeFile(imagePath));
-        // TODO: 2017/6/2 图片保存到本地 
-        person_img.setImageDrawable(drawable);
+    private void update(Uri uri) {
+        ImageUtils.loadLocationImg(getContext(),uri,person_img);
+        getSP().saveImgUri(uri);
     }
 
     @Override

@@ -96,7 +96,7 @@
         android:background="@drawable/unround20dp"
         android:id="@+id/findpswone_next_btn"
         android:layout_marginRight="17dp"
-        android:textColor="@color/white"
+        android:textColor="@color/whiteBgColor"
         android:layout_height="40dp"
         android:layout_marginTop="44dp"
         android:layout_below="@+id/findpswone_userCodell"

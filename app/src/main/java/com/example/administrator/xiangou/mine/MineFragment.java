@@ -2,6 +2,7 @@ package com.example.administrator.xiangou.mine;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -29,6 +30,7 @@ import com.example.administrator.xiangou.mine.setting.SettingActivity;
 import com.example.administrator.xiangou.mine.store_application.StoreApplicationActivity;
 import com.example.administrator.xiangou.mvp.MVPBaseFragment;
 import com.example.administrator.xiangou.tool.CustomImageView;
+import com.example.administrator.xiangou.tool.ImageUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -150,24 +152,10 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
                         startNewUI(ClassificationTabActivity.class);
                         break;
                     case "申请店铺":
-                        if (getUser().getType()==1){
-                            startNewUIForResult(StoreApplicationActivity.class,APPLYCODE,"user_id",getUser().getUser_id());
-                        }
-//                        switch (getUser().getType()){
-//                            case 1:
-//                                startNewUIForResult(StoreApplicationActivity.class,APPLYCODE,"user_id",getUser().getUser_id());
-//                                break;
-//                            case 3:
-//                                startNewUI(MyStoreActivity.class);
-//                                break;
-//                            default:
-//                                break;
-//                        }
+                        startNewUIForResult(StoreApplicationActivity.class,APPLYCODE,"user_id",getUser().getUser_id());
                         break;
                     case "我的店铺":
-                        if (getUser().getType()==3){
-                            startNewUI(MyStoreActivity.class);
-                        }
+                        startNewUI(MyStoreActivity.class);
                         break;
                     default:
                         showToast(tv.getText().toString());
@@ -194,9 +182,11 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
     }
 
     private void initDate() {
-        if (getUser().getHead_pic()!=null){
-            loadImg(getUser().getHead_pic(),mHeadImgCiv);
-        }
+//        if (getUser().getHead_pic()!=null){
+//            loadImg(getUser().getHead_pic(),mHeadImgCiv);
+//        }
+        initImageView(mHeadImgCiv);
+
         setTextToTv(mMessageTv,mine_MsgCount);
         setTextToTv(mUserLevelTv,"V"+getUser().getLevel());
         setTextToTv(mLevelNumberTv,getUser().getExperience());
@@ -209,7 +199,6 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
 
         initList();
     }
-
     private void initList() {
         //初始化数据
         if (mList==null) {
@@ -239,6 +228,15 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         }
         mListAdapter = new MineAdapter(getContext(), mList);
         listView.setAdapter(mListAdapter);
+    }
+
+    private void initImageView(ImageView imageView){
+        Uri uri = getSP().getImgUri();
+        if (uri!=null){
+            ImageUtils.loadLocationImg(getContext(),uri,imageView);
+        }else if (getUser().getHead_pic()!=null){
+            loadImg(getUser().getHead_pic(),imageView);
+        }
     }
 
     @Override

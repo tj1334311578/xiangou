@@ -12,7 +12,7 @@
         <TextView
             android:id="@+id/home_store_coupon_discountPrice"
             android:layout_width="wrap_content"
-            android:textColor="@color/white"
+            android:textColor="@color/whiteBgColor"
             android:layout_height="wrap_content"
             android:text="￥"/>
         <TextView
@@ -23,7 +23,7 @@
             android:layout_alignTop="@id/home_store_coupon_discountPrice"
             android:id="@+id/home_store_currentent"
             android:textSize="18sp"
-            android:textColor="@color/white"
+            android:textColor="@color/whiteBgColor"
             />
     </RelativeLayout>
    <TextView
@@ -33,7 +33,7 @@
        android:id="@+id/home_store_description"
        android:layout_below="@id/home_store_coupon_Rl"
        android:gravity="center"
-       android:textColor="@color/white"
+       android:textColor="@color/whiteBgColor"
        android:text="满99元立减"/>
     <TextView
         android:layout_alignParentEnd="true"

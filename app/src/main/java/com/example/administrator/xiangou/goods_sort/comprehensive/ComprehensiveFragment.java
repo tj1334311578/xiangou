@@ -110,7 +110,7 @@ public class ComprehensiveFragment extends MVPBaseFragment<ComprehensiveContract
                 textView.setText(list.get(position));
                 //特殊样式修改
                 if (list.get(position).equals("新品")){
-                    textView.setTextColor(getResources().getColor(R.color.white));
+                    textView.setTextColor(getResources().getColor(R.color.whiteBgColor));
                     textView.setBackground(getResources().getDrawable(R.drawable.ranking_item_listitem_bg));
                 }else{
                     textView.setTextColor(Color.parseColor("#6a747e"));

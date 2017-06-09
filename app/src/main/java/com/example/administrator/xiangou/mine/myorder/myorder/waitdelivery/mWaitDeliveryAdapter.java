@@ -136,7 +136,7 @@ public class mWaitDeliveryAdapter extends AutoRVAdapter implements View.OnClickL
         seeLogistics.setText("取消订单");
         seeLogistics.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG|Paint.ANTI_ALIAS_FLAG);
         evaluate.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG|Paint.ANTI_ALIAS_FLAG);
-        evaluate.setTextColor(mcontext.getResources().getColor(R.color.white));
+        evaluate.setTextColor(mcontext.getResources().getColor(R.color.whiteBgColor));
         evaluate.setBackgroundColor(mcontext.getResources().getColor(R.color.color_pink_fb4a89));
         evaluate.setText("付款");
         initLocationView(position);

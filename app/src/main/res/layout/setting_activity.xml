@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="@color/white"
+    android:background="@color/whiteBgColor"
     android:layout_height="match_parent">
     <ImageView
         android:layout_width="wrap_content"
@@ -371,7 +371,7 @@
         android:id="@+id/exit_login"
         android:text="退出当前账号"
         android:layout_marginTop="44dp"
-        android:textColor="@color/white"
+        android:textColor="@color/whiteBgColor"
         android:textSize="15sp" />
 
 </RelativeLayout>

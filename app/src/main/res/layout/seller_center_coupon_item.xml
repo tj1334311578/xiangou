@@ -83,7 +83,7 @@
         android:id="@+id/seller_center_coupon_del"
         android:visibility="gone"
         android:gravity="center"
-        android:textColor="@color/white"
+        android:textColor="@color/whiteBgColor"
         android:textSize="16sp"
         />
 </RelativeLayout>

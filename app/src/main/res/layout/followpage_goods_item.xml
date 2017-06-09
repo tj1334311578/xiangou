@@ -60,7 +60,7 @@
         android:visibility="gone"
         android:background="@drawable/voucher_bg"
         android:layout_marginStart="5dp"
-        android:textColor="@color/white"
+        android:textColor="@color/whiteBgColor"
         android:id="@+id/follow_goods_item_voucher"
         android:layout_toEndOf="@id/follow_goods_item_oldprice"
         android:layout_alignTop="@id/follow_goods_item_newprice"

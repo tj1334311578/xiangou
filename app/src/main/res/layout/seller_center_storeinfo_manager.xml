@@ -229,7 +229,7 @@
             android:text="保存"
             android:textSize="16sp"
             android:id="@+id/store_information_btn"
-            android:textColor="@color/white"
+            android:textColor="@color/whiteBgColor"
             android:layout_below="@id/store_information_describe_edit"
             android:layout_alignStart="@id/store_information_name_tv"
             android:layout_alignEnd="@id/store_information_storelogo_rl"

@@ -5,7 +5,7 @@
     android:paddingEnd="13dp"
     android:paddingTop="10dp"
     android:paddingBottom="10dp"
-    android:background="@color/white"
+    android:background="@color/whiteBgColor"
     android:layout_height="wrap_content">
     <CheckBox
         android:layout_centerVertical="true"
@@ -50,7 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
-        android:background="@color/white"
+        android:background="@color/whiteBgColor"
         android:layout_centerVertical="true"
         android:src="@mipmap/attention_more_icon"/>
 </RelativeLayout>

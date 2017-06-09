@@ -44,7 +44,7 @@
             android:text="伊拉克店铺"
             android:id="@+id/seller_center_userName"
             android:textSize="14sp"
-            android:textColor="@color/white"
+            android:textColor="@color/whiteBgColor"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/seller_center_userImg"
             />
@@ -54,7 +54,7 @@
             android:text="建立于2016.06"
             android:textSize="8sp"
             android:layout_marginBottom="10dp"
-            android:textColor="@color/white"
+            android:textColor="@color/whiteBgColor"
             android:layout_below="@id/seller_center_userName"
             android:layout_centerHorizontal="true"
             android:id="@+id/seller_center_createTime"/>
@@ -64,7 +64,7 @@
             android:layout_height="wrap_content"
             android:text="本月："
             android:textSize="14sp"
-            android:textColor="@color/white"
+            android:textColor="@color/whiteBgColor"
             android:layout_alignStart="@id/seller_center_return"
             android:layout_below="@id/seller_center_createTime"/>
         <com.example.administrator.xiangou.tool.DrawableTextView
@@ -80,7 +80,7 @@
             android:layout_below="@id/seller_center_createTime"
             android:layout_alignEnd="@id/seller_center_userMessage"
             android:textSize="14sp"
-            android:textColor="@color/white"
+            android:textColor="@color/whiteBgColor"
             android:layout_height="wrap_content" />
     </RelativeLayout>
         <LinearLayout
@@ -101,14 +101,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
+                    android:textColor="@color/whiteBgColor"
                     android:textSize="14sp"
                     android:id="@+id/seller_center_userSessions"
                     android:text="5678"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
+                    android:textColor="@color/whiteBgColor"
                     android:textSize="14sp"
                     android:text="访客量"/>
             </LinearLayout>
@@ -126,14 +126,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
+                    android:textColor="@color/whiteBgColor"
                     android:textSize="14sp"
                     android:id="@+id/seller_center_transactionAmount"
                     android:text="1456.50"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
+                    android:textColor="@color/whiteBgColor"
                     android:textSize="14sp"
                     android:text="交易金额(元)"/>
             </LinearLayout>
@@ -149,14 +149,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
+                    android:textColor="@color/whiteBgColor"
                     android:textSize="14sp"
                     android:id="@+id/seller_center_transactionSession"
                     android:text="4567"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/white"
+                    android:textColor="@color/whiteBgColor"
                     android:textSize="14sp"
                     android:text="交易量"/>
             </LinearLayout>
@@ -318,7 +318,7 @@
         <LinearLayout
             android:layout_weight="1"
         android:layout_width="0dp"
-        android:background="@color/white"
+        android:background="@color/whiteBgColor"
         android:layout_height="80dp"
         android:orientation="vertical"
         android:gravity="center">
@@ -337,7 +337,7 @@
 
         <LinearLayout android:layout_weight="1"
         android:layout_width="0dp"
-        android:background="@color/white"
+        android:background="@color/whiteBgColor"
         android:layout_marginStart="1dp"
         android:layout_marginEnd="1dp"
         android:layout_height="80dp"
@@ -359,7 +359,7 @@
         <LinearLayout
             android:layout_weight="1"
         android:layout_width="0dp"
-        android:background="@color/white"
+        android:background="@color/whiteBgColor"
         android:layout_height="80dp"
         android:orientation="vertical"
         android:gravity="center">
@@ -392,7 +392,7 @@
             android:id="@+id/seller_center_store_management_storemanager"
         app:topDrawable="@mipmap/seller_center_store_management_icon"
         android:layout_height="80dp"
-        android:background="@color/white"
+        android:background="@color/whiteBgColor"
         app:topDrawableWidth="30dp"
         app:topDrawableHeight="30dp"
         android:gravity="center" />
@@ -402,7 +402,7 @@
             android:layout_width="0dp"
         app:topDrawable="@mipmap/seller_center_goods_management_icon"
         android:layout_height="80dp"
-        android:background="@color/white"
+        android:background="@color/whiteBgColor"
         android:layout_marginStart="1dp"
             android:id="@+id/seller_center_store_management_goodsmanager"
         android:layout_marginEnd="1dp"
@@ -417,7 +417,7 @@
         app:topDrawable="@mipmap/seller_center_order_management_icon"
         android:layout_height="80dp"
             android:id="@+id/seller_center_store_management_ordermanager"
-        android:background="@color/white"
+        android:background="@color/whiteBgColor"
         app:topDrawableWidth="30dp"
         app:topDrawableHeight="30dp"
         android:gravity="center"
@@ -440,7 +440,7 @@
         android:layout_marginTop="1dp"
         app:topDrawableWidth="30dp"
         android:layout_height="80dp"
-        android:background="@color/white"
+        android:background="@color/whiteBgColor"
         />
 
         <com.example.administrator.xiangou.tool.DrawableTextView
@@ -457,7 +457,7 @@
             android:gravity="center"
         app:topDrawableWidth="30dp"
         android:layout_height="80dp"
-        android:background="@color/white"
+        android:background="@color/whiteBgColor"
         />
 
         <com.example.administrator.xiangou.tool.DrawableTextView
@@ -472,7 +472,7 @@
         android:layout_marginBottom="1dp"
         app:topDrawableWidth="30dp"
         android:layout_height="80dp"
-        android:background="@color/white"
+        android:background="@color/whiteBgColor"
         />
     </LinearLayout>
 </LinearLayout>

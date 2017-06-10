@@ -568,8 +568,9 @@
         android:textColorHint="#4d161616"
         android:padding="0dp"
         android:gravity="center_vertical"
-        android:layout_alignStart="@id/goods_management_addgoods_model_btn"
+        android:layout_alignStart="@id/goods_management_addgoods_labels_text"
         android:hint="第一张图片为商品图片"
+        android:layout_alignEnd="@+id/goods_management_addgoods_labels_text"
         android:layout_alignTop="@id/goods_management_addgoods_updown_img"
         android:id="@+id/editText" />
 

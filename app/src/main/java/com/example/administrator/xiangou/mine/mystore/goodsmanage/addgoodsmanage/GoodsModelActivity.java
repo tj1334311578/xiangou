@@ -1,7 +1,6 @@
 package com.example.administrator.xiangou.mine.mystore.goodsmanage.addgoodsmanage;
 
 import android.os.Bundle;
-import android.support.annotation.BoolRes;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.mine.mystore.goodsmanage.addgoodsmanage.bean.AddGoodsModelBean;
@@ -39,8 +39,8 @@ import java.util.Set;
  * 邮箱：1334311578@qq.com
  * osc git address：https://git.oschina.net/xiangou/Android.git
  */
-
-public class GoodsModelActivity extends MVPBaseActivity <AddGoodsManageContract.View,AddGoodsManagePresenter> implements AddGoodsManageContract.View{
+//Activity需要实现自定义接口
+public class GoodsModelActivity extends MVPBaseActivity <AddGoodsManageContract.View,AddGoodsManagePresenter> implements AddGoodsManageContract.View,StockRecycleAdapter.Callback,StockRecycleAdapter.EditCallback{
     private ImageButton backBtn;
     private Spinner model_spinenr;
     private TagFlowLayout sizetag,colortag;
@@ -55,6 +55,8 @@ public class GoodsModelActivity extends MVPBaseActivity <AddGoodsManageContract.
     private Map<Integer,Set<Integer>> setMap=new ArrayMap<>();
     private static int oldPos=-1;
     private static int modelPosition=-1;
+    private TagAdapter<String> sizetagAdapter;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +80,10 @@ public class GoodsModelActivity extends MVPBaseActivity <AddGoodsManageContract.
         stockRecycle.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
         list.add(null);
         stockRecycle.setAdapter(adapter=new StockRecycleAdapter(getContext(),list));
+        //点击监听
+        adapter.setMcallback(this);
+        //edit监听
+        adapter.setMeditCallback(this);
 
         final List<String> models=new ArrayList<>();
         for (int i = 0; i < CateLists.size(); i++) {
@@ -257,7 +263,7 @@ public class GoodsModelActivity extends MVPBaseActivity <AddGoodsManageContract.
 //        colortag.getChildAt(0).setSelected(true);
 //        colortag.getChildAt(0).setClickable(false);
 
-        sizetag.setAdapter(new TagAdapter<String>(sizes) {
+        sizetag.setAdapter(sizetagAdapter =new TagAdapter<String>(sizes) {
             @Override
             public View getView(FlowLayout parent, int position, String s) {
                 View view = LayoutInflater.from(getBaseContext()).inflate(R.layout.goods_model_tag, sizetag, false);
@@ -272,5 +278,62 @@ public class GoodsModelActivity extends MVPBaseActivity <AddGoodsManageContract.
     @Override
     public void sendFialRequest(String message) {
 
+    }
+
+    @Override
+    public void click(View view,int position) {
+                Log.e("del", "click: position:"+position );
+//                Toast.makeText( this,"listview的内部的按钮被点击了！，位置是-->" + (Integer) view.getTag() + ",内容是-->" + adapter.getDatas().get((Integer) view.getTag()).getDelbtn(),
+//                        Toast.LENGTH_SHORT).show();
+        int i= position;
+        if (i>0){
+                    Log.e("gooo", "click:gettag "+i );
+                    int j;
+                    Iterator<Integer> colorpos=colortag.getSelectedList().iterator();
+                    while (colorpos.hasNext()){
+                        boolean isdelete=false;
+                        j=colorpos.next();
+                        for (int k = 0; k <colors.size(); k++) {
+                            Log.e("tag", "click: "+i);
+                            i=(list.size()>i)?i:list.size()-1;
+                            Log.e("tag", "click: "+i);
+                            if (colors.get(k).equals(list.get(i).getColor())){
+                                Log.e("J", "j:"+j+"i:"+i+"k:"+k+"\nlistcolor"+list.get(i).getColor()+"colors"+colors.get(k));
+                                setMap.get(k).remove(list.get(i).getPosition());//删除setmap中selected数据
+                                sizetag.getAdapter().setSelectedList(setMap.get(k));
+                                if (setMap.get(k).size()==0){
+                                    setMap.remove(k);
+                                }
+                                isdelete=true;
+                            }
+                        }
+                        if (isdelete){
+                            break;
+                        }
+                    }
+            list.remove(i);
+            adapter.notifyItemRemoved(i);
+            sizes.add("");
+            sizetagAdapter.notifyDataChanged();//刷新sizetag标签
+            sizes.remove(sizes.size()-1);
+            sizetagAdapter.notifyDataChanged();//刷新sizetag标签
+//                    sizetag.getAdapter().setSelected(list.get((Integer) view.getTag()).getPosition(),false);//测试把该位置的选择设置为FALSE
+
+                    Log.e("list", "click: "+list.toString()+"\nsetmap"+setMap.toString()+"selected:"+sizetag.getSelectedList().toString());
+
+                }
+            }
+
+    @Override
+    public void editCallback(View v, CharSequence s,int position) {
+        //关键；否则会报下标越界 注：在回调时；由于获取的位置是之前的位置，来不及重新设置position，在刷新之后再次调用时是之前的位置，所以会报下标越界
+        //故重新给越界的位置初始化为数据最后一条数据的位置。
+        position=list.size()>position?position:list.size()-1;
+        if (adapter.getDatas()!=null&&adapter.getDatas().size()>1) {
+            adapter.getDatas().get(position).setStock(s.toString());
+            Log.e("sssjsijso", "View: " + v + "s:" + s+"position"+position+"\ndata:"+adapter.getDatas().get(position).getStock());
+//            Toast.makeText(this, "listview的内部的按钮被点击了！，位置是-->" + (Integer) v.getTag() + ",内容是-->" + adapter.getDatas().get((Integer) v.getTag()).getStock() + "s-->" + s,
+//                    Toast.LENGTH_SHORT).show();
+        }
     }
 }

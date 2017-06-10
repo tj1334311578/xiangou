@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -24,19 +25,35 @@ import java.util.List;
  * 邮箱：1334311578@qq.com
  * osc git address：https://git.oschina.net/xiangou/Android.git
  */
-public class StockRecycleAdapter extends RVBaseAdapter<StockBean> {
+public class StockRecycleAdapter extends RVBaseAdapter<StockBean>{
     private TextView colorTv,sizeTv,delTv;
     private EditText stockEdit;
 
-    public void setStockEditListener(StockEditListener stockEditListener) {
-        this.stockEditListener = stockEditListener;
+    public void setMeditCallback(EditCallback meditCallback) {
+        this.meditCallback = meditCallback;
     }
 
-    private StockEditListener stockEditListener;
-
-    private  interface StockEditListener {
-        void stockChangeListener();
+    public void setStockEdit(EditText stockEdit) {
+        this.stockEdit = stockEdit;
     }
+
+    public void setMcallback(Callback mcallback) {
+        this.mcallback = mcallback;
+    }
+    private EditCallback meditCallback;
+    interface EditCallback {
+        void editCallback(View v,CharSequence s,int position);
+    }
+
+    private Callback mcallback;//注：所有listview的item共用同一个
+    //响应按钮点击事件,调用子定义接口，并传入View
+    /**
+     * 自定义接口，用于回调按钮点击事件到Activity
+     */
+    public interface Callback {
+        void click(View view,int position);
+    }
+
 
     public StockRecycleAdapter(Context context, List<StockBean> mDatas) {
         super(context, R.layout.goods_model_recyclel_item, mDatas);
@@ -74,6 +91,34 @@ public class StockRecycleAdapter extends RVBaseAdapter<StockBean> {
             Log.e("position!=0", "bindData: "+mDatas.toString() );
 
         }
-        Log.e("position", "bindData: "+position+"mdata:"+mDatas.toString()+"focusable:"+stockEdit.isFocusable()+"position:"+position);
-    }
+        delTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mcallback.click(v,position);
+            }
+        });
+        synchronized (mContext){
+            stockEdit.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    meditCallback.editCallback(stockEdit, s,position);
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+                }
+            });
+            Log.e("delTv", "bindData: "+position );
+
+            Log.e("position", "bindData: "+position+"mdata:"+mDatas.toString()+"focusable:"+stockEdit.isFocusable()+"position:"+position);
+        }
+
+      }
+
 }

@@ -13,7 +13,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.mine.mystore.goodsmanage.addgoodsmanage.bean.AddGoodsModelBean;
@@ -44,7 +43,7 @@ public class GoodsModelActivity extends MVPBaseActivity <AddGoodsManageContract.
     private ImageButton backBtn;
     private Spinner model_spinenr;
     private TagFlowLayout sizetag,colortag;
-    private List<IntoAddGoodPageBean.DataBean.CateBean> CateLists;
+    private List<IntoAddGoodPageBean.DataBean.ModelBean> ModelList;
     private RecyclerView stockRecycle;
     private Map<Integer,Boolean> map=new ArrayMap<Integer, Boolean>();
     private StockRecycleAdapter adapter;
@@ -61,8 +60,8 @@ public class GoodsModelActivity extends MVPBaseActivity <AddGoodsManageContract.
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.goods_model);
-        CateLists= (List<IntoAddGoodPageBean.DataBean.CateBean>) getIntent().getSerializableExtra("cateBean");
-        Log.e("CateLists", "onCreate: "+CateLists.toString() );
+        ModelList = (List<IntoAddGoodPageBean.DataBean.ModelBean>) getIntent().getSerializableExtra("modelBean");
+        Log.e("ModelList", "onCreate: "+ ModelList.toString() );
         initView();
     }
 
@@ -86,10 +85,10 @@ public class GoodsModelActivity extends MVPBaseActivity <AddGoodsManageContract.
         adapter.setMeditCallback(this);
 
         final List<String> models=new ArrayList<>();
-        for (int i = 0; i < CateLists.size(); i++) {
-            models.add(CateLists.get(i).getName());
+        for (int i = 0; i < ModelList.size(); i++) {
+            models.add(ModelList.get(i).getName());
         }
-//        mPresenter.callIntoAddGoodModel(CateLists.get(1).getCat_id(),0);//默认进页面调用获取尺码显示数据
+//        mPresenter.callIntoAddGoodModel(ModelList.get(1).getCat_id(),0);//默认进页面调用获取尺码显示数据
         model_spinenr.setAdapter(new ArrayAdapter<String>(getContext(),android.R.layout.simple_spinner_item,models));
         model_spinenr.setSelection(1);
         model_spinenr.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -105,7 +104,7 @@ public class GoodsModelActivity extends MVPBaseActivity <AddGoodsManageContract.
                 modelPosition=position;
                 Log.e("newposition", "onItemSelected: "+position );
                 Log.e("setmap", "onItemSelected: "+setMap.toString() );
-                mPresenter.callIntoAddGoodModel(CateLists.get(position).getCat_id(),0);
+                mPresenter.callIntoAddGoodModel(ModelList.get(position).getModel_id(),0);
             }
 
             @Override

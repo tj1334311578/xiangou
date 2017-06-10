@@ -215,7 +215,7 @@ public class GoodsitemBean {
 
             @Override
             public String toString() {
-                return "SpecBean{" +
+                return "SpecsBean{" +
                         "spec_id=" + spec_id +
                         ", name='" + name + '\'' +
                         ", item_id=" + item_id +

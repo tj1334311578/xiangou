@@ -1,5 +1,6 @@
 package com.example.administrator.xiangou.mine.mystore.goodsmanage.addgoodsmanage;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -14,6 +15,7 @@ import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
 import com.zhy.view.flowlayout.TagFlowLayout;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -41,13 +43,13 @@ public class GoodsTagActivity extends BaseActivity {
         initView();
     }
 
-
     private void initView() {
         findContentView(R.id.goods_tags_back);
         saveBtn = findContentView(R.id.goods_tags_saved);
         tagFlowLayout = findContentView(R.id.goods_tags_tagflowlayout, false);
         //初始化数据
         final List<String> tags = new ArrayList<>();
+//        List<Integer>
         for (int i = 0; i < signs.size(); i++) {
             tags.add(signs.get(i).getName());
         }
@@ -91,6 +93,21 @@ public class GoodsTagActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.goods_tags_saved://保存
+                Set<Integer> selectes=tagFlowLayout.getSelectedList();
+                List<IntoAddGoodPageBean.DataBean.SignBeanX> signbeans=new ArrayList<>();
+                for (Integer selected:selectes) {
+                    signbeans.add(signs.get(selected));
+                }
+
+                Intent intent=new Intent();
+                //不转换会报类型转换错误
+                Object[] strs = {signbeans};
+                for (int i = 0; i < strs.length; i++) {
+                    Serializable s = (Serializable) strs[i];
+                    intent.putExtra("tag",s);
+                }
+                setResult(RESULT_OK,intent);
+                finish();
                 break;
         }
     }

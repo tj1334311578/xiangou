@@ -408,7 +408,7 @@ public class IntoAddGoodPageBean {
             }
         }
 
-        public static class ModelBean {
+        public static class ModelBean implements Serializable{
             @Override
             public String toString() {
                 return "ModelBean{" +

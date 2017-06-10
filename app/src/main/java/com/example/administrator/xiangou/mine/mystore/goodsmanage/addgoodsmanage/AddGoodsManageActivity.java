@@ -29,6 +29,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -73,8 +74,12 @@ public class AddGoodsManageActivity extends MVPBaseActivity<AddGoodsManageContra
     private final String PHOTO_FILE_NAME = "temp_photo.jpg";
     private IntoAddGoodPageBean.DataBean mdata;
 
-    private MultiSelectSpinner myMultispinner;
+//    private Spinner myMultispinner;
+    private Spinner myspinner;
+    private final static int ForRESULTTag=101;
+    private final static int ForRESULTModel=102;
     private static boolean[] selecteds;
+    private List<String> strs;
 
 
     @Override
@@ -112,7 +117,6 @@ public class AddGoodsManageActivity extends MVPBaseActivity<AddGoodsManageContra
                 isRecommend_no,R.id.goods_management_addgoods_isnotrecommend_check);
         gridView=findContentView(R.id.goods_management_addgoods_updown_grid,false);
 
-
         //上传图片相关
         datas = new ArrayList<>();
         gridViewAddImgesAdpter=new AddGoodsImgesAdpter(this,datas);
@@ -127,36 +131,70 @@ public class AddGoodsManageActivity extends MVPBaseActivity<AddGoodsManageContra
             }
         });
         //给在其他区域点击操作
-        List<String > strs=new ArrayList<>();
+        strs = new ArrayList<>();
         for (int i = 0; i < mdata.getCate().size(); i++) {
-            strs.add(mdata.getModel().get(i).getName());
+            strs.add(mdata.getCate().get(i).getName());
         }
-        myMultispinner=findContentView(R.id.goods_management_addgoods_multiselectspinner,false);
-        ArrayAdapter<String> adapter=new ArrayAdapter<String>(getContext(),android.R.layout.simple_list_item_multiple_choice,strs);
-        myMultispinner.setListAdapter(adapter).setMinSelectedItems(1).setMaxSelectedItems(3);
-        final   List<Integer> item_ids=new ArrayList<>();
-        myMultispinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        myspinner=findContentView(R.id.goods_management_addgoods_selectspinner,false);
+        myspinner.setSelection(0);
+        final ArrayAdapter<String> adapter=new ArrayAdapter<String>(getContext(),android.R.layout.simple_spinner_item, strs);
+        myspinner.setAdapter(adapter);
+        myspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Log.e("position1", "onItemClick: "+Arrays.toString(myMultispinner.getSelected()));
-                selecteds = myMultispinner.getSelected();
-                Log.e("position2", "onItemClick: "+Arrays.toString(selecteds));
-                        item_ids.clear();
-                for (int i = 0; i < selecteds.length; i++) {
-                    if (selecteds[i]){
-                        item_ids.add(mdata.getModel().get(i).getModel_id());
-                    }
-                }
-                Log.e("selecteds", "initView: "+item_ids.toString());
-                Log.e("str", "initView: "+myMultispinner.getSpinnerText().replace(" ",""));
-
+                Log.e("positiojnk", "initView: "+myspinner.getSelectedItemId() );
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-//                Log.e("position2", "onItemClick: "+ Arrays.toString(myMultispinner.getSelected()));
+
             }
         });
+
+
+//        myMultispinner.setListAdapter(adapter).setMinSelectedItems(1).setMaxSelectedItems(2);
+//        final   List<Integer> item_ids=new ArrayList<>();
+//        myMultispinner.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                selecteds = myMultispinner.getSelected();
+//                item_ids.clear();
+//                //初始化为false
+//                for (int i = 0; i < selecteds.length; i++) {
+//                    if (selecteds[i]==true){
+//                        myMultispinner.setSelection(i,false);
+//                    }
+//                }
+//                myMultispinner.setSelection(position,true);
+//                strs.add("");
+//                adapter.notifyDataSetChanged();
+//                strs.remove(strs.size()-1);
+//                adapter.notifyDataSetChanged();
+//            }
+//        });
+//        myMultispinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+//                Log.e("position1", "onItemClick: "+Arrays.toString(myMultispinner.getSelected()));
+//                Log.e("position2", "onItemClick: "+Arrays.toString(selecteds));
+////                for (int i = 0; i < selecteds.length; i++) {
+////                    //逻辑设置为单选
+////                    if (selecteds[i]&&i==position){
+////                        item_ids.add(mdata.getCate().get(i).getCat_id());
+////                    }else{
+////                        myMultispinner.setSelection(position,false);
+////                    }
+////                }
+//                Log.e("selecteds", "initView: "+item_ids.toString());
+//                Log.e("str", "initView: "+myMultispinner.getSpinnerText().replace(" ",""));
+//
+//            }
+
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+////                Log.e("position2", "onItemClick: "+ Arrays.toString(myMultispinner.getSelected()));
+//            }
+//        });
 
 
 
@@ -298,6 +336,8 @@ public class AddGoodsManageActivity extends MVPBaseActivity<AddGoodsManageContra
                 break;
             case R.id.goods_management_addgoods_releasebtn://发布新商品
                 showToast("发布新商品");
+                Log.e("ceshi", "isNew_no:"+isNew_no.isChecked()+"\nisNew_yes:" +isNew_yes.isChecked()+"\nisRecommend_no:"+isRecommend_no.isChecked()+"\nisRecommend_yes:"+isRecommend_yes.isChecked());
+                savadata();
                 break;
 //            case R.id.goods_management_addgoods_classification_btn://进入商品分类扩展页
 //                showToast("进入商品分类扩展页");
@@ -305,13 +345,17 @@ public class AddGoodsManageActivity extends MVPBaseActivity<AddGoodsManageContra
             case R.id.goods_management_addgoods_model_btn://进入模型扩展页
                 showToast("进入商品模型扩展页");
                 //添加商品进入模型页
-                startNewUICarryStr(GoodsModelActivity.class,"cateBean",mdata.getCate());
+                startNewUIForResult(GoodsModelActivity.class,ForRESULTModel,"modelBean",mdata.getModel());
                 break;
             case R.id.goods_management_addgoods_labels_btn://进入标签扩展页
                 showToast("进入商品标签扩展页");
-                startNewUICarryStr(GoodsTagActivity.class,"tags",mdata.getSign());
+                startNewUIForResult(GoodsTagActivity.class,ForRESULTTag,"tags",mdata.getSign());
                 break;
         }
+    }
+    //保存需要上传的数据并请求上传
+    private void savadata() {
+
     }
 
     @Override
@@ -322,26 +366,27 @@ public class AddGoodsManageActivity extends MVPBaseActivity<AddGoodsManageContra
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
-            if (requestCode == PHOTO_REQUEST_GALLERY) {
-                // 从相册返回的数据
-                if (data != null) {
-                    // 得到图片的全路径
-                    Uri uri = data.getData();
-                    String[] proj = {MediaStore.Images.Media.DATA};
-                    //好像是android多媒体数据库的封装接口，具体的看Android文档
-                    Cursor cursor = managedQuery(uri, proj, null, null, null);
-                    //按我个人理解 这个是获得用户选择的图片的索引值
-                    int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-                    //将光标移至开头 ，这个很重要，不小心很容易引起越界
-                    cursor.moveToFirst();
-                    //最后根据索引值获取图片路径
-                    String path = cursor.getString(column_index);
-                    uploadImage(path);
-                }
 
-            } else if (requestCode == PHOTO_REQUEST_CAREMA) {
-                if (resultCode != RESULT_CANCELED) {
+        if (resultCode == RESULT_OK) {
+            switch (requestCode){
+                case PHOTO_REQUEST_GALLERY:
+                    // 从相册返回的数据
+                    if (data != null) {
+                        // 得到图片的全路径
+                        Uri uri = data.getData();
+                        String[] proj = {MediaStore.Images.Media.DATA};
+                        //好像是android多媒体数据库的封装接口，具体的看Android文档
+                        Cursor cursor = managedQuery(uri, proj, null, null, null);
+                        //按我个人理解 这个是获得用户选择的图片的索引值
+                        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+                        //将光标移至开头 ，这个很重要，不小心很容易引起越界
+                        cursor.moveToFirst();
+                        //最后根据索引值获取图片路径
+                        String path = cursor.getString(column_index);
+                        uploadImage(path);
+                    }
+                    break;
+                case PHOTO_REQUEST_CAREMA:
                     // 从相机返回的数据
                     if (hasSdcard()) {
                         if (tempFile != null) {
@@ -354,9 +399,70 @@ public class AddGoodsManageActivity extends MVPBaseActivity<AddGoodsManageContra
                     } else {
                         Toast.makeText(this, "未找到存储卡，无法存储照片！", Toast.LENGTH_SHORT).show();
                     }
-                }
+                    break;
+                case ForRESULTTag://获取tag页面返回的数据
+                    String tag_id="";
+                    String tags="";
+                        if (data!=null){
+                            //获取返回的标签id集合字符
+                            Bundle bundle=data.getExtras();
+                            List<IntoAddGoodPageBean.DataBean.SignBeanX> tagsbean= (List<IntoAddGoodPageBean.DataBean.SignBeanX>) bundle.getSerializable("tag");
+                            for (int i = 0; i < tagsbean.size(); i++) {
+                                if (tags.equals("")){
+                                    tags+=tagsbean.get(i).getName();
+                                }else{
+                                    tags+=","+tagsbean.get(i).getName();
+                                }
+                                if (tag_id.equals("")){
+                                    tag_id+=tagsbean.get(i).getSign_id();
+                                }else{
+                                    tag_id+=","+tagsbean.get(i).getSign_id();
+                                }
+                            }
+                        }
+                    good_Labels.setText(tags);
+                    Log.e("data", "tags: "+tags+"tag_id"+tag_id);
+                    break;
+                case ForRESULTModel://获取model页面返回的数据
+
+                    break;
+
             }
 
+//            if (requestCode == PHOTO_REQUEST_GALLERY) {
+//                // 从相册返回的数据
+//                if (data != null) {
+//                    // 得到图片的全路径
+//                    Uri uri = data.getData();
+//                    String[] proj = {MediaStore.Images.Media.DATA};
+//                    //好像是android多媒体数据库的封装接口，具体的看Android文档
+//                    Cursor cursor = managedQuery(uri, proj, null, null, null);
+//                    //按我个人理解 这个是获得用户选择的图片的索引值
+//                    int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+//                    //将光标移至开头 ，这个很重要，不小心很容易引起越界
+//                    cursor.moveToFirst();
+//                    //最后根据索引值获取图片路径
+//                    String path = cursor.getString(column_index);
+//                    uploadImage(path);
+//                }
+//
+//            } else if (requestCode == PHOTO_REQUEST_CAREMA) {
+//                if (resultCode != RESULT_CANCELED) {
+//                    // 从相机返回的数据
+//                    if (hasSdcard()) {
+//                        if (tempFile != null) {
+//                            uploadImage(tempFile.getPath());
+//                        } else {
+//                            Toast.makeText(this, "相机异常请稍后再试！", Toast.LENGTH_SHORT).show();
+//                        }
+//
+//                        Log.i("images", "拿到照片path=" + tempFile.getPath());
+//                    } else {
+//                        Toast.makeText(this, "未找到存储卡，无法存储照片！", Toast.LENGTH_SHORT).show();
+//                    }
+//                }
+//            }
+//
         }
     }
     Handler handler = new Handler() {

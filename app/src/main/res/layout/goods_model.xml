@@ -159,7 +159,7 @@
                     android:layout_width="wrap_content"
                     android:text="面料："
                     android:layout_height="match_parent"
-                    android:id="@+id/textView" />
+                    android:id="@+id/attr1" />
 
                 <Spinner
                     android:layout_width="match_parent"
@@ -178,6 +178,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:text="年份季节："
+                    android:id="@+id/attr2"
                     android:gravity="center"
                     android:layout_height="match_parent" />
                 <Spinner
@@ -205,6 +206,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:text="图案："
+                android:id="@+id/attr3"
                 android:gravity="center"
                 android:layout_height="match_parent" />
             <Spinner
@@ -224,6 +226,7 @@
                 android:layout_width="wrap_content"
                 android:text="组合形式："
                 android:gravity="center"
+                android:id="@+id/attr4"
                 android:layout_height="match_parent" />
             <Spinner
                 android:layout_width="match_parent"

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,7 +20,6 @@ import com.example.administrator.xiangou.tool.ImageUtils;
 import com.example.administrator.xiangou.tool.MySharedPreferences;
 
 import java.io.File;
-import java.util.Arrays;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -63,7 +61,7 @@ public class StoreManagerActivity extends MVPBaseActivity<StoreManagerContract.V
                     getSP().saveImgUri(MySharedPreferences.KEY_STOREIMG,data.getData());
 
                     imgpath=ImageUtils.getFilePathByFileUri(this,data.getData());
-                    Log.e("2_____________", "onActivityResult: "+imgpath);
+//                    Log.e("2_____________", "onActivityResult: "+imgpath);
                     storeInfo.setLogo(data.getDataString());
                     hasLogoChanged = true;
                     break;
@@ -101,27 +99,23 @@ public class StoreManagerActivity extends MVPBaseActivity<StoreManagerContract.V
                 showPicturePopupWindow(1);
                 break;
             case R.id.store_information_btn:
-                Log.e("修改上传", "onClick: " );
+//                Log.e("修改上传", "onClick: " );
                 MultipartBody.Part file = null;
                 if (hasLogoChanged) {
                     File logo = ImageUtils.getFileFromMediaUri(getContext(), Uri.parse(storeInfo.getLogo()));
                     RequestBody requestbody = RequestBody.create(MediaType.parse("multipart/form-data"), logo);
                     file = MultipartBody.Part.createFormData("logo", "logo.png", requestbody);
                 }
-                Log.e("info", "onClick: " + storeInfo.toString());
+//                Log.e("info", "onClick: " + storeInfo.toString());
                 mPresenter.callEditStoreInfo(
 //                        1,
                         storeInfo.getDid(),
-//                        "104.014725","30.676117",
-                        storeInfo.getMap_x(),storeInfo.getMap_y(),
-//                        ContextUtils.makeTextOK(address.getText().toString())
+                        "104.014725","30.676117",
+//                        storeInfo.getMap_x(),storeInfo.getMap_y(),
                         address.getText().toString(),
-//                        33007,33008,33027,
                         storeInfo.getProvince(),storeInfo.getCity(),storeInfo.getDistrict(),//若改变则需要新的数据
-//                        ContextUtils.makeTextOK(description.getText().toString()),
-                        description.getText().toString().replace("\n","\\n"),
+                        description.getText().toString(),
                         tel.getText().toString(),
-//                        ContextUtils.makeTextOK(tel.getText().toString()),
                         file);
                 break;
         }
@@ -129,7 +123,7 @@ public class StoreManagerActivity extends MVPBaseActivity<StoreManagerContract.V
     }
 
     private void saveDataToStoreInfo() {
-        Log.e("tel", "saveDataToStoreInfo: "+tel.getText().toString() );
+//        Log.e("tel", "saveDataToStoreInfo: "+tel.getText().toString() );
         storeInfo.setTelephone(tel.getText().toString());
         formatString(location.getText().toString()); //保存省市区数据
         storeInfo.setAddress(address.getText().toString());
@@ -143,14 +137,14 @@ public class StoreManagerActivity extends MVPBaseActivity<StoreManagerContract.V
             storeInfo.setCity_name(str[1]);
             storeInfo.setDistrict_name(str[2]);
         }
-        Log.e("str", "formatString: "+ Arrays.toString(str));
+//        Log.e("str", "formatString: "+ Arrays.toString(str));
 
     }
 
 
     @Override
     public void sendFialRequest(String message) {
-
+        showToast(message);
     }
 
     @Override

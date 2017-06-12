@@ -33,7 +33,7 @@ public class AddGoodsSpecBean {
     public static class SpecBean{
         @Override
         public String toString() {
-            return "SpecBean{" +
+            return "SpecsBean{" +
                     "key='" + key + '\'' +
                     ", store_count=" + store_count +
                     '}';

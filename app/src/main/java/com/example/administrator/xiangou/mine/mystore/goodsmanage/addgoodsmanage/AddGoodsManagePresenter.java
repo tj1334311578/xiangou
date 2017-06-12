@@ -2,6 +2,10 @@ package com.example.administrator.xiangou.mine.mystore.goodsmanage.addgoodsmanag
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
+
+import com.example.administrator.xiangou.mine.mystore.goodsmanage.addgoodsmanage.bean.AddGoodsModelBean;
+import com.example.administrator.xiangou.mine.mystore.goodsmanage.addgoodsmanage.bean.AddGoodsSpecBean;
 import com.example.administrator.xiangou.mine.mystore.goodsmanage.addgoodsmanage.bean.IntoAddGoodPageBean;
 import com.example.administrator.xiangou.mvp.BasePresenterImpl;
 import com.example.administrator.xiangou.net.BaseSubscriber;
@@ -13,6 +17,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import okhttp3.ResponseBody;
@@ -158,6 +163,70 @@ public class AddGoodsManagePresenter extends BasePresenterImpl<AddGoodsManageCon
                     @Override
                     public void onError(ExceptionHandle.ResponeThrowable e) {
                         Log.e("onError", "onError: "+e.toString() );
+                    }
+                });
+    }
+
+    @Override
+    public void callIntoAddGoodModel(int model_id, int goods_id) {
+        addSubscription(mApiService.callIntoModelView(model_id,goods_id),
+                new BaseSubscriber<ResponseBody>(mView.getContext()) {
+                    @Override
+                    public void onNext(ResponseBody responseBody) {
+                        try {
+                            JSONObject obj=new JSONObject(responseBody.string());
+                            JSONObject data=obj.getJSONObject("data");
+                            JSONArray specList=data.getJSONArray("specList");
+                            AddGoodsModelBean  modleBean =new AddGoodsModelBean();
+                            List<AddGoodsModelBean.SpecBean> specBeanList=new ArrayList<AddGoodsModelBean.SpecBean>();
+                            for (int i = 0; i < specList.length(); i++) {
+                                AddGoodsModelBean.SpecBean specBean=new AddGoodsModelBean.SpecBean();
+                                JSONObject specListItem=specList.getJSONObject(i);
+                                int spec_id=specListItem.getInt("spec_id");
+                                specBean.setSpec_id(spec_id);
+                                int model_id=specListItem.getInt("model_id");
+                                specBean.setModel_id(model_id);
+                                String name=specListItem.getString("name");
+                                specBean.setName(name);
+                                int is_img=specListItem.getInt("is_img");
+                                specBean.setIs_img(is_img);
+                                JSONObject spec_item=specListItem.getJSONObject("spec_item");
+                                Iterator<String> keys=spec_item.keys();
+                                List<AddGoodsModelBean.SpecItemBean> spec_items=new ArrayList<AddGoodsModelBean.SpecItemBean>();
+                                while (keys.hasNext()){
+                                    String key= keys.next();
+                                    String item=spec_item.getString(key);//获取颜色或尺寸
+//                                    if (name.equals("颜色")){//颜色存储
+//                                    }else {//尺码存储
+                                    AddGoodsModelBean.SpecItemBean specItemBean=new AddGoodsModelBean.SpecItemBean();
+//
+//                                    }//存储信息
+                                        specItemBean.setItem_id(Integer.parseInt(key));
+                                        specItemBean.setItem(item);
+                                        spec_items.add(specItemBean);
+                                }
+                                //通过集合的形式保存属性
+                                specBean.setSpec_item(spec_items);
+                                specBeanList.add(specBean);
+                            }
+                            modleBean.setSpecList(specBeanList);
+                            mView.dataToModelView(modleBean);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    @Override
+                    public void onFinish() {
+
+                    }
+
+                    @Override
+                    public void onError(ExceptionHandle.ResponeThrowable e) {
+                        Log.e("onError", "onError: "+ e.toString());
                     }
                 });
     }

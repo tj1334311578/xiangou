@@ -284,5 +284,9 @@ public interface XianGouApiService {
                                                  @Part MultipartBody.Part original_img,//商品列表图(单图)
                                                  @Part MultipartBody.Part[] goods_img//商品图片(多图)若用户只上传一张也用表单多图上传
                                           );
+    //我的店铺添加编辑商品进入模型界面/Api/Stores/get_spec
+    @POST("/Api/Stores/get_spec/")
+    Observable<ResponseBody> callIntoModelView(@Query("model_id") int model_id,//模型id
+                                               @Query("goods_id") int goods_id);//商品id(编辑商品时传,新增不用传)
 
 }

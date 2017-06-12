@@ -27,6 +27,7 @@ public abstract class RVBaseAdapter<T> extends RecyclerView.Adapter<RVBaseViewHo
      * 提供itemview里控件的点击监听
      */
     protected OnItemViewClickListener mOnItemViewClickListener;
+
     public interface OnItemViewClickListener {
         void setOnItemViewClick(View view, int pos);
     }

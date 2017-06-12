@@ -1,623 +1,463 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/whiteBgColor"
-    android:layout_height="match_parent">
-    <include layout="@layout/good_management_head"
+    android:layout_height="match_parent"
+    android:background="@color/whiteBgColor">
+
+    <include
         android:id="@+id/goods_management_addgoods_head"
-        />
-    <!--<RelativeLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:background="@color/textcolor_pink"-->
-        <!--android:id="@+id/goods_management_addGoods_head"-->
-        <!--&gt;-->
-    <!--<TextView-->
-        <!--android:layout_alignBottom="@+id/store_headback"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="申请成为商家"-->
-        <!--android:id="@+id/store_headTitleTv"-->
-        <!--android:textSize="18sp"-->
-        <!--android:textColor="@color/white"-->
-        <!--android:layout_centerHorizontal="true"/>-->
-    <!--<ImageView-->
-        <!--android:id="@+id/store_headback"-->
-        <!--android:layout_width="24dp"-->
-        <!--android:layout_marginTop="37dp"-->
-        <!--android:layout_height="24dp"-->
-        <!--android:adjustViewBounds="true"-->
-        <!--android:layout_marginBottom="12dp"-->
-        <!--android:src="@mipmap/return_icon"/>-->
-        <!--<RelativeLayout-->
-            <!--android:layout_width="36dp"-->
-            <!--android:layout_alignBottom="@id/store_headback"-->
-            <!--android:layout_alignTop="@id/simple_goodsdetails_return"-->
-            <!--android:layout_alignParentEnd="true"-->
-            <!--android:layout_marginEnd="8dp"-->
-            <!--android:gravity="center"-->
-            <!--android:layout_height="26dp">-->
-            <!--<ImageView-->
-                <!--android:id="@+id/simple_goodsdetails_cart"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:src="@mipmap/product_details_shopcar_icon"-->
-                <!--android:layout_height="wrap_content" />-->
-            <!--<TextView-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="3"-->
-                <!--android:id="@+id/simple_detials_totalmsg"-->
-                <!--android:layout_alignParentEnd="true"-->
-                <!--android:gravity="center"-->
-                <!--android:background="@drawable/simple_detials_carttextbg"-->
-                <!--android:textSize="10sp"/>-->
-        <!--</RelativeLayout>-->
-<!--</RelativeLayout>-->
-   <ScrollView
-       android:layout_below="@id/goods_management_addgoods_head"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content">
-       <RelativeLayout
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content">
-           <View
-    android:layout_width="match_parent"
-    android:layout_height="8dp"
-    android:background="@color/homeBgColor"
-    />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="42dp"
-        android:gravity="center_vertical"
-        android:textSize="14dp"
-        android:layout_marginTop="8dp"
-        android:textColor="@color/textcolor_e616gray"
-        android:layout_marginStart="13dp"
-        android:id="@+id/goods_management_addgoods_classification"
-        android:text="商品分类"/>
-           <io.apptik.widget.multiselectspinner.MultiSelectSpinner
-               android:backgroundTint="@color/textcolor_e616gray"
-               android:layout_width="match_parent"
-               android:layout_marginStart="38dp"
-               android:scrollbarSize="14sp"
-               android:id="@+id/goods_management_addgoods_multiselectspinner"
-               android:layout_alignTop="@+id/goods_management_addgoods_classification"
-               android:layout_toEndOf="@+id/goods_management_addgoods_classification"
-               android:layout_height="40dp">
-           </io.apptik.widget.multiselectspinner.MultiSelectSpinner>
-    <!--<TextView-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="42dp"-->
-        <!--android:background="@color/white"-->
-        <!--android:layout_marginStart="38dp"-->
-        <!--android:checkable="true"-->
-        <!--android:textSize="14sp"-->
-        <!--android:gravity="center_vertical"-->
-        <!--android:textColorHint="#4d161616"-->
-        <!--android:id="@+id/goods_management_addgoods_classification_text"-->
-        <!--android:layout_toEndOf="@id/goods_management_addgoods_classification"-->
-        <!--android:layout_toStartOf="@+id/goods_management_addgoods_classification_btn"-->
-        <!--android:layout_alignTop="@id/goods_management_addgoods_classification"-->
-        <!--android:hint="请选择商品分类"/>-->
-    <!--<ImageButton-->
-        <!--android:background="@null"-->
-        <!--android:src="@mipmap/mine_showright"-->
-        <!--android:layout_width="15dp"-->
-        <!--android:id="@+id/goods_management_addgoods_classification_btn"-->
-        <!--android:layout_alignTop="@id/goods_management_addgoods_classification"-->
-        <!--android:layout_alignParentRight="true"-->
-        <!--android:layout_marginRight="15dp"-->
-        <!--android:layout_height="41dp" />-->
-<View
-    android:layout_width="match_parent"
-    android:layout_height="1dp"
-    android:layout_marginTop="1dp"
-    android:background="#e7e7e7"
-    android:layout_below="@id/goods_management_addgoods_multiselectspinner"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="42dp"
-        android:gravity="center_vertical"
-        android:textSize="14dp"
-        android:layout_below="@id/goods_management_addgoods_classification"
-        android:textColor="@color/textcolor_e616gray"
-        android:layout_marginStart="13dp"
-        android:id="@+id/goods_management_addgoods_model"
-        android:text="商品模型"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="42dp"
-        android:layout_marginStart="38dp"
-        android:textSize="14sp"
-        android:background="@color/whiteBgColor"
-        android:textColorHint="#4d161616"
-        android:gravity="center_vertical"
-        android:id="@+id/goods_management_addgoods_model_text"
-        android:layout_toEndOf="@id/goods_management_addgoods_classification"
-        android:layout_toStartOf="@+id/goods_management_addgoods_model_btn"
-        android:layout_alignTop="@id/goods_management_addgoods_model"
-        android:hint="请选择商品模型"/>
-    <ImageButton
-        android:background="@null"
-        android:src="@mipmap/mine_showright"
-        android:layout_width="15dp"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="15dp"
-        android:id="@+id/goods_management_addgoods_model_btn"
-        android:layout_alignTop="@id/goods_management_addgoods_model"
-        android:layout_height="41dp" />
+        layout="@layout/good_management_head" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#e7e7e7"
-        android:layout_below="@id/goods_management_addgoods_model_btn"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="42dp"
-        android:gravity="center_vertical"
-        android:textSize="14dp"
-        android:layout_below="@id/goods_management_addgoods_model"
-        android:textColor="@color/textcolor_e616gray"
-        android:layout_marginStart="13dp"
-        android:id="@+id/goods_management_addgoods_goodname"
-        android:text="商品名称"/>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="42dp"
-        android:layout_marginStart="38dp"
-        android:textSize="14sp"
-        android:textColorHint="#4d161616"
-        android:background="@color/whiteBgColor"
-        android:id="@+id/goods_management_addgoods_goodname_edit"
-        android:layout_toEndOf="@id/goods_management_addgoods_classification"
-        android:layout_toStartOf="@id/goods_management_addgoods_model_btn"
-        android:layout_alignTop="@id/goods_management_addgoods_goodname"
-        android:hint="请选择商品模型"/>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:layout_below="@id/goods_management_addgoods_goodname_edit"
-        android:background="#f2f2f2"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="42dp"
-        android:gravity="center_vertical"
-        android:textSize="14dp"
-        android:layout_marginTop="10dp"
-        android:layout_below="@id/goods_management_addgoods_goodname"
-        android:textColor="@color/textcolor_e616gray"
-        android:layout_marginStart="13dp"
-        android:id="@+id/goods_management_addgoods_shopprice"
-        android:text="本店价格"/>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="42dp"
-        android:layout_marginStart="38dp"
-        android:textSize="14sp"
-        android:textColorHint="#4d161616"
-        android:background="@color/whiteBgColor"
-        android:id="@+id/goods_management_addgoods_shopprice_edit"
-        android:layout_toEndOf="@id/goods_management_addgoods_classification"
-        android:layout_toStartOf="@id/goods_management_addgoods_model_btn"
-        android:layout_alignTop="@id/goods_management_addgoods_shopprice"
-        android:hint="请填写你的商品价格"/>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#e7e7e7"
-        android:layout_below="@id/goods_management_addgoods_shopprice_edit"/>
-
-    <TextView
-        android:layout_marginTop="1dp"
-        android:layout_width="wrap_content"
-        android:layout_height="42dp"
-        android:gravity="center_vertical"
-        android:textSize="14dp"
-        android:textColor="@color/textcolor_e616gray"
-        android:id="@+id/goods_management_addgoods_marketprice"
-        android:text="市场价格"
-        android:layout_below="@+id/goods_management_addgoods_shopprice"
-        android:layout_alignStart="@+id/goods_management_addgoods_shopprice" />
-
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="42dp"
-        android:layout_marginStart="38dp"
-        android:textSize="14sp"
-        android:textColorHint="#4d161616"
-        android:background="@color/whiteBgColor"
-        android:id="@+id/goods_management_addgoods_marketprice_edit"
-        android:layout_toEndOf="@id/goods_management_addgoods_classification"
-        android:layout_toStartOf="@id/goods_management_addgoods_model_btn"
-        android:layout_alignTop="@id/goods_management_addgoods_marketprice"
-        android:hint="请填写商品的市场价格"/>
-
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#e7e7e7"
-        android:layout_below="@id/goods_management_addgoods_marketprice_edit"/>
-
-
-    <TextView
-        android:layout_marginTop="1dp"
-        android:layout_width="wrap_content"
-        android:layout_height="42dp"
-        android:gravity="center_vertical"
-        android:textSize="14dp"
-        android:layout_below="@id/goods_management_addgoods_marketprice"
-        android:textColor="@color/textcolor_e616gray"
-        android:layout_marginStart="13dp"
-        android:id="@+id/goods_management_addgoods_goodsamount"
-        android:text="商品库存"/>
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="42dp"
-        android:layout_marginStart="38dp"
-        android:textSize="14sp"
-        android:textColorHint="#4d161616"
-        android:background="@color/whiteBgColor"
-        android:maxLines="1"
-        android:ellipsize="end"
-        android:id="@+id/goods_management_addgoods_goodsamount_edit"
-        android:layout_toEndOf="@id/goods_management_addgoods_classification"
-        android:layout_toStartOf="@id/goods_management_addgoods_model_btn"
-        android:layout_alignTop="@id/goods_management_addgoods_goodsamount"
-        android:hint="请填写库存连(不填为系统默认数量)"/>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:layout_below="@id/goods_management_addgoods_goodsamount_edit"
-        android:background="#f2f2f2"/>
-
-    <LinearLayout
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:orientation="horizontal"
-      android:layout_marginTop="10dp"
-      android:id="@+id/goods_management_addgoods_newgoodornot_ll"
-      android:layout_below="@id/goods_management_addgoods_goodsamount"
-      android:layout_alignStart="@id/goods_management_addgoods_shopprice"
-      android:gravity="center_vertical"
-      android:layout_alignEnd="@+id/goods_management_addgoods_goodsamount_edit">
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="42dp"
-          android:gravity="center_vertical"
-          android:textSize="14sp"
-          android:textColor="@color/textcolor_e616gray"
-          android:text="是否新品"
-          android:id="@+id/goods_management_addgoods_isnewgoodornot"
-          />
-      <CheckBox
-          android:layout_width="16dp"
-          android:layout_height="16dp"
-          android:button="@null"
-          android:checked="true"
-          android:layout_marginStart="38dp"
-          android:background="@drawable/circlebg_checkbox"
-          android:id="@+id/goods_management_addgoods_isnewgoodornot_check"
-          />
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="42dp"
-          android:textSize="14sp"
-          android:textColor="@color/textcolor_e616gray"
-          android:gravity="center_vertical"
-          android:layout_marginStart="10dp"
-          android:id="@+id/goods_management_addgoods_isnewgoodornot_isnotnewgood"
-          android:text="否"
-          />
-      <CheckBox
-          android:layout_width="16dp"
-          android:layout_height="16dp"
-          android:button="@null"
-          android:background="@drawable/circlebg_checkbox"
-          android:layout_marginStart="38dp"
-          android:id="@+id/goods_management_addgoods_isnewgoodornot_isnewgood_check"
-          />
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="42dp"
-          android:gravity="center_vertical"
-          android:textSize="14sp"
-          android:textColor="@color/textcolor_e616gray"
-          android:layout_marginStart="10dp"
-          android:id="@+id/goods_management_addgoods_isnewgoodornot_isnewgood"
-          android:text="是"
-          />
-        <!--<RadioGroup-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:src="@drawable/circlebg_checkbox"-->
-            <!--android:layout_height="wrap_content">-->
-            <!--<RadioButton-->
-                <!--android:layout_marginStart="38dp"-->
-                <!--android:checked="true"-->
-                <!--android:button="@drawable/circlebg_checkbox"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="20dp"-->
-                <!---->
-                <!--android:text="否"-->
-                <!--android:drawablePadding="10dp"-->
-                <!--/>-->
-        <!--</RadioGroup>-->
-  </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#e7e7e7"
-        android:layout_below="@id/goods_management_addgoods_newgoodornot_ll"/>
-
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:id="@+id/goods_management_addgoods_isrecommendornot_ll"
-        android:layout_below="@id/goods_management_addgoods_newgoodornot_ll"
-        android:layout_alignStart="@id/goods_management_addgoods_shopprice"
-        android:gravity="center_vertical"
-        android:layout_alignEnd="@+id/goods_management_addgoods_goodsamount_edit">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="42dp"
-            android:gravity="center_vertical"
-            android:textSize="14sp"
-            android:textColor="@color/textcolor_e616gray"
-            android:text="是否推荐"
-            android:id="@+id/goods_management_addgoods_isrecommendornot"
-            />
-        <CheckBox
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:button="@null"
-            android:checked="true"
+        android:layout_below="@id/goods_management_addgoods_head">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:background="@color/homeBgColor" />
+
+            <TextView
+                android:id="@+id/goods_management_addgoods_classification"
+                android:layout_width="wrap_content"
+                android:layout_height="42dp"
+                android:layout_marginStart="13dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical"
+                android:text="商品分类"
+                android:textColor="@color/textcolor_e616gray"
+                android:textSize="14dp" />
+            <Spinner
+                android:layout_width="match_parent"
+            android:layout_alignTop="@+id/goods_management_addgoods_classification"
             android:layout_marginStart="38dp"
-            android:background="@drawable/circlebg_checkbox"
-            android:id="@+id/goods_management_addgoods_isnotrecommend_check"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="42dp"
-            android:gravity="center_vertical"
-            android:layout_marginStart="10dp"
-            android:textSize="14sp"
-            android:textColor="@color/textcolor_e616gray"
-            android:id="@+id/goods_management_addgoods_isnotrecommend"
-            android:text="否"
-            />
-        <CheckBox
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:button="@null"
-            android:background="@drawable/circlebg_checkbox"
-            android:layout_marginStart="38dp"
-            android:id="@+id/goods_management_addgoods_isrecommend_check"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="42dp"
-            android:gravity="center_vertical"
-            android:layout_marginStart="10dp"
-            android:textSize="14sp"
-            android:textColor="@color/textcolor_e616gray"
-            android:id="@+id/goods_management_addgoods_isrecommend"
-            android:text="是"
-            />
-    </LinearLayout>
+            android:layout_toEndOf="@+id/goods_management_addgoods_classification"
+            android:backgroundTint="@color/textcolor_e616gray"
+            android:scrollbarSize="14sp"
+            android:id="@+id/goods_management_addgoods_selectspinner"
+            android:layout_height="40dp">
+        </Spinner>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#e7e7e7"
-        android:layout_below="@id/goods_management_addgoods_isrecommendornot_ll"/>
+        <!--<io.apptik.widget.multiselectspinner.MultiSelectSpinner-->
+                <!--android:id="@+id/goods_management_addgoods_multiselectspinner"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="40dp"-->
+                <!--android:layout_alignTop="@+id/goods_management_addgoods_classification"-->
+                <!--android:layout_marginStart="38dp"-->
+                <!--android:layout_toEndOf="@+id/goods_management_addgoods_classification"-->
+                <!--android:backgroundTint="@color/textcolor_e616gray"-->
+                <!--android:scrollbarSize="14sp"></io.apptik.widget.multiselectspinner.MultiSelectSpinner>-->
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="42dp"
-        android:gravity="center_vertical"
-        android:textSize="14dp"
-        android:layout_below="@id/goods_management_addgoods_isrecommendornot_ll"
-        android:textColor="@color/textcolor_e616gray"
-        android:layout_marginStart="13dp"
-        android:id="@+id/goods_management_addgoods_labels"
-        android:text="商品标签"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="42dp"
-        android:layout_marginStart="38dp"
-        android:textSize="14sp"
-        android:textColorHint="#4d161616"
-        android:id="@+id/goods_management_addgoods_labels_text"
-        android:gravity="center_vertical"
-        android:layout_toEndOf="@id/goods_management_addgoods_classification"
-        android:layout_toStartOf="@id/goods_management_addgoods_model_btn"
-        android:layout_alignTop="@id/goods_management_addgoods_labels"
-        android:hint="请选择标签"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/goods_management_addgoods_selectspinner"
+                android:layout_marginTop="1dp"
+                android:background="#e7e7e7" />
+
+            <TextView
+                android:id="@+id/goods_management_addgoods_model"
+                android:layout_width="wrap_content"
+                android:layout_height="42dp"
+                android:layout_below="@id/goods_management_addgoods_classification"
+                android:layout_marginStart="13dp"
+                android:gravity="center_vertical"
+                android:text="商品模型"
+                android:textColor="@color/textcolor_e616gray"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/goods_management_addgoods_model_text"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:layout_alignTop="@id/goods_management_addgoods_model"
+                android:layout_marginStart="38dp"
+                android:layout_toEndOf="@id/goods_management_addgoods_classification"
+                android:layout_toStartOf="@+id/goods_management_addgoods_model_btn"
+                android:background="@color/whiteBgColor"
+                android:gravity="center_vertical"
+                android:hint="请选择商品模型"
+                android:textColorHint="#4d161616"
+                android:textSize="14sp" />
+
+            <ImageButton
+                android:id="@+id/goods_management_addgoods_model_btn"
+                android:layout_width="15dp"
+                android:layout_height="41dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignTop="@id/goods_management_addgoods_model"
+                android:layout_marginEnd="15dp"
+                android:background="@null"
+                android:src="@mipmap/mine_showright" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/goods_management_addgoods_model_btn"
+                android:background="#e7e7e7" />
+
+            <TextView
+                android:id="@+id/goods_management_addgoods_goodname"
+                android:layout_width="wrap_content"
+                android:layout_height="42dp"
+                android:layout_below="@id/goods_management_addgoods_model"
+                android:layout_marginStart="13dp"
+                android:gravity="center_vertical"
+                android:text="商品名称"
+                android:textColor="@color/textcolor_e616gray"
+                android:textSize="14dp" />
+
+            <EditText
+                android:id="@+id/goods_management_addgoods_goodname_edit"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:layout_alignTop="@id/goods_management_addgoods_goodname"
+                android:layout_marginStart="38dp"
+                android:layout_toEndOf="@id/goods_management_addgoods_classification"
+                android:layout_toStartOf="@id/goods_management_addgoods_model_btn"
+                android:background="@color/whiteBgColor"
+                android:hint="请填写商品名称"
+                android:textColorHint="#4d161616"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_below="@id/goods_management_addgoods_goodname_edit"
+                android:background="#f2f2f2" />
+
+            <TextView
+                android:id="@+id/goods_management_addgoods_shopprice"
+                android:layout_width="wrap_content"
+                android:layout_height="42dp"
+                android:layout_below="@id/goods_management_addgoods_goodname"
+                android:layout_marginStart="13dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:text="本店价格"
+                android:textColor="@color/textcolor_e616gray"
+                android:textSize="14dp" />
+
+            <EditText
+                android:id="@+id/goods_management_addgoods_shopprice_edit"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:layout_alignTop="@id/goods_management_addgoods_shopprice"
+                android:layout_marginStart="38dp"
+                android:layout_toEndOf="@id/goods_management_addgoods_classification"
+                android:layout_toStartOf="@id/goods_management_addgoods_model_btn"
+                android:background="@color/whiteBgColor"
+                android:hint="请填写你的商品价格"
+                android:textColorHint="#4d161616"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/goods_management_addgoods_shopprice_edit"
+                android:background="#e7e7e7" />
+
+            <TextView
+                android:id="@+id/goods_management_addgoods_marketprice"
+                android:layout_width="wrap_content"
+                android:layout_height="42dp"
+                android:layout_alignStart="@+id/goods_management_addgoods_shopprice"
+                android:layout_below="@+id/goods_management_addgoods_shopprice"
+                android:layout_marginTop="1dp"
+                android:gravity="center_vertical"
+                android:text="市场价格"
+                android:textColor="@color/textcolor_e616gray"
+                android:textSize="14dp" />
+
+            <EditText
+                android:id="@+id/goods_management_addgoods_marketprice_edit"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:layout_alignTop="@id/goods_management_addgoods_marketprice"
+                android:layout_marginStart="38dp"
+                android:layout_toEndOf="@id/goods_management_addgoods_classification"
+                android:layout_toStartOf="@id/goods_management_addgoods_model_btn"
+                android:background="@color/whiteBgColor"
+                android:hint="请填写商品的市场价格"
+                android:textColorHint="#4d161616"
+                android:textSize="14sp" />
 
 
-    <ImageButton
-        android:background="@null"
-        android:src="@mipmap/mine_showright"
-        android:layout_width="15dp"
-        android:id="@+id/goods_management_addgoods_labels_btn"
-        android:layout_alignTop="@id/goods_management_addgoods_labels"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="15dp"
-        android:layout_height="41dp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/goods_management_addgoods_marketprice_edit"
+                android:background="#e7e7e7" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#e7e7e7"
-        android:layout_below="@id/goods_management_addgoods_labels_btn"/>
 
-    <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="42dp"-->
-        <!--android:orientation="horizontal"-->
-        <!--android:id="@+id/goods_management_addgoods_iswhetherornot_ll"-->
-        <!--android:layout_below="@id/goods_management_addgoods_labels_btn"-->
-        <!--android:layout_alignStart="@id/goods_management_addgoods_shopprice"-->
-        <!--android:gravity="center_vertical"-->
-        <!--android:layout_alignEnd="@+id/goods_management_addgoods_labels_btn">-->
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="42dp"-->
-            <!--android:gravity="center_vertical"-->
-            <!--android:textSize="14sp"-->
-            <!--android:textColor="@color/textcolor_gray"-->
-            <!--android:text="是否包邮"-->
-            <!--android:id="@+id/goods_management_addgoods_iswhetherornot"-->
-            <!--/>-->
-        <!--<CheckBox-->
-            <!--android:layout_width="16dp"-->
-            <!--android:layout_height="16dp"-->
-            <!--android:button="@null"-->
-            <!--android:checked="true"-->
-            <!--android:layout_marginStart="38dp"-->
-            <!--android:background="@drawable/circlebg_checkbox"-->
-            <!--android:id="@+id/goods_management_addgoods_isnotwhether_check"-->
-            <!--/>-->
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="42dp"-->
-            <!--android:gravity="center_vertical"-->
-            <!--android:layout_marginStart="10dp"-->
-            <!--android:textSize="14sp"-->
-            <!--android:textColor="@color/textcolor_gray"-->
-            <!--android:id="@+id/goods_management_addgoods_isnotwhether"-->
-            <!--android:text="否"-->
-            <!--/>-->
-        <!--<CheckBox-->
-            <!--android:layout_width="16dp"-->
-            <!--android:layout_height="16dp"-->
-            <!--android:button="@null"-->
-            <!--android:background="@drawable/circlebg_checkbox"-->
-            <!--android:layout_marginStart="38dp"-->
-            <!--android:id="@+id/goods_management_addgoods_iswhether_check"-->
-            <!--/>-->
-        <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="42dp"-->
-            <!--android:gravity="center_vertical"-->
-            <!--android:textSize="14sp"-->
-            <!--android:textColor="@color/textcolor_gray"-->
-            <!--android:layout_marginStart="10dp"-->
-            <!--android:id="@+id/goods_management_addgoods_iswhether"-->
-            <!--android:text="是"-->
-            <!--/>-->
-        <!--<TextView-->
-            <!--android:visibility="gone"-->
-            <!--android:layout_width="50dp"-->
-            <!--android:layout_height="42dp"-->
-            <!--android:gravity="center_vertical|end"-->
-            <!--android:textSize="14sp"-->
-            <!--android:textColor="@color/textcolor_gray"-->
-            <!--android:id="@+id/goods_management_addgoods_whetherprice_tv"-->
-            <!--android:text="邮费："/>-->
-        <!--<TextView-->
-            <!--android:visibility="gone"-->
-            <!--android:layout_width="40dp"-->
-            <!--android:text="12.0"-->
-            <!--android:textSize="14sp"-->
-            <!--android:textColor="#cc000000"-->
-            <!--android:gravity="center"-->
-            <!--android:background="@drawable/whetherstyle"-->
-            <!--android:id="@+id/goods_management_addgoods_whetherprice"-->
-            <!--android:layout_height="20dp" />-->
-        <!--<TextView-->
-            <!--android:visibility="gone"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:textSize="14sp"-->
-            <!--android:textColor="@color/textcolor_gray"-->
-            <!--android:text="(元)"/>-->
-    <!--</LinearLayout>-->
+            <TextView
+                android:id="@+id/goods_management_addgoods_goodsamount"
+                android:layout_width="wrap_content"
+                android:layout_height="42dp"
+                android:layout_below="@id/goods_management_addgoods_marketprice"
+                android:layout_marginStart="13dp"
+                android:layout_marginTop="1dp"
+                android:gravity="center_vertical"
+                android:text="商品库存"
+                android:textColor="@color/textcolor_e616gray"
+                android:textSize="14dp" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:layout_below="@id/goods_management_addgoods_labels"
-        android:background="#f2f2f2"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_below="@id/goods_management_addgoods_labels"
-        android:layout_alignStart="@id/goods_management_addgoods_classification"
-        android:text="上传图片"
-        android:gravity="center_vertical"
-        android:textSize="14sp"
-        android:id="@+id/goods_management_addgoods_updown_img"
-        android:textColor="@color/textcolor_e616gray"
-        android:layout_height="30dp" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:paddingTop="0dp"
-        android:paddingBottom="0dp"
-        android:textSize="14sp"
-        android:textColorHint="#4d161616"
-        android:padding="0dp"
-        android:gravity="center_vertical"
-        android:layout_alignStart="@id/goods_management_addgoods_model_btn"
-        android:hint="第一张图片为商品图片"
-        android:layout_alignTop="@id/goods_management_addgoods_updown_img"
-        android:id="@+id/editText" />
+            <EditText
+                android:id="@+id/goods_management_addgoods_goodsamount_edit"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:layout_alignTop="@id/goods_management_addgoods_goodsamount"
+                android:layout_marginStart="38dp"
+                android:layout_toEndOf="@id/goods_management_addgoods_classification"
+                android:layout_toStartOf="@id/goods_management_addgoods_model_btn"
+                android:background="@color/whiteBgColor"
+                android:ellipsize="end"
+                android:hint="请填写库存连(不填为系统默认数量)"
+                android:maxLines="1"
+                android:textColorHint="#4d161616"
+                android:textSize="14sp" />
 
-        <!--<com.example.administrator.xiangou.tool.DrawableTextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="30dp"-->
-            <!--android:id="@+id/goods_management_addgoods_updown_edit"-->
-            <!--android:layout_alignTop="@+id/goods_management_addgoods_updown_img"-->
-            <!--android:layout_alignParentEnd="true"-->
-            <!--android:text="编辑"-->
-            <!--android:textSize="14sp"-->
-            <!--android:paddingStart="16dp"-->
-            <!--android:drawablePadding="2dp"-->
-            <!--android:paddingEnd="16dp"-->
-            <!--android:layout_marginEnd="15dp"-->
-            <!--app:leftDrawable="@mipmap/personal_non_payment_icon"-->
-            <!--app:leftDrawableWidth="16dp"-->
-            <!--app:leftDrawableHeight="16dp"-->
-            <!--android:textColor="@color/gray"-->
-            <!--/>-->
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#e7e7e7"
-        android:layout_below="@id/goods_management_addgoods_updown_img"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_below="@id/goods_management_addgoods_goodsamount_edit"
+                android:background="#f2f2f2" />
 
-           <GridView
-               android:layout_width="match_parent"
-               android:layout_marginTop="10dp"
-               android:layout_marginStart="13dp"
-               android:layout_marginEnd="13dp"
-               android:verticalSpacing="12dp"
-               android:id="@+id/goods_management_addgoods_updown_grid"
-               android:layout_below="@+id/goods_management_addgoods_updown_img"
-               android:layout_height="250dp">
-           </GridView>
-    <Button
-        android:layout_width="180dp"
-        android:layout_below="@id/goods_management_addgoods_updown_grid"
-        android:layout_height="34dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="45dp"
-        android:layout_marginBottom="50dp"
-        android:id="@+id/goods_management_addgoods_releasebtn"
-        android:textSize="15sp"
-        android:textColor="@color/whiteBgColor"
-        android:background="@drawable/radius5dp"
-        android:text="发布商品"/>
-       </RelativeLayout>
-   </ScrollView>
+            <LinearLayout
+                android:id="@+id/goods_management_addgoods_newgoodornot_ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/goods_management_addgoods_goodsamount_edit"
+                android:layout_alignStart="@id/goods_management_addgoods_shopprice"
+                android:layout_below="@id/goods_management_addgoods_goodsamount"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/goods_management_addgoods_isnewgoodornot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="42dp"
+                    android:gravity="center_vertical"
+                    android:text="是否新品"
+                    android:textColor="@color/textcolor_e616gray"
+                    android:textSize="14sp" />
+
+                <CheckBox
+                    android:id="@+id/goods_management_addgoods_isnewgoodornot_check"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginStart="38dp"
+                    android:background="@drawable/circlebg_checkbox"
+                    android:button="@null"
+                    android:checked="true" />
+
+                <TextView
+                    android:id="@+id/goods_management_addgoods_isnewgoodornot_isnotnewgood"
+                    android:layout_width="wrap_content"
+                    android:layout_height="42dp"
+                    android:layout_marginStart="10dp"
+                    android:gravity="center_vertical"
+                    android:text="否"
+                    android:textColor="@color/textcolor_e616gray"
+                    android:textSize="14sp" />
+
+                <CheckBox
+                    android:id="@+id/goods_management_addgoods_isnewgoodornot_isnewgood_check"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginStart="38dp"
+                    android:background="@drawable/circlebg_checkbox"
+                    android:button="@null" />
+
+                <TextView
+                    android:id="@+id/goods_management_addgoods_isnewgoodornot_isnewgood"
+                    android:layout_width="wrap_content"
+                    android:layout_height="42dp"
+                    android:layout_marginStart="10dp"
+                    android:gravity="center_vertical"
+                    android:text="是"
+                    android:textColor="@color/textcolor_e616gray"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/goods_management_addgoods_newgoodornot_ll"
+                android:background="#e7e7e7" />
+
+
+            <LinearLayout
+                android:id="@+id/goods_management_addgoods_isrecommendornot_ll"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignEnd="@+id/goods_management_addgoods_goodsamount_edit"
+                android:layout_alignStart="@id/goods_management_addgoods_shopprice"
+                android:layout_below="@id/goods_management_addgoods_newgoodornot_ll"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/goods_management_addgoods_isrecommendornot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="42dp"
+                    android:gravity="center_vertical"
+                    android:text="是否推荐"
+                    android:textColor="@color/textcolor_e616gray"
+                    android:textSize="14sp" />
+
+                <CheckBox
+                    android:id="@+id/goods_management_addgoods_isnotrecommend_check"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginStart="38dp"
+                    android:background="@drawable/circlebg_checkbox"
+                    android:button="@null"
+                    android:checked="true" />
+
+                <TextView
+                    android:id="@+id/goods_management_addgoods_isnotrecommend"
+                    android:layout_width="wrap_content"
+                    android:layout_height="42dp"
+                    android:layout_marginStart="10dp"
+                    android:gravity="center_vertical"
+                    android:text="否"
+                    android:textColor="@color/textcolor_e616gray"
+                    android:textSize="14sp" />
+
+                <CheckBox
+                    android:id="@+id/goods_management_addgoods_isrecommend_check"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginStart="38dp"
+                    android:background="@drawable/circlebg_checkbox"
+                    android:button="@null" />
+
+                <TextView
+                    android:id="@+id/goods_management_addgoods_isrecommend"
+                    android:layout_width="wrap_content"
+                    android:layout_height="42dp"
+                    android:layout_marginStart="10dp"
+                    android:gravity="center_vertical"
+                    android:text="是"
+                    android:textColor="@color/textcolor_e616gray"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/goods_management_addgoods_isrecommendornot_ll"
+                android:background="#e7e7e7" />
+
+            <TextView
+                android:id="@+id/goods_management_addgoods_labels"
+                android:layout_width="wrap_content"
+                android:layout_height="42dp"
+                android:layout_below="@id/goods_management_addgoods_isrecommendornot_ll"
+                android:layout_marginStart="13dp"
+                android:gravity="center_vertical"
+                android:text="商品标签"
+                android:textColor="@color/textcolor_e616gray"
+                android:textSize="14dp" />
+
+            <TextView
+                android:id="@+id/goods_management_addgoods_labels_text"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:layout_alignTop="@id/goods_management_addgoods_labels"
+                android:layout_marginStart="38dp"
+                android:layout_toEndOf="@id/goods_management_addgoods_classification"
+                android:layout_toStartOf="@id/goods_management_addgoods_model_btn"
+                android:gravity="center_vertical"
+                android:hint="请选择标签"
+                android:textColorHint="#4d161616"
+                android:textSize="14sp" />
+
+
+            <ImageButton
+                android:id="@+id/goods_management_addgoods_labels_btn"
+                android:layout_width="15dp"
+                android:layout_height="41dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignTop="@id/goods_management_addgoods_labels"
+                android:layout_marginEnd="15dp"
+                android:background="@null"
+                android:src="@mipmap/mine_showright" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/goods_management_addgoods_labels_btn"
+                android:background="#e7e7e7" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_below="@id/goods_management_addgoods_labels"
+                android:background="#f2f2f2" />
+
+            <TextView
+                android:id="@+id/goods_management_addgoods_updown_img"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_alignStart="@id/goods_management_addgoods_classification"
+                android:layout_below="@id/goods_management_addgoods_labels"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:text="上传图片"
+                android:textColor="@color/textcolor_e616gray"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/editText"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_alignEnd="@+id/goods_management_addgoods_labels_text"
+                android:layout_alignStart="@id/goods_management_addgoods_labels_text"
+                android:layout_alignTop="@id/goods_management_addgoods_updown_img"
+                android:gravity="center_vertical"
+                android:hint="第一张图片为商品图片"
+                android:padding="0dp"
+                android:paddingBottom="0dp"
+                android:paddingTop="0dp"
+                android:textColorHint="#4d161616"
+                android:textSize="14sp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/goods_management_addgoods_updown_img"
+                android:background="#e7e7e7" />
+
+            <GridView
+                android:id="@+id/goods_management_addgoods_updown_grid"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_below="@+id/goods_management_addgoods_updown_img"
+                android:layout_marginEnd="13dp"
+                android:layout_marginStart="13dp"
+                android:layout_marginTop="10dp"
+                android:verticalSpacing="12dp"></GridView>
+
+            <Button
+                android:id="@+id/goods_management_addgoods_releasebtn"
+                android:layout_width="180dp"
+                android:layout_height="34dp"
+                android:layout_below="@id/goods_management_addgoods_updown_grid"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="50dp"
+                android:layout_marginTop="45dp"
+                android:background="@drawable/radius5dp"
+                android:text="发布商品"
+                android:textColor="@color/whiteBgColor"
+                android:textSize="15sp" />
+        </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>

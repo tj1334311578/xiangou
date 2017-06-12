@@ -1,5 +1,6 @@
 package com.example.administrator.xiangou.mine.mystore.goodsmanage.addgoodsmanage;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -14,6 +15,7 @@ import com.zhy.view.flowlayout.FlowLayout;
 import com.zhy.view.flowlayout.TagAdapter;
 import com.zhy.view.flowlayout.TagFlowLayout;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -41,13 +43,13 @@ public class GoodsTagActivity extends BaseActivity {
         initView();
     }
 
-
     private void initView() {
         findContentView(R.id.goods_tags_back);
         saveBtn = findContentView(R.id.goods_tags_saved);
         tagFlowLayout = findContentView(R.id.goods_tags_tagflowlayout, false);
         //初始化数据
         final List<String> tags = new ArrayList<>();
+//        List<Integer>
         for (int i = 0; i < signs.size(); i++) {
             tags.add(signs.get(i).getName());
         }
@@ -56,6 +58,7 @@ public class GoodsTagActivity extends BaseActivity {
         tagFlowLayout.setAdapter(new TagAdapter<String>(tags) {
             @Override
             public View getView(FlowLayout parent, int position, String s) {
+
                 View view = LayoutInflater.from(getBaseContext()).inflate(R.layout.goods_tags_item, tagFlowLayout, false);
                 TextView tv = (TextView) view.findViewById(R.id.goods_tags_item_tv);
 //                tv.setTextColor(getBaseContext().getResources().getColor(R.color.gray_6a747e));//在xml中设置了选择器则无需再代码中设置该属性
@@ -69,33 +72,8 @@ public class GoodsTagActivity extends BaseActivity {
             @Override
             public boolean onTagClick(View view, int position, FlowLayout parent) {
                 showToast(tags.get(position));
-//                int[] poss=new int[tagFlowLayout.getSelectedList().size()];
-////                tagFlowLayout.getSelectedList().toArray();
-//                int i=0;
-//                for (Integer pos:tagFlowLayout.getSelectedList()) {
-//                    poss[i]=pos;
-//                    i++;
-//                }
-//                for (int j = 0; j <poss.length; j++) {
-//                    Log.e("poss" ,"poss["+j+"]"+ poss[j]+"size:"+poss.length);
-//                    if (position==poss[j]){
-//                        ((TextView)view).setTextColor(getResources().getColor(R.color.white));
-//                    }
-//                }
-//                if (tagFlowLayout.getSelectedList().size() != 0) {
-//                    for (Integer pos : tagFlowLayout.getSelectedList()) {
-//                        if (pos == position) {
-//                            tv.setTextColor(getResources().getColor(R.color.white));
-//                            tv.setBackground(getResources().getDrawable(R.drawable.goods_tags_item_textbg_selected));
-//                        } else {
-//                            tv.setTextColor(getResources().getColor(R.color.gray_6a747e));
-//                            tv.setBackground(getResources().getDrawable(R.drawable.goods_tags_item_textbg_default));
-//                        }
-//                    }
-//                } else {
-//                    tv.setTextColor(getResources().getColor(R.color.gray_6a747e));
-//                    tv.setBackground(getResources().getDrawable(R.drawable.goods_tags_item_textbg_default));
-//                }
+                view.setSelected(!view.isSelected());//设置是否被选中
+                Log.e("view", "getView: "+view.isSelected() );
                 return true;
 
             }
@@ -115,6 +93,21 @@ public class GoodsTagActivity extends BaseActivity {
                 finish();
                 break;
             case R.id.goods_tags_saved://保存
+                Set<Integer> selectes=tagFlowLayout.getSelectedList();
+                List<IntoAddGoodPageBean.DataBean.SignBeanX> signbeans=new ArrayList<>();
+                for (Integer selected:selectes) {
+                    signbeans.add(signs.get(selected));
+                }
+
+                Intent intent=new Intent();
+                //不转换会报类型转换错误
+                Object[] strs = {signbeans};
+                for (int i = 0; i < strs.length; i++) {
+                    Serializable s = (Serializable) strs[i];
+                    intent.putExtra("tag",s);
+                }
+                setResult(RESULT_OK,intent);
+                finish();
                 break;
         }
     }

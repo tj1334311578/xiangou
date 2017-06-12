@@ -46,7 +46,6 @@ public class ImageUtils {
 		return dm.heightPixels;
 	}
 
-
 	public static void loadLocationImg(Context context, Uri imgUri, ImageView imageView){
 		if (imgUri!=null){
 			File imgFile = getFileFromMediaUri(context,imgUri);

@@ -58,5 +58,6 @@
         <activity android:name=".mine.mystore.goodsmanage.GoodsManageActivity"/>
         <activity android:name=".mine.mystore.goodsmanage.addgoodsmanage.AddGoodsManageActivity"/>
         <activity android:name=".mine.mystore.goodsmanage.addgoodsmanage.GoodsTagActivity"/>
+        <activity android:name=".mine.mystore.goodsmanage.addgoodsmanage.GoodsModelActivity"/>
     </application>
 </manifest>

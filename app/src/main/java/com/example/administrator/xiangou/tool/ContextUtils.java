@@ -3,6 +3,7 @@ package com.example.administrator.xiangou.tool;
 import android.app.Application;
 import android.util.Base64;
 import android.util.DisplayMetrics;
+import android.widget.TextView;
 
 import com.example.administrator.xiangou.main.User;
 
@@ -54,6 +55,25 @@ public class ContextUtils extends Application{
     }
 
 //this is base method
+
+    /**
+     * 消除字符串两边的双引号，在设置到textview上
+     * @param edt textview
+     * @param text 字符串
+     */
+    public static void setTextFormat(TextView edt, String text){
+        if (text!=null) {
+            text = makeTextOK(text);
+        }
+        edt.setText(text);
+    }
+    public static String makeTextOK(String str){
+        String nickName = null;
+        if (str.charAt(0) == '\"'){
+            nickName = str.substring(1,str.length()-1);
+        }
+        return nickName;
+    }
 
     /**
      * px与dp、sp的转换：

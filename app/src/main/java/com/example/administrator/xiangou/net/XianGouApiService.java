@@ -236,16 +236,16 @@ public interface XianGouApiService {
     Observable<TotalDataBean> callTotalDataApi(@Query("did") int did,
                                                @Query("Time") String Time);
     //测试数据模块
-    @POST("/api/order/ppay/")
+    @POST("api/order/ppay/")
     Observable<ResponseBody> callceshiApi(@Query("channel") String alipay,
                                                 @Query("order_sn") String order_sn,
                                                 @Query("amount") int amount);
     //店铺信息请求
-    @POST("/api/stores/edit/")
+    @POST("api/stores/edit/")
     Observable<StoreManagerInfoBean> callStoreInfo(@Query("did") int store_id);
     //店铺信息修改请求
     @Multipart
-    @POST("/api/stores/do_edit/")
+    @POST("api/stores/do_edit/")
     Observable<Captcha> callEditStoreInfo(@Part("did") int store_id,//店铺id
                                               @Part("map_x") String map_x,//店铺经度
                                               @Part("map_y") String map_y,//店铺纬度
@@ -258,7 +258,7 @@ public interface XianGouApiService {
                                               @Part("tel") String tel);//店铺电话
 
     //店铺管理商品列表
-    @POST("/Api/Stores/goodslist/")
+    @POST("Api/Stores/goodslist/")
     Observable<ResponseBody> callStoreGoodsList(@Query("did") int store_id,//店铺id
                                                  @Query("key_word") String key_word,//根据名称查找相关商品
                                                  @Query("page_no") int page_no,//分页不传查找第一页商品
@@ -266,18 +266,18 @@ public interface XianGouApiService {
 
     //分类列表
     //    @GET("/Api/Stores/getcate")
-    @POST("/api/good/goods_cate")
+    @POST("api/good/goods_cate")
     Observable<FirstLevelBean> callClassification(@Query("cat_id") int cat_id );//一级分类不传默认为推荐
 
 
     //进入修改或添加商品
-    @POST("/Api/Stores/into_add/")
+    @POST("Api/Stores/into_add/")
     Observable<ResponseBody> callIntoAddGoodsPage(@Query("did") int did,//店铺id
                                                   @Query("goods_id") int goods_id);//商品id（编辑商品时传，添加商品时不传）
 
     //店铺添加商品/Api/Stores/add_goods
     @Multipart
-    @POST("/Api/Stores/add_goods/")
+    @POST("Api/Stores/add_goods/")
     Observable<ResponseBody> callAddGoods(@Part("data") AddGoodsDataBean data,//商品基本信息
                                                  @Part("specs")AddGoodsSpecBean specs,//传产品当前页面若未传默认第一页
                                                  @Part("goods_attr")AddGoodsAttrBean goods_attr,//商品属性(若用户选择了模型填写属性传)

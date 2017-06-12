@@ -18,7 +18,7 @@ public class MinePresenter extends BasePresenterImpl<MineContract.View> implemen
 
     @Override
     public void IDlogin(String userName, String password) {
-        Log.e("minep", "enter：IDlogin "+userName+" p="+password+" --pwd: "+ ContextUtils.MD5(password));
+//        Log.e("minep", "enter：IDlogin "+userName+" p="+password+" --pwd: "+ ContextUtils.MD5(password));
         if (userName!=null&&password!=null) {
             addSubscription( mApiService.loginID(userName, ContextUtils.MD5(password)),
                     new BaseSubscriber<LoginBean>(mView.getContext()) {
@@ -27,14 +27,15 @@ public class MinePresenter extends BasePresenterImpl<MineContract.View> implemen
                             switch (loginBean.getState().getCode()) {
                                 case 200:
                                     if (loginBean.getData() != null) {
-                                        if (!getSP().getString("user_info", null)
-                                                .equals(loginBean.getData().toString())) {
-
-                                            setbUserBySP(loginBean.getData().toString());
-//                                            upDateUserInfo(loginBean.getData().toString());
-//                                            Log.e("minep", "LoginidSuccess: buser" + bUser.toString());
+                                        if (getUser().changeUser(loginBean.getData())) {
+                                            Log.e("minep", "enter：onNext "+getUser().toString()+
+                                                    "\n"+loginBean.getData().toString()
+                                            );
+                                            setbUserBySP(loginBean.getData());
+                                            getSP().upDateUserInfo(getUser().toString());
                                             mView.ReLoginidSuccess(loginBean.getData());
                                         }
+                                        //                                            upDateUserInfo(loginBean.getData().toString());
                                     }
                                     break;
 //                                case 100:

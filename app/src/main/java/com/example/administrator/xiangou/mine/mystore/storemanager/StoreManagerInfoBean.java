@@ -1,15 +1,14 @@
 package com.example.administrator.xiangou.mine.mystore.storemanager;
 
-/**
- * 作者： tj on 2017/5/26.
- * <p>
- * 功能：
- * <p>
- * 邮箱：1334311578@qq.com
- * osc git address：https://git.oschina.net/xiangou/Android.git
- */
-
 public class StoreManagerInfoBean {
+    /**
+     * data : {"did":1,"name":"闲购小铺","address":"\"四川省成都市青羊区府南街道马勒戈壁\"","synopsis":"\"在山的那边海的那边有一群草泥马\\n他们活泼又聪明\"","telephone":"\"18482195579\"","cid":"4","logo":null,"map_x":"\"104.014725\"","map_y":"\"30.676117\"","province":33007,"city":33008,"district":33027,"realname":"杨小贤","cityid":1,"cate_name":"家居","province_name":"四川省","city_name":"成都市","district_name":"青羊区"}
+     * state : {"code":200,"msg":"获取成功","debugMsg":"","url":"api/Stores/edit"}
+     */
+
+    private DataBean data;
+    private StateBean state;
+
     @Override
     public String toString() {
         return "StoreManagerInfoBean{" +
@@ -17,14 +16,6 @@ public class StoreManagerInfoBean {
                 ", state=" + state +
                 '}';
     }
-
-    /**
-     * data : {"did":1,"name":"闲购小铺","address":"四川省成都市青羊区府南街道锦屏社区南方向","synopsis":"1239688465","telephone":"18349264995","cid":"4","logo":"/public/upload/logo/2017/05-04/sqGhZ5fNfhB4hsbkEeWM39tsA.png","map_x":"104.014725","map_y":"30.676117","province":33007,"city":33008,"district":33027,"cate_name":"家居","province_name":"四川省","city_name":"成都市","district_name":"青羊区"}
-     * state : {"code":200,"msg":"获取成功","debugMsg":"","url":"api/Stores/edit"}
-     */
-
-    private DataBean data;
-    private StateBean state;
 
     public DataBean getData() {
         return data;
@@ -42,42 +33,47 @@ public class StoreManagerInfoBean {
         this.state = state;
     }
 
+
     public static class DataBean {
         @Override
         public String toString() {
             return "DataBean{" +
                     "did=" + did +
-                    ", name='" + name + '\'' +
-                    ", address='" + address + '\'' +
-                    ", synopsis='" + synopsis + '\'' +
-                    ", telephone='" + telephone + '\'' +
-                    ", cid='" + cid + '\'' +
-                    ", logo='" + logo + '\'' +
-                    ", map_x='" + map_x + '\'' +
-                    ", map_y='" + map_y + '\'' +
+                    ", name=" + name +
+                    ", address=" + address +
+                    ", synopsis=" + synopsis +
+                    ", telephone=" + telephone +
+                    ", cid=" + cid +
+                    ", logo=" + logo +
+                    ", map_x=" + map_x +
+                    ", map_y=" + map_y +
                     ", province=" + province +
                     ", city=" + city +
                     ", district=" + district +
-                    ", cate_name='" + cate_name + '\'' +
-                    ", province_name='" + province_name + '\'' +
-                    ", city_name='" + city_name + '\'' +
-                    ", district_name='" + district_name + '\'' +
+                    ", realname='" + realname + '\'' +
+                    ", cityid=" + cityid +
+                    ", cate_name=" + cate_name +
+                    ", province_name=" + province_name +
+                    ", city_name=" + city_name +
+                    ", district_name=" + district_name +
                     '}';
         }
 
         /**
          * did : 1
          * name : 闲购小铺
-         * address : 四川省成都市青羊区府南街道锦屏社区南方向
-         * synopsis : 1239688465
-         * telephone : 18349264995
+         * address : "四川省成都市青羊区府南街道马勒戈壁"
+         * synopsis : "在山的那边海的那边有一群草泥马\n他们活泼又聪明"
+         * telephone : "18482195579"
          * cid : 4
-         * logo : /public/upload/logo/2017/05-04/sqGhZ5fNfhB4hsbkEeWM39tsA.png
-         * map_x : 104.014725
-         * map_y : 30.676117
+         * logo : null
+         * map_x : "104.014725"
+         * map_y : "30.676117"
          * province : 33007
          * city : 33008
          * district : 33027
+         * realname : 杨小贤
+         * cityid : 1
          * cate_name : 家居
          * province_name : 四川省
          * city_name : 成都市
@@ -96,6 +92,8 @@ public class StoreManagerInfoBean {
         private int province;
         private int city;
         private int district;
+        private String realname;
+        private int cityid;
         private String cate_name;
         private String province_name;
         private String city_name;
@@ -195,6 +193,22 @@ public class StoreManagerInfoBean {
 
         public void setDistrict(int district) {
             this.district = district;
+        }
+
+        public String getRealname() {
+            return realname;
+        }
+
+        public void setRealname(String realname) {
+            this.realname = realname;
+        }
+
+        public int getCityid() {
+            return cityid;
+        }
+
+        public void setCityid(int cityid) {
+            this.cityid = cityid;
         }
 
         public String getCate_name() {

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -34,7 +33,7 @@ public class NicknameActivity extends BaseActivity {
 
     private void initView() {
         backBtn= findContentView(R.id.setting_head_back);
-        TitleTv= (TextView) findViewById(R.id.setting_nickname_head).findViewById(R.id.setting_head_center);
+        TitleTv= findContentView(R.id.setting_head_center,false);
         SaveTv= findContentView(R.id.setting_head_right);
         CleanTv=findContentView(R.id.setting_nickname_delimage);
         mNickName =findContentView(R.id.setting_nickname_edit,false);
@@ -52,8 +51,8 @@ public class NicknameActivity extends BaseActivity {
         if (v==backBtn){
             finish();
         }else if (v==SaveTv){
-            nickName= String.valueOf(mNickName.getText());
-            Log.e("nickName", "onClick: " + nickName);
+            nickName= mNickName.getText().toString();
+//            Log.e("nickName", "onClick: " + nickName);
             if (nickName.length()>0){
                 uploadNickname(nickName);
             }else{
@@ -67,7 +66,6 @@ public class NicknameActivity extends BaseActivity {
     }
 
     private void changeSuccess(){
-        getUser().setNickname(mNickName.getText().toString());
         showToast("昵称修改成功！");
         Intent intent=new Intent();
         intent.putExtra("nickname",getUser().getNickname());
@@ -75,14 +73,20 @@ public class NicknameActivity extends BaseActivity {
         finish();
     }
     private void uploadNickname(String nickname) {
-        Log.e("nickAt",getUser().getUser_id()+ "<-id- -uploadNickname: " + nickname);
+//        Log.e("nickAt",getUser().getUser_id()+ "<-id- -uploadNickname: " + nickname);
         addSubscription(mApiService.uploadUserDetials(
                 getUser().getUser_id(), 0, nickname, null),
                 new BaseSubscriber<Captcha>(this) {
                     @Override
                     public void onNext(Captcha captcha) {
-                        if (captcha.getState().getCode()==200){
-                            changeSuccess();
+//                        Log.e("nickAt", "onNext: " + captcha.toString());
+                        switch (captcha.getState().getCode()){
+                            case 200:
+                                getUser().setNickname(mNickName.getText().toString());
+                                changeSuccess();
+                                break;
+                            case 100:
+                                showToast(captcha.getState().getMsg());
                         }
                     }
 
@@ -91,9 +95,9 @@ public class NicknameActivity extends BaseActivity {
 
                     @Override
                     public void onError(ExceptionHandle.ResponeThrowable e) {
-                        Log.e("error", "onError: "+e.toString() );
+//                        Log.e("error", "onError: "+e.toString() );
                     }
                 }
-                );
+        );
     }
 }

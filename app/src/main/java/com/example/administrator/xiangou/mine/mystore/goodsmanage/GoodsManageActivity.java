@@ -40,7 +40,7 @@ public class GoodsManageActivity extends MVPBaseActivity<GoodsManageContract.Vie
         backBtn=findContentView(R.id.store_headback);
         addGoodsBtn=findContentView(R.id.goods_management_page_addBtn);
         recycle=findContentView(R.id.goods_management_page_recycle,false);
-        titleTv=findContentView(R.id.store_headTitleTv,false);
+        titleTv=findContentView(R.id.head_title_tv,false);
         titleTv.setText("商品管理");
         recycle.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));//设置纵向布局
 //        recycle.setAdapter(new GoodsManageMentAdapter(this,data));

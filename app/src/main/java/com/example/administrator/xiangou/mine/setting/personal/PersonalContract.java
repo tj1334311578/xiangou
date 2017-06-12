@@ -1,21 +1,19 @@
 package com.example.administrator.xiangou.mine.setting.personal;
 
-import android.content.Context;
+import android.net.Uri;
 
 import com.example.administrator.xiangou.mvp.BasePresenter;
 import com.example.administrator.xiangou.mvp.BaseView;
 
-/**
- * MVPPlugin
- *  邮箱 784787081@qq.com
- */
+import okhttp3.MultipartBody;
+
 
 public class PersonalContract {
     interface View extends BaseView {
-        
+        void sendSuccessRequest(String message);
     }
 
     interface  Presenter extends BasePresenter<View> {
-        
+        void uploadUserLogo( Uri data, MultipartBody.Part requestbody);
     }
 }

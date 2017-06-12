@@ -18,6 +18,8 @@ public class MySharedPreferences {
     private SharedPreferences.Editor mSpEditor;
     public static final String STATUS_LOGIN = "staus_login";
     public static final String STATUS_GUIDE = "staus_guide";
+    public static final String KEY_USERIMG = "img_user";
+    public static final String KEY_STOREIMG = "img_store";
 
     public MySharedPreferences(Context context,String name) {
         mContext = context;
@@ -53,12 +55,14 @@ public class MySharedPreferences {
     }
 
     //保存图片URI
-    public void saveImgUri(Uri uri){
-        putString("imgUri",uri.toString());
+    public void saveImgUri(String key,Uri uri){
+        if (uri!=null) {
+            putString(key, uri.toString());
+        }
     }
     //获取图片
-    public Uri getImgUri(){
-        String uri = getString("imgUri",null);
+    public Uri getImgUri(String key){
+        String uri = getString(key,null);
         Uri imgUri = null;
         if (uri!=null){
             imgUri = Uri.parse(uri);

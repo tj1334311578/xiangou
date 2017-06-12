@@ -46,6 +46,11 @@ public class CustomToast {
 
     public Toast getToast(){
         if (mToast==null) {
+            //获取屏幕高度
+            WindowManager wm = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
+            int height = wm.getDefaultDisplay().getHeight();
+            int width = wm.getDefaultDisplay().getWidth();
+
             //Toast的初始化
             mToast = new Toast(mContext);
             //加载Toast布局
@@ -53,12 +58,11 @@ public class CustomToast {
             mTitleTv = (TextView) mToastView.findViewById(R.id.title_toast_tv);
             mContentLl = (LinearLayout) mToastView.findViewById(R.id.content_toast_ll);
             mMsgTv = (TextView) mToastView.findViewById(R.id.text_content_toast_tv);
+            mMsgTv.setMaxWidth(width/3*2);
             mIconCIV = (CustomImageView) mToastView.findViewById(R.id.icon_content_toast_civ);
             setContentHorizontal(false);
 
-            //获取屏幕高度
-            WindowManager wm = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
-            int height = wm.getDefaultDisplay().getHeight();
+
             //默认Toast的X坐标是屏幕水平居中，Y坐标是屏幕高度的1/3
             mToast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, height/3);
             //默认Toast的显示时间为short

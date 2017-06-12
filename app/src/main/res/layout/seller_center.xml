@@ -13,23 +13,22 @@
         android:id="@+id/seller_center_headRL"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true">
+        <com.example.administrator.xiangou.tool.CustomImageView
+            android:layout_width="81dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:layout_height="81dp"
+            app:civ_type="TYPE_CIRCLE"
+            android:id="@+id/seller_center_userImg"
+            android:src="@mipmap/girl_h"/>
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="#00000000"
-            android:layout_alignTop="@+id/seller_center_userImg"
+            android:layout_alignTop="@id/seller_center_userImg"
             android:id="@+id/seller_center_return"
             android:layout_marginStart="13dp"
             android:src="@mipmap/return_icon"/>
-        <com.example.administrator.xiangou.tool.SelectImageView
-            android:layout_width="65dp"
-            app:ImageType="TYPE_CIRCLE"
-            android:id="@+id/seller_center_userImg"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:layout_height="65dp"
-            android:src="@mipmap/girl_h"
-            />
         <ImageView
             android:layout_width="30dp"
             android:layout_height="50dp"
@@ -43,6 +42,7 @@
             android:layout_height="wrap_content"
             android:text="伊拉克店铺"
             android:id="@+id/seller_center_userName"
+            android:layout_marginTop="9dp"
             android:textSize="14sp"
             android:textColor="@color/whiteBgColor"
             android:layout_centerHorizontal="true"
@@ -53,6 +53,7 @@
             android:layout_height="wrap_content"
             android:text="建立于2016.06"
             android:textSize="8sp"
+            android:layout_marginTop="6dp"
             android:layout_marginBottom="10dp"
             android:textColor="@color/whiteBgColor"
             android:layout_below="@id/seller_center_userName"

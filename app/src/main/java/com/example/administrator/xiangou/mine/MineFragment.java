@@ -1,6 +1,5 @@
 package com.example.administrator.xiangou.mine;
 
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -30,19 +28,18 @@ import com.example.administrator.xiangou.mine.setting.SettingActivity;
 import com.example.administrator.xiangou.mine.store_application.StoreApplicationActivity;
 import com.example.administrator.xiangou.mvp.MVPBaseFragment;
 import com.example.administrator.xiangou.tool.CustomImageView;
-import com.example.administrator.xiangou.tool.ImageUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static android.app.Activity.RESULT_OK;
-import static com.example.administrator.xiangou.R.mipmap.personal_footprint_icon;
+import static com.example.administrator.xiangou.tool.MySharedPreferences.KEY_USERIMG;
 
 public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresenter>
         implements MineContract.View {
     private static final int APPLYCODE=101;
     private ListView listView;
-    private int content_imgC[]={personal_footprint_icon, R.mipmap.personal_comment_icon,
+    private int content_imgC[]={R.mipmap.personal_footprint_icon, R.mipmap.personal_comment_icon,
             R.mipmap.mine_share_icon,R.mipmap.mine_shop_icon};
     private int content_imgS[]={R.mipmap.mine_shop_icon ,R.mipmap.personal_footprint_icon,
             R.mipmap.personal_comment_icon,R.mipmap.mine_share_icon};
@@ -65,23 +62,6 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
     private void loginCaptcha(){
         mPresenter.IDlogin( getSP().getString("IDLogin_TelNumber",null),
                 getSP().getString("IDLogin_PWD",null) );
-        //        setLoginCall(new LoginCall() {
-        //            @Override
-        //            public void callSuccess(LoginBean.DataBean data) {
-        //                Log.e("miancall", "callSuccess: " );
-        //
-        //            }
-        //
-        //            @Override
-        //            public void callError(ExceptionHandle.ResponeThrowable e) {
-        //                Log.e("maincall", "callError: "  );
-        //            }
-        //
-        //            @Override
-        //            public void callDealMore(Object o) {
-        //
-        //            }
-        //        });
     }
     @Nullable
     @Override
@@ -92,18 +72,21 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
     @Override
     public void onStart() {
         super.onStart();
+        Log.e("MineFg", "onStart: " );
         showToast("isVisible:"+getUserVisibleHint()+"----isLogin"+getSP().isLogined()+"user id:"+getUser().getUser_id());
         if (getUserVisibleHint()){
             if (!getSP().isLogined()) {
                 startNewUI(IDLoginActivity.class);
             }
         }
-//        //先从本地保存的数据中获取用户信息
-//        if (getSP().getString("user_info",null)!=null) {
-//            Log.e("minefg", "onCreate inituser" + getSP().getString("user_info",null));
-//            setbUserBySP(getSP().getString("user_info", null));
-//        }
-        initDate();
+        //先从本地保存的数据中获取用户信息
+        initDate(true);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.e("MineFg", "onResume: " );
     }
 
     @Override
@@ -152,6 +135,7 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
                         startNewUI(ClassificationTabActivity.class);
                         break;
                     case "申请店铺":
+                        //待修改--传操作类型
                         startNewUIForResult(StoreApplicationActivity.class,APPLYCODE,"user_id",getUser().getUser_id());
                         break;
                     case "我的店铺":
@@ -177,17 +161,12 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
 //            }
 //        });
 
-
-//        initDate();
     }
 
-    private void initDate() {
-//        if (getUser().getHead_pic()!=null){
-//            loadImg(getUser().getHead_pic(),mHeadImgCiv);
-//        }
-        initImageView(mHeadImgCiv);
-
-        setTextToTv(mMessageTv,mine_MsgCount);
+    private void initDate(boolean b) {
+        showToast("success--initDate");
+        initImageView(mHeadImgCiv,b);
+        setTextToTv(mMessageTv,mine_MsgCount);//待修改
         setTextToTv(mUserLevelTv,"V"+getUser().getLevel());
         setTextToTv(mLevelNumberTv,getUser().getExperience());
         setTextToTv(mUserNameTv,getUser().getNickname());
@@ -196,7 +175,6 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         setTextToTv(mReceiveTv,getUser().getWaitReceive());
         setTextToTv(mEvaluationTv,getUser().getWaitCcomment());
         setTextToTv(mReturnsOrSalesTv,getUser().getRefund());
-
         initList();
     }
     private void initList() {
@@ -230,11 +208,17 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         listView.setAdapter(mListAdapter);
     }
 
-    private void initImageView(ImageView imageView){
-        Uri uri = getSP().getImgUri();
+    private void initImageView(ImageView imageView, boolean isInitImg){
+        Uri uri = getSP().getImgUri(KEY_USERIMG);
         if (uri!=null){
-            ImageUtils.loadLocationImg(getContext(),uri,imageView);
+            //            ImageUtils.loadLocationImg(getContext(),uri,imageView);
+            if (isInitImg) {//只在初始化加载图片时才调用，刷新时不调用
+                Log.e("loadimg", "initImageView: by uri "+uri );
+                loadImg(uri, imageView);
+            }
+            return;
         }else if (getUser().getHead_pic()!=null){
+            Log.e("loadimg", "initImageView: by getHead_pic" );
             loadImg(getUser().getHead_pic(),imageView);
         }
     }
@@ -353,55 +337,6 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
 
     @Override
     public void ReLoginidSuccess(LoginBean.DataBean data) {
-        initDate();
-        showToast("success");
-    }
-
-    public class MineAdapter extends BaseAdapter {
-        private Context mContext;
-        private List<ItemImage> Datas;
-
-        public MineAdapter(Context context, List<ItemImage> datas) {
-            this.mContext = context;
-            this.Datas = datas;
-        }
-
-        @Override
-        public int getCount() {
-            return Datas.size();
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return Datas.get(position);
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return position;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            ViewHolder viewHolder=new ViewHolder();
-            if (convertView==null)
-            {
-                convertView= LayoutInflater.from(mContext).inflate(R.layout.mine_item,null,false);
-                viewHolder.imageView= (ImageView) convertView.findViewById(R.id.mine_item_img);
-                Log.e("MineFg", "getView: "+viewHolder.imageView);
-                viewHolder.textView= (TextView) convertView.findViewById(R.id.mine_item_text);
-                convertView.setTag(viewHolder);
-            }else{
-                viewHolder = (ViewHolder) convertView.getTag();
-            }
-
-            viewHolder.imageView.setImageResource(Datas.get(position).getSrc());
-            viewHolder.textView.setText(Datas.get(position).getStr());
-            return convertView;
-        }
-        public class ViewHolder{
-            public ImageView imageView;
-            public TextView textView;
-        }
+        initDate(false);
     }
 }

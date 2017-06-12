@@ -5,17 +5,12 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.administrator.xiangou.R;
-import com.example.administrator.xiangou.login.Captcha;
 import com.example.administrator.xiangou.mvp.MVPBaseActivity;
-import com.example.administrator.xiangou.net.BaseSubscriber;
-import com.example.administrator.xiangou.net.ExceptionHandle;
 import com.example.administrator.xiangou.tool.CustomImageView;
 import com.example.administrator.xiangou.tool.ImageUtils;
 
@@ -25,6 +20,7 @@ import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
+import static com.example.administrator.xiangou.tool.MySharedPreferences.KEY_USERIMG;
 import static okhttp3.MultipartBody.Part.createFormData;
 
 
@@ -35,9 +31,8 @@ import static okhttp3.MultipartBody.Part.createFormData;
 
 public class PersonalActivity extends MVPBaseActivity<PersonalContract.View, PersonalPresenter>
         implements PersonalContract.View {
-    private RelativeLayout img_setting,nickname,sex;
+
     private CustomImageView person_img;
-    private ImageView back;
     private TextView nickname_Tv,sex_Tv;
 
     @Override
@@ -48,33 +43,32 @@ public class PersonalActivity extends MVPBaseActivity<PersonalContract.View, Per
     }
 
     private void initView() {
-        Log.e("PersonalActivity", "initView: " +getUser().toString());
-        img_setting=findContentView(R.id.setting_personal_Rl,true);
+//        Log.e("PersonalActivity", "initView: user: " +getUser().toString());
+        findContentView(R.id.setting_personal_Rl,true);
+        findContentView(R.id.setting_personal_nickname_Rl,true);
+        findContentView(R.id.setting_personal_sex_Rl,true);
+        findContentView(R.id.setting_personal_back,true);
         person_img=findContentView(R.id.setting_personal_img);
-        nickname=findContentView(R.id.setting_personal_nickname_Rl,true);
-        sex=findContentView(R.id.setting_personal_sex_Rl,true);
-        back=findContentView(R.id.setting_personal_back,true);
         nickname_Tv=findContentView(R.id.setting_personal_nickname_Tv,false);
         sex_Tv=findContentView(R.id.setting_personal_sex_Tv,false);
 
-        //根据上次记录设初始值
-        loadImg(getUser().getHead_pic(),person_img);
+        //根据上次记录设初始值 initData
+        initImageView(person_img);
         nickname_Tv.setText(getUser().getNickname());
-        String sex ;
         switch (getUser().getSex()){
             case 1:
-                sex = new String("男");
+                sex_Tv.setText("男");
+                break;
             case 2:
-                sex = new String("女");
-            default:
-                sex = new String("");
+                sex_Tv.setText("女");
+                break;
         }
-        sex_Tv.setText(sex);
+
     }
 
     @Override
     public void sendFialRequest(String message) {
-
+        showToast(message);
     }
 
     @Override
@@ -103,7 +97,6 @@ public class PersonalActivity extends MVPBaseActivity<PersonalContract.View, Per
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (data!=null&&resultCode==RESULT_OK){
-        Log.e("data", "onActivityResult: "+data.toString()+"\nrequestCode:"+requestCode+"\nresultCode:"+resultCode);
         switch (requestCode){
             case 1:
                 setNickName(data);
@@ -127,50 +120,33 @@ public class PersonalActivity extends MVPBaseActivity<PersonalContract.View, Per
     }
     //设置头像
     private void setImg( Intent data) {
-        String imagePath = "";
             if (data.getData() != null) {//有数据返回直接使用返回的图片地址
-                imagePath = ImageUtils.getFilePathByFileUri(this, data.getData());
-                Log.e("urlpath", "setImg: " + imagePath+"\n"+data.getData().getScheme());
-//                imgpathMap.put(requestCode,imagePath);
+                String imagePath = ImageUtils.getFilePathByFileUri(this, data.getData());
+
                 File img = new File(imagePath);
                 RequestBody requestbody=RequestBody.create(MediaType.parse("multipart/form-data"),img);
                 MultipartBody.Part file = createFormData("head_img",img.getName(),requestbody);
-                uploadUserLogo(data,file);//上传图片
+                mPresenter.uploadUserLogo(data.getData(),file);//上传图片
             }
-//        loadImg(data.getData(),person_img);// 刷新图片
     }
 
-    private void uploadUserLogo(final Intent data, MultipartBody.Part requestbody) {
-        Log.e("uploadUserLogo", "uploadUserLogo: "+requestbody.toString() );
-        addSubscription(mApiService.uploadUserDetials(getUser().getUser_id(),0,null,requestbody),
-                new BaseSubscriber<Captcha>(this) {
-                    @Override
-                    public void onNext(Captcha captcha) {
-                        Log.e("onNext", "onNext: "+captcha.toString());
-                        if ( captcha.getState().getCode()==200 ){
-                            showToast("头像修改成功！");
-                            update(data.getData());
-                        }else{
-                            showToast("头像修改失败！");
-                        }
-                    }
-
-                    @Override
-                    public void onFinish() {
-                    }
-
-                    @Override
-                    public void onError(ExceptionHandle.ResponeThrowable e) {
-                        Log.e("imgerror", "onError: " +e.toString() );
-                    }
-                }
-                );
+    @Override
+    public void sendSuccessRequest(String message) {
+        showToast(message);
+        initImageView(person_img);
     }
 
     //刷新图片方法
-    private void update(Uri uri) {
-        ImageUtils.loadLocationImg(getContext(),uri,person_img);
-        getSP().saveImgUri(uri);
+    private void initImageView(ImageView imageView){
+        Uri uri = getSP().getImgUri(KEY_USERIMG);
+        if (uri!=null){
+//            Log.e("patloadimg", "initImageView: by uri"+uri );
+            //            ImageUtils.loadLocationImg(getContext(),uri,imageView);
+            loadImg(uri,imageView);
+        }else if (getUser().getHead_pic()!=null){
+//            Log.e("patloadimg", "initImageView: by getHead_pic" );
+            loadImg(getUser().getHead_pic(),imageView);
+        }
     }
 
     @Override

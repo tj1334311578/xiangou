@@ -73,6 +73,10 @@ public class CustomImageView extends ImageView {
             mWidth = Math.min(getMeasuredWidth(),getMeasuredHeight());
             mRadius = mWidth/2;
             setMeasuredDimension(mWidth,mWidth);
+        }else {
+            mWidth = getMeasuredWidth();
+            mHeight = getMeasuredHeight();
+            setMeasuredDimension(mWidth,mHeight);
         }
     }
 
@@ -80,7 +84,6 @@ public class CustomImageView extends ImageView {
     protected void onDraw(Canvas canvas) {
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
-
         if (getDrawable()==null) return;
               setBitmapShader();
         switch (mType) {
@@ -135,7 +138,7 @@ public class CustomImageView extends ImageView {
         }
         int bitmapWidth = drawable.getIntrinsicWidth();
         int bitmapHeight = drawable.getIntrinsicHeight();
-        Bitmap.Config config = drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888:Bitmap.Config.RGB_565;
+        Bitmap.Config config = drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888: Bitmap.Config.RGB_565;
         Bitmap bitmap = Bitmap.createBitmap(bitmapWidth,bitmapHeight, config);
         Canvas canvas = new Canvas(bitmap);
         drawable.setBounds(0,0,bitmapWidth,bitmapHeight);

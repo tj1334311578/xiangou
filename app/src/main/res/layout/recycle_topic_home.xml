@@ -58,8 +58,6 @@
             android:layout_height="140dp"
             android:id="@+id/advs_topic_civ"
             android:src="@mipmap/girl_h"
-            android:background="@color/default_bg_color"
-            android:scaleType="centerInside"
             />
         <TextView
             android:layout_width="wrap_content"

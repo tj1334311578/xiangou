@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,7 +17,6 @@ import com.example.administrator.xiangou.mvp.MVPBaseFragment;
 import com.example.administrator.xiangou.nearby.apimodel.NearbyGoodsDataBean;
 import com.example.administrator.xiangou.nearby.nearbygoods.adapter.NearbyGoodsAdapterRV;
 import com.example.administrator.xiangou.net.XianGouApiService;
-import com.example.administrator.xiangou.tool.ContextUtils;
 import com.example.administrator.xiangou.tool.GlideImageLoader;
 import com.example.administrator.xiangou.tool.ItemIntervalDecoration;
 import com.youth.banner.Banner;
@@ -59,18 +57,15 @@ public class NearbyGoodsFragment extends MVPBaseFragment<NearbyGoodsContract.Vie
 
     @Override
     public void initView() {
+        //网络请求附近商品页的数据
+        mPresenter.dealNearbyGoodsCall(null,null,getNearyDistance());
 //        mBanner = findContentView(R.id.advs_nearbygoods_banner,false);]
-        mBanner = (Banner) LayoutInflater.from(getContext()).inflate(R.layout.banner_nearbygoods_item,null,false);
+//        mBanner = (Banner) LayoutInflater.from(getContext()).inflate(R.layout.banner_nearbygoods_item,null,false)
+//                .findViewById(R.id.advs_nearbygoods_banner);
         mGoodsRv = findContentView(R.id.goods_nearby_rv,false);
         mGoodsRv.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,false));
-        mGoodsRv.setPadding(ContextUtils.dp2px(0),ContextUtils.dp2px(13),ContextUtils.dp2px(0),ContextUtils.dp2px(8));
         mGoodsRv.addItemDecoration(new ItemIntervalDecoration(0,0,0,5));
 
-
-        //网络请求附近商品页的数据
-        //        if (mDataBeanList)
-//        Log.e("附近距离", "initView: " + getNearyDistance());
-        mPresenter.dealNearbyGoodsCall(null,null,getNearyDistance());
     }
 
     @Override
@@ -92,7 +87,7 @@ public class NearbyGoodsFragment extends MVPBaseFragment<NearbyGoodsContract.Vie
 //        mBanner.setIndicatorGravity(BannerConfig.CENTER);
         //设置banner动画效果
         mBanner.setBannerAnimation(Transformer.Default);
-        mBanner.setDelayTime(3000);
+        mBanner.setDelayTime(2500);
         mBanner.isAutoPlay(true);
         if (titles!=null)
             mBanner.setBannerTitles(titles);
@@ -122,20 +117,6 @@ public class NearbyGoodsFragment extends MVPBaseFragment<NearbyGoodsContract.Vie
                 });
             }
         });
-//        mAdapter.setOnItemViewHolderListener(new RVBaseAdapter.OnItemViewHolderListener() {
-//            @Override
-//            public void bindItemViewHolder(View view, RVBaseViewHolder holder, int pos) {
-//                mBanner = (Banner) view;
-//                initBanner(imgUrls,null);
-//                mBanner.setOnBannerListener(new OnBannerListener() {
-//                    @Override
-//                    public void OnBannerClick(int position) {
-//                        showToast("点击了第 "+position+" 个");
-//                    }
-//                });
-//
-//            }
-//        });
         mAdapter.setOnNearbyGoodsItemClickListener(new NearbyGoodsAdapterRV.NearbyGoodsItemCall() {
             @Override
             public void setOnNearbyGoodsItemCall(View view, int parentposition, int childposition) {

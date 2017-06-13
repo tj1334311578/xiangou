@@ -179,4 +179,10 @@ public abstract class RVBaseAdapter<T> extends RecyclerView.Adapter<RVBaseViewHo
                 .placeholder(R.mipmap.default_img)
                 .dontAnimate();
     }
+    //        ViewTarget target = new ViewTarget<CustomImageView,GlideDrawable>(mCustomImageView) {
+    //            @Override
+    //            public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
+    //                this.view.setImageDrawable(resource.getCurrent());
+    //            }
+    //        };
 }

@@ -8,7 +8,6 @@ import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.base.RVBaseAdapter;
 import com.example.administrator.xiangou.base.RVBaseViewHolder;
 import com.example.administrator.xiangou.nearby.apimodel.NearbyGoodsDataBean;
-import com.example.administrator.xiangou.net.XianGouApiService;
 import com.example.administrator.xiangou.tool.CustomImageView;
 import com.example.administrator.xiangou.tool.GlideImageLoader;
 
@@ -41,6 +40,6 @@ public class ItemAdapterRV extends RVBaseAdapter<NearbyGoodsDataBean.DataBean.Ca
         goodsName = holder.getTextView(R.id.item_rv_nearbygoods_tv);
 
         goodsName.setText(goodsBean.getName());
-        mImageLoader.displayImage(mContext, XianGouApiService.IMGBASEURL +goodsBean.getOriginal_img(),goodsImg);
+        loadImg(goodsBean.getOriginal_img(),goodsImg);
     }
 }

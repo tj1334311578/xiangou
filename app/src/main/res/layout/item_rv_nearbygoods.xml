@@ -9,7 +9,7 @@
     <com.example.administrator.xiangou.tool.CustomImageView
         android:layout_width="80dp"
         android:layout_height="70dp"
-        android:scaleType="fitXY"
+        android:scaleType="fitCenter"
         android:layout_gravity="center_horizontal"
         android:id="@+id/item_rv_nearbygoods_iv"/>
     

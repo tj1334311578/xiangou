@@ -25,24 +25,9 @@ import com.example.administrator.xiangou.mvp.MVPBaseActivity;
  */
 
 public class SettingActivity extends MVPBaseActivity<SettingContract.View, SettingPresenter> implements SettingContract.View,View.OnClickListener {
-//    @BindView(R.id.setting_back)
     ImageView settingBack;
-//    @BindView(R.id.person_setting_Btn)
-//    ImageView personalBtn;
-////    @BindView(R.id.setting_address_Btn)
-//    ImageView addressBtn;
-////    @BindView(R.id.Version_information_Btn)
-//    ImageView versionBtn;
-////    @BindView(R.id.Help_counseling_Btn)
-//    ImageView helpBtn;
-////    @BindView(R.id.Clear_cache_img)
-//    ImageView clean_cacheBtn;
-////    @BindView(R.id.Feedback_Btn)
-//    ImageView feedBtn;
     Button unloginBtn;
     private Dialog mySelfDialog;
-    //    @BindViews({R.id.person_setting_Btn,R.id.setting_address_Btn,R.id.Version_information_Btn,R.id.Help_counseling_Btn,R.id.Clear_cache_img,R.id.Feedback_Btn})
-//    List<ImageButton> Btns;
     LinearLayout personalBtn,addressBtn,versionBtn,helpBtn,clean_cacheBtn,feedBtn;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -66,9 +51,6 @@ public class SettingActivity extends MVPBaseActivity<SettingContract.View, Setti
     public void sendFialRequest(String message) {
 
     }
-//    //注解点击事件，注意不要放在Oncreate()等生命周期中，否则编译报错
-//    @OnClick({R.id.setting_back,R.id.person_setting_Btn,R.id.setting_address_Btn,R.id.Version_information_Btn,
-//            R.id.Help_counseling_Btn,R.id.Clear_cache_img,R.id.Feedback_Btn})
     @Override
     public void onClick(View v) {
         switch (v.getId()){

@@ -10,12 +10,6 @@ import android.view.View;
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.mvp.MVPBaseActivity;
 
-
-/**
- * MVPPlugin
- *  邮箱 784787081@qq.com
- */
-
 public class FollowPageActivity extends MVPBaseActivity<FollowPageContract.View, FollowPagePresenter> implements FollowPageContract.View {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

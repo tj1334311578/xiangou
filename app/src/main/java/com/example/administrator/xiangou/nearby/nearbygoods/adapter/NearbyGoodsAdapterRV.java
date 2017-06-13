@@ -13,10 +13,8 @@ import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.base.RVBaseAdapter;
 import com.example.administrator.xiangou.base.RVBaseViewHolder;
 import com.example.administrator.xiangou.nearby.apimodel.NearbyGoodsDataBean;
-import com.example.administrator.xiangou.net.XianGouApiService;
 import com.example.administrator.xiangou.tool.GlideImageLoader;
 import com.example.administrator.xiangou.tool.ItemIntervalDecoration;
-import com.youth.banner.Banner;
 
 import java.util.List;
 
@@ -43,8 +41,9 @@ public class NearbyGoodsAdapterRV extends RVBaseAdapter<NearbyGoodsDataBean.Data
 
     public NearbyGoodsAdapterRV(Context context, List<NearbyGoodsDataBean.DataBean.CatelistBean> mDatas) {
         super(context, mDatas);
+        setLayoutResId(R.layout.nearby_goods_item);
         mImageLoader = new GlideImageLoader();
-        mItemIntervalDecoration = new ItemIntervalDecoration(0,8,0,8);
+        mItemIntervalDecoration = new ItemIntervalDecoration(0,8,0,0);
     }
 
     @Override
@@ -88,9 +87,7 @@ public class NearbyGoodsAdapterRV extends RVBaseAdapter<NearbyGoodsDataBean.Data
     }
 
     private void bindBannerData(RVBaseViewHolder holder) {
-        Banner mBanner = holder.getBanner(R.id.advs_nearbygoods_banner);
-//        mOnItemViewHolderListener.bindItemViewHolder(mBanner,holder,0);
-        mOnItemViewClickListener.setOnItemViewClick(mBanner,0);
+        mOnItemViewClickListener.setOnItemViewClick(holder.getBanner(R.id.advs_nearbygoods_banner),0);
     }
 
     private void bindNormalData(RVBaseViewHolder holder, final int position) {
@@ -100,13 +97,13 @@ public class NearbyGoodsAdapterRV extends RVBaseAdapter<NearbyGoodsDataBean.Data
         Log.e("catelist", "bindData: " + catelistBean.toString());
 
         if (catelistBean.getImage()!=null) {
-            mImageLoader.displayImage(mContext, XianGouApiService.IMGBASEURL +catelistBean.getImage(),mIcon);
+            loadImg(catelistBean.getImage(),mIcon);
         }
         mText.setText(catelistBean.getCate_name());
 
         mItemRv = holder.getRecyclerView(R.id.child_goods_nearby_rv);
         mItemRv.setLayoutManager(new GridLayoutManager(mItemRv.getContext(),4, GridLayoutManager.VERTICAL,false));
-//        mItemRv.setPadding(ContextUtils.dp2px(8),ContextUtils.dp2px(8),ContextUtils.dp2px(8),ContextUtils.dp2px(8));
+
         if (isFirst) {
             isFirst =false;
         }else {
@@ -129,7 +126,9 @@ public class NearbyGoodsAdapterRV extends RVBaseAdapter<NearbyGoodsDataBean.Data
 
 
     @Override
-    protected void bindData(RVBaseViewHolder holder, NearbyGoodsDataBean.DataBean.CatelistBean catelistBean, final int position) {}
+    protected void bindData(RVBaseViewHolder holder, NearbyGoodsDataBean.DataBean.CatelistBean catelistBean, final int position) {
+
+    }
 
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {

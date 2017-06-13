@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,22 +50,46 @@ public class CouponManagerFragment extends MVPBaseFragment<CouponManagerContract
 
     @Override
     public void initView() {
-        List<CouponManageBean> data=new ArrayList<>();
-        data.add(new CouponManageBean("订单满99元可用","满99可用","开始时间：2017-06-23","结束时间：2017-06-23","剩余张数：220张","5元"));
-        data.add(new CouponManageBean("订单满199元可用","满199可用","开始时间：2017-06-23","结束时间：2017-06-23","剩余张数：220张","10元"));
-        data.add(new CouponManageBean("订单满299元可用","满299可用","开始时间：2017-06-23","结束时间：2017-06-23","剩余张数：220张","15元"));
-
         recycle=findContentView(R.id.recycleview_style_recycle);
+        switch (tag){
+            case 1:
+                mPresenter.callFindCoupon(1,null);
+                break;
+            case 2:
+                mPresenter.callFindCoupon(1,"working");
+                break;
+            case 3:
+                mPresenter.callFindCoupon(1,"lose");
+                break;
+        }
+    }
+
+    @Override
+    public void dataToView(CouponBean couponDatas) {
+        List<CouponBean.CouponsBean> data = new ArrayList<>();
+        if (couponDatas.getData().size()==0) {
+            data.add(new CouponBean.CouponsBean(1,220,100,"10.00","100.00","2016-06-01","2016-07-2"));
+            data.add(new CouponBean.CouponsBean(1,220,100,"10.00","100.00","2016-06-01","2016-07-2"));
+            data.add(new CouponBean.CouponsBean(1,220,100,"10.00","100.00","2016-06-01","2016-07-2"));
+        }else{
+            Log.e("ysss", "dataToView: "+couponDatas.toString() );
+            data=couponDatas.getData();
+        }
         CouponManagerAdapter adapter=new CouponManagerAdapter(getContext(),data,tag);
         recycle.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
         recycle.setAdapter(adapter);
         recycle.addItemDecoration(new ItemIntervalDecoration(0,-5,0,0));
-
         adapter.setOnLongClickListener(new CouponManagerAdapter.OnLongClickListener() {
             @Override
             public void setOnLongClickListener(View view, int position) {
                 showToast("position"+position);
             }
         });
+
+    }
+
+    @Override
+    public void addCouponSuccess() {
+
     }
 }

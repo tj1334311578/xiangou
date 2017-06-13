@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import com.bumptech.glide.DrawableRequestBuilder;
 import com.bumptech.glide.Glide;
 import com.example.administrator.xiangou.R;
+import com.example.administrator.xiangou.mine.mystore.couponmanager.CouponBean;
 import com.example.administrator.xiangou.net.XianGouApiService;
 import com.example.administrator.xiangou.tool.GlideImageLoader;
 

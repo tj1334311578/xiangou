@@ -7,12 +7,12 @@ import android.graphics.BitmapShader;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.PixelFormat;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.widget.ImageView;
 
 import com.example.administrator.xiangou.R;
@@ -35,7 +35,7 @@ public class CustomImageView extends ImageView {
     private Paint mPaint;
     private int mRadius;
     private RectF mRect;
-    private int mRoundRadius;
+    private int mRoundRadius=DEFAUT_ROUND_RADIUS;;
     private Matrix mMatrix;
     private int mType;//记录是view的形状
 
@@ -58,15 +58,11 @@ public class CustomImageView extends ImageView {
         setmRoundRadius(mRoundRadius);
         array.recycle();
 
-        mPaint = new Paint();
-        mPaint.setAntiAlias(true);
-        mMatrix = new Matrix();
-        mRoundRadius=DEFAUT_ROUND_RADIUS;
     }
 
     public CustomImageView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, 0);
-//        initView(context);
+        super(context, attrs, defStyleAttr);
+        initView(context,attrs);
     }
 
     @Override
@@ -82,6 +78,9 @@ public class CustomImageView extends ImageView {
 
     @Override
     protected void onDraw(Canvas canvas) {
+        mPaint = new Paint();
+        mPaint.setAntiAlias(true);
+
         if (getDrawable()==null) return;
               setBitmapShader();
         switch (mType) {
@@ -104,6 +103,7 @@ public class CustomImageView extends ImageView {
     //设置BitmapShader
     private void setBitmapShader() {
         Drawable drawable = getDrawable();
+        mMatrix = new Matrix();
         if (drawable == null) return;
         bitmap = drawableToBitmap(drawable);
         mBitmapShader = new BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
@@ -112,7 +112,7 @@ public class CustomImageView extends ImageView {
             // 拿到bitmap宽或高的小值
             int minSize = Math.min(bitmap.getWidth(),bitmap.getHeight());
             scale = mWidth*1.0f /minSize;
-        }else if (mType ==TYPE_ROUND || mType ==TYPE_OVAL || mType == TYPE_DEFULTE) {
+        }else {//if (mType ==TYPE_ROUND || mType ==TYPE_OVAL || mType == TYPE_DEFULTE)
             // 如果图片的宽或者高与view的宽高不匹配，计算出需要缩放的比例；
             // 缩放后的图片的宽高，一定要大于我们view的宽高；所以我们这里取大值；
             scale = Math.max( getWidth()*1.0f / bitmap.getWidth(),
@@ -135,7 +135,8 @@ public class CustomImageView extends ImageView {
         }
         int bitmapWidth = drawable.getIntrinsicWidth();
         int bitmapHeight = drawable.getIntrinsicHeight();
-        Bitmap bitmap = Bitmap.createBitmap(bitmapWidth,bitmapHeight, Bitmap.Config.ARGB_8888);
+        Bitmap.Config config = drawable.getOpacity() != PixelFormat.OPAQUE ? Bitmap.Config.ARGB_8888:Bitmap.Config.RGB_565;
+        Bitmap bitmap = Bitmap.createBitmap(bitmapWidth,bitmapHeight, config);
         Canvas canvas = new Canvas(bitmap);
         drawable.setBounds(0,0,bitmapWidth,bitmapHeight);
         drawable.draw(canvas);

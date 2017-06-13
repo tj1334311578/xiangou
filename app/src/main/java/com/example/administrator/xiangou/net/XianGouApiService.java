@@ -55,8 +55,10 @@ import rx.Observable;
 //      ┗┻┛　┗┻┛
 
 public interface XianGouApiService {
-    String mBASEURL = "http://192.168.0.123/";
-    String IMGBASEURL = "http://192.168.0.123";
+    String mBASEURL = "https://www.xangou.cn/index.php/";
+    String IMGBASEURL = "https://www.xangou.cn";
+//    String mBASEURL = "http://192.168.0.123/";
+//    String IMGBASEURL = "http://192.168.0.123";
     //     http://192.168.0.123/
 /***********首页接口************/
     @POST("api/Index/index/")

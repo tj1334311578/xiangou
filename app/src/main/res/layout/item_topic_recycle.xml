@@ -17,8 +17,7 @@
         android:layout_height="65dp"
         app:civ_type="TYPE_ROUND"
         app:civ_roundradius="3"
-        android:scaleType="matrix"
-        android:adjustViewBounds="true"
+        android:scaleType="centerInside"
         android:background="@color/default_bg_color"
         />
 

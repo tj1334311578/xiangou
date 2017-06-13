@@ -15,12 +15,10 @@
         android:id="@+id/civ_item_referrals_recycle"
         android:layout_width="65dp"
         android:layout_height="95dp"
-        android:src="@mipmap/girl_v"
-        android:background="@color/default_bg_color"
         app:civ_type="TYPE_ROUND"
         app:civ_roundradius="3"
-        android:scaleType="matrix"
-        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:background="@color/default_bg_color"
         />
 
     <TextView

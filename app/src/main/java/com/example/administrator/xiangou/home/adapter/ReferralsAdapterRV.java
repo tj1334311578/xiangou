@@ -24,10 +24,20 @@ public class ReferralsAdapterRV extends RVBaseAdapter<HomeDataBean.DataBean.Good
     @Override
     protected void bindData(RVBaseViewHolder holder, HomeDataBean.DataBean.GoodsPerfectBean goodsPerfectBean, int position) {
         CustomImageView mCustomImageView = holder.getCustomView(R.id.civ_item_referrals_recycle);
+//        ViewTarget target = new ViewTarget<CustomImageView,GlideDrawable>(mCustomImageView) {
+//            @Override
+//            public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
+//                this.view.setImageDrawable(resource.getCurrent());
+//            }
+//        };
         if (goodsPerfectBean.getOriginal_img()!=null)
             loadImg(goodsPerfectBean.getOriginal_img(),mCustomImageView);
+//            imgLoad(goodsPerfectBean.getOriginal_img()).into(target);
+
         TextView mTextView = holder.getTextView(R.id.tv_item_referrals_recycle);
         mTextView.setText(goodsPerfectBean.getName());
     }
+
+
 
 }

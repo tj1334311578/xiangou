@@ -23,7 +23,8 @@ public class TopicAdapterRV extends RVBaseAdapter<HomeDataBean.DataBean.GoodsTop
     @Override
     protected void bindData(RVBaseViewHolder holder, HomeDataBean.DataBean.GoodsTopticsBean goodsTopticsBean, int position) {
         CustomImageView mCustomImageView = holder.getCustomView(R.id.civ_item_topic_recycle);
-        loadImg(goodsTopticsBean.getOriginal_img(),mCustomImageView);
+        if (goodsTopticsBean.getOriginal_img()!=null)
+            loadImg(goodsTopticsBean.getOriginal_img(),mCustomImageView);
         TextView mTextView = holder.getTextView(R.id.tv_item_topic_recycle);
         mTextView.setText(goodsTopticsBean.getShop_price());
     }

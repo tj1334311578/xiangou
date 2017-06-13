@@ -14,8 +14,7 @@
         android:layout_height="100dp"
         android:src="@mipmap/advs_home_middle"
         android:background="@color/default_bg_color"
-        android:scaleType="matrix"
-        android:adjustViewBounds="true"
+        android:scaleType="centerInside"
         />
 
 </LinearLayout>

@@ -12,16 +12,15 @@
     android:paddingBottom="10dp"
     >
 
-    <!--android:layout_width="168dp"-->
-    <!--android:layout_height="165dp"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
     <com.example.administrator.xiangou.tool.CustomImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="168dp"
+        android:layout_height="165dp"
         android:src="@mipmap/girl_v"
         app:civ_type="TYPE_ROUND"
-        app:civ_roundradius="3"
-        android:scaleType="matrix"
-        android:adjustViewBounds="true"
+        app:civ_roundradius="5"
+        android:scaleType="centerInside"
         android:id="@+id/img_item_recommend_home_civ"
         />
     <LinearLayout

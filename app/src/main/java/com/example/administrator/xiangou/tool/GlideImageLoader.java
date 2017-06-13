@@ -17,13 +17,17 @@ public class GlideImageLoader extends ImageLoader {
         //Glide加载图片简单的用法
         Glide.with(context)
                 .load(path)
+                .dontAnimate()
+//                .fitCenter()
 //                .crossFade() //使图片变化平滑
                 .into(imageView);
     }
 
 //    @Override
 //    public ImageView createImageView(Context context) {
-//        return super.createImageView(context);
+//        CustomImageView customImageView = new CustomImageView(context);
+//        return customImageView;
+////        return super.createImageView(context);
 //    }
 
 }

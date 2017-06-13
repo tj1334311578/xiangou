@@ -59,8 +59,8 @@
             android:id="@+id/advs_topic_civ"
             android:src="@mipmap/girl_h"
             android:background="@color/default_bg_color"
-            android:scaleType="matrix"
-            android:adjustViewBounds="true"/>
+            android:scaleType="centerInside"
+            />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="16dp"

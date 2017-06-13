@@ -263,7 +263,7 @@ public class HomeAdapterRV extends RVBaseAdapter<HomeDataBean.DataBean> implemen
         mRecommendRv.setLayoutManager(
                 new GridLayoutManager(mContext,2, GridLayoutManager.VERTICAL,false));
 //        mRecommendRv.addItemDecoration(new ItemIntervalDecoration(8,0,0,0));
-//        mRecommendRv.setNestedScrollingEnabled(true);
+        mRecommendRv.setNestedScrollingEnabled(false);
 
         RecommendAdapterRv recommend = new RecommendAdapterRv(mContext,R.layout.item_recommend_home_recycle,recommened_list);
         mRecommendRv.setAdapter(recommend);
@@ -309,7 +309,7 @@ public class HomeAdapterRV extends RVBaseAdapter<HomeDataBean.DataBean> implemen
                 .setImageLoader(new GlideImageLoader())//设置图片加载器为Glide
                 .setImages(imgUrls)
                 .setBannerAnimation(Transformer.Default)//设置banner动画效果
-                .setDelayTime(3000)
+                .setDelayTime(2500)
                 .isAutoPlay(true)
                 .start();
         return mBanner;

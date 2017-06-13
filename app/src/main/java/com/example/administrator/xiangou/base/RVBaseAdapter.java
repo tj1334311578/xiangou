@@ -7,6 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.bumptech.glide.DrawableRequestBuilder;
+import com.bumptech.glide.Glide;
+import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.net.XianGouApiService;
 import com.example.administrator.xiangou.tool.GlideImageLoader;
 
@@ -155,7 +158,25 @@ public abstract class RVBaseAdapter<T> extends RecyclerView.Adapter<RVBaseViewHo
      * @param imgUrl 图片的网址（不需要加baseURL）
      * @param imageView 显示图片的imageview控件
      */
-    public void loadImg(String imgUrl, ImageView imageView) {
-        mImageLoader.displayImage(mContext, XianGouApiService.IMGBASEURL +imgUrl,imageView);
+    public void loadImg(Object imgUrl, ImageView imageView) {
+        if (imgUrl!=null) {
+            if (imgUrl instanceof String) {
+                mImageLoader.displayImage(mContext, XianGouApiService.IMGBASEURL + imgUrl, imageView);
+            }else {
+                mImageLoader.displayImage(mContext, imgUrl, imageView);
+            }
+        }
+    }
+    public DrawableRequestBuilder<Object> imgLoad(Object path){
+        return Glide.with(mContext)
+                .load(path)
+                .placeholder(R.mipmap.default_img)
+                .dontAnimate();
+    }
+    public DrawableRequestBuilder<String> imgLoad(String path){
+        return Glide.with(mContext)
+                .load(XianGouApiService.IMGBASEURL+path)
+                .placeholder(R.mipmap.default_img)
+                .dontAnimate();
     }
 }

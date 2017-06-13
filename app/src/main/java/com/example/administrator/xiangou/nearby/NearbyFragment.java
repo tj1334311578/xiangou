@@ -10,7 +10,6 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,15 +24,8 @@ import com.example.administrator.xiangou.nearby.nearbystore.NearbyStoreFragment;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
 public class NearbyFragment extends MVPBaseFragment<NearbyContract.View, NearbyPresenter>
         implements NearbyContract.View{
-    @BindView(R.id.classify_nearby_iv)
-    ImageView mClassifyIv;
-    @BindView(R.id.news_num_nearby_tv)
-    TextView mNewsCountTv;
 
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
@@ -43,7 +35,7 @@ public class NearbyFragment extends MVPBaseFragment<NearbyContract.View, NearbyP
     private List<TextView> mPpwTvs;
     private PopupWindow mPopupWindow;
     private int nearyDistance;//附近距离
-    private int currentNum,lastPpwTvPos;//当前页号
+    private int currentNum,lastPpwTvPos;//当前页号、最近的POS
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -65,9 +57,8 @@ public class NearbyFragment extends MVPBaseFragment<NearbyContract.View, NearbyP
 
     @Override
     public void initView() {
-        ButterKnife.bind(this,mContextView);
-        mClassifyIv.setOnClickListener(this);
-        mNewsCountTv.setOnClickListener(this);
+        findContentView(R.id.classify_nearby_iv);
+        findContentView(R.id.news_num_nearby_tv);
         initTabFragViews(mContextView);
     }
 

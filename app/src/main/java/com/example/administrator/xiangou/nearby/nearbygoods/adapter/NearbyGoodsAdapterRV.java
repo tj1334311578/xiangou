@@ -64,8 +64,7 @@ public class NearbyGoodsAdapterRV extends RVBaseAdapter<NearbyGoodsDataBean.Data
 
     @Override
     public RVBaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        switch (viewType)
-        {
+        switch (viewType) {
             case BANNER_TYPE:
                 setLayoutResId(R.layout.banner_nearbygoods_item);
                 break;

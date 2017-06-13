@@ -68,6 +68,7 @@ public class StockRecycleAdapter extends RVBaseAdapter<StockBean>{
 
     @Override
     protected void bindData(RVBaseViewHolder holder, StockBean stockBean, final int position) {
+        Log.e("gotodjdj", "bindData: "+position);
         colorTv=holder.getTextView(R.id.goods_model_recycle_color);
         sizeTv=holder.getTextView(R.id.goods_model_recycle_size);
         delTv=holder.getTextView(R.id.goods_model_recycle_delete);

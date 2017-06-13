@@ -57,6 +57,8 @@ import rx.Observable;
 public interface XianGouApiService {
     String mBASEURL = "http://192.168.0.123/";
     String IMGBASEURL = "http://192.168.0.123";
+//    String mBASEURL = "https://www.xangou.cn/index.php/";
+//    String IMGBASEURL = "https://www.xangou.cn";
     //     http://192.168.0.123/
 /***********首页接口************/
     @POST("api/Index/index/")
@@ -258,11 +260,17 @@ public interface XianGouApiService {
                                               @Part("tel") String tel);//店铺电话
 
     //店铺管理商品列表
-    @POST("/Api/Stores/goodslist/")
-    Observable<ResponseBody> callStoreGoodsList(@Query("did") int store_id,//店铺id
-                                                 @Query("key_word") String key_word,//根据名称查找相关商品
-                                                 @Query("page_no") int page_no,//分页不传查找第一页商品
-                                                 @Query("type") int type);//必填1
+//    @POST("/Api/Stores/goodslist/")
+//    Observable<ResponseBody> callStoreGoodsList(@Query("did") int store_id,//店铺id
+//                                                 @Query("key_word") String key_word,//根据名称查找相关商品
+//                                                 @Query("page_no") int page_no,//分页不传查找第一页商品
+//                                                 @Query("type") int type);//必填1
+    @POST("/api/Stores/goodslist/")
+    Observable<ResponseBody> callStoreGoodsList(@Query("did") int store_id,
+                                                @Query("key_word") String key_word,
+                                                @Query("page_no") int page_no,
+                                                @Query("type") int type);
+
 
     //分类列表
     //    @GET("/Api/Stores/getcate")

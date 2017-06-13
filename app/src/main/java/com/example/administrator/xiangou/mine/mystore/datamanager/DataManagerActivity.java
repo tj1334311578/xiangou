@@ -43,7 +43,7 @@ public class DataManagerActivity extends MVPBaseActivity<DataManagerContract.Vie
 
     private void initView() {
         backBtn=findContentView(R.id.store_headback);
-        TitleTv=findContentView(R.id.store_headTitleTv);
+        TitleTv=findContentView(R.id.head_title_tv);
         TitleTv.setText("数据统计");
         spinner=findContentView(R.id.seller_center_datamanager_spinner,false);
         recyclerView=findContentView(R.id.seller_center_datamanager_recycle,false);

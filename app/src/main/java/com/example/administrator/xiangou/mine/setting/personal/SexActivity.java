@@ -4,17 +4,16 @@ import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.example.administrator.xiangou.R;
+import com.example.administrator.xiangou.login.Captcha;
 import com.example.administrator.xiangou.net.BaseSubscriber;
 import com.example.administrator.xiangou.net.ExceptionHandle;
 import com.example.administrator.xiangou.tool.BaseActivity;
-
 
 /**
  * Created by Administrator on 2017/4/24.
@@ -24,6 +23,7 @@ public class SexActivity extends BaseActivity {
     private ImageView backBtn;
     private TextView TitleTv,SaveTv;
     private RadioButton Rtb_nan,Rtb_nv;
+    private int mSexTag;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,44 +49,67 @@ public class SexActivity extends BaseActivity {
         if (v==backBtn){
             finish();
         }else if (v==SaveTv){
-            // TODO: 2017/4/24 请求存储修改后的用户信息
-            int Sex_tag=1;
             Intent intent=new Intent();
             if (Rtb_nan.isChecked()){
-                Sex_tag=1;
+                mSexTag =1;
                 intent.putExtra("sex","男");
                 setResult(RESULT_OK,intent);
             }else if (Rtb_nv.isChecked()){
-                Sex_tag=2;
+                mSexTag =2;
                 intent.putExtra("sex","女");
                 setResult(RESULT_OK,intent);
             }
-            uploadSex(Sex_tag);
+            uploadSex(mSexTag);
         }
     }
 
+    private void requestSuccess(){
+        showToast("性别修改成功！");
+        Intent intent=new Intent();
+        switch (mSexTag){
+            case 1:
+                getUser().setSex(1);
+                intent.putExtra("sex","男");
+                break;
+            case 2:
+                getUser().setSex(2);
+                intent.putExtra("sex","女");
+                break;
+        }
+        setResult(RESULT_OK,intent);
+        finish();
+    }
+    private void toastError(String message){
+        showToast(message);
+    }
+
     private void uploadSex(int sex_tag) {
-        Log.e("sex", "uploadSex: "+sex_tag +"\nbUser:"+getUser().getUser_id());
+//        Log.e("sex", "uploadSex: "+sex_tag +"\nbUser:"+getUser().getUser_id());
         addSubscription(mApiService.uploadUserDetials(getUser().getUser_id(),sex_tag,null,null),
-                new BaseSubscriber<PersonalDetialsBean>(this) {
+                new BaseSubscriber<Captcha>(this) {
                     @Override
-                    public void onNext(PersonalDetialsBean Detial) {
-                        Log.e("Detial", "onNext: "+Detial.getData().toString() );
-                        if (Detial.getState().getCode()==200){
-                            showToast("昵称修改成功！");
-                        }else{
-                            showToast("修改昵称失败！code:"+Detial.getState().getCode());
+                    public void onNext(Captcha captcha) {
+//                        Log.e("Detial", "onNext: "+captcha.getData().toString() );
+                        switch (captcha.getState().getCode()){
+                            case 200:
+                                requestSuccess();
+                                break;
+                            default:
+                                toastError("修改性别失败！code:"+captcha.getState().getCode());
+                                break;
                         }
                     }
 
+
                     @Override
                     public void onFinish() {
-                        finish();
+
                     }
 
                     @Override
                     public void onError(ExceptionHandle.ResponeThrowable e) {
-                        Log.e("error", "onError: "+e.toString());
+//                        Log.e("error", "onError: "+e.toString());
+                        toastError(e.getLocalizedMessage());
                     }
                 });
     }

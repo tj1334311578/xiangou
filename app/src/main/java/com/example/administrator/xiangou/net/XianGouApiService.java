@@ -260,17 +260,11 @@ public interface XianGouApiService {
                                               @Part("tel") String tel);//店铺电话
 
     //店铺管理商品列表
-//    @POST("/Api/Stores/goodslist/")
-//    Observable<ResponseBody> callStoreGoodsList(@Query("did") int store_id,//店铺id
-//                                                 @Query("key_word") String key_word,//根据名称查找相关商品
-//                                                 @Query("page_no") int page_no,//分页不传查找第一页商品
-//                                                 @Query("type") int type);//必填1
-    @POST("/api/Stores/goodslist/")
-    Observable<ResponseBody> callStoreGoodsList(@Query("did") int store_id,
-                                                @Query("key_word") String key_word,
-                                                @Query("page_no") int page_no,
-                                                @Query("type") int type);
-
+    @POST("/Api/Stores/goodslist/")
+    Observable<ResponseBody> callStoreGoodsList(@Query("did") int store_id,//店铺id
+                                                 @Query("key_word") String key_word,//根据名称查找相关商品
+                                                 @Query("page_no") int page_no,//分页不传查找第一页商品
+                                                 @Query("type") int type);//必填1
 
     //分类列表
     //    @GET("/Api/Stores/getcate")

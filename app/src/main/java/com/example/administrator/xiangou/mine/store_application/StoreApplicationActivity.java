@@ -56,7 +56,7 @@ public class StoreApplicationActivity extends PopupWindowsBaseActivity implement
     private EditText mApplicantNameEdt,mTelEdt,mIDCardEdt,mStoreNameEdt,mShopAdressEdt;
     private ImageView backBtn;
     private Button mCommitBtn;
-    private TextView mCategoryTv;
+    private TextView mCategoryTv,mTitleTv;
     private Map<Integer,String> imgpathMap;
     private ApplicantInfoBean mApplicantInfoBean;
     private Intent mIntent;
@@ -77,6 +77,7 @@ public class StoreApplicationActivity extends PopupWindowsBaseActivity implement
         mIntent = getIntent();
         imgpathMap = new HashMap<>();
         mApplicantInfoBean = new ApplicantInfoBean();
+        //待修改
         int mUserId = mIntent.getIntExtra("user_id",0);
         mApplicantInfoBean.setUser_id(mUserId);
         initView();
@@ -91,6 +92,8 @@ public class StoreApplicationActivity extends PopupWindowsBaseActivity implement
         mSpinnerBaseAdapters = new SpinnerBaseAdapter[sizeCount];
         mAreaId = new int[sizeCount];
 
+        mTitleTv =findContentView(R.id.head_title_tv,false);
+        mTitleTv.setText("申请成为商家");
         mApplicantNameEdt = findContentView(R.id.application_name_edit,false);
         mTelEdt = findContentView(R.id.application_number_edit,false);
         mIDCardEdt = findContentView(R.id.application_ID_Card_edit,false);

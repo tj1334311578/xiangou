@@ -24,6 +24,8 @@ import com.example.administrator.xiangou.mvp.MVPBaseActivity;
 import com.example.administrator.xiangou.tool.CustomImageView;
 import com.example.administrator.xiangou.tool.ImageUtils;
 
+import static com.example.administrator.xiangou.tool.MySharedPreferences.KEY_USERIMG;
+
 public class IDLoginActivity extends MVPBaseActivity<IDLoginContract.View, IDLoginPresenter>
         implements IDLoginContract.View ,View.OnClickListener{
     private TextView IDlogin_Dynamic, IDLogin_Forget, IDLogin_Register;
@@ -131,7 +133,7 @@ public class IDLoginActivity extends MVPBaseActivity<IDLoginContract.View, IDLog
     }
 
     private void initImageView(ImageView imageView){
-        Uri uri = getSP().getImgUri();
+        Uri uri = getSP().getImgUri(KEY_USERIMG);
         if (uri!=null){
             ImageUtils.loadLocationImg(getContext(),uri,imageView);
         }else if (getUser().getHead_pic()!=null){

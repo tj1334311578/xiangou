@@ -8,4 +8,5 @@ public interface BaseView {
      void hideLoading();
      //请求失败Object user
      void sendFialRequest(String message);
+
 }

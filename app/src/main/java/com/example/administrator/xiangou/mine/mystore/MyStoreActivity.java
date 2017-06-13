@@ -1,10 +1,13 @@
 package com.example.administrator.xiangou.mine.mystore;
 
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.mine.mystore.couponmanager.CouponManagerActivity;
@@ -12,17 +15,15 @@ import com.example.administrator.xiangou.mine.mystore.datamanager.DataManagerAct
 import com.example.administrator.xiangou.mine.mystore.goodsmanage.GoodsManageActivity;
 import com.example.administrator.xiangou.mine.mystore.storemanager.StoreManagerActivity;
 import com.example.administrator.xiangou.mvp.MVPBaseActivity;
+import com.example.administrator.xiangou.tool.CustomImageView;
 import com.example.administrator.xiangou.tool.DrawableTextView;
 
-
-/**
- * MVPPlugin
- *  邮箱 784787081@qq.com
- */
+import static com.example.administrator.xiangou.tool.MySharedPreferences.KEY_STOREIMG;
 
 public class MyStoreActivity extends MVPBaseActivity<MyStoreContract.View, MyStorePresenter> implements MyStoreContract.View {
     private ImageButton back;
     private DrawableTextView storeMange,goodsMange,orderMange,totalData,goodsSales,preferentialMange;
+    private CustomImageView mStoreIcon;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,18 +40,34 @@ public class MyStoreActivity extends MVPBaseActivity<MyStoreContract.View, MySto
         goodsSales=findContentView(R.id.seller_center_store_management_goodssales);
         preferentialMange=findContentView(R.id.seller_center_store_management_preferentialmanager);
 
+        mStoreIcon = findContentView(R.id.seller_center_userImg,false);
+
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        initImageView(mStoreIcon);
+    }
+    //刷新图片方法
+    private void initImageView(ImageView imageView){
+        Uri uri = getSP().getImgUri(KEY_STOREIMG);
+        if (uri!=null){
+            Log.e("msatloadimg", "initImageView: by uri "+uri );
+            //            ImageUtils.loadLocationImg(getContext(),uri,imageView);
+            loadImg(uri,imageView);
+        }else if (getUser().getHead_pic()!=null){
+            Log.e("msatloadimg", "initImageView: by getHead_pic " );
+            loadImg(getUser().getHead_pic(),imageView);
+        }
+    }
+    @Override
     public void sendFialRequest(String message) {
-
+        showToast(message);
     }
 
     @Override
     public void onClick(View v) {
-//        if (v==back){
-//            finish();
-//        }
         switch (v.getId()){
             case R.id.seller_center_return:
                 finish();

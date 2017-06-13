@@ -93,7 +93,7 @@ public class AddGoodsManageActivity extends MVPBaseActivity<AddGoodsManageContra
     private void initView() {
         right_rl=findContentView(R.id.store_right_rl,false);
         right_rl.setVisibility(View.GONE);
-        titleTv=findContentView(R.id.store_headTitleTv,false);
+        titleTv=findContentView(R.id.head_title_tv,false);
         titleTv.setText("添加商品");
         backBtn=findContentView(R.id.store_headback);
         releaseBtn=findContentView(R.id.goods_management_addgoods_releasebtn);

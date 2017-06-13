@@ -24,6 +24,8 @@ import java.io.InputStream;
  * 图片简单处理工具类
  */
 public class ImageUtils {
+
+	private static int imgSize = 100;//图片最大值，单位 kb
 	
 	/**
 	 * 屏幕宽
@@ -195,7 +197,7 @@ public class ImageUtils {
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		image.compress(Bitmap.CompressFormat.JPEG, 100, baos);//质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中
 		int options = 100;
-		while (baos.toByteArray().length / 1024 > 100) {  //循环判断如果压缩后图片是否大于100kb,大于继续压缩
+		while (baos.toByteArray().length / 1024 > imgSize) {  //循环判断如果压缩后图片是否大于imgSize kb,大于继续压缩
 			baos.reset();//重置baos即清空baos
 			//第一个参数 ：图片格式 ，第二个参数： 图片质量，100为最高，0为最差  ，第三个参数：保存压缩后的数据的流
 			image.compress(Bitmap.CompressFormat.JPEG, options, baos);//这里压缩options%，把压缩后的数据存放到baos中

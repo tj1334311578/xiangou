@@ -18,33 +18,38 @@ public class StoreManagerPresenter extends BasePresenterImpl<StoreManagerContrac
 
     @Override
     public void callStoreInfo(int store_id) {
-        Log.e("fjeif", "进入callStoreInfo: " );
+        Log.e("StoreManagerPresenter", "进入callStoreInfo: " );
+        mView.showLoading();
         addSubscription(mApiService.callStoreInfo(store_id),
                 new BaseSubscriber<StoreManagerInfoBean>(mView.getContext()) {
                     @Override
                     public void onNext(StoreManagerInfoBean storeManagerInfoBean) {
                         if (storeManagerInfoBean.getState().getCode()==200){
                             mView.infoDataToView(storeManagerInfoBean);
-                            Log.e("next", "onNext: "+storeManagerInfoBean.toString() );
+                            Log.e("StoreManagerPresenter", "onNext: "+storeManagerInfoBean.toString() );
                         }
                     }
 
                     @Override
                     public void onFinish() {
-
+                        mView.hideLoading();
                     }
 
                     @Override
                     public void onError(ExceptionHandle.ResponeThrowable e) {
-                        Log.e("error", "onError: "+e.toString() );
+                        Log.e("StoreManagerPresenter", "onError: "+e.toString() );
                     }
                 });
     }
 
     @Override
-    public void callEditStoreInfo(int did, String map_x, String map_y, String address, int province_id, int city_id, int district_id, String synopsis, String tel, MultipartBody.Part logo) {
-        Log.e("callEditStoreInfo", "进入callEditStoreInfo: " );
-            addSubscription(mApiService.callEditStoreInfo(did,map_x,map_y,address,province_id,city_id,district_id,synopsis,logo,tel),
+    public void callEditStoreInfo(int did, String map_x, String map_y, String address,
+                                  int province_id, int city_id, int district_id, String synopsis,
+                                  String tel, MultipartBody.Part logo) {
+        Log.e("StoreManagerPresenter", "进入callEditStoreInfo: " );
+        mView.showLoading();
+            addSubscription( mApiService.callEditStoreInfo(
+                    did,map_x,map_y,address,province_id,city_id,district_id,synopsis,logo,tel),
                     new BaseSubscriber<Captcha>(mView.getContext()) {
 
                         @Override
@@ -56,12 +61,12 @@ public class StoreManagerPresenter extends BasePresenterImpl<StoreManagerContrac
 
                         @Override
                         public void onFinish() {
-
+                            mView.hideLoading();
                         }
 
                         @Override
                         public void onError(ExceptionHandle.ResponeThrowable e) {
-                            Log.e("error", "onError: "+e.toString() );
+                            Log.e("StoreManagerPresenter", "onError: "+e.toString() );
                         }
                     });
     }

@@ -16,13 +16,72 @@ public class User {
         }
         return user;
     }
+    //判断用户信息是否改变
+    public boolean changeUser(LoginBean.DataBean data){
+        if (user_id!=data.getUser_id()){
+            return true;
+        }
+        if (sex != data.getSex()){
+            return true;
+        }
+        if (mobile != data.getMobile()){
+            return true;
+        }
+        if (mobile != data.getMobile()){
+            return true;
+        }
+        String nickName = data.getNickname();
+        if (nickName.charAt(0) == '\"') {
+            nickName = nickName.substring(1,nickName.length()-1);
+        }
+        if (!nickname.equals(nickName)){
+            return true;
+        }
+        if (type != data.getType()){
+            return true;
+        }
+        if (status != data.getStatus()){
+            return true;
+        }
+        if (!head_pic.equals(data.getHead_pic())){
+            return true;
+        }
+        if (coupon_count != data.getCoupon_count()){
+            return true;
+        }
+        if (follow !=data.getFollow()){
+            return true;
+        }
+        if (waitPay != data.getWaitPay()){
+            return true;
+        }
+        if (waitSend !=data.getWaitSend()){
+            return true;
+        }
+        if (waitReceive != data.getWaitReceive()){
+            return true;
+        }
+        if (waitCcomment != data.getWaitCcomment()){
+            return true;
+        }
+        if (order_count != data.getOrder_count()){
+            return true;
+        }
+        if (refund != data.getRefund()){
+            return true;
+        }
+        if (experience != data.getExperience()){
+            return true;
+        }
+        return false;
+    }
     public void setUser(LoginBean.DataBean data){
         user.user_id = data.getUser_id();
         user.sex = data.getSex();
         user.mobile = data.getMobile();
         String nickName = data.getNickname();
         if (nickName.charAt(0) == '\"') {
-            nickName = nickName.substring(0,nickName.length()-1);
+            nickName = nickName.substring(1,nickName.length()-1);
         }
         user.nickname = nickName;
         user.type = data.getType();

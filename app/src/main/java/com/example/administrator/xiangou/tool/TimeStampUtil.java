@@ -15,7 +15,8 @@ import java.util.Date;
  */
 
 public class TimeStampUtil {
-    public static  SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//    public static  SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    public static  SimpleDateFormat format=new SimpleDateFormat("yyyy年MM月dd日");
     //时间戳转化为String
     public static String FormatTimeStampToString(long time){
         return format.format(time);

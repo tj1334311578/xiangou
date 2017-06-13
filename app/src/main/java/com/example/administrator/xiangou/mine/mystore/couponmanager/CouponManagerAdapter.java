@@ -23,7 +23,7 @@ import java.util.List;
  * 邮箱：1334311578@qq.com
  * osc git address：https://git.oschina.net/xiangou/Android.git
  */
-public class CouponManagerAdapter extends RVBaseAdapter<CouponManageBean> {
+public class CouponManagerAdapter extends RVBaseAdapter<CouponBean.CouponsBean> {
     protected  interface  OnLongClickListener{
         void setOnLongClickListener(View view, int position);
     }
@@ -37,8 +37,8 @@ public class CouponManagerAdapter extends RVBaseAdapter<CouponManageBean> {
     private Button del;
     private RelativeLayout bg;
 
-    public CouponManagerAdapter(Context context, List<CouponManageBean> mDatas,int tag) {
-        super(context,R.layout.seller_center_coupon_item, mDatas);
+    public CouponManagerAdapter(Context context, List<CouponBean.CouponsBean> mDatas, int tag) {
+        super(context,R.layout.seller_center_coupon_item,mDatas);
         this.tag=tag;
     }
 
@@ -63,7 +63,7 @@ public class CouponManagerAdapter extends RVBaseAdapter<CouponManageBean> {
     }
 
     @Override
-    protected void bindData(RVBaseViewHolder holder, CouponManageBean couponManageBean, final int position) {
+    protected void bindData(RVBaseViewHolder holder, CouponBean.CouponsBean couponsBean, final int position) {
         findView(holder);
 
         switch (tag){
@@ -92,8 +92,8 @@ public class CouponManagerAdapter extends RVBaseAdapter<CouponManageBean> {
                 }else return false;
             }
         });
-        if (couponManageBean!=null)
-        dataToView(couponManageBean);
+        if (couponsBean!=null)
+        dataToView(couponsBean);
     }
 
     private void longView(View v, final int position) {
@@ -119,13 +119,14 @@ public class CouponManagerAdapter extends RVBaseAdapter<CouponManageBean> {
         });
     }
 
-    private void dataToView(CouponManageBean couponManageBean) {
-        condition.setText(couponManageBean.getCondition());
-        startTime.setText(couponManageBean.getStartTime());
-        endTime.setText(couponManageBean.getEndTime());
-        remainingquantity.setText(couponManageBean.getRemainingquantity());
-        preferentialvalue.setText(couponManageBean.getPreferentialvalue());
-        condition1.setText(couponManageBean.getCondition1());
+    private void dataToView(CouponBean.CouponsBean couponsBean) {
+        condition.setText("订单满"+(int)Double.parseDouble(couponsBean.getCondition())+"可用");
+        startTime.setText("开始时间："+couponsBean.getUse_start_time());
+        endTime.setText("开始时间："+couponsBean.getUse_end_time());
+        remainingquantity.setText("剩余张数："+couponsBean.getRests()+"张");
+        Log.e("money", "dataToView: "+couponsBean.getMoney());
+        preferentialvalue.setText((int)Double.parseDouble(couponsBean.getMoney().replaceAll(" ",""))+"元");
+        condition1.setText("满"+(int)Double.parseDouble(couponsBean.getCondition())+"可用");
     }
 
     //设置样式2

@@ -117,4 +117,14 @@ public class CouponManagerActivity extends MVPBaseActivity<CouponManagerContract
     public void sendFialRequest(String message) {
 
     }
+
+    @Override
+    public void dataToView(CouponBean couponDatas) {
+
+    }
+
+    @Override
+    public void addCouponSuccess() {
+
+    }
 }

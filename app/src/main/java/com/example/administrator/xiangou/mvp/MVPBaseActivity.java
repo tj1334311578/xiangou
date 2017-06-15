@@ -9,7 +9,8 @@ import com.example.administrator.xiangou.mine.store_application.PopupWindowsBase
 import java.lang.reflect.ParameterizedType;
 
 
-public abstract class MVPBaseActivity<V extends BaseView,T extends BasePresenterImpl<V>> extends PopupWindowsBaseActivity implements BaseView{
+public abstract class MVPBaseActivity<V extends BaseView,T extends BasePresenterImpl<V>>
+        extends PopupWindowsBaseActivity implements BaseView{
     public T mPresenter;
 
     @Override

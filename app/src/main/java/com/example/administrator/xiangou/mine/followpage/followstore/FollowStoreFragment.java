@@ -1,6 +1,7 @@
 package com.example.administrator.xiangou.mine.followpage.followstore;
 
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -15,14 +16,23 @@ import com.example.administrator.xiangou.mvp.MVPBaseFragment;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * MVPPlugin
- *  邮箱 784787081@qq.com
- */
-
-public class FollowStoreFragment extends MVPBaseFragment<FollowStoreContract.View, FollowStorePresenter> implements FollowStoreContract.View {
+public class FollowStoreFragment extends MVPBaseFragment<FollowStoreContract.View, FollowStorePresenter>
+        implements FollowStoreContract.View{
+//        , FollowPageActivity.CallEditStoresFoolow {
     private List<FollowStoreBean> lists;
     private ListView listView;
+
+    public interface CallStoresFollowChanged{
+        void notifyStoresChaged(int[] goodsIds);
+        void notifyEditStoresFoolow(boolean toEdit);
+    }
+    private CallStoresFollowChanged mCallStoresFollowChanged;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mCallStoresFollowChanged = (CallStoresFollowChanged) context;
+}
 
     @Nullable
     @Override
@@ -57,4 +67,17 @@ public class FollowStoreFragment extends MVPBaseFragment<FollowStoreContract.Vie
     public void onClick(View v) {
 
     }
+//
+//    /**
+//     * get notify of activity
+//     * @param toEdit it's activity's data what notify fragment show or hide the checkbox
+//     */
+//    @Override
+//    public void notifyEditStoresFoolow(boolean toEdit) {
+//        if (toEdit){
+//            //show checkbox
+//        }else {
+//            //hide checkbox
+//        }
+//    }
 }

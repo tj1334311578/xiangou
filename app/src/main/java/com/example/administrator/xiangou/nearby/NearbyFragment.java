@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.administrator.xiangou.R;
+import com.example.administrator.xiangou.base.CustomTabLayoutAdapter;
 import com.example.administrator.xiangou.classification.fragment.ClassificationTabActivity;
 import com.example.administrator.xiangou.mvp.MVPBaseFragment;
 import com.example.administrator.xiangou.nearby.nearbygoods.NearbyGoodsFragment;
@@ -29,7 +30,7 @@ public class NearbyFragment extends MVPBaseFragment<NearbyContract.View, NearbyP
 
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
-    private NearbyTabLayoutAdapter mLayoutAdapter;
+    private CustomTabLayoutAdapter mLayoutAdapter;
     private List<Fragment> mTabFragList;
     private String[]tabTitles;
     private List<TextView> mPpwTvs;
@@ -71,7 +72,7 @@ public class NearbyFragment extends MVPBaseFragment<NearbyContract.View, NearbyP
         mViewPager = (ViewPager) view.findViewById(R.id.frag_nearby_vp);
         mTabLayout = (TabLayout) view.findViewById(R.id.tabs_nearby_tl);
         mTabLayout.setTabMode(TabLayout.MODE_FIXED);
-        mLayoutAdapter = new NearbyTabLayoutAdapter(getContext(),getChildFragmentManager(),mTabFragList,tabTitles);
+        mLayoutAdapter = new CustomTabLayoutAdapter(getContext(),getChildFragmentManager(),mTabFragList,tabTitles);
         mViewPager.setAdapter(mLayoutAdapter);
         mTabLayout.setupWithViewPager(mViewPager);
 
@@ -92,9 +93,7 @@ public class NearbyFragment extends MVPBaseFragment<NearbyContract.View, NearbyP
         mViewPager.setCurrentItem(currentNum);
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
             @Override
             public void onPageSelected(int position) {
                 currentNum = position;

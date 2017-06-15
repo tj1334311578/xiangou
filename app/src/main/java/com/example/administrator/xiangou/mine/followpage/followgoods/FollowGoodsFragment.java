@@ -1,6 +1,7 @@
 package com.example.administrator.xiangou.mine.followpage.followgoods;
 
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -15,14 +16,33 @@ import com.example.administrator.xiangou.mvp.MVPBaseFragment;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * MVPPlugin
- *  邮箱 784787081@qq.com
- */
-
-public class FollowGoodsFragment extends MVPBaseFragment<FollowGoodsContract.View, FollowGoodsPresenter> implements FollowGoodsContract.View {
+public class FollowGoodsFragment extends MVPBaseFragment<FollowGoodsContract.View, FollowGoodsPresenter>
+        implements FollowGoodsContract.View{
+//        , FollowPageActivity.CallEditGoodsFoolow {
     private List<FollowGoodsBean> lists;
     private ListView listView;
+
+    public interface CallGoodsFollowChanged{
+        void notifyGoodsChaged(int[] goodsIds);
+        void notifyEditGoodsFoolow(boolean toEdit);
+    }
+    public CallGoodsFollowChanged mCallGoodsFollowChanged;
+    public void setCallGoodsFollowChanged(CallGoodsFollowChanged mCallGoodsFollowChanged){
+        this.mCallGoodsFollowChanged = mCallGoodsFollowChanged;
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        mCallGoodsFollowChanged = (CallGoodsFollowChanged) activity;
+    }
+
+//    @Override
+//    public void onAttach(Context context) {
+//        mCallGoodsFollowChanged = (CallGoodsFollowChanged) context;
+//        super.onAttach(context);
+//    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -31,7 +51,7 @@ public class FollowGoodsFragment extends MVPBaseFragment<FollowGoodsContract.Vie
 
     @Override
     public void sendFialRequest(String message) {
-
+        showToast(message);
     }
 
     @Override
@@ -45,10 +65,6 @@ public class FollowGoodsFragment extends MVPBaseFragment<FollowGoodsContract.Vie
         });
 
         lists=new ArrayList<>();
-        lists.add(new FollowGoodsBean(R.mipmap.girl_h,"副书记佛司法欧式佛你佛司法色佛山if师傅送方是否是仿佛色剂ofo减肥舞覅偶我佛方法",110.0,100.00,true));
-        lists.add(new FollowGoodsBean(R.mipmap.girl_h,"副书记佛司法欧式佛你佛司法色佛山if师傅送方是否是仿佛色剂ofo减肥舞覅偶我佛方法",110.0,100.00,true));
-        lists.add(new FollowGoodsBean(R.mipmap.girl_h,"副书记佛司法欧式佛你佛司法色佛山if师傅送方是否是仿佛色剂ofo减肥舞覅偶我佛方法",110.0,100.00,false));
-        lists.add(new FollowGoodsBean(R.mipmap.girl_h,"副书记佛司法欧式佛你佛司法色佛山if师傅送方是否是仿佛色剂ofo减肥舞覅偶我佛方法",110.0,100.00,false));
         listView.setAdapter(new FollowGoodsAdapter(getContext(),lists));
 
     }
@@ -57,4 +73,17 @@ public class FollowGoodsFragment extends MVPBaseFragment<FollowGoodsContract.Vie
     public void onClick(View v) {
 
     }
+//
+//    /**
+//     * get notify of activity
+//     * @param toEdit it's activity's data what notify fragment show or hide the checkbox
+//     */
+//    @Override
+//    public void notifyEditGoodsFoolow(boolean toEdit) {
+//        if (toEdit){
+//            //show checkbox
+//        }else {
+//            //hide checkbox
+//        }
+//    }
 }

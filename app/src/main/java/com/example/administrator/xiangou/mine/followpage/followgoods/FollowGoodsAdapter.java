@@ -7,12 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import com.example.administrator.xiangou.R;
-import com.example.administrator.xiangou.tool.BaseActivity;
-import com.example.administrator.xiangou.tool.ContextUtils;
 
 import java.util.List;
 
@@ -63,12 +60,12 @@ public class FollowGoodsAdapter extends BaseAdapter {
     }
 
     private void setData(ViewHolder viewHolder, int position) {
-        viewHolder.img.setImageResource(lists.get(position).getImg());
-        viewHolder.description.setText(lists.get(position).getDescription());
-        viewHolder.nowprice.setText("￥"+ContextUtils.S2places(lists.get(position).getNowprice()));
-        viewHolder.oldprice.setText("￥"+ContextUtils.S2places(lists.get(position).getOldprice()));
+//        viewHolder.img.setImageResource(lists.get(position).getImg());
+//        viewHolder.description.setText(lists.get(position).getDescription());
+//        viewHolder.nowprice.setText("￥"+ContextUtils.S2places(lists.get(position).getNowprice()));
+//        viewHolder.oldprice.setText("￥"+ContextUtils.S2places(lists.get(position).getOldprice()));
         viewHolder.oldprice.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG|Paint.ANTI_ALIAS_FLAG);
-        if (lists.get(position).iscoupon())
+//        if (lists.get(position).iscoupon())
             viewHolder.iscoupon.setVisibility(View.VISIBLE);
     }
 

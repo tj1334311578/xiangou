@@ -32,12 +32,6 @@ import rx.subscriptions.CompositeSubscription;
  */
 
 public abstract class BaseActivity extends AppCompatActivity implements View.OnClickListener{
-    private BroadcastReceiver exitReceiver=new BroadcastReceiver(){
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            System.exit(0);
-        }
-    };
 
     private  GlideImageLoader mImageLoader;
     private CompositeSubscription mCompositeSubscription;
@@ -50,6 +44,13 @@ public abstract class BaseActivity extends AppCompatActivity implements View.OnC
     public static MySharedPreferences getSP(){
         return ContextUtils.gSharedPreferences;
     }
+
+    private BroadcastReceiver exitReceiver=new BroadcastReceiver(){
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            System.exit(0);
+        }
+    };
     //注册广播
     private void registerExitReceiver() {
         IntentFilter exitFilter = new IntentFilter();

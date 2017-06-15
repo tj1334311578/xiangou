@@ -59,9 +59,6 @@ public class NearbyGoodsFragment extends MVPBaseFragment<NearbyGoodsContract.Vie
     public void initView() {
         //网络请求附近商品页的数据
         mPresenter.dealNearbyGoodsCall(null,null,getNearyDistance());
-//        mBanner = findContentView(R.id.advs_nearbygoods_banner,false);]
-//        mBanner = (Banner) LayoutInflater.from(getContext()).inflate(R.layout.banner_nearbygoods_item,null,false)
-//                .findViewById(R.id.advs_nearbygoods_banner);
         mGoodsRv = findContentView(R.id.goods_nearby_rv,false);
         mGoodsRv.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,false));
         mGoodsRv.addItemDecoration(new ItemIntervalDecoration(0,0,0,5));

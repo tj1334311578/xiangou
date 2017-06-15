@@ -1,73 +1,147 @@
 package com.example.administrator.xiangou.mine.followpage.followgoods;
 
+import java.util.List;
+
 /**
  * Created by Administrator on 2017/5/9.
  */
 
 public class FollowGoodsBean {
-    private int img;
-    private String description;
-    private double oldprice;
-    private double nowprice;
-    private boolean iscoupon;
 
-    public FollowGoodsBean(int img, String description, double oldprice, double nowprice, boolean iscoupon) {
-        this.img = img;
-        this.description = description;
-        this.oldprice = oldprice;
-        this.nowprice = nowprice;
-        this.iscoupon = iscoupon;
+    /**
+     * data : [{"goods_id":126,"goods_name":"Canon/佳能 EOS 700D套机（18-55mm)数码单反相机 苏宁易购","original_img":"/public/upload/goods/2016/04-21/57187bd5c0178.jpg","shop_price":"3499.00","market_price":"3599.00","is_coupon":1}]
+     * state : {"code":200,"msg":"获取成功","debugMsg":"","url":"api/Collect/collect_goods"}
+     */
+
+    private StateBean state;
+    private List<DataBean> data;
+
+    public StateBean getState() {
+        return state;
     }
 
-    public int getImg() {
-        return img;
+    public void setState(StateBean state) {
+        this.state = state;
     }
 
-    public void setImg(int img) {
-        this.img = img;
+    public List<DataBean> getData() {
+        return data;
     }
 
-    public String getDescription() {
-        return description;
+    public void setData(List<DataBean> data) {
+        this.data = data;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public static class StateBean {
+        /**
+         * code : 200
+         * msg : 获取成功
+         * debugMsg :
+         * url : api/Collect/collect_goods
+         */
+
+        private int code;
+        private String msg;
+        private String debugMsg;
+        private String url;
+
+        public int getCode() {
+            return code;
+        }
+
+        public void setCode(int code) {
+            this.code = code;
+        }
+
+        public String getMsg() {
+            return msg;
+        }
+
+        public void setMsg(String msg) {
+            this.msg = msg;
+        }
+
+        public String getDebugMsg() {
+            return debugMsg;
+        }
+
+        public void setDebugMsg(String debugMsg) {
+            this.debugMsg = debugMsg;
+        }
+
+        public String getUrl() {
+            return url;
+        }
+
+        public void setUrl(String url) {
+            this.url = url;
+        }
     }
 
-    public double getOldprice() {
-        return oldprice;
-    }
+    public static class DataBean {
+        /**
+         * goods_id : 126
+         * goods_name : Canon/佳能 EOS 700D套机（18-55mm)数码单反相机 苏宁易购
+         * original_img : /public/upload/goods/2016/04-21/57187bd5c0178.jpg
+         * shop_price : 3499.00
+         * market_price : 3599.00
+         * is_coupon : 1
+         */
 
-    public void setOldprice(double oldprice) {
-        this.oldprice = oldprice;
-    }
+        private int goods_id;
+        private String goods_name;
+        private String original_img;
+        private String shop_price;
+        private String market_price;
+        private int is_coupon;
 
-    public double getNowprice() {
-        return nowprice;
-    }
+        public int getGoods_id() {
+            return goods_id;
+        }
 
-    public void setNowprice(double nowprice) {
-        this.nowprice = nowprice;
-    }
+        public void setGoods_id(int goods_id) {
+            this.goods_id = goods_id;
+        }
 
-    public boolean iscoupon() {
-        return iscoupon;
-    }
+        public String getGoods_name() {
+            return goods_name;
+        }
 
-    public void setIscoupon(boolean iscoupon) {
-        this.iscoupon = iscoupon;
-    }
+        public void setGoods_name(String goods_name) {
+            this.goods_name = goods_name;
+        }
 
-    @Override
-    public String toString() {
-        return "FollowGoodsBean{" +
-                "img=" + img +
-                ", description='" + description + '\'' +
-                ", oldprice=" + oldprice +
-                ", nowprice=" + nowprice +
-                ", iscoupon=" + iscoupon +
-                '}';
+        public String getOriginal_img() {
+            return original_img;
+        }
+
+        public void setOriginal_img(String original_img) {
+            this.original_img = original_img;
+        }
+
+        public String getShop_price() {
+            return shop_price;
+        }
+
+        public void setShop_price(String shop_price) {
+            this.shop_price = shop_price;
+        }
+
+        public String getMarket_price() {
+            return market_price;
+        }
+
+        public void setMarket_price(String market_price) {
+            this.market_price = market_price;
+        }
+
+        public int getIs_coupon() {
+            return is_coupon;
+        }
+
+        public void setIs_coupon(int is_coupon) {
+            this.is_coupon = is_coupon;
+        }
     }
 }
 

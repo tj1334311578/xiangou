@@ -76,6 +76,7 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         showToast("isVisible:"+getUserVisibleHint()+"----isLogin"+getSP().isLogined()+"user id:"+getUser().getUser_id());
         if (getUserVisibleHint()){
             if (!getSP().isLogined()) {
+
                 startNewUI(IDLoginActivity.class);
             }
         }
@@ -104,6 +105,7 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         findContentView(R.id.mine_attention);
         findContentView(R.id.mine_Coupon);
         findContentView(R.id.mine_sign_in);
+
         //我的订单
         findContentView(R.id.see_all_orders);
         findContentView(R.id.unpaid_Rl);
@@ -160,7 +162,6 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
 //                }
 //            }
 //        });
-
     }
 
     private void initDate(boolean b) {
@@ -328,7 +329,6 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         }
 
     }
-
 
     @Override
     public void sendFialRequest(String message) {

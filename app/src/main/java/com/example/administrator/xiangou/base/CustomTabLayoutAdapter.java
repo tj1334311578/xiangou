@@ -1,4 +1,4 @@
-package com.example.administrator.xiangou.nearby;
+package com.example.administrator.xiangou.base;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
@@ -18,7 +18,7 @@ import java.util.List;
  * Created by zhouzongyao on 2017/2/7.
  */
 
-public class NearbyTabLayoutAdapter extends FragmentPagerAdapter {
+public class CustomTabLayoutAdapter extends FragmentPagerAdapter {
     private List<Fragment> list_fragment;
     private String[] tabs ;
     private Context mContext;
@@ -26,7 +26,7 @@ public class NearbyTabLayoutAdapter extends FragmentPagerAdapter {
     private ImageView mTabIv;
     private View mTabV;
 
-    public NearbyTabLayoutAdapter(Context mContext, FragmentManager fm, List<Fragment> list_fragment, String[] tabs) {
+    public CustomTabLayoutAdapter(Context mContext, FragmentManager fm, List<Fragment> list_fragment, String[] tabs) {
         super(fm);
         this.mContext = mContext;
         this.list_fragment =list_fragment;

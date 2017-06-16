@@ -3,6 +3,7 @@ package com.example.administrator.xiangou.mine;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,6 +21,7 @@ import com.example.administrator.xiangou.goods_sort.Goods_rankingActivity;
 import com.example.administrator.xiangou.login.LoginBean;
 import com.example.administrator.xiangou.login.idlogin.IDLoginActivity;
 import com.example.administrator.xiangou.mine.couponpage.CouponPageActivity;
+import com.example.administrator.xiangou.mine.feedback.FeedBackActivity;
 import com.example.administrator.xiangou.mine.followpage.FollowPageActivity;
 import com.example.administrator.xiangou.mine.myfootprint.MyFootPrintActivity;
 import com.example.administrator.xiangou.mine.myorder.MyOrderActivity;
@@ -39,14 +41,14 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         implements MineContract.View {
     private static final int APPLYCODE=101;
     private ListView listView;
-    private int content_imgC[]={R.mipmap.personal_footprint_icon, R.mipmap.personal_comment_icon,
-            R.mipmap.mine_share_icon,R.mipmap.mine_shop_icon};
-    private int content_imgS[]={R.mipmap.mine_shop_icon ,R.mipmap.personal_footprint_icon,
-            R.mipmap.personal_comment_icon,R.mipmap.mine_share_icon};
-    private String content_textC[]= {"我的足迹","我的评论","我的分享","申请店铺"};
-    private String content_textS[]= {"我的店铺","我的足迹","我的评论","我的分享"};
+    private int content_imgC[]={R.mipmap.mine_share_icon,R.mipmap.mine_footmark_icon,
+            R.mipmap.mine_feedback_icon,R.mipmap.mine_shop_icon};
+    private int content_imgS[]={R.mipmap.mine_shop_icon ,R.mipmap.mine_share_icon,
+            R.mipmap.mine_footmark_icon,R.mipmap.mine_feedback_icon};
+    private String content_textC[]= {"我的分享","我的足迹","意见反馈","申请店铺"};
+    private String content_textS[]= {"我的店铺","我的分享","我的足迹","意见反馈"};
     private CustomImageView mHeadImgCiv;
-    private TextView mUserLevelTv,mLevelNumberTv,mUserNameTv,mMessageTv,mUnpaidTv,mWaitDekiveryTv,mReceiveTv,mEvaluationTv,mReturnsOrSalesTv;
+    private TextView mUserLevelTv,mLevelNumberTv,mUserNameTv,mMessageTv,mUnpaidTv,mWaitDekiveryTv,mReceiveTv,mEvaluationTv;
     private int mine_MsgCount=0;
     private boolean isFirst=true;
     private List<ItemImage> mList;
@@ -110,12 +112,12 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         findContentView(R.id.delivery_Rl);
         findContentView(R.id.receive_Rl);
         findContentView(R.id.evaluation_Rl);
-        findContentView(R.id.returns_Rl);
+//        findContentView(R.id.returns_Rl);
         mUnpaidTv = findContentView(R.id.mine_unpaid_tv);
         mWaitDekiveryTv = findContentView(R.id.mine_wait_delivery_tv);
         mReceiveTv = findContentView(R.id.mine_receive_goods_tv);
         mEvaluationTv = findContentView(R.id.mine_pending_evaluation_tv);
-        mReturnsOrSalesTv = findContentView(R.id.mine_returns_sales_tv);
+//        mReturnsOrSalesTv = findContentView(R.id.mine_returns_sales_tv);
         //底下4小只--列表
         listView= findContentView(R.id.mine_list,false);
         //ListView点击事件设置
@@ -128,8 +130,9 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
                     case "我的足迹":
                         startNewUI(MyFootPrintActivity.class);
                         break;
-                    case "我的评论":
-                        startNewUI(Goods_rankingActivity.class);
+                    case "意见反馈":
+//                        startNewUI(Goods_rankingActivity.class);
+                        startNewUI(FeedBackActivity.class);
                         break;
                     case "我的分享":
                         startNewUI(ClassificationTabActivity.class);
@@ -174,7 +177,7 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         setTextToTv(mWaitDekiveryTv,getUser().getWaitSend());
         setTextToTv(mReceiveTv,getUser().getWaitReceive());
         setTextToTv(mEvaluationTv,getUser().getWaitCcomment());
-        setTextToTv(mReturnsOrSalesTv,getUser().getRefund());
+//        setTextToTv(mReturnsOrSalesTv,getUser().getRefund());
         initList();
     }
     private void initList() {
@@ -294,6 +297,7 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
             //签到
             case R.id.mine_sign_in:
                 Toast.makeText(getActivity(), "点击签到", Toast.LENGTH_SHORT).show();
+                mPresenter.callsigns(getUser().getUser_id());
                 break;
             //查看所有订单
             case R.id.see_all_orders:
@@ -321,14 +325,45 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
                 startNewUICarryStr(MyOrderActivity.class,"position","4");
                 break;
             //退货or售后
-            case R.id.returns_Rl:
-                Toast.makeText(getActivity(), "点击退货or售后", Toast.LENGTH_SHORT).show();
-//                startNewUICarryStr(MyOrderActivity.class,"position","0");
-                break;
+//            case R.id.returns_Rl:
+//                Toast.makeText(getActivity(), "点击退货or售后", Toast.LENGTH_SHORT).show();
+////                startNewUICarryStr(MyOrderActivity.class,"position","0");
+//                break;
         }
 
     }
-
+    @Override
+    public void dataToView(int code, int value) {
+        switch (code){
+            case 100://今日已签到
+                showToast("今日已签到");
+//                getUser().setExperience(getUser().getExperience()+1);//得到后的数据
+//                mLevelNumberTv.post( new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        mLevelNumberTv.setText(getUser().getExperience()+"");
+//                        mLevelNumberTv.invalidate();
+//                    }
+//                });
+                break;
+            case 101://服务器繁忙
+                showToast("服务器繁忙，请稍后再试");
+                break;
+            case 200://成功
+                showToast("签到成功\n   +"+value+"闲购值");
+                getUser().setExperience(getUser().getExperience()+value);//得到后的数据
+                mLevelNumberTv.post( new Runnable() {
+                    @Override
+                    public void run() {
+                        mLevelNumberTv.setText(getUser().getExperience()+"");
+                        mLevelNumberTv.invalidate();
+                    }
+                });
+                break;
+            default:
+                break;
+        }
+    }
 
     @Override
     public void sendFialRequest(String message) {

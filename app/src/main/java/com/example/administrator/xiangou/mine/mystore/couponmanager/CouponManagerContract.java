@@ -19,6 +19,6 @@ public class CouponManagerContract {
 
     interface  Presenter extends BasePresenter<View> {
         void callFindCoupon(int did,String condition);
-        void callAddCoupon(int did,double condition,double money,int createnum,int use_start_time,int use_end_time);
+        void callAddCoupon(int did,double condition,double money,int createnum,long use_start_time,long use_end_time);
     }
 }

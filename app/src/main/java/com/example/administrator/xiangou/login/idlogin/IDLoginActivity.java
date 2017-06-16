@@ -159,7 +159,6 @@ public class IDLoginActivity extends MVPBaseActivity<IDLoginContract.View, IDLog
                 break;
             case R.id.mainlogin_forgetpassword:
                 startNewUI(FindByTelephoneActivity.class);
-                this.finish();
                 break;
             case R.id.mainlogin_register:
                 startNewUI(RegisterVerifyActivity.class);

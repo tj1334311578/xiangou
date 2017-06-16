@@ -205,7 +205,7 @@ public class NearbyPreferentialAdapter extends RVBaseAdapter<NearbyBenifitDataBe
             holder.get(R.id.item_hour_item_show).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(mContext, "点击查看:"+position, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(mContext, "用户敬请期待"+position, Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -235,6 +235,9 @@ public class NearbyPreferentialAdapter extends RVBaseAdapter<NearbyBenifitDataBe
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(mContext, "点击了更多:"+position, Toast.LENGTH_SHORT).show();
+                    Intent intent=new Intent(mContext, SimpleGoodsDetailsActivity.class);
+                    intent.putExtra("goods_id",mBeanList.get(position).getGoods_id());
+                    mContext.startActivity(intent);
                 }
             });
         }

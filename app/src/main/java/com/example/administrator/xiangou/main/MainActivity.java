@@ -89,6 +89,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        Log.e("mainat", "onStart: " );
         if (!getSP().isLogined()){
             mFragmentTabHost.setCurrentTab(0);
         }

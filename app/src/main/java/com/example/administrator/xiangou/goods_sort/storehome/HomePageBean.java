@@ -41,11 +41,12 @@ public class HomePageBean implements Serializable{
         this.state = state;
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable {
         @Override
         public String toString() {
             return "DataBean{" +
-                    "logo='" + logo + '\'' +
+                    "banner='" + banner + '\'' +
+                    ", logo='" + logo + '\'' +
                     ", name='" + name + '\'' +
                     ", total_commets=" + total_commets +
                     ", total_time=" + total_time +
@@ -58,6 +59,14 @@ public class HomePageBean implements Serializable{
                     '}';
         }
 
+        public String getBanner() {
+            return banner;
+        }
+
+        public void setBanner(String banner) {
+            this.banner = banner;
+        }
+
         /**
          * logo : /public/upload/logo/2017/05-04/Fs94ebVULYPTsGChvFsxRtqtB.png
          * name : 闲购小铺
@@ -65,12 +74,13 @@ public class HomePageBean implements Serializable{
          * total_time : 1
          * score : 5.0
          * follow : 0
+         * banner : "\/public\/images\/banner.png",
          * total_sale : 1
          * goods_list : [{"goods_id":1,"market_price":"6107.00","shop_price":"6007.00","original_img":"/public/upload/goods/2016/03-09/56e01a4088d3b.jpg","is_new":1,"goods_name":"Apple iPhone","sales_sum":4},{"goods_id":46,"market_price":"1099.00","shop_price":"999.00","original_img":"/public/upload/goods/2016/01-13/5695ef4114f2b.jpg","is_new":0,"goods_name":"【北京移动老用户专享 话","sales_sum":1},{"goods_id":155,"market_price":"20.00","shop_price":"20.00","original_img":"/public/upload/goods/2017/04-06/tVrQbGyhKdfatsLm75MTUzTbj.jpg","is_new":1,"goods_name":"男士西裤修改1","sales_sum":0},{"goods_id":156,"market_price":"20.00","shop_price":"20.00","original_img":"/public/upload/goods/2017/04-13/p9ymhk8d2wnsReL7CTbFnD5Eq.png","is_new":1,"goods_name":"测试商品规格的","sales_sum":0},{"goods_id":157,"market_price":"20.00","shop_price":"20.00","original_img":"/public/upload/goods/2017/04-12/R6hjhyxUK2dd8HtPX7VTr2Ugf.jpg","is_new":1,"goods_name":"测试商品规格的","sales_sum":0}]
          * is_follow : 0
          * coupon : [{"id":2,"name":"订单满100优惠券","type":3,"money":"20.00","condition":"100.00","createnum":11,"send_num":1,"use_num":1,"send_start_time":1449763200,"send_end_time":1449763200,"use_start_time":1495269830,"use_end_time":1495269837,"add_time":1489999813,"store_id":1,"is_del":0,"is_get":0},{"id":27,"name":"店铺发放","type":3,"money":"10.00","condition":"99.00","createnum":36,"send_num":1,"use_num":0,"send_start_time":null,"send_end_time":null,"use_start_time":1493261900,"use_end_time":1495261900,"add_time":1493285587,"store_id":1,"is_del":0,"is_get":0}]
          */
-
+        private String banner;
         private String logo;
         private String name;
         private int total_commets;
@@ -162,7 +172,7 @@ public class HomePageBean implements Serializable{
             this.coupon = coupon;
         }
 
-        public static class GoodsListBean {
+        public static class GoodsListBean implements Serializable{
             @Override
             public String toString() {
                 return "GoodsListBean{" +
@@ -251,7 +261,10 @@ public class HomePageBean implements Serializable{
             }
         }
 
-        public static class CouponBean {
+        public static class CouponBean  implements Serializable{
+            public CouponBean(){
+
+            }
             public CouponBean(String money, String condition) {
                 this.money = money;
                 this.condition = condition;
@@ -445,7 +458,7 @@ public class HomePageBean implements Serializable{
         }
     }
 
-    public static class StateBean {
+    public static class StateBean implements Serializable{
         /**
          * code : 200
          * msg : 获取成功

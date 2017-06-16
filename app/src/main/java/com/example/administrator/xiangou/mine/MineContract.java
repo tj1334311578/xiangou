@@ -9,6 +9,7 @@ public class MineContract {
     interface View extends BaseView {
 //        void dealApplyReturnData(List<ToApplyStoreBean.DataBean> data);
         void ReLoginidSuccess(LoginBean.DataBean data);
+        void dataToView(int code, int value);
 
     }
 
@@ -18,5 +19,6 @@ public class MineContract {
         //id登录
         void IDlogin(String userName, String password);
         void ceshi(String channel,String order_sn,int amount);
+        void callsigns(int user_id);
     }
 }

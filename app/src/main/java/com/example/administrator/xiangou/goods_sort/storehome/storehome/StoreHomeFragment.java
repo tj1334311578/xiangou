@@ -1,6 +1,8 @@
 package com.example.administrator.xiangou.goods_sort.storehome.storehome;
 
 
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
@@ -66,7 +68,6 @@ public class StoreHomeFragment extends MVPBaseFragment<StoreHomeContract.View, S
         mTabLayout=findContentView(R.id.tabs_goodsstorehome_tab,false);
         mViewPager=findContentView(R.id.tabs_goodsstorehome_viewpager,false);
         backBtn=findContentView(R.id.home_store_head_Return);
-
         background=findContentView(R.id.home_store_head_background,false);
         storeImg=findContentView(R.id.home_store_head_storeImage,false);
         storeName=findContentView(R.id.home_store_headStoreName,false);
@@ -83,7 +84,8 @@ public class StoreHomeFragment extends MVPBaseFragment<StoreHomeContract.View, S
 //        showstore=findContentView(R.id.home_store_head_showStore,false);
 //        findContentView(R.id.home_store_head_Return,true);
         //网络获取数据
-        mPresenter.dealStoreHomeCall(1,getUser().getUser_id());
+        int store_id=getActivity().getIntent().getIntExtra("store_id",0);
+        mPresenter.dealStoreHomeCall(store_id,getUser().getUser_id());
     }
 
     private void initHeadView(HomePageBean dataBean) {
@@ -93,6 +95,13 @@ public class StoreHomeFragment extends MVPBaseFragment<StoreHomeContract.View, S
         storeName.setText(dataBean.getData().getName());
         ratingBar.setRating((float) Double.parseDouble(dataBean.getData().getScore()));
         salesVolume.setText("销量"+dataBean.getData().getTotal_sale());
+    //      new GlideImageLoader().displayImage(getContext(),XianGouApiService.IMGBASEURL+dataBean.getData().getBanner(),background);
+//        background= (RelativeLayout) mContextView.findViewById(R.id.goods_storehome_head).findViewById(R.id.home_store_head_background);
+//                findContentView(R.id.home_store_head_background,false);
+//        if (background!=null)
+        Bitmap[] bitmap=(GlideImageLoader.setbackground(getContext(),XianGouApiService.IMGBASEURL+ dataBean.getData().getBanner()));
+        Log.e("bitmap", "initHeadView: "+bitmap.toString() );
+//        background.setBackground(new BitmapDrawable(bitmap[0]));
         follow.setText("关注"+dataBean.getData().getFollow());
         mContextView.findViewById(R.id.goods_storehome_head).setVisibility(View.VISIBLE);
     }

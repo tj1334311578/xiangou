@@ -1,6 +1,7 @@
 package com.example.administrator.xiangou.nearby.nearbygoods;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.base.RVBaseAdapter;
+import com.example.administrator.xiangou.goodsdetails.simplegoodsdetails.SimpleGoodsDetailsActivity;
 import com.example.administrator.xiangou.mvp.MVPBaseFragment;
 import com.example.administrator.xiangou.nearby.apimodel.NearbyGoodsDataBean;
 import com.example.administrator.xiangou.nearby.nearbygoods.adapter.NearbyGoodsAdapterRV;
@@ -122,6 +124,9 @@ public class NearbyGoodsFragment extends MVPBaseFragment<NearbyGoodsContract.Vie
             public void setOnNearbyGoodsItemCall(View view, int parentposition, int childposition) {
                 showToast("mItemRv "+ childposition +((TextView)((LinearLayout)view).getChildAt(1)).getText().toString());
                 // TODO: 2017/5/9 这里应该跳到商品详情页，现在就先直接添加到购物车
+                Intent intent=new Intent(getContext(), SimpleGoodsDetailsActivity.class);
+                intent.putExtra("goods_id",mDataBeanList.get(parentposition).getGoodslist().get(childposition).getGoods_id());
+                startActivity(intent);
 //                startNewUICarryStr(null,"goods_id",mDataBeanList.get(parentposition).getGoodslist().get(childposition).getGoods_id());
 //                startNewUICarryStr(CartFragment.class,"goods_id",mDataBeanList.get(parentposition).getGoodslist().get(childposition).getGoods_id());
             }

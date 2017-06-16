@@ -82,6 +82,7 @@
         android:layout_alignTop="@id/home_store_head_storeImage"
         android:layout_toEndOf="@id/home_store_head_storeImage"
         android:textColor="#fff"/>
+    <!--android:progressDrawable="@drawable/rating_yellow"-->
     <RatingBar
         android:layout_centerVertical="true"
         android:layout_below="@+id/home_store_headStoreName"

@@ -335,37 +335,37 @@
                 android:id="@+id/mine_pending_evaluation_tv"
                 android:layout_alignRight="@id/mine_pending_evaluation"/>
         </RelativeLayout>
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:id="@+id/returns_Rl"
-            android:layout_height="match_parent">
-            <com.example.administrator.xiangou.tool.DrawableTextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_centerInParent="true"
-                android:text="退货/售后"
-                android:textColor="@color/textcolor_e616gray"
-                android:drawablePadding="5dp"
-                app:topDrawable="@mipmap/mine_sales_icon"
-                app:topDrawableWidth="30dp"
-                app:topDrawableHeight="30dp"
-                android:id="@+id/mine_returns_sales"
-                android:textSize="12sp"
-                />
-            <TextView
-                android:layout_width="15dp"
-                android:layout_height="15dp"
-                android:background="@drawable/news_num_whitesolid"
-                android:text="3"
-                android:textSize="11sp"
-                android:layout_marginRight="5dp"
-                android:textColor="@color/textcolor_tab_select"
-                android:gravity="center"
-                android:clickable="true"
-                android:id="@+id/mine_returns_sales_tv"
-                android:layout_alignRight="@id/mine_returns_sales"/>
-        </RelativeLayout>
+        <!--<RelativeLayout-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:id="@+id/returns_Rl"-->
+            <!--android:layout_height="match_parent">-->
+            <!--<com.example.administrator.xiangou.tool.DrawableTextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_centerInParent="true"-->
+                <!--android:text="退货/售后"-->
+                <!--android:textColor="@color/textcolor_e616gray"-->
+                <!--android:drawablePadding="5dp"-->
+                <!--app:topDrawable="@mipmap/mine_sales_icon"-->
+                <!--app:topDrawableWidth="30dp"-->
+                <!--app:topDrawableHeight="30dp"-->
+                <!--android:id="@+id/mine_returns_sales"-->
+                <!--android:textSize="12sp"-->
+                <!--/>-->
+            <!--<TextView-->
+                <!--android:layout_width="15dp"-->
+                <!--android:layout_height="15dp"-->
+                <!--android:background="@drawable/news_num_whitesolid"-->
+                <!--android:text="3"-->
+                <!--android:textSize="11sp"-->
+                <!--android:layout_marginRight="5dp"-->
+                <!--android:textColor="@color/textcolor_tab_select"-->
+                <!--android:gravity="center"-->
+                <!--android:clickable="true"-->
+                <!--android:id="@+id/mine_returns_sales_tv"-->
+                <!--android:layout_alignRight="@id/mine_returns_sales"/>-->
+        <!--</RelativeLayout>-->
     </LinearLayout>
     <View
         android:layout_width="match_parent"

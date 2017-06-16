@@ -41,7 +41,7 @@ public class CommentsAdapter extends AutoRVAdapter {
         holder.setTextView(R.id.simple_goodsdetails_comment_item_usernickname,comment.get(position).getUsername());
         RecyclerView recycle=holder.getRecycleView(R.id.simple_goodsdetails_recycle);
         //设置是否有数据，有显示，无gone掉
-        if (comment.get(position).getImg().size()>0) {
+        if (comment.get(position).getImg()!=null&&comment.get(position).getImg().size()>0) {
             Log.e("commentimg", "onBindViewHolder: "+comment.get(position).getImg()+"\nsize:"+comment.get(position).getImg().size() );
             recycle.setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
             recycle.setAdapter(new CommentsItemAdapter(mContext, comment.get(position).getImg()));

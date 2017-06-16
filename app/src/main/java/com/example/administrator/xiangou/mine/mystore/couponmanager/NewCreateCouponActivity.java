@@ -2,6 +2,7 @@ package com.example.administrator.xiangou.mine.mystore.couponmanager;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -62,10 +63,10 @@ public class NewCreateCouponActivity extends MVPBaseActivity<CouponManagerContra
         Double condition = ContextUtils.D2places(Double.parseDouble(conditionEdit.getText().toString().replaceAll(" ","")));
         Double money=ContextUtils.D2places(Double.parseDouble(preferentialEdit.getText().toString().replaceAll(" ","")));
         int createnum=(int) Double.parseDouble(totalamountissuedEdit.getText().toString().replaceAll(" ",""));
-        int use_start_time=0,use_end_time=0;
+        long use_start_time=0,use_end_time=0;
         try {
-            use_start_time= (int) TimeStampUtil.StringToFormatTimeStamp(startTimeEdit.getText().toString().replaceAll(" ",""));
-            use_end_time= (int) TimeStampUtil.StringToFormatTimeStamp(endTimeEdit.getText().toString().replaceAll(" ",""));
+            use_start_time=  TimeStampUtil.StringToFormatTimeStamp(startTimeEdit.getText().toString().replaceAll(" ","")+"00时00分00秒");
+            use_end_time=  TimeStampUtil.StringToFormatTimeStamp(endTimeEdit.getText().toString().replaceAll(" ","")+"23时59分59秒");
         } catch (ParseException e) {
             e.printStackTrace();
         }

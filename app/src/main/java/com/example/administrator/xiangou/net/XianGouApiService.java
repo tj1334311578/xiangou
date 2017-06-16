@@ -55,10 +55,11 @@ import rx.Observable;
 //      ┗┻┛　┗┻┛
 
 public interface XianGouApiService {
-//    String mBASEURL = "http://192.168.0.123/";
-//    String IMGBASEURL = "http://192.168.0.123";
-    String mBASEURL = "https://www.xangou.cn/index.php/";
+//    String mBASEURL = "https://www.xangou.cn/index.php/";
 //    String IMGBASEURL = "https://www.xangou.cn";
+
+    String mBASEURL = "http://192.168.0.123/";
+    String IMGBASEURL = "http://192.168.0.123";
     //     http://192.168.0.123/
 /***********首页接口************/
     @POST("api/Index/index/")
@@ -69,14 +70,17 @@ public interface XianGouApiService {
 /***********登录接口************/
     //获取验证码--注册
     @POST("index.php/Api/Register/send_code/")
+//    @POST("Api/Register/send_code/")
     Observable<Captcha> getCapture(@Query("tel") String tel);
 
     //验证验证码--注册
     @POST("index.php/Api/Register/register1/")
+//    @POST("Api/Register/register1/")
     Observable<Captcha> goRegister(@Query("tel") String tel, @Query("code") String code);
 
     //完成--注册
     @POST("index.php/Api/Register/register/")
+//    @POST("Api/Register/register/")
     Observable<Captcha> toRegister(@Query("tel") String tel, @Query("code") String code, @Query("password") String password);
 
     //账号登录
@@ -91,6 +95,7 @@ public interface XianGouApiService {
      * @return
      */
     @POST("index.php/Api/Login/verify/")
+//    @POST("Api/Login/verify/")
     Observable<Captcha> sendCapture(@Query("tel") String tel, @Query("method") String method);
 
     //动态登录
@@ -105,6 +110,11 @@ public interface XianGouApiService {
     @POST("Api/Login/findpsw/")
     Observable<Captcha> resetPwd(@Query("tel") String tel, @Query("password") String password, @Query("code") String code);
 
+    //修改密码用户修改登录密码  /Api/user/change_psw
+    @POST("Api/user/change_psw")
+    Observable<ResponseBody> modifyPassword(@Query("user_id") int user_id,
+                                            @Query("oldpassword") String oldpassword,
+                                            @Query("password") String password);
 /***********店铺接口************/
 
     //进入店铺申请
@@ -185,12 +195,12 @@ public interface XianGouApiService {
                                          );
     //店铺首页
     @POST("api/User/store_index/")
-    Observable<HomePageBean> callHomePagerData(@Query("did") int storeId,//店铺did
+    Observable<ResponseBody> callHomePagerData(@Query("did") int storeId,//店铺did
                                                @Query("user_id") int userId);//若用户已经登录的状态下传过来
     //商品详情页接口
     // 出现请求未知异常，可获得数据，但不能进入rxjava的next代码，直接跳转到error方法异常为code:1000未知异常（待解决）
     @POST("Api/Good/goods_detail/")
-    Observable<SimpleGoodsDetialBean> callSimpleGoodsDetails(@Query("goods_id") int goods_id,
+    Observable<ResponseBody> callSimpleGoodsDetails(@Query("goods_id") int goods_id,
 //                                                @Query("user_id") int user_id,
 //                                                @Query("map_x") String map_x,
 //                                                @Query("map_y") String map_y,
@@ -238,16 +248,16 @@ public interface XianGouApiService {
     Observable<TotalDataBean> callTotalDataApi(@Query("did") int did,
                                                @Query("Time") String Time);
     //测试数据模块
-    @POST("/api/order/ppay/")
+    @POST("api/order/ppay/")
     Observable<ResponseBody> callceshiApi(@Query("channel") String alipay,
                                                 @Query("order_sn") String order_sn,
                                                 @Query("amount") int amount);
     //店铺信息请求
-    @POST("/api/stores/edit/")
+    @POST("api/stores/edit/")
     Observable<StoreManagerInfoBean> callStoreInfo(@Query("did") int store_id);
     //店铺信息修改请求
     @Multipart
-    @POST("/api/stores/do_edit/")
+    @POST("api/stores/do_edit/")
     Observable<Captcha> callEditStoreInfo(@Part("did") int store_id,//店铺id
                                               @Part("map_x") String map_x,//店铺经度
                                               @Part("map_y") String map_y,//店铺纬度
@@ -260,7 +270,8 @@ public interface XianGouApiService {
                                               @Part("tel") String tel);//店铺电话
 
     //店铺管理商品列表
-    @POST("/Api/Stores/goodslist/")
+//    @POST("/index.php/Api/Stores/goodslist/")
+    @POST("Api/Stores/goodslist/")
     Observable<ResponseBody> callStoreGoodsList(@Query("did") int store_id,//店铺id
                                                  @Query("key_word") String key_word,//根据名称查找相关商品
                                                  @Query("page_no") int page_no,//分页不传查找第一页商品
@@ -268,18 +279,18 @@ public interface XianGouApiService {
 
     //分类列表
     //    @GET("/Api/Stores/getcate")
-    @POST("/api/good/goods_cate")
+    @POST("api/good/goods_cate")
     Observable<FirstLevelBean> callClassification(@Query("cat_id") int cat_id );//一级分类不传默认为推荐
 
 
     //进入修改或添加商品
-    @POST("/Api/Stores/into_add/")
+    @POST("Api/Stores/into_add/")
     Observable<ResponseBody> callIntoAddGoodsPage(@Query("did") int did,//店铺id
                                                   @Query("goods_id") int goods_id);//商品id（编辑商品时传，添加商品时不传）
 
     //店铺添加商品/Api/Stores/add_goods
     @Multipart
-    @POST("/Api/Stores/add_goods/")
+    @POST("Api/Stores/add_goods/")
     Observable<ResponseBody> callAddGoods(@Part("data") AddGoodsDataBean data,//商品基本信息
                                                  @Part("specs")AddGoodsSpecBean specs,//传产品当前页面若未传默认第一页
                                                  @Part("goods_attr")AddGoodsAttrBean goods_attr,//商品属性(若用户选择了模型填写属性传)
@@ -287,7 +298,7 @@ public interface XianGouApiService {
                                                  @Part MultipartBody.Part[] goods_img//商品图片(多图)若用户只上传一张也用表单多图上传
                                           );
     //我的店铺添加编辑商品进入模型界面/Api/Stores/get_spec
-    @POST("/Api/Stores/get_spec/")
+    @POST("Api/Stores/get_spec/")
     Observable<ResponseBody> callIntoModelView(@Query("model_id") int model_id,//模型id
                                                @Query("goods_id") int goods_id);//商品id(编辑商品时传,新增不用传)
     //店铺优惠卷列表   Api/Coupon/store_coupon  店铺查看自己店铺优惠卷相关信息
@@ -300,6 +311,9 @@ public interface XianGouApiService {
                                            @Query("condition") Double condition,//优惠卷使用条件满多少使用
                                            @Query("money") Double money,//金额
                                            @Query("createnum") int createnum,//发送总量大于一
-                                           @Query("use_start_time") int use_start_time,//使用开始时间
-                                           @Query("use_end_time") int use_end_time);//使用结束时间
+                                           @Query("use_start_time") long use_start_time,//使用开始时间
+                                           @Query("use_end_time") long use_end_time);//使用结束时间
+    //用户签到  /Api/user/ signs
+    @POST("Api/user/signs")
+    Observable<ResponseBody> callSign(@Query("user_id") int user_id);//用户id
 }

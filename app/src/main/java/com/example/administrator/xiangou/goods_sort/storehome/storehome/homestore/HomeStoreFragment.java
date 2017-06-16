@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.goods_sort.storehome.HomePageBean;
+import com.example.administrator.xiangou.goodsdetails.simplegoodsdetails.SimpleGoodsDetailsActivity;
 import com.example.administrator.xiangou.mvp.MVPBaseFragment;
 
 
@@ -19,7 +20,7 @@ import com.example.administrator.xiangou.mvp.MVPBaseFragment;
  *  邮箱 784787081@qq.com
  */
 
-public class HomeStoreFragment extends MVPBaseFragment<HomeStoreContract.View, HomeStorePresenter> implements HomeStoreContract.View {
+public class HomeStoreFragment extends MVPBaseFragment<HomeStoreContract.View, HomeStorePresenter> implements HomeStoreContract.View{
     private RecyclerView mHomeStoreRecycle;
     private HomePageBean homePageBean;
 
@@ -56,7 +57,14 @@ public class HomeStoreFragment extends MVPBaseFragment<HomeStoreContract.View, H
     }
 
     @Override
-    public void sendDataBeanToView(HomePageBean dataBean) {
-        mHomeStoreRecycle.setAdapter(new mHomeStoreAdapter(getContext(),dataBean));
+    public void sendDataBeanToView(final HomePageBean dataBean) {
+        mHomeStoreAdapter storeAdapter=new mHomeStoreAdapter(getContext(),dataBean);
+        mHomeStoreRecycle.setAdapter(storeAdapter);
+        storeAdapter.setOnitemClick(new mHomeStoreAdapter.OnitemClick() {
+            @Override
+            public void OnitemClickListener(int position) {
+                startNewUICarryStr(SimpleGoodsDetailsActivity.class,"goods_id",dataBean.getData().getGoods_list().get(position).getGoods_id());
+            }
+        });
     }
 }

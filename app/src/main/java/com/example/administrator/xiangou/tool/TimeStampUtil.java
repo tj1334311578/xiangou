@@ -16,7 +16,7 @@ import java.util.Date;
 
 public class TimeStampUtil {
 //    public static  SimpleDateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    public static  SimpleDateFormat format=new SimpleDateFormat("yyyy年MM月dd日");
+    public static  SimpleDateFormat format=new SimpleDateFormat("yyyy年MM月dd日HH时mm分ss秒");
     //时间戳转化为String
     public static String FormatTimeStampToString(long time){
         return format.format(time);
@@ -26,13 +26,13 @@ public class TimeStampUtil {
           return format.parse(FormatTimeStampToString(time));
     }
 
-    //String转化为时间戳
+    //String转化为时间戳 unix时间戳需要除以1000L
     public static long StringToFormatTimeStamp(String time) throws ParseException {
         Date date=format.parse(time);
         return DateToFormatTimeStamp(date);
     }
     //Date转化为时间戳
     public static long DateToFormatTimeStamp(Date time){
-        return time.getTime();
+        return time.getTime()/1000L;
     }
 }

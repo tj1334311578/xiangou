@@ -1,6 +1,7 @@
 package com.example.administrator.xiangou.home;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,6 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.administrator.xiangou.R;
+import com.example.administrator.xiangou.goods_sort.storehome.StoreHomeActivity;
+import com.example.administrator.xiangou.goodsdetails.simplegoodsdetails.SimpleGoodsDetailsActivity;
 import com.example.administrator.xiangou.home.adapter.HomeAdapterRV;
 import com.example.administrator.xiangou.home.model.HomeDataBean;
 import com.example.administrator.xiangou.mvp.MVPBaseFragment;
@@ -116,28 +119,41 @@ public class HomeFragment extends MVPBaseFragment<HomeContract.View, HomePresent
         initRv(mDataBean);
     }
 
-    private void initRv(HomeDataBean.DataBean dataBean) {
+    private void initRv(final HomeDataBean.DataBean dataBean) {
         mAdapterHomeRv = new HomeAdapterRV(getContext(),dataBean);
         mRvHome.setAdapter(mAdapterHomeRv);
         mAdapterHomeRv.setDealItemClick(new HomeAdapterRV.DealItemClick() {
             @Override
             public void dealBoutique(View view, int pos) {
                 showToast("mBoutiqueRv "+ pos +" 甭点了，木有彩蛋");
+                //跳转到店铺
+                Intent intent=new Intent(getContext(), StoreHomeActivity.class);
+                intent.putExtra("store_id",dataBean.getStore_list().get(pos).getDid());
+                startActivity(intent);
             }
 
             @Override
             public void dealReferrals(View view, int pos) {
                 showToast("mReferralsRv "+ pos +" 甭点了，木有彩蛋");
+                Intent intent=new Intent(getContext(), SimpleGoodsDetailsActivity.class);
+                intent.putExtra("goods_id",dataBean.getGoods_perfect().get(pos).getGoods_id());
+                getContext().startActivity(intent);
             }
 
             @Override
             public void dealTopic(View view, int pos) {
                 showToast("mTopicRv "+ pos +" 甭点了，木有彩蛋");
+                Intent intent=new Intent(getContext(), SimpleGoodsDetailsActivity.class);
+                intent.putExtra("goods_id",dataBean.getGoods_toptics().get(pos).getGoods_id());
+                getContext().startActivity(intent);
             }
 
             @Override
             public void dealRecommened(View view, int pos) {
                 showToast("mRecommendRv "+ pos +" 甭点了，木有彩蛋");
+                Intent intent=new Intent(getContext(), SimpleGoodsDetailsActivity.class);
+                intent.putExtra("goods_id",dataBean.getRecommened_list().get(pos).getGoods_id());
+                getContext().startActivity(intent);
             }
 
         });

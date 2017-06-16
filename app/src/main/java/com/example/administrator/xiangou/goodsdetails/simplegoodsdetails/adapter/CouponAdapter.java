@@ -20,8 +20,9 @@ public class CouponAdapter extends AutoRVAdapter {
 
     @Override
     public int getItemCount() {
-        if (coupon!=null&&coupon.size()<=2)
-        return super.getItemCount();
+        if (coupon!=null&&coupon.size()<=2){
+        return coupon.size();
+        }
         else{
             return 2;
         }

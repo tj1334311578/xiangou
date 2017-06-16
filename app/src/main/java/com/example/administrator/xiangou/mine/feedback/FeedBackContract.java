@@ -1,6 +1,4 @@
-package com.example.administrator.xiangou.mine.setting.feedback;
-
-import android.content.Context;
+package com.example.administrator.xiangou.mine.feedback;
 
 import com.example.administrator.xiangou.mvp.BasePresenter;
 import com.example.administrator.xiangou.mvp.BaseView;

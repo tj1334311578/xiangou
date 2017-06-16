@@ -86,7 +86,7 @@ public class CouponManagerPresenter extends BasePresenterImpl<CouponManagerContr
     }
 
     @Override
-    public void callAddCoupon(int did, double condition, double money, int createnum, int use_start_time, int use_end_time) {
+    public void callAddCoupon(int did, double condition, double money, int createnum, long use_start_time, long use_end_time) {
         addSubscription(mApiService.callAddCoupon(did,condition,money,createnum,use_start_time,use_end_time),
                 new BaseSubscriber<ResponseBody>(mView.getContext()) {
                     @Override

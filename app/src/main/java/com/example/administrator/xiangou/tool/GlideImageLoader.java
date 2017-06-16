@@ -1,6 +1,11 @@
 package com.example.administrator.xiangou.tool;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -35,6 +40,24 @@ public class GlideImageLoader extends ImageLoader {
                 .placeholder(R.mipmap.default_img)
 //                .crossFade() //使图片变化平滑
                 .into(viewTag);
+    }
+
+    public static Bitmap[] setbackground(Context context, String path){
+        Log.e("path", "setbackground: "+path );
+        final Bitmap[] bit = new Bitmap[1];
+        SimpleTarget viewTag=new SimpleTarget<GlideBitmapDrawable>() {
+            @Override
+            public void onResourceReady(GlideBitmapDrawable resource, GlideAnimation<? super GlideBitmapDrawable> glideAnimation) {
+                bit[0] =resource.getBitmap();
+            }
+        };
+        Glide.with(context)
+                .load(path)
+                .dontAnimate()
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
+                .placeholder(R.mipmap.default_img)
+                .into(viewTag);
+        return bit;
     }
 
 //    @Override

@@ -20,141 +20,6 @@
         android:gravity="center_vertical"
         android:textColor="#e6161616"/>
 
-    <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="41dp"-->
-        <!--android:text="个人信息设置"-->
-        <!--android:textSize="14sp"-->
-        <!--android:id="@+id/person_setting"-->
-        <!--android:textColor="#161616"-->
-        <!--android:gravity="center_vertical"-->
-        <!--android:layout_alignStart="@id/setting_back"-->
-        <!--android:layout_below="@id/setting_back"/>-->
-    <!--<ImageButton-->
-        <!--android:layout_width="25dp"-->
-        <!--android:adjustViewBounds="true"-->
-        <!--android:src="@drawable/show_right"-->
-        <!--android:layout_alignParentEnd="true"-->
-        <!--android:id="@+id/person_setting_Btn"-->
-        <!--android:layout_marginEnd="13dp"-->
-        <!--android:background="#00000000"-->
-        <!--android:layout_alignBottom="@id/person_setting"-->
-        <!--android:layout_height="41dp" />-->
-    <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="41dp"-->
-        <!--android:text="我的收货地址"-->
-        <!--android:textSize="14sp"-->
-        <!--android:id="@+id/person_address"-->
-        <!--android:textColor="#161616"-->
-        <!--android:gravity="center_vertical"-->
-        <!--android:layout_alignStart="@id/setting_back"-->
-        <!--android:layout_below="@id/person_setting"/>-->
-    <!--<ImageButton-->
-        <!--android:layout_width="25dp"-->
-        <!--android:adjustViewBounds="true"-->
-        <!--android:src="@drawable/show_right"-->
-        <!--android:id="@+id/setting_address_Btn"-->
-        <!--android:layout_alignParentEnd="true"-->
-        <!--android:layout_marginEnd="13dp"-->
-        <!--android:background="#00000000"-->
-        <!--android:layout_alignBottom="@id/person_address"-->
-        <!--android:layout_height="41dp" />-->
-
-    <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="41dp"-->
-        <!--android:text="版本信息"-->
-        <!--android:textSize="14sp"-->
-        <!--android:id="@+id/Version_information"-->
-        <!--android:textColor="#161616"-->
-        <!--android:gravity="center_vertical"-->
-        <!--android:layout_alignStart="@id/setting_back"-->
-        <!--android:layout_below="@id/person_address"/>-->
-    <!--<ImageButton-->
-        <!--android:layout_width="25dp"-->
-        <!--android:adjustViewBounds="true"-->
-        <!--android:src="@drawable/show_right"-->
-        <!--android:id="@+id/Version_information_Btn"-->
-        <!--android:layout_alignParentEnd="true"-->
-
-        <!--android:layout_marginEnd="13dp"-->
-        <!--android:background="#00000000"-->
-        <!--android:layout_alignBottom="@id/Version_information"-->
-        <!--android:layout_height="41dp" />-->
-
-    <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="41dp"-->
-        <!--android:text="帮助与咨询"-->
-        <!--android:textSize="14sp"-->
-        <!--android:id="@+id/Help_counseling"-->
-        <!--android:textColor="#161616"-->
-        <!--android:gravity="center_vertical"-->
-        <!--android:layout_alignStart="@id/setting_back"-->
-        <!--android:layout_below="@id/Version_information"/>-->
-    <!--<ImageButton-->
-        <!--android:layout_width="25dp"-->
-        <!--android:adjustViewBounds="true"-->
-        <!--android:src="@drawable/show_right"-->
-        <!--android:layout_alignParentEnd="true"-->
-        <!--android:layout_marginEnd="13dp"-->
-        <!--android:id="@+id/Help_counseling_Btn"-->
-        <!--android:background="#00000000"-->
-        <!--android:layout_alignBottom="@id/Help_counseling"-->
-        <!--android:layout_height="41dp" />-->
-
-    <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="41dp"-->
-        <!--android:text="清除缓存"-->
-        <!--android:textSize="14sp"-->
-        <!--android:id="@+id/Clear_cache"-->
-        <!--android:textColor="#161616"-->
-        <!--android:gravity="center_vertical"-->
-        <!--android:layout_alignStart="@id/setting_back"-->
-        <!--android:layout_below="@id/Help_counseling"/>-->
-    <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="41dp"-->
-        <!--android:textSize="12sp"-->
-        <!--android:id="@+id/Clear_cacheSize"-->
-        <!--android:layout_toStartOf="@+id/Clear_cache_Btn"-->
-        <!--android:layout_alignBottom="@id/Clear_cache"-->
-        <!--android:layout_marginEnd="15dp"-->
-        <!--android:gravity="center_vertical"-->
-        <!--android:text="已使用0M"/>-->
-
-    <!--<TextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="41dp"-->
-        <!--android:text="意见反馈"-->
-        <!--android:textSize="14sp"-->
-        <!--android:id="@+id/Feedback"-->
-        <!--android:textColor="#161616"-->
-        <!--android:gravity="center_vertical"-->
-        <!--android:layout_alignStart="@id/setting_back"-->
-        <!--android:layout_below="@id/Clear_cache"/>-->
-    <!--<ImageButton-->
-        <!--android:layout_width="25dp"-->
-        <!--android:adjustViewBounds="true"-->
-        <!--android:src="@drawable/show_right"-->
-        <!--android:layout_alignParentEnd="true"-->
-        <!--android:layout_marginEnd="13dp"-->
-        <!--android:id="@+id/Feedback_Btn"-->
-        <!--android:background="#00000000"-->
-        <!--android:layout_alignBottom="@id/Feedback"-->
-        <!--android:layout_height="41dp" />-->
-
-    <!--<ImageButton-->
-        <!--android:layout_width="25dp"-->
-        <!--android:adjustViewBounds="true"-->
-        <!--android:src="@drawable/show_right"-->
-        <!--android:id="@+id/Clear_cache_Btn"-->
-        <!--android:background="#00000000"-->
-        <!--android:layout_height="41dp"-->
-        <!--android:layout_below="@+id/Help_counseling_Btn"-->
-        <!--android:layout_alignStart="@+id/Help_counseling_Btn" />-->
     <LinearLayout
         android:id="@+id/person_setting_Ll"
         android:layout_width="match_parent"
@@ -197,9 +62,7 @@
         android:textSize="14sp"
         android:id="@+id/person_address"
         android:textColor="#e6161616"
-        android:gravity="center_vertical"
-        android:layout_alignStart="@id/setting_back"
-        android:layout_below="@id/person_setting"/>
+        android:gravity="center_vertical"/>
         <ImageButton
         android:layout_width="25dp"
             android:clickable="false"
@@ -208,7 +71,6 @@
         android:id="@+id/setting_address_Btn"
         android:layout_alignParentEnd="true"
         android:background="#00000000"
-        android:layout_alignBottom="@id/person_address"
         android:layout_height="41dp" />
 
     </LinearLayout>
@@ -218,45 +80,43 @@
         android:layout_below="@+id/person_address_Ll"
         android:layout_height="1dp"/>
     <LinearLayout
-        android:id="@+id/Version_information_Ll"
+        android:id="@+id/modify_password_Ll"
         android:layout_width="match_parent"
         android:layout_marginEnd="13dp"
         android:layout_alignStart="@id/setting_back"
         android:layout_below="@+id/person_address_Ll"
         android:layout_height="wrap_content">
         <TextView
-        android:layout_weight="1"
-        android:layout_width="wrap_content"
-        android:layout_height="41dp"
-        android:text="版本信息"
-        android:textSize="14sp"
-        android:id="@+id/Version_information"
-        android:textColor="#e6161616"
-        android:gravity="center_vertical"
-        android:layout_alignStart="@id/setting_back"
-        android:layout_below="@id/person_address"/>
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="41dp"
+            android:text="修改账户密码"
+            android:textSize="14sp"
+            android:id="@+id/modify_password_tv"
+            android:textColor="#e6161616"
+            android:gravity="center_vertical"/>
         <ImageButton
-        android:layout_width="25dp"
-        android:adjustViewBounds="true"
+            android:layout_width="25dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/show_right"
             android:clickable="false"
-        android:src="@drawable/show_right"
-        android:id="@+id/Version_information_Btn"
-        android:layout_alignParentEnd="true"
-        android:background="#00000000"
-        android:layout_alignBottom="@id/Version_information"
-        android:layout_height="41dp" />
+            android:layout_alignParentEnd="true"
+            android:id="@+id/modify_password_btn"
+            android:background="#00000000"
+            android:layout_height="41dp" />
     </LinearLayout>
     <View
         android:layout_width="match_parent"
         android:background="@drawable/black_lines"
-        android:layout_below="@+id/Version_information_Ll"
+        android:layout_below="@+id/modify_password_Ll"
         android:layout_height="1dp"/>
+
     <LinearLayout
         android:id="@+id/Help_counseling_Ll"
         android:layout_width="match_parent"
         android:layout_marginEnd="13dp"
         android:layout_alignStart="@id/setting_back"
-        android:layout_below="@+id/Version_information_Ll"
+        android:layout_below="@+id/modify_password_Ll"
         android:layout_height="wrap_content">
         <TextView
             android:layout_weight="1"
@@ -266,18 +126,15 @@
         android:textSize="14sp"
         android:id="@+id/Help_counseling"
         android:textColor="#e6161616"
-        android:gravity="center_vertical"
-        android:layout_alignStart="@id/setting_back"
-        android:layout_below="@id/Version_information"/>
+        android:gravity="center_vertical"/>
         <ImageButton
         android:layout_width="25dp"
         android:adjustViewBounds="true"
         android:src="@drawable/show_right"
-            android:clickable="false"
+        android:clickable="false"
         android:layout_alignParentEnd="true"
         android:id="@+id/Help_counseling_Btn"
         android:background="#00000000"
-        android:layout_alignBottom="@id/Help_counseling"
         android:layout_height="41dp" />
     </LinearLayout>
     <View
@@ -300,16 +157,13 @@
         android:textSize="14sp"
         android:id="@+id/Clear_cache"
         android:textColor="#e6161616"
-        android:gravity="center_vertical"
-        android:layout_alignStart="@id/setting_back"
-        android:layout_below="@id/Help_counseling"/>
+        android:gravity="center_vertical"/>
         <TextView
         android:layout_width="wrap_content"
         android:layout_height="41dp"
         android:textSize="14sp"
         android:id="@+id/Clear_cacheSize"
         android:layout_toStartOf="@+id/Clear_cache_Btn"
-        android:layout_alignBottom="@id/Clear_cache"
         android:layout_marginEnd="15dp"
         android:textColor="#99161616"
         android:gravity="center_vertical"
@@ -321,51 +175,54 @@
             android:clickable="false"
         android:id="@+id/Clear_cache_Btn"
         android:background="#00000000"
-        android:layout_height="41dp"
-        android:layout_below="@+id/Help_counseling_Btn"
-        android:layout_alignStart="@+id/Help_counseling_Btn" />
+        android:layout_height="41dp"/>
     </LinearLayout>
     <View
         android:layout_width="match_parent"
         android:background="@drawable/black_lines"
         android:layout_below="@+id/Clear_cache_Ll"
         android:layout_height="1dp"/>
+
     <LinearLayout
-        android:id="@+id/Feedback_Ll"
+        android:id="@+id/Version_information_Ll"
         android:layout_width="match_parent"
         android:layout_marginEnd="13dp"
         android:layout_alignStart="@id/setting_back"
         android:layout_below="@+id/Clear_cache_Ll"
         android:layout_height="wrap_content">
         <TextView
-        android:layout_weight="1"
-        android:layout_width="wrap_content"
-        android:layout_height="41dp"
-        android:text="意见反馈"
-        android:textSize="14sp"
-        android:id="@+id/Feedback"
-        android:textColor="#e6161616"
-        android:gravity="center_vertical"
-        android:layout_alignStart="@id/setting_back"
-        android:layout_below="@id/Clear_cache"/>
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="41dp"
+            android:text="版本信息"
+            android:textSize="14sp"
+            android:id="@+id/Version_information"
+            android:textColor="#e6161616"
+            android:gravity="center_vertical"
+            android:layout_alignStart="@id/setting_back"
+            android:layout_below="@id/person_address"/>
         <ImageButton
-        android:layout_width="25dp"
-        android:adjustViewBounds="true"
-        android:src="@drawable/show_right"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/Feedback_Btn"
+            android:layout_width="25dp"
+            android:adjustViewBounds="true"
             android:clickable="false"
-        android:background="#00000000"
-        android:layout_alignBottom="@id/Feedback"
-        android:layout_height="41dp" />
+            android:src="@drawable/show_right"
+            android:id="@+id/Version_information_Btn"
+            android:layout_alignParentEnd="true"
+            android:background="#00000000"
+            android:layout_height="41dp" />
     </LinearLayout>
+    <!--<View-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:background="@drawable/black_lines"-->
+        <!--android:layout_below="@+id/Version_information_Ll"-->
+        <!--android:layout_height="1dp"/>-->
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="41dp"
         android:layout_marginEnd="13dp"
         android:layout_alignStart="@id/setting_back"
-        android:layout_below="@id/Feedback_Ll"
+        android:layout_below="@id/Version_information_Ll"
         android:background="@drawable/radius5dp"
         android:gravity="center"
         android:id="@+id/exit_login"

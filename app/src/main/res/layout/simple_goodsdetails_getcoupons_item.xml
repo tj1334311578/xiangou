@@ -3,6 +3,7 @@
     android:layout_width="wrap_content"
     android:text="满99减5元"
     android:textSize="12sp"
+    android:layout_marginStart="1dp"
     android:paddingStart="5dp"
     android:paddingEnd="5dp"
     android:paddingTop="2dp"

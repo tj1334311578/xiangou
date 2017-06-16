@@ -1,11 +1,14 @@
 package com.example.administrator.xiangou.goods_sort.storehome.storehome.homestore;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Paint;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.TextView;
 
 import com.example.administrator.xiangou.R;
@@ -27,6 +30,16 @@ public class mHomeStoreAdapter extends AutoRVAdapter implements RVBaseAdapter.On
     RecyclerView couponRecycle,treasureRecycler;
     Context context;
     HomePageBean dataBean;
+    interface OnitemClick {
+        void OnitemClickListener(int position);
+    }
+    private OnitemClick onitemClick;
+
+    public void setOnitemClick(OnitemClick onitemClick) {
+        if (onitemClick!=null)
+        this.onitemClick = onitemClick;
+    }
+
     public mHomeStoreAdapter(Context context, HomePageBean dataBean) {
 //        super(context);
         this.context=context;
@@ -67,34 +80,32 @@ public class mHomeStoreAdapter extends AutoRVAdapter implements RVBaseAdapter.On
     public void onBindViewHolder(ViewHolder holder, int position) {
         switch (position){
             case 0:
-                bindHolder1(holder);
+                bindHolder1(holder,position);
                 break;
             case 1:
-                bindHolder2(holder);
+                bindHolder2(holder,position);
                 break;
             default:
-                bindHolder1(holder);
+                bindHolder1(holder,position);
                 break;
         }
     }
 
-    private void bindHolder2(ViewHolder holder) {
-//        List<Treasure> lists=new ArrayList<>();
-//        lists.add(new Treasure("套装透气宽松连衣裙帅气的高大上的，你值得拥有",R.mipmap.girl_h,45,310.00,329.00,false));
-//        lists.add(new Treasure("套装透气宽松连衣裙",R.mipmap.girl_h,45,310.00,364.00,true));
-//        lists.add(new Treasure("套装透气宽松连衣裙",R.mipmap.girl_h,45,310.00,380.00,true));
-//        lists.add(new Treasure("套装透气宽松连衣裙",R.mipmap.girl_h,45,310.00,360.00,true));
-//        lists.add(new Treasure("套装透气宽松连衣裙",R.mipmap.girl_h,45,310.00,500.00,true));
-//        lists.add(new Treasure("套装透气宽松连衣裙",R.mipmap.girl_h,45,310.00,420.00,true));
-//        lists.add(new Treasure("套装透气宽松连衣裙",R.mipmap.girl_h,45,310.00,420.00,true));
-//        lists.add(new Treasure("套装透气宽松连衣裙",R.mipmap.girl_h,45,310.00,420.00,true));
-//        lists.add(new Treasure("套装透气宽松连衣裙",R.mipmap.girl_h,45,310.00,420.00,true));
+    private void bindHolder2(final ViewHolder holder, final int firstPosition) {
         treasureRecycler=holder.getRecycleView(R.id.home_store_treasure_item_recycle);
         treasureRecycler.setLayoutManager(new GridLayoutManager(context,2));
         treasureRecycler.addItemDecoration(new ItemIntervalDecoration(4,10,5,5));
-        treasureRecycler.setAdapter(new TreasureAdapter(context,dataBean.getData().getGoods_list()));
+        TreasureAdapter  treasureAdapter=new TreasureAdapter(context,dataBean.getData().getGoods_list());
+        treasureRecycler.setAdapter(treasureAdapter);
+        treasureAdapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.e("position", "onItemClick: "+position+"goods_id"+dataBean.getData().getGoods_list().get(position).getGoods_id() );
+                onitemClick.OnitemClickListener(position);//将goods回传到view层。
+            }
+        });
     }
-    private void bindHolder1(ViewHolder holder) {
+    private void bindHolder1(ViewHolder holder, int position) {
         couponRecycle=holder.getRecycleView(R.id.home_store_coupon_item_recycle);
         couponRecycle.setLayoutManager(new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false));
         couponRecycle.addItemDecoration(new ItemIntervalDecoration(4,0,4,14));

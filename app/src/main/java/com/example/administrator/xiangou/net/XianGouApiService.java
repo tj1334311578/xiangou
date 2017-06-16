@@ -103,6 +103,11 @@ public interface XianGouApiService {
     @POST("Api/Login/findpsw/")
     Observable<Captcha> resetPwd(@Query("tel") String tel, @Query("password") String password, @Query("code") String code);
 
+    //修改密码用户修改登录密码  /Api/user/change_psw
+    @POST("Api/user/change_psw")
+    Observable<ResponseBody> modifyPassword(@Query("user_id") int user_id,
+                                            @Query("oldpassword") String oldpassword,
+                                            @Query("password") String password);
 /***********店铺接口************/
 
     //进入店铺申请
@@ -184,12 +189,12 @@ public interface XianGouApiService {
                                          );
     //店铺首页
     @POST("api/User/store_index/")
-    Observable<HomePageBean> callHomePagerData(@Query("did") int storeId,//店铺did
+    Observable<ResponseBody> callHomePagerData(@Query("did") int storeId,//店铺did
                                                @Query("user_id") int userId);//若用户已经登录的状态下传过来
     //商品详情页接口
     // 出现请求未知异常，可获得数据，但不能进入rxjava的next代码，直接跳转到error方法异常为code:1000未知异常（待解决）
     @POST("Api/Good/goods_detail/")
-    Observable<SimpleGoodsDetialBean> callSimpleGoodsDetails(@Query("goods_id") int goods_id,
+    Observable<ResponseBody> callSimpleGoodsDetails(@Query("goods_id") int goods_id,
 //                                                @Query("user_id") int user_id,
 //                                                @Query("map_x") String map_x,
 //                                                @Query("map_y") String map_y,
@@ -319,6 +324,9 @@ public interface XianGouApiService {
                                            @Query("condition") Double condition,//优惠卷使用条件满多少使用
                                            @Query("money") Double money,//金额
                                            @Query("createnum") int createnum,//发送总量大于一
-                                           @Query("use_start_time") int use_start_time,//使用开始时间
-                                           @Query("use_end_time") int use_end_time);//使用结束时间
+                                           @Query("use_start_time") long use_start_time,//使用开始时间
+                                           @Query("use_end_time") long use_end_time);//使用结束时间
+    //用户签到  /Api/user/ signs
+    @POST("Api/user/signs")
+    Observable<ResponseBody> callSign(@Query("user_id") int user_id);//用户id
 }

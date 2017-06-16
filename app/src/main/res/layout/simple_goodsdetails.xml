@@ -350,30 +350,31 @@
                 />
             <android.support.v7.widget.RecyclerView
                 android:layout_marginStart="8dp"
-
                 android:layout_gravity="center_vertical"
                 android:padding="0dp"
                 android:id="@+id/simple_goodsdetails_getcoupons_recycle"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
             <View
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                />
             <ImageView
                 android:layout_width="wrap_content"
                 android:foregroundGravity="right"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-
                 android:src="@mipmap/product_details_next_icon"
                 />
         </LinearLayout>
         <View
+            android:layout_below="@+id/simple_goodsdetails_getcoupons_ll"
             android:layout_width="match_parent"
+            android:layout_height="9dp"
             android:background="#f6f7f7"
-            android:layout_below="@id/simple_goodsdetails_getcoupons_ll"
-            android:layout_height="9dp"/>
+            />
+
         <ImageView
             android:layout_width="41dp"
             android:id="@+id/simple_goodsdetails_storelogo"
@@ -381,6 +382,7 @@
             android:layout_below="@id/simple_goodsdetails_getcoupons_ll"
             android:layout_alignStart="@id/simple_goodsdetails_description"
             android:layout_marginTop="24dp"
+            android:scaleType="fitXY"
             android:layout_marginEnd="5dp"
             android:layout_height="35dp" />
         <TextView
@@ -392,19 +394,17 @@
             android:id="@+id/simple_goodsdetails_storename"
             android:layout_toEndOf="@id/simple_goodsdetails_storelogo"
             android:layout_alignTop="@id/simple_goodsdetails_storelogo"
-            android:paddingTop="5dp"
             android:layout_height="wrap_content" />
         <RatingBar
             style="?android:attr/ratingBarStyleSmall"
-            android:progressDrawable="@drawable/rating_yellow"
             android:layout_width="wrap_content"
             android:numStars="5"
-            android:rating="4"
+            android:rating="4.5"
             android:id="@+id/simple_goodsdetails_rank"
+            android:progressDrawable="@drawable/rating_yellow"
             android:progressBackgroundTint="@color/whiteBgColor"
-            android:layout_alignStart="@id/simple_goodsdetails_storename"
             android:layout_alignBottom="@+id/simple_goodsdetails_storelogo"
-            android:layout_below="@id/simple_goodsdetails_storename"
+            android:layout_alignStart="@id/simple_goodsdetails_storename"
             android:layout_height="wrap_content" />
         <TextView
             android:layout_width="wrap_content"

@@ -1,4 +1,4 @@
-package com.example.administrator.xiangou.mine.setting.feedback;
+package com.example.administrator.xiangou.mine.feedback;
 
 import android.content.Context;
 import android.view.LayoutInflater;

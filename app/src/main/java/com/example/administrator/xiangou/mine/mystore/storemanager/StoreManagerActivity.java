@@ -108,8 +108,8 @@ public class StoreManagerActivity extends MVPBaseActivity<StoreManagerContract.V
                 }
 //                Log.e("info", "onClick: " + storeInfo.toString());
                 mPresenter.callEditStoreInfo(
-//                        1,
-                        storeInfo.getDid(),
+                        1,
+//                        storeInfo.getDid(),
                         "104.014725","30.676117",
 //                        storeInfo.getMap_x(),storeInfo.getMap_y(),
                         address.getText().toString(),

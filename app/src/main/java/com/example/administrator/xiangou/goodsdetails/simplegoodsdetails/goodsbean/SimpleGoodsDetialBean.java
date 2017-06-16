@@ -120,7 +120,7 @@ public class SimpleGoodsDetialBean {
         private SpecGoodsCountBean spec_goods_count;
         private int is_favorite;
         private int cart_num;
-        private int score;
+        private float score;
         private String store_total_sale;
         private int store_follow;
         private int fare;
@@ -274,11 +274,11 @@ public class SimpleGoodsDetialBean {
             this.cart_num = cart_num;
         }
 
-        public int getScore() {
+        public float getScore() {
             return score;
         }
 
-        public void setScore(int score) {
+        public void setScore(float score) {
             this.score = score;
         }
 
@@ -643,7 +643,7 @@ public class SimpleGoodsDetialBean {
         }
 
         public static class CommentBean {
-
+            public CommentBean(){}
             public  CommentBean(int comment_id,
                     String content,
                     String username,

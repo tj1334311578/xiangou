@@ -1,7 +1,6 @@
 package com.example.administrator.xiangou.mine;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,7 +48,7 @@ public class MineAdapter extends BaseAdapter{
         if (convertView==null) {
             convertView= LayoutInflater.from(mContext).inflate(R.layout.mine_item,null,false);
             viewHolder.imageView= (ImageView) convertView.findViewById(R.id.mine_item_img);
-            Log.e("MineFg", "getView: "+viewHolder.imageView);
+//            Log.e("MineFg", "getView: "+viewHolder.imageView);
             viewHolder.textView= (TextView) convertView.findViewById(R.id.mine_item_text);
             convertView.setTag(viewHolder);
         }else{

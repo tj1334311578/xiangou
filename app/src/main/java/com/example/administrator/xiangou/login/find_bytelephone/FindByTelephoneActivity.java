@@ -15,7 +15,6 @@ import android.widget.TextView;
 
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.login.find_resetpwd.ResetpwdActivity;
-import com.example.administrator.xiangou.login.idlogin.IDLoginActivity;
 import com.example.administrator.xiangou.mvp.MVPBaseActivity;
 import com.example.administrator.xiangou.tool.CountDownTimerUtils;
 
@@ -112,7 +111,6 @@ public class FindByTelephoneActivity extends MVPBaseActivity<FindByTelephoneCont
                 mPresenter.getCaptcha(mFindPSW_NumberEdt.getText().toString(),"findpsw");
                 break;
             case R.id.findpswone_back_iv:
-//                startNewUI(IDLoginActivity.class);
                 finish();
                 break;
             case R.id.findpswone_clean_iv:
@@ -124,6 +122,7 @@ public class FindByTelephoneActivity extends MVPBaseActivity<FindByTelephoneCont
             default:
                 break;
         }
+
     }
     @Override
     public void sendFialRequest(String message) {
@@ -148,8 +147,6 @@ public class FindByTelephoneActivity extends MVPBaseActivity<FindByTelephoneCont
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (countDownTimerUtils!=null) {
-            countDownTimerUtils.cancel();
-        }
+        countDownTimerUtils.cancel();
     }
 }

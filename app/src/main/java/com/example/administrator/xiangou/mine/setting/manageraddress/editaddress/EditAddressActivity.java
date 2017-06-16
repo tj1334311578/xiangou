@@ -194,7 +194,7 @@ public class EditAddressActivity extends MVPBaseActivity<EditAddressContract.Vie
             TextView cancelBtn = (TextView) dialogView.findViewById(R.id.cancel_change_address_btn);
             cancelBtn.setOnClickListener(this);
             sureBtn.setOnClickListener(this);
-            Log.e("multiselectionspinner_dialog", "createDialog: w: " +dialogView.getMeasuredWidth()+" h:"+dialogView.getMeasuredHeight());
+            Log.e("dialog", "createDialog: w: " +dialogView.getMeasuredWidth()+" h:"+dialogView.getMeasuredHeight());
             mDialog.setCancelable(false);//点击外部不关闭
         }
     }
@@ -328,24 +328,6 @@ public class EditAddressActivity extends MVPBaseActivity<EditAddressContract.Vie
             }
         }
     }
-
-    //create上传数据info
-//    private JSONObject createInfo(){
-//        try {
-//            mInfo.put("mobile",numEt.getText().toString());
-//            mInfo.put("province",mAreaId[0]);
-//            mInfo.put("city",mAreaId[1]);
-//            mInfo.put("district",mAreaId[2]);
-//            mInfo.put("address",detailedEt.getText().toString());
-//            mInfo.put("user_id",bUser.getUser_id());
-//            mInfo.put("address_id",0);
-//            mInfo.put("map_x","104.0647572802");
-//            mInfo.put("map_y","30.5701516651");
-//        } catch (JSONException e) {
-//            e.printStackTrace();
-//        }
-//        return mInfo;
-//    }
 
     @Override
     public void commitSuccess(String captcha) {

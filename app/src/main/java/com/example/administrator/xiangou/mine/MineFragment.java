@@ -1,15 +1,17 @@
 package com.example.administrator.xiangou.mine;
 
+import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -62,8 +64,10 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
     }
     //登录校验或更新用户信息
     private void loginCaptcha(){
-        mPresenter.IDlogin( getSP().getString("IDLogin_TelNumber",null),
-                getSP().getString("IDLogin_PWD",null) );
+        if (getSP().isLogined()) {
+            mPresenter.IDlogin(getSP().getString("IDLogin_TelNumber", null),
+                    getSP().getString("IDLogin_PWD", null));
+        }
     }
     @Nullable
     @Override
@@ -74,21 +78,15 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
     @Override
     public void onStart() {
         super.onStart();
-        Log.e("MineFg", "onStart: " );
+//        Log.e("MineFg", "onStart: " );
         showToast("isVisible:"+getUserVisibleHint()+"----isLogin"+getSP().isLogined()+"user id:"+getUser().getUser_id());
         if (getUserVisibleHint()){
             if (!getSP().isLogined()) {
-                startNewUI(IDLoginActivity.class);
+                createDialog("用户账号尚未登录，是否去登录？");
             }
         }
         //先从本地保存的数据中获取用户信息
         initDate(true);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        Log.e("MineFg", "onResume: " );
     }
 
     @Override
@@ -106,6 +104,7 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         findContentView(R.id.mine_attention);
         findContentView(R.id.mine_Coupon);
         findContentView(R.id.mine_sign_in);
+
         //我的订单
         findContentView(R.id.see_all_orders);
         findContentView(R.id.unpaid_Rl);
@@ -125,7 +124,7 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 TextView tv = (TextView) listView.getChildAt(position).findViewById(R.id.mine_item_text);
-                Log.e("MineFg", "onItemClick: "+tv.getText() +" 被点击了 "+position);
+//                Log.e("MineFg", "onItemClick: "+tv.getText() +" 被点击了 "+position);
                 switch (tv.getText().toString()){
                     case "我的足迹":
                         startNewUI(MyFootPrintActivity.class);
@@ -163,11 +162,9 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
 //                }
 //            }
 //        });
-
     }
 
     private void initDate(boolean b) {
-        showToast("success--initDate");
         initImageView(mHeadImgCiv,b);
         setTextToTv(mMessageTv,mine_MsgCount);//待修改
         setTextToTv(mUserLevelTv,"V"+getUser().getLevel());
@@ -216,12 +213,12 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
         if (uri!=null){
             //            ImageUtils.loadLocationImg(getContext(),uri,imageView);
             if (isInitImg) {//只在初始化加载图片时才调用，刷新时不调用
-                Log.e("loadimg", "initImageView: by uri "+uri );
+//                Log.e("loadimg", "initImageView: by uri "+uri );
                 loadImg(uri, imageView);
             }
             return;
         }else if (getUser().getHead_pic()!=null){
-            Log.e("loadimg", "initImageView: by getHead_pic" );
+//            Log.e("loadimg", "initImageView: by getHead_pic" );
             loadImg(getUser().getHead_pic(),imageView);
         }
     }
@@ -286,7 +283,6 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
                 break;
             //关注
             case R.id.mine_attention:
-                Toast.makeText(getActivity(), "点击关注", Toast.LENGTH_SHORT).show();
                 startNewUI(FollowPageActivity.class);
                 break;
             //优惠券
@@ -373,5 +369,42 @@ public class MineFragment extends MVPBaseFragment<MineContract.View, MinePresent
     @Override
     public void ReLoginidSuccess(LoginBean.DataBean data) {
         initDate(false);
+    }
+
+    public interface CallMineFragmentUnLoad {
+        void callBackUnLoad();
+    }
+    public CallMineFragmentUnLoad mCallMineFragmentUnLoad;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mCallMineFragmentUnLoad = (CallMineFragmentUnLoad) context;
+    }
+
+    private void createDialog(String msg){
+        final AlertDialog dialog = new AlertDialog.Builder(getContext()).create();
+        View contentLayout = LayoutInflater.from(getContext()).inflate(R.layout.custom_hintdialog,null);
+        dialog.setView(contentLayout);
+        TextView contentTv = (TextView) contentLayout.findViewById(R.id.content_hintdialog_tv);
+        contentTv.setText(msg);
+        Button cancelBtn = (Button) contentLayout.findViewById(R.id.cancel_hintdialog_btn);
+        Button sureBtn = (Button) contentLayout.findViewById(R.id.sure_hintdialog_btn);
+        cancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                mCallMineFragmentUnLoad.callBackUnLoad();
+            }
+        });
+        sureBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+                startNewUI(IDLoginActivity.class);
+            }
+        });
+        dialog.setCancelable(false);//点击外部不关闭
+        dialog.show();
     }
 }

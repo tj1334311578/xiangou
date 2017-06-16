@@ -1,10 +1,16 @@
 package com.example.administrator.xiangou.tool;
 
 import android.app.Application;
+import android.graphics.drawable.Drawable;
 import android.util.Base64;
 import android.util.DisplayMetrics;
+import android.view.View;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.ViewTarget;
+import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.main.User;
 
 import java.math.BigDecimal;
@@ -73,6 +79,25 @@ public class ContextUtils extends Application{
             nickName = str.substring(1,str.length()-1);
         }
         return nickName;
+    }
+
+    /**
+     * load img by network to custom view
+     * @param path img's url
+     * @param view your custom view
+     */
+    public static void loadImgToCustomView(String path, View view){
+        ViewTarget viewTarget = new ViewTarget<View,Drawable>(view) {
+            @Override
+            public void onResourceReady(Drawable resource, GlideAnimation<? super Drawable> glideAnimation) {
+                view.setBackground(resource);
+            }
+        };
+
+        Glide.with(sContext)
+                .load(path)
+                .placeholder(R.mipmap.default_img)
+                .into(viewTarget);
     }
 
     /**

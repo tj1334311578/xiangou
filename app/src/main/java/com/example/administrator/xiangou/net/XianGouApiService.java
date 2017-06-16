@@ -9,6 +9,8 @@ import com.example.administrator.xiangou.home.model.HomeDataBean;
 import com.example.administrator.xiangou.login.Captcha;
 import com.example.administrator.xiangou.login.LoginBean;
 import com.example.administrator.xiangou.mine.ToApplyStoreBean;
+import com.example.administrator.xiangou.mine.followpage.followgoods.FollowGoodsBean;
+import com.example.administrator.xiangou.mine.followpage.followstore.FollowStoreBean;
 import com.example.administrator.xiangou.mine.mystore.datamanager.TotalDataBean;
 import com.example.administrator.xiangou.mine.mystore.goodsmanage.addgoodsmanage.bean.AddGoodsAttrBean;
 import com.example.administrator.xiangou.mine.mystore.goodsmanage.addgoodsmanage.bean.AddGoodsDataBean;
@@ -35,7 +37,6 @@ import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.Query;
 import rx.Observable;
-
 //  ┏┓　　　┏┓
 //┏┛┻━━━┛┻┓
 //┃　　　　　　　┃ 　
@@ -53,38 +54,31 @@ import rx.Observable;
 //    ┗┓┓┏━┳┓┏┛
 //      ┃┫┫　┃┫┫
 //      ┗┻┛　┗┻┛
-
 public interface XianGouApiService {
-//    String mBASEURL = "https://www.xangou.cn/index.php/";
-//    String IMGBASEURL = "https://www.xangou.cn";
-
-    String mBASEURL = "http://192.168.0.123/";
-    String IMGBASEURL = "http://192.168.0.123";
-    //     http://192.168.0.123/
+//    String mBASEURL = "http://192.168.0.123/";
+//    String IMGBASEURL = "http://192.168.0.123";
+    String mBASEURL = "https://www.xangou.cn/index.php/";
+    String IMGBASEURL = "https://www.xangou.cn";
+    //     http://192.168.0.123/  https://www.xangou.cn/index.php/api/Collect/collect_store
 /***********首页接口************/
     @POST("api/Index/index/")
     Observable<HomeDataBean> getHomePageData(@Query("map_x") String map_x,
                                              @Query("map_y") String map_y,
                                              @Query("cityid") int cityid);
-
 /***********登录接口************/
     //获取验证码--注册
-    @POST("index.php/Api/Register/send_code/")
-//    @POST("Api/Register/send_code/")
+    @POST("Api/Register/send_code/")
     Observable<Captcha> getCapture(@Query("tel") String tel);
 
     //验证验证码--注册
-    @POST("index.php/Api/Register/register1/")
-//    @POST("Api/Register/register1/")
+    @POST("Api/Register/register1/")
     Observable<Captcha> goRegister(@Query("tel") String tel, @Query("code") String code);
 
     //完成--注册
-    @POST("index.php/Api/Register/register/")
-//    @POST("Api/Register/register/")
+    @POST("Api/Register/register/")
     Observable<Captcha> toRegister(@Query("tel") String tel, @Query("code") String code, @Query("password") String password);
 
     //账号登录
-//    @FormUrlEncoded
     @POST("api/Login/login/")
     Observable<LoginBean> loginID(@Query("tel") String tel, @Query("password") String password);
 
@@ -94,8 +88,7 @@ public interface XianGouApiService {
      * @param method 登录 login | 找回密码 findpsw
      * @return
      */
-    @POST("index.php/Api/Login/verify/")
-//    @POST("Api/Login/verify/")
+    @POST("Api/Login/verify/")
     Observable<Captcha> sendCapture(@Query("tel") String tel, @Query("method") String method);
 
     //动态登录
@@ -186,6 +179,7 @@ public interface XianGouApiService {
                                                     @Query("map_y") String mapY);//纬度 no
 
 /***********购物车接口************/
+
     //添加商品到购物车
     @POST("api/Cart/addCart/")
     Observable<Captcha> callCartAddGoods(@Field("user_id") int user_id,
@@ -207,6 +201,26 @@ public interface XianGouApiService {
                                                              @Query("type") int type
                                                            );//根据货物id获取该物品信息
 /************用户中心**************/
+
+    //用户关注商品的列表
+    @POST("api/Collect/collect_goods/")
+    Observable<FollowGoodsBean> getCollectGoodsListApi(@Query("user_id") int user_id,
+                                                @Query("page_no") int page_no,
+                                                @Query("goods_name") String goods_name);
+    //用户取消关注商品
+    @FormUrlEncoded
+    @POST("api/Collect/del_collect/")
+    Observable<Captcha> cancelCollectGoodsApi(@Field("user_id") int user_id,
+                                                @Field("goods_id") String goods_id);
+    //用户关注店铺列表
+    @POST("api/Collect/collect_store/")
+    Observable<FollowStoreBean> getCollectStoresListApi(@Query("user_id") int user_id,
+                                                        @Query("page_no") int page_no);
+    //用户取消关注店铺
+    @FormUrlEncoded
+    @POST("api/Collect/del_follow/")
+    Observable<Captcha> cancelCollectStoresApi(@Field("user_id") int user_id,
+                                                @Field("store_id") String store_id);
     //个人信息修改
     @Multipart
     @POST("Api/User/personals/")
@@ -270,7 +284,6 @@ public interface XianGouApiService {
                                               @Part("tel") String tel);//店铺电话
 
     //店铺管理商品列表
-//    @POST("/index.php/Api/Stores/goodslist/")
     @POST("Api/Stores/goodslist/")
     Observable<ResponseBody> callStoreGoodsList(@Query("did") int store_id,//店铺id
                                                  @Query("key_word") String key_word,//根据名称查找相关商品

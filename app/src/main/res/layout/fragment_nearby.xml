@@ -27,7 +27,7 @@
             android:textSize="18sp"
             android:gravity="center"
             android:layout_centerInParent="true"
-            android:textColor="@color/textcolor_black"
+            android:textColor="@color/textcolor_blackf506"
             android:text="附近"/>
 
         <RelativeLayout

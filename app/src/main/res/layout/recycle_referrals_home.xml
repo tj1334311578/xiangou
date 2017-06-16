@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/title_referrals_home"
             android:text="精选商品"
-            android:textColor="@color/textcolor_black"
+            android:textColor="@color/textcolor_blackf506"
             android:textSize="14sp"
             android:layout_marginLeft="3dp"/>
 

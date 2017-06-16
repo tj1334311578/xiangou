@@ -6,24 +6,50 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
-import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import com.example.administrator.xiangou.R;
+import com.example.administrator.xiangou.net.XianGouApiService;
+import com.example.administrator.xiangou.tool.GlideImageLoader;
 import com.example.administrator.xiangou.tool.SelectImageView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Administrator on 2017/5/9.
  */
 public class FollowStoreAdapter extends BaseAdapter {
-    private  List<FollowStoreBean> lists;
+    private  List<FollowStoreBean.DataBean> lists;
     private Context mContext;
-    public FollowStoreAdapter(Context context, List<FollowStoreBean> lists) {
+    private GlideImageLoader mImageLoader;
+    private boolean toEdit;
+    private List<Integer> storesIdList;
+
+    public boolean isToEdit() {
+        return toEdit;
+    }
+
+    public void setToEdit(boolean toEdit) {
+        this.toEdit = toEdit;
+    }
+
+    public interface DealSotresFollowChanged{
+        void dealBackStoresChaged(List<Integer> storesIds);
+        void dealClickEnterStore(int did);
+    }
+    public DealSotresFollowChanged mDealSotresFollowChanged;
+    public void setDealSotresFollowChanged(DealSotresFollowChanged mDealSotresFollowChanged){
+        this.mDealSotresFollowChanged = mDealSotresFollowChanged;
+    }
+
+    public FollowStoreAdapter(Context context, List<FollowStoreBean.DataBean> lists) {
         this.lists=lists;
         mContext=context;
+        storesIdList = new ArrayList<>();
+        mImageLoader = new GlideImageLoader();
     }
 
     @Override
@@ -60,10 +86,37 @@ public class FollowStoreAdapter extends BaseAdapter {
         return convertView;
     }
 
-    private void setData(ViewHolder viewHolder, int position) {
-        viewHolder.selectImg.setImageResource(lists.get(position).getImg());
-        viewHolder.description.setText(lists.get(position).getDescription());
-        viewHolder.follows.setText(lists.get(position).getFollows()+"人关注");
+    private void setData(ViewHolder viewHolder, final int position) {
+        mImageLoader.displayImage(mContext, XianGouApiService.IMGBASEURL+lists.get(position).getLogo(),viewHolder.selectImg);
+
+        if (isToEdit()){
+            viewHolder.cb.setVisibility(View.VISIBLE);
+            viewHolder.cb.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    if (isChecked){
+//                        storesIdList.add(lists.get(position).getDid());
+                        storesIdList.add(position);
+                    }else {
+//                        int index = storesIdList.indexOf(lists.get(position).getDid());
+                        int index = storesIdList.indexOf(position);
+                        storesIdList.remove(index);
+                    }
+                    mDealSotresFollowChanged.dealBackStoresChaged(storesIdList);
+                    notifyDataSetChanged();
+                }
+            });
+        }else {
+            if (viewHolder.cb.getVisibility()!=View.GONE) viewHolder.cb.setVisibility(View.GONE);
+        }
+        viewHolder.description.setText(lists.get(position).getName());
+        viewHolder.follows.setText(lists.get(position).getCount()+"人关注");
+        viewHolder.imgbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDealSotresFollowChanged.dealClickEnterStore(lists.get(position).getDid());
+            }
+        });
     }
 
     private <T extends View>T findContextView(View convertView, int id) {

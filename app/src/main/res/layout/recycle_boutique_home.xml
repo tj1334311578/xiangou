@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/title_boutique_recycle"
             android:text="优质店家"
-            android:textColor="@color/textcolor_black"
+            android:textColor="@color/textcolor_blackf506"
             android:textSize="14sp"
             android:gravity="center"
             android:layout_marginLeft="3dp"/>

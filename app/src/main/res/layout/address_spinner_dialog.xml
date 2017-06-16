@@ -24,7 +24,7 @@
             android:textSize="14dp"
             android:gravity="center"
             android:padding="5dp"
-            android:background="@drawable/r3bg"
+            android:background="@drawable/bg_graybgso_r3"
             android:id="@+id/cancel_change_address_btn"
             />
         <TextView
@@ -44,7 +44,7 @@
             android:textSize="14dp"
             android:gravity="center"
             android:padding="5dp"
-            android:background="@drawable/r3bg"
+            android:background="@drawable/bg_graybgso_r3"
             android:id="@+id/sure_change_address_btn"
             />
     </LinearLayout>

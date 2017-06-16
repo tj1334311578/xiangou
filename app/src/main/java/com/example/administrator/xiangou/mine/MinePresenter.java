@@ -31,7 +31,7 @@ public class MinePresenter extends BasePresenterImpl<MineContract.View> implemen
                                 case 200:
                                     if (loginBean.getData() != null) {
                                         if (getUser().changeUser(loginBean.getData())) {
-                                            Log.e("minep", "enter：onNext "+getUser().toString()+
+                                            Log.e("minep", "enter：onNext \n"+getUser().toString()+
                                                     "\n"+loginBean.getData().toString()
                                             );
                                             setbUserBySP(loginBean.getData());

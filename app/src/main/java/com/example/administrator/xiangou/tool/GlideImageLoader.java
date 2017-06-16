@@ -24,6 +24,7 @@ public class GlideImageLoader extends ImageLoader {
             @Override
             public void onResourceReady(GlideBitmapDrawable resource, GlideAnimation<? super GlideBitmapDrawable> glideAnimation) {
                 imageView.setImageBitmap(resource.getBitmap());
+                imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
             }
 
         };
@@ -32,7 +33,6 @@ public class GlideImageLoader extends ImageLoader {
                 .dontAnimate()
                 .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .placeholder(R.mipmap.default_img)
-//                .fitCenter()
 //                .crossFade() //使图片变化平滑
                 .into(viewTag);
     }

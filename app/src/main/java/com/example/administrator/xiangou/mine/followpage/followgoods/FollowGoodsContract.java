@@ -1,7 +1,5 @@
 package com.example.administrator.xiangou.mine.followpage.followgoods;
 
-import android.content.Context;
-
 import com.example.administrator.xiangou.mvp.BasePresenter;
 import com.example.administrator.xiangou.mvp.BaseView;
 
@@ -12,10 +10,10 @@ import com.example.administrator.xiangou.mvp.BaseView;
 
 public class FollowGoodsContract {
     interface View extends BaseView {
-        
+        void getGoodsListSuccess(FollowGoodsBean data);
     }
 
     interface  Presenter extends BasePresenter<View> {
-        
+        void getCollectGoodsList(int user_id, int page_no, String goods_name);
     }
 }

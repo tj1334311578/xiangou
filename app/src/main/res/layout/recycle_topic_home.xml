@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/text_child_shop"
             android:text="特别专题"
-            android:textColor="@color/textcolor_black"
+            android:textColor="@color/textcolor_blackf506"
             android:textSize="14sp"
             android:gravity="center"
             android:layout_marginLeft="3dp"/>
@@ -84,7 +84,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/textbg_topic_advs_title"
+            android:background="@drawable/rectanglebg_whiteb3_radius8"
             android:layout_marginTop="13dp"
             android:id="@+id/get_advs_topic_tv"
             android:text="get新品"

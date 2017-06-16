@@ -20,7 +20,7 @@ import com.example.administrator.xiangou.tool.BaseActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements MineFragment.CallMineFragmentUnLoad{
 
     private FragmentTabHost mFragmentTabHost;
     private LayoutInflater mInflater;
@@ -42,6 +42,9 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
 
         initTabHost();
+        if (!getSP().isLogined()){
+            mFragmentTabHost.setCurrentTab(0);
+        }
     }
 
     //初始化底栏的tabs
@@ -86,13 +89,13 @@ public class MainActivity extends BaseActivity {
         return view;
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        if (!getSP().isLogined()){
-            mFragmentTabHost.setCurrentTab(0);
-        }
-    }
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        if (!getSP().isLogined()){
+//            mFragmentTabHost.setCurrentTab(0);
+//        }
+//    }
 
     @Override
     public void onClick(View v) {}
@@ -104,5 +107,10 @@ public class MainActivity extends BaseActivity {
         getSP().upDateUserInfo(getUser().toString());
         //退出APP
         exit_app();
+    }
+
+    @Override
+    public void callBackUnLoad() {
+        mFragmentTabHost.setCurrentTab(0);
     }
 }

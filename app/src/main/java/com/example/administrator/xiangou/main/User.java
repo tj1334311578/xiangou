@@ -1,6 +1,8 @@
 package com.example.administrator.xiangou.main;
 
 
+import android.util.Log;
+
 import com.example.administrator.xiangou.login.LoginBean;
 
 /**
@@ -19,37 +21,44 @@ public class User {
     //判断用户信息是否改变
     public boolean changeUser(LoginBean.DataBean data){
         if (user_id!=data.getUser_id()){
+            Log.e("position", "changeUser: user_id" );
             return true;
         }
         if (sex != data.getSex()){
+            Log.e("position", "changeUser: sex" );
             return true;
         }
-        if (mobile != data.getMobile()){
+        if (mobile.equals(data.getMobile())){
+            Log.e("position", "changeUser: mobile" );
             return true;
         }
-        if (mobile != data.getMobile()){
-            return true;
+        String name = data.getNickname();
+        if (name.charAt(0) == '\"') {
+            name = name.substring(1,name.length()-1);
+            Log.e("subname", "changeUser: " + name);
         }
-        String nickName = data.getNickname();
-        if (nickName.charAt(0) == '\"') {
-            nickName = nickName.substring(1,nickName.length()-1);
-        }
-        if (!nickname.equals(nickName)){
+        if (!nickname.equals(name)){
+            Log.e("position", "changeUser: nickname" );
             return true;
         }
         if (type != data.getType()){
+            Log.e("position", "changeUser: type" );
             return true;
         }
         if (status != data.getStatus()){
+            Log.e("position", "changeUser: status" );
             return true;
         }
         if (!head_pic.equals(data.getHead_pic())){
+            Log.e("position", "changeUser: head_pic" );
             return true;
         }
         if (coupon_count != data.getCoupon_count()){
+            Log.e("position", "changeUser: coupon_count" );
             return true;
         }
         if (follow !=data.getFollow()){
+            Log.e("position", "changeUser: follow" );
             return true;
         }
         if (waitPay != data.getWaitPay()){

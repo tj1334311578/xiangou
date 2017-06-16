@@ -21,14 +21,12 @@ public class GlideImageLoader extends ImageLoader {
     public void displayImage(Context context, Object path, final ImageView imageView) {
         //Glide加载图片简单的用法
         SimpleTarget viewTag = new SimpleTarget<GlideBitmapDrawable>() {
-
             @Override
             public void onResourceReady(GlideBitmapDrawable resource, GlideAnimation<? super GlideBitmapDrawable> glideAnimation) {
                 imageView.setImageBitmap(resource.getBitmap());
             }
 
         };
-
         Glide.with(context)
                 .load(path)
                 .dontAnimate()

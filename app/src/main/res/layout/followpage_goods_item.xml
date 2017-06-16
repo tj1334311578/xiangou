@@ -5,13 +5,24 @@
     android:paddingBottom="10dp"
     android:paddingStart="13dp"
     android:paddingEnd="13dp"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
+    <CheckBox
+        android:layout_centerVertical="true"
+        android:layout_width="19dp"
+        android:layout_height="20dp"
+        android:button="@null"
+        android:layout_marginEnd="12dp"
+        android:visibility="visible"
+        android:id="@+id/follow_goods_item_checkbox"
+        android:background="@drawable/circlebg_checkbox"/>
     <ImageView
         android:layout_width="99dp"
         android:src="@mipmap/girl_h"
         android:scaleType="fitXY"
         android:id="@+id/follow_goods_item_img"
-        android:layout_height="83dp" />
+        android:layout_height="83dp"
+        android:layout_toRightOf="@id/follow_goods_item_checkbox"
+        />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

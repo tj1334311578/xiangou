@@ -28,7 +28,7 @@
         android:layout_toRightOf="@id/icon_recommend_home_iv"
         android:layout_alignBottom="@id/icon_recommend_home_iv"
         android:text="为你推荐"
-        android:textColor="@color/textcolor_black"
+        android:textColor="@color/textcolor_blackf506"
         android:textSize="14sp"
         android:gravity="center"
         android:layout_marginLeft="5dp"

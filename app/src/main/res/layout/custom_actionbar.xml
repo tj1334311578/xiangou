@@ -60,7 +60,7 @@
             android:hint="清新可爱校园装"
             android:layout_marginLeft="5dp"
             android:layout_centerVertical="true"
-            android:textColorHint="@color/textcolor_hint"
+            android:textColorHint="@color/textcolor_hint8088"
             android:textSize="11sp"
             android:layout_toEndOf="@+id/search_topbar_iv"/>
     </RelativeLayout>

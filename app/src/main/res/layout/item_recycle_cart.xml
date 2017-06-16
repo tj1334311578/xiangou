@@ -21,6 +21,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/tv_cart_recycle"
         android:textSize="16sp"
-        android:textColor="@color/textcolor_black"
+        android:textColor="@color/textcolor_blackf506"
         android:layout_gravity="center_horizontal"/>
 </LinearLayout>

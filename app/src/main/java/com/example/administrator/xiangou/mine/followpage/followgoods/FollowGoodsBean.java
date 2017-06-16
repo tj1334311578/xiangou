@@ -1,12 +1,13 @@
 package com.example.administrator.xiangou.mine.followpage.followgoods;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Administrator on 2017/5/9.
  */
 
-public class FollowGoodsBean {
+public class FollowGoodsBean implements Serializable{
 
     /**
      * data : [{"goods_id":126,"goods_name":"Canon/佳能 EOS 700D套机（18-55mm)数码单反相机 苏宁易购","original_img":"/public/upload/goods/2016/04-21/57187bd5c0178.jpg","shop_price":"3499.00","market_price":"3599.00","is_coupon":1}]
@@ -78,7 +79,7 @@ public class FollowGoodsBean {
         }
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable{
         /**
          * goods_id : 126
          * goods_name : Canon/佳能 EOS 700D套机（18-55mm)数码单反相机 苏宁易购

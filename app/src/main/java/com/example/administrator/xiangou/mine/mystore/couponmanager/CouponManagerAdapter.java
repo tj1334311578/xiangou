@@ -113,7 +113,7 @@ public class CouponManagerAdapter extends RVBaseAdapter<CouponBean.CouponsBean> 
                 layoutparams.setMarginStart(0);
                 ((View)v.getParent()).findViewById(R.id.seller_center_coupon_style_rl).setLayoutParams(layoutparams);
                 Log.e("onClick:",mDatas.size()+ " onClick: "+mDatas.toString());
-//                notifyItemRangeChanged(0,mDatas.size());
+                notifyItemRangeRemoved(position,mDatas.size());
 //                upData();
             }
         });

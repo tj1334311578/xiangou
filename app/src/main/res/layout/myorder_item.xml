@@ -21,6 +21,7 @@
         android:textColor="@color/color_pink_fb4a89"
         android:text="交易成功"
         android:gravity="center"
+        android:layout_gravity="center"
         android:textSize="12sp"
         android:layout_alignBottom="@id/myorder_item_storename"
         android:layout_alignParentEnd="true"

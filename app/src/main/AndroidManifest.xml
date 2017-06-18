@@ -61,5 +61,6 @@
         <activity android:name=".mine.mystore.goodsmanage.addgoodsmanage.GoodsModelActivity"/>
         <activity android:name=".mine.setting.modifypassword.HintMessageActivity"/>
         <activity android:name=".mine.setting.modifypassword.ModifyPasswordActivity"/>
+        <activity android:name=".mine.mystore.ordermanager.OrderManagerActivity"/>
     </application>
 </manifest>

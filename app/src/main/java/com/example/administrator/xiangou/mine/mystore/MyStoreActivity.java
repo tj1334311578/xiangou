@@ -13,6 +13,7 @@ import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.mine.mystore.couponmanager.CouponManagerActivity;
 import com.example.administrator.xiangou.mine.mystore.datamanager.DataManagerActivity;
 import com.example.administrator.xiangou.mine.mystore.goodsmanage.GoodsManageActivity;
+import com.example.administrator.xiangou.mine.mystore.ordermanager.OrderManagerActivity;
 import com.example.administrator.xiangou.mine.mystore.storemanager.StoreManagerActivity;
 import com.example.administrator.xiangou.mvp.MVPBaseActivity;
 import com.example.administrator.xiangou.tool.CustomImageView;
@@ -79,7 +80,7 @@ public class MyStoreActivity extends MVPBaseActivity<MyStoreContract.View, MySto
                 startNewUI(GoodsManageActivity.class);
                 break;
             case R.id.seller_center_store_management_ordermanager://订单管理
-
+                startNewUI(OrderManagerActivity.class);
                 break;
             case R.id.seller_center_store_management_totaldata://数据统计
                 startNewUI(DataManagerActivity.class);

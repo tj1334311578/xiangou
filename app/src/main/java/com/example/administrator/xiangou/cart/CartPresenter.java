@@ -14,14 +14,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.administrator.xiangou.R;
+import com.example.administrator.xiangou.cart.model.CartListDataBean;
 import com.example.administrator.xiangou.cart.model.CartMergeBean;
 import com.example.administrator.xiangou.cart.model.CartMergeItemBean;
 import com.example.administrator.xiangou.cart.model.GoodsDealBean;
 import com.example.administrator.xiangou.cart.model.ItemStatusBean;
 import com.example.administrator.xiangou.cart.model.StoreDealBean;
 import com.example.administrator.xiangou.cart.model.StoreStatusBean;
-import com.example.administrator.xiangou.main.MainActivity;
 import com.example.administrator.xiangou.mvp.BasePresenterImpl;
+import com.example.administrator.xiangou.net.BaseSubscriber;
+import com.example.administrator.xiangou.net.ExceptionHandle;
 import com.example.administrator.xiangou.tool.ContextUtils;
 
 import java.util.ArrayList;
@@ -30,12 +32,46 @@ import java.util.List;
 public class CartPresenter extends BasePresenterImpl<CartContract.View> implements CartContract.Presenter{
     private List<CartMergeBean> mMergeBeanList;
     private List<CartMergeItemBean> mMergeItemBeanList,mMergeItemBeanList1,mMergeItemBeanList2;
+    private List<CartListDataBean.DataBean.GoodsListBean> mRecommendationList;
     private float totalPrice=0;
+
+    @Override
+    public void getCartListDataCall(int user_id, String map_x, String map_y) {
+        addSubscription(mApiService.getCartListApi(user_id, map_x, map_y),
+                new BaseSubscriber<CartListDataBean>(mView.getContext()) {
+                    @Override
+                    public void onNext(CartListDataBean cartListDataBean) {
+                        if (cartListDataBean.getState().getCode()==200){
+                            initCartData(cartListDataBean.getData());
+                        }
+                    }
+
+                    @Override
+                    public void onFinish() {
+
+                    }
+
+                    @Override
+                    public void onError(ExceptionHandle.ResponeThrowable e) {
+                        Log.e("cartp", "onError: " + e.toString());
+                    }
+                });
+    }
+
+    private void initCartData(CartListDataBean.DataBean data) {
+        mRecommendationList = data.getGoods_list();
+    }
 
     @Override
     public List<CartMergeBean> initAdapterData() {
         initData();
         return mMergeBeanList;
+    }
+
+    @Override
+    public List<CartListDataBean.DataBean.GoodsListBean> initRecommendationData() {
+
+        return mRecommendationList;
     }
 
     @Override

@@ -5,6 +5,7 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.administrator.xiangou.cart.model.CartListDataBean;
 import com.example.administrator.xiangou.cart.model.CartMergeBean;
 import com.example.administrator.xiangou.mvp.BasePresenter;
 import com.example.administrator.xiangou.mvp.BaseView;
@@ -18,7 +19,10 @@ public class CartContract {
     }
 
     interface  Presenter extends BasePresenter<View> {
+        void getCartListDataCall(int user_id, String map_x, String map_y);
+
         List<CartMergeBean> initAdapterData();
+        List<CartListDataBean.DataBean.GoodsListBean> initRecommendationData();
 
         void dealAllCheckBox(CompoundButton buttonView, boolean isChecked );//全选Cb
         void dealStoreCheckBox(boolean isChecked, int position, CheckBox mAllGoodsCb);//店铺Cb

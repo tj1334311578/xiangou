@@ -8,11 +8,6 @@ import android.view.View;
 import com.example.administrator.xiangou.mvp.MVPBaseActivity;
 
 
-/**
- * MVPPlugin
- *  邮箱 784787081@qq.com
- */
-
 public class GoodsDetailsActivity extends MVPBaseActivity<GoodsDetailsContract.View, GoodsDetailsPresenter> implements GoodsDetailsContract.View {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

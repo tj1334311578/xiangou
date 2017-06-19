@@ -1,7 +1,6 @@
 package com.example.administrator.xiangou.cart.model;
 
 /**
- * Created by cuboo on 2016/12/1.
  * 商品的选中和编辑状态
  */
 

@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.classification.adapter.ClassificationAdapter;
@@ -19,14 +20,11 @@ public class ClassificationFragment extends MVPBaseFragment<ClassificationContra
 
 	private RecyclerView recyclerView;
 	private int cat_id;
-	public ClassificationFragment(){}
 
-	public int getCat_id() {
-		return cat_id;
-	}
-
-	public void setCat_id(int cat_id) {
-		this.cat_id = cat_id;
+	public ClassificationFragment() {
+		super();
+//		this.cat_id=cat_id;
+		cat_id=getArguments().getInt("cat_id",0);
 	}
 
 	@Nullable

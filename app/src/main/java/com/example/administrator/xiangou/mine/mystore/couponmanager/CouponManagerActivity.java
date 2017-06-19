@@ -8,12 +8,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TableLayout;
 import android.widget.TextView;
 
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.goods_sort.RankingTabLayoutAdapter;
-import com.example.administrator.xiangou.goods_sort.comprehensive.ComprehensiveFragment;
 import com.example.administrator.xiangou.mvp.MVPBaseActivity;
 
 import java.util.ArrayList;
@@ -51,9 +49,22 @@ public class CouponManagerActivity extends MVPBaseActivity<CouponManagerContract
     private void initTabFragViews() {
         tabTitles = new String[]{"未开始(2)", "进行中(2)", "已失效(2)"};
         mTabFragList = new ArrayList<>();
-        mTabFragList.add(new CouponManagerFragment(1));
-        mTabFragList.add(new CouponManagerFragment(2));
-        mTabFragList.add(new CouponManagerFragment(3));
+        Bundle b=new Bundle();
+        b.putInt("tag",1);
+        CouponManagerFragment fragment1=new CouponManagerFragment();
+        fragment1.setArguments(b);
+        mTabFragList.add(fragment1);
+
+        b.putInt("tag",2);
+        CouponManagerFragment fragment2=new CouponManagerFragment();
+        fragment2.setArguments(b);
+        mTabFragList.add(fragment2);
+
+        b.putInt("tag",3);
+        CouponManagerFragment fragment3=new CouponManagerFragment();
+        fragment3.setArguments(b);
+        mTabFragList.add(fragment3);
+
         mtablayout.setTabMode(TabLayout.MODE_FIXED);
         mLayoutAdapter = new RankingTabLayoutAdapter(this, getSupportFragmentManager(), mTabFragList, tabTitles);
         mviewpager.setAdapter(mLayoutAdapter);

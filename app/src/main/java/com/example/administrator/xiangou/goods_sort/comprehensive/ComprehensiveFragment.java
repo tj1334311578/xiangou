@@ -32,8 +32,14 @@ public class ComprehensiveFragment extends MVPBaseFragment<ComprehensiveContract
     private RecyclerView mComprehensiveRecycle;
     private int tag;
     public ComprehensiveFragment (){
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
         this.tag=getArguments().getInt("tag",0);
     }
+
     public static int page_no=0;
     public static int is_new=0;
     public static String name=null;

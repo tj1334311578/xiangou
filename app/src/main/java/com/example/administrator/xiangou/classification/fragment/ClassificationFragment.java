@@ -23,6 +23,11 @@ public class ClassificationFragment extends MVPBaseFragment<ClassificationContra
 	public ClassificationFragment() {
 		super();
 //		this.cat_id=cat_id;
+	}
+
+	@Override
+	public void onStart() {
+		super.onStart();
 		cat_id=getArguments().getInt("cat_id",0);
 	}
 

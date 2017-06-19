@@ -19,7 +19,6 @@ import com.example.administrator.xiangou.mvp.MVPBaseFragment;
 import com.example.administrator.xiangou.net.XianGouApiService;
 import com.example.administrator.xiangou.tool.GlideImageLoader;
 import com.example.administrator.xiangou.tool.ItemIntervalDecoration;
-import com.youth.banner.loader.ImageLoader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +30,7 @@ import java.util.List;
 
 public class ComprehensiveFragment extends MVPBaseFragment<ComprehensiveContract.View, ComprehensivePresenter> implements ComprehensiveContract.View {
     private RecyclerView mComprehensiveRecycle;
-    private int tag=0;
+    private int tag;
     public ComprehensiveFragment (){
         this.tag=getArguments().getInt("tag",0);
     }

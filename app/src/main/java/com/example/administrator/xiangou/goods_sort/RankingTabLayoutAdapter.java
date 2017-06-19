@@ -14,7 +14,6 @@ import com.example.administrator.xiangou.R;
 
 import java.util.List;
 
-
 /**
  * Created by zhouzongyao on 2017/2/7.
  */

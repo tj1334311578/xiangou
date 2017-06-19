@@ -156,8 +156,10 @@ public class SimpleGoodsDetailsPresenter extends BasePresenterImpl<SimpleGoodsDe
                             couponBean.setCoupon_id(CouponsArray.getJSONObject(i).getInt("coupon_id"));
                             couponBean.setMoney(CouponsArray.getJSONObject(i).getString("money"));
                             couponBean.setCondition(CouponsArray.getJSONObject(i).getString("condition"));
-//                            couponBean.setUse_start_time(CouponsArray.getJSONObject(i).getString("use_start_time"));//为空null报1000错误
-//                            couponBean.setUse_end_time(CouponsArray.getJSONObject(i).getString("use_end_time"));
+                            if (!CouponsArray.getJSONObject(i).get("use_start_time").toString().equals("null")&&!CouponsArray.getJSONObject(i).get("use_end_time").toString().equals("null")) {
+                                couponBean.setUse_start_time(CouponsArray.getJSONObject(i).getString("use_start_time"));//为空null报1000错误
+                                couponBean.setUse_end_time(CouponsArray.getJSONObject(i).getString("use_end_time"));
+                            }
                             couponBean.setIs_get(CouponsArray.getJSONObject(i).getInt("is_get"));
                             coupons.add(couponBean);
                         }

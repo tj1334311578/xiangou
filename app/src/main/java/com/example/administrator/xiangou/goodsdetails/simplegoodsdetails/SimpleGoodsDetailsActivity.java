@@ -354,10 +354,11 @@ public class SimpleGoodsDetailsActivity extends MVPBaseActivity<SimpleGoodsDetai
         attentionquantity_Tv.setText("关注量"+data.getData().getFavorite()+"人");
         salesvolume_Tv.setText("销量"+data.getData().getSales_sum()+"件");
 
-        Log.e("fieff", "loadDetialsShow: "+"添加商店logo图片" );
+        Log.e("fieff", "loadDetialsShow: "+"添加商店logo图片" +"data.getData().getStore_total_sale():"+data.getData().getStore_total_sale().toString());
         //设置店铺销量和关注量
         totalsales_Tv.setText(data.getData().getStore_total_sale());
-        Log.e("comment", "loadDetialsShow: "+data.getData().getComment().size()+"\n"+data.getData().getComment().toString());
+        Log.e("fieff", "loadDetialsShow: "+"添加商店logo图片" );
+//        Log.e("comment", "loadDetialsShow: "+data.getData().getComment().size()+"\n"+data.getData().getComment().toString());//无comment属性报1000错误
         attention_Tv.setText(data.getData().getStore_follow()+"");
         if (data.getData().getComment()!=null&&data.getData().getComment().size()>0) {
             Log.e("comment", "loadDetialsShow: "+data.getData().getComment().size() );

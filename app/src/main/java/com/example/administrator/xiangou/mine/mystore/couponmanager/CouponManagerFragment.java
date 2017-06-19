@@ -75,7 +75,7 @@ public class CouponManagerFragment extends MVPBaseFragment<CouponManagerContract
             Log.e("ysss", "dataToView: "+couponDatas.toString() );
             data=couponDatas.getData();
         }
-        CouponManagerAdapter adapter=new CouponManagerAdapter(getContext(),data,tag);
+        final CouponManagerAdapter adapter=new CouponManagerAdapter(getContext(),data,tag);
         recycle.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
         recycle.setAdapter(adapter);
         recycle.addItemDecoration(new ItemIntervalDecoration(0,-5,0,0));

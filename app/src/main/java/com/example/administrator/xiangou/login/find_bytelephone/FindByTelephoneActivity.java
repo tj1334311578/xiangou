@@ -147,6 +147,7 @@ public class FindByTelephoneActivity extends MVPBaseActivity<FindByTelephoneCont
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        countDownTimerUtils.cancel();
+        if (countDownTimerUtils!=null)
+            countDownTimerUtils.cancel();
     }
 }

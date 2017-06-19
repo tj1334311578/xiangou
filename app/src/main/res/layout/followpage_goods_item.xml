@@ -17,7 +17,7 @@
         android:background="@drawable/circlebg_checkbox"/>
     <ImageView
         android:layout_width="99dp"
-        android:src="@mipmap/girl_h"
+        android:src="@mipmap/nodata_bgimg"
         android:scaleType="fitXY"
         android:id="@+id/follow_goods_item_img"
         android:layout_height="83dp"

@@ -43,19 +43,33 @@ public class CustomTabLayoutAdapter extends FragmentPagerAdapter {
         return list_fragment.size();
     }
 
-    //用自定义的布局换掉tablayout的tab布局
-    public View getTabItemView(int position) {
+    /**
+     * 用自定义的布局换掉tablayout的tab布局
+     * @param position tab's position
+     * @param needFirst default is true,when position=0,the imageview is visible
+     * @return
+     */
+    public View getTabItemView(int position,boolean needFirst) {
         View view = LayoutInflater.from(mContext).inflate(R.layout.tab_item_nearby,null);
         mTabTv = (TextView) view.findViewById(R.id.tv_title_tab);
         mTabTv.setText(tabs[position]);
         mTabV = view.findViewById(R.id.title_tab_line);
         mTabV.setTag(position);
 //        mTabTv.setPaintFlags(Paint.UNDERLINE_TEXT_FLAG);//下划线
-        if (position!=0){
+        if (needFirst){
+            if (position!=0){
+                mTabIv = (ImageView) view.findViewById(R.id.iv_title_tab);
+                mTabIv.setVisibility(View.GONE);
+            }
+        }else {
             mTabIv = (ImageView) view.findViewById(R.id.iv_title_tab);
             mTabIv.setVisibility(View.GONE);
         }
         return view;
+    }
+    //一个参数
+    public View getTabItemView(int position) {
+        return getTabItemView(position,true);
     }
 }
 

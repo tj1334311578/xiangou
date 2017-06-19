@@ -127,7 +127,7 @@
     <com.example.administrator.xiangou.tool.CustomImageView
         android:layout_width="121dp"
         android:layout_marginTop="109dp"
-        android:src="@drawable/girl_v"
+        android:src="@drawable/nodata_bgimg"
         app:civ_type="TYPE_ROUND"
         app:civ_roundradius="5"
         android:layout_marginStart="30dp"

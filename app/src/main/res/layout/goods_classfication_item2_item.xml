@@ -11,7 +11,7 @@
         android:layout_height="69dp"
         android:scaleType="fitXY"
         android:id="@+id/classfication_item2_item_img"
-        android:src="@mipmap/girl_h"
+        android:src="@mipmap/nodata_bgimg"
         />
     <TextView
         android:layout_width="74dp"

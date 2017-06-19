@@ -14,7 +14,7 @@
         android:adjustViewBounds="true"
         android:id="@+id/civ_cart_recycle"
         app:civ_type="TYPE_CIRCLE"
-        android:src="@mipmap/girl_v"
+        android:src="@mipmap/nodata_bgimg"
         android:scaleType="centerCrop"/>
     <TextView
         android:layout_width="wrap_content"

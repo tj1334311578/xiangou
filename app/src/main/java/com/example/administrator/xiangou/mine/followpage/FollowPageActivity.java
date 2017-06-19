@@ -83,7 +83,7 @@ public class FollowPageActivity extends MVPBaseActivity<FollowPageContract.View,
         for (int i = 0; i < tabTitles.length; i++) {
             TabLayout.Tab tab = mTabLayout.getTabAt(i);
             if (tab != null) {
-                tab.setCustomView(mLayoutAdapter.getTabItemView(i));
+                tab.setCustomView(mLayoutAdapter.getTabItemView(i,false));
                 if (tab.getCustomView() != null) {
                     View tabView = (View) tab.getCustomView().getParent();
                     tabView.setTag("tab" + i);
@@ -131,7 +131,7 @@ public class FollowPageActivity extends MVPBaseActivity<FollowPageContract.View,
 
     @Override
     public void sendFialRequest(String message) {
-        showToast(message);
+        showToast("error:"+message);
     }
 
     @Override
@@ -141,23 +141,20 @@ public class FollowPageActivity extends MVPBaseActivity<FollowPageContract.View,
                 finish();
                 break;
             case R.id.setting_head_right:
-                isEdit[mCurrentPosition] = !isEdit[mCurrentPosition];
-                if (isEdit[mCurrentPosition]){
-                    SaveTv.setText("完成");
-                    cancelFollowBtn.setVisibility(View.VISIBLE);
-                    cancelFollowBtn.setClickable(true);
-                }else {
-                    SaveTv.setText("编辑");
-                    cancelFollowBtn.setVisibility(View.GONE);
-                }
                 switch (mCurrentPosition){
                     case 0:
-                        if (mCallEditGoodsFoolow!=null)
-                            mCallEditGoodsFoolow.notifyEditGoodsFoolow(isEdit[mCurrentPosition]);
+                        if (mGoodsFragment.isHasData()){
+                            changeEidtStatus();
+                        }else {
+                            showToast("数据加载中请稍等！");
+                        }
                         break;
                     case 1:
-                        if (mCallEditStoresFoolow!=null)
-                            mCallEditStoresFoolow.notifyEditStoresFoolow(isEdit[mCurrentPosition]);
+                        if (mStoreFragment.isHasData()){
+                            changeEidtStatus();
+                        }else {
+                            showToast("数据加载中请稍等！");
+                        }
                         break;
                 }
                 break;
@@ -178,16 +175,38 @@ public class FollowPageActivity extends MVPBaseActivity<FollowPageContract.View,
         }
     }
 
+    private void changeEidtStatus(){
+        isEdit[mCurrentPosition] = !isEdit[mCurrentPosition];
+        if (isEdit[mCurrentPosition]){
+            SaveTv.setText("完成");
+            cancelFollowBtn.setVisibility(View.VISIBLE);
+            cancelFollowBtn.setClickable(true);
+        }else {
+            SaveTv.setText("编辑");
+            cancelFollowBtn.setVisibility(View.GONE);
+        }
+        switch (mCurrentPosition){
+            case 0:
+                if (mCallEditGoodsFoolow!=null)
+                    mCallEditGoodsFoolow.notifyEditGoodsFoolow(isEdit[mCurrentPosition]);
+                break;
+            case 1:
+                if (mCallEditStoresFoolow!=null)
+                    mCallEditStoresFoolow.notifyEditStoresFoolow(isEdit[mCurrentPosition]);
+                break;
+        }
+    }
+
     @Override
     public void cancelGoodsSuccess(String msg) {
-
-        showToast(msg);
+    mCallEditGoodsFoolow.notifyRemoveGoods();
+        showToast("cancelGoodsSuccess:"+msg);
     }
 
     @Override
     public void cancelStoresSuccess(String msg) {
         mCallEditStoresFoolow.notifyRemoveStore();
-        showToast(msg);
+        showToast("cancelStoresSuccess:"+msg);
     }
 
     /**

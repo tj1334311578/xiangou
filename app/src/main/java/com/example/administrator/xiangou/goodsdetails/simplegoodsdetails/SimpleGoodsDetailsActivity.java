@@ -126,7 +126,7 @@ public class SimpleGoodsDetailsActivity extends MVPBaseActivity<SimpleGoodsDetai
         //设置指示器位置（当banner模式中有指示器时）
         banner.setIndicatorGravity(BannerConfig.CENTER);
         banner.setImageLoader(new GlideImageLoader());
-//        banner.invalidateDrawable(getResources().getDrawable(R.mipmap.girl_h));
+//        banner.invalidateDrawable(getResources().getDrawable(R.mipmap.nodata_bgimg));
         banner.setImages(imgs);
         //设置banner动画效果
         banner.setBannerAnimation(Transformer.Default);

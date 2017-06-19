@@ -2,7 +2,6 @@ package com.example.administrator.xiangou.mine.setting.modifypassword;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ImageView;
@@ -10,8 +9,6 @@ import android.widget.TextView;
 
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.tool.BaseActivity;
-
-import org.w3c.dom.Text;
 
 /**
  * 作者： tj on 2017/6/14.
@@ -56,7 +53,7 @@ public class HintMessageActivity extends BaseActivity{
                 break;
         }
         if (code==200){
-            hint_img.setImageResource(R.drawable.girl_v);
+            hint_img.setImageResource(R.drawable.nodata_bgimg);
         }else{
             hint_img.setImageResource(R.drawable.error);
         }

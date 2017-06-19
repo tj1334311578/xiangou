@@ -8,7 +8,7 @@
     <ImageView
         android:layout_width="99dp"
         android:layout_height="83dp"
-        android:src="@mipmap/girl_h"
+        android:src="@mipmap/nodata_bgimg"
         android:id="@+id/footprint_item_img"
         android:scaleType="fitXY"
         />

@@ -20,7 +20,7 @@
             android:layout_height="81dp"
             app:civ_type="TYPE_CIRCLE"
             android:id="@+id/seller_center_userImg"
-            android:src="@mipmap/girl_h"/>
+            android:src="@mipmap/nodata_bgimg"/>
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

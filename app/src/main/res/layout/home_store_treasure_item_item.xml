@@ -7,7 +7,7 @@
     <com.example.administrator.xiangou.tool.SelectImageView
         android:layout_width="168dp"
         android:layout_height="165dp"
-        android:src="@mipmap/girl_v"
+        android:src="@mipmap/nodata_bgimg"
         app:ImageType="TYPE_ROUND"
         app:ImageRoundRadius="3dp"
         android:scaleType="fitXY"

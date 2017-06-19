@@ -17,7 +17,7 @@
     <com.example.administrator.xiangou.tool.CustomImageView
         android:layout_width="168dp"
         android:layout_height="165dp"
-        android:src="@mipmap/girl_v"
+        android:src="@mipmap/nodata_bgimg"
         app:civ_type="TYPE_ROUND"
         app:civ_roundradius="5"
         android:scaleType="centerInside"

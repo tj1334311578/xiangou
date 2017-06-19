@@ -59,9 +59,9 @@ public class WaitDeliveryFragment extends MVPBaseFragment<WaitDeliveryContract.V
         //可进行网络数据获取
         lists=new ArrayList<>();
         List<DeliveryItemBean> items=new ArrayList<>();
-        items.add(new DeliveryItemBean(R.mipmap.girl_h,"修身纠纷和UIiOS藕粉发顺丰判罚 南非农夫三金佛山念佛是积分搜哦积分是你佛","S","白色+灰色",179.10,100.00,1));
-        items.add(new DeliveryItemBean(R.mipmap.girl_h,"修身纠纷和UIiOS藕粉发顺丰判罚 南非农夫三金佛山念佛是积分搜哦积分是你佛","S","白色+灰色",179.10,100.00,2));
-        items.add(new DeliveryItemBean(R.mipmap.girl_h,"修身纠纷和UIiOS藕粉发顺丰判罚 南非农夫三金佛山念佛是积分搜哦积分是你佛","S","白色+灰色",179.10,100.00,1));
+        items.add(new DeliveryItemBean(R.mipmap.nodata_bgimg,"修身纠纷和UIiOS藕粉发顺丰判罚 南非农夫三金佛山念佛是积分搜哦积分是你佛","S","白色+灰色",179.10,100.00,1));
+        items.add(new DeliveryItemBean(R.mipmap.nodata_bgimg,"修身纠纷和UIiOS藕粉发顺丰判罚 南非农夫三金佛山念佛是积分搜哦积分是你佛","S","白色+灰色",179.10,100.00,2));
+        items.add(new DeliveryItemBean(R.mipmap.nodata_bgimg,"修身纠纷和UIiOS藕粉发顺丰判罚 南非农夫三金佛山念佛是积分搜哦积分是你佛","S","白色+灰色",179.10,100.00,1));
         lists.add(new DeliveryBean("呆呆画质品牌店","交易成功",items,2,171.01,10.00));
         lists.add(new DeliveryBean("呆呆画质品牌店","等待付款",items,2,171.01,10.00));
         lists.add(new DeliveryBean("呆呆画质品牌店","买家已付款",items,2,171.01,10.00));

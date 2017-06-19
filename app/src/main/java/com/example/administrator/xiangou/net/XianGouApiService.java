@@ -1,9 +1,7 @@
 package com.example.administrator.xiangou.net;
 
 import com.example.administrator.xiangou.classification.bean.FirstLevelBean;
-import com.example.administrator.xiangou.goods_sort.storehome.HomePageBean;
 import com.example.administrator.xiangou.goodsdetails.simplegoodsdetails.goodsbean.CommentBean;
-import com.example.administrator.xiangou.goodsdetails.simplegoodsdetails.goodsbean.SimpleGoodsDetialBean;
 import com.example.administrator.xiangou.goodsdetails.simplegoodsdetails.goodsbean.commenttempBean;
 import com.example.administrator.xiangou.home.model.HomeDataBean;
 import com.example.administrator.xiangou.login.Captcha;
@@ -59,7 +57,7 @@ public interface XianGouApiService {
 //    String IMGBASEURL = "http://192.168.0.123";
     String mBASEURL = "https://www.xangou.cn/index.php/";
     String IMGBASEURL = "https://www.xangou.cn";
-    //     http://192.168.0.123/  https://www.xangou.cn/index.php/api/Collect/collect_store
+    //     http://192.168.0.123/  https://www.xangou.cn/index.php/
 /***********首页接口************/
     @POST("api/Index/index/")
     Observable<HomeDataBean> getHomePageData(@Query("map_x") String map_x,

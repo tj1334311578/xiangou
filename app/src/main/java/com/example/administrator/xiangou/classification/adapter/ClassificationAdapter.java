@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.AdapterView;
 
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.base.AutoRVAdapter;
@@ -22,6 +23,15 @@ import java.util.List;
 public class ClassificationAdapter extends AutoRVAdapter implements RVBaseAdapter.OnItemViewClickListener{
     private static Context context;
     private FirstLevelBean mdata;
+    public OnitemClickListener itemClickListener;
+    public interface OnitemClickListener{
+        void setOnitemclicklistener(int position, int cat_id);
+    }
+
+    public void setItemClickListener(OnitemClickListener itemClickListener) {
+        this.itemClickListener = itemClickListener;
+    }
+
     public ClassificationAdapter(Context context, FirstLevelBean data) {
         super(context);
         this.context=context;
@@ -45,7 +55,14 @@ public class ClassificationAdapter extends AutoRVAdapter implements RVBaseAdapte
         RecyclerView recy=holder.getRecycleView(R.id.goods_classfication_item1_recycle);
         recy.setLayoutManager(new GridLayoutManager(context,3, GridLayoutManager.VERTICAL,false));
         recy.addItemDecoration(new ItemIntervalDecoration(0,10,0,20));
-        recy.setAdapter(new ClassificationAdapter2(context,mdata.getData().getCate()));
+        ClassificationAdapter2 adapter2;
+        recy.setAdapter(adapter2=new ClassificationAdapter2(context,mdata.getData().getCate()));
+        adapter2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                itemClickListener.setOnitemclicklistener(position,mdata.getData().getCate().get(position).getCat_id());
+            }
+        });
     }
 
     @Override

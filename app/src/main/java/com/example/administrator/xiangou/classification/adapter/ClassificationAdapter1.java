@@ -5,6 +5,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.AdapterView;
 
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.base.AutoRVAdapter;
@@ -23,6 +24,16 @@ import java.util.List;
 public class ClassificationAdapter1 extends AutoRVAdapter implements RVBaseAdapter.OnItemViewClickListener{
     private static Context context;
     private FirstLevelBean mdata;
+    public ClassificationAdapter1.OnitemClickListener OnitemClickListener;
+    public interface OnitemClickListener{
+        void setrecommendItemClickListener(int position, int cat_id);
+        void setHot_cateItemClickListener(int position, int cat_id);
+    }
+
+    public void setOnitemClickListener(ClassificationAdapter1.OnitemClickListener onitemClickListener) {
+        OnitemClickListener = onitemClickListener;
+    }
+
     public ClassificationAdapter1(Context context, FirstLevelBean data) {
         super(context);
         this.context=context;
@@ -80,7 +91,14 @@ public class ClassificationAdapter1 extends AutoRVAdapter implements RVBaseAdapt
 
         RecyclerView recy=holder.getRecycleView(R.id.goods_classfication_item2_recycle);
         recy.setLayoutManager(new GridLayoutManager(context,3,GridLayoutManager.VERTICAL,false));
-        recy.setAdapter(new Classificationitem2Adapter(context,mdata.getData().getRecommend()));
+        Classificationitem2Adapter RecommendAdapter;
+        recy.setAdapter(RecommendAdapter=new Classificationitem2Adapter(context,mdata.getData().getRecommend()));
+        RecommendAdapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {//推荐item监听
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                OnitemClickListener.setrecommendItemClickListener(position,mdata.getData().getRecommend().get(position).getCat_id());
+            }
+        });
     }
 
     private void bindViewHolder1(ViewHolder holder) {
@@ -88,7 +106,14 @@ public class ClassificationAdapter1 extends AutoRVAdapter implements RVBaseAdapt
         RecyclerView recy=holder.getRecycleView(R.id.goods_classfication_recycle);
         recy.addItemDecoration(new ItemIntervalDecoration(10,5,10,30));
         recy.setLayoutManager(new GridLayoutManager(context,3, LinearLayoutManager.VERTICAL,false));
-        recy.setAdapter(new ClassificationitemAdapter(context,mdata.getData().getHot_cate()));
+        ClassificationitemAdapter adapter;
+        recy.setAdapter(adapter=new ClassificationitemAdapter(context,mdata.getData().getHot_cate()));
+        adapter.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                OnitemClickListener.setHot_cateItemClickListener(position,mdata.getData().getHot_cate().get(position).getCat_id());
+            }
+        });
     }
 
 

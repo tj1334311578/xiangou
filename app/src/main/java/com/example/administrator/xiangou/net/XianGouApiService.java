@@ -192,7 +192,7 @@ public interface XianGouApiService {
     Observable<ResponseBody> callHomePagerData(@Query("did") int storeId,//店铺did
                                                @Query("user_id") int userId);//若用户已经登录的状态下传过来
     //商品详情页接口
-    // 出现请求未知异常，可获得数据，但不能进入rxjava的next代码，直接跳转到error方法异常为code:1000未知异常（待解决）
+    // 出现请求未知异常，可获得数据，但不能进入rxjava的next代码，直接跳转到error方法异常为code:1000未知异常（待解决）(解决---6.19)
     @POST("Api/Good/goods_detail/")
     Observable<ResponseBody> callSimpleGoodsDetails(@Query("goods_id") int goods_id,
 //                                                @Query("user_id") int user_id,
@@ -291,11 +291,19 @@ public interface XianGouApiService {
                                                  @Query("type") int type);//必填1
 
     //分类列表
-    //    @GET("/Api/Stores/getcate")
     @POST("api/good/goods_cate")
     Observable<FirstLevelBean> callClassification(@Query("cat_id") int cat_id );//一级分类不传默认为推荐
-
-
+    //分类列表查询二级页面 商品列表  /Api/Good/goodsList
+    @POST("Api/Good/goodsList")
+    Observable<ResponseBody> callClassificationSort(@Query("cat_id") int cat_id,//商品分类id(从哪个分类进去就传不是就不传)
+                                                    @Query("page_no") int page_no,//页数不传默认取第一页的数据
+                                                    @Query("is_new") int is_new,//商品列表点击新品is_new传1
+                                                    @Query("name") String name,//搜索框填写的内容模糊查询
+                                                    @Query("map_x") String map_x,//用户经度(不传默认成都某个经度)
+                                                    @Query("map_y") String map_y,//用户纬度(不传默认成都纬度)
+                                                    @Query("sort") String sort,//按照销量排序传sales_sum 价格排序传shop_price
+                                                    @Query("sort_asc") String sort_asc//价格排升续asc 价格降续不用传
+                                                    );
     //进入修改或添加商品
     @POST("Api/Stores/into_add/")
     Observable<ResponseBody> callIntoAddGoodsPage(@Query("did") int did,//店铺id

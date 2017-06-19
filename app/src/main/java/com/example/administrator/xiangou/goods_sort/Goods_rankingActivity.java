@@ -45,10 +45,10 @@ public class Goods_rankingActivity extends BaseActivity {
     private void initTabFragViews() {
         tabTitles = new String[]{"综合", "销量", "新品", "价格"};
         mTabFragList = new ArrayList<>();
-        mTabFragList.add(new ComprehensiveFragment());
-        mTabFragList.add(new ComprehensiveFragment());
-        mTabFragList.add(new ComprehensiveFragment());
-        mTabFragList.add(new ComprehensiveFragment());
+        mTabFragList.add(new ComprehensiveFragment(0));
+        mTabFragList.add(new ComprehensiveFragment(1));
+        mTabFragList.add(new ComprehensiveFragment(2));
+        mTabFragList.add(new ComprehensiveFragment(3));
         mTabLayout.setTabMode(TabLayout.MODE_FIXED);
         mLayoutAdapter = new RankingTabLayoutAdapter(this, getSupportFragmentManager(), mTabFragList, tabTitles);
         mViewPager.setAdapter(mLayoutAdapter);

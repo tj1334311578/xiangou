@@ -21,9 +21,10 @@ public class ClassificationFragment extends MVPBaseFragment<ClassificationContra
 	private RecyclerView recyclerView;
 	private int cat_id;
 
-	public ClassificationFragment(int cat_id) {
+	public ClassificationFragment() {
 		super();
-		this.cat_id=cat_id;
+//		this.cat_id=cat_id;
+		cat_id=getArguments().getInt("cat_id",0);
 	}
 
 	@Nullable

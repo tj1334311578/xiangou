@@ -29,7 +29,7 @@ import java.util.List;
 public class CouponManagerFragment extends MVPBaseFragment<CouponManagerContract.View,CouponManagerPresenter> implements CouponManagerContract.View {
     private RecyclerView recycle;
     int tag;
-    public CouponManagerFragment(int tag){
+    public CouponManagerFragment(){
         this.tag=tag;
     }
     @Nullable

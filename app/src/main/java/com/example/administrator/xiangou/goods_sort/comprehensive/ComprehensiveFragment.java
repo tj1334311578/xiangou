@@ -31,9 +31,9 @@ import java.util.List;
 
 public class ComprehensiveFragment extends MVPBaseFragment<ComprehensiveContract.View, ComprehensivePresenter> implements ComprehensiveContract.View {
     private RecyclerView mComprehensiveRecycle;
-    private int tag;
-    public ComprehensiveFragment (int tag){
-        this.tag=tag;
+    private int tag=0;
+    public ComprehensiveFragment (){
+        this.tag=getArguments().getInt("tag",0);
     }
     public static int page_no=0;
     public static int is_new=0;

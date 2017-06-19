@@ -184,7 +184,10 @@ public class ClassificationTabActivity extends BaseActivity {
             if (index==0){
             fragment=new ClassificationFragment1();
         }else{
-            fragment = new ClassificationFragment(lists_id.get(index-1));
+                Bundle b=new Bundle();
+                b.putInt("cat_id",lists_id.get(index-1));
+                fragment = new ClassificationFragment();
+                fragment.setArguments(b);
         }
             Bundle bundle = new Bundle();
             bundle.putInt("index", index);

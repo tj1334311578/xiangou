@@ -27,6 +27,15 @@ public class FollowGoodsFragment extends MVPBaseFragment<FollowGoodsContract.Vie
     private FollowGoodsAdapter mAdapter;
     private String goodsIds;
     private List<Integer> mSelectGoodsList;
+    private boolean hasData;
+
+    public boolean isHasData() {
+        return hasData;
+    }
+
+    public void setHasData(boolean hasData) {
+        this.hasData = hasData;
+    }
 
     public String getGoodsIds() {
         return goodsIds;
@@ -56,12 +65,7 @@ public class FollowGoodsFragment extends MVPBaseFragment<FollowGoodsContract.Vie
         super.onCreate(savedInstanceState);
         mGoodsBeanList = new ArrayList<>();
         mSelectGoodsList = new ArrayList<>();
-        mPresenter.getCollectGoodsList(1/*getUser().getUser_id()*/,0,null);
-//        Bundle bundle = getArguments();
-//        if (bundle!=null) {
-//            FollowGoodsBean goodsBean = (FollowGoodsBean) bundle.getSerializable("goods_data");
-//            mGoodsBeanList = goodsBean.getData();
-//        }
+        mPresenter.getCollectGoodsList(getUser().getUser_id(),0,null);
     }
 
     @Nullable
@@ -72,8 +76,8 @@ public class FollowGoodsFragment extends MVPBaseFragment<FollowGoodsContract.Vie
 
     @Override
     public void sendFialRequest(String message) {
-        showBgImg();
         showToast(message);
+        showBgImg();
     }
     private void showBgImg(){
         if (mGoodsBeanList == null && mNodataBgIv !=null){
@@ -113,6 +117,9 @@ public class FollowGoodsFragment extends MVPBaseFragment<FollowGoodsContract.Vie
         for (int i:mSelectGoodsList) {
             mGoodsBeanList.remove(i);
         }
+        if (mGoodsBeanList.size()==0){
+            setHasData(false);
+        }
 //        mAdapter.notifyDataSetChanged();
         updataAdapter();
     }
@@ -130,6 +137,7 @@ public class FollowGoodsFragment extends MVPBaseFragment<FollowGoodsContract.Vie
     @Override
     public void getGoodsListSuccess(FollowGoodsBean data) {
         mGoodsBeanList = data.getData();
+        setHasData(true);
         if (mGoodsBeanList!=null && mNodataBgIv.getVisibility()!=View.GONE){
             mNodataBgIv.setVisibility(View.GONE);
         }

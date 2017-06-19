@@ -21,7 +21,7 @@
         android:adjustViewBounds="true"
         android:id="@+id/follow_store_item_img"
         android:layout_height="wrap_content"
-        android:src="@mipmap/girl_v"
+        android:src="@mipmap/nodata_bgimg"
         android:layout_marginStart="5dp"
         android:layout_toEndOf="@id/follow_store_item_checkbox"
         />

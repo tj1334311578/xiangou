@@ -1,5 +1,7 @@
 package com.example.administrator.xiangou.mine.followpage.followgoods;
 
+import android.util.Log;
+
 import com.example.administrator.xiangou.mvp.BasePresenterImpl;
 import com.example.administrator.xiangou.net.BaseSubscriber;
 import com.example.administrator.xiangou.net.ExceptionHandle;
@@ -21,6 +23,7 @@ public class FollowGoodsPresenter extends BasePresenterImpl<FollowGoodsContract.
                                 break;
                             case 1:
                                 mView.sendFialRequest("用户尚未登录！");
+                                break;
                         }
                     }
 
@@ -31,6 +34,7 @@ public class FollowGoodsPresenter extends BasePresenterImpl<FollowGoodsContract.
 
                     @Override
                     public void onError(ExceptionHandle.ResponeThrowable e) {
+                        Log.e("gstorep", "onError: " + e.toString());
                         mView.sendFialRequest(e.getMessage());
                     }
                 });

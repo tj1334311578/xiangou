@@ -4,7 +4,7 @@
     android:layout_height="wrap_content">
     <ImageView
         android:layout_width="60dp"
-        android:src="@drawable/girl_v"
+        android:src="@drawable/nodata_bgimg"
         android:scaleType="fitXY"
         android:id="@+id/myorder_item_item_img"
         android:layout_height="60dp" />

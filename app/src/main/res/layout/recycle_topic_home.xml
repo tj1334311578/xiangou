@@ -57,7 +57,7 @@
             android:layout_width="match_parent"
             android:layout_height="140dp"
             android:id="@+id/advs_topic_civ"
-            android:src="@mipmap/girl_h"
+            android:src="@mipmap/nodata_bgimg"
             />
         <TextView
             android:layout_width="wrap_content"

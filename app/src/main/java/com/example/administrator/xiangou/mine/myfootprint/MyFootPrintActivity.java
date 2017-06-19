@@ -34,10 +34,10 @@ public class MyFootPrintActivity extends MVPBaseActivity<MyFootPrintContract.Vie
         lists=new ArrayList<>();
         back=findContentView(R.id.footprintpage_back);
         listView=findContentView(R.id.footprintpage_listview,false);
-        lists.add(new FootPrintBean(R.mipmap.girl_h,"积分是奇偶额飞机哦if就饿哦我就佛额佛节佛搜额积分法喔",100,150));
-        lists.add(new FootPrintBean(R.mipmap.girl_h,"积分是奇偶额飞机哦if就饿哦我就佛额佛节佛搜额积分法喔",150,180));
-        lists.add(new FootPrintBean(R.mipmap.girl_h,"积分是奇偶额飞机哦if就饿哦我就佛额佛节佛搜额积分法喔",110,150));
-        lists.add(new FootPrintBean(R.mipmap.girl_h,"积分是奇偶额飞机哦if就饿哦我就佛额佛节佛搜额积分法喔",100,140));
+        lists.add(new FootPrintBean(R.mipmap.nodata_bgimg,"积分是奇偶额飞机哦if就饿哦我就佛额佛节佛搜额积分法喔",100,150));
+        lists.add(new FootPrintBean(R.mipmap.nodata_bgimg,"积分是奇偶额飞机哦if就饿哦我就佛额佛节佛搜额积分法喔",150,180));
+        lists.add(new FootPrintBean(R.mipmap.nodata_bgimg,"积分是奇偶额飞机哦if就饿哦我就佛额佛节佛搜额积分法喔",110,150));
+        lists.add(new FootPrintBean(R.mipmap.nodata_bgimg,"积分是奇偶额飞机哦if就饿哦我就佛额佛节佛搜额积分法喔",100,140));
         listView.setAdapter(new MyFootPrintAdapter(this,lists));
     }
 

@@ -2,10 +2,7 @@ package com.example.administrator.xiangou.tool;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.util.Log;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -29,7 +26,7 @@ public class GlideImageLoader extends ImageLoader {
             @Override
             public void onResourceReady(GlideBitmapDrawable resource, GlideAnimation<? super GlideBitmapDrawable> glideAnimation) {
                 imageView.setImageBitmap(resource.getBitmap());
-                imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+//                imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             }
 
         };

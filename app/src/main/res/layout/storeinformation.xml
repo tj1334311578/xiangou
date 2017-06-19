@@ -34,7 +34,7 @@
         android:layout_below="@id/storeinformation_showInformation"
         android:layout_marginTop="23dp"
         android:layout_marginStart="105dp"
-        android:src="@mipmap/girl_v"/>
+        android:src="@mipmap/nodata_bgimg"/>
     <TextView
         android:layout_width="150dp"
         android:layout_height="25dp"
@@ -101,27 +101,27 @@
           android:layout_width="15dp"
           android:layout_height="15dp"
           android:paddingStart="4dp"
-          android:src="@mipmap/girl_h"/>
+          android:src="@mipmap/nodata_bgimg"/>
       <ImageView
           android:layout_width="15dp"
           android:layout_height="15dp"
           android:paddingStart="4dp"
-          android:src="@mipmap/girl_h"/>
+          android:src="@mipmap/nodata_bgimg"/>
       <ImageView
           android:layout_width="15dp"
           android:layout_height="15dp"
           android:paddingStart="4dp"
-          android:src="@mipmap/girl_h"/>
+          android:src="@mipmap/nodata_bgimg"/>
       <ImageView
           android:layout_width="15dp"
           android:layout_height="15dp"
           android:paddingStart="4dp"
-          android:src="@mipmap/girl_h"/>
+          android:src="@mipmap/nodata_bgimg"/>
       <ImageView
           android:layout_width="15dp"
           android:layout_height="15dp"
           android:paddingStart="4dp"
-          android:src="@mipmap/girl_h"/>
+          android:src="@mipmap/nodata_bgimg"/>
   </LinearLayout>
 <TextView
     android:layout_width="wrap_content"
@@ -166,7 +166,7 @@
         />
     <ImageView
         android:layout_width="175dp"
-        android:src="@mipmap/girl_v"
+        android:src="@mipmap/nodata_bgimg"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:scaleType="fitXY"

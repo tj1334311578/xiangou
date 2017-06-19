@@ -41,7 +41,7 @@
             android:id="@+id/setting_personal_img"
             android:layout_centerVertical="true"
             android:layout_toStartOf="@+id/setting_personal_imageButton"
-            android:src="@drawable/girl_v"
+            android:src="@drawable/nodata_bgimg"
             app:civ_type="TYPE_CIRCLE"
             android:layout_marginEnd="15dp"
             android:scaleType="matrix"

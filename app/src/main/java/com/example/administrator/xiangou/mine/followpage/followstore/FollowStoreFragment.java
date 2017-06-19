@@ -27,6 +27,15 @@ public class FollowStoreFragment extends MVPBaseFragment<FollowStoreContract.Vie
     private List<Integer> mSelectStoresList;
     private String storeIds;
     private int page_no;
+    private boolean hasData;
+
+    public boolean isHasData() {
+        return hasData;
+    }
+
+    public void setHasData(boolean hasData) {
+        this.hasData = hasData;
+    }
 
     public String getStoreIds() {
         return storeIds;
@@ -47,13 +56,12 @@ public class FollowStoreFragment extends MVPBaseFragment<FollowStoreContract.Vie
 //        mCallStoresFollowChanged = (CallStoresFollowChanged) context;
 //}
 
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mBeanList =new ArrayList<>();
         mSelectStoresList =new ArrayList<>();
-        mPresenter.getCollectStoresListApi(1,page_no);//getUser().getUser_id()
+        mPresenter.getCollectStoresListApi(getUser().getUser_id(),page_no);
     }
 
     @Nullable
@@ -64,8 +72,8 @@ public class FollowStoreFragment extends MVPBaseFragment<FollowStoreContract.Vie
 
     @Override
     public void sendFialRequest(String message) {
-        showBgImg();
         showToast(message);
+        showBgImg();
     }
 
     private void showBgImg(){
@@ -100,6 +108,9 @@ public class FollowStoreFragment extends MVPBaseFragment<FollowStoreContract.Vie
         for (int i: mSelectStoresList) {
             mBeanList.remove(i);
         }
+        if (mBeanList.size()==0){
+            setHasData(false);
+        }
 //        mAdapter.notifyDataSetChanged();
         updataAdapter();
     }
@@ -116,6 +127,7 @@ public class FollowStoreFragment extends MVPBaseFragment<FollowStoreContract.Vie
     @Override
     public void getStoresListSuccess(final List<FollowStoreBean.DataBean> data) {
         mBeanList = data;
+        setHasData(true);
         if (mNodataBgIv.getVisibility()!=View.GONE){
             mNodataBgIv.setVisibility(View.GONE);
         }

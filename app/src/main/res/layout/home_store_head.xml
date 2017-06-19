@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:background="@mipmap/girl_h"
+    android:background="@mipmap/nodata_bgimg"
     android:id="@+id/home_store_head_background"
     android:layout_height="110dp">
     <LinearLayout
@@ -65,7 +65,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:id="@+id/home_store_head_storeImage"
-        android:src="@mipmap/girl_v"
+        android:src="@mipmap/nodata_bgimg"
         android:layout_below="@id/home_store_head_searchLl"
         android:layout_alignStart="@id/home_store_head_Return"
         app:ImageType="TYPE_ROUND"

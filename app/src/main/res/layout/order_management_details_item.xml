@@ -9,7 +9,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginStart="15dp"
         android:id="@+id/order_management_details_item_receiver_user_addressimg"
-        android:src="@mipmap/girl_v"/>
+        android:src="@mipmap/nodata_bgimg"/>
 <TextView
     android:layout_width="wrap_content"
     android:layout_height="35dp"
@@ -85,7 +85,7 @@
         app:civ_type="TYPE_ROUND"
         app:civ_roundradius="10"
         android:adjustViewBounds="true"
-        android:src="@drawable/girl_v"
+        android:src="@drawable/nodata_bgimg"
         android:layout_marginTop="10dp"
         android:id="@+id/order_management_details_item_receiver_goods_img"
         android:layout_alignStart="@id/order_management_details_item_receiver_user_addressimg"

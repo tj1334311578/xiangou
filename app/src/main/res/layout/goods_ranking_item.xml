@@ -7,7 +7,7 @@
 <com.example.administrator.xiangou.tool.CustomImageView
     android:layout_width="168dp"
     android:scaleType="fitXY"
-    android:src="@drawable/girl_v"
+    android:src="@drawable/nodata_bgimg"
     android:id="@+id/goods_ranking_item_img"
     app:civ_type="TYPE_ROUND"
     app:civ_roundradius="5"

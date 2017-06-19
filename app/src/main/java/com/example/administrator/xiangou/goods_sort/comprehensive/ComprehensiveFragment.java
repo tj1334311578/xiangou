@@ -55,12 +55,12 @@ public class ComprehensiveFragment extends MVPBaseFragment<ComprehensiveContract
         items.add("新品");
         items.add("爆款");
         items.add("时尚");
-        lists.add(new ComprehensiveBean(R.mipmap.girl_h,"百搭抽绳连帽中长款外套",210.0,500,items));
-        lists.add(new ComprehensiveBean(R.mipmap.girl_h,"百搭抽绳连帽中长款外套",210.0,500,items));
-        lists.add(new ComprehensiveBean(R.mipmap.girl_h,"百搭抽绳连帽中长款外套",210.0,500,items));
-        lists.add(new ComprehensiveBean(R.mipmap.girl_h,"百搭抽绳连帽中长款外套",210.0,500,items));
-        lists.add(new ComprehensiveBean(R.mipmap.girl_h,"百搭抽绳连帽中长款外套",210.0,500,items));
-        lists.add(new ComprehensiveBean(R.mipmap.girl_h,"百搭抽绳连帽中长款外套",210.0,500,items));
+        lists.add(new ComprehensiveBean(R.mipmap.nodata_bgimg,"百搭抽绳连帽中长款外套",210.0,500,items));
+        lists.add(new ComprehensiveBean(R.mipmap.nodata_bgimg,"百搭抽绳连帽中长款外套",210.0,500,items));
+        lists.add(new ComprehensiveBean(R.mipmap.nodata_bgimg,"百搭抽绳连帽中长款外套",210.0,500,items));
+        lists.add(new ComprehensiveBean(R.mipmap.nodata_bgimg,"百搭抽绳连帽中长款外套",210.0,500,items));
+        lists.add(new ComprehensiveBean(R.mipmap.nodata_bgimg,"百搭抽绳连帽中长款外套",210.0,500,items));
+        lists.add(new ComprehensiveBean(R.mipmap.nodata_bgimg,"百搭抽绳连帽中长款外套",210.0,500,items));
         mComprehensiveRecycle.setAdapter(new ComprehensiveAdapter(getContext(),lists));
     }
 

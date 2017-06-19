@@ -29,9 +29,7 @@ public class FollowStorePresenter extends BasePresenterImpl<FollowStoreContract.
                     }
 
                     @Override
-                    public void onFinish() {
-
-                    }
+                    public void onFinish() {}
 
                     @Override
                     public void onError(ExceptionHandle.ResponeThrowable e) {

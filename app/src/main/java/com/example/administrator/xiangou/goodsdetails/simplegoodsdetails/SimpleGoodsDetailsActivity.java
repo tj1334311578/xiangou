@@ -2,7 +2,6 @@ package com.example.administrator.xiangou.goodsdetails.simplegoodsdetails;
 
 
 import android.app.Dialog;
-import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -44,13 +43,8 @@ import com.youth.banner.Transformer;
 import java.util.ArrayList;
 import java.util.List;
 
-
-/**
- * MVPPlugin
- *  邮箱 784787081@qq.com
- */
-
-public class SimpleGoodsDetailsActivity extends MVPBaseActivity<SimpleGoodsDetailsContract.View, SimpleGoodsDetailsPresenter> implements SimpleGoodsDetailsContract.View {
+public class SimpleGoodsDetailsActivity extends MVPBaseActivity<SimpleGoodsDetailsContract.View, SimpleGoodsDetailsPresenter>
+        implements SimpleGoodsDetailsContract.View {
     private int goods_id;
     private Banner banner;
     private ImageView back,share,storelogo;
@@ -77,6 +71,7 @@ public class SimpleGoodsDetailsActivity extends MVPBaseActivity<SimpleGoodsDetai
         Log.e("tga", "onCreate: "+goods_id );
         banner=findContentView(R.id.simple_goodsdetails_banner,false);
         back=findContentView(R.id.simple_goodsdetails_return);
+        findContentView(R.id.putin_cart_goodsdetail_tv);
         //分享按钮
         share=findContentView(R.id.simple_goodsdetails_share);
         goodsDetailsdescription=findContentView(R.id.simple_goodsdetails_description,false);
@@ -160,6 +155,9 @@ public class SimpleGoodsDetailsActivity extends MVPBaseActivity<SimpleGoodsDetai
                 if (mData!=null){
                     startNewUICarryStr(StoreHomeActivity.class,"store_id",mData.getData().getStore_id());
                 }
+                break;
+            case R.id.putin_cart_goodsdetail_tv://加入购物车
+
                 break;
         }
     }

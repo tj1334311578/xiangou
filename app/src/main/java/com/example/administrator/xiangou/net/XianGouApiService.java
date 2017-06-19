@@ -57,7 +57,7 @@ public interface XianGouApiService {
 //    String IMGBASEURL = "http://192.168.0.123";
     String mBASEURL = "https://www.xangou.cn/index.php/";
     String IMGBASEURL = "https://www.xangou.cn";
-    //     http://192.168.0.123/  https://www.xangou.cn/index.php/
+    //     http://192.168.0.123/  https://www.xangou.cn/index.php/api/Collect/collect_store
 /***********首页接口************/
     @POST("api/Index/index/")
     Observable<HomeDataBean> getHomePageData(@Query("map_x") String map_x,
@@ -178,9 +178,14 @@ public interface XianGouApiService {
 
 /***********购物车接口************/
 
+    //获取购物车列表
+    @POST("api/Cart/cartLists/")
+    Observable getCartListApi(@Query("user_id") int user_id,
+                           @Query("map_x") String map_x,
+                           @Query("map_y") String map_y);
     //添加商品到购物车
     @POST("api/Cart/addCart/")
-    Observable<Captcha> callCartAddGoods(@Field("user_id") int user_id,
+    Observable<Captcha> addGoodsToCartApi(@Field("user_id") int user_id,
                                          @Field("goods_id") int goods_id,
                                          @Field("goods_num") int goods_num,
                                          @Field("goods_spec") int[] goods_spec

@@ -19,21 +19,17 @@ import com.example.administrator.xiangou.mvp.MVPBaseFragment;
 import com.example.administrator.xiangou.net.XianGouApiService;
 import com.example.administrator.xiangou.tool.GlideImageLoader;
 import com.example.administrator.xiangou.tool.ItemIntervalDecoration;
-import com.youth.banner.loader.ImageLoader;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * MVPPlugin
- *  邮箱 784787081@qq.com
+ * 分类sort排序
  */
 
 public class ComprehensiveFragment extends MVPBaseFragment<ComprehensiveContract.View, ComprehensivePresenter> implements ComprehensiveContract.View {
     private RecyclerView mComprehensiveRecycle;
-    private int tag=0;
-    public ComprehensiveFragment (){
-    }
+    private int tag;
 
     @Override
     public void onStart() {

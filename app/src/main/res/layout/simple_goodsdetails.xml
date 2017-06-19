@@ -64,6 +64,7 @@
             />
         <TextView
             android:layout_width="80dp"
+            android:id="@+id/putin_cart_goodsdetail_tv"
             android:text="加入购物车"
             android:gravity="center"
             android:background="@color/whiteBgColor"
@@ -96,7 +97,7 @@
             app:indicator_drawable_selected="@mipmap/product_details_marker_icon_selected"
             app:indicator_drawable_unselected="@mipmap/product_details_marker_icon_normal"
             android:layout_width="match_parent"
-            android:layout_height="381dp"></com.youth.banner.Banner>
+            android:layout_height="360dp"></com.youth.banner.Banner>
         <ImageView
             android:layout_width="26dp"
             android:layout_height="26dp"

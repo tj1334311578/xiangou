@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.classification.adapter.ClassificationAdapter;
@@ -29,6 +28,7 @@ public class ClassificationFragment extends MVPBaseFragment<ClassificationContra
 	@Override
 	public void onStart() {
 		super.onStart();
+		if (getArguments()!=null)
 		cat_id=getArguments().getInt("cat_id",0);
 	}
 

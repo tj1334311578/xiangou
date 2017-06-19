@@ -38,7 +38,9 @@ public class ComprehensiveFragment extends MVPBaseFragment<ComprehensiveContract
     @Override
     public void onStart() {
         super.onStart();
-        this.tag=getArguments().getInt("tag",0);
+        if (getArguments()!=null) {
+            this.tag = getArguments().getInt("tag", 0);
+        }
     }
 
     public static int page_no=0;

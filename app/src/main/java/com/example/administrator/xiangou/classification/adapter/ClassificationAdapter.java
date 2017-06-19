@@ -50,6 +50,7 @@ public class ClassificationAdapter extends AutoRVAdapter implements RVBaseAdapte
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+        if (mdata.getData().getAdv()!=null)
         new GlideImageLoader().displayImage(context, XianGouApiService.IMGBASEURL +mdata.getData().getAdv().getImg_url(),holder.getImgeView(R.id.goods_item1_img));
 
         RecyclerView recy=holder.getRecycleView(R.id.goods_classfication_item1_recycle);

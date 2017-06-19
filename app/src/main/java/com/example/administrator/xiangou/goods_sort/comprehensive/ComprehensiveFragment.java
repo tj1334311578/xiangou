@@ -16,7 +16,10 @@ import android.widget.TextView;
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.base.AutoRVAdapter;
 import com.example.administrator.xiangou.mvp.MVPBaseFragment;
+import com.example.administrator.xiangou.net.XianGouApiService;
+import com.example.administrator.xiangou.tool.GlideImageLoader;
 import com.example.administrator.xiangou.tool.ItemIntervalDecoration;
+import com.youth.banner.loader.ImageLoader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +31,17 @@ import java.util.List;
 
 public class ComprehensiveFragment extends MVPBaseFragment<ComprehensiveContract.View, ComprehensivePresenter> implements ComprehensiveContract.View {
     private RecyclerView mComprehensiveRecycle;
+    private int tag;
+    public ComprehensiveFragment (int tag){
+        this.tag=tag;
+    }
+    public static int page_no=0;
+    public static int is_new=0;
+    public static String name=null;
+    public static String sort=null;
+    public static String sort_asc=null;
+    public static boolean isasc=false;//是否升序
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -50,24 +64,56 @@ public class ComprehensiveFragment extends MVPBaseFragment<ComprehensiveContract
         mComprehensiveRecycle= (RecyclerView) mContextView.findViewById(R.id.recycleview_style_recycle);
         mComprehensiveRecycle.setLayoutManager(new GridLayoutManager(getContext(),2));
         mComprehensiveRecycle.addItemDecoration(new ItemIntervalDecoration(0,4,0,10));
-        List<ComprehensiveBean> lists=new ArrayList<>();
-        List<String> items=new ArrayList<>();
-        items.add("新品");
-        items.add("爆款");
-        items.add("时尚");
-        lists.add(new ComprehensiveBean(R.mipmap.nodata_bgimg,"百搭抽绳连帽中长款外套",210.0,500,items));
-        lists.add(new ComprehensiveBean(R.mipmap.nodata_bgimg,"百搭抽绳连帽中长款外套",210.0,500,items));
-        lists.add(new ComprehensiveBean(R.mipmap.nodata_bgimg,"百搭抽绳连帽中长款外套",210.0,500,items));
-        lists.add(new ComprehensiveBean(R.mipmap.nodata_bgimg,"百搭抽绳连帽中长款外套",210.0,500,items));
-        lists.add(new ComprehensiveBean(R.mipmap.nodata_bgimg,"百搭抽绳连帽中长款外套",210.0,500,items));
-        lists.add(new ComprehensiveBean(R.mipmap.nodata_bgimg,"百搭抽绳连帽中长款外套",210.0,500,items));
-        mComprehensiveRecycle.setAdapter(new ComprehensiveAdapter(getContext(),lists));
+        int cat_id=getActivity().getIntent().getIntExtra("cat_id",0);
+        switch (tag){
+            case 0:
+                page_no=0;
+                is_new=0;
+                name=null;
+                sort=null;
+                sort_asc=null;
+                mPresenter.callClassificationSort(cat_id,page_no,is_new,name,null,null,sort,sort_asc);
+                break;
+            case 1:
+                sort="sales_sum";
+                mPresenter.callClassificationSort(cat_id,page_no,is_new,name,null,null,sort,sort_asc);
+                break;
+            case 2:
+                is_new=1;
+                mPresenter.callClassificationSort(cat_id,page_no,is_new,name,null,null,sort,sort_asc);
+                break;
+            case 3:
+//                isasc=!isasc;//写在排序按钮中
+//                if (isasc){
+//                    sort_asc="asc";
+//                }else{
+//                    sort_asc=null;
+//                }
+                sort="shop_price";
+                mPresenter.callClassificationSort(cat_id,page_no,is_new,name,null,null,sort,sort_asc);
+                break;
+        }
+    }
+
+    @Override
+    public void sortDataToView(SortBean sortBean) {
+        if (sortBean.getData()!=null){
+            mComprehensiveRecycle.setAdapter(new ComprehensiveAdapter(getContext(),sortBean.getData()));
+        }else{
+            List<SortBean.DataBean> lists=new ArrayList<>();
+            List<SortBean.ItemBean> items=new ArrayList<>();
+            items.add(new SortBean.ItemBean("新品"));
+            items.add(new SortBean.ItemBean("爆款"));
+            items.add(new SortBean.ItemBean("时尚"));
+            lists.add(new SortBean.DataBean("百搭抽绳连帽中长款外套", "/public/upload/goods/2017/04-12/R6hjhyxUK2dd8HtPX7VTr2Ugf.jpg","210.0",500,items));
+            mComprehensiveRecycle.setAdapter(new ComprehensiveAdapter(getContext(),lists));
+        }
     }
 
     private class ComprehensiveAdapter extends AutoRVAdapter {
-        List<ComprehensiveBean> lists;
+        List<SortBean.DataBean> lists;
         Context mContext;
-        public ComprehensiveAdapter(Context context, List<ComprehensiveBean> lists) {
+        public ComprehensiveAdapter(Context context, List<SortBean.DataBean> lists) {
             super(context,lists);
             mContext=context;
             this.lists=lists;
@@ -80,16 +126,20 @@ public class ComprehensiveFragment extends MVPBaseFragment<ComprehensiveContract
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {
             List<String> list=new ArrayList<>();
-            holder.getCustomImageView(R.id.goods_ranking_item_img).setImageResource(lists.get(position).getImg());
-            holder.getTextView(R.id.goods_ranking_item_description).setText(lists.get(position).getDescription());
-            Log.e("lists", "onBindViewHolder: "+(lists.get(position).getPrice())+lists.get(position).getLocation());
-            holder.getTextView(R.id.goods_ranking_item_price).setText("￥"+(lists.get(position).getPrice()));
-            holder.getTextView(R.id.goods_ranking_item_distances).setText("宝贝位置：<"+lists.get(position).getLocation()+"m");
-            for (int i = 0; i <lists.get(position).getItems().size() ; i++) {
-                list.add(lists.get(position).getItems().get(i));
+            new GlideImageLoader().displayImage(mContext,XianGouApiService.IMGBASEURL+lists.get(position).getOriginal_img(),holder.getCustomImageView(R.id.goods_ranking_item_img));
+            holder.getTextView(R.id.goods_ranking_item_description).setText(lists.get(position).getGoods_name());
+            Log.e("lists", "onBindViewHolder: "+(lists.get(position).getShop_price())+lists.get(position).getDistance());
+            holder.getTextView(R.id.goods_ranking_item_price).setText("￥"+(lists.get(position).getShop_price()));
+            holder.getTextView(R.id.goods_ranking_item_distances).setText("宝贝位置：<"+lists.get(position).getDistance()+"m");
+            if (lists.get(position).getSign()!=null) {//判断是否有sign标签
+                for (int i = 0; i < lists.get(position).getSign().size(); i++) {//处理标签sign
+                    list.add(lists.get(position).getSign().get(i).getItem());
+                }
+                holder.getRecycleView(R.id.goods_ranking_item_recycle).setLayoutManager(new GridLayoutManager(mContext, 1, GridLayoutManager.HORIZONTAL, false));
+                holder.getRecycleView(R.id.goods_ranking_item_recycle).setAdapter(new AttributeAdapter(mContext, list));
+            }else{
+                holder.getRecycleView(R.id.goods_ranking_item_recycle).setVisibility(View.GONE);
             }
-            holder.getRecycleView(R.id.goods_ranking_item_recycle).setLayoutManager(new GridLayoutManager(mContext, 1, GridLayoutManager.HORIZONTAL,false));
-            holder.getRecycleView(R.id.goods_ranking_item_recycle).setAdapter(new AttributeAdapter(mContext,list));
         }
 
         private class AttributeAdapter extends AutoRVAdapter {

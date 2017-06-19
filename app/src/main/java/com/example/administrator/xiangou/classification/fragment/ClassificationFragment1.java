@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import com.example.administrator.xiangou.R;
 import com.example.administrator.xiangou.classification.adapter.ClassificationAdapter1;
 import com.example.administrator.xiangou.classification.bean.FirstLevelBean;
+import com.example.administrator.xiangou.goods_sort.Goods_rankingActivity;
 import com.example.administrator.xiangou.mvp.MVPBaseFragment;
 
 
@@ -50,9 +51,23 @@ public class ClassificationFragment1 extends MVPBaseFragment<ClassificationContr
 
 	@Override
 	public void datatoView(FirstLevelBean data) {
-//		List<String> list=new ArrayList<>();
-//		list.add("jefi");
-//		list.add("jjif");
-		recyclerView.setAdapter(new ClassificationAdapter1(getContext(),data));
+		ClassificationAdapter1 adapter1;
+		recyclerView.setAdapter(adapter1=new ClassificationAdapter1(getContext(),data));
+		adapter1.setOnitemClickListener(new ClassificationAdapter1.OnitemClickListener() {
+			@Override
+			public void setrecommendItemClickListener(int position, int cat_id) {
+				Log.e("recommemd", "setrecommendItemClickListener: position:"+position+"cat_id:"+cat_id);
+//				mPresenter.callClassificationSort(cat_id,0,0,null,null,null,null,null);//x待解析数据输入,请求放到排行页
+				startNewUICarryStr(Goods_rankingActivity.class,"cat_id",cat_id);
+			}
+
+			@Override
+			public void setHot_cateItemClickListener(int position, int cat_id) {
+				Log.e("recommemd", "setrecommendItemClickListener: position:"+position+"cat_id:"+cat_id);
+//				mPresenter.callClassificationSort(cat_id,0,0,null,null,null,null,null);
+				startNewUICarryStr(Goods_rankingActivity.class,"cat_id",cat_id);//x待解析数据输入
+			}
+		});
 	}
+
 }

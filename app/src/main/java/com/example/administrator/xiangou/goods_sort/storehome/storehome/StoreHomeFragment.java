@@ -129,7 +129,7 @@ public class StoreHomeFragment extends MVPBaseFragment<StoreHomeContract.View, S
         homeStoreFragment.setArguments(bundle);
 
         mTabFragList.add(homeStoreFragment);
-        mTabFragList.add(new ComprehensiveFragment());
+        mTabFragList.add(new ComprehensiveFragment(0));//店铺模拟页面待修改
         mTabLayout.setTabMode(TabLayout.MODE_FIXED);
         mLayoutAdapter = new StoreHomeTabLayoutAdapter(getContext(), getChildFragmentManager(), mTabFragList,tabTitles);
         mViewPager.setAdapter(mLayoutAdapter);

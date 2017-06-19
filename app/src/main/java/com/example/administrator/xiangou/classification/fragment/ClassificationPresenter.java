@@ -7,6 +7,8 @@ import com.example.administrator.xiangou.mvp.BasePresenterImpl;
 import com.example.administrator.xiangou.net.BaseSubscriber;
 import com.example.administrator.xiangou.net.ExceptionHandle;
 
+import okhttp3.ResponseBody;
+
 public class ClassificationPresenter extends BasePresenterImpl<ClassificationContract.View> implements ClassificationContract.Presenter{
 
     @Override
@@ -32,4 +34,5 @@ public class ClassificationPresenter extends BasePresenterImpl<ClassificationCon
                     }
                 });
     }
+
 }

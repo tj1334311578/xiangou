@@ -28,8 +28,9 @@ public class ClassificationFragment extends MVPBaseFragment<ClassificationContra
 	@Override
 	public void onStart() {
 		super.onStart();
-		if (getArguments()!=null)
 		cat_id=getArguments().getInt("cat_id",0);
+		Log.e("cat_id+++++++++++++++", "onStart: "+cat_id);
+		mPresenter.callclassificationarray(cat_id);
 	}
 
 	@Nullable
@@ -43,7 +44,6 @@ public class ClassificationFragment extends MVPBaseFragment<ClassificationContra
 		Log.e("index", "initView: "+this.getArguments().getInt("index")+"position:"+cat_id);
 		recyclerView = (RecyclerView) mContextView.findViewById(R.id.goods_classfication_recycle);
 		recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
-		mPresenter.callclassificationarray(cat_id);
 	}
 
 
@@ -58,8 +58,8 @@ public class ClassificationFragment extends MVPBaseFragment<ClassificationContra
 	}
 
 	@Override
-	public void datatoView(FirstLevelBean data) {
-		ClassificationAdapter adapter;
+	public void datatoView(final FirstLevelBean data) {
+		final ClassificationAdapter adapter;
 		recyclerView.setAdapter(adapter=new ClassificationAdapter(getContext(),data));
 		adapter.setItemClickListener(new ClassificationAdapter.OnitemClickListener() {
 			@Override

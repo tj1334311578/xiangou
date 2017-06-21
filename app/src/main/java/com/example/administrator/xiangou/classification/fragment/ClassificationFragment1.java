@@ -32,8 +32,6 @@ public class ClassificationFragment1 extends MVPBaseFragment<ClassificationContr
 
 	@Override
 	public void initView() {
-
-		Log.e("index", "initView: "+this.getArguments().getInt("index") );
 		recyclerView = (RecyclerView) view.findViewById(R.id.goods_classfication_recycle);
 		recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
 		mPresenter.callclassificationarray(0);

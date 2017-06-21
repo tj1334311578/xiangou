@@ -3,6 +3,7 @@ package com.example.administrator.xiangou.classification.adapter;
 import android.content.Context;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 
@@ -50,20 +51,24 @@ public class ClassificationAdapter extends AutoRVAdapter implements RVBaseAdapte
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        if (mdata.getData().getAdv()!=null)
-        new GlideImageLoader().displayImage(context, XianGouApiService.IMGBASEURL +mdata.getData().getAdv().getImg_url(),holder.getImgeView(R.id.goods_item1_img));
-
+        if (mdata.getData().getAdv()!=null) {
+            new GlideImageLoader().displayImage(context, XianGouApiService.IMGBASEURL + mdata.getData().getAdv().getImg_url(), holder.getImgeView(R.id.goods_item1_img));
+        }
         RecyclerView recy=holder.getRecycleView(R.id.goods_classfication_item1_recycle);
         recy.setLayoutManager(new GridLayoutManager(context,3, GridLayoutManager.VERTICAL,false));
         recy.addItemDecoration(new ItemIntervalDecoration(0,10,0,20));
         ClassificationAdapter2 adapter2;
-        recy.setAdapter(adapter2=new ClassificationAdapter2(context,mdata.getData().getCate()));
-        adapter2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                itemClickListener.setOnitemclicklistener(position,mdata.getData().getCate().get(position).getCat_id());
-            }
-        });
+        if (mdata.getData().getCate()!=null) {
+            Log.e("mdata", "onBindViewHolder: " + mdata.getData().getCate());
+            recy.setAdapter(adapter2 = new ClassificationAdapter2(context, mdata.getData().getCate()));
+            adapter2.notifyItemRangeChanged(0, mdata.getData().getCate().size());
+            adapter2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    itemClickListener.setOnitemclicklistener(position,mdata.getData().getCate().get(position).getCat_id());
+                }
+            });
+        }
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.example.administrator.xiangou.classification.fragment;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -91,7 +92,9 @@ public class ClassificationTabActivity extends BaseActivity {
         for (int j = 0; j <data.getData().getAll_cate().size() ; j++) {
             if (j==0&&!data.getData().getAll_cate().get(0).equals("推荐")){
                 lists.add("推荐");
+                lists_id.add(-1);
             }
+
             lists.add(data.getData().getAll_cate().get(j).getName());
             lists_id.add(data.getData().getAll_cate().get(j).getCat_id());
         }
@@ -185,13 +188,11 @@ public class ClassificationTabActivity extends BaseActivity {
             fragment=new ClassificationFragment1();
         }else{
                 Bundle b=new Bundle();
-                b.putInt("cat_id",lists_id.get(index-1));
+                b.putInt("cat_id",lists_id.get(index));
                 fragment = new ClassificationFragment();
                 fragment.setArguments(b);
         }
-            Bundle bundle = new Bundle();
-            bundle.putInt("index", index);
-            fragment.setArguments(bundle);
+            Log.e("cat_id======", "getItem: "+lists_id.get(index) );
             return fragment;
         }
 
